@@ -1,0 +1,51 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+          "jsx": true,
+          "destructuring": true,
+          "arrowFunctions": true,
+          "classes": true,
+          "objectLiteralShorthandMethods": true,
+          "spread": true,
+          "modules": true
+      }
+  },
+  "plugins": [
+    "react-native",
+    "react",
+    "babel",
+    "flowtype"
+  ],
+  "rules": {
+    "no-case-declarations": 0,
+    "no-console": 0,
+    "no-var": 1,
+    "no-unneeded-ternary": 1,
+    "no-whitespace-before-property": 1,
+    "no-trailing-spaces": 1,
+    "semi": [1, "never"],
+    "quotes": [1, "single"],
+    "strict": [1, "never"],
+    "react/prop-types": 0,
+    "react-native/no-unused-styles": 1,
+    "react-native/split-platform-components": 2,
+    "react/react-in-jsx-scope": 1
+  },
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "globals": {
+    "fetch": true,
+    "Promise": true,
+    "navigator": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:flowtype/recommended",
+    "plugin:react/recommended"
+  ]
+}
