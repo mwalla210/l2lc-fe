@@ -14,6 +14,7 @@ import Profile from './profile'
   * @class App
   * @description Overarching class for website
   * @extends Component
+  * @mobx observer
   */
 @observer
 class App extends Component {

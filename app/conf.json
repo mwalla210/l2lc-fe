@@ -1,56 +1,57 @@
 {
- "tags": {
-  "allowUnknownTags": [ "action" ],
-  "dictionaries": ["jsdoc"]
- },
- "plugins": [
-  "node_modules/jsdoc-babel",
-  "plugins/markdown"
- ],
- "opts": {
-  "destination": "./docs/",
-  "readme": "./README.md",
-  "template": "./node_modules/docdash",
-  "private": true,
-  "package": "./package.json"
- },
- "source": {
-  "include": ["./src"],
-  "includePattern": ".+\\.js(doc|x)?$"
- },
- "babel": {
-  "babelrc": false,
-  "presets": [
-   "stage-0",
-   "react"
-  ],
+  "tags": {
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc"]
+  },
   "plugins": [
-   "transform-flow-comments",
-   "transform-decorators-legacy"
+    "node_modules/jsdoc-babel",
+    "plugins/markdown",
+    "plugins/custom-tags.js"
   ],
-  "sourceMaps": "inline",
-  "retainLines": true,
-  "env": {
-   "production": {
-    "retainLines": true
-   }
+  "opts": {
+    "destination": "./docs/",
+    "readme": "./README.md",
+    "template": "./node_modules/docdash",
+    "private": true,
+    "package": "./package.json"
+  },
+  "source": {
+    "include": ["./src"],
+    "includePattern": ".+\\.js(doc|x)?$"
+  },
+  "babel": {
+    "babelrc": false,
+    "presets": [
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "transform-flow-comments",
+      "transform-decorators-legacy"
+    ],
+    "sourceMaps": "inline",
+    "retainLines": true,
+    "env": {
+      "production": {
+        "retainLines": true
+      }
+    }
+  },
+  "templates": {
+    "systemName"        : "Line2Line Cloud",
+    "footer"            : "L2LC Documentation",
+    "copyright"         : "L2LC",
+    "includeDate"       : true,
+    "navType"           : "inline",
+    "theme"             : "cosmo",
+    "linenums"          : true,
+    "collapseSymbols"   : false,
+    "inverseNav"        : true,
+    "outputSourceFiles" : true,
+    "outputSourcePath"  : true,
+    "dateFormat"        : "dddd, MMMM Do YYYY, h:mm:ss a",
+    "syntaxTheme"       : "default",
+    "sort"              : true,
+    "search"            : true
   }
- },
- "templates": {
-  "systemName"        : "Line2Line Cloud",
-  "footer"            : "L2LC Documentation",
-  "copyright"         : "L2LC",
-  "includeDate"       : true,
-  "navType"           : "inline",
-  "theme"             : "cosmo",
-  "linenums"          : true,
-  "collapseSymbols"   : false,
-  "inverseNav"        : true,
-  "outputSourceFiles" : true,
-  "outputSourcePath"  : true,
-  "dateFormat"        : "dddd, MMMM Do YYYY, h:mm:ss a",
-  "syntaxTheme"       : "default",
-  "sort"              : true,
-  "search"            : true
- }
 }
