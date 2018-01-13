@@ -17,5 +17,4 @@ const Selection = ({ user }) => {
 }
 
 Selection.propTypes = propTypes
-
 export default Selection

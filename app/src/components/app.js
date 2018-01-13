@@ -1,24 +1,33 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import { PropTypes } from 'mobx-react'
-
 import _ from 'lodash'
-
 import Selection from './selection'
 import Profile from './profile'
 
-const propTypes = {
-  store: PropTypes.object
-}
+// const propTypes = {
+//   store: PropTypes.object
+// }
 
-//Observers can react (ba dum tss) to changes in observables
+ /**
+  * @name App
+  * @class App
+  * @description Overarching class for website
+  * @extends Component
+  */
 @observer
 class App extends Component {
-
   componentWillMount() {
     this.props.store.getUsers()
   }
 
+   /**
+    * @name renderSelection
+    * @description Renders a selected user
+    * @return {div}
+    * @memberof App
+    * @method
+    */
   renderSelection(){
     if (_.isEmpty(this.props.store.selectedUser)) return <noscript />
     return (
@@ -29,6 +38,13 @@ class App extends Component {
     )
   }
 
+   /**
+    * @name renderProfiles
+    * @description Renders a selected user profile
+    * @return {Profile}
+    * @memberof App
+    * @method
+    */
   renderProfiles(){
     return this.props.store.users.map((user) => {
       return (
@@ -42,6 +58,13 @@ class App extends Component {
     })
   }
 
+  /**
+   * @name render
+   * @description App render function
+   * @return {div}
+   * @memberof App
+   * @method
+   */
   render(){
     return (
       <div>
@@ -54,5 +77,4 @@ class App extends Component {
 }
 
 App.propTypes = propTypes
-
 export default App
