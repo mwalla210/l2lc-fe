@@ -5,19 +5,19 @@ import _ from 'lodash'
 import Selection from './selection'
 import Profile from './profile'
 
-// const propTypes = {
-//   store: PropTypes.object
-// }
-
  /**
-  * @name App
-  * @class App
-  * @description Overarching class for website
+  * @class
+  * @description Component; overarching class for website
   * @extends Component
+  * @property {Object} store  store for website component
   * @mobx observer
   */
 @observer
 class App extends Component {
+  static propTypes = {
+    store: PropTypes.object
+  }
+
   componentWillMount() {
     this.props.store.getUsers()
   }
@@ -77,5 +77,5 @@ class App extends Component {
   }
 }
 
-App.propTypes = propTypes
+// App.propTypes = propTypes
 export default App
