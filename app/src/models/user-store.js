@@ -20,7 +20,7 @@ class UserStore {
    * @name selectedId
    * @description Provides selected user ID
    * @return {Number}
-   * @memberof UserStore
+   * @memberof UserStore.prototype
    * @method
    * @mobx computed
    */
@@ -29,7 +29,7 @@ class UserStore {
   /**
    * @name getUsers
    * @description Fetches users; calls setUsers
-   * @memberof UserStore
+   * @memberof UserStore.prototype
    * @method
    * @mobx action
    */
@@ -44,7 +44,7 @@ class UserStore {
    * @name setUsers
    * @description Sets this.users
    * @param  {Array} users  array of users
-   * @memberof UserStore
+   * @memberof UserStore.prototype
    * @method
    * @mobx action
    */
@@ -56,7 +56,7 @@ class UserStore {
    * @name selectUser
    * @description Sets this.selectedUser
    * @param  {Object} user  user to select
-   * @memberof UserStore
+   * @memberof UserStore.prototype
    * @method
    * @mobx action
    */
@@ -67,7 +67,7 @@ class UserStore {
   /**
    * @name clearSelectedUser
    * @description Sets this.selectedUser to empty object
-   * @memberof UserStore
+   * @memberof UserStore.prototype
    * @method
    * @mobx action
    */

@@ -26,7 +26,7 @@ class App extends Component {
     * @name renderSelection
     * @description Renders a selected user
     * @return {div}
-    * @memberof App
+    * @memberof App.prototype
     * @method
     */
   renderSelection(){
@@ -43,7 +43,7 @@ class App extends Component {
     * @name renderProfiles
     * @description Renders a selected user profile
     * @return {Profile}
-    * @memberof App
+    * @memberof App.prototype
     * @method
     */
   renderProfiles(){
@@ -63,7 +63,7 @@ class App extends Component {
    * @name render
    * @description App render function
    * @return {div}
-   * @memberof App
+   * @memberof App.prototype
    * @method
    */
   render(){
