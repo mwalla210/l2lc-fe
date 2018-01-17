@@ -7,8 +7,9 @@ useStrict(true)
  * @name UserStore
  * @class UserStore
  * @description Main MobX store for website
- * @property {Array}  users         list of users for website [observable]
- * @property {Object} selectedUser  current selected user object [observable]
+ * @property {User[]} [users=[]]          list of users for website [observable]
+ * @property {User} [selectedUser={}]     current selected user object [observable]
+ * @property {String} [example=null]        example property to demonstrate nullable
  */
 class UserStore {
   // Observable values can be watched by Observers
