@@ -2,31 +2,34 @@
 
 ## About ##
 
-Starter Package for upcomming Mobx React Tutorial
+Example website using JS, React, and MobX
 
 ## Install ##
 
-From your terminal run:
-
-```bash
-    git clone git@github.com:orlando-paredes-hamsho/mobx-react-starter.git
-```
-
-Then once it's downloaded
+Run package installer
 
 ```bash
     npm install
 ```
 
-## Run the dev server ##
+Then copy the contents of the "custom docdash folder" into the folder 'app/node_modules/docdash' and replace contents.
+This will set up our custom styling templates for code documentation.
+
+## Locally Load Website ##
 
 From your terminal run:
 
 ```bash
-    npm run start
+    npm start
 ```
 
 ## Additional Scripts ##
+
+### For Doc Generating
+
+```bash
+    npm run doc
+```
 
 ### For testing:
 
