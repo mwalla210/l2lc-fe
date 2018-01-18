@@ -43,7 +43,7 @@ class UserStore {
   /**
    * @name setUsers
    * @description Sets this.users
-   * @param  {Array} users  array of users
+   * @param  {User[]} users  array of users
    * @memberof UserStore.prototype
    * @method
    * @mobx action
