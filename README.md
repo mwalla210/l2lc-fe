@@ -1,8 +1,7 @@
-# Mobx React Starter
+# Title
 
 ## About ##
 
-Example website using JS, React, and MobX
 
 ## Install ##
 
@@ -30,31 +29,9 @@ From your terminal run:
 
 ### For Doc Generating
 
-Ensure the following is in one of your bash profiles (if node packages not found when running)
-
-```bash
-    export PATH="{PATH_TO_REPO}/app/node_modules/.bin:$PATH"
-```
-
 ```bash
     npm run doc
 ```
-
-### For testing:
-
-```bash
-    npm run test
-```
-
-Testing will also run **prior to pushing to a remote server.**
-
-### For Linting:
-
-```bash
-    npm run lint
-```
-
-Linting will also run **prior to commiting and/or pushing to a remote server.**
 
 ### Building:
 
@@ -62,6 +39,10 @@ Linting will also run **prior to commiting and/or pushing to a remote server.**
     npm run build
 ```
 
-## Watch this code live ##
+## Debugging
 
-You can see a live version of this code on http://codepen.io/orliph/pen/pgmGjr?editors=1010
+If node packages not found during attempts to run, ensure the following is in one of your bash profiles
+
+```bash
+    export PATH="{PATH_TO_REPO}/app/node_modules/.bin:$PATH"
+```
