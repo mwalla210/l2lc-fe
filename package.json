@@ -8,12 +8,9 @@
   "main": "index.js",
   "repository": "git@github.com:orlando-paredes-hamsho/mobx-react-starter.git",
   "scripts": {
-    "build": "webpack --config webpack.config.js ",
+    "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --config webpack.config.js --hot --inline",
-    "test": "mocha --compilers js:babel-core/register --require ./test/setup.js --recursive ./test/**/*.test.js",
-    "test:watch": "npm run test -- --watch",
-    "lint": "eslint ./src",
-    "doc": "jsdoc -c conf.json -r"
+    "doc": "jsdoc -c jsdocconf.json -r"
   },
   "pre-commit": [
     "lint"
