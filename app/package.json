@@ -1,6 +1,9 @@
 {
   "name": "mobx-react-starter",
   "version": "0.0.1",
+  "engines": {
+    "node": "6.10.1"
+  },
   "description": "Starter Package for upcomming Mobx React Tutorial",
   "main": "index.js",
   "repository": "git@github.com:orlando-paredes-hamsho/mobx-react-starter.git",
