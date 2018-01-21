@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { observer } from 'mobx-react'
-import { PropTypes } from 'mobx-react'
 import _ from 'lodash'
 import Selection from './selection'
 import Profile from './profile'
@@ -34,7 +33,7 @@ class App extends Component {
     return (
       <div className='selection'>
         <Selection user={this.props.store.selectedUser}/>
-        <button onClick={this.props.store.clearSelectedUser}>Close Profile</button>
+        <button onClick={() => this.props.store.clearSelectedUser()}>Close Profile</button>
       </div>
     )
   }
@@ -77,5 +76,4 @@ class App extends Component {
   }
 }
 
-// App.propTypes = propTypes
 export default App

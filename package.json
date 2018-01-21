@@ -22,7 +22,6 @@
     "lint",
     "test"
   ],
-  "author": "Orlando Paredes Hamsho",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^6.1.2",

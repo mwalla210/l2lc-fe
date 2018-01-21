@@ -3,7 +3,7 @@ module.exports = {
   entry: ['./src/index.js'],
   output: {
     path: __dirname,
-    publicPath: 'https://cloud.line2linecoatings.com/',
+    publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
