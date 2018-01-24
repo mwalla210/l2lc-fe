@@ -1,24 +1,17 @@
 {
-  "name": "mobx-react-starter",
+  "name": "Line2LineCloud",
   "version": "0.0.1",
   "engines": {
     "node": "6.10.1"
   },
-  "description": "Starter Package for upcomming Mobx React Tutorial",
+  "description": "Line 2 Line Cloud Repository",
   "main": "index.js",
-  "repository": "git@github.com:orlando-paredes-hamsho/mobx-react-starter.git",
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --config webpack.config.js --hot --inline",
-    "doc": "jsdoc -c jsdocconf.json -r"
+    "doc": "jsdoc -c jsdocconf.json -r",
+    "deploy": "./build.sh"
   },
-  "pre-commit": [
-    "lint"
-  ],
-  "pre-push": [
-    "lint",
-    "test"
-  ],
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-eslint": "^6.1.2",
