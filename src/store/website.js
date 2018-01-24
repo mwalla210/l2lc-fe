@@ -18,24 +18,36 @@ useStrict(true)
  * @property {Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {Boolean} [login=true]
+ * @property {String} [pageTitle='Default Title']
+ * @property {String} [navHighlight='']
+ * @property {Object} [pageContent=null]
+ * @property {Array} [pageContent=[]]
  * @mobx store
  */
 class Website {
   constructor() {
-    this.currentProject = null
-    this.currentCustomer = null
-    this.currentUser = null
-    this.openProjects = []
-    this.closedProjects = []
-    this.accounts = []
-    this.employees = []
-    this.customers = []
+    let addtlProps = {}
+    addtlProps.currentProject = null
+    addtlProps.currentCustomer = null
+    addtlProps.currentUser = null
+    addtlProps.openProjects = []
+    addtlProps.closedProjects = []
+    addtlProps.accounts = []
+    addtlProps.employees = []
+    addtlProps.customers = []
     // TODO Analytic models
-    this.ccAnalytic = null
-    this.eAnalytic = null
-    this.paAnalytic = null
-    this.jtAnalytic = null
-    extendObservable(this)
+    addtlProps.ccAnalytic = null
+    addtlProps.eAnalytic = null
+    addtlProps.paAnalytic = null
+    addtlProps.jtAnalytic = null
+    // Page props
+    addtlProps.login = true
+    addtlProps.pageTitle = 'Default Title'
+    addtlProps.navHighlight = ''
+    addtlProps.pageContent = null
+    addtlProps.pageButtons = []
+    extendObservable(this, addtlProps)
   }
 
   // Fetches
@@ -50,9 +62,10 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action async getProject(id){
+  @action getProject(id){
     console.log(`Fetch project from API with ID: ${id}`)
   }
+
   /**
    * @name getProjects
    * @description Instantiates returned collection as Project(s) and sets this.openProjects or this.closedProjects, dependent on input
@@ -63,9 +76,10 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action async getProjects(open=true){
+  @action getProjects(open=true){
     console.log(`Fetch projects from API with open status: ${open}`)
   }
+
   /**
    * @name getAccounts
    * @description Instantiates returned collection as User(s) and sets this.accounts
@@ -75,9 +89,10 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action async getAccounts(){
+  @action getAccounts(){
     console.log('Fetch accounts from API')
   }
+
   /**
    * @name getEmployees
    * @description Instantiates returned collection as Employee(s) and sets this.employees
@@ -87,9 +102,10 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action async getEmployees(){
+  @action getEmployees(){
     console.log('Fetch employees from API')
   }
+
   /**
    * @name getCustomers
    * @description Instantiates returned collection as Customer(s) and sets this.customers
@@ -99,7 +115,7 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action async getCustomers(){
+  @action getCustomers(){
     console.log('Fetch customers from API')
   }
 
@@ -156,8 +172,14 @@ class Website {
   generateBarcode(id){
     console.log(`Generate barcode with ID: ${id}`)
   }
+
+  // TODO remove
+  @action changeLogin(){
+    console.log(this.login)
+    this.login = !this.login
+    console.log(this.login)
+  }
 }
 
 const website = new Website()
 export default website
-export { Website }

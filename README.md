@@ -14,7 +14,7 @@ Run package installer
     npm install
 ```
 
-Then copy the contents of the "custom docdash" folder into the folder 'app/node_modules/docdash' and replace contents.
+Then copy the contents of the "custom docdash" folder into the folder 'node_modules/docdash' and replace contents.
 This will set up our custom styling templates for code documentation.
 
 ## Locally Load Website ##

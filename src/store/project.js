@@ -11,9 +11,9 @@ useStrict(true)
  * @property {Object} costCenter.title Title [observable]
  * @property {Object} costCenter.descr Description [observable]
  * @property {Object} jobType Related job type (within cost center) [observable]
- * @property {Object} jobType.id ID [observable]
- * @property {Object} jobType.title Title [observable]
- * @property {Object} jobType.costCenterID Related cost center ID [observable]
+ * @property {Number} jobType.id ID [observable]
+ * @property {String} jobType.title Title [observable]
+ * @property {Number} jobType.costCenterID Related cost center ID [observable]
  * @property {String} title Project title [observable]
  * @property {String} priority Project priority [observable]
  * @property {Number} [partCount=null] Project part count [observable]
@@ -33,34 +33,35 @@ useStrict(true)
  */
 class Project {
   constructor(id, costCenter, jobType, title, priority, dateCreated, partCount, descr, refNum, customer, dateFinished) {
-    this.id = id
-    this.costCenter = costCenter
-    this.jobType = jobType
-    this.title = title
-    this.priority = priority
+    let addtlProps = {}
+    addtlProps.id = id
+    addtlProps.costCenter = costCenter
+    addtlProps.jobType = jobType
+    addtlProps.title = title
+    addtlProps.priority = priority
     // Optional
-    this.partCount = partCount
-    this.descr = descr
-    this.refNum = refNum
+    addtlProps.partCount = partCount
+    addtlProps.descr = descr
+    addtlProps.refNum = refNum
     // TODO: initialize Customer object?
-    this.customer = null
-    this.dateCreated = null
+    addtlProps.customer = null
+    addtlProps.dateCreated = null
     if (dateCreated)
-      this.dateCreated = new Date(dateCreated)
-    this.dateFinished = null
+      addtlProps.dateCreated = new Date(dateCreated)
+    addtlProps.dateFinished = null
     if (dateFinished)
-      this.dateFinished = new Date(dateFinished)
+      addtlProps.dateFinished = new Date(dateFinished)
     // Defaults
-    this.processArea = ''
-    this.hold = {
+    addtlProps.processArea = ''
+    addtlProps.hold = {
       flag: false,
       descr: ''
     }
-    this.reworks = []
-    this.timeEntries = []
-    this.tasks = []
-    this.historyMsg = ''
-    extendObservable(this)
+    addtlProps.reworks = []
+    addtlProps.timeEntries = []
+    addtlProps.tasks = []
+    addtlProps.historyMsg = ''
+    extendObservable(this, addtlProps)
   }
 
   // Computations
@@ -251,4 +252,3 @@ class Project {
 
 const project = new Project()
 export default project
-export { Project }

@@ -1,4 +1,4 @@
-import { action, computed, useStrict, extendObservable } from 'mobx'
+import { action, useStrict, extendObservable } from 'mobx'
 useStrict(true)
 
 /**
@@ -6,16 +6,18 @@ useStrict(true)
  * @class Task
  * @description Main MobX store for task
  * @property {Boolean} [required=false] Indicates whether the task is required [observable]
- * @property {String} [processArea=''] Process area associated with the task [observable]
- * @property {String} [title=''] Title of the task [observable]
+ * @property {String} [processArea=null] Process area associated with the task [observable]
+ * @property {String} [title=null] Title of the task [observable]
  * @property {String} [status=''] Current task status [observable]
  */
 class Task {
   constructor(title, processArea) {
-    this.required = false
-    this.processArea = ''
-    this.title = ''
-    this.status = ''
+    let addtlProps = {  }
+    addtlProps.required = false
+    addtlProps.processArea = processArea
+    addtlProps.title = title
+    addtlProps.status = ''
+    extendObservable(this, addtlProps)
   }
 
 // Actions
@@ -29,10 +31,9 @@ class Task {
 * @mobx action
 */
   @action async toggle() {
-     console.log(`Update required status for a task via API. Returns boolean success.`)
+     console.log('Update required status for a task via API. Returns boolean success.')
   }
 }
 
 const task = new Task()
 export default task
-export { Task }
