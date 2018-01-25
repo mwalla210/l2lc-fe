@@ -6,31 +6,31 @@ useStrict(true)
  * @name Customer
  * @class Customer
  * @description Customer storage object
- * @property {id}  [id=null]
- * @property {companyName} [companyName='']
- * @property {email} [email='']
- * @property {website} [website='']
- * @property {phone} [phone='']
- * @property {pastDue}
- * @property {shipAddr1}
- * @property {shipAddr2}
- * @property {shipCity}
- * @property {shipState}
- * @property {shipCountry}
- * @property {shipZip}
- * @property {billAddr1}
- * @property {billAddr2}
- * @property {billCity}
- * @property {billState}
- * @property {billCountry}
- * @property {billZip}
- * @property {billSame}
+ * @property {Number}  [id=null]  ID of Customer
+ * @property {String} [companyName=''] name of Customer
+ * @property {String} [email=''] email of Customer
+ * @property {String} [website=''] website of Customer
+ * @property {String} [phone=''] phone of Customer
+ * @property {Boolean} [pastDue = false] indicator of overdue bills for Customer
+ * @property {String} [shipAddr1='' ] line one of shipping address for Customer
+ * @property {String} [shipAddr2=''] line two of shipping address for Customer
+ * @property {String} [shipCity=''] city of shipping address of Customer
+ * @property {String} [shipState=''] state of shipping address of Customer
+ * @property {String} [shipCountry=''] country of shipping address of Customer
+ * @property {Number} [shipZip=null] zipcode of shipping address of Customer
+ * @property {String} [billAddr1=''] line one of billing address for Customer
+ * @property {String} [billAddr2=''] line two of billing address for Customer
+ * @property {String} [billCity=''] city of billing address of Customer
+ * @property {String} [billState=''] state of billing address of Customer
+ * @property {String} [billCountry=''] country of billing address of Customer
+ * @property {Number} [billZip=null] zipcode of billing address of Customer
+ * @property {Boolean} [billSame=false] indicator that billing address is same as shipping address for Customer
  */
 
 
 class Customer {
   constructor(id, companyName, shipAddr1, shipCity, shipState, shipCountry, shipZip, email, phone, website, billIsSame, billAddr1, billCity, billState, billCountry, billZip}) {
-    this.id = id
+
     this.companyName = companyName
     this.shipAddr1 = shipAddr1
     this.shipAddr2 = shipAddr2
@@ -51,7 +51,7 @@ class Customer {
     this.billCountry = billCountry
     this.billZip = billZip
     extendObservable(this)
-    return this
+    this.id = id
   }
 
   // Observable values can be watched by Observers
