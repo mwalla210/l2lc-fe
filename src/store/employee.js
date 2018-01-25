@@ -1,43 +1,35 @@
-import { observable, action, computed, useStrict } from 'mobx'
+import { action, useStrict, extendObservable } from 'mobx'
 
 useStrict(true)
 
 /**
  * @name Employee
- * @class Customer
- * @description Customer storage object
- * @property {Number}  [id=null] database ID of Employee
- * @property {String} [fullName=''] name of Employee
- * @property {Boolean} [active=false] indicator of Employee's active status
- * @property {Object} [editName=null] stores potential name changes while editing
+ * @class Employee
+ * @description Employee storage object
+ * @property {Number} id Database ID of Employee
+ * @property {String} fullName Name of Employee [observable]
+ * @property {Boolean} [active=false] Indicator of Employee's active status [observable]
+ * @property {String} [editName=null] Stores potential name changes while editing [observable]
  */
-
-
 class Employee {
   constructor(id, fullName) {
-
-    this.fullName = fullName
-    this.active = true
-    this.editName = ''
-    extendObservable(this)
+    let addtlProps = {}
+    addtlProps.fullName = fullName
+    // Optional
+    addtlProps.active = true
+    addtlProps.editName = ''
+    extendObservable(this, addtlProps)
     this.id = id
   }
 
-  // Observable values can be watched by Observers
-  @observable id = null
-  @observable fullName = ''
-  @observable active = null
-  @observable editname = null
-
   /**
   * @name changeName
-  * @description changes Employee's name
-  * @memberof
+  * @description Changes Employee's name
+  * @memberof Employee.prototype
   * @method changeName
   * @return {boolean}
   * @mobx action
   */
-
   @action async changeName(){
     // TODO: changes Employee's name
     return true
@@ -45,13 +37,12 @@ class Employee {
 
   /**
   * @name activate
-  * @description activates an active Employee
-  * @memberof
+  * @description Activates an active Employee
+  * @memberof Employee.prototype
   * @method activate
   * @return {boolean}
   * @mobx action
   */
-
   @action async activate(){
     this.active = true
     return true
@@ -59,13 +50,12 @@ class Employee {
 
   /**
   * @name deactivate
-  * @description deactivates an active Employee
-  * @memberof
+  * @description Deactivates an active Employee
+  * @memberof Employee.prototype
   * @method deactivate
   * @return {boolean}
   * @mobx action
   */
-
   @action async deactivate(){
     this.active = false
     return true
@@ -75,4 +65,3 @@ class Employee {
 
 const employee = new Employee()
 export default employee
-export { Employee }

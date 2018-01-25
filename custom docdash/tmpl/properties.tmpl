@@ -88,7 +88,7 @@
                     &lt;nullable><br>
                 <?js } ?>
 
-                <?js if (prop.description.includes("observable")) { ?>
+                <?js if (prop.description && prop.description.includes("observable")) { ?>
                     &lt;observable><br>
                 <?js } ?>
                 </td>
@@ -102,7 +102,7 @@
                 </td>
             <?js } ?>
 
-            <td class="description last"><?js= prop.description.replace(" [observable]","") ?><?js if (prop.subprops) { ?>
+            <td class="description last"><?js= prop.description && prop.description.replace(" [observable]","") ?><?js if (prop.subprops) { ?>
                 <h6>Properties</h6><?js= self.partial('properties.tmpl', prop) ?>
             <?js } ?></td>
         </tr>

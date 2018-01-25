@@ -6,7 +6,7 @@ useStrict(true)
  * @class User
  * @description Main MobX store for user
  * @property {Number} id Database ID of the user [observable]
- * @property {String} username Username of the user [observable] //KEEP AS OBJECT????????
+ * @property {String} username Username of the user [observable]
  * @property {String} [stationID=null] Station name of the user, if any [observable]
  * @property {Boolean} [admin=false] Admin indicator of user [observable]
  */
