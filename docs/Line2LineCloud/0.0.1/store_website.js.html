@@ -1,11 +1,50 @@
-import { action, useStrict, extendObservable } from 'mobx'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>store/website.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CustomerModel.html">CustomerModel</a><ul class='methods'><li data-type='method'><a href="CustomerModel.html#edit">edit</a></li><li data-type='method'><a href="CustomerModel.html#getformattedBillAddress">getformattedBillAddress</a></li><li data-type='method'><a href="CustomerModel.html#getformattedShipAddress">getformattedShipAddress</a></li><li data-type='method'><a href="CustomerModel.html#getProjects">getProjects</a></li></ul></li><li><a href="EmployeeModel.html">EmployeeModel</a><ul class='methods'><li data-type='method'><a href="EmployeeModel.html#activate">activate</a></li><li data-type='method'><a href="EmployeeModel.html#changeName">changeName</a></li><li data-type='method'><a href="EmployeeModel.html#deactivate">deactivate</a></li></ul></li><li><a href="Page.html">Page</a><ul class='methods'><li data-type='method'><a href="Page.html#customerSelect">customerSelect</a></li></ul></li><li><a href="ProjectModel.html">ProjectModel</a><ul class='methods'><li data-type='method'><a href="ProjectModel.html#addRework">addRework</a></li><li data-type='method'><a href="ProjectModel.html#addTask">addTask</a></li><li data-type='method'><a href="ProjectModel.html#addTimeEntry">addTimeEntry</a></li><li data-type='method'><a href="ProjectModel.html#changeCustomer">changeCustomer</a></li><li data-type='method'><a href="ProjectModel.html#changeHold">changeHold</a></li><li data-type='method'><a href="ProjectModel.html#customerID">customerID</a></li><li data-type='method'><a href="ProjectModel.html#delete">delete</a></li><li data-type='method'><a href="ProjectModel.html#edit">edit</a></li><li data-type='method'><a href="ProjectModel.html#finish">finish</a></li><li data-type='method'><a href="ProjectModel.html#getDefaultTaskList">getDefaultTaskList</a></li><li data-type='method'><a href="ProjectModel.html#moveTask">moveTask</a></li><li data-type='method'><a href="ProjectModel.html#removeTask">removeTask</a></li><li data-type='method'><a href="ProjectModel.html#status">status</a></li><li data-type='method'><a href="ProjectModel.html#timeSpent">timeSpent</a></li><li data-type='method'><a href="ProjectModel.html#toggleTask">toggleTask</a></li></ul></li><li><a href="TableModel.html">TableModel</a><ul class='methods'><li data-type='method'><a href="TableModel.html#dataFetch">dataFetch</a></li></ul></li><li><a href="TaskModel.html">TaskModel</a><ul class='methods'><li data-type='method'><a href="TaskModel.html#toggle">toggle</a></li></ul></li><li><a href="UserModel.html">UserModel</a><ul class='methods'><li data-type='method'><a href="UserModel.html#changePassword">changePassword</a></li><li data-type='method'><a href="UserModel.html#login">login</a></li><li data-type='method'><a href="UserModel.html#logout">logout</a></li><li data-type='method'><a href="UserModel.html#toggleAdmin">toggleAdmin</a></li></ul></li><li><a href="Website.html">Website</a><ul class='methods'><li data-type='method'><a href="Website.html#createCustomer">createCustomer</a></li><li data-type='method'><a href="Website.html#createEmployee">createEmployee</a></li><li data-type='method'><a href="Website.html#createProject">createProject</a></li><li data-type='method'><a href="Website.html#generateBarcode">generateBarcode</a></li><li data-type='method'><a href="Website.html#getAccounts">getAccounts</a></li><li data-type='method'><a href="Website.html#getCustomers">getCustomers</a></li><li data-type='method'><a href="Website.html#getEmployees">getEmployees</a></li><li data-type='method'><a href="Website.html#getProject">getProject</a></li><li data-type='method'><a href="Website.html#getProjects">getProjects</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">store/website.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { action, useStrict, extendObservable } from 'mobx'
 useStrict(true)
 
 /**
  * @name Website
  * @class Website
  * @classdesc Main MobX store for website
- * @todo Add Analytic models & reference
+ * @todo Add Analytic models &amp; reference
  * @property {Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
  * @property {Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
  * @property {User} [currentUser=null] Current User in state, or last focused User. [observable]
@@ -18,6 +57,7 @@ useStrict(true)
  * @property {Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @mobx store
  */
 class Website {
   constructor() {
@@ -166,3 +206,22 @@ class Website {
 
 const website = new Website()
 export default website
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Jan 27 2018 17:06:44 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

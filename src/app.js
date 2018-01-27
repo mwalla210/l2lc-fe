@@ -5,7 +5,6 @@ import Page from './components/page'
 @observer
 class App extends Component {
   render() {
-    console.log('app render')
     return (
       <Page/>
     )

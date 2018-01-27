@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>models/tableModel.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,36 +27,94 @@
 
 <div id="main">
     
+    <h1 class="page-title">models/tableModel.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { action, computed, useStrict, extendObservable } from 'mobx'
+useStrict(true)
 
+/*
+Select Customer
+  Model: Customer
+  Fields: ID, name, shipping, billing, phone
+  Clickable: link to project
+  Button: New Customer
+  Searchable: by ID
 
+Projects list
+  Model: Project
+  Fields: ID, customer name, title, cost center, type, status, priority, time spent, date created
+  TODO: do we actually want all of these columns? maybe rework
+  Clickable: modal
+  Searchable: by ID
+  TODO: Filtering (or something) by open/closed?
 
+Customer Information
+  Model: Customer
+  Fields: ID, name, shipping, billing, phone
+  Clickable: modal
+  Button: New Customer
+  Searchable: by ID
 
+Employee Information
+  Model: Employee
+  Fields: ID, name, barcode
+  Clickable: name edit
+  Button: New Employee
+ */
 
+/**
+ * @name TableModel
+ * @class TableModel
+ * @classdesc Table model for website
+ * @property {Object} [tableButton=null] Button component for display above table
+ * @property {Function} fetchFn Table data fetch function
+ * @property {Array} columns Column header array for ReactTable
+ * @property {Function} [rowSelectFn=null] Function for handling clicking of row
+ * @property {Boolean} [loading=true] Loading indicator
+ * @property {Array} [data=[]] Data array for table
+ */
+export default class TableModel {
+  constructor(tableButton, fetchFn, rowSelectFn, columns){
+    let addtlProps = {
+      data: [],
+      loading: true
+    }
+    extendObservable(this, addtlProps)
+    // Non-observable
+    this.columns = columns
+    this.tableButton = tableButton
+    this.fetchFn = fetchFn
+    this.rowSelectFn = rowSelectFn
+  }
 
+  @action loadingOn(){this.loading = true}
+  @action loadingOff(){this.loading = false}
 
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>Title</h1><h2>About</h2><h2>Install</h2><p>Install <a href="https://nodejs.org/en/download/">Node</a></p>
-<p>Run package installer</p>
-<pre class="prettyprint source lang-bash"><code>    npm install npm -g
-    npm install</code></pre><p>Then copy the contents of the &quot;custom docdash&quot; folder into the folder 'node_modules/docdash' and replace contents.
-This will set up our custom styling templates for code documentation.</p>
-<h2>Locally Load Website</h2><p>From your terminal run:</p>
-<pre class="prettyprint source lang-bash"><code>    npm start</code></pre><h2>Additional Scripts</h2><h3>For Doc Generating</h3><pre class="prettyprint source lang-bash"><code>    npm run doc</code></pre><h3>Building:</h3><pre class="prettyprint source lang-bash"><code>    npm run build</code></pre><h2>Debugging</h2><p>If node packages not found during attempts to run, ensure the following is in one of your bash profiles</p>
-<pre class="prettyprint source lang-bash"><code>    export PATH=&quot;{PATH_TO_REPO}/app/node_modules/.bin:$PATH&quot;</code></pre></article>
+  /**
+   * @name dataFetch
+   * @description Handles loading while fetching table data
+   * @memberof TableModel.prototype
+   * @method dataFetch
+   * @mobx action
+   */
+  @action dataFetch(){
+    this.loadingOn()
+    this.fetchFn()
+    console.log(this.data.length)
+    this.loadingOff()
+  }
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

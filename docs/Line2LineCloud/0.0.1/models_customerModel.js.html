@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>models/customerModel.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,36 +27,134 @@
 
 <div id="main">
     
+    <h1 class="page-title">models/customerModel.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { action, computed, useStrict, extendObservable } from 'mobx'
+useStrict(true)
 
+/**
+ * @name CustomerModel
+ * @class CustomerModel
+ * @classdesc Customer storage object
+ * @property {Number} id  ID of Customer
+ * @property {String} companyName Name of Customer [observable]
+ * @property {String} [email=''] Email of Customer [observable]
+ * @property {String} [website=''] Website of Customer [observable]
+ * @property {String} [phone=''] Phone of Customer [observable]
+ * @property {Boolean} [pastDue = false] Indicator of overdue bills for Customer [observable]
+ * @property {Object} shipAddr Shipping address object for Customer [observable]
+ * @property {String} shipAddr.shipAddr1 Line one of shipping address for Customer [observable]
+ * @property {String} [shipAddr.shipAddr2=''] Line two of shipping address for Customer [observable]
+ * @property {String} shipAddr.shipCity City of shipping address of Customer [observable]
+ * @property {String} shipAddr.shipState State of shipping address of Customer [observable]
+ * @property {String} shipAddr.shipCountry Country of shipping address of Customer [observable]
+ * @property {Number} shipAddr.shipZip Zipcode of shipping address of Customer [observable]
+ * @property {Object} [billAddr={}] Line one of billing address for Customer [observable]
+ * @property {String} billAddr.billAddr1 Line one of billing address for Customer [observable]
+ * @property {String} [billAddr.billAddr2=''] Line two of billing address for Customer [observable]
+ * @property {String} billAddr.billCity City of billing address of Customer [observable]
+ * @property {String} billAddr.billState State of billing address of Customer [observable]
+ * @property {String} billAddr.billCountry Country of billing address of Customer [observable]
+ * @property {Number} billAddr.billZip Zipcode of billing address of Customer [observable]
+ * @property {Boolean} [billIsSame=false] Indicator that billing address is same as shipping address for Customer [observable]
+ */
+export default class CustomerModel {
+  constructor(id, companyName, shipAddr1, shipAddr2, shipCity, shipState, shipCountry, shipZip, email, phone, website, billIsSame, billAddr1, billAddr2, billCity, billState, billCountry, billZip) {
+    let addtlProps = {
+      companyName,
+      billIsSame,
+      shipAddr: {
+        // Required
+        shipAddr1,
+        shipCity,
+        shipState,
+        shipCountry,
+        shipZip,
+        //Optional
+        shipAddr2
+      },
+      // Optional
+      email,
+      phone,
+      website,
+      billAddr: {
+        // Required
+        billAddr1,
+        billCity,
+        billState,
+        billCountry,
+        billZip,
+        // Optional
+        billAddr2,
+      }
+    }
+    extendObservable(this, addtlProps)
+    // Non-observable
+    this.id = id
+  }
 
+  /**
+  * @name edit
+  * @description Updates Customer object in database
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx action
+  */
+  @action async edit(){
+    // TODO: Description: updates Customer object in database
+  }
 
+  /**
+  * @name getProjects
+  * @description Fetches Projects from database that are associated with Customer ID
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx action
+  */
+  @action async getProjects(){
+    // TODO: Fetches Projects from database that are associated with Customer ID
+  }
 
+  /**
+  * @name getformattedShipAddress
+  * @description Provides formatted concatenated string of shipping address
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx computed
+  */
+  @computed get formattedShipAddress(){
+    return `${this.shipAddr1}\n${this.shipAddr2}\n${this.shipCity}, ${this.shipState}\n${this.shipCountry}\n${this.shipZip}`
+    // return this.shipAddr1 + '\n' + this.shipAddr2 + '\n' + this.shipCity + ',' + this.shipState + '\n' + this.shipCountry + '\n' + this.shipZip
+  }
 
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>Title</h1><h2>About</h2><h2>Install</h2><p>Install <a href="https://nodejs.org/en/download/">Node</a></p>
-<p>Run package installer</p>
-<pre class="prettyprint source lang-bash"><code>    npm install npm -g
-    npm install</code></pre><p>Then copy the contents of the &quot;custom docdash&quot; folder into the folder 'node_modules/docdash' and replace contents.
-This will set up our custom styling templates for code documentation.</p>
-<h2>Locally Load Website</h2><p>From your terminal run:</p>
-<pre class="prettyprint source lang-bash"><code>    npm start</code></pre><h2>Additional Scripts</h2><h3>For Doc Generating</h3><pre class="prettyprint source lang-bash"><code>    npm run doc</code></pre><h3>Building:</h3><pre class="prettyprint source lang-bash"><code>    npm run build</code></pre><h2>Debugging</h2><p>If node packages not found during attempts to run, ensure the following is in one of your bash profiles</p>
-<pre class="prettyprint source lang-bash"><code>    export PATH=&quot;{PATH_TO_REPO}/app/node_modules/.bin:$PATH&quot;</code></pre></article>
+  /**
+  * @name getformattedBillAddress
+  * @description Provides formatted concatenated string of billing address (if billIsSame, calls formattedShipAddress)
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx computed
+  */
+  @computed get formattedBillAddress(){
+    if (this.billSame == true){
+      this.getformattedShipAddress
+    }
+    else{
+      return `${this.billAddr1}\n${this.billAddr2}\n${this.billCity}, ${this.billState}\n${this.billCountry}\n${this.billZip}`
+      // return this.billAddr1 + '\n' + this.billAddr2 + '\n' + this.billCity + ',' + this.billState + '\n' + this.billCountry + '\n' + this.billZip
+    }
+  }
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

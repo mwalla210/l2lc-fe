@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>models/userModel.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,36 +27,94 @@
 
 <div id="main">
     
+    <h1 class="page-title">models/userModel.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { action, useStrict, extendObservable } from 'mobx'
+useStrict(true)
 
+/**
+ * @name UserModel
+ * @class UserModel
+ * @classdesc Main MobX store for user
+ * @property {Number} id Database ID of the user
+ * @property {String} username Username of the user [observable]
+ * @property {String} [stationID=null] Station name of the user, if any [observable]
+ * @property {Boolean} [admin=false] Admin indicator of user [observable]
+ */
+export default class UserModel {
+  constructor(id, username, stationID, admin=false) {
+    let addtlProps = {
+      username, // changeable?
+      stationID, // changeable?
+      admin
+      // may need token or other form of login item for authorization
+    }
+    extendObservable(this, addtlProps)
+    this.id = id
+  }
 
+  // Actions
 
+  /**
+   * @name login
+   * @description Calls API to attempt the login of a user
+   * @memberof UserModel.prototype
+   * @method login
+   * @return {Promise}
+   * @mobx action
+   */
+  @action async login() {
+    console.log(`Logging in ${this.username} via API. Returns boolean success.`)
+  }
 
+  /**
+   * @name logout
+   * @description Calls API to logout the current user
+   * @memberof UserModel.prototype
+   * @method logout
+   * @return {Promise}
+   * @mobx action
+   */
+  @action async logout() {
+    console.log(`Logging out ${this.username} via API. Returns boolean success.`)
+  }
 
+  /**
+   * @name toggleAdmin
+   * @description Calls API to change the admin status of user
+   * @memberof UserModel.prototype
+   * @method toggleAdmin
+   * @return {Promise}
+   * @mobx action
+   */
+  @action async toggleAdmin() {
+    console.log(`Update admin status for ${this.username} via API. Returns boolean success.`)
+  }
 
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>Title</h1><h2>About</h2><h2>Install</h2><p>Install <a href="https://nodejs.org/en/download/">Node</a></p>
-<p>Run package installer</p>
-<pre class="prettyprint source lang-bash"><code>    npm install npm -g
-    npm install</code></pre><p>Then copy the contents of the &quot;custom docdash&quot; folder into the folder 'node_modules/docdash' and replace contents.
-This will set up our custom styling templates for code documentation.</p>
-<h2>Locally Load Website</h2><p>From your terminal run:</p>
-<pre class="prettyprint source lang-bash"><code>    npm start</code></pre><h2>Additional Scripts</h2><h3>For Doc Generating</h3><pre class="prettyprint source lang-bash"><code>    npm run doc</code></pre><h3>Building:</h3><pre class="prettyprint source lang-bash"><code>    npm run build</code></pre><h2>Debugging</h2><p>If node packages not found during attempts to run, ensure the following is in one of your bash profiles</p>
-<pre class="prettyprint source lang-bash"><code>    export PATH=&quot;{PATH_TO_REPO}/app/node_modules/.bin:$PATH&quot;</code></pre></article>
+  /**
+   * @name changePassword
+   * @description Calls API to change the password for the username
+   * @memberof UserModel.prototype
+   * @method changePassword
+   * @param  {String} newPassword New password
+   * @return {Promise}
+   * @mobx action
+   */
+  @action async changePassword(newPassword) {
+    console.log(`Updated password for ${this.username}.`)
+  }
+ }
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

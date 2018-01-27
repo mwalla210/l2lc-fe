@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>store/page.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,36 +27,177 @@
 
 <div id="main">
     
+    <h1 class="page-title">store/page.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react'
+import { action, useStrict, extendObservable } from 'mobx'
+import TableModel from '../models/tableModel'
+import TableButton from '../components/tableButton'
+import Table from '../components/table'
+useStrict(true)
 
+const projectColumns = [
+  {
+    Header: 'ID',
+    accessor: 'id',
+    filterable: true
+  },
+  {
+    id: 'customerName', // Required because our accessor is not a string
+    Header: 'Customer Name',
+    accessor: d => d.customer.name
+  },
+  {
+    Header: 'Title',
+    accessor: 'title'
+  },
+  {
+    id: 'costCenter', // Required because our accessor is not a string
+    Header: 'Cost Center',
+    accessor: d => d.costCenter.title
+  },
+  {
+    id: 'jobType', // Required because our accessor is not a string
+    Header: 'Job Type',
+    accessor: d => d.jobType.title
+  },
+  {
+    Header: 'Status',
+    accessor: 'status'
+  },
+  {
+    Header: 'Priority',
+    accessor: 'priority'
+  },
+  {
+    Header: 'Time Spent',
+    accessor: 'timeSpent'
+  },
+  {
+    Header: 'Date Created',
+    accessor: 'dateCreated'
+  },
+  {
+    Header: 'Date Finished',
+    accessor: 'dateFinished'
+  },
+]
 
+const customerColumns = [
+  {
+    Header: 'ID',
+    accessor: 'id',
+    filterable: true
+  },
+  {
+    Header: 'Name',
+    accessor: 'name'
+  },
+  {
+    Header: 'Shipping Address',
+    accessor: 'formattedShipAddress'
+  },
+  {
+    Header: 'Billing Address',
+    accessor: 'formattedBillAddress'
+  },
+  {
+    Header: 'Phone',
+    accessor: 'phone'
+  },
+]
 
+const employeeColumns = [
+  {
+    Header: 'ID',
+    accessor: 'id'
+  },
+  {
+    Header: 'Name',
+    accessor: 'name'
+  },
+  {
+    Header: 'Barcode',
+    accessor: 'barcode'
+  },
+]
 
+/**
+ * @name Page
+ * @class Page
+ * @classdesc Main MobX store for page
+ * @property {Boolean} [loggedin=false] Indicates whether currently logged in
+ * @property {String} [title='Default Title'] Page title
+ * @property {String} [navHighlight=''] Sidebar option highlighted
+ * @property {Object} [content=null] Page inner content
+ * @property {Array} [buttons=[]] Page inner content buttons
+ * @mobx store
+ */
+class Page {
+  constructor() {
+    let addtlProps = {
+      loggedin: true,
+      title: 'Default Title',
+      navHighlight: '',
+      content: null,
+      buttons: [],
+    }
+    extendObservable(this, addtlProps)
+  }
 
+  /*
+  Page will house all of the sidebar "change page" functions
+  Each function will set title, content, buttons, and navHighlight
+  If page requires a table, table model should be initialized
+  All fetch functions should "modelize" returned data into appropriate models (this file will import models from folder)
+   */
 
+  fetchFn(){
+    console.log('fetchFn')
+    return true
+  }
 
+  /**
+   * @name customerSelect
+   * @description Updates title, content, and buttons for Select Customer page. Content is table with table button and selectable rows.
+   * @memberof Page.prototype
+   * @method customerSelect
+   * @mobx action
+   */
+  @action customerSelect(){
+    this.title = 'Select Customer'
+    let tableModel = new TableModel(
+      &lt;TableButton
+        title='New Customer'
+        onClick={() => console.log('New Customer Button')}/>,
+      this.fetchFn,
+      null,
+      customerColumns
+    )
+    this.content = &lt;Table tableModel={tableModel}/>
+    this.buttons = []
+  }
 
+  // TODO remove
+  @action changeLogin(){
+    this.loggedin = !this.loggedin
+    this.customerSelect()
+  }
+}
 
-    
-
-
-    <section class="readme">
-        <article><h1>Title</h1><h2>About</h2><h2>Install</h2><p>Install <a href="https://nodejs.org/en/download/">Node</a></p>
-<p>Run package installer</p>
-<pre class="prettyprint source lang-bash"><code>    npm install npm -g
-    npm install</code></pre><p>Then copy the contents of the &quot;custom docdash&quot; folder into the folder 'node_modules/docdash' and replace contents.
-This will set up our custom styling templates for code documentation.</p>
-<h2>Locally Load Website</h2><p>From your terminal run:</p>
-<pre class="prettyprint source lang-bash"><code>    npm start</code></pre><h2>Additional Scripts</h2><h3>For Doc Generating</h3><pre class="prettyprint source lang-bash"><code>    npm run doc</code></pre><h3>Building:</h3><pre class="prettyprint source lang-bash"><code>    npm run build</code></pre><h2>Debugging</h2><p>If node packages not found during attempts to run, ensure the following is in one of your bash profiles</p>
-<pre class="prettyprint source lang-bash"><code>    export PATH=&quot;{PATH_TO_REPO}/app/node_modules/.bin:$PATH&quot;</code></pre></article>
+const page = new Page()
+export default page
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

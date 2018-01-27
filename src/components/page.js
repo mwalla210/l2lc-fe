@@ -1,50 +1,32 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
+import Login from './login'
 
-@inject ('website') @observer
+@inject ('page') @observer
 export default class Page extends Component {
   loginContent() {
     return(
-      <div>
-        <p>
-          Login!
-        </p>
-        <button onClick={this.activateLasers.bind(this)}>
-          Activate Lasers
-        </button>
-      </div>
+      <Login/>
     )
   }
 
-  activateLasers(){
-    this.props.website.changeLogin()
-  }
-
   pageContent(){
+    // TODO add sidebar
     return (
       <div>
-        <h1>{this.props.website.pageTitle}</h1>
-        {this.props.website.content}
-        {this.props.website.pageButtons}
+        <h1>{this.props.page.title}</h1>
+        {this.props.page.content}
+        {this.props.page.buttons}
       </div>
     )
   }
 
   render() {
-    console.log('page render')
-    if (this.props.website.login){
-      return (
-        <div>
-          {this.loginContent()}
-        </div>
-      )
-    }
-    else{
-      return (
-        <div>
-          {this.pageContent()}
-        </div>
-      )
-    }
+    let content = null
+    if (this.props.page.loggedin)
+      content = <div>{this.loginContent()}</div>
+    else
+      content = <div>{this.pageContent()}</div>
+    return content
   }
 }
