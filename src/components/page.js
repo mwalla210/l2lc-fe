@@ -11,12 +11,12 @@ export default class Page extends Component {
   }
 
   pageContent(){
-    // TODO add sidebar
     return (
       <div>
         <h1>{this.props.page.title}</h1>
         {this.props.page.content}
         {this.props.page.buttons}
+        {this.props.page.sidebar}
       </div>
     )
   }

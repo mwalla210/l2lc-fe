@@ -3,6 +3,7 @@ import { action, useStrict, extendObservable } from 'mobx'
 import TableModel from '../models/tableModel'
 import TableButton from '../components/tableButton'
 import Table from '../components/table'
+import Sidebar from '../components/sidebar'
 useStrict(true)
 
 const projectColumns = [
@@ -146,10 +147,81 @@ class Page {
     this.buttons = []
   }
 
+  @action createNewProjMenuItem(){
+    page.title = 'New Project'
+    page.content = <h1>insert various fields</h1>
+    page.buttons = []
+  }
+
+  @action projectsMenuItem(){
+    page.title = 'Open Projects' //title depends on selected filter
+    /*let tableModel = new TableModel(
+      <TableButton
+        title='Closed Projects'
+        onClick={() => console.log('Closed Projects.. button should switch to Open Projects here')}/>,
+      this.fetchFn,
+      null,
+      projectColumns
+    )
+    page.content = <Table tableModel={tableModel}/>*/
+    page.content = <h1>content changes but the table does not display :(</h1>
+    page.buttons = []
+  }
+
+  @action projectTimeEntryMenuItem(){
+    page.title = 'Time Entry'
+    page.content = <h1>insert various fields</h1>
+    page.buttons = []
+  }
+
+  @action customerInfoMenuItem(){
+    page.title = 'Customer Information'
+    page.content = <h1>insert various fields and table</h1>
+    page.buttons = []
+  }
+
+  @action emplProductivityMenuItem(){
+    page.title = 'Employee Productivity'
+    page.content = <h1>insert analysis and graph</h1>
+    page.buttons = []
+  }
+
+  @action workstationTrackingMenuItem(){
+    page.title = 'Workstation Tracking'
+    page.content = <h1>insert analysis and graph</h1>
+    page.buttons = []
+  }
+
+  @action jobTypeProductivityMenuItem(){
+    page.title = 'Job Type Productivity'
+    page.content = <h1>insert analysis and graph</h1>
+    page.buttons = []
+  }
+
+  @action costCenterTimeMenuItem(){
+    page.title = 'Cost Center Time'
+    page.content = <h1>insert analysis and graph</h1>
+    page.buttons = []
+  }
+
+  @action employeeInformationMenuItem(){
+    page.title = 'Employee Information'
+    page.content = <h1>insert analysis and graph</h1>
+    page.buttons = []
+  }
+
+  @action accountManagementMenuItem(){
+    page.title = 'Account Management'
+    page.content = <h1>insert analysis and graph</h1>
+    page.buttons = []
+  }
+
+
   // TODO remove
   @action changeLogin(){
     this.loggedin = !this.loggedin
     this.customerSelect()
+    this.sidebar = <Sidebar/>
   }
 }
 
