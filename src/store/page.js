@@ -1,9 +1,6 @@
 import React from 'react'
 import { action, useStrict, extendObservable } from 'mobx'
 import TableModel from '../models/tableModel'
-import TableButton from '../components/tableButton'
-import Table from '../components/table'
-import Sidebar from '../components/sidebar'
 useStrict(true)
 
 const projectColumns = [
@@ -96,11 +93,13 @@ const employeeColumns = [
  * @name Page
  * @class Page
  * @classdesc Main MobX store for page
- * @property {Boolean} [loggedin=false] Indicates whether currently logged in
- * @property {String} [title='Default Title'] Page title
- * @property {String} [navHighlight=''] Sidebar option highlighted
- * @property {Object} [content=null] Page inner content
- * @property {Array} [buttons=[]] Page inner content buttons
+ * @property {Boolean} [loggedin=false] Indicates whether currently logged in [observable]
+ * @property {String} [title='Default Title'] Page title [observable]
+ * @property {String} [navHighlight=''] Sidebar option highlighted [observable]
+ * @property {Object} [content=null] Page inner content [observable]
+ * @property {Array} [buttons=[]] Page inner content buttons [observable]
+ * @property {Array} [modalOpen=false] Whether a modal is currently open on page [observable]
+
  */
 class Page {
   constructor() {
@@ -109,14 +108,19 @@ class Page {
       title: 'Default Title',
       navHighlight: '',
       content: null,
+      tableModel: null,
       buttons: [],
+      modalOpen: false,
     }
     extendObservable(this, addtlProps)
   }
 
+  @action showModal(){this.modalOpen = true}
+  @action hideModal(){this.modalOpen = false}
+
   /*
   Page will house all of the sidebar "change page" functions
-  Each function will set title, content, buttons, and navHighlight
+  Each function will set title, content, tableModel, buttons, and navHighlight
   If page requires a table, table model should be initialized
   All fetch functions should "modelize" returned data into appropriate models (this file will import models from folder)
    */
@@ -128,100 +132,99 @@ class Page {
 
   /**
    * @name customerSelect
-   * @description Updates title, content, and buttons for Select Customer page. Content is table with table button and selectable rows.
+   * @description Updates title, tableModel, content, buttons, and navHighlight for Select Customer page.
    * @memberof Page.prototype
    * @method customerSelect
    * @mobx action
    */
   @action customerSelect(){
     this.title = 'Select Customer'
-    let tableModel = new TableModel(
-      <TableButton
-        title='New Customer'
-        onClick={() => console.log('New Customer Button')}/>,
+    // Button, fetchFn, rowSelectFn, columns
+    this.tableModel = new TableModel(
+      {
+        title: 'New Customer',
+        onClick: () => console.log('New Customer Button')
+      },
       this.fetchFn,
-      null,
+      () => console.log('rowSelectFn'),
       customerColumns
     )
-    this.content = <Table tableModel={tableModel}/>
+    this.content = null
     this.buttons = []
+    this.navHighlight = 'Create New Project'
   }
 
   @action createNewProjMenuItem(){
-    page.title = 'New Project'
-    page.content = <h1>insert various fields</h1>
-    page.buttons = []
+    this.title = 'New Project'
+    this.content = <h1>insert various fields</h1>
+    this.buttons = []
   }
 
   @action projectsMenuItem(){
-    page.title = 'Open Projects' //title depends on selected filter
-    /*let tableModel = new TableModel(
-      <TableButton
-        title='Closed Projects'
-        onClick={() => console.log('Closed Projects.. button should switch to Open Projects here')}/>,
-      this.fetchFn,
+    this.title = 'Open Projects' //title depends on selected filter
+    this.tableModel = new TableModel(
       null,
+      this.fetchFn,
+      () => console.log('rowSelectFn'),
       projectColumns
     )
-    page.content = <Table tableModel={tableModel}/>*/
-    page.content = <h1>content changes but the table does not display :(</h1>
-    page.buttons = []
+    this.content = <h1>content changes but the table does not display :(</h1>
+    this.buttons = []
   }
 
   @action projectTimeEntryMenuItem(){
-    page.title = 'Time Entry'
-    page.content = <h1>insert various fields</h1>
-    page.buttons = []
+    this.title = 'Time Entry'
+    this.content = <h1>insert various fields</h1>
+    this.buttons = []
   }
 
   @action customerInfoMenuItem(){
-    page.title = 'Customer Information'
-    page.content = <h1>insert various fields and table</h1>
-    page.buttons = []
+    this.title = 'Customer Information'
+    this.content = <h1>insert various fields and table</h1>
+    this.buttons = []
   }
 
   @action emplProductivityMenuItem(){
-    page.title = 'Employee Productivity'
-    page.content = <h1>insert analysis and graph</h1>
-    page.buttons = []
+    this.title = 'Employee Productivity'
+    this.content = <h1>insert analysis and graph</h1>
+    this.buttons = []
   }
 
   @action workstationTrackingMenuItem(){
-    page.title = 'Workstation Tracking'
-    page.content = <h1>insert analysis and graph</h1>
-    page.buttons = []
+    this.title = 'Workstation Tracking'
+    this.content = <h1>insert analysis and graph</h1>
+    this.buttons = []
   }
 
   @action jobTypeProductivityMenuItem(){
-    page.title = 'Job Type Productivity'
-    page.content = <h1>insert analysis and graph</h1>
-    page.buttons = []
+    this.title = 'Job Type Productivity'
+    this.content = <h1>insert analysis and graph</h1>
+    this.buttons = []
   }
 
   @action costCenterTimeMenuItem(){
-    page.title = 'Cost Center Time'
-    page.content = <h1>insert analysis and graph</h1>
-    page.buttons = []
+    this.title = 'Cost Center Time'
+    this.content = <h1>insert analysis and graph</h1>
+    this.buttons = []
   }
 
   @action employeeInformationMenuItem(){
-    page.title = 'Employee Information'
-    page.content = <h1>insert analysis and graph</h1>
-    page.buttons = []
+    this.title = 'Employee Information'
+    this.content = <h1>insert analysis and graph</h1>
+    this.buttons = []
   }
 
   @action accountManagementMenuItem(){
-    page.title = 'Account Management'
-    page.content = <h1>insert analysis and graph</h1>
-    page.buttons = []
+    this.title = 'Account Management'
+    this.content = <h1>insert analysis and graph</h1>
+    this.buttons = []
   }
 
 
   // TODO remove
   @action changeLogin(){
     this.loggedin = !this.loggedin
-    this.customerSelect()
-    this.sidebar = <Sidebar/>
+    this.createNewProjMenuItem()
   }
 }
 

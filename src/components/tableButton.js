@@ -11,7 +11,7 @@ export default class TableButton extends Component {
     return (
       <button
         type='button'
-        style={{float: 'right'}}
+        style={{float: 'right', marginBottom: '10px', marginLeft: '10px'}}
         className='btn btn-primary'
         onClick={this.props.onClick}>
           {this.props.title}

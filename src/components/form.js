@@ -1,17 +1,20 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { observer } from 'mobx-react'
-import { formfield }
+import Formfield from './formfield'
 
 export default class Form extends Component {
+  static propTypes = {
+    fields: PropTypes.array,
+  }
 
   render() {
     return(
       <form>
-        <div class="form-group">
-          {formfield}
+        <div className="form-group">
+          {this.props.fields}
         </div>
-        <button class="btn btn-primary" onClick={this.props.onClick}>{this.props.buttonText}</button>
+        <button className="btn btn-primary" onClick={this.props.onClick}>{this.props.buttonText}</button>
       </form>
     )
   }
