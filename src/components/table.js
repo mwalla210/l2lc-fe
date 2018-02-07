@@ -12,11 +12,6 @@ export default class Table extends Component {
     tableModel: PropTypes.object.isRequired
   }
 
-  constructor(props){
-    super(props)
-    this.props.tableModel.dataFetch()
-  }
-
   modal(){
     return
   }

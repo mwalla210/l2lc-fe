@@ -90,7 +90,7 @@ export default class TableModel {
     this.loadingOn()
     this.fetchFn().then(
       action('fetchSuccess', res => {
-        this.data = res.items
+        this.data = res
         console.log('data length',this.data.length)
         this.loadingOff()
       })

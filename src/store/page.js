@@ -6,7 +6,6 @@ useStrict(true)
 
 const highPriority = '#f4ba61'
 const medPriority = '#f4e261'
-
 const projectColumns = [
   {
     Header: 'ID',
@@ -79,7 +78,6 @@ const projectColumns = [
       </select>
   },
 ]
-
 const customerColumns = [
   {
     Header: 'ID',
@@ -88,7 +86,7 @@ const customerColumns = [
   },
   {
     Header: 'Name',
-    accessor: 'name'
+    accessor: 'companyName'
   },
   {
     Header: 'Shipping Address',
@@ -103,7 +101,6 @@ const customerColumns = [
     accessor: 'phone'
   },
 ]
-
 const employeeColumns = [
   {
     Header: 'ID',
@@ -141,6 +138,34 @@ class Page {
       buttons: [],
     }
     extendObservable(this, addtlProps)
+    // Define once, reference later
+    this.projectTableModel = new TableModel(
+      null,
+      API.fetchProjects,
+      () => console.log('rowSelectFn'),
+      projectColumns,
+      null,
+      // TODO: make sure comparison is accurate to priority types
+      (state, rowInfo) => {
+        if (rowInfo && rowInfo.row._original.priority != 'low'){
+          return {
+            style: {
+              background: rowInfo.row._original.priority == 'high' ? highPriority : medPriority
+            }
+          }
+        }
+        return {}
+      }
+    )
+    this.customerTableModel = new TableModel(
+      {
+        title: 'New Customer',
+        onClick: () => this.newCustomerPage()
+      },
+      API.fetchCustomers,
+      () => console.log('rowSelectFn'),
+      customerColumns
+    )
   }
 
   /*
@@ -174,16 +199,8 @@ class Page {
    */
   @action selectCustomerPage(){
     this.title = 'Select Customer'
-    // Button, fetchFn, rowSelectFn, columns
-    this.tableModel = new TableModel(
-      {
-        title: 'New Customer',
-        onClick: () => this.newCustomerPage()
-      },
-      API.fetchCustomers,
-      () => console.log('rowSelectFn'),
-      customerColumns
-    )
+    this.tableModel = this.customerTableModel
+    this.tableModel.dataFetch()
     this.content = null
     this.formData = null
     this.buttons = []
@@ -240,25 +257,8 @@ class Page {
    */
   @action projectsMenuItem(){
     this.title = 'Projects'
-    // Button, fetchFn, rowSelectFn, columns, rowSelectModal, styling
-    this.tableModel = new TableModel(
-      null,
-      API.fetchProjects,
-      () => console.log('rowSelectFn'),
-      projectColumns,
-      null,
-      // TODO: make sure comparison is accurate to priority types
-      (state, rowInfo) => {
-        if (rowInfo && rowInfo.row._original.priority != 'low'){
-          return {
-            style: {
-              background: rowInfo.row._original.priority == 'high' ? highPriority : medPriority
-            }
-          }
-        }
-        return {}
-      }
-    )
+    this.tableModel = this.projectTableModel
+    this.tableModel.dataFetch()
     this.content = null
     this.formData = null
     this.buttons = []
@@ -288,15 +288,8 @@ class Page {
    */
   @action customerInfoMenuItem(){
     this.title = 'Customer Information'
-    this.tableModel = new TableModel(
-      {
-        title: 'New Customer',
-        onClick: () => this.newCustomerPage()
-      },
-      API.fetchCustomers,
-      () => console.log('rowSelectFn'),
-      customerColumns
-    )
+    this.tableModel = this.customerTableModel
+    this.tableModel.dataFetch()
     this.content = null
     this.formData = null
     this.buttons = []

@@ -62,6 +62,8 @@ export default class CustomerModel {
     this.id = id
   }
 
+  @action setBillIsSame(){this.billIsSame = true}
+
   /**
   * @name edit
   * @description Updates Customer object in database
@@ -69,7 +71,7 @@ export default class CustomerModel {
   * @method
   * @mobx action
   */
-  @action async edit(){
+  @action edit(){
     // TODO: Description: updates Customer object in database
   }
 
@@ -80,7 +82,7 @@ export default class CustomerModel {
   * @method
   * @mobx action
   */
-  @action async getProjects(){
+  @action getProjects(){
     // TODO: Fetches Projects from database that are associated with Customer ID
   }
 
@@ -92,8 +94,8 @@ export default class CustomerModel {
   * @mobx computed
   */
   @computed get formattedShipAddress(){
-    return `${this.shipAddr1}\n${this.shipAddr2}\n${this.shipCity}, ${this.shipState}\n${this.shipCountry}\n${this.shipZip}`
-    // return this.shipAddr1 + '\n' + this.shipAddr2 + '\n' + this.shipCity + ',' + this.shipState + '\n' + this.shipCountry + '\n' + this.shipZip
+    // Allow for missing addr2, state
+    return `${this.shipAddr.shipAddr1}\n${(this.shipAddr.shipAddr2) ? `${this.shipAddr.shipAddr2}\n` : ''}${this.shipAddr.shipCity}, ${(this.shipAddr.shipState) ? `${this.shipAddr.shipState}\n` : ''}${this.shipAddr.shipCountry}\n${this.shipAddr.shipZip}`
   }
 
   /**
@@ -104,12 +106,12 @@ export default class CustomerModel {
   * @mobx computed
   */
   @computed get formattedBillAddress(){
-    if (this.billSame == true){
-      this.getformattedShipAddress
+    if (this.billIsSame == true){
+      return this.formattedShipAddress
     }
     else{
-      return `${this.billAddr1}\n${this.billAddr2}\n${this.billCity}, ${this.billState}\n${this.billCountry}\n${this.billZip}`
-      // return this.billAddr1 + '\n' + this.billAddr2 + '\n' + this.billCity + ',' + this.billState + '\n' + this.billCountry + '\n' + this.billZip
+      // Allow for missing addr2, state
+      return `${this.billAddr.billAddr1}\n${(this.billAddr.billAddr2) ? `${this.billAddr.billAddr2}\n` : ''}${this.billAddr.billCity}, ${(this.billAddr.billState) ? `${this.billAddr.billState}\n` : ''}${this.billAddr.billCountry}\n${this.billAddr.billZip}`
     }
   }
 }
