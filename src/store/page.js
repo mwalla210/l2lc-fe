@@ -1,7 +1,7 @@
 import React from 'react'
 import { action, useStrict, extendObservable } from 'mobx'
 import TableModel from '../models/tableModel'
-import fetch from 'node-fetch'
+import API from '../api'
 useStrict(true)
 
 const highPriority = '#f4ba61'
@@ -143,9 +143,6 @@ class Page {
     extendObservable(this, addtlProps)
   }
 
-  @action showModal(){this.modalOpen = true}
-  @action hideModal(){this.modalOpen = false}
-
   /*
   Page will house all of the sidebar "change page" functions
   Each function will set title, content, tableModel, buttons, and navHighlight
@@ -183,8 +180,7 @@ class Page {
         title: 'New Customer',
         onClick: () => this.newCustomerPage()
       },
-      // TODO
-      () => fetch('http://138.197.88.198:8080/l2lc/api/customer?limit=50&offset=0').then(response => {return response.json()}),
+      API.fetchCustomers,
       () => console.log('rowSelectFn'),
       customerColumns
     )
@@ -247,7 +243,7 @@ class Page {
     // Button, fetchFn, rowSelectFn, columns, rowSelectModal, styling
     this.tableModel = new TableModel(
       null,
-      this.fetchFn,
+      API.fetchProjects,
       () => console.log('rowSelectFn'),
       projectColumns,
       null,
@@ -405,7 +401,7 @@ class Page {
   // TODO remove
   @action changeLogin(){
     this.loggedin = !this.loggedin
-    this.newCustomerPage()
+    this.createNewProjMenuItem()
   }
 }
 

@@ -1,6 +1,5 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
 useStrict(true)
-import ProjectModel from './projectModel'
 
 /*
 Select Customer
@@ -89,13 +88,16 @@ export default class TableModel {
    */
   @action dataFetch(){
     this.loadingOn()
-    this.fetchFn().then(res => {
-      console.log('RES',res)
-    })
-    console.log(this.data)
+    this.fetchFn().then(
+      action('fetchSuccess', res => {
+        this.data = res.items
+        console.log('data length',this.data.length)
+        this.loadingOff()
+      })
+    )
     // let model = new ProjectModel(1, {id: 1, title: 'cctitle'}, {id: 1, title: 'jttitle'}, 'title', 'priority')
     // this.data = []
     // this.data.push(model)
-    this.loadingOff()
+
   }
 }
