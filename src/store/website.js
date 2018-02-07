@@ -9,11 +9,6 @@ useStrict(true)
  * @property {Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
  * @property {Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
  * @property {User} [currentUser=null] Current User in state, or last focused User. [observable]
- * @property {Project[]} [openProjects=[]] Current array of Project(s) in state, if any, that are not marked as closed in database. [observable]
- * @property {Project[]} [closedProjects=[]] Current array of Project(s) in state, if any, that are marked as closed in database. [observable]
- * @property {User[]} [accounts=[]] Current array of User(s) in state, if any. [observable]
- * @property {Employee[]} [employees=[]] Current array of Employee(s) in state, if any. [observable]
- * @property {Customer[]} [customers=[]] Current array of Customer(s) in state, if any. [observable]
  * @property {Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
@@ -25,11 +20,6 @@ class Website {
       currentProject: null,
       currentCustomer: null,
       currentUser: null,
-      openProjects: [],
-      closedProjects: [],
-      accounts: [],
-      employees: [],
-      customers: [],
       // TODO Analytic models
       ccAnalytic: null,
       eAnalytic: null,

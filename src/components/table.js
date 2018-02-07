@@ -9,7 +9,7 @@ import TableButton from './tableButton'
 @inject ('page') @observer
 export default class Table extends Component {
   static propTypes = {
-    tableModel: PropTypes.object.isRequired,
+    tableModel: PropTypes.object.isRequired
   }
 
   constructor(props){
@@ -22,74 +22,40 @@ export default class Table extends Component {
   }
 
   render() {
-    // const data = [
-    //   {
-    //     name: 'Tanner Linsley',
-    //     age: 26,
-    //     friend: {
-    //       name: 'Jason Maurer',
-    //       age: 23,
-    //     }
-    //   }
-    // ]
-    // const columns = [
-    //   {
-    //     Header: 'Name',
-    //     accessor: 'name' // String-based value accessors!
-    //   },
-    //   {
-    //     Header: 'Age',
-    //     accessor: 'age',
-    //     Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-    //   },
-    //   {
-    //     id: 'friendName', // Required because our accessor is not a string
-    //     Header: 'Friend Name',
-    //     accessor: d => d.friend.name // Custom value accessors!
-    //   },
-    //   {
-    //     Header: props => <span>Friend Age</span>, // Custom header components!
-    //     accessor: 'friend.age'
-    //   }
-    // ]
-
     /* Page sizing customization
     defaultPageSize={14}
     pageSizeOptions={[5, 10, 20, 25, 50, 100]}
     */
 
     // If onClick function for rows, redefine onClick for table elements and call function
-    // If modal to be spawned when row clicked, declare in render and redefine onClick for table elements and call open modal
-
+    // If modal to be opened when row clicked, declare in render and redefine onClick for table elements and call open modal
     let rowSelect = {}
     let rowModal = null
     if (this.props.tableModel.rowSelectFn || this.props.tableModel.rowSelectModal){
       rowSelect = {
-        getTdProps: (state, rowInfo, column, instance) => {
+        getTdProps: (state, rowInfo) => {
           return {
             onClick: (e, handleOriginal) => {
               if (rowInfo){
-                console.log('A Td Element was clicked!')
-                console.log('it produced this event:', e)
-                console.log('It was in this column:', column)
                 console.log('It was in this row:', rowInfo)
-                console.log('It was in this table instance:', instance)
-                this.props.tableModel.rowSelectFn && this.props.tableModel.rowSelectFn()
+                this.props.tableModel.rowSelectFn && this.props.tableModel.rowSelectFn(rowInfo)
+                this.props.tableModel.rowSelectModal && this.props.tableModel.rowSelectModal.openModal(rowInfo)
               }
-              // IMPORTANT! React-Table uses onClick internally to trigger
-              // events like expanding SubComponents and pivots.
-              // By default a custom 'onClick' handler will override this functionality.
-              // If you want to fire the original onClick handler, call the
-              // 'handleOriginal' function.
               if (handleOriginal) {
                 handleOriginal()
               }
             }
           }
         },
-
       }
-
+    }
+    let rowStyling = null
+    if (this.props.tableModel.styling){
+      rowStyling = {
+        getTrProps: (state, rowInfo, column) => {
+          return this.props.tableModel.styling(state, rowInfo, column)
+        }
+      }
     }
     let buttonContent = null
     if (this.props.tableModel.tableButton){
@@ -105,10 +71,11 @@ export default class Table extends Component {
       {buttonContent}
       <div className='row'>
         <ReactTable
-          data={toJS(this.props.tableModel.data)}
+          data={this.props.tableModel.data.slice()}
           columns={this.props.tableModel.columns}
           loading={this.props.tableModel.loading}
           {...rowSelect}
+          {...rowStyling}
         />
       </div>
       </div>

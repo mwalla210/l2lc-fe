@@ -1,5 +1,6 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
 useStrict(true)
+import ProjectModel from './projectModel'
 
 /*
 Select Customer
@@ -14,7 +15,7 @@ Projects list
   Fields: ID, customer name, title, cost center, type, status, priority, time spent, date created
   TODO: Clickable: modal
   Searchable: by ID
-  TODO: Filtering (or something) by open/closed?
+  Filtering by open/closed
 
 Customer Information
   Model: Customer
@@ -45,9 +46,10 @@ Employee Information
  * @property {String} rowSelectSpawn.body Body for modal
  * @property {Boolean} [loading=true] Loading indicator [observable]
  * @property {Array} [data=[]] Data array for table [observable]
+ * @property {Function} [styling] Styling function
  */
 export default class TableModel {
-  constructor(tableButton, fetchFn, rowSelectFn, columns, rowSelectModal){
+  constructor(tableButton, fetchFn, rowSelectFn, columns, rowSelectModal, styling){
     let addtlProps = {
       data: [],
       loading: true
@@ -59,11 +61,25 @@ export default class TableModel {
     this.fetchFn = fetchFn
     this.rowSelectFn = rowSelectFn
     this.rowSelectModal = rowSelectModal
+    this.styling = styling
   }
 
+  /**
+   * @name loadingOn
+   * @description Turns on table's loading
+   * @method loadingOn
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
   @action loadingOn(){this.loading = true}
+  /**
+   * @name loadingOff
+   * @description Turns off table's loading
+   * @method loadingOff
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
   @action loadingOff(){this.loading = false}
-
   /**
    * @name dataFetch
    * @description Handles loading while fetching table data
@@ -73,8 +89,13 @@ export default class TableModel {
    */
   @action dataFetch(){
     this.loadingOn()
-    this.fetchFn()
-    console.log(this.data.length)
+    this.fetchFn().then(res => {
+      console.log('RES',res)
+    })
+    console.log(this.data)
+    // let model = new ProjectModel(1, {id: 1, title: 'cctitle'}, {id: 1, title: 'jttitle'}, 'title', 'priority')
+    // this.data = []
+    // this.data.push(model)
     this.loadingOff()
   }
 }

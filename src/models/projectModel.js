@@ -19,7 +19,7 @@ useStrict(true)
  * @property {Number} [partCount=null] Project part count [observable]
  * @property {String} [descr=null] Project description [observable]
  * @property {String} [refNum=null] Project internal reference number [observable]
- * @property {Customer} [customer=null] Project Customer [observable]
+ * @property {Customer} [customer={}] Project Customer (defaults to empty object for table display) [observable]
  * @property {Date} [dateCreated=null] Project date created
  * @property {Date} [dateFinished=null] Project date finished [observable]
  * @property {String} [processArea=''] Project last process area [observable]
@@ -32,7 +32,7 @@ useStrict(true)
  * @property {String} [historyMsg=''] Time entry history message for Project [observable]
  */
 export default class ProjectModel {
-  constructor(id, costCenter, jobType, title, priority, dateCreated, partCount, descr, refNum, customer, dateFinished) {
+  constructor(id, costCenter, jobType, title, priority, dateCreated=null, partCount=null, descr=null, refNum=null, customer={}, dateFinished=null) {
     let addtlProps = {
       costCenter, // changeable?
       jobType, // changeable?
@@ -53,7 +53,7 @@ export default class ProjectModel {
       reworks: [],
       timeEntries: [],
       tasks: [],
-      historyMsg: ''
+      historyMsg: '',
     }
     if (dateFinished)
       addtlProps.dateFinished = new Date(dateFinished)
@@ -88,7 +88,7 @@ export default class ProjectModel {
    * @mobx computed
    */
   @computed get status(){
-    return 'Status string'
+    return 'Open|?|Closed'
   }
   /**
    * @name timeSpent
@@ -99,7 +99,18 @@ export default class ProjectModel {
    * @mobx computed
    */
   @computed get timeSpent(){
-    return 'Time spent string'
+    return 'Time spent'
+  }
+  /**
+   * @name isOpen
+   * @description Projects with null dateFinished have not been closed
+   * @method isOpen
+   * @memberof ProjectModel.prototype
+   * @return {Boolean}
+   * @mobx computed
+   */
+  @computed get isOpen(){
+    return (this.dateFinished == null)
   }
 
   // Actions
@@ -113,7 +124,7 @@ export default class ProjectModel {
    * @return {Promise}
    * @mobx action
    */
-  @action async changeCustomer(customer){
+  @action changeCustomer(customer){
     console.log(`Change Project Customer to: ${customer}`)
   }
   /**
@@ -124,7 +135,7 @@ export default class ProjectModel {
    * @return {Promise}
    * @mobx action
    */
-   @action async delete(){
+  @action delete(){
      console.log(`Delete project from API with ID: ${this.id}`)
    }
   /**
@@ -135,7 +146,7 @@ export default class ProjectModel {
    * @return {Promise}
    * @mobx action
    */
-   @action async edit(){
+  @action edit(){
      console.log(`Edit project in API with ID: ${this.id}`)
    }
   /**
@@ -149,7 +160,7 @@ export default class ProjectModel {
    * @return {Promise}
    * @mobx action
    */
-   @action async changeHold(flag, descr, employeeID){
+  @action changeHold(flag, descr, employeeID){
      console.log(`Change hold on project in API with flag: ${flag}${(flag) ? `, descr: ${descr}, employee ID: ${employeeID}` : ''}`)
    }
   /**
@@ -162,7 +173,7 @@ export default class ProjectModel {
    * @return {Promise}
    * @mobx action
    */
-   @action async addRework(descr, employeeID){
+  @action addRework(descr, employeeID){
      console.log(`Add rework on project in API with descr: ${descr}, employee ID: ${employeeID}`)
    }
   /**
@@ -173,7 +184,7 @@ export default class ProjectModel {
    * @return {Promise}
    * @mobx action
    */
-   @action async finish(){
+  @action finish(){
      console.log(`Finish project in API with ID: ${this.id}`)
    }
   /**
@@ -184,7 +195,7 @@ export default class ProjectModel {
    * @return {Promise}
    * @mobx action
    */
-   @action async getDefaultTaskList(){
+  @action getDefaultTaskList(){
      console.log(`Fetch project's default task list from API with job type: ${this.jobType}`)
    }
   /**
@@ -196,57 +207,57 @@ export default class ProjectModel {
    * @return {Promise}
    * @mobx action
    */
-   @action async toggleTask(task){
+  @action toggleTask(task){
      console.log('Call\'s Task\'s toggle method')
    }
-   /**
-    * @name moveTask
-    * @description Calls API to update task list in database; sets this.tasks
-    * @memberof ProjectModel.prototype
-    * @method moveTask
-    * @param  {Task}  task     Task to move
-    * @param  {Number}  newIndex New index in list for Task
-    * @return {Promise}
-    * @mobx action
-    */
-    @action async moveTask(task, newIndex){
-      console.log(`Changes task position in project in API with new index: ${newIndex}`)
-    }
-   /**
-    * @name addTask
-    * @description Calls API to update task list in database; sets this.tasks
-    * @memberof ProjectModel.prototype
-    * @method addTask
-    * @param  {String}  title         New task title
-    * @param  {String}  [processArea] New task associated process area, if any
-    * @return {Promise}
-    * @mobx action
-    */
-    @action async addTask(title, processArea){
-      console.log(`Adds task to project in API with title: ${title}${(processArea) ? `and process area: ${processArea}` : ''}`)
-    }
-   /**
-    * @name removeTask
-    * @description Calls API to update task list in database; sets this.tasks
-    * @memberof ProjectModel.prototype
-    * @method removeTask
-    * @param  {Task}   task Task to remove
-    * @return {Promise}
-    * @mobx action
-    */
-    @action async removeTask(task){
-      console.log('Removes task in project in API')
-    }
-   /**
-    * @name addTimeEntry
-    * @description Calls API to add time entry to project; updates this.timeEntries
-    * @memberof ProjectModel.prototype
-    * @method addTimeEntry
-    * @param  {String}     employeeID database ID of employee adding time entry
-    * @return {Promise}
-    * @mobx action
-    */
-    @action async addTimeEntry(employeeID){
+  /**
+  * @name moveTask
+  * @description Calls API to update task list in database; sets this.tasks
+  * @memberof ProjectModel.prototype
+  * @method moveTask
+  * @param  {Task}  task     Task to move
+  * @param  {Number}  newIndex New index in list for Task
+  * @return {Promise}
+  * @mobx action
+  */
+  @action moveTask(task, newIndex){
+    console.log(`Changes task position in project in API with new index: ${newIndex}`)
+  }
+  /**
+  * @name addTask
+  * @description Calls API to update task list in database; sets this.tasks
+  * @memberof ProjectModel.prototype
+  * @method addTask
+  * @param  {String}  title         New task title
+  * @param  {String}  [processArea] New task associated process area, if any
+  * @return {Promise}
+  * @mobx action
+  */
+  @action addTask(title, processArea){
+    console.log(`Adds task to project in API with title: ${title}${(processArea) ? `and process area: ${processArea}` : ''}`)
+  }
+  /**
+  * @name removeTask
+  * @description Calls API to update task list in database; sets this.tasks
+  * @memberof ProjectModel.prototype
+  * @method removeTask
+  * @param  {Task}   task Task to remove
+  * @return {Promise}
+  * @mobx action
+  */
+  @action removeTask(task){
+    console.log('Removes task in project in API')
+  }
+  /**
+  * @name addTimeEntry
+  * @description Calls API to add time entry to project; updates this.timeEntries
+  * @memberof ProjectModel.prototype
+  * @method addTimeEntry
+  * @param  {String}     employeeID database ID of employee adding time entry
+  * @return {Promise}
+  * @mobx action
+  */
+  @action addTimeEntry(employeeID){
       console.log(`Adds time entry to project in API for employee: ${employeeID}`)
     }
 }

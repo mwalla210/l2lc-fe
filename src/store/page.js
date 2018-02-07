@@ -1,7 +1,11 @@
 import React from 'react'
 import { action, useStrict, extendObservable } from 'mobx'
 import TableModel from '../models/tableModel'
+import fetch from 'node-fetch'
 useStrict(true)
+
+const highPriority = '#f4ba61'
+const medPriority = '#f4e261'
 
 const projectColumns = [
   {
@@ -10,13 +14,17 @@ const projectColumns = [
     filterable: true
   },
   {
-    id: 'customerName', // Required because our accessor is not a string
-    Header: 'Customer Name',
-    accessor: d => d.customer.name
+    Header: 'Created',
+    accessor: 'dateCreated'
   },
   {
     Header: 'Title',
     accessor: 'title'
+  },
+  {
+    id: 'customerName', // Required because our accessor is not a string
+    Header: 'Customer Name',
+    accessor: d => d.customer.name
   },
   {
     id: 'costCenter', // Required because our accessor is not a string
@@ -24,29 +32,51 @@ const projectColumns = [
     accessor: d => d.costCenter.title
   },
   {
-    id: 'jobType', // Required because our accessor is not a string
-    Header: 'Job Type',
-    accessor: d => d.jobType.title
-  },
-  {
-    Header: 'Status',
-    accessor: 'status'
-  },
-  {
-    Header: 'Priority',
-    accessor: 'priority'
-  },
-  {
     Header: 'Time Spent',
     accessor: 'timeSpent'
   },
   {
-    Header: 'Date Created',
-    accessor: 'dateCreated'
+    Header: 'Finished',
+    accessor: 'dateFinished'
   },
   {
-    Header: 'Date Finished',
-    accessor: 'dateFinished'
+    Header: 'Status',
+    accessor: 'status',
+    filterable: true,
+    Cell: row => (
+      <span>
+        {/* TODO: adjust this to be accurate for values of fn*/}
+        <span style={{
+          color: row.value === 'Closed' ? '#ff2e00'
+            : row.value === '?' ? '#ffbf00'
+            : '#57d500',
+          transition: 'all .3s ease'}}>
+            &#x25cf;
+        </span>
+        {row.value}
+      </span>
+    ),
+    filterMethod: (filter, row) => {
+      if (filter.value === 'all') {
+        return true
+      }
+      if (filter.value === 'true') {
+        {/* TODO: adjust this to be accurate for values of fn*/}
+        return row[filter.id] == 'Open'
+      }
+      {/* TODO: adjust this to be accurate for values of fn*/}
+      return row[filter.id] != 'Open'
+    },
+    Filter: ({ filter, onChange }) =>
+      <select
+        onChange={event => onChange(event.target.value)}
+        style={{ width: '100%' }}
+        value={filter ? filter.value : 'all'}
+      >
+        <option value="all">Show All</option>
+        <option value="true">Open</option>
+        <option value="false">Closed</option>
+      </select>
   },
 ]
 
@@ -98,8 +128,6 @@ const employeeColumns = [
  * @property {String} [navHighlight=''] Sidebar option highlighted [observable]
  * @property {Object} [content=null] Page inner content [observable]
  * @property {Array} [buttons=[]] Page inner content buttons [observable]
- * @property {Array} [modalOpen=false] Whether a modal is currently open on page [observable]
-
  */
 class Page {
   constructor() {
@@ -109,8 +137,8 @@ class Page {
       navHighlight: '',
       content: null,
       tableModel: null,
+      formData: null,
       buttons: [],
-      modalOpen: false,
     }
     extendObservable(this, addtlProps)
   }
@@ -130,6 +158,16 @@ class Page {
     return true
   }
 
+  // Page Changes - Projects
+
+  @action createNewProjMenuItem(){
+    this.title = 'New Project'
+    this.content = <p>A form!</p>
+    this.tableModel = null
+    this.formData = null
+    this.buttons = []
+  }
+
   /**
    * @name selectCustomerPage
    * @description Updates title, tableModel, content, buttons, and navHighlight for Select Customer page.
@@ -145,11 +183,13 @@ class Page {
         title: 'New Customer',
         onClick: () => this.newCustomerPage()
       },
-      this.fetchFn,
+      // TODO
+      () => fetch('http://138.197.88.198:8080/l2lc/api/customer?limit=50&offset=0').then(response => {return response.json()}),
       () => console.log('rowSelectFn'),
       customerColumns
     )
     this.content = null
+    this.formData = null
     this.buttons = []
     this.navHighlight = 'Create New Project'
   }
@@ -164,40 +204,67 @@ class Page {
   @action newCustomerPage(){
     this.title = 'New Customer'
     this.tableModel = null
-    this.content = <h1>insert various fields , cont, and cancel buttons</h1>
-    this.buttons = []
-  }
-
-  /**
-   * @name createNewProjMenuItem
-   * @description Updates title, tableModel, content, buttons, and navHighlight for Create New Project page.
-   * @memberof Page.prototype
-   * @method createNewProjMenuItem
-   * @mobx action
-   */
-  @action createNewProjMenuItem(){
-    this.title = 'New Project'
-    this.content = <h1>insert various fields</h1>
-    this.tableModel = null
+    this.content = null
+    this.formData = {
+      fields: [
+        {
+          type: 'textfield',
+          label: 'Company Name',
+          id: 'companyName'
+        },
+        {
+          type: 'textfield',
+          label: 'Phone Number',
+          id: 'phoneNumber'
+        },
+        {
+          type: 'checkbox',
+          label: 'Same As Shipping',
+          id: 'sameAsShipping'
+        }
+      ],
+      primaryButton: {
+        title: 'Continue',
+        onClick: () => console.log('onClick')
+      },
+      secondaryButton: {
+        title: 'Cancel',
+        onClick: () => console.log('onClick')
+      }
+    }
     this.buttons = []
   }
 
   /**
    * @name projectsMenuItem
-   * @description Updates title, tableModel, content, buttons, and navHighlight for Projects page.
-   * @memberof Page.prototype
+   * @description Updates table, titleModel, content, buttons, and navHighlight for Projects page
    * @method projectsMenuItem
+   * @memberof Page.prototype
    * @mobx action
    */
   @action projectsMenuItem(){
-    this.title = 'Open Projects' //title depends on selected filter
+    this.title = 'Projects'
+    // Button, fetchFn, rowSelectFn, columns, rowSelectModal, styling
     this.tableModel = new TableModel(
       null,
       this.fetchFn,
       () => console.log('rowSelectFn'),
-      projectColumns
+      projectColumns,
+      null,
+      // TODO: make sure comparison is accurate to priority types
+      (state, rowInfo) => {
+        if (rowInfo && rowInfo.row._original.priority != 'low'){
+          return {
+            style: {
+              background: rowInfo.row._original.priority == 'high' ? highPriority : medPriority
+            }
+          }
+        }
+        return {}
+      }
     )
     this.content = null
+    this.formData = null
     this.buttons = []
   }
 
@@ -212,6 +279,7 @@ class Page {
     this.title = 'Time Entry'
     this.content = <h1>insert various fields</h1>
     this.tableModel = null
+    this.formData = null
     this.buttons = []
   }
 
@@ -234,9 +302,12 @@ class Page {
       customerColumns
     )
     this.content = null
+    this.formData = null
     this.buttons = []
     //click a customer name and model pops up with "Projects" modal
   }
+
+  // Page Changes - Analytics
 
   /**
    * @name emplProductivityMenuItem
@@ -247,6 +318,8 @@ class Page {
    */
   @action emplProductivityMenuItem(){
     this.title = 'Employee Productivity'
+    this.formData = null
+    this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
   }
@@ -260,6 +333,8 @@ class Page {
    */
   @action workstationTrackingMenuItem(){
     this.title = 'Workstation Tracking'
+    this.formData = null
+    this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
   }
@@ -273,6 +348,8 @@ class Page {
    */
   @action jobTypeProductivityMenuItem(){
     this.title = 'Job Type Productivity'
+    this.formData = null
+    this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
   }
@@ -286,9 +363,13 @@ class Page {
    */
   @action costCenterTimeMenuItem(){
     this.title = 'Cost Center Time'
+    this.formData = null
+    this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
   }
+
+  // Page Changes - Admin
 
   /**
    * @name employeeInformationMenuItem
@@ -299,6 +380,8 @@ class Page {
    */
   @action employeeInformationMenuItem(){
     this.title = 'Employee Information'
+    this.formData = null
+    this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
   }
@@ -312,6 +395,8 @@ class Page {
    */
   @action accountManagementMenuItem(){
     this.title = 'Account Management'
+    this.formData = null
+    this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
   }
@@ -320,7 +405,7 @@ class Page {
   // TODO remove
   @action changeLogin(){
     this.loggedin = !this.loggedin
-    this.createNewProjMenuItem()
+    this.newCustomerPage()
   }
 }
 
