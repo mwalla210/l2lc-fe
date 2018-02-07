@@ -293,7 +293,7 @@ class Page {
         title: 'New Customer',
         onClick: () => this.newCustomerPage()
       },
-      this.fetchFn,
+      API.fetchCustomers,
       () => console.log('rowSelectFn'),
       customerColumns
     )
@@ -313,7 +313,7 @@ class Page {
    * @mobx action
    */
   @action emplProductivityMenuItem(){
-    this.title = 'Employee Productivity'
+    this.title = 'Employee Productivity [Q3]'
     this.formData = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
@@ -328,7 +328,7 @@ class Page {
    * @mobx action
    */
   @action workstationTrackingMenuItem(){
-    this.title = 'Workstation Tracking'
+    this.title = 'Workstation Tracking [Q3]'
     this.formData = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
@@ -343,7 +343,7 @@ class Page {
    * @mobx action
    */
   @action jobTypeProductivityMenuItem(){
-    this.title = 'Job Type Productivity'
+    this.title = 'Job Type Productivity [Q3]'
     this.formData = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
@@ -358,7 +358,7 @@ class Page {
    * @mobx action
    */
   @action costCenterTimeMenuItem(){
-    this.title = 'Cost Center Time'
+    this.title = 'Cost Center Time [Q3]'
     this.formData = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
@@ -390,7 +390,7 @@ class Page {
    * @mobx action
    */
   @action accountManagementMenuItem(){
-    this.title = 'Account Management'
+    this.title = 'Account Management [Q3]'
     this.formData = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
