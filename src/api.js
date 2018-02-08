@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 import ProjectModel from './models/projectModel'
 import CustomerModel from './models/customerModel'
+import EmployeeModel from './models/employeeModel'
 
 const api = 'http://138.197.88.198:8080/l2lc/api/'
 
@@ -49,7 +50,13 @@ export default class API {
     return fetch(`${api}employee?limit=50&offset=0`)
     .then(res => res.json())
     .then(json => {
-      return json.items
+      console.log(json)
+      let employees = []
+      json.items.forEach(item => {
+        let employee = new EmployeeModel(item.id, item.firstName, item.lastName)
+        employees.push(employee)
+      })
+      return employees
     })
   }
 

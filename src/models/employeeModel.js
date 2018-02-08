@@ -6,14 +6,16 @@ useStrict(true)
  * @class EmployeeModel
  * @classdesc Employee storage object
  * @property {Number} id Database ID of Employee
- * @property {String} fullName Name of Employee [observable]
+ * @property {String} firstName First name of Employee [observable]
+ * @property {String} lastName Last name of Employee [observable]
  * @property {Boolean} [active=false] Indicator of Employee's active status [observable]
  * @property {String} [editName=null] Stores potential name changes while editing [observable]
  */
 export default class EmployeeModel {
-  constructor(id, fullName) {
+  constructor(id, firstName, lastName) {
     let addtlProps = {
-      fullName,
+      firstName,
+      lastName,
       // Optional
       active: true,
       editName: ''
@@ -30,7 +32,7 @@ export default class EmployeeModel {
   * @return {Boolean}
   * @mobx action
   */
-  @action async changeName(){
+  @action changeName(){
     // TODO: changes Employee's name
     return true
   }
@@ -43,7 +45,7 @@ export default class EmployeeModel {
   * @return {Boolean}
   * @mobx action
   */
-  @action async activate(){
+  @action activate(){
     this.active = true
     return true
   }
@@ -56,7 +58,7 @@ export default class EmployeeModel {
   * @return {Boolean}
   * @mobx action
   */
-  @action async deactivate(){
+  @action deactivate(){
     this.active = false
     return true
   }

@@ -108,8 +108,13 @@ const employeeColumns = [
     filterable: true
   },
   {
-    Header: 'Name',
-    accessor: 'name',
+    Header: 'First Name',
+    accessor: 'firstName',
+    filterable: true
+  },
+  {
+    Header: 'Last Name',
+    accessor: 'lastName',
     filterable: true
   },
   {
@@ -417,8 +422,13 @@ class Page {
        fields: [
          {
            type: 'textfield',
-           label: 'Full Name',
-           id: 'fullName'
+           label: 'First Name',
+           id: 'firstName'
+         },
+         {
+           type: 'textfield',
+           label: 'Last Name',
+           id: 'lastName'
          },
          {
            type: 'checkbox',
