@@ -284,9 +284,30 @@ class Page {
    */
   @action projectTimeEntryMenuItem(){
     this.title = 'Time Entry'
-    this.content = <h1>insert various fields</h1>
+    this.content = null //<h1>insert various fields</h1>
     this.tableModel = null
-    this.formData = null
+    this.formData = {
+      fields: [
+        {
+          type: 'textfield',
+          label: 'Project ID',
+          id: 'id'
+        },
+        {
+          type: 'textfield',
+          label: 'Employee ID',
+          id: 'id'
+        }
+      ],
+      primaryButton: {
+        title: 'Clear',
+        onClick: () => this.props.page.projectTimeEntryMenuItem()
+      },
+      secondaryButton: {
+        title: 'Submit',
+        onClick: () => console.log('onClick')
+      }
+    }
     this.buttons = []
   }
 
