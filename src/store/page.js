@@ -104,11 +104,13 @@ const customerColumns = [
 const employeeColumns = [
   {
     Header: 'ID',
-    accessor: 'id'
+    accessor: 'id',
+    filterable: true
   },
   {
     Header: 'Name',
-    accessor: 'name'
+    accessor: 'name',
+    filterable: true
   },
   {
     Header: 'Barcode',
@@ -165,6 +167,15 @@ class Page {
       API.fetchCustomers,
       () => console.log('rowSelectFn'),
       customerColumns
+    )
+    this.employeeTableModel = new TableModel(
+      {
+        title: 'New Employee',
+        onClick: () => this.newEmployeePage()
+      },
+      API.fetchEmployees,
+      () => console.log('rowSelectFn'),
+      employeeColumns
     )
   }
 
@@ -367,13 +378,44 @@ class Page {
    * @method employeeInformationMenuItem
    * @mobx action
    */
-  @action employeeInformationMenuItem(){
-    this.title = 'Employee Information'
-    this.formData = null
-    this.tableModel = null
-    this.content = <h1>insert analysis and graph</h1>
-    this.buttons = []
-  }
+   @action employeeInformationMenuItem(){
+     this.title = 'Employee Information'
+     this.tableModel = this.employeeTableModel
+     this.tableModel.dataFetch()
+     this.content = null
+     this.formData = null
+     this.buttons = []
+     //click a customer name and model pops up with "Projects" modal
+   }
+
+   @action newEmployeePage(){
+     this.title = 'New Employee'
+     this.tableModel = null
+     this.content = null
+     this.formData = {
+       fields: [
+         {
+           type: 'textfield',
+           label: 'Full Name',
+           id: 'fullName'
+         },
+         {
+           type: 'checkbox',
+           label: 'Active',
+           id: 'active'
+         }
+       ],
+       primaryButton: {
+         title: 'Continue',
+         onClick: () => console.log('onClick')
+       },
+       secondaryButton: {
+         title: 'Cancel',
+         onClick: () => console.log('onClick')
+       }
+     }
+     this.buttons = []
+   }
 
   /**
    * @name accountManagementMenuItem
