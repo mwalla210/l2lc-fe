@@ -74,11 +74,23 @@ export default class Form extends Component {
                     return this.renderCheckbox(field,index)
                 }
               })}
-            <button className="btn btn-primary" onClick={this.props.primaryButton.onClickPreventDefault}>
+            <button
+              className="btn btn-primary"
+              onClick={e => {
+                e.preventDefault()
+                this.props.primaryButton.onClick()
+            }}>
               {this.props.primaryButton.title}
             </button>
             {this.props.secondaryButton &&
-              <button className="btn btn-secondary" onClick={this.props.secondaryButton.onClickPreventDefault}>{this.props.secondaryButton.title}</button>
+              <button
+                className="btn btn-secondary"
+                onClick={e => {
+                  e.preventDefault()
+                  this.props.secondaryButton.onClick()
+              }}>
+                {this.props.secondaryButton.title}
+              </button>
             }
           </form>
         )
