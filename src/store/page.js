@@ -243,13 +243,83 @@ class Page {
         },
         {
           type: 'textfield',
+          label: 'Email Address',
+          id: 'emailAddress'
+        },
+        {
+          type: 'textfield',
           label: 'Phone Number',
           id: 'phoneNumber'
         },
         {
+          type: 'textfield',
+          label: 'Website',
+          id: 'websiteLink'
+        },
+        {
+          type: 'textfield',
+          label: 'Address Line 1',
+          id: 'adressLine1'
+        },
+        {
+          type: 'textfield',
+          label: 'Address Line 2',
+          id: 'adressLine2'
+        },
+        {
+          type: 'textfield',
+          label: 'City',
+          id: 'city'
+        },
+        {
+          type: 'textfield',
+          label: 'State',
+          id: 'state'
+        },
+        {
+          type: 'textfield',
+          label: 'Country',
+          id: 'country'
+        },
+        {
+          type: 'textfield',
+          label: 'Zip Code',
+          id: 'zipCode'
+        },
+        {
           type: 'checkbox',
-          label: 'Same As Shipping',
+          label: 'Billing Addr is NOT the same as shipping; Make shipping fields appear/disappear',
           id: 'sameAsShipping'
+        },
+        {
+          type: 'textfield',
+          label: 'Address Line 1',
+          id: 'adressLine1'
+        },
+        {
+          type: 'textfield',
+          label: 'Address Line 2',
+          id: 'adressLine2'
+        },
+        {
+          type: 'textfield',
+          label: 'City',
+          id: 'city'
+        },
+        {
+          type: 'textfield',
+          label: 'State',
+          id: 'state'
+        },
+        {
+          type: 'textfield',
+          label: 'Country',
+          id: 'country'
+        },
+        {
+          type: 'textfield',
+          label: 'Zip Code',
+          id: 'zipCode'
         }
       ],
       primaryButton: {
