@@ -20,11 +20,15 @@ export default class Page extends Component {
       tableContent = <Table tableModel={this.props.page.tableModel}/>
     }
     let formContent = null
-    if (this.props.page.formData){
+    if (this.props.page.formModel){
       formContent = <Form
-        fields={toJS(this.props.page.formData.fields)}
-        primaryButton={this.props.page.formData.primaryButton}
-        secondaryButton={this.props.page.formData.secondaryButton}/>
+        fields={this.props.page.formModel.fields}
+        primaryButtonTitle={this.props.page.formModel.primaryButton.title}
+        primaryOnClick={() => this.props.page.formModel.primaryButtonWrapper()}
+        secondaryButtonTitle={this.props.page.formModel.secondaryButton.title}
+        secondaryOnClick={this.props.page.formModel.secondaryButton.onClick}
+        valueChangeFunc={this.props.page.formModel.modifyFieldValue}
+        buttonDisabled={this.props.page.formModel.buttonDisabled}/>
     }
     return (
       <div className='main'>

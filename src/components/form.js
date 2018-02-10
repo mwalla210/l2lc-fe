@@ -1,25 +1,27 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
+import { observer, PropTypes as MobXPropTypes } from 'mobx-react'
 
+@observer
 export default class Form extends Component {
   static propTypes = {
-    fields: PropTypes.array.isRequired,
-    primaryButton: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      onClick: PropTypes.func.isRequired
-    }).isRequired,
-    secondaryButton: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      onClick: PropTypes.func.isRequired
-    })
+    fields: MobXPropTypes.observableArray.isRequired,
+    primaryButtonTitle: PropTypes.string.isRequired,
+    primaryOnClick: PropTypes.func.isRequired,
+    secondaryButtonTitle: PropTypes.string,
+    secondaryOnClick: PropTypes.func,
+    valueChangeFunc: PropTypes.func.isRequired,
+    buttonDisabled: PropTypes.bool.isRequired
   }
 
   renderSelect(obj, index){
       return (
         <div className="form-group" key={index}>
           <label>{obj.label}</label>
-          <select className="form-control" id={obj.id}>
+          <select className="form-control" id={obj.id}
+            value={obj.value}
+            onChange={event => {
+              this.props.valueChangeFunc(index, event.target.value)}}>
             {obj.options.map((option, key) =>
               <option key={key}>{option}</option>
             )}
@@ -32,7 +34,10 @@ export default class Form extends Component {
       return (
         <div className="form-group" key={index}>
           <label>{obj.label}</label>
-          <input type="text" className="form-control" id={obj.id}/>
+          <input type="text" className="form-control"
+            id={obj.id} value={obj.value}
+            onChange={event => {
+              this.props.valueChangeFunc(index, event.target.value)}}/>
         </div>
       )
     }
@@ -41,7 +46,11 @@ export default class Form extends Component {
       return (
         <div className="form-group" key={index}>
           <label>{obj.label}</label>
-          <textarea className="form-control" rows={obj.rows} id={obj.id}></textarea>
+          <textarea className="form-control" rows={obj.rows} id={obj.id}
+            value={obj.value}
+            onChange={event => {
+              this.props.valueChangeFunc(index, event.target.value)}}>
+          </textarea>
         </div>
       )
     }
@@ -50,10 +59,12 @@ export default class Form extends Component {
       return (
         <div className="form-group" key={index}>
           <div className="form-check">
-            <input className="form-check-input" type="checkbox" value="" id={obj.id}/>
             <label className="form-check-label" htmlFor={obj.id}>
               {obj.label}
             </label>
+            <input className="form-check-input" type="checkbox" id={obj.id}
+              checked={obj.value} onChange={event => {
+                this.props.valueChangeFunc(index, event.target.checked)}}/>
           </div>
         </div>
       )
@@ -74,24 +85,25 @@ export default class Form extends Component {
                     return this.renderCheckbox(field,index)
                 }
               })}
-            <button
-              className="btn btn-primary"
-              onClick={e => {
-                e.preventDefault()
-                this.props.primaryButton.onClick()
-            }}>
-              {this.props.primaryButton.title}
-            </button>
-            {this.props.secondaryButton &&
+            {this.props.secondaryButtonTitle &&
               <button
                 className="btn btn-secondary"
                 onClick={e => {
                   e.preventDefault()
-                  this.props.secondaryButton.onClick()
+                  this.props.secondaryOnClick()
               }}>
-                {this.props.secondaryButton.title}
+                {this.props.secondaryButtonTitle}
               </button>
             }
+            <button
+              className="btn btn-primary"
+              disabled={this.props.buttonDisabled}
+              onClick={e => {
+                e.preventDefault()
+                this.props.primaryOnClick()
+            }}>
+              {this.props.primaryButtonTitle}
+            </button>
           </form>
         )
       }
