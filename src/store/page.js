@@ -1,6 +1,7 @@
 import React from 'react'
 import { action, useStrict, extendObservable } from 'mobx'
 import TableModel from '../models/tableModel'
+import FormModel from '../models/formModel'
 import API from '../api'
 useStrict(true)
 
@@ -141,7 +142,7 @@ class Page {
       navHighlight: '',
       content: null,
       tableModel: null,
-      formData: null,
+      formModel: null,
       buttons: [],
     }
     extendObservable(this, addtlProps)
@@ -202,7 +203,7 @@ class Page {
     this.title = 'New Project'
     this.content = <p>A form!</p>
     this.tableModel = null
-    this.formData = null
+    this.formModel = null
     this.buttons = []
   }
 
@@ -218,7 +219,7 @@ class Page {
     this.tableModel = this.customerTableModel
     this.tableModel.dataFetch()
     this.content = null
-    this.formData = null
+    this.formModel = null
     this.buttons = []
     this.navHighlight = 'Create New Project'
   }
@@ -234,103 +235,127 @@ class Page {
     this.title = 'New Customer'
     this.tableModel = null
     this.content = null
-    this.formData = {
-      fields: [
-        {
-          type: 'textfield',
-          label: 'Company Name',
-          id: 'companyName'
-        },
-        {
-          type: 'textfield',
-          label: 'Email Address',
-          id: 'emailAddress'
-        },
-        {
-          type: 'textfield',
-          label: 'Phone Number',
-          id: 'phoneNumber'
-        },
-        {
-          type: 'textfield',
-          label: 'Website',
-          id: 'websiteLink'
-        },
-        {
-          type: 'textfield',
-          label: 'Address Line 1',
-          id: 'adressLine1'
-        },
-        {
-          type: 'textfield',
-          label: 'Address Line 2',
-          id: 'adressLine2'
-        },
-        {
-          type: 'textfield',
-          label: 'City',
-          id: 'city'
-        },
-        {
-          type: 'textfield',
-          label: 'State',
-          id: 'state'
-        },
-        {
-          type: 'textfield',
-          label: 'Country',
-          id: 'country'
-        },
-        {
-          type: 'textfield',
-          label: 'Zip Code',
-          id: 'zipCode'
-        },
-        {
-          type: 'checkbox',
-          label: 'Billing Addr is NOT the same as shipping; Make shipping fields appear/disappear',
-          id: 'sameAsShipping'
-        },
-        {
-          type: 'textfield',
-          label: 'Address Line 1',
-          id: 'adressLine1'
-        },
-        {
-          type: 'textfield',
-          label: 'Address Line 2',
-          id: 'adressLine2'
-        },
-        {
-          type: 'textfield',
-          label: 'City',
-          id: 'city'
-        },
-        {
-          type: 'textfield',
-          label: 'State',
-          id: 'state'
-        },
-        {
-          type: 'textfield',
-          label: 'Country',
-          id: 'country'
-        },
-        {
-          type: 'textfield',
-          label: 'Zip Code',
-          id: 'zipCode'
-        }
-      ],
-      primaryButton: {
+    let fields = [
+      {
+        type: 'textfield',
+        label: 'Company Name',
+        id: 'companyName',
+        required: true
+      },
+      {
+        type: 'textfield',
+        label: 'Email Address',
+        id: 'emailAddress',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Phone Number',
+        id: 'phoneNumber',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Website',
+        id: 'websiteLink',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Address Line 1',
+        id: 'adressLine1',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Address Line 2',
+        id: 'adressLine2',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'City',
+        id: 'city',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'State',
+        id: 'state',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Country',
+        id: 'country',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Zip Code',
+        id: 'zipCode',
+        required: false
+      },
+      {
+        type: 'checkbox',
+        label: 'Billing Addr is NOT the same as shipping; Make shipping fields appear/disappear',
+        id: 'sameAsShipping',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Address Line 1',
+        id: 'adressLine1',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Address Line 2',
+        id: 'adressLine2',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'City',
+        id: 'city',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'State',
+        id: 'state',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Country',
+        id: 'country',
+        required: false
+      },
+      {
+        type: 'textfield',
+        label: 'Zip Code',
+        id: 'zipCode',
+        required: false
+      },
+      {
+        type: 'select',
+        label: 'whatevera',
+        id: 'blah',
+        options: ['hi','bye','ok'],
+        required: false
+      }
+    ]
+    this.formModel = new FormModel(fields,
+      {
         title: 'Continue',
         onClick: () => console.log('onClick')
       },
-      secondaryButton: {
-        title: 'Cancel',
-        onClick: () => console.log('onClick')
+      {
+      title: 'Cancel',
+      onClick: () => console.log('onClick')
       }
-    }
+    )
     this.buttons = []
   }
 
@@ -346,7 +371,7 @@ class Page {
     this.tableModel = this.projectTableModel
     this.tableModel.dataFetch()
     this.content = null
-    this.formData = null
+    this.formModel = null
     this.buttons = []
   }
 
@@ -359,30 +384,32 @@ class Page {
    */
   @action projectTimeEntryMenuItem(){
     this.title = 'Time Entry'
-    this.content = null //<h1>insert various fields</h1>
+    this.content = null
     this.tableModel = null
-    this.formData = {
-      fields: [
-        {
-          type: 'textfield',
-          label: 'Project ID',
-          id: 'id'
-        },
-        {
-          type: 'textfield',
-          label: 'Employee ID',
-          id: 'id'
-        }
-      ],
-      primaryButton: {
+    let fields = [
+      {
+        type: 'textfield',
+        label: 'Project ID',
+        id: 'id',
+        required: true
+      },
+      {
+        type: 'textfield',
+        label: 'Employee ID',
+        id: 'id',
+        required: true
+      }
+    ]
+    this.formModel = new FormModel(fields,
+      {
+        title: 'Submit',
+        onClick: () => console.log('submit button onClick')
+      },
+      {
         title: 'Clear',
         onClick: () => this.props.page.projectTimeEntryMenuItem()
-      },
-      secondaryButton: {
-        title: 'Submit',
-        onClick: () => console.log('onClick')
       }
-    }
+    )
     this.buttons = []
   }
 
@@ -398,7 +425,7 @@ class Page {
     this.tableModel = this.customerTableModel
     this.tableModel.dataFetch()
     this.content = null
-    this.formData = null
+    this.formModel = null
     this.buttons = []
     //click a customer name and model pops up with "Projects" modal
   }
@@ -414,7 +441,7 @@ class Page {
    */
   @action emplProductivityMenuItem(){
     this.title = 'Employee Productivity [Q3]'
-    this.formData = null
+    this.formModel = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
@@ -429,7 +456,7 @@ class Page {
    */
   @action workstationTrackingMenuItem(){
     this.title = 'Workstation Tracking [Q3]'
-    this.formData = null
+    this.formModel = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
@@ -444,7 +471,7 @@ class Page {
    */
   @action jobTypeProductivityMenuItem(){
     this.title = 'Job Type Productivity [Q3]'
-    this.formData = null
+    this.formModel = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
@@ -459,7 +486,7 @@ class Page {
    */
   @action costCenterTimeMenuItem(){
     this.title = 'Cost Center Time [Q3]'
-    this.formData = null
+    this.formModel = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
@@ -479,7 +506,7 @@ class Page {
      this.tableModel = this.employeeTableModel
      this.tableModel.dataFetch()
      this.content = null
-     this.formData = null
+     this.formModel = null
      this.buttons = []
      //click a customer name and model pops up with "Projects" modal
    }
@@ -488,33 +515,36 @@ class Page {
      this.title = 'New Employee'
      this.tableModel = null
      this.content = null
-     this.formData = {
-       fields: [
-         {
-           type: 'textfield',
-           label: 'First Name',
-           id: 'firstName'
-         },
-         {
-           type: 'textfield',
-           label: 'Last Name',
-           id: 'lastName'
-         },
-         {
-           type: 'checkbox',
-           label: 'Active',
-           id: 'active'
-         }
-       ],
-       primaryButton: {
+     let fields = [
+       {
+         type: 'textfield',
+         label: 'First Name',
+         id: 'firstName',
+         required: true
+       },
+       {
+         type: 'textfield',
+         label: 'Last Name',
+         id: 'lastName',
+         required: true
+       },
+       {
+         type: 'checkbox',
+         label: 'Active',
+         id: 'active',
+         required: false
+       }
+     ]
+     this.formModel = new FormModel(fields,
+       {
          title: 'Continue',
          onClick: () => console.log('onClick')
        },
-       secondaryButton: {
+       {
          title: 'Cancel',
          onClick: () => console.log('onClick')
        }
-     }
+     )
      this.buttons = []
    }
 
@@ -527,7 +557,7 @@ class Page {
    */
   @action accountManagementMenuItem(){
     this.title = 'Account Management [Q3]'
-    this.formData = null
+    this.formModel = null
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
