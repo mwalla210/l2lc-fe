@@ -59,9 +59,15 @@ export default class FormModel {
     })
     return disabled
   }
+  /**
+   * @name primaryButtonWrapper
+   * @description Wrapper func for the primary button's onClick
+   * @memberof FormModel.prototype
+   * @method primaryButtonWrapper
+   */
   primaryButtonWrapper(){
-    console.log(this.fields, this)
-    this.primaryButton.onClick()
+    //this.primaryButton.onClick(this.fields)
+    this.primaryButton.onClick(this.fields)
   }
   /**
    * @name modifyFieldValue
@@ -73,7 +79,6 @@ export default class FormModel {
    * @mobx action
    */
   @action modifyFieldValue(index, value){
-    console.log('index:',index,'value',value)
     this.fields[index].value = value
   }
 }

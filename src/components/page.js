@@ -26,7 +26,7 @@ export default class Page extends Component {
         primaryButtonTitle={this.props.page.formModel.primaryButton.title}
         primaryOnClick={this.props.page.formModel.primaryButtonWrapper}
         secondaryButtonTitle={this.props.page.formModel.secondaryButton.title}
-        secondaryOnClick={this.props.page.formModel.primaryButtonWrapper}
+        secondaryOnClick={this.props.page.formModel.secondaryButton.onClick}
         valueChangeFunc={this.props.page.formModel.modifyFieldValue}
         buttonDisabled={this.props.page.formModel.buttonDisabled}/>
     }
