@@ -66,7 +66,7 @@ export default class FormModel {
    * @method primaryButtonWrapper
    */
   primaryButtonWrapper(){
-    //this.primaryButton.onClick(this.fields)
+    // this.primaryButton.onClick(this.fields)
     this.primaryButton.onClick(this.fields)
   }
   /**

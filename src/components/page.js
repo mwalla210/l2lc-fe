@@ -24,7 +24,7 @@ export default class Page extends Component {
       formContent = <Form
         fields={this.props.page.formModel.fields}
         primaryButtonTitle={this.props.page.formModel.primaryButton.title}
-        primaryOnClick={this.props.page.formModel.primaryButtonWrapper}
+        primaryOnClick={() => this.props.page.formModel.primaryButtonWrapper()}
         secondaryButtonTitle={this.props.page.formModel.secondaryButton.title}
         secondaryOnClick={this.props.page.formModel.secondaryButton.onClick}
         valueChangeFunc={this.props.page.formModel.modifyFieldValue}
