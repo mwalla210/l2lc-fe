@@ -135,6 +135,9 @@ body {
   color: #111111;
   background-color: #f1f1f1;
 }
+.navbar-right {
+  margin-right: 2px;
+}
 
 .sidenav {
     height: 100%;
