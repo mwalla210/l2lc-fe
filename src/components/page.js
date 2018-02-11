@@ -36,7 +36,15 @@ export default class Page extends Component {
         {this.props.page.content}
         {tableContent}
         {formContent}
-        {this.props.page.buttons}
+        {(this.props.page.buttons) ? this.props.page.buttons.map((buttonObj, index) => {
+          let addtl = {}
+          if (buttonObj.class)
+            addtl = {className: `btn ${buttonObj.class}`}
+          else
+            addtl = {className: 'btn btn-default'}
+          return (<button onClick={buttonObj.onClick} key={index} {...addtl}>{buttonObj.title}</button>)
+        }):
+        null}
         <Sidebar highlight={this.props.page.navHighlight}/>
       </div>
     )

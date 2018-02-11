@@ -3,126 +3,11 @@ import { action, useStrict, extendObservable } from 'mobx'
 import TableModel from '../models/tableModel'
 import FormModel from '../models/formModel'
 import API from '../api'
+import Website from './website'
 useStrict(true)
 
 const highPriority = '#f4ba61'
 const medPriority = '#f4e261'
-const projectColumns = [
-  {
-    Header: 'ID',
-    accessor: 'id',
-    filterable: true
-  },
-  {
-    Header: 'Created',
-    accessor: 'dateCreated'
-  },
-  {
-    Header: 'Title',
-    accessor: 'title'
-  },
-  {
-    id: 'customerName', // Required because our accessor is not a string
-    Header: 'Customer Name',
-    accessor: d => d.customer.name
-  },
-  {
-    id: 'costCenter', // Required because our accessor is not a string
-    Header: 'Cost Center',
-    accessor: d => d.costCenter.title
-  },
-  {
-    Header: 'Time Spent',
-    accessor: 'timeSpent'
-  },
-  {
-    Header: 'Finished',
-    accessor: 'dateFinished'
-  },
-  {
-    Header: 'Status',
-    accessor: 'status',
-    filterable: true,
-    Cell: row => (
-      <span>
-        {/* TODO: adjust this to be accurate for values of fn*/}
-        <span style={{
-          color: row.value === 'Closed' ? '#ff2e00'
-            : row.value === '?' ? '#ffbf00'
-            : '#57d500',
-          transition: 'all .3s ease'}}>
-            &#x25cf;
-        </span>
-        {row.value}
-      </span>
-    ),
-    filterMethod: (filter, row) => {
-      if (filter.value === 'all') {
-        return true
-      }
-      if (filter.value === 'true') {
-        {/* TODO: adjust this to be accurate for values of fn*/}
-        return row[filter.id] == 'Open'
-      }
-      {/* TODO: adjust this to be accurate for values of fn*/}
-      return row[filter.id] != 'Open'
-    },
-    Filter: ({ filter, onChange }) =>
-      <select
-        onChange={event => onChange(event.target.value)}
-        style={{ width: '100%' }}
-        value={filter ? filter.value : 'all'}
-      >
-        <option value="all">Show All</option>
-        <option value="true">Open</option>
-        <option value="false">Closed</option>
-      </select>
-  },
-]
-const customerColumns = [
-  {
-    Header: 'ID',
-    accessor: 'id',
-    filterable: true
-  },
-  {
-    Header: 'Name',
-    accessor: 'companyName'
-  },
-  {
-    Header: 'Shipping Address',
-    accessor: 'formattedShipAddress'
-  },
-  {
-    Header: 'Billing Address',
-    accessor: 'formattedBillAddress'
-  },
-  {
-    Header: 'Phone',
-    accessor: 'phone'
-  },
-]
-const employeeColumns = [
-  {
-    Header: 'ID',
-    accessor: 'id',
-    filterable: true
-  },
-  {
-    Header: 'First Name',
-    accessor: 'firstName',
-    filterable: true
-  },
-  {
-    Header: 'Last Name',
-    accessor: 'lastName',
-    filterable: true
-  },
-  {
-    Header: 'Barcode',
-    accessor: 'barcode'
-  },
-]
 
 /**
  * @name Page
@@ -147,11 +32,169 @@ class Page {
     }
     extendObservable(this, addtlProps)
     // Define once, reference later
+    this.projectColumns = [
+      {
+        Header: 'ID',
+        accessor: 'id',
+        filterable: true
+      },
+      {
+        Header: 'Created',
+        accessor: 'dateCreated',
+        filterable: true
+      },
+      {
+        Header: 'Title',
+        accessor: 'title',
+        filterable: true
+      },
+      {
+        id: 'customerName', // Required because our accessor is not a string
+        Header: 'Customer Name',
+        accessor: d => d.customer.name,
+        filterable: true
+      },
+      {
+        id: 'costCenter', // Required because our accessor is not a string
+        Header: 'Cost Center',
+        accessor: d => d.costCenter.title,
+        filterable: true
+      },
+      {
+        Header: 'Time Spent',
+        accessor: 'timeSpent',
+        filterable: true
+      },
+      {
+        Header: 'Finished',
+        accessor: 'dateFinished',
+        filterable: true
+      },
+      {
+        Header: 'Status',
+        accessor: 'status',
+        filterable: true,
+        Cell: row => (
+          <span>
+            {/* TODO: adjust this to be accurate for values of fn*/}
+            <span style={{
+              color: row.value === 'Closed' ? '#ff2e00'
+                : row.value === '?' ? '#ffbf00'
+                : '#57d500',
+              transition: 'all .3s ease'}}>
+                &#x25cf;
+            </span>
+            {row.value}
+          </span>
+        ),
+        filterMethod: (filter, row) => {
+          if (filter.value === 'all') {
+            return true
+          }
+          if (filter.value === 'true') {
+            {/* TODO: adjust this to be accurate for values of fn*/}
+            return row[filter.id] == 'Open'
+          }
+          {/* TODO: adjust this to be accurate for values of fn*/}
+          return row[filter.id] != 'Open'
+        },
+        Filter: ({ filter, onChange }) =>
+          <select
+            onChange={event => onChange(event.target.value)}
+            style={{ width: '100%' }}
+            value={filter ? filter.value : 'all'}
+          >
+            <option value="all">Show All</option>
+            <option value="true">Open</option>
+            <option value="false">Closed</option>
+          </select>
+      },
+      {
+        Header: 'Actions',
+        getProps: () => {
+          return {
+            className: 'center',
+            style: {
+              paddingTop: '0px',
+              paddingBottom: '0px'
+            }
+          }
+        },
+        Cell: row => (
+          <span>
+            <span>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                Website.setProject(row.original)
+                this.projectSummaryPage()
+              }}>
+                <img src="../../style/open-iconic-master/svg/info.svg" alt="info"/>
+              </button>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                Website.setProject(row.original)
+                this.projectEditPage()
+              }}>
+                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" style={{marginLeft: '2px'}}/>
+              </button>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                console.log('Confirm delete')
+              }}>
+                <img src="../../style/open-iconic-master/svg/trash.svg" alt="trash" style={{marginLeft: '2px'}}/>
+              </button>
+            </span>
+          </span>
+        ),
+      }
+    ]
+    this.customerColumns = [
+      {
+        Header: 'ID',
+        accessor: 'id',
+        filterable: true
+      },
+      {
+        Header: 'Name',
+        accessor: 'companyName'
+      },
+      {
+        Header: 'Shipping Address',
+        accessor: 'formattedShipAddress'
+      },
+      {
+        Header: 'Billing Address',
+        accessor: 'formattedBillAddress'
+      },
+      {
+        Header: 'Phone',
+        accessor: 'phone'
+      },
+    ]
+    this.employeeColumns = [
+      {
+        Header: 'ID',
+        accessor: 'id',
+        filterable: true
+      },
+      {
+        Header: 'First Name',
+        accessor: 'firstName',
+        filterable: true
+      },
+      {
+        Header: 'Last Name',
+        accessor: 'lastName',
+        filterable: true
+      },
+      {
+        Header: 'Barcode',
+        accessor: 'barcode'
+      },
+    ]
+    // tableButton, fetchFn, rowSelectFn, columns, rowSelectModal, styling
     this.projectTableModel = new TableModel(
       null,
       API.fetchProjects,
-      () => console.log('rowSelectFn'),
-      projectColumns,
+      null,
+      this.projectColumns,
       null,
       // TODO: make sure comparison is accurate to priority types
       (state, rowInfo) => {
@@ -165,6 +208,7 @@ class Page {
         return {}
       }
     )
+    // tableButton, fetchFn, rowSelectFn, columns, rowSelectModal, styling
     this.customerTableModel = new TableModel(
       {
         title: 'New Customer',
@@ -172,8 +216,9 @@ class Page {
       },
       API.fetchCustomers,
       () => console.log('rowSelectFn'),
-      customerColumns
+      this.customerColumns
     )
+    // tableButton, fetchFn, rowSelectFn, columns, rowSelectModal, styling
     this.employeeTableModel = new TableModel(
       {
         title: 'New Employee',
@@ -181,7 +226,7 @@ class Page {
       },
       API.fetchEmployees,
       () => console.log('rowSelectFn'),
-      employeeColumns
+      this.employeeColumns
     )
   }
 
@@ -205,6 +250,59 @@ class Page {
     this.tableModel = null
     this.formModel = null
     this.buttons = []
+  }
+
+  /**
+   * @name projectSummaryPage
+   * @description Updates title, tableModel, content, buttons, and navHighlight for Project Summary page
+   * @method projectSummaryPage
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action projectSummaryPage(){
+    this.title = ''
+    this.tableModel = null
+    this.content = null
+    this.formModel = null
+    this.buttons = [
+      {
+        title: 'Tasks',
+        onClick: () => console.log('Go to tasks page')
+      },
+      {
+        title: 'Edit Information',
+        onClick: () => console.log('Go to edit project page')
+      },
+      {
+        title: 'Add Rework',
+        onClick: () => console.log('Rework modal')
+      },
+      {
+        title: 'Modify Hold Status',
+        onClick: () => console.log('Hold modal')
+      },
+      {
+        title: 'Delete',
+        onClick: () => console.log('Confirm delete'),
+        class: 'btn-danger'
+      },
+    ]
+    this.navHighlight = ''
+  }
+  /**
+   * @name projectEditPage
+   * @description Updates title, tableModel, content, buttons, and navHighlight for Project Edit page
+   * @method projectEditPage
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action projectEditPage(){
+    this.title = ''
+    this.tableModel = null
+    this.content = null
+    this.formModel = null
+    this.buttons = []
+    this.navHighlight = ''
   }
 
   /**

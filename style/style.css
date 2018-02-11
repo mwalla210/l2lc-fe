@@ -40,7 +40,25 @@ body {
   text-align: center
 }
 
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+  margin-top: 2px;
+}
 
+.btn-circle img{
+  width: 14px;
+  height: 14px;
+}
+
+.center {
+  text-align: center;
+}
 
 .sidenav {
     height: 100%;
