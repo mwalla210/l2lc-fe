@@ -37,7 +37,7 @@ export default class API {
   }
 
   static fetchProjects(){
-    return fetch(`${api}customer?limit=50&offset=0`)
+    return fetch(`${api}project?limit=50&offset=0`)
     .then(res => res.json())
     .then(json => {
       console.log(json)
