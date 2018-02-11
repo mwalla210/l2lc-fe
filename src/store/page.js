@@ -111,6 +111,7 @@ class Page {
       },
       {
         Header: 'Actions',
+        sortable: false,
         getProps: () => {
           return {
             className: 'center',
@@ -136,13 +137,14 @@ class Page {
                 <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" style={{marginLeft: '2px'}}/>
               </button>
               <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
-                console.log('Confirm delete')
+                Website.setProject(row.original)
+                this.projectTableModel.openModal()
               }}>
                 <img src="../../style/open-iconic-master/svg/trash.svg" alt="trash" style={{marginLeft: '2px'}}/>
               </button>
             </span>
           </span>
-        ),
+        )
       }
     ]
     this.customerColumns = [
@@ -153,20 +155,56 @@ class Page {
       },
       {
         Header: 'Name',
-        accessor: 'companyName'
+        accessor: 'companyName',
+        filterable: true
       },
       {
         Header: 'Shipping Address',
-        accessor: 'formattedShipAddress'
+        accessor: 'formattedShipAddress',
+        filterable: true
       },
       {
         Header: 'Billing Address',
-        accessor: 'formattedBillAddress'
+        accessor: 'formattedBillAddress',
+        filterable: true
       },
       {
         Header: 'Phone',
-        accessor: 'phone'
+        accessor: 'phone',
+        filterable: true
       },
+      {
+        Header: 'Actions',
+        sortable: false,
+        maxWidth: 80,
+        getProps: () => {
+          return {
+            className: 'center',
+            style: {
+              paddingTop: '0px',
+              paddingBottom: '0px'
+            }
+          }
+        },
+        Cell: row => (
+          <span>
+            <span>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                Website.setCustomer(row.original)
+                this.customerSummaryPage()
+              }}>
+                <img src="../../style/open-iconic-master/svg/info.svg" alt="info"/>
+              </button>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                Website.setCustomer(row.original)
+                this.customerEditPage()
+              }}>
+                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" style={{marginLeft: '2px'}}/>
+              </button>
+            </span>
+          </span>
+        )
+      }
     ]
     this.employeeColumns = [
       {
@@ -188,14 +226,44 @@ class Page {
         Header: 'Barcode',
         accessor: 'barcode'
       },
+      {
+        Header: 'Actions',
+        sortable: false,
+        maxWidth: 60,
+        getProps: () => {
+          return {
+            className: 'center',
+            style: {
+              paddingTop: '0px',
+              paddingBottom: '0px',
+            }
+          }
+        },
+        Cell: row => (
+          <span>
+            <span>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                Website.setEmployee(row.original)
+                this.employeeTableModel.openModal()
+              }}>
+                <img src="../../style/open-iconic-master/svg/trash.svg" alt="trash" style={{marginLeft: '2px'}}/>
+              </button>
+            </span>
+          </span>
+        )
+      }
     ]
-    // tableButton, fetchFn, rowSelectFn, columns, rowSelectModal, styling
+    // tableButton, fetchFn, rowSelectFn, columns, deleteModal, styling
     this.projectTableModel = new TableModel(
       null,
       API.fetchProjects,
       null,
       this.projectColumns,
-      null,
+      {
+        title: 'Delete Project?',
+        confirmOnClick: () => console.log('confirm'),
+        content: 'This action cannot be undone.'
+      },
       // TODO: make sure comparison is accurate to priority types
       (state, rowInfo) => {
         if (rowInfo && rowInfo.row._original.priority != 'low'){
@@ -208,17 +276,17 @@ class Page {
         return {}
       }
     )
-    // tableButton, fetchFn, rowSelectFn, columns, rowSelectModal, styling
+    // tableButton, fetchFn, rowSelectFn, columns, deleteModal, styling
     this.customerTableModel = new TableModel(
       {
         title: 'New Customer',
         onClick: () => this.newCustomerPage()
       },
       API.fetchCustomers,
-      () => console.log('rowSelectFn'),
-      this.customerColumns
+      null,
+      this.customerColumns,
     )
-    // tableButton, fetchFn, rowSelectFn, columns, rowSelectModal, styling
+    // tableButton, fetchFn, rowSelectFn, columns, deleteModal, styling
     this.employeeTableModel = new TableModel(
       {
         title: 'New Employee',
@@ -226,7 +294,12 @@ class Page {
       },
       API.fetchEmployees,
       () => console.log('rowSelectFn'),
-      this.employeeColumns
+      this.employeeColumns,
+      {
+        title: 'Delete Employee?',
+        confirmOnClick: () => console.log('confirm'),
+        content: 'This action cannot be undone.'
+      },
     )
   }
 
@@ -237,72 +310,21 @@ class Page {
   All fetch functions should "modelize" returned data into appropriate models (this file will import models from folder)
    */
 
-  fetchFn(){
-    console.log('fetchFn')
-    return true
-  }
-
   // Page Changes - Projects
 
+  /**
+   * @name createNewProjMenuItem
+   * @description Updates table, titleModel, content, buttons, and navHighlight for Create New Project page
+   * @method createNewProjMenuItem
+   * @memberof Page.prototype
+   * @mobx action
+   */
   @action createNewProjMenuItem(){
     this.title = 'New Project'
     this.content = <p>A form!</p>
     this.tableModel = null
     this.formModel = null
     this.buttons = []
-  }
-
-  /**
-   * @name projectSummaryPage
-   * @description Updates title, tableModel, content, buttons, and navHighlight for Project Summary page
-   * @method projectSummaryPage
-   * @memberof Page.prototype
-   * @mobx action
-   */
-  @action projectSummaryPage(){
-    this.title = ''
-    this.tableModel = null
-    this.content = null
-    this.formModel = null
-    this.buttons = [
-      {
-        title: 'Tasks',
-        onClick: () => console.log('Go to tasks page')
-      },
-      {
-        title: 'Edit Information',
-        onClick: () => console.log('Go to edit project page')
-      },
-      {
-        title: 'Add Rework',
-        onClick: () => console.log('Rework modal')
-      },
-      {
-        title: 'Modify Hold Status',
-        onClick: () => console.log('Hold modal')
-      },
-      {
-        title: 'Delete',
-        onClick: () => console.log('Confirm delete'),
-        class: 'btn-danger'
-      },
-    ]
-    this.navHighlight = ''
-  }
-  /**
-   * @name projectEditPage
-   * @description Updates title, tableModel, content, buttons, and navHighlight for Project Edit page
-   * @method projectEditPage
-   * @memberof Page.prototype
-   * @mobx action
-   */
-  @action projectEditPage(){
-    this.title = ''
-    this.tableModel = null
-    this.content = null
-    this.formModel = null
-    this.buttons = []
-    this.navHighlight = ''
   }
 
   /**
@@ -466,6 +488,60 @@ class Page {
   }
 
   /**
+   * @name projectSummaryPage
+   * @description Updates title, tableModel, content, buttons, and navHighlight for Project Summary page
+   * @method projectSummaryPage
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action projectSummaryPage(){
+    this.title = ''
+    this.tableModel = null
+    this.content = null
+    this.formModel = null
+    this.buttons = [
+      {
+        title: 'Tasks',
+        onClick: () => console.log('Go to tasks page')
+      },
+      {
+        title: 'Edit Information',
+        onClick: () => console.log('Go to edit project page')
+      },
+      {
+        title: 'Add Rework',
+        onClick: () => console.log('Rework modal')
+      },
+      {
+        title: 'Modify Hold Status',
+        onClick: () => console.log('Hold modal')
+      },
+      {
+        title: 'Delete',
+        onClick: () => console.log('Confirm delete'),
+        class: 'btn-danger'
+      },
+    ]
+    this.navHighlight = ''
+  }
+
+  /**
+   * @name projectEditPage
+   * @description Updates title, tableModel, content, buttons, and navHighlight for Project Edit page
+   * @method projectEditPage
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action projectEditPage(){
+    this.title = ''
+    this.tableModel = null
+    this.content = null
+    this.formModel = null
+    this.buttons = []
+    this.navHighlight = ''
+  }
+
+  /**
    * @name projectsMenuItem
    * @description Updates table, titleModel, content, buttons, and navHighlight for Projects page
    * @method projectsMenuItem
@@ -527,7 +603,7 @@ class Page {
    * @mobx action
    */
   @action customerInfoMenuItem(){
-    this.title = 'Customer Information'
+    this.title = 'Customers'
     this.tableModel = this.customerTableModel
     this.tableModel.dataFetch()
     this.content = null
@@ -535,6 +611,49 @@ class Page {
     this.buttons = []
     //click a customer name and model pops up with "Projects" modal
   }
+
+  /**
+   * @name customerSummaryPage
+   * @description Updates title, tableModel, content, buttons, and navHighlight for Customer Summary page
+   * @method customerSummaryPage
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action customerSummaryPage(){
+    this.title = 'Edit Customer'
+    this.tableModel = null
+    this.content = null
+    this.formModel = null
+    this.buttons = [
+      {
+        title: 'Edit',
+        onClick: () => console.log('Go to edit customer page')
+      },
+      {
+        title: 'Delete',
+        onClick: () => console.log('Confirm delete'),
+        class: 'btn-danger'
+      },
+    ]
+    this.navHighlight = ''
+  }
+
+  /**
+   * @name customerEditPage
+   * @description Updates title, tableModel, content, buttons, and navHighlight for Customer Edit page
+   * @method customerEditPage
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action customerEditPage(){
+    this.title = ''
+    this.tableModel = null
+    this.content = null
+    this.formModel = null
+    this.buttons = []
+    this.navHighlight = ''
+  }
+
 
   // Page Changes - Analytics
 

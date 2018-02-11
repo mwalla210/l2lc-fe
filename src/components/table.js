@@ -5,6 +5,7 @@ import { toJS } from 'mobx'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import TableButton from './tableButton'
+import DeleteModal from './deleteModal'
 
 @inject ('page') @observer
 export default class Table extends Component {
@@ -23,18 +24,15 @@ export default class Table extends Component {
     */
 
     // If onClick function for rows, redefine onClick for table elements and call function
-    // If modal to be opened when row clicked, declare in render and redefine onClick for table elements and call open modal
     let rowSelect = {}
-    let rowModal = null
-    if (this.props.tableModel.rowSelectFn || this.props.tableModel.rowSelectModal){
+    if (this.props.tableModel.rowSelectFn){
       rowSelect = {
         getTdProps: (state, rowInfo) => {
           return {
             onClick: (e, handleOriginal) => {
               if (rowInfo){
                 console.log('It was in this row:', rowInfo)
-                this.props.tableModel.rowSelectFn && this.props.tableModel.rowSelectFn(rowInfo)
-                this.props.tableModel.rowSelectModal && this.props.tableModel.rowSelectModal.openModal(rowInfo)
+                this.props.tableModel.rowSelectFn(rowInfo)
               }
               if (handleOriginal) {
                 handleOriginal()
@@ -43,6 +41,18 @@ export default class Table extends Component {
           }
         },
       }
+    }
+    let rowModal = null
+    // If modal to be opened when row clicked, declare in render and redefine onClick for table elements and call open modal
+    if (this.props.tableModel.deleteModal){
+      rowModal = <DeleteModal
+        title={this.props.tableModel.deleteModal.title}
+        confirmOnClick={() => this.props.tableModel.confirmAndClose()}
+        denyOnClick={() => this.props.tableModel.closeModal()}
+        open={this.props.tableModel.modalOpen}
+        closeFn={() => this.props.tableModel.closeModal()}
+        content={this.props.tableModel.deleteModal.content}
+      />
     }
     let rowStyling = null
     if (this.props.tableModel.styling){
@@ -64,6 +74,7 @@ export default class Table extends Component {
     return (
       <div>
       {buttonContent}
+      {rowModal}
       <div className='row'>
         <ReactTable
           data={this.props.tableModel.data.slice()}

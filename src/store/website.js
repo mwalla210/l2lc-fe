@@ -41,6 +41,30 @@ class Website {
     this.currentProject = project
   }
 
+  /**
+   * @name setCustomer
+   * @description Sets current customer
+   * @method setCustomer
+   * @memberof Website.prototype
+   * @param  {Customer}   customer  Cs to set
+   * @mobx action
+   */
+  @action setCustomer(customer){
+    this.currentCustomer = customer
+  }
+
+  /**
+   * @name setEmployee
+   * @description Sets current employee
+   * @method setEmployee
+   * @memberof Website.prototype
+   * @param  {Employee}   employee  Cs to set
+   * @mobx action
+   */
+  @action setEmployee(employee){
+    this.currentEmployee = employee
+  }
+
   // Fetches
 
   /**

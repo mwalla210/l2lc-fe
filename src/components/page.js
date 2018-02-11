@@ -5,6 +5,7 @@ import Login from './login'
 import Sidebar from './sidebar'
 import Table from './table'
 import Form from './form'
+import FieldModal from './fieldModal'
 
 @inject ('page') @observer
 export default class Page extends Component {

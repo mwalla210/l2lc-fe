@@ -10,7 +10,7 @@ export default class Sidebar extends Component {
         <a onClick ={() => this.props.page.createNewProjMenuItem()}>Create New Project</a>
         <a onClick ={() => this.props.page.projectsMenuItem()}>Projects</a>
         <a onClick ={() => this.props.page.projectTimeEntryMenuItem()}>Project Time Entry</a>
-        <a onClick ={() => this.props.page.customerInfoMenuItem()}>Customer Information</a>
+        <a onClick ={() => this.props.page.customerInfoMenuItem()}>Customers</a>
         <h4>Analytics</h4>
         <a onClick ={() => this.props.page.emplProductivityMenuItem()}>Employee Productivity</a>
         <a onClick ={() => this.props.page.workstationTrackingMenuItem()}>Workstation Tracking</a>
