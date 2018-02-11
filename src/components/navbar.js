@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Navbar, Nav, MenuItem, NavDropdown } from 'react-bootstrap'
+import { Navbar, Nav, MenuItem, NavDropdown, NavItem } from 'react-bootstrap'
 import { inject } from 'mobx-react'
 
 @inject('page')
@@ -15,12 +15,18 @@ export default class NavBar extends Component{
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavDropdown title="Projects" id="basic-nav-dropdown">
-              <MenuItem onClick={() => this.props.page.createNewProjMenuItem()}>Create New Project</MenuItem>
-              <MenuItem onClick={() => this.props.page.projectsMenuItem()}>Projects List</MenuItem>
-              <MenuItem>Time Entry</MenuItem>
-              <MenuItem onClick={() => this.props.page.customerInfoMenuItem()}>Customer Information</MenuItem>
-            </NavDropdown>
+            <NavItem onClick={() => this.props.page.createNewProjMenuItem()}>
+              New Project
+            </NavItem>
+            <NavItem onClick={() => this.props.page.projectsMenuItem()}>
+              Projects List
+            </NavItem>
+            <NavItem>
+              Time Entry
+            </NavItem>
+            <NavItem onClick={() => this.props.page.customerInfoMenuItem()}>
+              Customer Information
+            </NavItem>
             <NavDropdown title="Analytics" id="basic-nav-dropdown">
               <MenuItem>Employee Productivity</MenuItem>
               <MenuItem>Workstation Tracking</MenuItem>
