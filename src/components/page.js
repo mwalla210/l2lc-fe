@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import Login from './login'
-import Sidebar from './sidebar'
 import Table from './table'
 import Form from './form'
 import NavBar from './navbar'
@@ -37,8 +36,15 @@ export default class Page extends Component {
         {this.props.page.content}
         {tableContent}
         {formContent}
-        {this.props.page.buttons}
-
+        {(this.props.page.buttons) ? this.props.page.buttons.map((buttonObj, index) => {
+          let addtl = {}
+          if (buttonObj.class)
+            addtl = {className: `btn ${buttonObj.class}`}
+          else
+            addtl = {className: 'btn btn-default'}
+          return (<button onClick={buttonObj.onClick} key={index} {...addtl}>{buttonObj.title}</button>)
+        }):
+        null}
       </div>
     )
   }
