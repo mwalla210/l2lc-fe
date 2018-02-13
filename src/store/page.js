@@ -205,6 +205,7 @@ class Page {
     this.tableModel = null
     this.formModel = null
     this.buttons = []
+    this.navHighlight = 'Create New Project'
   }
 
   /**
@@ -381,6 +382,7 @@ class Page {
     this.content = null
     this.formModel = null
     this.buttons = []
+    this.navHighlight = 'Projects'
   }
 
   /**
@@ -419,6 +421,7 @@ class Page {
       }
     )
     this.buttons = []
+    this.navHighlight = 'Time Entry'
   }
 
   /**
@@ -435,7 +438,8 @@ class Page {
     this.content = null
     this.formModel = null
     this.buttons = []
-    //click a customer name and model pops up with "Projects" modal
+    // click a customer name and model pops up with "Projects" modal
+    this.navHighlight = 'Customer Information'
   }
 
   // Page Changes - Analytics
@@ -453,6 +457,7 @@ class Page {
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
+    this.navHighlight = 'Employee Productivity'
   }
 
   /**
@@ -468,6 +473,7 @@ class Page {
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
+    this.navHighlight = 'Workstation Tracking'
   }
 
   /**
@@ -483,6 +489,7 @@ class Page {
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
+    this.navHighlight = 'Job Type Productivity'
   }
 
   /**
@@ -498,6 +505,7 @@ class Page {
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
+    this.navHighlight = 'Cost Center Time'
   }
 
   // Page Changes - Admin
@@ -517,6 +525,7 @@ class Page {
      this.formModel = null
      this.buttons = []
      //click a customer name and model pops up with "Projects" modal
+     this.navHighlight = 'Employee Information'
    }
 
    @action newEmployeePage(){
@@ -554,6 +563,7 @@ class Page {
        }
      )
      this.buttons = []
+     this.navHighlight = 'Employee Information'
    }
 
   /**
@@ -569,6 +579,7 @@ class Page {
     this.tableModel = null
     this.content = <h1>insert analysis and graph</h1>
     this.buttons = []
+    this.navHighlight = 'Account Information'
   }
 
 
