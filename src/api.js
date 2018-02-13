@@ -40,6 +40,25 @@ export default class API {
     return fetch(`${api}project?limit=50&offset=0`)
     .then(res => res.json())
     .then(json => {
+      let projects = []
+      json.items.forEach(item => {
+        // Create customer model if customerId
+        let customer = {}
+        // if (item.customerId){
+        //   customer = new CustomerModel()
+        // }
+
+        // Date processing
+        if (item.created){
+          console.log(item.created, new Date(item.created))
+        }
+        if (item.finished){
+          console.log(item.finished, new Date(item.finished))
+        }
+
+        let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, /*item.created*/null, item.partCount, item.description, item.refNumber, customer, /*item.finished*/null)
+        projects.push(project)
+      })
       console.log(json)
       let model = new ProjectModel(1, {id: 1, title: 'cctitle'}, {id: 1, title: 'jttitle'}, 'title', 'priority')
       return [model]

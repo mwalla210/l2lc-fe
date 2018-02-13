@@ -5,15 +5,10 @@ useStrict(true)
  * @name ProjectModel
  * @class ProjectModel
  * @classdesc Project storage object
- * @property {Number} id database ID
- * @property {Object} costCenter Related cost center object [observable]
- * @property {Object} costCenter.id ID [observable]
- * @property {Object} costCenter.title Title [observable]
- * @property {Object} costCenter.descr Description [observable]
- * @property {Object} jobType Related job type (within cost center) [observable]
- * @property {Number} jobType.id ID [observable]
- * @property {String} jobType.title Title [observable]
- * @property {Number} jobType.costCenterID Related cost center ID [observable]
+ * @property {Number} id Database ID
+ * @property {String} descr Description of project
+ * @property {Object} costCenterTitle Cost center title [observable]
+ * @property {String} jobTypeTitle Job type title [observable]
  * @property {String} title Project title [observable]
  * @property {String} priority Project priority [observable]
  * @property {Number} [partCount=null] Project part count [observable]
