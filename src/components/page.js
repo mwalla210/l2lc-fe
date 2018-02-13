@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import { toJS } from 'mobx'
 import Login from './login'
-import Sidebar from './sidebar'
 import Table from './table'
 import Form from './form'
-import FieldModal from './fieldModal'
+import NavBar from './navbar'
 
 @inject ('page') @observer
 export default class Page extends Component {
@@ -32,7 +30,8 @@ export default class Page extends Component {
         buttonDisabled={this.props.page.formModel.buttonDisabled}/>
     }
     return (
-      <div className='main'>
+      <div>
+        <NavBar/>
         <h1>{this.props.page.title}</h1>
         {this.props.page.content}
         {tableContent}
@@ -46,7 +45,6 @@ export default class Page extends Component {
           return (<button onClick={buttonObj.onClick} key={index} {...addtl}>{buttonObj.title}</button>)
         }):
         null}
-        <Sidebar highlight={this.props.page.navHighlight}/>
       </div>
     )
   }
