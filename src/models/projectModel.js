@@ -27,7 +27,7 @@ useStrict(true)
  * @property {String} [historyMsg=''] Time entry history message for Project [observable]
  */
 export default class ProjectModel {
-  constructor(id, costCenter, jobType, title, priority, dateCreated=null, partCount=null, descr=null, refNum=null, customer={}, dateFinished=null) {
+  constructor(id, costCenter, jobType, title, priority, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null) {
     let addtlProps = {
       costCenter, // changeable?
       jobType, // changeable?
@@ -50,6 +50,8 @@ export default class ProjectModel {
       tasks: [],
       historyMsg: '',
     }
+    if(!customer)
+      addtlProps.customer = {}
     if (dateFinished)
       addtlProps.dateFinished = new Date(dateFinished)
     extendObservable(this, addtlProps)

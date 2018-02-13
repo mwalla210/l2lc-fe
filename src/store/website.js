@@ -29,6 +29,42 @@ class Website {
     extendObservable(this, addtlProps)
   }
 
+  /**
+   * @name setProject
+   * @description Sets current project
+   * @method setProject
+   * @memberof Website.prototype
+   * @param  {Project}   project  Project to set
+   * @mobx action
+   */
+  @action setProject(project){
+    this.currentProject = project
+  }
+
+  /**
+   * @name setCustomer
+   * @description Sets current customer
+   * @method setCustomer
+   * @memberof Website.prototype
+   * @param  {Customer}   customer  Cs to set
+   * @mobx action
+   */
+  @action setCustomer(customer){
+    this.currentCustomer = customer
+  }
+
+  /**
+   * @name setEmployee
+   * @description Sets current employee
+   * @method setEmployee
+   * @memberof Website.prototype
+   * @param  {Employee}   employee  Cs to set
+   * @mobx action
+   */
+  @action setEmployee(employee){
+    this.currentEmployee = employee
+  }
+
   // Fetches
 
   /**
@@ -46,20 +82,6 @@ class Website {
   }
 
   /**
-   * @name getProjects
-   * @description Instantiates returned collection as Project(s) and sets this.openProjects or this.closedProjects, dependent on input
-   * @memberof Website.prototype
-   * @method getProjects
-   * @param  {Boolean}   [open=true] Fetch either open or closed projects
-   * @return {Promise}
-   * @mobx action
-   * @todo Implement function
-   */
-  @action getProjects(open=true){
-    console.log(`Fetch projects from API with open status: ${open}`)
-  }
-
-  /**
    * @name getAccounts
    * @description Instantiates returned collection as User(s) and sets this.accounts
    * @memberof Website.prototype
@@ -70,32 +92,6 @@ class Website {
    */
   @action getAccounts(){
     console.log('Fetch accounts from API')
-  }
-
-  /**
-   * @name getEmployees
-   * @description Instantiates returned collection as Employee(s) and sets this.employees
-   * @memberof Website.prototype
-   * @method getEmployees
-   * @return {Promise}
-   * @mobx action
-   * @todo Implement function
-   */
-  @action getEmployees(){
-    console.log('Fetch employees from API')
-  }
-
-  /**
-   * @name getCustomers
-   * @description Instantiates returned collection as Customer(s) and sets this.customers
-   * @memberof Website.prototype
-   * @method getCustomers
-   * @return {Promise}
-   * @mobx action
-   * @todo Implement function
-   */
-  @action getCustomers(){
-    console.log('Fetch customers from API')
   }
 
   // Creation
