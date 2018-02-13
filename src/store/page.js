@@ -582,11 +582,21 @@ class Page {
     this.navHighlight = 'Account Information'
   }
 
-
   // TODO remove
   @action changeLogin(){
     this.loggedin = !this.loggedin
     this.createNewProjMenuItem()
+  }
+
+  /**
+   * @name logOut
+   * @description Log out method
+   * @method logOut
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action logOut(){
+    this.loggedin = !this.loggedin
   }
 }
 

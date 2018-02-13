@@ -55,7 +55,7 @@ export default class Table extends Component {
     let buttonContent = null
     if (this.props.tableModel.tableButton){
       buttonContent =
-        <div className='row'>
+        <div>
           <TableButton
             title={this.props.tableModel.tableButton.title}
             onClick={this.props.tableModel.tableButton.onClick}/>
@@ -64,7 +64,7 @@ export default class Table extends Component {
     return (
       <div>
       {buttonContent}
-      <div className='row'>
+      <div style={{clear: 'both'}}>
         <ReactTable
           data={this.props.tableModel.data.slice()}
           columns={this.props.tableModel.columns}
