@@ -56,9 +56,8 @@ class Page {
         filterable: true
       },
       {
-        id: 'costCenter', // Required because our accessor is not a string
         Header: 'Cost Center',
-        accessor: d => d.costCenter.title,
+        accessor: 'costCenterTitle',
         filterable: true
       },
       {
@@ -393,7 +392,7 @@ class Page {
         type: 'textfield',
         label: 'Country',
         id: 'country',
-        required: false //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        required: false // NEED TO UPDATE DEPENDING ON SELECTED REGION
       },
       {
         type: 'textfield',
@@ -425,13 +424,13 @@ class Page {
           'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
           'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
           'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-        required: false //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        required: false // NEED TO UPDATE DEPENDING ON SELECTED REGION
       },
       {
         type: 'textfield',
         label: 'Zip Code',
         id: 'zipCode',
-        required: false //NEED TO UPDATE DEPENDING ON SELECTED REGION; SOME COUNTRIES DONT HAVE ZIP CODES
+        required: false // NEED TO UPDATE DEPENDING ON SELECTED REGION; SOME COUNTRIES DONT HAVE ZIP CODES
       },
       {
         type: 'checkbox',

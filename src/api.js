@@ -85,10 +85,11 @@ export default class API {
               return element.id == item.customerId
             })
           }
+          // Not used: projectStatus
           let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, customer, ((item.finished) ? new Date(item.finished) : null))
           projects.push(project)
         })
-        console.log(projects)
+        console.log(json, projects)
         // let model = new ProjectModel(1, {id: 1, title: 'cctitle'}, {id: 1, title: 'jttitle'}, 'title', 'priority')
         return projects
       })
