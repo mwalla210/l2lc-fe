@@ -11,6 +11,7 @@ useStrict(true)
  * @property {String} jobTypeTitle Job type title [observable]
  * @property {String} title Project title [observable]
  * @property {String} priority Project priority [observable]
+ * @property {String} status Project status [observable]
  * @property {Number} [partCount=null] Project part count [observable]
  * @property {String} [descr=null] Project description [observable]
  * @property {String} [refNum=null] Project internal reference number [observable]
@@ -27,12 +28,13 @@ useStrict(true)
  * @property {String} [historyMsg=''] Time entry history message for Project [observable]
  */
 export default class ProjectModel {
-  constructor(id, costCenterTitle, jobTypeTitle, title, priority, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null) {
+  constructor(id, costCenterTitle, jobTypeTitle, title, priority, status, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null) {
     let addtlProps = {
       costCenterTitle, // changeable?
       jobTypeTitle, // changeable?
       title,
       priority,
+      status,
       // Optional
       partCount,
       descr,
@@ -75,17 +77,6 @@ export default class ProjectModel {
   @computed get customerID(){
     if (this.customer) return this.customer.id
     else return null
-  }
-  /**
-   * @name status
-   * @description Calculates Project's current status
-   * @memberof ProjectModel.prototype
-   * @method status
-   * @return {String}
-   * @mobx computed
-   */
-  @computed get status(){
-    return 'Open|?|Closed'
   }
   /**
    * @name timeSpent

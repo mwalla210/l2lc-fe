@@ -57,14 +57,17 @@ export default class API {
     return JSON.stringify(addr1) === JSON.stringify(addr2)
   }
 
-
   static fetchProjects(){
     return fetch(`${api}project?limit=50&offset=0`)
     .then(res => res.json())
     .then(json => {
       let projects = []
-      let custIds = []
       json.items.forEach(item => {
+        if (item.projectStatus != 'Dropped')
+          projects.push(item)
+      })
+      let custIds = []
+      projects.forEach(item => {
         if (item.customerId && !custIds.includes(item.customerId)){
           custIds.push(item.customerId)
         }
@@ -78,19 +81,16 @@ export default class API {
       return Promise.all(promises)
       .then(customers => {
         console.log('customers', customers)
-        json.items.forEach(item => {
+        projects = projects.map(item => {
           let customer = null
           if (item.customerId){
             customer = customers.find(element => {
               return element.id == item.customerId
             })
           }
-          // Not used: projectStatus
-          let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, customer, ((item.finished) ? new Date(item.finished) : null))
-          projects.push(project)
+          let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, customer, ((item.finished) ? new Date(item.finished) : null))
+          return project
         })
-        console.log(json, projects)
-        // let model = new ProjectModel(1, {id: 1, title: 'cctitle'}, {id: 1, title: 'jttitle'}, 'title', 'priority')
         return projects
       })
     })
