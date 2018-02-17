@@ -1,5 +1,5 @@
 import React from 'react'
-import { action, useStrict, extendObservable } from 'mobx'
+import { action, useStrict, extendObservable, computed } from 'mobx'
 import TableModel from '../models/tableModel'
 import FormModel from '../models/formModel'
 import API from '../api'
@@ -29,6 +29,9 @@ class Page {
       tableModel: null,
       formModel: null,
       buttons: [],
+      logOutModal: {
+        open: false,
+      }
     }
     extendObservable(this, addtlProps)
     // Define once, reference later
@@ -815,6 +818,40 @@ class Page {
   @action logOut(){
     this.loggedin = !this.loggedin
   }
+
+  /**
+   * @name logOutAlert
+   * @description Opens log out modal
+   * @method logOutAlert
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action logOutAlert(){
+    this.logOutModal.open = true
+  }
+
+  /**
+   * @name logOutDismiss
+   * @description Closes log out modal
+   * @method logOutDismiss
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action logOutDismiss(){
+    this.logOutModal.open = false
+  }
+
+  /**
+   * @name logOutModalOpen
+   * @description Shows status of modal
+   * @method logOutModalOpen
+   * @return {Boolean}
+   * @mobx computed
+   */
+  @computed get logOutModalOpen(){
+    return this.logOutModal.open
+  }
+
 }
 
 const page = new Page()
