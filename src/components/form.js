@@ -1,19 +1,8 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { observer, PropTypes as MobXPropTypes } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
-@observer
+@inject('page') @observer
 export default class Form extends Component {
-  static propTypes = {
-    fields: MobXPropTypes.observableArray.isRequired,
-    primaryButtonTitle: PropTypes.string.isRequired,
-    primaryOnClick: PropTypes.func.isRequired,
-    secondaryButtonTitle: PropTypes.string,
-    secondaryOnClick: PropTypes.func,
-    valueChangeFunc: PropTypes.func.isRequired,
-    buttonDisabled: PropTypes.bool.isRequired
-  }
-
   renderSelect(obj, index){
       return (
         <div className="form-group" key={index}>
@@ -21,7 +10,7 @@ export default class Form extends Component {
           <select className="form-control" id={obj.id}
             value={obj.value}
             onChange={event => {
-              this.props.valueChangeFunc(index, event.target.value)}}>
+              this.props.page.formModel.modifyFieldValue(index, event.target.value)}}>
             {obj.options.map((option, key) =>
               <option key={key}>{option}</option>
             )}
@@ -37,7 +26,7 @@ export default class Form extends Component {
           <input type="text" className="form-control"
             id={obj.id} value={obj.value}
             onChange={event => {
-              this.props.valueChangeFunc(index, event.target.value)}}/>
+              this.props.page.formModel.modifyFieldValue(index, event.target.value)}}/>
         </div>
       )
     }
@@ -49,7 +38,7 @@ export default class Form extends Component {
           <textarea className="form-control" rows={obj.rows} id={obj.id}
             value={obj.value}
             onChange={event => {
-              this.props.valueChangeFunc(index, event.target.value)}}>
+              this.props.page.formModel.modifyFieldValue(index, event.target.value)}}>
           </textarea>
         </div>
       )
@@ -64,7 +53,7 @@ export default class Form extends Component {
             </label>
             <input className="form-check-input" type="checkbox" id={obj.id}
               checked={obj.value} onChange={event => {
-                this.props.valueChangeFunc(index, event.target.checked)}}/>
+                this.props.page.formModel.modifyFieldValue(index, event.target.checked)}}/>
           </div>
         </div>
       )
@@ -73,7 +62,7 @@ export default class Form extends Component {
     render() {
         return(
           <form>
-            {this.props.fields.map((field, index) => {
+            {this.props.page.formModel.fields.map((field, index) => {
                 switch (field.type){
                   case 'select':
                     return this.renderSelect(field,index)
@@ -85,24 +74,24 @@ export default class Form extends Component {
                     return this.renderCheckbox(field,index)
                 }
               })}
-            {this.props.secondaryButtonTitle &&
+            {this.props.page.formModel.secondaryButton &&
               <button
                 className="btn btn-secondary"
                 onClick={e => {
                   e.preventDefault()
-                  this.props.secondaryOnClick()
+                  this.props.page.formModel.secondaryButton.onClick()
               }}>
-                {this.props.secondaryButtonTitle}
+                {this.props.page.formModel.secondaryButton.title}
               </button>
             }
             <button
               className="btn btn-primary"
-              disabled={this.props.buttonDisabled}
+              disabled={this.props.page.formModel.buttonDisabled}
               onClick={e => {
                 e.preventDefault()
-                this.props.primaryOnClick()
+                this.props.page.formModel.primaryButtonWrapper()
             }}>
-              {this.props.primaryButtonTitle}
+              {this.props.page.formModel.primaryButton.title}
             </button>
           </form>
         )
