@@ -762,17 +762,18 @@ class Page {
          id: 'lastName',
          required: true
        },
-       {
-         type: 'checkbox',
-         label: 'Active',
-         id: 'active',
-         required: false
-       }
      ]
      this.formModel = new FormModel(fields,
        {
          title: 'Continue',
-         onClick: () => console.log('onClick')
+         onClick: (fields) => {
+           let body = {}
+           fields.forEach(item => {
+             body[item.id] = item.value.trim()
+           })
+           Website.createEmployee(body)
+           // .then(() => this.employeeSummaryPage())
+         }
        },
        {
          title: 'Cancel',
