@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>models/taskModel.js - Documentation</title>
+    <title>models/formModel.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">models/taskModel.js</h1>
+    <h1 class="page-title">models/formModel.js</h1>
     
 
     
@@ -37,41 +37,88 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { action, useStrict, extendObservable } from 'mobx'
+            <pre class="prettyprint source linenums"><code>import { action, computed, useStrict, extendObservable } from 'mobx'
 useStrict(true)
 
 /**
- * @name TaskModel
- * @class TaskModel
- * @classdesc Task storage object
- * @property {Boolean} [required=false] Indicates whether the task is required [observable]
- * @property {String} [processArea=null] Process area associated with the task [observable]
- * @property {String} title Title of the task [observable]
- * @property {String} [status=''] Current task status [observable]
+  * @name FormModel
+  * @class FormModel
+  * @classdesc Form storage object
+  * @description Sets default values for each field item
+  * @property {Object[]} fields Type of fields for the form [observable]
+  * @property {Object} primaryButton Forms primary button properties
+  * @property {String} primaryButton.title Forms primary button title
+  * @property {Function} primaryButton.onClick Forms primary button onClick
+  * @property {Object} [secondaryButton] Forms secondary button properties
+  * @property {String} secondaryButton.title Forms secondary button title
+  * @property {Function} secondaryButton.onClick Forms secondary button onClick
  */
-export default class TaskModel {
-  constructor(title, processArea) {
+export default class FormModel {
+  constructor(fields, primaryButton, secondaryButton) {
+    fields.forEach(field => {
+      let value = null
+      switch (field.type){ // default value
+        case 'select':
+        case 'textfield':
+        case 'textarea':
+          value = ''
+          break
+        case 'checkbox':
+          value = false
+          break
+      }
+      field.value = value
+    })
     let addtlProps = {
-      required: false,
-      processArea,
-      title, // changeable?
-      status: '',
+      fields
     }
     extendObservable(this, addtlProps)
+    // non-observable properties
+    this.primaryButton = primaryButton
+    this.secondaryButton = secondaryButton
   }
-
-  // Actions
-
   /**
-   * @name toggle
-   * @description Calls API to change required status of task in list; updates required
-   * @memberof TaskModel.prototype
-   * @method toggle
-   * @return {Promise}
+   * @name buttonDisabled
+   * @description Calculating button disabled state
+   * @memberof FormModel.prototype
+   * @method buttonDisabled
+   * @mobx computed
+   */
+  @computed get buttonDisabled(){
+    let disabled = false
+    this.fields.forEach(field => {
+      if(field.required){
+        switch (field.type){
+          case 'textfield':
+          case 'textarea':
+            if(field.value.trim() == '')
+              disabled = true
+            break
+        }
+      }
+    })
+    return disabled
+  }
+  /**
+   * @name primaryButtonWrapper
+   * @description Wrapper func for the primary button's onClick
+   * @memberof FormModel.prototype
+   * @method primaryButtonWrapper
+   */
+  primaryButtonWrapper(){
+    this.primaryButton.onClick(this.fields)
+  }
+  /**
+   * @name modifyFieldValue
+   * @description Updating the fields value
+   * @memberof FormModel.prototype
+   * @method modifyFieldValue
+   * @property {Number} index The field index
+   * @property {String} value The field value
    * @mobx action
    */
-  @action async toggle() {
-     console.log('Update required status for a task via API. Returns boolean success.')
+  @action modifyFieldValue(index, value){
+    this.fields[index].value = value
   }
 }
 </code></pre>
