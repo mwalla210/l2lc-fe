@@ -321,11 +321,108 @@ class Page {
    */
   @action createNewProjMenuItem(){
     this.title = 'New Project'
-    this.content = <p>A form!</p>
+    this.content = null
     this.tableModel = null
-    this.formModel = null
     this.buttons = []
     this.navHighlight = 'Create New Project'
+    let fields = [
+      {
+        type: 'select',
+        label: 'Cost Center*',
+        id: 'region',
+        options: ['Select...','PC Job','Decorative Job','Maintenance','Administration','Production','Research and Development','Other'],
+        required: true,
+        validation: (value) => {
+          if (value == 'Select...')
+            return 'Error: you must select a cost center.'
+          return null
+        }
+      },
+      {
+        type: 'select',
+        label: 'Project Type*',
+        id: 'projectType',
+        options: ['Select...','based on cost center selected'],
+        required: true,
+        validation: (value) => {
+          if (value == 'Select...')
+            return 'Error: you must select a cost center.'
+          return null
+        }
+      },
+      {
+        type: 'textfield',
+        label: 'Part Count*',
+        id: 'partCount',
+        required: true,
+        validation: (value) => {
+          let reg = /^\d+$/
+          if (reg.test(value.trim()) == false)
+            return 'Error: please enter a valid number.'
+          else if (value.length > 4)
+            return 'Error: the part count number is too large.'
+          return null
+        }
+      },
+      {
+        type: 'textfield',
+        label: 'Project Title',
+        id: 'projectTitle',
+        required: false, //NEED TO UPDATE BASED ON PREVIOUS SELECTIONS
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter a project title.'
+          else if (value.length > 30)
+            return 'Error: the project title name is too long.'
+          return null
+        }
+      },
+      {
+        type: 'select',
+        label: 'Priority*',
+        id: 'priority',
+        options: ['Select...','Low','High'],
+        required: true,
+        validation: (value) => {
+          if (value == 'Select...')
+            return 'Error: you must select a cost center.'
+          return null
+        }
+      },
+      {
+        type: 'textarea',
+        label: 'Description',
+        id: 'description',
+        required: false,
+        validation: (value) => {
+          if (value.length > 100)
+            return 'Error: the description is too long.'
+          return null
+        }
+      },
+      {
+        type: 'textfield',
+        label: 'Reference Number',
+        id: 'referenceNumber',
+        required: false,
+        validation: (value) => {
+          if (value.length > 30)
+            return 'Error: the reference number is too long.'
+          return null
+        }
+      },
+    ]
+    this.formModel = new FormModel(fields,
+      {
+        title: 'Continue',
+        onClick: () => console.log('onClick')
+      },
+      {
+        title: 'Cancel',
+        onClick: () => console.log('onClick')
+      }
+    )
+    this.buttons = []
   }
 
   /**
@@ -359,63 +456,124 @@ class Page {
     let fields = [
       {
         type: 'textfield',
-        label: 'Company Name',
+        label: 'Company Name*',
         id: 'companyName',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter a company name.'
+          else if (value.length > 30)
+            return 'Error: the company name is too long.'
+          return null
+        }
       },
       {
         type: 'textfield',
-        label: 'Email Address',
+        label: 'Email Address*',
         id: 'emailAddress',
-        required: true
+        required: true,
+        validation: (value) => {
+          let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+          if (reg.test(value.trim()) == false)
+            return 'Error: please enter a valid email address.'
+          else if (value.length > 30)
+            return 'Error: the email address is too long.'
+          return null
+        }
       },
       {
         type: 'textfield',
-        label: 'Phone Number',
+        label: 'Phone Number*',
         id: 'phoneNumber',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter a phone number.'
+          else if (value.length < 10) //could of put a regex here but international numbers have different formats
+            return 'Error: the phone number is too short.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Website',
         id: 'websiteLink',
-        required: false
+        required: false,
+        validation: (value) => {
+          let reg = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+          if (reg.test(value.trim()) == false)
+            return 'Error: please enter a valid website address.'
+          else if (value.length > 50)
+            return 'Error: the website address is too long.'
+          return null
+        }
       },
       {
         type: 'select',
-        label: 'Region',
+        label: 'Region*',
         id: 'region',
         options: ['Select...','United States','Canada','Mexico','Europe','Asia','Africa'],
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value == 'Select...')
+            return 'Error: you must select a region.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Country',
         id: 'country',
-        required: false //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter the country name.'
+          else if (value.length > 30)
+            return 'Error: the country name is too long.'
+          return null
+        }
       },
       {
         type: 'textfield',
-        label: 'Address Line 1',
+        label: 'Address Line 1*',
         id: 'adressLine1',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter the address.'
+          else if (value.length > 30)
+            return 'Error: the address is too long.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Address Line 2',
         id: 'adressLine2',
-        required: false
+        required: false,
+        validation: (value) => {
+          if (value.length > 30)
+            return 'Error: the address is too long.'
+          return null
+        }
       },
       {
         type: 'textfield',
-        label: 'City',
+        label: 'City*',
         id: 'city',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter the city.'
+          else if (value.length > 30)
+            return 'Error: the city name is too long.'
+          return null
+        }
       },
       {
         type: 'select',
         label: 'State',
-        id: 'State',
+        id: 'state',
         options: ['Select...','Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
           'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
           'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
@@ -424,56 +582,123 @@ class Page {
           'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
           'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
           'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-        required: false //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        validation: (value) => {
+          if (value.trim() == 'Select...')
+            return 'Error: please select the state.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Zip Code',
         id: 'zipCode',
-        required: false //NEED TO UPDATE DEPENDING ON SELECTED REGION; SOME COUNTRIES DONT HAVE ZIP CODES
+        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION; SOME COUNTRIES DON'T HAVE ZIP CODES
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter the zip code.'
+          else if (value.length > 10)
+            return 'Error: the zip code is too long.'
+          return null
+        }
       },
       {
         type: 'checkbox',
         label: 'Billing Address is NOT the same as the Shipping Address',
         id: 'enableShippingAddre',
-        required: false
+        required: false,
+        validation: null
       },
       {
-        type: 'textfield',
-        label: 'Address Line 1',
-        id: 'adressLine1',
-        required: false
-      },
-      {
-        type: 'textfield',
-        label: 'Address Line 2',
-        id: 'adressLine2',
-        required: false
-      },
-      {
-        type: 'textfield',
-        label: 'City',
-        id: 'city',
-        required: false
-      },
-      {
-        type: 'textfield',
-        label: 'State',
-        id: 'state',
-        required: false
+        type: 'select',
+        label: 'Region',
+        id: 'region',
+        options: ['Select...','United States','Canada','Mexico','Europe','Asia','Africa'],
+        required: false,
+        validation: (value) => {
+          if (value == 'Select...')
+            return 'Error: you must select a region.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Country',
         id: 'country',
-        required: false
+        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        validation: (value) => {
+          if (value.length > 30)
+            return 'Error: the country name is too long.'
+          return null
+        }
+      },
+      {
+        type: 'textfield',
+        label: 'Address Line 1',
+        id: 'adressLine1',
+        required: false,
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter the address.'
+          else if (value.length > 30)
+            return 'Error: the address is too long.'
+          return null
+        }
+      },
+      {
+        type: 'textfield',
+        label: 'Address Line 2',
+        id: 'adressLine2',
+        required: false,
+        validation: (value) => {
+          if (value.length > 30)
+            return 'Error: the address is too long.'
+          return null
+        }
+      },
+      {
+        type: 'textfield',
+        label: 'City',
+        id: 'city',
+        required: false,
+        validation: (value) => {
+          if (value.length > 30)
+            return 'Error: the city name is too long.'
+          return null
+        }
+      },
+      {
+        type: 'select',
+        label: 'State',
+        id: 'state',
+        options: ['Select...','Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+          'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
+          'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+          'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+          'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+          'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+          'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
+          'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
+        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        validation: (value) => {
+          if (value.trim() == 'Select...')
+            return 'Error: please select the state.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Zip Code',
         id: 'zipCode',
-        required: false
+        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION; SOME COUNTRIES DON'T HAVE ZIP CODES
+        validation: (value) => {
+          if (value.trim() == '')
+            return 'Error: please enter the zip code.'
+          else if (value.length > 10)
+            return 'Error: the zip code is too long.'
+          return null
       }
+    }
     ]
     this.formModel = new FormModel(fields,
       {
@@ -575,13 +800,30 @@ class Page {
         type: 'textfield',
         label: 'Project ID',
         id: 'id',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.length > 15)
+            return 'Error: the project ID is too long.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Employee ID',
         id: 'id',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.length > 15)
+            return 'Error: the employee ID is too long.'
+          return null
+        }
+      },
+      {
+        type: 'textarea',
+        label: 'History',
+        id: 'history',
+        required: false,
+        validation: null
       }
     ]
     this.formModel = new FormModel(fields,
@@ -624,11 +866,15 @@ class Page {
    * @mobx action
    */
   @action customerSummaryPage(){
-    this.title = 'Edit Customer'
+    this.title = 'Customer Information'
     this.tableModel = null
-    this.content = null
+    this.content = <p>Customer</p>
     this.formModel = null
     this.buttons = [
+      {
+        title: 'Projects',
+        onClick: () => console.log('Use customer ID to get all the projects in a table')
+      },
       {
         title: 'Edit',
         onClick: () => console.log('Go to edit customer page')
@@ -754,24 +1000,35 @@ class Page {
          type: 'textfield',
          label: 'First Name',
          id: 'firstName',
-         required: true
+         required: true,
+         validation: (value) => {
+           if (value.length > 30)
+             return 'Error: the first name is too long.'
+           return null
+         }
        },
        {
          type: 'textfield',
          label: 'Last Name',
          id: 'lastName',
-         required: true
+         required: true,
+         validation: (value) => {
+           if (value.length > 30)
+             return 'Error: the last name is too long.'
+           return null
+         }
        },
        {
          type: 'checkbox',
          label: 'Active',
          id: 'active',
-         required: false
+         required: false,
+         validation: null
        }
      ]
      this.formModel = new FormModel(fields,
        {
-         title: 'Continue',
+         title: 'Save',
          onClick: () => console.log('onClick')
        },
        {

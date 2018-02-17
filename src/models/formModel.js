@@ -28,6 +28,9 @@ export default class FormModel {
           break
       }
       field.value = value
+      field.isValid = true
+      field.errorText = ''
+      field.disabled = false
     })
     let addtlProps = {
       fields
@@ -47,10 +50,14 @@ export default class FormModel {
   @computed get buttonDisabled(){
     let disabled = false
     this.fields.forEach(field => {
+      if(field.isValid !== true){
+        disabled = true
+      }
       if(field.required){
         switch (field.type){
           case 'textfield':
           case 'textarea':
+          case 'select':
             if(field.value.trim() == '')
               disabled = true
             break
@@ -66,7 +73,6 @@ export default class FormModel {
    * @method primaryButtonWrapper
    */
   primaryButtonWrapper(){
-    // this.primaryButton.onClick(this.fields)
     this.primaryButton.onClick(this.fields)
   }
   /**
@@ -81,4 +87,24 @@ export default class FormModel {
   @action modifyFieldValue(index, value){
     this.fields[index].value = value
   }
-}
+  /**
+   * @name fieldValidatorWrapper
+   * @description Wrapper func for field validation
+   * @memberof FormModel.prototype
+   * @method fieldValidatorWrapper
+   * @property {Number} index The field index
+   */
+  @action fieldValidatorWrapper(index){
+    console.log('fieldValidatorWrapper',index, this.fields[index].validation)
+    if (this.fields[index].validation){
+      let invalid = this.fields[index].validation(this.fields[index].value)
+      if (!invalid){
+        this.fields[index].isValid = true
+      }
+      else{
+        this.fields[index].isValid = false
+        this.fields[index].errorText = invalid
+      }
+    }
+    }
+  }
