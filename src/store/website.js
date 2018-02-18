@@ -19,6 +19,7 @@ class Website {
     let addtlProps = {
       currentProject: null,
       currentCustomer: null,
+      currentEmployee: null,
       currentUser: null,
       // TODO Analytic models
       ccAnalytic: null,
