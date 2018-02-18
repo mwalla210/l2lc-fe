@@ -243,7 +243,7 @@ class Page {
       {
         Header: 'Actions',
         sortable: false,
-        maxWidth: 60,
+        maxWidth: 100,
         getProps: () => {
           return {
             className: 'center',
@@ -266,7 +266,7 @@ class Page {
                 Website.setEmployee(row.original)
                 this.employeeEditPage()
               }}>
-                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" style={{marginLeft: '2px'}}/>
+                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" />
               </button>
               <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
                 Website.setEmployee(row.original)
