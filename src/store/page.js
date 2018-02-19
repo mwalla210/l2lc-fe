@@ -870,6 +870,13 @@ class Page {
      this.navHighlight = 'Employee Information'
    }
 
+   /**
+    * @name employeeSummaryPage
+    * @description Displays information about selected employee from Employee Information page entries.
+    * @memberof Page.prototype
+    * @method employeeSummaryPage
+    * @mobx action
+    */
    @action employeeSummaryPage(){
      this.title = 'Employee Summary'
      this.tableModel = null
