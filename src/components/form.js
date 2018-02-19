@@ -27,11 +27,14 @@ export default class Form extends Component {
           <div className="alert alert-danger" role="alert" {...style}>
             <strong>{obj.errorText}</strong>
           </div>
-          <label>{obj.label}</label>
+          <label>{obj.label}</label> {(obj.required) ? <span style={{color: 'red'}}> *</span> : null}
           <select className="form-control" id={obj.id}
             value={obj.value}
             onChange={event => {
               this.props.valueChangeFunc(index, event.target.value)
+            }}
+            onBlur={event => {
+              event.preventDefault()
               this.props.fieldValidator(index)
             }}>
             {obj.options.map((option, key) =>
@@ -42,28 +45,31 @@ export default class Form extends Component {
       )
     }
 
-    renderTextfield(obj, index){
-      let style = null
-      if (obj.isValid){
-        style = {
-          style: {display: 'none'}
-        }
-      }
-      return (
-        <div className="form-group" key={index}>
-          <div className="alert alert-danger" role="alert" {...style}>
-            <strong>{obj.errorText}</strong>
-          </div>
-          <label>{obj.label}</label>
-          <input type="text" className="form-control"
-            id={obj.id} value={obj.value}
-            onChange={event => {
-              this.props.valueChangeFunc(index, event.target.value)
-              this.props.fieldValidator(index)
-            }}/>
-        </div>
-      )
-    }
+      renderTextfield(obj, index){
+            let style = null
+            if (obj.isValid){
+              style = {
+                style: {display: 'none'}
+              }
+            }
+            return (
+              <div className="form-group" key={index}>
+                <div className="alert alert-danger" role="alert" {...style}>
+                  <strong>{obj.errorText}</strong>
+                </div>
+                <label>{obj.label}</label> {(obj.required) ? <span style={{color: 'red'}}> *</span> : null}
+                <input type="text" className="form-control"
+                  id={obj.id} value={obj.value}
+                  onChange={event => {
+                    this.props.valueChangeFunc(index, event.target.value)
+                  }}
+                  onBlur={event => {
+                    event.preventDefault()
+                    this.props.fieldValidator(index)
+                  }}/>
+              </div>
+            )
+          }
 
     renderTextarea(obj, index){
       let style = null
@@ -77,11 +83,14 @@ export default class Form extends Component {
         <div className="alert alert-danger" role="alert" {...style}>
           <strong>{obj.errorText}</strong>
         </div>
-          <label>{obj.label}</label>
+          <label>{obj.label}</label> {(obj.required) ? <span style={{color: 'red'}}> *</span> : null}
           <textarea className="form-control" rows={obj.rows} id={obj.id}
             value={obj.value}
             onChange={event => {
               this.props.valueChangeFunc(index, event.target.value)
+            }}
+            onBlur={event => {
+              event.preventDefault()
               this.props.fieldValidator(index)
             }}>
           </textarea>
