@@ -243,7 +243,6 @@ class Page {
       {
         Header: 'Actions',
         sortable: false,
-        maxWidth: 100,
         getProps: () => {
           return {
             className: 'center',
@@ -668,7 +667,6 @@ class Page {
     this.navHighlight = ''
   }
 
-
   /**
    * @name customerEditPage
    * @description Updates title, tableModel, content, buttons, and navHighlight for Customer Edit page
@@ -772,6 +770,13 @@ class Page {
      this.navHighlight = 'Employee Information'
    }
 
+   /**
+    * @name newEmployeePage
+    * @description Allows creation of employee
+    * @memberof Page.prototype
+    * @method newEmployeePage
+    * @mobx action
+    */
    @action newEmployeePage(){
      this.title = 'New Employee'
      this.tableModel = null
@@ -810,6 +815,13 @@ class Page {
      this.navHighlight = 'Employee Information'
    }
 
+   /**
+    * @name employeeEditPage
+    * @description Allows changing of information for Employee Information page entries.
+    * @memberof Page.prototype
+    * @method employeeEditPage
+    * @mobx action
+    */
    @action employeeEditPage(){
      this.title = 'Edit Employee'
      this.tableModel = null
