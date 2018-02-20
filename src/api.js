@@ -66,33 +66,13 @@ export default class API {
         if (item.projectStatus != 'Dropped')
           projects.push(item)
       })
-      let custIds = []
-      projects.forEach(item => {
-        if (item.customerId && !custIds.includes(item.customerId)){
-          custIds.push(item.customerId)
-        }
+      projects = projects.map(item => {
+        if (item.customer)
+          item.customer.companyName = item.customer.name
+        let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
+        return project
       })
-      let promises = []
-      custIds.forEach(id => {
-        promises.push(API.fetchCustomer(id))
-      })
-      // If promises empty, this code is executed immediately
-      // Return end result of Promise.all
-      return Promise.all(promises)
-      .then(customers => {
-        console.log('customers', customers)
-        projects = projects.map(item => {
-          let customer = null
-          if (item.customerId){
-            customer = customers.find(element => {
-              return element.id == item.customerId
-            })
-          }
-          let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, customer, ((item.finished) ? new Date(item.finished) : null))
-          return project
-        })
-        return projects
-      })
+      return projects
     })
   }
 
