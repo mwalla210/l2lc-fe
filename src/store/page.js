@@ -794,17 +794,18 @@ class Page {
          id: 'lastName',
          required: true
        },
-       {
-         type: 'checkbox',
-         label: 'Active',
-         id: 'active',
-         required: false
-       }
      ]
      this.formModel = new FormModel(fields,
        {
          title: 'Continue',
-         onClick: () => this.employeeInformationMenuItem()
+         onClick: (fields) => {
+           let body = {}
+           fields.forEach(item => {
+             body[item.id] = item.value.trim()
+           })
+           Website.createEmployee(body)
+           .then(() => this.employeeSummaryPage())
+         }
        },
        {
          title: 'Cancel',
@@ -880,6 +881,7 @@ class Page {
    @action employeeSummaryPage(){
      this.title = 'Employee Summary'
      this.tableModel = null
+     this.formModel = null
      this.content =
      <div>
       <p>First Name: {Website.currentEmployee.firstName}</p>
