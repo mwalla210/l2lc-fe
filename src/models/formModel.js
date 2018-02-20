@@ -112,7 +112,6 @@ export default class FormModel {
    * @mobx action
    */
    @action fieldValidatorWrapper(index){
-    console.log('fieldValidatorWrapper',index, this.fields[index].validation)
     if (this.fields[index].validation){
       let invalid = this.fields[index].validation(this.fields[index].value)
       if (!invalid){

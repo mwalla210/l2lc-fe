@@ -358,7 +358,7 @@ class Page {
         type: 'select',
         label: 'Cost Center',
         id: 'region',
-        options: ['Select...','PC Job','Decorative Job','Maintenance','Administration','Production','Research and Development','Other'],
+        options: ['Select...','APC Job','Decorative Job','Maintenance','Administration','Production','Research and Development','Other'],
         required: true,
         validation: (value) => {
           if (value == 'Select...')
@@ -413,7 +413,7 @@ class Page {
         required: true,
         validation: (value) => {
           if (value == 'Select...')
-            return 'Error: you must select a cost center.'
+            return 'Error: you must select a priority.'
           return null
         }
       },
