@@ -1068,11 +1068,11 @@ class Page {
     <p>City: {Website.currentCustomer.shipAddr.shipCity}</p>
     <p>State: {Website.currentCustomer.shipAddr.shipState}</p>
     <p>Zip Code: {Website.currentCustomer.shipAddr.shipZip}</p>
-    <p>Billing Country: {Website.currentCustomer.billAddr.shipCountry}</p>
-    <p>Billing Address: {Website.currentCustomer.billAddr.shipAddr1} {Website.currentCustomer.billAddr.shipAddr2}</p>
-    <p>Billing City: {Website.currentCustomer.billAddr.shipCity}</p>
-    <p>Billing State: {Website.currentCustomer.billAddr.shipState}</p>
-    <p>Billing Zip Code: {Website.currentCustomer.billAddr.shipZip}</p>
+    <p>Billing Country: {Website.currentCustomer.billAddr.billCountry}</p>
+    <p>Billing Address: {Website.currentCustomer.billAddr.billAddr1} {Website.currentCustomer.billAddr.billAddr2}</p>
+    <p>Billing City: {Website.currentCustomer.billAddr.billCity}</p>
+    <p>Billing State: {Website.currentCustomer.billAddr.billState}</p>
+    <p>Billing Zip Code: {Website.currentCustomer.billAddr.billZip}</p>
     <p>Past due: {Website.currentCustomer.pastDue}</p>
     </div>
     this.buttons = [

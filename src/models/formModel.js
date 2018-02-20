@@ -6,9 +6,6 @@ useStrict(true)
   * @class FormModel
   * @classdesc Form storage object
   * @property {Object[]} fields Type of fields for the form [observable]
-  * @property {Boolean} [isValid=true] Indicates if field is valid [observable]
-  * @property {String} [errorText] Fields error message that displays if fails validation [observable]
-  * @property {Boolean} [disabled=false] Indicates if field is disabled [observable]
   * @property {Object} primaryButton Forms primary button properties
   * @property {String} primaryButton.title Forms primary button title
   * @property {Function} primaryButton.onClick Forms primary button onClick
