@@ -27,6 +27,7 @@ export default class Page extends Component {
         secondaryButtonTitle={this.props.page.formModel.secondaryButton.title}
         secondaryOnClick={this.props.page.formModel.secondaryButton.onClick}
         valueChangeFunc={this.props.page.formModel.modifyFieldValue}
+        fieldValidator={this.props.page.formModel.fieldValidatorWrapper}
         buttonDisabled={this.props.page.formModel.buttonDisabled}/>
     }
     return (
