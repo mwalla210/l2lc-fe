@@ -11,17 +11,32 @@ export default class Form extends Component {
     secondaryButtonTitle: PropTypes.string,
     secondaryOnClick: PropTypes.func,
     valueChangeFunc: PropTypes.func.isRequired,
-    buttonDisabled: PropTypes.bool.isRequired
+    buttonDisabled: PropTypes.bool.isRequired,
+    fieldValidator: PropTypes.func.isRequired
   }
 
   renderSelect(obj, index){
+    let style = null
+    if (obj.isValid){
+      style = {
+        style: {display: 'none'}
+      }
+    }
       return (
         <div className="form-group" key={index}>
-          <label>{obj.label}</label>
-          <select className="form-control" id={obj.id}
+          <div className="alert alert-danger" role="alert" {...style}>
+            <strong>{obj.errorText}</strong>
+          </div>
+          <label>{obj.label}</label> {(obj.required) ? <span style={{color: 'red'}}> *</span> : null}
+          <select disabled={obj.disabled} className="form-control" id={obj.id}
             value={obj.value}
             onChange={event => {
-              this.props.valueChangeFunc(index, event.target.value)}}>
+              this.props.valueChangeFunc(index, event.target.value)
+            }}
+            onBlur={event => {
+              event.preventDefault()
+              this.props.fieldValidator(index)
+            }}>
             {obj.options.map((option, key) =>
               <option key={key}>{option}</option>
             )}
@@ -29,27 +44,54 @@ export default class Form extends Component {
         </div>
       )
     }
+      renderTextfield(obj, index){
+            let style = null
+            if (obj.isValid){
+              style = {
+                style: {display: 'none'}
+              }
+            }
 
-    renderTextfield(obj, index){
-      return (
-        <div className="form-group" key={index}>
-          <label>{obj.label}</label>
-          <input type="text" className="form-control"
-            id={obj.id} value={obj.value}
-            onChange={event => {
-              this.props.valueChangeFunc(index, event.target.value)}}/>
-        </div>
-      )
-    }
+            return (
+              <div className="form-group" key={index}>
+                <div className="alert alert-danger" role="alert" {...style}>
+                  <strong>{obj.errorText}</strong>
+                </div>
+                <label>{obj.label}</label> {(obj.required) ? <span style={{color: 'red'}}> *</span> : null}
+                <input disabled={obj.disabled} type="text" className="form-control"
+                  onChange={event => {
+                    this.props.valueChangeFunc(index, event.target.value)
+                  }}
+                  onBlur={event => {
+                    event.preventDefault()
+                    this.props.fieldValidator(index)
+                  }}/>
+              </div>
+            )
+          }
 
     renderTextarea(obj, index){
+      let style = null
+      if (obj.isValid){
+        style = {
+          style: {display: 'none'}
+        }
+      }
       return (
         <div className="form-group" key={index}>
-          <label>{obj.label}</label>
+        <div className="alert alert-danger" role="alert" {...style}>
+          <strong>{obj.errorText}</strong>
+        </div>
+          <label>{obj.label}</label> {(obj.required) ? <span style={{color: 'red'}}> *</span> : null}
           <textarea className="form-control" rows={obj.rows} id={obj.id}
             value={obj.value}
             onChange={event => {
-              this.props.valueChangeFunc(index, event.target.value)}}>
+              this.props.valueChangeFunc(index, event.target.value)
+            }}
+            onBlur={event => {
+              event.preventDefault()
+              this.props.fieldValidator(index)
+            }}>
           </textarea>
         </div>
       )
@@ -58,12 +100,14 @@ export default class Form extends Component {
     renderCheckbox(obj, index){
       return (
         <div className="form-group" key={index}>
+          <br></br>
           <div className="form-check">
             <label className="form-check-label" htmlFor={obj.id}>
               {obj.label}
             </label>
             <input className="form-check-input" type="checkbox" id={obj.id}
-              checked={obj.value} onChange={event => {
+              checked={obj.value}
+              onChange={event => {
                 this.props.valueChangeFunc(index, event.target.checked)}}/>
           </div>
         </div>
