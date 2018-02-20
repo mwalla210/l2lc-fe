@@ -7,8 +7,9 @@ import CustomerForm from '../components/customerForm'
 import EmployeeForm from '../components/employeeForm'
 import ProjectForm from '../components/projectForm'
 import TimeEntryForm from '../components/timeEntryForm'
-import Website from './website'
-import JsBarcode from 'jsbarcode'
+import EmployeeSummary from '../components/employeeSummary'
+import ProjectSummary from '../components/projectSummary'
+import CustomerSummary from '../components/customerSummary'
 
 useStrict(true)
 
@@ -123,7 +124,7 @@ class Page {
   @action projectSummaryPage(){
     this.title = ''
     this.table = null
-    this.content = null
+    this.content = ProjectSummary
     this.form = null
     this.buttons = [
       {
@@ -222,7 +223,7 @@ class Page {
   @action customerSummaryPage(){
     this.title = 'Customer Summary'
     this.table = null
-    this.content = null
+    this.content = CustomerSummary
     this.form = null
     this.buttons = [
       {
@@ -358,17 +359,7 @@ class Page {
    @action employeeEditPage(){
      this.title = 'Edit Employee'
      this.table = null
-     this.content =
-     <div>
-      <p>First Name: {Website.currentEmployee.firstName}</p>
-      <p>Last Name: {Website.currentEmployee.lastName}</p>
-       <img
-         onLoad={() => JsBarcode(`#${Website.currentEmployee.firstName}${Website.currentEmployee.id}`, `${Website.currentEmployee.id}`)}
-         id={`${Website.currentEmployee.firstName}${Website.currentEmployee.id}`}
-         src="../../style/open-iconic-master/svg/image.svg"
-         alt="image"
-       />
-     </div>
+     this.content = EmployeeSummary
      this.form = EmployeeForm
      this.formEdit = true
      this.buttons = []
@@ -385,17 +376,7 @@ class Page {
      this.title = 'Employee Summary'
      this.table = null
      this.form = null
-     this.content =
-     <div>
-      <p>First Name: {Website.currentEmployee.firstName}</p>
-      <p>Last Name: {Website.currentEmployee.lastName}</p>
-       <img
-         onLoad={() => JsBarcode(`#${Website.currentEmployee.firstName}${Website.currentEmployee.id}`, `${Website.currentEmployee.id}`)}
-         id={`${Website.currentEmployee.firstName}${Website.currentEmployee.id}`}
-         src="../../style/open-iconic-master/svg/image.svg"
-         alt="image"
-       />
-     </div>
+     this.content = EmployeeSummary
      this.buttons = [
        {
          title: 'Edit',
