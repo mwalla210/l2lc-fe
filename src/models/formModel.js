@@ -50,7 +50,7 @@ export default class FormModel {
   @computed get buttonDisabled(){
     let disabled = false
     this.fields.forEach(field => {
-      if(field.isValid !== true){
+      if(!field.isValid){
         disabled = true
       }
       if(field.required){
@@ -77,7 +77,7 @@ export default class FormModel {
   }
   /**
    * @name modifyFieldValue
-   * @description Updating the fields value
+   * @description Updating the fields value and checks the fields onUpdate (if any)
    * @memberof FormModel.prototype
    * @method modifyFieldValue
    * @property {Number} index The field index
@@ -86,6 +86,21 @@ export default class FormModel {
    */
   @action modifyFieldValue(index, value){
     this.fields[index].value = value
+    if (this.fields[index].onUpdate){
+      let updates = this.fields[index].onUpdate(this.fields[index].value)
+      updates.forEach(update => {
+        let fieldIndex = this.fields.findIndex(field => {return field.id == update.id})
+        if(update.hasOwnProperty('required')){
+          this.fields[fieldIndex].required = update.required
+        }
+        if(update.hasOwnProperty('options')){
+          this.fields[fieldIndex].options = update.options
+        }
+        if(update.hasOwnProperty('disabled')){
+          this.fields[fieldIndex].disabled = update.disabled
+        }
+      })
+    }
   }
   /**
    * @name fieldValidatorWrapper
@@ -93,8 +108,9 @@ export default class FormModel {
    * @memberof FormModel.prototype
    * @method fieldValidatorWrapper
    * @property {Number} index The field index
+   * @mobx action
    */
-  @action fieldValidatorWrapper(index){
+   @action fieldValidatorWrapper(index){
     console.log('fieldValidatorWrapper',index, this.fields[index].validation)
     if (this.fields[index].validation){
       let invalid = this.fields[index].validation(this.fields[index].value)
@@ -106,5 +122,5 @@ export default class FormModel {
         this.fields[index].errorText = invalid
       }
     }
-    }
   }
+}
