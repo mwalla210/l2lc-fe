@@ -328,7 +328,7 @@ class Page {
     let fields = [
       {
         type: 'select',
-        label: 'Cost Center*',
+        label: 'Cost Center',
         id: 'region',
         options: ['Select...','PC Job','Decorative Job','Maintenance','Administration','Production','Research and Development','Other'],
         required: true,
@@ -340,7 +340,7 @@ class Page {
       },
       {
         type: 'select',
-        label: 'Project Type*',
+        label: 'Project Type',
         id: 'projectType',
         options: ['Select...','based on cost center selected'],
         required: true,
@@ -352,7 +352,7 @@ class Page {
       },
       {
         type: 'textfield',
-        label: 'Part Count*',
+        label: 'Part Count',
         id: 'partCount',
         required: true,
         validation: (value) => {
@@ -379,7 +379,7 @@ class Page {
       },
       {
         type: 'select',
-        label: 'Priority*',
+        label: 'Priority',
         id: 'priority',
         options: ['Select...','Low','High'],
         required: true,
@@ -456,9 +456,10 @@ class Page {
     let fields = [
       {
         type: 'textfield',
-        label: 'Company Name*',
+        label: 'Company Name',
         id: 'companyName',
         required: true,
+        disabled: false,
         validation: (value) => {
           if (value.trim() == '')
             return 'Error: please enter a company name.'
@@ -469,9 +470,10 @@ class Page {
       },
       {
         type: 'textfield',
-        label: 'Email Address*',
+        label: 'Email Address',
         id: 'emailAddress',
         required: true,
+        disabled: false,
         validation: (value) => {
           let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
           if (reg.test(value.trim()) == false)
@@ -483,9 +485,10 @@ class Page {
       },
       {
         type: 'textfield',
-        label: 'Phone Number*',
+        label: 'Phone Number',
         id: 'phoneNumber',
         required: true,
+        disabled: false,
         validation: (value) => {
           if (value.trim() == '')
             return 'Error: please enter a phone number.'
@@ -499,6 +502,7 @@ class Page {
         label: 'Website',
         id: 'websiteLink',
         required: false,
+        disabled: false,
         validation: (value) => {
           let reg = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
           if (reg.test(value.trim()) == false)
@@ -510,21 +514,72 @@ class Page {
       },
       {
         type: 'select',
-        label: 'Region*',
+        label: 'Region',
         id: 'region',
         options: ['Select...','United States','Canada','Mexico','Europe','Asia','Africa'],
         required: true,
+        disabled: false,
         validation: (value) => {
           if (value == 'Select...')
             return 'Error: you must select a region.'
           return null
+        },
+        onUpdate: (value) => {
+          if (value !== 'United States'){
+            return [
+              {
+                id: 'country',
+                required: true,
+                disabled: false
+              },
+              {
+                id: 'state',
+                options: ['Not Applicable'],
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'zipCode',
+                required: false,
+                disabled: false
+              }
+            ]
+          }
+          if (value == 'United States'){
+            return [
+              {
+                id: 'country',
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'state',
+                options: ['Select...','Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+                  'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
+                  'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+                  'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+                  'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+                  'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+                  'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
+                  'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
+                required: true,
+                disabled: false
+              },
+              {
+                id: 'zipCode',
+                required: true,
+                disabled: false
+              }
+            ]
+          }
         }
       },
       {
         type: 'textfield',
         label: 'Country',
         id: 'country',
-        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        required: false,
+        disabled: false,
         validation: (value) => {
           if (value.trim() == '')
             return 'Error: please enter the country name.'
@@ -535,9 +590,10 @@ class Page {
       },
       {
         type: 'textfield',
-        label: 'Address Line 1*',
+        label: 'Address Line 1',
         id: 'adressLine1',
         required: true,
+        disabled: false,
         validation: (value) => {
           if (value.trim() == '')
             return 'Error: please enter the address.'
@@ -551,6 +607,7 @@ class Page {
         label: 'Address Line 2',
         id: 'adressLine2',
         required: false,
+        disabled: false,
         validation: (value) => {
           if (value.length > 30)
             return 'Error: the address is too long.'
@@ -559,9 +616,10 @@ class Page {
       },
       {
         type: 'textfield',
-        label: 'City*',
+        label: 'City',
         id: 'city',
         required: true,
+        disabled: false,
         validation: (value) => {
           if (value.trim() == '')
             return 'Error: please enter the city.'
@@ -582,7 +640,8 @@ class Page {
           'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
           'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
           'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        required: true,
+        disabled: false,
         validation: (value) => {
           if (value.trim() == 'Select...')
             return 'Error: please select the state.'
@@ -593,7 +652,8 @@ class Page {
         type: 'textfield',
         label: 'Zip Code',
         id: 'zipCode',
-        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION; SOME COUNTRIES DON'T HAVE ZIP CODES
+        required: true,
+        disabled: false,
         validation: (value) => {
           if (value.trim() == '')
             return 'Error: please enter the zip code.'
@@ -604,28 +664,150 @@ class Page {
       },
       {
         type: 'checkbox',
-        label: 'Billing Address is NOT the same as the Shipping Address',
-        id: 'enableShippingAddre',
+        label: 'Billing Address is the SAME as the Shipping Address',
+        id: 'enableShippingAddress',
         required: false,
-        validation: null
+        validation: null,
+        onUpdate: (value) => {
+          if (value !== null){
+            return [
+              {
+                id: 'billingRegion',
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'billingCountry',
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'billingAddressLine1',
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'billingAddressLine2',
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'billingCity',
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'billingState',
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'billingZipCode',
+                required: false,
+                disabled: true
+              },
+            ]
+          }
+        }
       },
       {
         type: 'select',
         label: 'Region',
-        id: 'region',
+        id: 'billingRegion',
         options: ['Select...','United States','Canada','Mexico','Europe','Asia','Africa'],
         required: false,
+        disabled: true,
         validation: (value) => {
           if (value == 'Select...')
             return 'Error: you must select a region.'
           return null
+        },
+        onUpdate: (value) => {
+          if (value !== 'United States'){
+            return [
+              {
+                id: 'billingCountry',
+                required: true,
+                disabled: false
+              },
+              {
+                id: 'billingAddressLine1',
+                required: true,
+                disabled: false
+              },
+              {
+                id: 'billingAddressLine2',
+                required: false,
+                disabled: false
+              },
+              {
+                id: 'billingCity',
+                required: true,
+                diabled: false
+              },
+              {
+                id: 'billingState',
+                options: ['Not Applicable'],
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'billingZipCode',
+                required: false,
+                disabled: false
+              }
+            ]
+          }
+          if (value == 'United States'){
+            return [
+              {
+                id: 'billingCountry',
+                required: false,
+                disabled: true
+              },
+              {
+                id: 'billingAddressLine1',
+                required: true,
+                disabled: false
+              },
+              {
+                id: 'billingAddressLine2',
+                required: false,
+                disabled: false
+              },
+              {
+                id: 'billingCity',
+                required: true,
+                diabled: false
+              },
+              {
+                id: 'billingState',
+                options: ['Select...','Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+                  'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
+                  'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
+                  'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
+                  'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
+                  'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+                  'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
+                  'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
+                required: true,
+                disabled: false
+              },
+              {
+                id: 'billingZipCode',
+                required: true,
+                disabled: false
+              }
+            ]
+          }
         }
       },
       {
         type: 'textfield',
         label: 'Country',
-        id: 'country',
-        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        id: 'billingCountry',
+        required: false,
+        disabled: true,
         validation: (value) => {
           if (value.length > 30)
             return 'Error: the country name is too long.'
@@ -635,8 +817,9 @@ class Page {
       {
         type: 'textfield',
         label: 'Address Line 1',
-        id: 'adressLine1',
+        id: 'billingAddressLine1',
         required: false,
+        disabled: true,
         validation: (value) => {
           if (value.trim() == '')
             return 'Error: please enter the address.'
@@ -648,8 +831,9 @@ class Page {
       {
         type: 'textfield',
         label: 'Address Line 2',
-        id: 'adressLine2',
+        id: 'billingAddressLine2',
         required: false,
+        disabled: true,
         validation: (value) => {
           if (value.length > 30)
             return 'Error: the address is too long.'
@@ -659,8 +843,9 @@ class Page {
       {
         type: 'textfield',
         label: 'City',
-        id: 'city',
+        id: 'billingCity',
         required: false,
+        disabled: true,
         validation: (value) => {
           if (value.length > 30)
             return 'Error: the city name is too long.'
@@ -670,7 +855,7 @@ class Page {
       {
         type: 'select',
         label: 'State',
-        id: 'state',
+        id: 'billingState',
         options: ['Select...','Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
           'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois',
           'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland',
@@ -679,7 +864,8 @@ class Page {
           'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
           'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
           'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION
+        required: false,
+        disabled: true,
         validation: (value) => {
           if (value.trim() == 'Select...')
             return 'Error: please select the state.'
@@ -689,8 +875,9 @@ class Page {
       {
         type: 'textfield',
         label: 'Zip Code',
-        id: 'zipCode',
-        required: false, //NEED TO UPDATE DEPENDING ON SELECTED REGION; SOME COUNTRIES DON'T HAVE ZIP CODES
+        id: 'billingZipCode',
+        required: false,
+        disabled: true,
         validation: (value) => {
           if (value.trim() == '')
             return 'Error: please enter the zip code.'
@@ -860,7 +1047,7 @@ class Page {
 
   /**
    * @name customerSummaryPage
-   * @description Updates title, tableModel, content, buttons, and navHighlight for Customer Summary page
+   * @description Displays information about selected customer from Customer Information page entries.
    * @method customerSummaryPage
    * @memberof Page.prototype
    * @mobx action
@@ -868,8 +1055,26 @@ class Page {
   @action customerSummaryPage(){
     this.title = 'Customer Information'
     this.tableModel = null
-    this.content = <p>Customer</p>
     this.formModel = null
+    this.content =
+    <div>
+    <p>ID: {Website.currentCustomer.id}</p>
+    <p>Company Name: {Website.currentCustomer.companyName}</p>
+    <p>Phone Number: {Website.currentCustomer.phone}</p>
+    <p>Email: {Website.currentCustomer.email}</p>
+    <p>Website: {Website.currentCustomer.website}</p>
+    <p>Country: {Website.currentCustomer.shipAddr.shipCountry}</p>
+    <p>Address: {Website.currentCustomer.shipAddr.shipAddr1} {Website.currentCustomer.shipAddr.shipAddr2}</p>
+    <p>City: {Website.currentCustomer.shipAddr.shipCity}</p>
+    <p>State: {Website.currentCustomer.shipAddr.shipState}</p>
+    <p>Zip Code: {Website.currentCustomer.shipAddr.shipZip}</p>
+    <p>Billing Country: {Website.currentCustomer.billAddr.shipCountry}</p>
+    <p>Billing Address: {Website.currentCustomer.billAddr.shipAddr1} {Website.currentCustomer.billAddr.shipAddr2}</p>
+    <p>Billing City: {Website.currentCustomer.billAddr.shipCity}</p>
+    <p>Billing State: {Website.currentCustomer.billAddr.shipState}</p>
+    <p>Billing Zip Code: {Website.currentCustomer.billAddr.shipZip}</p>
+    <p>Past due: {Website.currentCustomer.pastDue}</p>
+    </div>
     this.buttons = [
       {
         title: 'Projects',
@@ -881,7 +1086,7 @@ class Page {
       },
       {
         title: 'Delete',
-        onClick: () => console.log('Confirm delete'),
+        onClick: () => console.log('Do we really want this button?'),
         class: 'btn-danger'
       },
     ]
@@ -1027,15 +1232,15 @@ class Page {
        }
      ]
      this.formModel = new FormModel(fields,
-       {
-         title: 'Save',
-         onClick: () => console.log('onClick')
-       },
-       {
-         title: 'Cancel',
-         onClick: () => console.log('onClick')
-       }
-     )
+        {
+          title: 'Continue',
+          onClick: () => this.employeeInformationMenuItem()
+        },
+        {
+          title: 'Cancel',
+          onClick: () => this.employeeInformationMenuItem()
+        }
+      )
      this.buttons = []
      this.navHighlight = 'Employee Information'
    }

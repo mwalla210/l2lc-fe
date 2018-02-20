@@ -28,7 +28,7 @@ export default class Form extends Component {
             <strong>{obj.errorText}</strong>
           </div>
           <label>{obj.label}</label> {(obj.required) ? <span style={{color: 'red'}}> *</span> : null}
-          <select className="form-control" id={obj.id}
+          <select disabled={obj.disabled} className="form-control" id={obj.id}
             value={obj.value}
             onChange={event => {
               this.props.valueChangeFunc(index, event.target.value)
@@ -44,7 +44,6 @@ export default class Form extends Component {
         </div>
       )
     }
-
       renderTextfield(obj, index){
             let style = null
             if (obj.isValid){
@@ -52,14 +51,14 @@ export default class Form extends Component {
                 style: {display: 'none'}
               }
             }
+
             return (
               <div className="form-group" key={index}>
                 <div className="alert alert-danger" role="alert" {...style}>
                   <strong>{obj.errorText}</strong>
                 </div>
                 <label>{obj.label}</label> {(obj.required) ? <span style={{color: 'red'}}> *</span> : null}
-                <input type="text" className="form-control"
-                  id={obj.id} value={obj.value}
+                <input disabled={obj.disabled} type="text" className="form-control"
                   onChange={event => {
                     this.props.valueChangeFunc(index, event.target.value)
                   }}
