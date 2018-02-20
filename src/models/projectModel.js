@@ -90,6 +90,12 @@ export default class ProjectModel {
   @computed get status(){
     return 'Open|?|Closed'
   }
+  @action addTime(){
+    this.timeEntries = [
+      new Date('December 17, 1995 01:24:00'),
+      new Date('December 17, 1995 03:25:00')
+    ]
+  }
   /**
    * @name timeSpent
    * @description Calculates Project's time total based on dates and reworks
@@ -99,7 +105,28 @@ export default class ProjectModel {
    * @mobx computed
    */
   @computed get timeSpent(){
-    return 'Time spent'
+    this.addTime()
+    let hours = 0
+    let minutes = 0
+    if (this.reworks.length > 0){
+      hours = 'Reworks'
+    }
+    else {
+      for (let i = 0; i < this.timeEntries.length; i+=2){
+        let diff = this.timeEntries[i+1]-this.timeEntries[i]
+        let diffHrs = Math.floor((diff % 86400000) / 3600000) // hours
+        let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // minutes
+        hours += diffHrs
+        if (minutes + diffMins > 60){
+          hours += 1
+          minutes += diffMins - 60
+        }
+        else {
+          minutes += diffMins
+        }
+      }
+    }
+    return `${(hours != 0) ? `${hours} hour${(hours > 1) ? 's' : '' }, ` : ''}${(minutes != 0) ? `${minutes} minute${(minutes > 1) ? 's' : ''}`: ''}`
   }
   /**
    * @name isOpen
