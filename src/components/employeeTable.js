@@ -6,7 +6,7 @@ import API from '../api'
 import JsBarcode from 'jsbarcode'
 
 @inject ('page', 'website') @observer
-export default class CustomerTable extends Component {
+export default class EmployeeTable extends Component {
   constructor(props){
     super(props)
     let columns = [

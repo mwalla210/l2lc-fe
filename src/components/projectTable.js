@@ -11,7 +11,7 @@ const helpColor = '#ffbf00'
 const openColor = '#57d500'
 
 @inject ('page', 'website') @observer
-export default class CustomerTable extends Component {
+export default class ProjectTable extends Component {
   constructor(props){
     super(props)
     let columns = [

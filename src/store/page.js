@@ -359,7 +359,7 @@ class Page {
    @action employeeEditPage(){
      this.title = 'Edit Employee'
      this.table = null
-     this.content = EmployeeSummary
+     this.content = null
      this.form = EmployeeForm
      this.formEdit = true
      this.buttons = []

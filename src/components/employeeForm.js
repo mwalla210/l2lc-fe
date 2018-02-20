@@ -5,7 +5,7 @@ import Form from './form'
 import FormModel from '../models/formModel'
 
 @inject ('page', 'website') @observer
-export default class CustomerForm extends Component {
+export default class EmployeeForm extends Component {
   static propTypes = {
     edit: PropTypes.bool
   }
