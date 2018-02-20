@@ -374,7 +374,7 @@ class Page {
         required: true,
         validation: (value) => {
           if (value == 'Select...')
-            return 'Error: you must select a cost center.'
+            return 'Error: you must select a project type.'
           return null
         }
       },
