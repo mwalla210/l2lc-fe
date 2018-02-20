@@ -5,6 +5,7 @@ useStrict(true)
   * @name FormModel
   * @class FormModel
   * @classdesc Form storage object
+  * @description Sets default values for each field item
   * @property {Object[]} fields Type of fields for the form [observable]
   * @property {Object} primaryButton Forms primary button properties
   * @property {String} primaryButton.title Forms primary button title

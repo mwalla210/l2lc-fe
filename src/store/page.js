@@ -1,9 +1,11 @@
 import React from 'react'
-import { action, useStrict, extendObservable } from 'mobx'
+import { action, useStrict, extendObservable, computed } from 'mobx'
 import TableModel from '../models/tableModel'
 import FormModel from '../models/formModel'
 import API from '../api'
 import Website from './website'
+import JsBarcode from 'jsbarcode'
+
 useStrict(true)
 
 const highPriority = '#f4ba61'
@@ -29,6 +31,9 @@ class Page {
       tableModel: null,
       formModel: null,
       buttons: [],
+      logOutModal: {
+        open: false,
+      }
     }
     extendObservable(this, addtlProps)
     // Define once, reference later
@@ -224,12 +229,23 @@ class Page {
       },
       {
         Header: 'Barcode',
-        accessor: 'barcode'
+        accessor: 'barcode',
+        Cell: row => (
+          <span>
+            <span>
+              <img
+                onLoad={() => JsBarcode(`#${row.original.firstName}${row.original.id}`, `${row.original.id}`)}
+                id={`${row.original.firstName}${row.original.id}`}
+                src="../../style/open-iconic-master/svg/image.svg"
+                alt="image"
+              />
+            </span>
+          </span>
+        )
       },
       {
         Header: 'Actions',
         sortable: false,
-        maxWidth: 60,
         getProps: () => {
           return {
             className: 'center',
@@ -242,6 +258,18 @@ class Page {
         Cell: row => (
           <span>
             <span>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                Website.setEmployee(row.original)
+                this.employeeSummaryPage()
+              }}>
+                <img src="../../style/open-iconic-master/svg/info.svg" alt="info"/>
+              </button>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                Website.setEmployee(row.original)
+                this.employeeEditPage()
+              }}>
+                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" />
+              </button>
               <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
                 Website.setEmployee(row.original)
                 this.employeeTableModel.openModal()
@@ -1196,6 +1224,13 @@ class Page {
      this.navHighlight = 'Employee Information'
    }
 
+   /**
+    * @name newEmployeePage
+    * @description Allows creation of employee
+    * @memberof Page.prototype
+    * @method newEmployeePage
+    * @mobx action
+    */
    @action newEmployeePage(){
      this.title = 'New Employee'
      this.tableModel = null
@@ -1223,6 +1258,62 @@ class Page {
            return null
          }
        },
+     ]
+     this.formModel = new FormModel(fields,
+       {
+         title: 'Continue',
+         onClick: (fields) => {
+           let body = {}
+           fields.forEach(item => {
+             body[item.id] = item.value.trim()
+           })
+           Website.createEmployee(body)
+           .then(() => this.employeeSummaryPage())
+         }
+       },
+       {
+         title: 'Cancel',
+         onClick: () => this.employeeInformationMenuItem()
+       }
+     )
+     this.buttons = []
+     this.navHighlight = 'Employee Information'
+   }
+
+   /**
+    * @name employeeEditPage
+    * @description Allows changing of information for Employee Information page entries.
+    * @memberof Page.prototype
+    * @method employeeEditPage
+    * @mobx action
+    */
+   @action employeeEditPage(){
+     this.title = 'Edit Employee'
+     this.tableModel = null
+     this.content =
+     <div>
+      <p>First Name: {Website.currentEmployee.firstName}</p>
+      <p>Last Name: {Website.currentEmployee.lastName}</p>
+       <img
+         onLoad={() => JsBarcode(`#${Website.currentEmployee.firstName}${Website.currentEmployee.id}`, `${Website.currentEmployee.id}`)}
+         id={`${Website.currentEmployee.firstName}${Website.currentEmployee.id}`}
+         src="../../style/open-iconic-master/svg/image.svg"
+         alt="image"
+       />
+     </div>
+     let fields = [
+       {
+         type: 'textfield',
+         label: 'New First Name',
+         id: 'firstName',
+         required: true
+       },
+       {
+         type: 'textfield',
+         label: 'New Last Name',
+         id: 'lastName',
+         required: true
+       },
        {
          type: 'checkbox',
          label: 'Active',
@@ -1243,6 +1334,42 @@ class Page {
      )
      this.buttons = []
      this.navHighlight = 'Employee Information'
+   }
+
+   /**
+    * @name employeeSummaryPage
+    * @description Displays information about selected employee from Employee Information page entries.
+    * @memberof Page.prototype
+    * @method employeeSummaryPage
+    * @mobx action
+    */
+   @action employeeSummaryPage(){
+     this.title = 'Employee Summary'
+     this.tableModel = null
+     this.formModel = null
+     this.content =
+     <div>
+      <p>First Name: {Website.currentEmployee.firstName}</p>
+      <p>Last Name: {Website.currentEmployee.lastName}</p>
+       <img
+         onLoad={() => JsBarcode(`#${Website.currentEmployee.firstName}${Website.currentEmployee.id}`, `${Website.currentEmployee.id}`)}
+         id={`${Website.currentEmployee.firstName}${Website.currentEmployee.id}`}
+         src="../../style/open-iconic-master/svg/image.svg"
+         alt="image"
+       />
+     </div>
+     this.buttons = [
+       {
+         title: 'Edit',
+         onClick: () => this.employeeEditPage()
+       },
+       {
+         title: 'Delete',
+         onClick: () => this.employeeInformationMenuItem(),
+         class: 'btn-danger'
+       },
+     ]
+     this.navHighlight = ''
    }
 
   /**
@@ -1277,6 +1404,40 @@ class Page {
   @action logOut(){
     this.loggedin = !this.loggedin
   }
+
+  /**
+   * @name logOutAlert
+   * @description Opens log out modal
+   * @method logOutAlert
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action logOutAlert(){
+    this.logOutModal.open = true
+  }
+
+  /**
+   * @name logOutDismiss
+   * @description Closes log out modal
+   * @method logOutDismiss
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action logOutDismiss(){
+    this.logOutModal.open = false
+  }
+
+  /**
+   * @name logOutModalOpen
+   * @description Shows status of modal
+   * @method logOutModalOpen
+   * @return {Boolean}
+   * @mobx computed
+   */
+  @computed get logOutModalOpen(){
+    return this.logOutModal.open
+  }
+
 }
 
 const page = new Page()
