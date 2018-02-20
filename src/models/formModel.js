@@ -13,6 +13,7 @@ useStrict(true)
   * @property {Object} [secondaryButton] Forms secondary button properties
   * @property {String} secondaryButton.title Forms secondary button title
   * @property {Function} secondaryButton.onClick Forms secondary button onClick
+  * @property {Boolean} autoSubmit Forms auto-submit boolean
  */
 export default class FormModel {
   constructor(fields, primaryButton, secondaryButton, autoSubmit) {
@@ -33,11 +34,11 @@ export default class FormModel {
     let addtlProps = {
       fields
     }
-    this.autoSubmit = autoSubmit
     extendObservable(this, addtlProps)
     // non-observable properties
     this.primaryButton = primaryButton
     this.secondaryButton = secondaryButton
+    this.autoSubmit = autoSubmit
     this.primaryButtonWrapper = this.primaryButtonWrapper.bind(this)
     this.modifyFieldValue = this.modifyFieldValue.bind(this)
   }
