@@ -1,4 +1,6 @@
 import { action, useStrict, extendObservable } from 'mobx'
+import EmployeeModel from '../models/employeeModel'
+import API from '../api'
 useStrict(true)
 
 /**
@@ -8,6 +10,7 @@ useStrict(true)
  * @todo Add Analytic models & reference
  * @property {Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
  * @property {Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
+ * @property {Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
  * @property {User} [currentUser=null] Current User in state, or last focused User. [observable]
  * @property {Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
@@ -19,6 +22,7 @@ class Website {
     let addtlProps = {
       currentProject: null,
       currentCustomer: null,
+      currentEmployee: null,
       currentUser: null,
       // TODO Analytic models
       ccAnalytic: null,
@@ -118,7 +122,7 @@ class Website {
    * @todo Implement function
    */
   @action createCustomer(customer){
-    console.log(`Create project entry in API with: ${customer}`)
+    console.log(`Create customer entry in API with: ${customer}`)
   }
   /**
    * @name createEmployee
@@ -129,8 +133,17 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action createEmployee(employee){
-    console.log(`Create project entry in API with: ${employee}`)
+  @action async createEmployee(employee){
+    let jsonEmployee = JSON.stringify(employee)
+    console.log('Create employee entry in API with:', jsonEmployee)
+    let response = await API.create('employee/create', jsonEmployee)
+    this.setEmployee(new EmployeeModel(response.id, response.firstName, response.lastName))
+    console.log(this.currentEmployee)
+    // let employees = []
+    // json.items.forEach(item => {
+    //   let employee = new EmployeeModel(item.id, item.firstName, item.lastName)
+    //   employees.push(employee)
+    // })
   }
 
   // Utilities

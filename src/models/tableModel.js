@@ -93,7 +93,6 @@ export default class TableModel {
     this.closeModal()
     this.deleteModal.confirmOnClick()
   }
-
   /**
    * @name loadingOn
    * @description Turns on table's loading
@@ -126,9 +125,5 @@ export default class TableModel {
         this.loadingOff()
       })
     )
-    // let model = new ProjectModel(1, {id: 1, title: 'cctitle'}, {id: 1, title: 'jttitle'}, 'title', 'priority')
-    // this.data = []
-    // this.data.push(model)
-
   }
 }

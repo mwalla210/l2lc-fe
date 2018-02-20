@@ -110,4 +110,16 @@ export default class API {
     })
   }
 
+  static create(endpoint, body){
+    return fetch(`${api}${endpoint}`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json())
+    .then(json => {
+      console.log('json',json)
+      return json
+    })
+  }
+
 }

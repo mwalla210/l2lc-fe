@@ -62,6 +62,13 @@ export default class CustomerModel {
     this.id = id
   }
 
+  /**
+   * @name setBillIsSame
+   * @description Sets this.billIsSame to true
+   * @method setBillIsSame
+   * @memberof CustomerModel.prototype
+   * @mobx action
+   */
   @action setBillIsSame(){this.billIsSame = true}
 
   /**
