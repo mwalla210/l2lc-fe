@@ -3,6 +3,7 @@ import { observer, inject } from 'mobx-react'
 import Table from './table'
 import TableModel from '../models/tableModel'
 import API from '../api'
+import JsBarcode from 'jsbarcode'
 
 @inject ('page', 'website') @observer
 export default class CustomerTable extends Component {
@@ -26,12 +27,23 @@ export default class CustomerTable extends Component {
       },
       {
         Header: 'Barcode',
-        accessor: 'barcode'
+        accessor: 'barcode',
+        Cell: row => (
+          <span>
+            <span>
+              <img
+                onLoad={() => JsBarcode(`#${row.original.firstName}${row.original.id}`, `${row.original.id}`)}
+                id={`${row.original.firstName}${row.original.id}`}
+                src="../../style/open-iconic-master/svg/image.svg"
+                alt="image"
+              />
+            </span>
+          </span>
+        )
       },
       {
         Header: 'Actions',
         sortable: false,
-        maxWidth: 60,
         getProps: () => {
           return {
             className: 'center',
@@ -44,6 +56,18 @@ export default class CustomerTable extends Component {
         Cell: row => (
           <span>
             <span>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                this.props.website.setEmployee(row.original)
+                this.props.page.employeeSummaryPage()
+              }}>
+                <img src="../../style/open-iconic-master/svg/info.svg" alt="info"/>
+              </button>
+              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+                this.props.website.setEmployee(row.original)
+                this.props.page.employeeEditPage()
+              }}>
+                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" />
+              </button>
               <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
                 this.props.website.setEmployee(row.original)
                 this.props.page.tableModel.openModal()

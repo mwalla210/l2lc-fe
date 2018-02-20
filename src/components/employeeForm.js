@@ -29,17 +29,23 @@ export default class CustomerForm extends Component {
         id: 'lastName',
         required: true
       },
-      {
-        type: 'checkbox',
-        label: 'Active',
-        id: 'active',
-        required: false
-      }
     ]
+    let primaryOnClick = (fields) => {
+      let body = {}
+      fields.forEach(item => {
+        body[item.id] = item.value.trim()
+      })
+      this.props.website.createEmployee(body)
+      .then(() => this.employeeSummaryPage())
+    }
+    if (this.props.edit){
+      // Change onClick functionality for primary
+      primaryOnClick = (fields) => console.log('EDIT with', fields)
+    }
     this.props.page.setFormModel(new FormModel(fields,
       {
         title: 'Continue',
-        onClick: () => console.log('onClick')
+        onClick: primaryOnClick
       },
       {
         title: 'Cancel',

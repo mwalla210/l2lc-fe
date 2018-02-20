@@ -135,10 +135,15 @@ export default class CustomerForm extends Component {
         required: false
       }
     ]
+    let primaryOnClick = (fields) => console.log('CREATE with', fields)
+    if (this.props.edit){
+      // Change onClick functionality for primary
+      primaryOnClick = (fields) => console.log('EDIT with', fields)
+    }
     this.props.page.setFormModel(new FormModel(fields,
       {
         title: 'Continue',
-        onClick: () => console.log('onClick')
+        onClick: primaryOnClick
       },
       {
         title: 'Cancel',

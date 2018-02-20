@@ -17,11 +17,26 @@ export default class CustomerForm extends Component {
   constructor(props){
     super(props)
     let fields = []
+    let primaryOnClick = (fields) => console.log('CREATE with', fields)
+    let secondaryButton = null
+    if (this.props.edit){
+      // Change onClick functionality for primary
+      primaryOnClick = (fields) => console.log('EDIT with', fields)
+      // Add secondaryButton for form to cancel
+      secondaryButton = {
+        title: 'Cancel',
+        onClick: () => {
+          console.log('Cancel editing,')
+          this.props.page.projectsMenuItem()
+        }
+      }
+    }
     this.props.page.setFormModel(new FormModel(fields,
       {
         title: 'Continue',
-        onClick: () => console.log('onClick')
-      }
+        onClick: primaryOnClick
+      },
+      secondaryButton
     ))
     // If this.props.edit, update model default field values with this.props.website.currentProject
   }

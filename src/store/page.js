@@ -1,5 +1,5 @@
 import React from 'react'
-import { action, useStrict, extendObservable, observable } from 'mobx'
+import { action, useStrict, extendObservable, observable, computed } from 'mobx'
 import CustomerTable from '../components/customerTable'
 import EmployeeTable from '../components/employeeTable'
 import ProjectTable from '../components/projectTable'
@@ -7,6 +7,9 @@ import CustomerForm from '../components/customerForm'
 import EmployeeForm from '../components/employeeForm'
 import ProjectForm from '../components/projectForm'
 import TimeEntryForm from '../components/timeEntryForm'
+import Website from './website'
+import JsBarcode from 'jsbarcode'
+
 useStrict(true)
 
 /**
@@ -35,6 +38,9 @@ class Page {
       formEdit: false,
       form: null,
       buttons: [],
+      logOutModal: {
+        open: false,
+      }
     }
     extendObservable(this, addtlProps)
   }
@@ -214,7 +220,7 @@ class Page {
    * @mobx action
    */
   @action customerSummaryPage(){
-    this.title = 'Edit Customer'
+    this.title = 'Customer Summary'
     this.table = null
     this.content = null
     this.form = null
@@ -239,10 +245,11 @@ class Page {
    * @mobx action
    */
   @action customerEditPage(){
-    this.title = ''
+    this.title = 'Edit Customer'
     this.table = null
     this.content = null
-    this.form = null
+    this.form = CustomerForm
+    this.formEdit = true
     this.buttons = []
   }
 
@@ -341,6 +348,68 @@ class Page {
      this.buttons = []
    }
 
+   /**
+    * @name employeeEditPage
+    * @description Allows changing of information for Employee Information page entries.
+    * @memberof Page.prototype
+    * @method employeeEditPage
+    * @mobx action
+    */
+   @action employeeEditPage(){
+     this.title = 'Edit Employee'
+     this.table = null
+     this.content =
+     <div>
+      <p>First Name: {Website.currentEmployee.firstName}</p>
+      <p>Last Name: {Website.currentEmployee.lastName}</p>
+       <img
+         onLoad={() => JsBarcode(`#${Website.currentEmployee.firstName}${Website.currentEmployee.id}`, `${Website.currentEmployee.id}`)}
+         id={`${Website.currentEmployee.firstName}${Website.currentEmployee.id}`}
+         src="../../style/open-iconic-master/svg/image.svg"
+         alt="image"
+       />
+     </div>
+     this.form = EmployeeForm
+     this.formEdit = true
+     this.buttons = []
+   }
+
+   /**
+    * @name employeeSummaryPage
+    * @description Displays information about selected employee from Employee Information page entries.
+    * @memberof Page.prototype
+    * @method employeeSummaryPage
+    * @mobx action
+    */
+   @action employeeSummaryPage(){
+     this.title = 'Employee Summary'
+     this.table = null
+     this.form = null
+     this.content =
+     <div>
+      <p>First Name: {Website.currentEmployee.firstName}</p>
+      <p>Last Name: {Website.currentEmployee.lastName}</p>
+       <img
+         onLoad={() => JsBarcode(`#${Website.currentEmployee.firstName}${Website.currentEmployee.id}`, `${Website.currentEmployee.id}`)}
+         id={`${Website.currentEmployee.firstName}${Website.currentEmployee.id}`}
+         src="../../style/open-iconic-master/svg/image.svg"
+         alt="image"
+       />
+     </div>
+     this.buttons = [
+       {
+         title: 'Edit',
+         onClick: () => this.employeeEditPage()
+       },
+       {
+         title: 'Delete',
+         onClick: () => this.employeeInformationMenuItem(),
+         class: 'btn-danger'
+       },
+     ]
+     this.navHighlight = ''
+   }
+
   /**
    * @name accountManagementMenuItem
    * @description Updates title, form, table, content, and buttons for Account Management page.
@@ -372,6 +441,40 @@ class Page {
   @action logOut(){
     this.loggedin = !this.loggedin
   }
+
+  /**
+   * @name logOutAlert
+   * @description Opens log out modal
+   * @method logOutAlert
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action logOutAlert(){
+    this.logOutModal.open = true
+  }
+
+  /**
+   * @name logOutDismiss
+   * @description Closes log out modal
+   * @method logOutDismiss
+   * @memberof Page.prototype
+   * @mobx action
+   */
+  @action logOutDismiss(){
+    this.logOutModal.open = false
+  }
+
+  /**
+   * @name logOutModalOpen
+   * @description Shows status of modal
+   * @method logOutModalOpen
+   * @return {Boolean}
+   * @mobx computed
+   */
+  @computed get logOutModalOpen(){
+    return this.logOutModal.open
+  }
+
 }
 
 const page = new Page()
