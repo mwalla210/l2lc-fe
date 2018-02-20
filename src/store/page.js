@@ -1232,15 +1232,15 @@ class Page {
        }
      ]
      this.formModel = new FormModel(fields,
-        {
-          title: 'Continue',
-          onClick: () => this.employeeInformationMenuItem()
-        },
-        {
-          title: 'Cancel',
-          onClick: () => this.employeeInformationMenuItem()
-        }
-      )
+       {
+         title: 'Continue',
+         onClick: () => this.employeeInformationMenuItem()
+       },
+       {
+         title: 'Cancel',
+         onClick: () => this.employeeInformationMenuItem()
+       }
+     )
      this.buttons = []
      this.navHighlight = 'Employee Information'
    }
