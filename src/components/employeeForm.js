@@ -21,13 +21,23 @@ export default class EmployeeForm extends Component {
         type: 'textfield',
         label: 'First Name',
         id: 'firstName',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.length > 30)
+            return 'Error: the first name is too long.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Last Name',
         id: 'lastName',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.length > 30)
+            return 'Error: the last name is too long.'
+          return null
+        }
       },
     ]
     let primaryOnClick = (fields) => {

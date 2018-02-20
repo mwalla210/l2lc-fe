@@ -5,17 +5,13 @@ useStrict(true)
  * @name ProjectModel
  * @class ProjectModel
  * @classdesc Project storage object
- * @property {Number} id database ID
- * @property {Object} costCenter Related cost center object [observable]
- * @property {Object} costCenter.id ID [observable]
- * @property {Object} costCenter.title Title [observable]
- * @property {Object} costCenter.descr Description [observable]
- * @property {Object} jobType Related job type (within cost center) [observable]
- * @property {Number} jobType.id ID [observable]
- * @property {String} jobType.title Title [observable]
- * @property {Number} jobType.costCenterID Related cost center ID [observable]
+ * @property {Number} id Database ID
+ * @property {String} descr Description of project
+ * @property {Object} costCenterTitle Cost center title [observable]
+ * @property {String} jobTypeTitle Job type title [observable]
  * @property {String} title Project title [observable]
  * @property {String} priority Project priority [observable]
+ * @property {String} status Project status [observable]
  * @property {Number} [partCount=null] Project part count [observable]
  * @property {String} [descr=null] Project description [observable]
  * @property {String} [refNum=null] Project internal reference number [observable]
@@ -32,12 +28,13 @@ useStrict(true)
  * @property {String} [historyMsg=''] Time entry history message for Project [observable]
  */
 export default class ProjectModel {
-  constructor(id, costCenter, jobType, title, priority, dateCreated=null, partCount=null, descr=null, refNum=null, customer={}, dateFinished=null) {
+  constructor(id, costCenterTitle, jobTypeTitle, title, priority, status, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null) {
     let addtlProps = {
-      costCenter, // changeable?
-      jobType, // changeable?
+      costCenterTitle, // changeable?
+      jobTypeTitle, // changeable?
       title,
       priority,
+      status,
       // Optional
       partCount,
       descr,
@@ -55,6 +52,8 @@ export default class ProjectModel {
       tasks: [],
       historyMsg: '',
     }
+    if(!customer)
+      addtlProps.customer = {}
     if (dateFinished)
       addtlProps.dateFinished = new Date(dateFinished)
     extendObservable(this, addtlProps)
@@ -78,17 +77,6 @@ export default class ProjectModel {
   @computed get customerID(){
     if (this.customer) return this.customer.id
     else return null
-  }
-  /**
-   * @name status
-   * @description Calculates Project's current status
-   * @memberof ProjectModel.prototype
-   * @method status
-   * @return {String}
-   * @mobx computed
-   */
-  @computed get status(){
-    return 'Open|?|Closed'
   }
   /**
    * @name timeSpent

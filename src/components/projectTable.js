@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
 import { observer, inject } from 'mobx-react'
+import { SplitButton } from 'react-bootstrap'
+import {Checkbox, CheckboxGroup} from 'react-checkbox-group'
 import Table from './table'
 import TableModel from '../models/tableModel'
 import API from '../api'
 
 const highPriority = '#f4ba61'
 const medPriority = '#f4e261'
-const doneColor = '#ff2e00'
+const doneColor = '#49a4ff'
 const helpColor = '#ffbf00'
 const openColor = '#57d500'
 
@@ -22,7 +24,8 @@ export default class ProjectTable extends Component {
       },
       {
         Header: 'Created',
-        accessor: 'dateCreated',
+        id: 'dateCreated',
+        accessor: d => d.dateCreated.toString(),
         filterable: true
       },
       {
@@ -33,13 +36,12 @@ export default class ProjectTable extends Component {
       {
         id: 'customerName', // Required because our accessor is not a string
         Header: 'Customer Name',
-        accessor: d => d.customer.name,
+        accessor: d => d.customer.companyName,
         filterable: true
       },
       {
-        id: 'costCenter', // Required because our accessor is not a string
         Header: 'Cost Center',
-        accessor: d => d.costCenter.title,
+        accessor: 'costCenterTitle',
         filterable: true
       },
       {
@@ -56,40 +58,50 @@ export default class ProjectTable extends Component {
         Header: 'Status',
         accessor: 'status',
         filterable: true,
+        headerStyle:  {
+          overflow: 'visible',
+        },
         Cell: row => (
           <span>
             {/* TODO: adjust this to be accurate for values of fn*/}
             <span style={{
-              color: row.value === 'Closed' ? doneColor
-                : row.value === '?' ? helpColor
+              color: row.value === 'Completed' ? doneColor
+                : row.value === 'On Hold' ? helpColor
+                // Received, In Progress
                 : openColor,
               transition: 'all .3s ease'}}>
                 &#x25cf;
             </span>
-            {row.value}
+            {` ${row.value}`}
           </span>
         ),
         filterMethod: (filter, row) => {
-          if (filter.value === 'all') {
-            return true
-          }
-          if (filter.value === 'true') {
-            {/* TODO: adjust this to be accurate for values of fn*/}
-            return row[filter.id] == 'Open'
-          }
-          {/* TODO: adjust this to be accurate for values of fn*/}
-          return row[filter.id] != 'Open'
+          // filter.value.length==0: no filters selected
+          return filter.value.length == 0 || filter.value.includes(row[filter.id])
         },
-        Filter: ({ filter, onChange }) =>
-          <select
-            onChange={event => onChange(event.target.value)}
-            style={{ width: '100%' }}
-            value={filter ? filter.value : 'all'}
+        Filter: ({filter, onChange}) =>
+          <SplitButton
+            bsSize="small"
+            title='Filter'
+            id='split-button-small'
           >
-            <option value="all">Show All</option>
-            <option value="true">Open</option>
-            <option value="false">Closed</option>
-          </select>
+            <CheckboxGroup
+              name="Filters"
+              value={filter ? filter.value : []}
+              onChange={val => onChange(val)}
+            >
+              <label style={{marginLeft: '8px'}}><Checkbox value="Received"/> Received</label>
+              <br/>
+              <label style={{marginLeft: '8px'}}><Checkbox value="In Progress"/> In Progress</label>
+              <br/>
+              <label style={{marginLeft: '8px'}}><Checkbox value="On Hold"/> On Hold</label>
+              <br/>
+              <label style={{marginLeft: '8px'}}><Checkbox value="Completed"/> Completed</label>
+              <br/>
+              <label style={{marginLeft: '8px'}}><Checkbox value="Dropped"/> Dropped</label>
+              <br/>
+            </CheckboxGroup>
+          </SplitButton>
       },
       {
         Header: 'Actions',
@@ -141,10 +153,10 @@ export default class ProjectTable extends Component {
         content: 'This action cannot be undone.'
       },
       (state, rowInfo) => {
-        if (rowInfo && rowInfo.row._original.priority != 'low'){
+        if (rowInfo && rowInfo.row._original.priority != 'Low'){
           return {
             style: {
-              background: rowInfo.row._original.priority == 'high' ? highPriority : medPriority
+              background: rowInfo.row._original.priority == 'High' ? highPriority : medPriority
             }
           }
         }

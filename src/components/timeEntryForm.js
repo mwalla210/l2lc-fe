@@ -12,13 +12,23 @@ export default class CustomerForm extends Component {
         type: 'textfield',
         label: 'Project ID',
         id: 'id',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.length > 15)
+            return 'Error: the project ID is too long.'
+          return null
+        }
       },
       {
         type: 'textfield',
         label: 'Employee ID',
         id: 'id',
-        required: true
+        required: true,
+        validation: (value) => {
+          if (value.length > 15)
+            return 'Error: the employee ID is too long.'
+          return null
+        }
       }
     ]
     this.props.page.setFormModel(new FormModel(fields,

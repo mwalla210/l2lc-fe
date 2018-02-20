@@ -10,7 +10,6 @@ import TimeEntryForm from '../components/timeEntryForm'
 import EmployeeSummary from '../components/employeeSummary'
 import ProjectSummary from '../components/projectSummary'
 import CustomerSummary from '../components/customerSummary'
-
 useStrict(true)
 
 /**
@@ -215,7 +214,7 @@ class Page {
 
   /**
    * @name customerSummaryPage
-   * @description Updates title, form, table, content, and buttons for Customer Summary page
+   * @description Displays information about selected customer from Customer Information page entries.
    * @method customerSummaryPage
    * @memberof Page.prototype
    * @mobx action
@@ -227,12 +226,16 @@ class Page {
     this.form = null
     this.buttons = [
       {
+        title: 'Projects',
+        onClick: () => console.log('Use customer ID to get all the projects in a table')
+      },
+      {
         title: 'Edit',
         onClick: () => console.log('Go to edit customer page')
       },
       {
         title: 'Delete',
-        onClick: () => console.log('Confirm delete'),
+        onClick: () => console.log('Do we really want this button?'),
         class: 'btn-danger'
       },
     ]
@@ -267,7 +270,7 @@ class Page {
     this.title = 'Employee Productivity [Q3]'
     this.form = null
     this.table = null
-    this.content = <h1>insert analysis and graph</h1>
+    this.content = null
     this.buttons = []
   }
 
@@ -282,7 +285,7 @@ class Page {
     this.title = 'Workstation Tracking [Q3]'
     this.form = null
     this.table = null
-    this.content = <h1>insert analysis and graph</h1>
+    this.content = null
     this.buttons = []
   }
 
@@ -297,7 +300,7 @@ class Page {
     this.title = 'Job Type Productivity [Q3]'
     this.form = null
     this.table = null
-    this.content = <h1>insert analysis and graph</h1>
+    this.content = null
     this.buttons = []
   }
 
@@ -312,7 +315,7 @@ class Page {
     this.title = 'Cost Center Time [Q3]'
     this.form = null
     this.table = null
-    this.content = <h1>insert analysis and graph</h1>
+    this.content = null
     this.buttons = []
   }
 
@@ -402,7 +405,7 @@ class Page {
     this.title = 'Account Management [Q3]'
     this.form = null
     this.table = null
-    this.content = <h1>insert table</h1>
+    this.content = null
     this.buttons = []
   }
 
