@@ -329,6 +329,27 @@ class Page {
         content: 'This action cannot be undone.'
       },
     )
+    this.createNewProjMenuItem = this.createNewProjMenuItem.bind(this)
+    this.selectCustomerPage = this.selectCustomerPage.bind(this)
+    this.newCustomerPage = this.newCustomerPage.bind(this)
+    this.projectSummaryPage = this.projectSummaryPage.bind(this)
+    this.projectEditPage = this.projectEditPage.bind(this)
+    this.projectsMenuItem = this.projectsMenuItem.bind(this)
+    this.projectTimeEntryMenuItem = this.projectTimeEntryMenuItem.bind(this)
+    this.customerInfoMenuItem = this.customerInfoMenuItem.bind(this)
+    this.customerSummaryPage = this.customerSummaryPage.bind(this)
+    this.customerEditPage = this.customerEditPage.bind(this)
+    this.emplProductivityMenuItem = this.emplProductivityMenuItem.bind(this)
+    this.workstationTrackingMenuItem = this.workstationTrackingMenuItem.bind(this)
+    this.jobTypeProductivityMenuItem = this.jobTypeProductivityMenuItem.bind(this)
+    this.costCenterTimeMenuItem = this.costCenterTimeMenuItem.bind(this)
+    this.employeeInformationMenuItem = this.employeeInformationMenuItem.bind(this)
+    this.newEmployeePage = this.newEmployeePage.bind(this)
+    this.employeeEditPage = this.employeeEditPage.bind(this)
+    this.employeeSummaryPage = this.employeeSummaryPage.bind(this)
+    this.accountManagementMenuItem = this.accountManagementMenuItem.bind(this)
+    this.changeLogin = this.changeLogin.bind(this)
+    this.logOut = this.logOut.bind(this)
   }
 
   /*
@@ -619,8 +640,9 @@ class Page {
       },
       {
         title: 'Clear',
-        onClick: () => console.log('clear button onClick')
-      }
+        onClick: () => this.projectTimeEntryMenuItem()
+      },
+      true
     )
     this.buttons = []
     this.navHighlight = 'Time Entry'
