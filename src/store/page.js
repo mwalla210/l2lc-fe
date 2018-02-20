@@ -1028,12 +1028,12 @@ class Page {
      ]
      this.formModel = new FormModel(fields,
        {
-         title: 'Save',
-         onClick: () => console.log('onClick')
+         title: 'Continue',
+         onClick: () => this.employeeInformationMenuItem()
        },
        {
          title: 'Cancel',
-         onClick: () => console.log('onClick')
+         onClick: () => this.employeeInformationMenuItem()
        }
      )
      this.buttons = []
