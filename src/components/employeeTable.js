@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react'
 import Table from './table'
 import TableModel from '../models/tableModel'
 import API from '../api'
-import JsBarcode from 'jsbarcode'
+import Barcode from './barcode'
 
 @inject ('page', 'website') @observer
 export default class EmployeeTable extends Component {
@@ -31,12 +31,9 @@ export default class EmployeeTable extends Component {
         Cell: row => (
           <span>
             <span>
-              <img
-                onLoad={() => JsBarcode(`#${row.original.firstName}${row.original.id}`, `${row.original.id}`)}
-                id={`${row.original.firstName}${row.original.id}`}
-                src="../../style/open-iconic-master/svg/image.svg"
-                alt="image"
-              />
+              <Barcode
+                imageDomID={`${row.original.firstName}${row.original.id}`}
+                barcodeID={row.original.id.toString()}/>
             </span>
           </span>
         )
