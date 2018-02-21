@@ -25,8 +25,8 @@ export default class FieldModal extends Component {
             <Modal.Title>{this.props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="form-group">
-            <textarea className="form-control" id="modalTextArea" rows="3"></textarea>
+          <div className='form-group'>
+            <textarea className='form-control' id='modalTextArea' rows='3'></textarea>
           </div>
         </Modal.Body>
         <Modal.Footer>

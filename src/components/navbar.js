@@ -8,7 +8,7 @@ export default class NavBar extends Component{
   renderUser(){
     return (
       <Navbar.Text pullRight>
-        <img src="../../style/open-iconic-master/svg/person.svg" alt="person" style={{width: '16px', marginRight: '5px'}}/>
+        <img src='../../style/open-iconic-master/svg/person.svg' alt='person' style={{width: '16px', marginRight: '5px'}}/>
         {this.props.website.currentUser.username}
       </Navbar.Text>
     )
@@ -55,13 +55,13 @@ export default class NavBar extends Component{
               <NavItem onClick={() => this.props.page.customerInfoMenuItem()}>
                 Customer Information
               </NavItem>
-              <NavDropdown title="Analytics" id="basic-nav-dropdown">
+              <NavDropdown title='Analytics' id='basic-nav-dropdown'>
                 <MenuItem onClick={() => this.props.page.emplProductivityMenuItem()}>Employee Productivity</MenuItem>
                 <MenuItem onClick={() => this.props.page.workstationTrackingMenuItem()}>Workstation Tracking</MenuItem>
                 <MenuItem onClick={() => this.props.page.jobTypeProductivityMenuItem()}>Job Type Productivity</MenuItem>
                 <MenuItem onClick={() => this.props.page.costCenterTimeMenuItem()}>Cost Center Time</MenuItem>
               </NavDropdown>
-              <NavDropdown title="Admin" id="basic-nav-dropdown">
+              <NavDropdown title='Admin' id='basic-nav-dropdown'>
                 <MenuItem onClick={() => this.props.page.employeeInformationMenuItem()}>Employee Information</MenuItem>
                 <MenuItem onClick={() => this.props.page.accountManagementMenuItem()}>Account Information</MenuItem>
               </NavDropdown>

@@ -32,7 +32,9 @@ export default class FormModel {
       field.value = value
       field.isValid = true
       field.errorText = ''
-      field.disabled = false
+      // Set if not present
+      if (!field.disabled)
+        field.disabled = false
     })
     let addtlProps = {
       fields
@@ -44,6 +46,29 @@ export default class FormModel {
     this.autoSubmit = autoSubmit
     this.primaryButtonWrapper = this.primaryButtonWrapper.bind(this)
     this.modifyFieldValue = this.modifyFieldValue.bind(this)
+  }
+  /**
+   * @name resetValues
+   * @description Resets field values to defaults
+   * @method resetValues
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action resetValues(){
+    this.fields.forEach(field => {
+      let value = null
+      switch (field.type){ // default value
+        case 'select':
+        case 'textfield':
+        case 'textarea':
+          value = ''
+          break
+        case 'checkbox':
+          value = false
+          break
+      }
+      field.value = value
+    })
   }
   /**
    * @name buttonDisabled
@@ -121,7 +146,7 @@ export default class FormModel {
    */
    @action fieldValidatorWrapper(index){
     if (this.fields[index].validation){
-      let invalid = this.fields[index].validation(this.fields[index].value)
+      let invalid = this.fields[index].validation(this.fields[index].value.trim(), this.fields[index].required)
       if (!invalid){
         this.fields[index].isValid = true
       }
