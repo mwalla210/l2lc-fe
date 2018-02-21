@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { observer, inject } from 'mobx-react'
 import Table from './table'
 import TableModel from '../models/tableModel'
+import CircleButton from './circleButton'
 import API from '../api'
 
 @inject ('page', 'website') @observer
@@ -50,18 +51,14 @@ export default class CustomerTable extends Component {
         Cell: row => (
           <span>
             <span>
-              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+              <CircleButton iconName='info' onClick={() => {
                 this.props.website.setCustomer(row.original)
                 this.props.page.customerSummaryPage()
-              }}>
-                <img src="../../style/open-iconic-master/svg/info.svg" alt="info"/>
-              </button>
-              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+              }}/>
+              <CircleButton styleProps={{marginLeft: '2px'}} iconName='pencil' onClick={() => {
                 this.props.website.setCustomer(row.original)
                 this.props.page.customerEditPage()
-              }}>
-                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" style={{marginLeft: '2px'}}/>
-              </button>
+              }}/>
             </span>
           </span>
         )

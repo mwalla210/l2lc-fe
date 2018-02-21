@@ -4,6 +4,7 @@ import { SplitButton } from 'react-bootstrap'
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group'
 import Table from './table'
 import TableModel from '../models/tableModel'
+import CircleButton from './circleButton'
 import API from '../api'
 
 const highPriority = '#f4ba61'
@@ -81,24 +82,24 @@ export default class ProjectTable extends Component {
         },
         Filter: ({filter, onChange}) =>
           <SplitButton
-            bsSize="small"
+            bsSize='small'
             title='Filter'
             id='split-button-small'
           >
             <CheckboxGroup
-              name="Filters"
+              name='Filters'
               value={filter ? filter.value : []}
               onChange={val => onChange(val)}
             >
-              <label style={{marginLeft: '8px'}}><Checkbox value="Received"/> Received</label>
+              <label style={{marginLeft: '8px'}}><Checkbox value='Received'/> Received</label>
               <br/>
-              <label style={{marginLeft: '8px'}}><Checkbox value="In Progress"/> In Progress</label>
+              <label style={{marginLeft: '8px'}}><Checkbox value='In Progress'/> In Progress</label>
               <br/>
-              <label style={{marginLeft: '8px'}}><Checkbox value="On Hold"/> On Hold</label>
+              <label style={{marginLeft: '8px'}}><Checkbox value='On Hold'/> On Hold</label>
               <br/>
-              <label style={{marginLeft: '8px'}}><Checkbox value="Completed"/> Completed</label>
+              <label style={{marginLeft: '8px'}}><Checkbox value='Completed'/> Completed</label>
               <br/>
-              <label style={{marginLeft: '8px'}}><Checkbox value="Dropped"/> Dropped</label>
+              <label style={{marginLeft: '8px'}}><Checkbox value='Dropped'/> Dropped</label>
               <br/>
             </CheckboxGroup>
           </SplitButton>
@@ -118,24 +119,18 @@ export default class ProjectTable extends Component {
         Cell: row => (
           <span>
             <span>
-              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+              <CircleButton iconName='info' onClick={() => {
                 this.props.website.setProject(row.original)
                 this.props.page.projectSummaryPage()
-              }}>
-                <img src="../../style/open-iconic-master/svg/info.svg" alt="info"/>
-              </button>
-              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+              }}/>
+              <CircleButton iconName='pencil' onClick={() => {
                 this.props.website.setProject(row.original)
                 this.props.page.projectEditPage()
-              }}>
-                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" style={{marginLeft: '2px'}}/>
-              </button>
-              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+              }}/>
+              <CircleButton styleProps={{marginLeft: '2px'}} iconName='trash' onClick={() => {
                 this.props.website.setProject(row.original)
                 this.props.page.tableModel.openModal()
-              }}>
-                <img src="../../style/open-iconic-master/svg/trash.svg" alt="trash" style={{marginLeft: '2px'}}/>
-              </button>
+              }}/>
             </span>
           </span>
         )

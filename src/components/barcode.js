@@ -15,8 +15,8 @@ export default class Barcode extends Component {
       <img
         onLoad={() => JsBarcode(`#${this.props.imageDomID}`, `${this.props.barcodeID}`)}
         id={`${this.props.imageDomID}`}
-        src="../../style/open-iconic-master/svg/image.svg"
-        alt="image"
+        src='../../style/open-iconic-master/svg/image.svg'
+        alt='image'
       />
     )
   }

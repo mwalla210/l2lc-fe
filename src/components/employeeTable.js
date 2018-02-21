@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { observer, inject } from 'mobx-react'
 import Table from './table'
 import TableModel from '../models/tableModel'
+import CircleButton from './circleButton'
 import API from '../api'
 import Barcode from './barcode'
 
@@ -53,24 +54,18 @@ export default class EmployeeTable extends Component {
         Cell: row => (
           <span>
             <span>
-              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+              <CircleButton iconName='info' onClick={() => {
                 this.props.website.setEmployee(row.original)
                 this.props.page.employeeSummaryPage()
-              }}>
-                <img src="../../style/open-iconic-master/svg/info.svg" alt="info"/>
-              </button>
-              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+              }}/>
+              <CircleButton iconName='pencil' onClick={() => {
                 this.props.website.setEmployee(row.original)
                 this.props.page.employeeEditPage()
-              }}>
-                <img src="../../style/open-iconic-master/svg/pencil.svg" alt="pencil" />
-              </button>
-              <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={() => {
+              }}/>
+              <CircleButton styleProps={{marginLeft: '2px'}} iconName='trash' onClick={() => {
                 this.props.website.setEmployee(row.original)
                 this.props.page.tableModel.openModal()
-              }}>
-                <img src="../../style/open-iconic-master/svg/trash.svg" alt="trash" style={{marginLeft: '2px'}}/>
-              </button>
+              }}/>
             </span>
           </span>
         )
