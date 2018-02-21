@@ -38,8 +38,9 @@ export default class CustomerForm extends Component {
       },
       {
         title: 'Clear',
-        onClick: () => console.log('clear button onClick')
-      }
+        onClick: () => this.props.page.formModel.resetValues()
+      },
+      true
     ))
   }
 

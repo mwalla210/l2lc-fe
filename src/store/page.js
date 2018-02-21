@@ -451,6 +451,7 @@ class Page {
    * @name logOutModalOpen
    * @description Shows status of modal
    * @method logOutModalOpen
+   * @memberof Page.prototype
    * @return {Boolean}
    * @mobx computed
    */

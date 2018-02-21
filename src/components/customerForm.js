@@ -88,26 +88,6 @@ export default class CustomerForm extends Component {
           return null
         },
         onUpdate: (value) => {
-          if (value !== 'United States'){
-            return [
-              {
-                id: 'country',
-                required: true,
-                disabled: false
-              },
-              {
-                id: 'state',
-                options: ['Not Applicable'],
-                required: false,
-                disabled: true
-              },
-              {
-                id: 'zipCode',
-                required: false,
-                disabled: false
-              }
-            ]
-          }
           if (value == 'United States'){
             return [
               {
@@ -135,6 +115,24 @@ export default class CustomerForm extends Component {
               }
             ]
           }
+          return [
+            {
+              id: 'country',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'state',
+              options: ['Not Applicable'],
+              required: false,
+              disabled: true
+            },
+            {
+              id: 'zipCode',
+              required: false,
+              disabled: false
+            }
+          ]
         }
       },
       {
@@ -232,7 +230,7 @@ export default class CustomerForm extends Component {
         required: false,
         validation: null,
         onUpdate: (value) => {
-          if (value !== null){
+          if (value){
             return [
               {
                 id: 'billingRegion',
@@ -271,6 +269,43 @@ export default class CustomerForm extends Component {
               },
             ]
           }
+          return [
+            {
+              id: 'billingRegion',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'billingCountry',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'billingAddressLine1',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'billingAddressLine2',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'billingCity',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'billingState',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'billingZipCode',
+              required: true,
+              disabled: false
+            },
+          ]
         }
       },
       {
