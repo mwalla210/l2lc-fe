@@ -13,9 +13,10 @@ useStrict(true)
   * @property {Object} [secondaryButton] Forms secondary button properties
   * @property {String} secondaryButton.title Forms secondary button title
   * @property {Function} secondaryButton.onClick Forms secondary button onClick
+  * @property {Boolean} autoSubmit Forms auto-submit boolean
  */
 export default class FormModel {
-  constructor(fields, primaryButton, secondaryButton) {
+  constructor(fields, primaryButton, secondaryButton, autoSubmit) {
     fields.forEach(field => {
       let value = null
       switch (field.type){ // default value
@@ -40,6 +41,9 @@ export default class FormModel {
     // non-observable properties
     this.primaryButton = primaryButton
     this.secondaryButton = secondaryButton
+    this.autoSubmit = autoSubmit
+    this.primaryButtonWrapper = this.primaryButtonWrapper.bind(this)
+    this.modifyFieldValue = this.modifyFieldValue.bind(this)
   }
   /**
    * @name buttonDisabled
@@ -101,6 +105,10 @@ export default class FormModel {
           this.fields[fieldIndex].disabled = update.disabled
         }
       })
+    }
+    if(!this.buttonDisabled && this.autoSubmit)
+    {
+      this.primaryButtonWrapper()
     }
   }
   /**
