@@ -1,4 +1,3 @@
-import React from 'react'
 import { action, useStrict, extendObservable, observable, computed } from 'mobx'
 import CustomerTable from '../components/customerTable'
 import EmployeeTable from '../components/employeeTable'
