@@ -23,11 +23,11 @@ export default class CustomerForm extends Component {
         id: 'companyName',
         required: true,
         disabled: false,
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter a company name.'
-          else if (value.length > 30)
-            return 'Error: the company name is too long.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          if (value.length > 30)
+            return 'The company name must be less than 30 characters.'
           return null
         }
       },
@@ -37,12 +37,14 @@ export default class CustomerForm extends Component {
         id: 'emailAddress',
         required: true,
         disabled: false,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
-          if (reg.test(value.trim()) == false)
-            return 'Error: please enter a valid email address.'
-          else if (value.length > 30)
-            return 'Error: the email address is too long.'
+          if (value.length > 0 && reg.test(value) == false)
+            return 'Please enter a valid email address.'
+          if (value.length > 30)
+            return 'The email address must be less than 30 characters.'
           return null
         }
       },
@@ -52,11 +54,11 @@ export default class CustomerForm extends Component {
         id: 'phoneNumber',
         required: true,
         disabled: false,
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter a phone number.'
-          else if (value.length < 10) //could of put a regex here but international numbers have different formats
-            return 'Error: the phone number is too short.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a phone number.'
+          if (value.length < 10) //could of put a regex here but international numbers have different formats
+            return 'The phone number is too short.'
           return null
         }
       },
@@ -66,12 +68,14 @@ export default class CustomerForm extends Component {
         id: 'websiteLink',
         required: false,
         disabled: false,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           let reg = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
-          if (reg.test(value.trim()) == false)
-            return 'Error: please enter a valid website address.'
-          else if (value.length > 50)
-            return 'Error: the website address is too long.'
+          if (value.length > 0 && reg.test(value) == false)
+            return 'Please enter a valid website address.'
+          if (value.length > 50)
+            return 'The website address must be less than 50 characters.'
           return null
         }
       },
@@ -82,9 +86,9 @@ export default class CustomerForm extends Component {
         options: ['Select...','United States','Canada','Mexico','Europe','Asia','Africa'],
         required: true,
         disabled: false,
-        validation: (value) => {
-          if (value == 'Select...')
-            return 'Error: you must select a region.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select a region.'
           return null
         },
         onUpdate: (value) => {
@@ -141,11 +145,11 @@ export default class CustomerForm extends Component {
         id: 'country',
         required: false,
         disabled: false,
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter the country name.'
-          else if (value.length > 30)
-            return 'Error: the country name is too long.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          if (value.length > 30)
+            return 'The country name must be less than 30 characters.'
           return null
         }
       },
@@ -155,11 +159,11 @@ export default class CustomerForm extends Component {
         id: 'adressLine1',
         required: true,
         disabled: false,
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter the address.'
-          else if (value.length > 30)
-            return 'Error: the address is too long.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          if (value.length > 30)
+            return 'The address must be less than 30 characters.'
           return null
         }
       },
@@ -169,9 +173,11 @@ export default class CustomerForm extends Component {
         id: 'adressLine2',
         required: false,
         disabled: false,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 30)
-            return 'Error: the address is too long.'
+            return 'The address must be less than 30 characters.'
           return null
         }
       },
@@ -181,11 +187,11 @@ export default class CustomerForm extends Component {
         id: 'city',
         required: true,
         disabled: false,
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter the city.'
-          else if (value.length > 30)
-            return 'Error: the city name is too long.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          if (value.length > 30)
+            return 'The city name must be less than 30 characters.'
           return null
         }
       },
@@ -203,9 +209,9 @@ export default class CustomerForm extends Component {
           'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
         required: true,
         disabled: false,
-        validation: (value) => {
-          if (value.trim() == 'Select...')
-            return 'Error: please select the state.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select the state.'
           return null
         }
       },
@@ -215,17 +221,17 @@ export default class CustomerForm extends Component {
         id: 'zipCode',
         required: true,
         disabled: false,
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter the zip code.'
-          else if (value.length > 10)
-            return 'Error: the zip code is too long.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          if (value.length > 10)
+            return 'The zip code must be less than 10 characters.'
           return null
         }
       },
       {
         type: 'checkbox',
-        label: 'Billing Address is the SAME as the Shipping Address',
+        label: 'Billing address is same as shipping',
         id: 'enableShippingAddress',
         required: false,
         validation: null,
@@ -314,10 +320,10 @@ export default class CustomerForm extends Component {
         id: 'billingRegion',
         options: ['Select...','United States','Canada','Mexico','Europe','Asia','Africa'],
         required: false,
-        disabled: true,
-        validation: (value) => {
-          if (value == 'Select...')
-            return 'Error: you must select a region.'
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select a region.'
           return null
         },
         onUpdate: (value) => {
@@ -405,10 +411,12 @@ export default class CustomerForm extends Component {
         label: 'Country',
         id: 'billingCountry',
         required: false,
-        disabled: true,
-        validation: (value) => {
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 30)
-            return 'Error: the country name is too long.'
+            return 'The country name must be less than 30 characters.'
           return null
         }
       },
@@ -417,12 +425,12 @@ export default class CustomerForm extends Component {
         label: 'Address Line 1',
         id: 'billingAddressLine1',
         required: false,
-        disabled: true,
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter the address.'
-          else if (value.length > 30)
-            return 'Error: the address is too long.'
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          if (value.length > 30)
+            return 'The address must be less than 30 characters.'
           return null
         }
       },
@@ -431,10 +439,12 @@ export default class CustomerForm extends Component {
         label: 'Address Line 2',
         id: 'billingAddressLine2',
         required: false,
-        disabled: true,
-        validation: (value) => {
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 30)
-            return 'Error: the address is too long.'
+            return 'The address must be less than 30 characters.'
           return null
         }
       },
@@ -443,10 +453,12 @@ export default class CustomerForm extends Component {
         label: 'City',
         id: 'billingCity',
         required: false,
-        disabled: true,
-        validation: (value) => {
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 30)
-            return 'Error: the city name is too long.'
+            return 'The city name must be less than 30 characters.'
           return null
         }
       },
@@ -463,10 +475,10 @@ export default class CustomerForm extends Component {
           'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah',
           'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
         required: false,
-        disabled: true,
-        validation: (value) => {
-          if (value.trim() == 'Select...')
-            return 'Error: please select the state.'
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select the state.'
           return null
         }
       },
@@ -475,12 +487,12 @@ export default class CustomerForm extends Component {
         label: 'Zip Code',
         id: 'billingZipCode',
         required: false,
-        disabled: true,
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter the zip code.'
-          else if (value.length > 10)
-            return 'Error: the zip code is too long.'
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          if (value.length > 10)
+            return 'The zip code must be less than 10 characters.'
           return null
         }
       }

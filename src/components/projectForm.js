@@ -23,9 +23,9 @@ export default class ProjectForm extends Component {
         id: 'region',
         options: ['Select...','APC Job','Decorative Job','Maintenance','Administration','Production','Research and Development','Other'],
         required: true,
-        validation: (value) => {
-          if (value == 'Select...')
-            return 'Error: you must select a cost center.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select a cost center.'
           return null
         }
       },
@@ -35,9 +35,9 @@ export default class ProjectForm extends Component {
         id: 'projectType',
         options: ['Select...','based on cost center selected'],
         required: true,
-        validation: (value) => {
-          if (value == 'Select...')
-            return 'Error: you must select a project type.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select a project type.'
           return null
         }
       },
@@ -46,12 +46,14 @@ export default class ProjectForm extends Component {
         label: 'Part Count',
         id: 'partCount',
         required: true,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           let reg = /^\d+$/
           if (reg.test(value.trim()) == false)
-            return 'Error: please enter a valid number.'
-          else if (value.length > 4)
-            return 'Error: the part count number is too large.'
+            return 'Please enter a valid number.'
+          if (value.length > 4)
+            return 'The part count number must be less than 4 characters.'
           return null
         }
       },
@@ -60,11 +62,11 @@ export default class ProjectForm extends Component {
         label: 'Project Title',
         id: 'projectTitle',
         required: false, //NEED TO UPDATE BASED ON PREVIOUS SELECTIONS
-        validation: (value) => {
-          if (value.trim() == '')
-            return 'Error: please enter a project title.'
-          else if (value.length > 30)
-            return 'Error: the project title name is too long.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          if (value.length > 30)
+            return 'The project title name must be less than 30 characters.'
           return null
         }
       },
@@ -74,9 +76,9 @@ export default class ProjectForm extends Component {
         id: 'priority',
         options: ['Select...','Low','High'],
         required: true,
-        validation: (value) => {
-          if (value == 'Select...')
-            return 'Error: you must select a priority.'
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select a priority.'
           return null
         }
       },
@@ -85,9 +87,11 @@ export default class ProjectForm extends Component {
         label: 'Description',
         id: 'description',
         required: false,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 100)
-            return 'Error: the description is too long.'
+            return 'The description must be less than 100 characters.'
           return null
         }
       },
@@ -96,9 +100,11 @@ export default class ProjectForm extends Component {
         label: 'Reference Number',
         id: 'referenceNumber',
         required: false,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 30)
-            return 'Error: the reference number is too long.'
+            return 'The reference number must be less than 30 characters.'
           return null
         }
       },

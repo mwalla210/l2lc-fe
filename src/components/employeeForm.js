@@ -22,9 +22,11 @@ export default class EmployeeForm extends Component {
         label: 'First Name',
         id: 'firstName',
         required: true,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 30)
-            return 'Error: the first name is too long.'
+            return 'The first name must be less than 30 characters.'
           return null
         }
       },
@@ -33,9 +35,11 @@ export default class EmployeeForm extends Component {
         label: 'Last Name',
         id: 'lastName',
         required: true,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 30)
-            return 'Error: the last name is too long.'
+            return 'The last name must be less than 30 characters.'
           return null
         }
       },

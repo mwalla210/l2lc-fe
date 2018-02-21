@@ -13,9 +13,11 @@ export default class CustomerForm extends Component {
         label: 'Project ID',
         id: 'id',
         required: true,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 15)
-            return 'Error: the project ID is too long.'
+            return 'The project ID must be less than 15 characters.'
           return null
         }
       },
@@ -24,9 +26,11 @@ export default class CustomerForm extends Component {
         label: 'Employee ID',
         id: 'id',
         required: true,
-        validation: (value) => {
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
           if (value.length > 15)
-            return 'Error: the employee ID is too long.'
+            return 'The employee ID must be less than 15 characters.'
           return null
         }
       }

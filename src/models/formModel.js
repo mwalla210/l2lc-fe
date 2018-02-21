@@ -146,7 +146,7 @@ export default class FormModel {
    */
    @action fieldValidatorWrapper(index){
     if (this.fields[index].validation){
-      let invalid = this.fields[index].validation(this.fields[index].value)
+      let invalid = this.fields[index].validation(this.fields[index].value.trim(), this.fields[index].required)
       if (!invalid){
         this.fields[index].isValid = true
       }

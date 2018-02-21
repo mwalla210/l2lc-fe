@@ -20,8 +20,8 @@ export default class FormItem extends Component {
     }
     return (
       <div className='form-group'>
-        <div className='alert alert-danger' role='alert' {...style}>
-          <strong>{this.props.errorText}</strong>
+        <div className='alert alert-warning' role='alert' {...style}>
+          <strong>Warning!</strong>{` ${this.props.errorText}`}
         </div>
         <label>{this.props.label}</label> {(this.props.required) ? <span style={{color: 'red'}}> *</span> : null}
         {this.props.children}
