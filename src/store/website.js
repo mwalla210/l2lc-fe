@@ -146,6 +146,16 @@ class Website {
     // })
   }
 
+
+  @action async createTimeEntry(){
+    let timeEnter = {
+      employeeId: 1,
+      station: 'Receiving'
+    }
+    let jsonTime = JSON.stringify(timeEnter)
+    let response = await API.create('project/1/time-entry/create', jsonTime)
+    console.log(response)
+  }
   // Utilities
 
   /**
