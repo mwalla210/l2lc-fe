@@ -17,17 +17,7 @@ export default class API {
       let customers = []
       // For each returned json object...
       json.items.forEach(item => {
-        let addrIsSame = false
-        let addtl = []
-        // Check if addresses match each other
-        if (API.addressIsSame(item.shippingAddr, item.billingAddr))
-          addrIsSame = true
-        // If not, send billing info as args
-        else {
-          addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
-        }
-        // Construct model
-        let customer = new CustomerModel(item.id, item.name, item.shippingAddr.street, null, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, addrIsSame, ...addtl)
+        let customer = API.customerCreate(item)
         // Add to list
         customers.push(customer)
       })
@@ -36,13 +26,53 @@ export default class API {
     })
   }
 
-  static fetchProjects(){
-    return fetch(`${api}customer?limit=50&offset=0`)
+  static customerCreate(item){
+    let addrIsSame = false
+    let addtl = []
+    // Check if addresses match each other
+    if (API.addressIsSame(item.shippingAddr, item.billingAddr))
+      addrIsSame = true
+    // If not, send billing info as args
+    else {
+      addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
+    }
+    // Construct model
+    let customer = new CustomerModel(item.id, item.name, item.shippingAddr.street, null, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, addrIsSame, ...addtl)
+    return customer
+  }
+
+  static fetchCustomer(id){
+    return fetch(`${api}customer/${id}`)
     .then(res => res.json())
     .then(json => {
-      console.log(json)
-      let model = new ProjectModel(1, {id: 1, title: 'cctitle'}, {id: 1, title: 'jttitle'}, 'title', 'priority')
-      return [model]
+      let customer = null
+      if (json.id == id){
+        customer = API.customerCreate(json)
+      }
+      return customer
+    })
+  }
+
+  static addressIsSame(addr1, addr2){
+    return JSON.stringify(addr1) === JSON.stringify(addr2)
+  }
+
+  static fetchProjects(){
+    return fetch(`${api}project?limit=50&offset=0`)
+    .then(res => res.json())
+    .then(json => {
+      let projects = []
+      json.items.forEach(item => {
+        if (item.projectStatus != 'Dropped')
+          projects.push(item)
+      })
+      projects = projects.map(item => {
+        if (item.customer)
+          item.customer.companyName = item.customer.name
+        let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
+        return project
+      })
+      return projects
     })
   }
 
@@ -58,10 +88,6 @@ export default class API {
       })
       return employees
     })
-  }
-
-  static addressIsSame(addr1, addr2){
-    return JSON.stringify(addr1) === JSON.stringify(addr2)
   }
 
   static create(endpoint, body){

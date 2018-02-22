@@ -22,7 +22,7 @@ export default class PromptModal extends Component {
         className: this.props.confirmClass
       }
     return (
-      <Modal bsSize="small" show={this.props.open} onHide={() => this.props.closeFn()}>
+      <Modal bsSize='small' show={this.props.open} onHide={() => this.props.closeFn()}>
         <Modal.Header closeButton>
           <Modal.Title>{this.props.title}</Modal.Title>
         </Modal.Header>

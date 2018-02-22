@@ -11,10 +11,10 @@ export default class DeleteModal extends PromptModal {
 
   render(){
     return (
-      <Modal bsSize="small" show={this.props.open} onHide={() => this.props.closeFn()}>
+      <Modal bsSize='small' show={this.props.open} onHide={() => this.props.closeFn()}>
         <Modal.Header closeButton className='bg-danger'>
           <Modal.Title className='text-danger'>
-            <img src="../../style/open-iconic-master/svg/warning.svg" alt="warning" style={{width: '14px', marginRight: '3px', marginTop: '-2px'}}/>
+            <img src='../../style/open-iconic-master/svg/warning.svg' alt='warning' style={{width: '14px', marginRight: '3px', marginTop: '-2px'}}/>
             {this.props.title}
           </Modal.Title>
         </Modal.Header>

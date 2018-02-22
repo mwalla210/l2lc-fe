@@ -151,6 +151,23 @@ class Website {
     // })
   }
 
+  /**
+   * @name createTimeEntry
+   * @description Sends the formatted time entry in POST to API to add entry to database
+   * @memberof Website.prototype
+   * @method createTimeEntry
+   * @mobx action
+   * @todo Implement function; pass/format input
+   */
+  @action async createTimeEntry(){
+    let timeEnter = {
+      employeeId: 1,
+      station: 'Receiving'
+    }
+    let jsonTime = JSON.stringify(timeEnter)
+    let response = await API.create('project/1/time-entry/create', jsonTime)
+    console.log(response)
+  }
   // Utilities
 
   /**
