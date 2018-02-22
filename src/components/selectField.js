@@ -24,6 +24,7 @@ export default class SelectField extends Component {
         errorText={this.props.errorText}
         label={this.props.label}
         required={this.props.required}
+        disabled={this.props.disabled}
       >
         <select disabled={this.props.disabled} className='form-control' id={this.props.id}
           value={this.props.value}
