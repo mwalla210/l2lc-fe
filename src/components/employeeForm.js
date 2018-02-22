@@ -50,7 +50,7 @@ export default class EmployeeForm extends Component {
         body[item.id] = item.value.trim()
       })
       this.props.website.createEmployee(body)
-      .then(() => this.employeeSummaryPage())
+      .then(() => this.props.page.employeeSummaryPage())
     }
     if (this.props.edit){
       // Change onClick functionality for primary

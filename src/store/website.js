@@ -131,19 +131,14 @@ class Website {
    * @method createEmployee
    * @param  {Employee}       employee Finalized Employee to create in database
    * @mobx action
-   * @todo Implement function
    */
-  @action async createEmployee(employee){
+  @action createEmployee(employee){
     let jsonEmployee = JSON.stringify(employee)
     console.log('Create employee entry in API with:', jsonEmployee)
-    let response = await API.create('employee/create', jsonEmployee)
-    this.setEmployee(new EmployeeModel(response.id, response.firstName, response.lastName))
-    console.log(this.currentEmployee)
-    // let employees = []
-    // json.items.forEach(item => {
-    //   let employee = new EmployeeModel(item.id, item.firstName, item.lastName)
-    //   employees.push(employee)
-    // })
+    return API.createEmployee(jsonEmployee)
+    .then(response => {
+      this.setEmployee(response)
+    })
   }
 
   /**
