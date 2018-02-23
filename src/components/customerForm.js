@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 import Form from './form'
 import FormModel from '../models/formModel'
 
-@inject ('page', 'website') @observer
+@inject ('page', 'website')
 export default class CustomerForm extends Component {
   static propTypes = {
     edit: PropTypes.bool
