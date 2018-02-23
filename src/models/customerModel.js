@@ -10,7 +10,7 @@ useStrict(true)
  * @property {String} [email=''] Email of Customer [observable]
  * @property {String} [website=''] Website of Customer [observable]
  * @property {String} [phone=''] Phone of Customer [observable]
- * @property {Boolean} [pastDue = false] Indicator of overdue bills for Customer [observable]
+ * @property {Boolean} pastDue Indicator of overdue bills for Customer [observable]
  * @property {Object} shipAddr Shipping address object for Customer [observable]
  * @property {String} shipAddr.shipAddr1 Line one of shipping address for Customer [observable]
  * @property {String} [shipAddr.shipAddr2=''] Line two of shipping address for Customer [observable]
@@ -28,10 +28,11 @@ useStrict(true)
  * @property {Boolean} [billIsSame=false] Indicator that billing address is same as shipping address for Customer [observable]
  */
 export default class CustomerModel {
-  constructor(id, companyName, shipAddr1, shipAddr2, shipCity, shipState, shipCountry, shipZip, email, phone, website, billIsSame, billAddr1, billAddr2, billCity, billState, billCountry, billZip) {
+  constructor(id, companyName, shipAddr1, shipAddr2, shipCity, shipState, shipCountry, shipZip, email, phone, website, pastDue, billIsSame, billAddr1, billAddr2, billCity, billState, billCountry, billZip) {
     let addtlProps = {
       companyName,
       billIsSame,
+      pastDue,
       shipAddr: {
         // Required
         shipAddr1,
