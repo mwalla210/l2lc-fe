@@ -156,7 +156,7 @@ export default class CustomerForm extends Component {
       {
         type: 'textfield',
         label: 'Address Line 1',
-        id: 'adressLine1',
+        id: 'addressLine1',
         required: true,
         disabled: false,
         validation: (value, required) => {
@@ -170,7 +170,7 @@ export default class CustomerForm extends Component {
       {
         type: 'textfield',
         label: 'Address Line 2',
-        id: 'adressLine2',
+        id: 'addressLine2',
         required: false,
         disabled: false,
         validation: (value, required) => {
@@ -512,7 +512,7 @@ export default class CustomerForm extends Component {
         email: valueReturn('emailAddress').trim(),
         website: valueReturn('websiteLink').trim(),
         shippingAddr: {
-          street: `${valueReturn('adressLine1').trim()} ${valueReturn('adressLine2').trim()}`,
+          street: `${valueReturn('addressLine1').trim()} ${valueReturn('addressLine2').trim()}`,
           city: valueReturn('city').trim(),
           state: valueReturn('state').trim(),
           country: valueReturn('region').trim(),
