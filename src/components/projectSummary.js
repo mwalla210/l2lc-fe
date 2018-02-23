@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 
-@inject ('website') @observer
+@inject ('website')
 export default class ProjectSummary extends Component {
   render() {
     return (

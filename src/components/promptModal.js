@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
 import { Modal, Button } from 'react-bootstrap'
 
-@observer
 export default class PromptModal extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,

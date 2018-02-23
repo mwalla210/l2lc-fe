@@ -1,9 +1,7 @@
 import React from 'react'
-import { observer } from 'mobx-react'
 import { Modal, Button } from 'react-bootstrap'
 import PromptModal from './promptModal'
 
-@observer
 export default class DeleteModal extends PromptModal {
   static defaultProps = {
     confirmClass: 'btn-danger'

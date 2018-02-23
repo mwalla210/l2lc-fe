@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 
-@inject ('page') @observer
+@inject ('page')
 export default class Login extends Component {
   activateLasers(){
     this.props.page.changeLogin()
