@@ -10,7 +10,7 @@ export default class CustomerSummary extends Component {
         <p>{`Company Name: ${this.props.website.currentCustomer.companyName}`}</p>
         <p>{`Phone Number: ${this.props.website.currentCustomer.phone}`}</p>
         <p>{`Email: ${this.props.website.currentCustomer.email}`}</p>
-        <p>{`this.props.website: ${this.props.website.currentCustomer.website}`}</p>
+        <p>{`Website: ${this.props.website.currentCustomer.website}`}</p>
         <p>{`Ship addr: ${this.props.website.currentCustomer.formattedShipAddress}`}</p>
         <p>{`Bill addr: ${this.props.website.currentCustomer.formattedBillAddress}`}</p>
         <p>{`Past due: ${this.props.website.currentCustomer.pastDue}`}</p>
