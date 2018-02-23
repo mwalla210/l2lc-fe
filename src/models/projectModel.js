@@ -12,12 +12,12 @@ useStrict(true)
  * @property {String} title Project title [observable]
  * @property {String} priority Project priority [observable]
  * @property {String} status Project status [observable]
- * @property {Number} [partCount=null] Project part count [observable]
- * @property {String} [descr=null] Project description [observable]
- * @property {String} [refNum=null] Project internal reference number [observable]
+ * @property {?Number} [partCount=null] Project part count [observable]
+ * @property {?String} [descr=null] Project description [observable]
+ * @property {?String} [refNum=null] Project internal reference number [observable]
  * @property {Customer} [customer={}] Project Customer (defaults to empty object for table display) [observable]
- * @property {Date} [dateCreated=null] Project date created
- * @property {Date} [dateFinished=null] Project date finished [observable]
+ * @property {?Date} [dateCreated=null] Project date created
+ * @property {?Date} [dateFinished=null] Project date finished [observable]
  * @property {String} [processArea=''] Project last process area [observable]
  * @property {Object} [hold] Hold object [observable]
  * @property {Boolean} hold.flag Hold indicator (true: on hold) [observable]

@@ -9,7 +9,7 @@ useStrict(true)
  * @property {String} firstName First name of Employee [observable]
  * @property {String} lastName Last name of Employee [observable]
  * @property {Boolean} [active=false] Indicator of Employee's active status [observable]
- * @property {String} [editName=null] Stores potential name changes while editing [observable]
+ * @property {?String} [editName=null] Stores potential name changes while editing [observable]
  */
 export default class EmployeeModel {
   constructor(id, firstName, lastName) {

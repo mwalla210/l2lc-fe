@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 import FormItem from './formItem'
 
-@inject('page') @observer
+@inject('page')
 export default class CheckboxField extends Component {
   static propTypes = {
     isValid: PropTypes.bool.isRequired,

@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 import Table from './table'
 import TableModel from '../models/tableModel'
 import CircleButton from './circleButton'
 import API from '../api'
 
-@inject ('page', 'website') @observer
+@inject ('page', 'website')
 export default class CustomerTable extends Component {
   constructor(props){
     super(props)

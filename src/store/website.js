@@ -8,14 +8,14 @@ useStrict(true)
  * @class Website
  * @classdesc Main MobX store for website
  * @todo Add Analytic models & reference
- * @property {Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
- * @property {Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
- * @property {Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
- * @property {User} [currentUser=null] Current User in state, or last focused User. [observable]
- * @property {Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
+ * @property {?Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
+ * @property {?Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
+ * @property {?User} [currentUser=null] Current User in state, or last focused User. [observable]
+ * @property {?Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  */
 class Website {
   constructor() {

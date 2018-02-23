@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { observer, inject, PropTypes as MobXPropTypes } from 'mobx-react'
+import { inject, PropTypes as MobXPropTypes } from 'mobx-react'
 import FormItem from './formItem'
 
-@inject('page') @observer
+@inject('page')
 export default class SelectField extends Component {
   static propTypes = {
     isValid: PropTypes.bool.isRequired,
