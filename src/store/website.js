@@ -124,10 +124,11 @@ class Website {
    */
   @action async createCustomer(customer){
     let jsonCustomer = JSON.stringify(customer)
-    console.log('Create employee entry in API with:', jsonCustomer)
-    let response = await API.create('customer/create',jsonCustomer)
-    this.setCustomer(new CustomerModel(response.id, response.name, response.email, response.website, response.shippingAddr, response.billingAddr, response.phoneNumber))
-    console.log(this.currentCustomer)
+    console.log('Create customer entry in API with:', jsonCustomer)
+    return API.createCustomer(jsonCustomer)
+    .then(response => {
+      this.setCustomer(response)
+    })
   }
   /**
    * @name createEmployee

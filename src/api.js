@@ -41,8 +41,10 @@ export default class API {
   }
 
   static createCustomer(customer){
-    let response = API.create('customer/create', customer)
-    return API.customerModelize(response)
+    return API.create('customer/create', customer)
+    .then(response => {
+      return API.customerModelize(response)
+    })
   }
 
   static customerModelize(item){
@@ -116,10 +118,7 @@ export default class API {
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
-    }).then(res => {
-      console.log(res)
-      return res.json()
-    })
+    }).then(res => res.json())
     .then(json => {
       console.log('json',json)
       return json
