@@ -10,6 +10,8 @@ export default class API {
   // Fetch always converts res into json, then makes use of json obj
   // Fetches for tables MUST convert their data to the proper model in the final .then statement (use fetchCustomers as an example of this)
 
+  // Customers
+
   static fetchCustomers(){
     return fetch(`${api}customer?limit=50&offset=0`)
     .then(res => res.json())
@@ -17,7 +19,7 @@ export default class API {
       let customers = []
       // For each returned json object...
       json.items.forEach(item => {
-        let customer = API.customerCreate(item)
+        let customer = API.customerModelize(item)
         // Add to list
         customers.push(customer)
       })
@@ -26,7 +28,24 @@ export default class API {
     })
   }
 
-  static customerCreate(item){
+  static fetchCustomer(id){
+    return fetch(`${api}customer/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      let customer = null
+      if (json.id == id){
+        customer = API.customerModelize(json)
+      }
+      return customer
+    })
+  }
+
+  static createCustomer(customer){
+    let response = API.create('customer/create', customer)
+    return API.customerModelize(response)
+  }
+
+  static customerModelize(item){
     let addrIsSame = false
     let addtl = []
     // Check if addresses match each other
@@ -39,18 +58,6 @@ export default class API {
     // Construct model
     let customer = new CustomerModel(item.id, item.name, item.shippingAddr.street, null, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, addrIsSame, ...addtl)
     return customer
-  }
-
-  static fetchCustomer(id){
-    return fetch(`${api}customer/${id}`)
-    .then(res => res.json())
-    .then(json => {
-      let customer = null
-      if (json.id == id){
-        customer = API.customerCreate(json)
-      }
-      return customer
-    })
   }
 
   static addressIsSame(addr1, addr2){
@@ -76,6 +83,12 @@ export default class API {
     })
   }
 
+  // Employees
+
+  static employeeModelize(item){
+    return new EmployeeModel(item.id, item.firstName, item.lastName)
+  }
+
   static fetchEmployees(){
     return fetch(`${api}employee?limit=50&offset=0`)
     .then(res => res.json())
@@ -83,19 +96,30 @@ export default class API {
       console.log(json)
       let employees = []
       json.items.forEach(item => {
-        let employee = new EmployeeModel(item.id, item.firstName, item.lastName)
-        employees.push(employee)
+        employees.push(API.employeeModelize(item))
       })
       return employees
     })
   }
+
+  static createEmployee(employee){
+    return API.create('employee/create', employee)
+    .then(response => {
+      return API.employeeModelize(response)
+    })
+  }
+
+  // Generic
 
   static create(endpoint, body){
     return fetch(`${api}${endpoint}`, {
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
-    }).then(res => res.json())
+    }).then(res => {
+      console.log(res)
+      return res.json()
+    })
     .then(json => {
       console.log('json',json)
       return json
