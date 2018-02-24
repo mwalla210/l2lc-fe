@@ -1,6 +1,4 @@
 import { action, useStrict, extendObservable } from 'mobx'
-import EmployeeModel from '../models/employeeModel'
-import CustomerModel from '../models/customerModel'
 import API from '../api'
 useStrict(true)
 
