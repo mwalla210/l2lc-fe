@@ -23,6 +23,7 @@ export default class CheckboxField extends Component {
         errorText={this.props.errorText}
         label={this.props.label}
         required={this.props.required}
+        disabled={this.props.disabled}
       >
         <input
           className='form-check-input'

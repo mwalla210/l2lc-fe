@@ -156,7 +156,7 @@ export default class CustomerForm extends Component {
       {
         type: 'textfield',
         label: 'Address Line 1',
-        id: 'adressLine1',
+        id: 'addressLine1',
         required: true,
         disabled: false,
         validation: (value, required) => {
@@ -170,7 +170,7 @@ export default class CustomerForm extends Component {
       {
         type: 'textfield',
         label: 'Address Line 2',
-        id: 'adressLine2',
+        id: 'addressLine2',
         required: false,
         disabled: false,
         validation: (value, required) => {
@@ -497,7 +497,43 @@ export default class CustomerForm extends Component {
         }
       }
     ]
-    let primaryOnClick = (fields) => console.log('CREATE with', fields)
+    let primaryOnClick = (fields) => {
+      let valueReturn = (id) => {
+        let val
+        fields.forEach(item => {
+          if (item.id == id){
+            val = item.value
+          }
+        })
+        return val
+      }
+      let body = {
+        name: valueReturn('companyName').trim(),
+        email: valueReturn('emailAddress').trim(),
+        website: valueReturn('websiteLink').trim(),
+        shippingAddr: {
+          street: `${valueReturn('addressLine1').trim()} ${valueReturn('addressLine2').trim()}`,
+          city: valueReturn('city').trim(),
+          state: valueReturn('state').trim(),
+          country: valueReturn('region').trim(),
+          zip: valueReturn('zipCode').trim()
+        },
+        isPastDue: false,
+        phoneNumber: valueReturn('phoneNumber').trim(),
+      }
+      if (valueReturn('enableShippingAddress'))
+        body.billingAddr = body.shippingAddr
+      else
+        body.billingAddr = {
+          street: `${valueReturn('billingAddressLine1').trim()} ${valueReturn('billingAddressLine2').trim()}`,
+          city: valueReturn('billingCity').trim(),
+          state: valueReturn('billingState').trim(),
+          country: valueReturn('billingRegion').trim(),
+          zip: valueReturn('billingZipCode').trim()
+        }
+        this.props.website.createCustomer(body)
+        .then(() => this.props.page.customerSummaryPage())
+    }
     if (this.props.edit){
       // Change onClick functionality for primary
       primaryOnClick = (fields) => console.log('EDIT with', fields)

@@ -41,8 +41,10 @@ export default class API {
   }
 
   static createCustomer(customer){
-    let response = API.create('customer/create', customer)
-    return API.customerModelize(response)
+    return API.create('customer/create', customer)
+    .then(response => {
+      return API.customerModelize(response)
+    })
   }
 
   static customerModelize(item){

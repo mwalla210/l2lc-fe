@@ -1,5 +1,6 @@
 import { action, useStrict, extendObservable } from 'mobx'
 import EmployeeModel from '../models/employeeModel'
+import CustomerModel from '../models/customerModel'
 import API from '../api'
 useStrict(true)
 
@@ -121,8 +122,13 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action createCustomer(customer){
-    console.log(`Create customer entry in API with: ${customer}`)
+  @action async createCustomer(customer){
+    let jsonCustomer = JSON.stringify(customer)
+    console.log('Create customer entry in API with:', jsonCustomer)
+    return API.createCustomer(jsonCustomer)
+    .then(response => {
+      this.setCustomer(response)
+    })
   }
   /**
    * @name createEmployee
