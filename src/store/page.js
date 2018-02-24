@@ -17,12 +17,12 @@ useStrict(true)
  * @classdesc Main MobX store for page
  * @property {Boolean} [loggedin=false] Indicates whether currently logged in [observable]
  * @property {String} [title='Default Title'] Page title [observable]
- * @property {Object} [content=null] Page inner content [observable]
- * @property {TableModel} [tableModel=null] Page table model, if any [observable]
- * @property {Component} [table=null] Page-specific table component to render, if any [observable]
- * @property {FormModel} [formModel=null] Page form model, if any [observable]
- * @property {Boolean} [formEdit=false] Indicator for form editing [observable]
- * @property {Component} [form=null] Page-specific table component to render, if any [observable]
+ * @property {?Object} [content=null] Page inner content [observable]
+ * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
+ * @property {?Component} [table=null] Page-specific table component to render, if any [observable]
+ * @property {?FormModel} [formModel=null] Page form model, if any [observable]
+ * @property {?Boolean} [formEdit=false] Indicator for form editing [observable]
+ * @property {?Component} [form=null] Page-specific table component to render, if any [observable]
  * @property {Array} [buttons=[]] Page button set [observable]
  */
 class Page {

@@ -7,7 +7,7 @@ useStrict(true)
  * @classdesc User storage object
  * @property {Number} id Database ID of the user
  * @property {String} username Username of the user [observable]
- * @property {String} [stationID=null] Station name of the user, if any [observable]
+ * @property {?String} [stationID=null] Station name of the user, if any [observable]
  * @property {Boolean} [admin=false] Admin indicator of user [observable]
  */
 export default class UserModel {

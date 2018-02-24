@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 import FormItem from './formItem'
 
-@inject('page') @observer
+@inject('page')
 export default class TextField extends Component {
   static propTypes = {
     isValid: PropTypes.bool.isRequired,
@@ -23,6 +23,7 @@ export default class TextField extends Component {
         errorText={this.props.errorText}
         label={this.props.label}
         required={this.props.required}
+        disabled={this.props.disabled}
       >
         <input
           disabled={this.props.disabled}

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 import Form from './form'
 import FormModel from '../models/formModel'
 
-@inject ('page') @observer
-export default class CustomerForm extends Component {
+@inject ('page')
+export default class TimeEntryForm extends Component {
   constructor(props){
     super(props)
     let fields = [

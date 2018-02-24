@@ -6,7 +6,7 @@ useStrict(true)
  * @class TaskModel
  * @classdesc Task storage object
  * @property {Boolean} [required=false] Indicates whether the task is required [observable]
- * @property {String} [processArea=null] Process area associated with the task [observable]
+ * @property {?String} [processArea=null] Process area associated with the task [observable]
  * @property {String} title Title of the task [observable]
  * @property {String} [status=''] Current task status [observable]
  */

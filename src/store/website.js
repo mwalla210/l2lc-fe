@@ -7,14 +7,14 @@ useStrict(true)
  * @class Website
  * @classdesc Main MobX store for website
  * @todo Add Analytic models & reference
- * @property {Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
- * @property {Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
- * @property {Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
- * @property {User} [currentUser=null] Current User in state, or last focused User. [observable]
- * @property {Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
+ * @property {?Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
+ * @property {?Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
+ * @property {?User} [currentUser=null] Current User in state, or last focused User. [observable]
+ * @property {?Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  */
 class Website {
   constructor() {
@@ -120,8 +120,13 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action createCustomer(customer){
-    console.log(`Create customer entry in API with: ${customer}`)
+  @action async createCustomer(customer){
+    let jsonCustomer = JSON.stringify(customer)
+    console.log('Create customer entry in API with:', jsonCustomer)
+    return API.createCustomer(jsonCustomer)
+    .then(response => {
+      this.setCustomer(response)
+    })
   }
   /**
    * @name createEmployee

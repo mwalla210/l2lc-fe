@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
-import { observer, inject } from 'mobx-react'
+import { inject } from 'mobx-react'
 import Barcode from './barcode'
 
-@inject ('website') @observer
+@inject ('website')
 export default class EmployeeSummary extends Component {
   render() {
     return (

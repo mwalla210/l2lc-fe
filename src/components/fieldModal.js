@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
 import { Modal, Button } from 'react-bootstrap'
 
-@observer
 export default class FieldModal extends Component {
   //  Input field: has default bottom close button, provide title, submit button (with title, onClick)
   //    Add hold, rework

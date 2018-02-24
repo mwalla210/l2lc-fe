@@ -70,6 +70,10 @@ export default class Table extends Component {
           data={this.props.page.tableModel.data.slice()}
           columns={this.props.page.tableModel.columns}
           loading={this.props.page.tableModel.loading}
+          defaultFilterMethod={(filter, row, column) => {
+            const id = filter.pivotId || filter.id
+            return (row[id] !== undefined) ? String(row[id]).includes(filter.value) : false
+          }}
           {...rowSelect}
           {...rowStyling}
         />
