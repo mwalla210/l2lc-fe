@@ -17,6 +17,7 @@ export default class API {
     .then(res => res.json())
     .then(json => {
       let customers = []
+      console.log(json.items)
       // For each returned json object...
       json.items.forEach(item => {
         let customer = API.customerModelize(item)
@@ -51,12 +52,13 @@ export default class API {
     let addrIsSame = false
     let addtl = []
     // Check if addresses match each other
-    if (API.addressIsSame(item.shippingAddr, item.billingAddr))
-      addrIsSame = true
-    // If not, send billing info as args
-    else {
-      addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
+    if (item.billingAddr){
+      addrIsSame = API.addressIsSame(item.shippingAddr, item.billingAddr)
+      if (!addrIsSame)
+        addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
     }
+    else
+      addrIsSame = true
     // Construct model
     let customer = new CustomerModel(item.id, item.name, item.shippingAddr.street, null, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)
     return customer
