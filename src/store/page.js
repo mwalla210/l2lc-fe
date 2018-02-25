@@ -120,7 +120,7 @@ class Page {
    * @mobx action
    */
   @action projectSummaryPage(){
-    this.title = ''
+    this.title = 'Project Sumaary'
     this.table = null
     this.content = ProjectSummary
     this.form = null
@@ -128,6 +128,10 @@ class Page {
       {
         title: 'Tasks',
         onClick: () => console.log('Go to tasks page')
+      },
+      {
+        title: 'Print',
+        onClick: () => console.log('Go to print page')
       },
       {
         title: 'Edit Information',
