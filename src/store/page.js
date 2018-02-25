@@ -1,14 +1,16 @@
 import { action, useStrict, extendObservable, observable, computed } from 'mobx'
-import CustomerTable from '../components/customerTable'
-import EmployeeTable from '../components/employeeTable'
-import ProjectTable from '../components/projectTable'
-import CustomerForm from '../components/customerForm'
-import EmployeeForm from '../components/employeeForm'
-import ProjectForm from '../components/projectForm'
-import TimeEntryForm from '../components/timeEntryForm'
+import Form from '../components/form'
+import Table from '../components/table'
 import EmployeeSummary from '../components/employeeSummary'
 import ProjectSummary from '../components/projectSummary'
 import CustomerSummary from '../components/customerSummary'
+import CustomerFormModel from '../models/customerFormModel'
+import EmployeeFormModel from '../models/employeeFormModel'
+import ProjectFormModel from '../models/projectFormModel'
+import TimeEntryFormModel from '../models/timeEntryFormModel'
+import CustomerTableModel from '../models/customerTableModel'
+import EmployeeTableModel from '../models/employeeTableModel'
+import ProjectTableModel from '../models/projectTableModel'
 import autoBind from 'auto-bind'
 useStrict(true)
 
@@ -21,7 +23,6 @@ useStrict(true)
  * @property {?Object} [content=null] Page inner content [observable]
  * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
  * @property {?FormModel} [formModel=null] Page form model, if any [observable]
- * @property {?Boolean} [formEdit=false] Indicator for form editing [observable]
  * @property {?ModalModel} [modal=null] Page summary modal model, if any [observable]
  * @property {?ModalModel} [modalSecondary=null] Secondary page summary modal model, if any [observable]
  */
@@ -33,7 +34,6 @@ class Page {
       content: null,
       tableModel: null,
       formModel: null,
-      formEdit: false,
       modal: null,
       modalSecondary: null,
       logOutModal: {
@@ -42,6 +42,13 @@ class Page {
     }
     extendObservable(this, addtlProps)
     autoBind(this)
+    this.custFM = new CustomerFormModel(this.customerSummaryPage)
+    this.empFM = new EmployeeFormModel(this.employeeSummaryPage)
+    this.projFM = new ProjectFormModel(this.projectSummaryPage)
+    this.teFM = new TimeEntryFormModel()
+    this.custTM = new CustomerTableModel(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage)
+    this.empTM = new EmployeeTableModel(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage)
+    this.projTM = new ProjectTableModel(this.projectSummaryPage, this.projectEditPage)
   }
 
   /**
@@ -92,8 +99,9 @@ class Page {
    */
   @action createNewProjMenuItem(){
     this.title = 'New Project'
-    this.content = ProjectForm
-    this.formEdit = false
+    this.setFormModel(this.projFM)
+    this.projFM.setNonEdit()
+    this.content = Form
   }
 
   /**
@@ -105,7 +113,8 @@ class Page {
    */
   @action selectCustomerPage(){
     this.title = 'Select Customer'
-    this.content = CustomerTable
+    this.setTableModel(this.custTM)
+    this.content = Table
   }
 
   /**
@@ -117,8 +126,9 @@ class Page {
    */
   @action newCustomerPage(){
     this.title = 'New Customer'
-    this.content = CustomerForm
-    this.formEdit = false
+    this.setFormModel(this.custFM)
+    this.custFM.setNonEdit()
+    this.content = Form
   }
 
   /**
@@ -141,9 +151,10 @@ class Page {
    * @mobx action
    */
   @action projectEditPage(){
-    this.title = ''
-    this.content = ProjectForm
-    this.formEdit = true
+    this.title = 'Edit Project'
+    this.setFormModel(this.projFM)
+    this.projFM.setEdit()
+    this.content = Form
   }
 
   /**
@@ -155,7 +166,8 @@ class Page {
    */
   @action projectsMenuItem(){
     this.title = 'Projects'
-    this.content = ProjectTable
+    this.setTableModel(this.projTM)
+    this.content = Table
   }
 
   /**
@@ -167,8 +179,9 @@ class Page {
    */
   @action projectTimeEntryMenuItem(){
     this.title = 'Time Entry'
-    this.content = TimeEntryForm
-    this.formEdit = false
+    this.setFormModel(this.teFM)
+    this.teFM.resetFields()
+    this.content = Form
   }
 
   /**
@@ -180,7 +193,8 @@ class Page {
    */
   @action customerInfoMenuItem(){
     this.title = 'Customers'
-    this.content = CustomerTable
+    this.setTableModel(this.custTM)
+    this.content = Table
   }
 
   /**
@@ -204,8 +218,9 @@ class Page {
    */
   @action customerEditPage(){
     this.title = 'Edit Customer'
-    this.content = CustomerForm
-    this.formEdit = true
+    this.setFormModel(this.custFM)
+    this.custFM.setEdit()
+    this.content = Form
   }
 
   // Page Changes - Analytics
@@ -269,7 +284,8 @@ class Page {
    */
    @action employeeInformationMenuItem(){
      this.title = 'Employee Information'
-     this.content = EmployeeTable
+     this.setTableModel(this.empTM)
+     this.content = Table
    }
 
    /**
@@ -281,8 +297,9 @@ class Page {
     */
    @action newEmployeePage(){
      this.title = 'New Employee'
-     this.content = EmployeeForm
-     this.formEdit = false
+     this.setFormModel(this.empFM)
+     this.empFM.setNonEdit()
+     this.content = Form
    }
 
    /**
@@ -294,8 +311,9 @@ class Page {
     */
    @action employeeEditPage(){
      this.title = 'Edit Employee'
-     this.content = EmployeeForm
-     this.formEdit = true
+     this.setFormModel(this.empFM)
+     this.empFM.setEdit()
+     this.content = Form
    }
 
    /**

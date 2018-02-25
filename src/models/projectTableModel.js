@@ -1,21 +1,51 @@
-import React, {Component} from 'react'
-import { inject } from 'mobx-react'
-import Table from './table'
-import TableModel from '../models/tableModel'
-import ProjectStatusCell from './projectStatusCell'
-import TableActionCell from './tableActionCell'
-import ProjectStatusFilter from './projectStatusFilter'
+import React from 'react'
+import { useStrict } from 'mobx'
+import autoBind from 'auto-bind'
+import TableModel from './tableModel'
+import Website from '../store/website'
+import TableActionCell from '../components/tableActionCell'
+import ProjectStatusFilter from '../components/projectStatusFilter'
+import ProjectStatusCell from '../components/projectStatusCell'
 import API from '../api'
+useStrict(true)
 
 const highPriority = '#f4ba61'
 const medPriority = '#f4e261'
 
-@inject ('page', 'website')
-export default class ProjectTable extends Component {
-  constructor(props){
-    super(props)
-    this.clickHandler = this.clickHandler.bind(this)
-    let columns = [
+/**
+  * @name ProjectTableModel
+  * @class ProjectTableModel
+  * @classdesc Project initializer for table storage object
+  * @description Creates fields, sets correct onClick
+  * @property {Function} infoClickNav Function to navigate on click of info icon
+  * @property {Function} editClickNav Function to navigate on click of edit icon
+ */
+export default class ProjectTableModel extends TableModel{
+  constructor(infoClickNav, editClickNav) {
+    super(
+      null,
+      API.fetchProjects,
+      null,
+      {
+        title: 'Delete Project?',
+        confirmOnClick: () => console.log('confirm'),
+        content: 'This action cannot be undone.'
+      },
+      (state, rowInfo) => {
+        if (rowInfo && rowInfo.row._original.priority != 'Low'){
+          return {
+            style: {
+              background: rowInfo.row._original.priority == 'High' ? highPriority : medPriority
+            }
+          }
+        }
+        return {}
+      }
+    )
+    this.infoClickNav = infoClickNav
+    this.editClickNav = editClickNav
+    autoBind(this)
+    this.columns = [
       {
         Header: 'ID',
         accessor: 'id',
@@ -70,6 +100,7 @@ export default class ProjectTable extends Component {
       {
         Header: 'Actions',
         sortable: false,
+        maxWidth: 100,
         getProps: () => {
           return {
             className: 'center',
@@ -82,49 +113,27 @@ export default class ProjectTable extends Component {
         Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
       }
     ]
-    // tableButton, fetchFn, rowSelectFn, columns, deleteModal, styling
-    this.props.page.setTableModel(new TableModel(
-      null,
-      API.fetchProjects,
-      null,
-      columns,
-      {
-        title: 'Delete Project?',
-        confirmOnClick: () => console.log('confirm'),
-        content: 'This action cannot be undone.'
-      },
-      (state, rowInfo) => {
-        if (rowInfo && rowInfo.row._original.priority != 'Low'){
-          return {
-            style: {
-              background: rowInfo.row._original.priority == 'High' ? highPriority : medPriority
-            }
-          }
-        }
-        return {}
-      }
-    ))
-    this.props.page.tableModel.dataFetch()
+    this.dataFetch()
   }
-
+  /**
+   * @name clickHandler
+   * @description Handles action icon clicks
+   * @method clickHandler
+   * @param  {Object}     row   Row of click
+   * @param  {String}     type  Icon click type
+   */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit' || type == 'delete'){
-      this.props.website.setProject(row.original)
+      Website.setProject(row.original)
       if (type == 'info'){
-        this.props.page.projectSummaryPage()
+        this.infoClickNav()
       }
       else if (type == 'edit'){
-        this.props.page.projectEditPage()
+        this.editClickNav()
       }
       else {
-        this.props.page.tableModel.openModal()
+        this.openModal()
       }
     }
-  }
-
-  render() {
-    return (
-      <Table/>
-    )
   }
 }

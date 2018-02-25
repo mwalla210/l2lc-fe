@@ -23,25 +23,6 @@ export default class Table extends Component {
     pageSizeOptions={[5, 10, 20, 25, 50, 100]}
     */
 
-    // If onClick function for rows, redefine onClick for table elements and call function
-    let rowSelect = {}
-    if (this.props.page.tableModel.rowSelectFn){
-      rowSelect = {
-        getTdProps: (state, rowInfo) => {
-          return {
-            onClick: (e, handleOriginal) => {
-              if (rowInfo){
-                console.log('It was in this row:', rowInfo)
-                this.props.page.tableModel.rowSelectFn(rowInfo)
-              }
-              if (handleOriginal) {
-                handleOriginal()
-              }
-            }
-          }
-        },
-      }
-    }
     let rowModal = null
     // If modal to be opened when row clicked, declare in render and redefine onClick for table elements and call open modal
     if (this.props.page.tableModel.deleteModal){
@@ -81,10 +62,9 @@ export default class Table extends Component {
       <div style={{clear: 'both'}}>
         <ReactTable
           data={this.props.page.tableModel.data.slice()}
-          columns={this.props.page.tableModel.columns}
+          columns={this.props.page.tableModel.columns.slice()}
           loading={this.props.page.tableModel.loading}
           defaultFilterMethod={this.filter}
-          {...rowSelect}
           {...rowStyling}
         />
       </div>

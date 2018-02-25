@@ -7,11 +7,10 @@ useStrict(true)
  * @class TableModel
  * @classdesc Table storage object
  * @property {Function} fetchFn Table data fetch function
- * @property {Object[]} columns Column header array for ReactTable
+ * @property {Object[]} columns Column header array for ReactTable [observable]
  * @property {?Object} [tableButton=null] Button object for display above table
  * @property {String} tableButton.title Button title for display above table
  * @property {Function} tableButton.onClick Button click function for display above table
- * @property {?Function} [rowSelectFn=null] Function for handling clicking of row
  * @property {?Object} [deleteModal=null] Object containing props for row delete modal
  * @property {String} deleteModal.title Title for modal
  * @property {String} deleteModal.content Content for modal
@@ -22,18 +21,17 @@ useStrict(true)
  * @property {Function} [styling] Styling function
  */
 export default class TableModel {
-  constructor(tableButton, fetchFn, rowSelectFn, columns, deleteModal, styling){
+  constructor(tableButton, fetchFn, columns, deleteModal, styling){
     let addtlProps = {
       data: [],
       loading: true,
-      modalOpen: false
+      modalOpen: false,
+      columns
     }
     extendObservable(this, addtlProps)
     // Non-observable
-    this.columns = columns
     this.tableButton = tableButton
     this.fetchFn = fetchFn
-    this.rowSelectFn = rowSelectFn
     this.deleteModal = deleteModal
     this.styling = styling
     autoBind(this)
