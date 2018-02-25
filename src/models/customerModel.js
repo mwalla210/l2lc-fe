@@ -1,4 +1,5 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -61,6 +62,7 @@ export default class CustomerModel {
     extendObservable(this, addtlProps)
     // Non-observable
     this.id = id
+    autoBind(this)
   }
 
   /**

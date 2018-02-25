@@ -1,4 +1,5 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -62,6 +63,7 @@ export default class ProjectModel {
     this.dateCreated = dateCreated
     if (dateCreated)
       this.dateCreated = new Date(dateCreated)
+    autoBind(this)
   }
 
   // Computations

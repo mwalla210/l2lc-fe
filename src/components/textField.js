@@ -16,6 +16,21 @@ export default class TextField extends Component {
     index: PropTypes.number.isRequired,
   }
 
+  constructor(props){
+    super(props)
+    this.onChange = this.onChange.bind(this)
+    this.onBlur = this.onBlur.bind(this)
+  }
+
+  onChange(event){
+    this.props.page.formModel.modifyFieldValue(this.props.index, event.target.value)
+  }
+
+  onBlur(event){
+    event.preventDefault()
+    this.props.page.formModel.fieldValidatorWrapper(this.props.index)
+  }
+
   render(){
     return (
       <FormItem
@@ -27,15 +42,12 @@ export default class TextField extends Component {
       >
         <input
           disabled={this.props.disabled}
-          type='text'
-          className='form-control'
+          type="text"
+          className="form-control"
           id={this.props.id}
           value={this.props.value}
-          onChange={event => this.props.page.formModel.modifyFieldValue(this.props.index, event.target.value)}
-          onBlur={event => {
-            event.preventDefault()
-            this.props.page.formModel.fieldValidatorWrapper(this.props.index)
-          }}
+          onChange={this.onChange}
+          onBlur={this.onBlur}
         />
       </FormItem>
     )

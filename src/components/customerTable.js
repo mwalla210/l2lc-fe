@@ -1,14 +1,15 @@
 import React, {Component} from 'react'
 import { inject } from 'mobx-react'
 import Table from './table'
+import TableActionCell from './tableActionCell'
 import TableModel from '../models/tableModel'
-import CircleButton from './circleButton'
 import API from '../api'
 
 @inject ('page', 'website')
 export default class CustomerTable extends Component {
   constructor(props){
     super(props)
+    this.clickHandler = this.clickHandler.bind(this)
     let columns = [
       {
         Header: 'ID',
@@ -48,20 +49,7 @@ export default class CustomerTable extends Component {
             }
           }
         },
-        Cell: row => (
-          <span>
-            <span>
-              <CircleButton iconName='info' onClick={() => {
-                this.props.website.setCustomer(row.original)
-                this.props.page.customerSummaryPage()
-              }}/>
-              <CircleButton styleProps={{marginLeft: '2px'}} iconName='pencil' onClick={() => {
-                this.props.website.setCustomer(row.original)
-                this.props.page.customerEditPage()
-              }}/>
-            </span>
-          </span>
-        )
+        Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
       }
     ]
     // tableButton, fetchFn, rowSelectFn, columns, deleteModal, styling
@@ -75,6 +63,18 @@ export default class CustomerTable extends Component {
       columns,
     ))
     this.props.page.tableModel.dataFetch()
+  }
+
+  clickHandler(row, type){
+    if (type == 'info' || type == 'edit'){
+      this.props.website.setCustomer(row.original)
+      if (type == 'info'){
+        this.props.page.customerSummaryPage()
+      }
+      else{
+        this.props.page.customerEditPage()
+      }
+    }
   }
 
   render() {

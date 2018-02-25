@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import { inject } from 'mobx-react'
 import Table from './table'
+import TableActionCell from './tableActionCell'
 import TableModel from '../models/tableModel'
-import CircleButton from './circleButton'
 import API from '../api'
 import Barcode from './barcode'
 
@@ -10,6 +10,7 @@ import Barcode from './barcode'
 export default class EmployeeTable extends Component {
   constructor(props){
     super(props)
+    this.clickHandler = this.clickHandler.bind(this)
     let columns = [
       {
         Header: 'ID',
@@ -34,7 +35,8 @@ export default class EmployeeTable extends Component {
             <span>
               <Barcode
                 imageDomID={`${row.original.firstName}${row.original.id}`}
-                barcodeID={row.original.id.toString()}/>
+                barcodeID={row.original.id.toString()}
+              />
             </span>
           </span>
         )
@@ -51,24 +53,7 @@ export default class EmployeeTable extends Component {
             }
           }
         },
-        Cell: row => (
-          <span>
-            <span>
-              <CircleButton iconName='info' onClick={() => {
-                this.props.website.setEmployee(row.original)
-                this.props.page.employeeSummaryPage()
-              }}/>
-              <CircleButton iconName='pencil' onClick={() => {
-                this.props.website.setEmployee(row.original)
-                this.props.page.employeeEditPage()
-              }}/>
-              <CircleButton styleProps={{marginLeft: '2px'}} iconName='trash' onClick={() => {
-                this.props.website.setEmployee(row.original)
-                this.props.page.tableModel.openModal()
-              }}/>
-            </span>
-          </span>
-        )
+        Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
       }
     ]
     // tableButton, fetchFn, rowSelectFn, columns, deleteModal, styling
@@ -87,6 +72,21 @@ export default class EmployeeTable extends Component {
       },
     ))
     this.props.page.tableModel.dataFetch()
+  }
+
+  clickHandler(row, type){
+    if (type == 'info' || type == 'edit' || type == 'delete'){
+      this.props.website.setEmployee(row.original)
+      if (type == 'info'){
+        this.props.page.employeeSummaryPage()
+      }
+      else if (type == 'edit'){
+        this.props.page.employeeEditPage()
+      }
+      else {
+        this.props.page.tableModel.openModal()
+      }
+    }
   }
 
   render() {

@@ -1,4 +1,5 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -35,6 +36,7 @@ export default class TableModel {
     this.rowSelectFn = rowSelectFn
     this.deleteModal = deleteModal
     this.styling = styling
+    autoBind(this)
   }
 
   /**

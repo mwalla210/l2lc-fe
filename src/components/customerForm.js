@@ -512,7 +512,7 @@ export default class CustomerForm extends Component {
         email: valueReturn('emailAddress').trim(),
         website: valueReturn('websiteLink').trim(),
         shippingAddr: {
-          street: `${valueReturn('addressLine1').trim()} ${valueReturn('addressLine2').trim()}`,
+          street: `${valueReturn('addressLine1').trim()} ${valueReturn('addressLine2').trim()}`.trim(),
           city: valueReturn('city').trim(),
           state: valueReturn('state').trim(),
           country: valueReturn('region').trim(),
@@ -525,7 +525,7 @@ export default class CustomerForm extends Component {
         body.billingAddr = body.shippingAddr
       else
         body.billingAddr = {
-          street: `${valueReturn('billingAddressLine1').trim()} ${valueReturn('billingAddressLine2').trim()}`,
+          street: `${valueReturn('billingAddressLine1').trim()} ${valueReturn('billingAddressLine2').trim()}`.trim(),
           city: valueReturn('billingCity').trim(),
           state: valueReturn('billingState').trim(),
           country: valueReturn('billingRegion').trim(),

@@ -7,6 +7,22 @@ import CheckboxField from './checkboxField'
 
 @inject('page') @observer
 export default class Form extends Component {
+  constructor(props){
+    super(props)
+    this.primaryOnClick = this.primaryOnClick.bind(this)
+    this.secondaryOnClick = this.secondaryOnClick.bind(this)
+  }
+
+  primaryOnClick(e){
+    e.preventDefault()
+    this.props.page.formModel.primaryButtonWrapper()
+  }
+
+  secondaryOnClick(e){
+    e.preventDefault()
+    this.props.page.formModel.secondaryButton.onClick()
+  }
+
   render() {
     return(
       <form>
@@ -23,24 +39,11 @@ export default class Form extends Component {
           }
         })}
         {this.props.page.formModel.secondaryButton &&
-          <button
-            className='btn btn-secondary'
-            onClick={e => {
-              e.preventDefault()
-              this.props.page.formModel.secondaryButton.onClick()
-            }}
-          >
+          <button className="btn btn-secondary" onClick={this.secondaryOnClick}>
             {this.props.page.formModel.secondaryButton.title}
           </button>
         }
-        <button
-          className='btn btn-primary'
-          disabled={this.props.page.formModel.buttonDisabled}
-          onClick={e => {
-            e.preventDefault()
-            this.props.page.formModel.primaryButtonWrapper()
-          }}
-        >
+        <button className="btn btn-primary" disabled={this.props.page.formModel.buttonDisabled} onClick={this.primaryOnClick}>
           {this.props.page.formModel.primaryButton.title}
         </button>
       </form>

@@ -24,8 +24,8 @@ export default class FormItem extends Component {
       }
     }
     return (
-      <div className='form-group' {...disabledStyle}>
-        <div className='alert alert-warning' role='alert' {...alertStyle}>
+      <div className="form-group" {...disabledStyle}>
+        <div className="alert alert-warning" role="alert" {...alertStyle}>
           <strong>Warning!</strong>{` ${this.props.errorText}`}
         </div>
         <label>{this.props.label}</label> {(this.props.required) ? <span style={{color: 'red'}}> *</span> : null}

@@ -16,6 +16,15 @@ export default class CheckboxField extends Component {
     index: PropTypes.number.isRequired,
   }
 
+  constructor(props){
+    super(props)
+    this.onChange = this.onChange.bind(this)
+  }
+
+  onChange(event){
+    this.props.page.formModel.modifyFieldValue(this.props.index, event.target.checked)
+  }
+
   render(){
     return (
       <FormItem
@@ -26,14 +35,12 @@ export default class CheckboxField extends Component {
         disabled={this.props.disabled}
       >
         <input
-          className='form-check-input'
+          className="form-check-input"
           disabled={this.props.disabled}
-          type='checkbox'
+          type="checkbox"
           id={this.props.id}
           checked={this.props.value}
-          onChange={event => {
-            this.props.page.formModel.modifyFieldValue(this.props.index, event.target.checked)}
-          }
+          onChange={this.onChange}
         />
       </FormItem>
     )

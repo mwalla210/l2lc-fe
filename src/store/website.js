@@ -1,5 +1,6 @@
 import { action, useStrict, extendObservable } from 'mobx'
 import API from '../api'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -30,6 +31,7 @@ class Website {
       jtAnalytic: null,
     }
     extendObservable(this, addtlProps)
+    autoBind(this)
   }
 
   /**

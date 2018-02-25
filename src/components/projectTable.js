@@ -1,22 +1,20 @@
 import React, {Component} from 'react'
 import { inject } from 'mobx-react'
-import { SplitButton } from 'react-bootstrap'
-import {Checkbox, CheckboxGroup} from 'react-checkbox-group'
 import Table from './table'
 import TableModel from '../models/tableModel'
-import CircleButton from './circleButton'
+import ProjectStatusCell from './projectStatusCell'
+import TableActionCell from './tableActionCell'
+import ProjectStatusFilter from './projectStatusFilter'
 import API from '../api'
 
 const highPriority = '#f4ba61'
 const medPriority = '#f4e261'
-const doneColor = '#49a4ff'
-const helpColor = '#ffbf00'
-const openColor = '#57d500'
 
 @inject ('page', 'website')
 export default class ProjectTable extends Component {
   constructor(props){
     super(props)
+    this.clickHandler = this.clickHandler.bind(this)
     let columns = [
       {
         Header: 'ID',
@@ -62,47 +60,12 @@ export default class ProjectTable extends Component {
         headerStyle:  {
           overflow: 'visible',
         },
-        Cell: row => (
-          <span>
-            {/* TODO: adjust this to be accurate for values of fn*/}
-            <span style={{
-              color: row.value === 'Completed' ? doneColor
-                : row.value === 'On Hold' ? helpColor
-                // Received, In Progress
-                : openColor,
-              transition: 'all .3s ease'}}>
-                &#x25cf;
-            </span>
-            {` ${row.value}`}
-          </span>
-        ),
+        Cell: row => <ProjectStatusCell row={row}/>,
         filterMethod: (filter, row) => {
           // filter.value.length==0: no filters selected
           return filter.value.length == 0 || filter.value.includes(row[filter.id])
         },
-        Filter: ({filter, onChange}) =>
-          <SplitButton
-            bsSize='small'
-            title='Filter'
-            id='split-button-small'
-          >
-            <CheckboxGroup
-              name='Filters'
-              value={filter ? filter.value : []}
-              onChange={val => onChange(val)}
-            >
-              <label style={{marginLeft: '8px'}}><Checkbox value='Received'/> Received</label>
-              <br/>
-              <label style={{marginLeft: '8px'}}><Checkbox value='In Progress'/> In Progress</label>
-              <br/>
-              <label style={{marginLeft: '8px'}}><Checkbox value='On Hold'/> On Hold</label>
-              <br/>
-              <label style={{marginLeft: '8px'}}><Checkbox value='Completed'/> Completed</label>
-              <br/>
-              <label style={{marginLeft: '8px'}}><Checkbox value='Dropped'/> Dropped</label>
-              <br/>
-            </CheckboxGroup>
-          </SplitButton>
+        Filter: ({filter, onChange}) => <ProjectStatusFilter filter={filter} onChange={onChange}/>,
       },
       {
         Header: 'Actions',
@@ -116,24 +79,7 @@ export default class ProjectTable extends Component {
             }
           }
         },
-        Cell: row => (
-          <span>
-            <span>
-              <CircleButton iconName='info' onClick={() => {
-                this.props.website.setProject(row.original)
-                this.props.page.projectSummaryPage()
-              }}/>
-              <CircleButton iconName='pencil' onClick={() => {
-                this.props.website.setProject(row.original)
-                this.props.page.projectEditPage()
-              }}/>
-              <CircleButton styleProps={{marginLeft: '2px'}} iconName='trash' onClick={() => {
-                this.props.website.setProject(row.original)
-                this.props.page.tableModel.openModal()
-              }}/>
-            </span>
-          </span>
-        )
+        Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
       }
     ]
     // tableButton, fetchFn, rowSelectFn, columns, deleteModal, styling
@@ -159,6 +105,21 @@ export default class ProjectTable extends Component {
       }
     ))
     this.props.page.tableModel.dataFetch()
+  }
+
+  clickHandler(row, type){
+    if (type == 'info' || type == 'edit' || type == 'delete'){
+      this.props.website.setProject(row.original)
+      if (type == 'info'){
+        this.props.page.projectSummaryPage()
+      }
+      else if (type == 'edit'){
+        this.props.page.projectEditPage()
+      }
+      else {
+        this.props.page.tableModel.openModal()
+      }
+    }
   }
 
   render() {

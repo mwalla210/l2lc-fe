@@ -1,4 +1,5 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -44,8 +45,7 @@ export default class FormModel {
     this.primaryButton = primaryButton
     this.secondaryButton = secondaryButton
     this.autoSubmit = autoSubmit
-    this.primaryButtonWrapper = this.primaryButtonWrapper.bind(this)
-    this.modifyFieldValue = this.modifyFieldValue.bind(this)
+    autoBind(this)
   }
   /**
    * @name resetValues

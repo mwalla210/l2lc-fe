@@ -8,13 +8,22 @@ export default class Barcode extends Component {
     barcodeID: PropTypes.string.isRequired
   }
 
+  constructor(props){
+    super(props)
+    this.renderBarcode = this.renderBarcode.bind(this)
+  }
+
+  renderBarcode(){
+    JsBarcode(`#${this.props.imageDomID}`, `${this.props.barcodeID}`)
+  }
+
   render() {
     return (
       <img
-        onLoad={() => JsBarcode(`#${this.props.imageDomID}`, `${this.props.barcodeID}`)}
+        onLoad={this.renderBarcode}
         id={`${this.props.imageDomID}`}
-        src='../../style/open-iconic-master/svg/image.svg'
-        alt='image'
+        src="../../style/open-iconic-master/svg/image.svg"
+        alt="image"
       />
     )
   }

@@ -17,6 +17,21 @@ export default class TextAreaField extends Component {
     rows: PropTypes.number
   }
 
+  constructor(props){
+    super(props)
+    this.onChange = this.onChange.bind(this)
+    this.onBlur = this.onBlur.bind(this)
+  }
+
+  onChange(event){
+    this.props.page.formModel.modifyFieldValue(this.props.index, event.target.value)
+  }
+
+  onBlur(event){
+    event.preventDefault()
+    this.props.page.formModel.fieldValidatorWrapper(this.props.index)
+  }
+
   render(){
     return (
       <FormItem
@@ -24,19 +39,16 @@ export default class TextAreaField extends Component {
         errorText={this.props.errorText}
         label={this.props.label}
         required={this.props.required}
+        disabled={this.props.disabled}
       >
         <textarea
-          className='form-control'
+          className="form-control"
           rows={this.props.rows}
           id={this.props.id}
           value={this.props.value}
           disabled={this.props.disabled}
-          onChange={event => {
-            this.props.page.formModel.modifyFieldValue(this.props.index, event.target.value)}}
-          onBlur={event => {
-            event.preventDefault()
-            this.props.page.formModel.fieldValidatorWrapper(this.props.index)
-          }}
+          onChange={this.onChange}
+          onBlur={this.onBlur}
         />
       </FormItem>
     )

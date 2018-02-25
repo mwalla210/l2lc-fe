@@ -17,6 +17,21 @@ export default class SelectField extends Component {
     options: MobXPropTypes.observableArrayOf(PropTypes.string).isRequired,
   }
 
+  constructor(props){
+    super(props)
+    this.onChange = this.onChange.bind(this)
+    this.onBlur = this.onBlur.bind(this)
+  }
+
+  onChange(event){
+    this.props.page.formModel.modifyFieldValue(this.props.index, event.target.value)
+  }
+
+  onBlur(event){
+    event.preventDefault()
+    this.props.page.formModel.fieldValidatorWrapper(this.props.index)
+  }
+
   render(){
     return (
       <FormItem
@@ -26,14 +41,11 @@ export default class SelectField extends Component {
         required={this.props.required}
         disabled={this.props.disabled}
       >
-        <select disabled={this.props.disabled} className='form-control' id={this.props.id}
+        <select disabled={this.props.disabled} className="form-control" id={this.props.id}
           value={this.props.value}
-          onChange={event => {
-            this.props.page.formModel.modifyFieldValue(this.props.index, event.target.value)}}
-          onBlur={event => {
-            event.preventDefault()
-            this.props.page.formModel.fieldValidatorWrapper(this.props.index)
-          }}>
+          onChange={this.onChange}
+          onBlur={this.onBlur}
+        >
           {this.props.options.map((option, key) =>
             <option key={key}>{option}</option>
           )}
