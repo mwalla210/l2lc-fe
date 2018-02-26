@@ -8,32 +8,300 @@ const fields = [
   {
     type: 'select',
     label: 'Cost Center',
-    id: 'region',
-    options: ['Select...','APC Job','Decorative Job','Maintenance','Administration','Production','Research and Development','Other'],
+    id: 'costCenter',
+    options: ['Select...','APC','Decorative','Maintenance','Administration','Production','Research and Development','Other'],
     required: true,
+    disabled: false,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please select a cost center.'
       return null
+    },
+    onUpdate: (value) => {
+      if (value == 'APC'){
+        return [
+          {
+            id: 'projectType',
+            options: ['Select...','Piston', 'Turbo', 'Rotor', 'Pump', 'Avaslick', 'Specialty'],
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'partCount',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'projectTitle',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'priority',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'description',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'referenceNumber',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+      if (value == 'Decorative'){
+        return [
+          {
+            id: 'projectType',
+            options: ['Select...','Decorative'],
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'partCount',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'projectTitle',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'priority',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'description',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'referenceNumber',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+      if (value == 'Maintenance'){
+        return [
+          {
+            id: 'projectType',
+            options: ['Select...','Maintenance'],
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'partCount',
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'projectTitle',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'priority',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'description',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'referenceNumber',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+      if (value == 'Administration'){
+        return [
+          {
+            id: 'projectType',
+            options: ['Select...','ISO','Other'],
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'partCount',
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'projectTitle',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'priority',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'description',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'referenceNumber',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+      if (value == 'Research and Development'){
+        return [
+          {
+            id: 'projectType',
+            options: ['Select...','Research and Development'],
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'partCount',
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'projectTitle',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'priority',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'description',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'referenceNumber',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+      if (value == 'Production'){
+        return [
+          {
+            id: 'projectType',
+            options: ['Select...','Production'],
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'partCount',
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'projectTitle',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'priority',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'description',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'referenceNumber',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+      if (value == 'Other'){
+        return [
+          {
+            id: 'projectType',
+            options: ['Select...','Other'],
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'partCount',
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'projectTitle',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'priority',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'description',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'referenceNumber',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
     }
   },
   {
     type: 'select',
     label: 'Project Type',
     id: 'projectType',
-    options: ['Select...','based on cost center selected'],
+    options: ['Select...','Piston', 'Turbo', 'Rotor', 'Pump', 'Avaslick', 'Specialty', 'Decorative', 'Maintenance', 'ISO', 'Production', 'Research and Development', 'Other'],
     required: true,
+    disabled: true,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please select a project type.'
       return null
+    },
+    onUpdate: (value) => {
+      if (value == 'Piston' || value == 'Turbo' || value == 'Rotor' || value == 'Pump'){
+        return [
+          {
+            id: 'projectTitle',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+      return [
+        {
+          id: 'projectTitle',
+          required: true,
+          disabled: false
+        }
+      ]
     }
   },
   {
     type: 'textfield',
     label: 'Part Count',
     id: 'partCount',
-    required: true,
+    required: false,
+    disabled: true,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please enter a value.'
@@ -49,7 +317,8 @@ const fields = [
     type: 'textfield',
     label: 'Project Title',
     id: 'projectTitle',
-    required: false, //NEED TO UPDATE BASED ON PREVIOUS SELECTIONS
+    required: false,
+    disabled: true,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please enter a value.'
@@ -64,6 +333,7 @@ const fields = [
     id: 'priority',
     options: ['Select...','Low','High'],
     required: true,
+    disabled: true,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please select a priority.'
@@ -75,6 +345,7 @@ const fields = [
     label: 'Description',
     id: 'description',
     required: false,
+    disabled: true,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please enter a value.'
@@ -88,6 +359,7 @@ const fields = [
     label: 'Reference Number',
     id: 'referenceNumber',
     required: false,
+    disabled: true,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please enter a value.'
@@ -107,7 +379,7 @@ const fields = [
   * @property {Function} onCancelNav Page navigation function for cancelled form submission
  */
 export default class projectFormModel extends FormModel{
-  constructor(onClickNav, onCancelNav) {
+  constructor(onClickNav, onClickCustomerNav, onCancelNav) {
     let primaryOnClick = () => {}
     super(fields,
       {
@@ -120,6 +392,7 @@ export default class projectFormModel extends FormModel{
       }
     )
     this.onClickNav = onClickNav
+    this.onClickCustomerNav = onClickCustomerNav
     this.onCancelNav = onCancelNav
     autoBind(this)
     this.primaryButton.onClick = this.newButton()
@@ -166,7 +439,38 @@ export default class projectFormModel extends FormModel{
    * @memberof projectFormModel.prototype
    */
   newButton(){
-    return (fields) => console.log('CREATE with', fields)
+    return (fields) => {
+      let valueReturn = (id) => {
+        let val
+        fields.forEach(item => {
+          if (item.id == id){
+            val = item.value
+          }
+        })
+        return val
+      }
+      let costCenter = valueReturn('costCenter').trim()
+      let body = {
+        jobType: valueReturn('projectType').trim(),
+        costCenter,
+        title: valueReturn('projectTitle').trim(),
+        description:valueReturn('description').trim(),
+        priority: valueReturn('priority').trim(),
+        partCount: valueReturn('partCount').trim(),
+        refNumber: valueReturn('referenceNumber').trim(),
+        customer: {
+          id: '1'
+        }
+      }
+      if (costCenter == 'APC' || costCenter == 'Decorative'){
+        Website.createProject(body)
+        .then(() => this.onClickCustomerNav())
+      }
+      else {
+        Website.createProject(body)
+        .then(() => this.onClickNav())
+      }
+    }
   }
 
   /**

@@ -51,12 +51,13 @@ export default class API {
     let addrIsSame = false
     let addtl = []
     // Check if addresses match each other
-    if (API.addressIsSame(item.shippingAddr, item.billingAddr))
-      addrIsSame = true
-    // If not, send billing info as args
-    else {
-      addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
+    if (item.billingAddr){
+      addrIsSame = API.addressIsSame(item.shippingAddr, item.billingAddr)
+      if (!addrIsSame)
+        addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
     }
+    else
+      addrIsSame = true
     // Construct model
     let customer = new CustomerModel(item.id, item.name, item.shippingAddr.street, null, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)
     return customer
@@ -65,6 +66,8 @@ export default class API {
   static addressIsSame(addr1, addr2){
     return JSON.stringify(addr1) === JSON.stringify(addr2)
   }
+
+  // Projects
 
   static fetchProjects(){
     return fetch(`${api}project?limit=50&offset=0`)
@@ -78,11 +81,34 @@ export default class API {
       projects = projects.map(item => {
         if (item.customer)
           item.customer.companyName = item.customer.name
-        let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
+        let project = API.projectModelize(item)
         return project
       })
       return projects
     })
+  }
+
+  static fetchProject(id){
+    return fetch(`${api}project/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      let project = null
+      if (json.id == id){
+        project = API.projectModelize(json)
+      }
+      return project
+    })
+  }
+
+  static createProject(project){
+    return API.create('project/create', project)
+    .then(response => {
+      return API.projectModelize(response)
+    })
+  }
+
+  static projectModelize(item){
+    return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
   }
 
   // Employees
@@ -95,7 +121,6 @@ export default class API {
     return fetch(`${api}employee?limit=50&offset=0`)
     .then(res => res.json())
     .then(json => {
-      console.log(json)
       let employees = []
       json.items.forEach(item => {
         employees.push(API.employeeModelize(item))

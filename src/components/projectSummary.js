@@ -15,6 +15,7 @@ export default class ProjectSummary extends Component {
     this.holdClick = this.holdClick.bind(this)
     this.resetAndOpenModal = this.resetAndOpenModal.bind(this)
     this.tasksClick = this.tasksClick.bind(this)
+    this.printClick = this.printClick.bind(this)
   }
 
   reworkClick(){
@@ -41,6 +42,10 @@ export default class ProjectSummary extends Component {
     console.log('Tasks')
   }
 
+  printClick(){
+    console.log('Print')
+  }
+
   render() {
     return (
       <div>
@@ -63,10 +68,22 @@ export default class ProjectSummary extends Component {
           closeFn={this.props.page.modal.closeModal}
           content="This action cannot be undone."
         />
+        <p>{`ID: ${this.props.website.currentProject.id}`}</p>
+        <p>{`Cost Center: ${this.props.website.currentProject.costCenterTitle}`}</p>
+        <p>{`Project Type: ${this.props.website.currentProject.jobTypeTitle}`}</p>
+        <p>{`Project Title: ${this.props.website.currentProject.title}`}</p>
+        <p>{`Customer (TODO in model): ${this.props.website.currentProject.customer}`}</p>
+        <p>{`Priority: ${this.props.website.currentProject.priority}`}</p>
+        <p>{`Status: ${this.props.website.currentProject.status}`}</p>
+        <p>{`Total time spent:${this.props.website.currentProject.timeSpent}`}</p>
+        <p>{`Part Count: ${this.props.website.currentProject.partCount}`}</p>
+        <p>{`Description: ${this.props.website.currentProject.descr}`}</p>
+        <p>{`Reference Number: ${this.props.website.currentProject.refNum}`}</p>
         <Button className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
         <Button className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
         <Button className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
         <Button className="btn btn-default" onClick={this.holdClick}>Change Hold</Button>
+        <Button className="btn btn-default" onClick={this.printClick}>Print</Button>
         <Button className="btn btn-danger" onClick={this.props.page.modal.openModal}>Delete</Button>
       </div>
     )
