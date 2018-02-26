@@ -49,7 +49,7 @@ export default class ProjectForm extends Component {
             return [
               {
                 id: 'projectType',
-                options: ['Decorative'],
+                options: ['Select...','Decorative'],
                 required: true,
                 disabled: false
               },
@@ -69,7 +69,7 @@ export default class ProjectForm extends Component {
             return [
               {
                 id: 'projectType',
-                options: ['Maintenance'],
+                options: ['Select...','Maintenance'],
                 required: true,
                 disabled: false
               },
@@ -99,7 +99,7 @@ export default class ProjectForm extends Component {
             return [
               {
                 id: 'projectType',
-                options: ['Research and Development'],
+                options: ['Select...','Research and Development'],
                 required: true,
                 disabled: false
               },
@@ -114,7 +114,7 @@ export default class ProjectForm extends Component {
             return [
               {
                 id: 'projectType',
-                options: ['Production'],
+                options: ['Select...','Production'],
                 required: true,
                 disabled: false
               },
@@ -129,7 +129,7 @@ export default class ProjectForm extends Component {
             return [
               {
                 id: 'projectType',
-                options: ['Other'],
+                options: ['Select...','Other'],
                 required: true,
                 disabled: false
               },
@@ -146,13 +146,14 @@ export default class ProjectForm extends Component {
         type: 'select',
         label: 'Project Type',
         id: 'projectType',
-        options: ['Select...'],
+        options: ['Select...','Piston', 'Turbo', 'Rotor', 'Pump', 'Avaslick', 'Specialty', 'Decorative', 'Maintenance', 'ISO', 'Production', 'Research and Development', 'Other'],
         required: true,
         disabled: false,
-        /*validation: (value) => {
-          if (value == 'Select...')
+        validation: (value, required) => {
+          if (required && value == '')
           return 'Please select a project type.'
-        },*/
+          return null
+        },
         onUpdate: (value) => {
           if (value == 'Avaslick' || value == 'Specialty'){
             return [
