@@ -120,7 +120,7 @@ class Page {
    * @mobx action
    */
   @action projectSummaryPage(){
-    this.title = 'Project Sumaary'
+    this.title = 'Project Summary'
     this.table = null
     this.content = ProjectSummary
     this.form = null

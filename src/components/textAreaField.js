@@ -24,6 +24,7 @@ export default class TextAreaField extends Component {
         errorText={this.props.errorText}
         label={this.props.label}
         required={this.props.required}
+        disabled={this.props.required}
       >
         <textarea
           className='form-control'

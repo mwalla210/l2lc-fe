@@ -21,7 +21,7 @@ export default class ProjectForm extends Component {
         type: 'select',
         label: 'Cost Center',
         id: 'costCenter',
-        options: ['Select...','APC Job','Decorative Job','Maintenance','Administrative','Production','Research and Development','Other'],
+        options: ['Select...','APC','Decorative','Maintenance','Administration','Production','Research and Development','Other'],
         required: true,
         disabled: false,
         validation: (value, required) => {
@@ -30,7 +30,7 @@ export default class ProjectForm extends Component {
           return null
         },
         onUpdate: (value) => {
-          if (value == 'APC Job'){
+          if (value == 'APC'){
             return [
               {
                 id: 'projectType',
@@ -45,7 +45,7 @@ export default class ProjectForm extends Component {
               }
             ]
           }
-          if (value == 'Decorative Job'){
+          if (value == 'Decorative'){
             return [
               {
                 id: 'projectType',
@@ -80,7 +80,7 @@ export default class ProjectForm extends Component {
               }
             ]
           }
-          if (value == 'Administrative'){
+          if (value == 'Administration'){
             return [
               {
                 id: 'projectType',
@@ -146,14 +146,13 @@ export default class ProjectForm extends Component {
         type: 'select',
         label: 'Project Type',
         id: 'projectType',
-        options: ['Select...','based on cost center selected'],
+        options: ['Select...'],
         required: true,
         disabled: false,
-        validation: (value, required) => {
-          if (required && value == '')
+        /*validation: (value) => {
+          if (value == 'Select...')
           return 'Please select a project type.'
-          return null
-        },
+        },*/
         onUpdate: (value) => {
           if (value == 'Avaslick' || value == 'Specialty'){
             return [
@@ -261,8 +260,14 @@ export default class ProjectForm extends Component {
           id: '1'
         }
       }
+      if (valueReturn('costCenter').trim() == 'APC' || valueReturn('costCenter').trim() == 'Decorative'){
+        this.props.website.createProject(body)
+        .then(() => this.props.page.selectCustomerPage())
+      }
+      else {
         this.props.website.createProject(body)
         .then(() => this.props.page.projectSummaryPage())
+      }
     }
     let secondaryButton = null
     if (this.props.edit){
