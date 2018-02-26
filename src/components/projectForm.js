@@ -26,7 +26,7 @@ export default class ProjectForm extends Component {
         disabled: false,
         validation: (value, required) => {
           if (required && value == '')
-          return 'Please select a cost center.'
+            return 'Please select a cost center.'
           return null
         },
         onUpdate: (value) => {
@@ -126,7 +126,7 @@ export default class ProjectForm extends Component {
         disabled: false,
         validation: (value, required) => {
           if (required && value == '')
-          return 'Please select a project type.'
+            return 'Please select a project type.'
           return null
         },
         onUpdate: (value) => {
@@ -149,12 +149,12 @@ export default class ProjectForm extends Component {
         disabled: false,
         validation: (value, required) => {
           if (required && value == '')
-          return 'Please enter a value.'
+            return 'Please enter a value.'
           let reg = /^\d+$/
           if (reg.test(value.trim()) == false)
-          return 'Please enter a valid number.'
+            return 'Please enter a valid number.'
           if (value.length > 4)
-          return 'The part count number must be less than 4 characters.'
+            return 'The part count number must be less than 4 characters.'
           return null
         }
       },
@@ -166,9 +166,9 @@ export default class ProjectForm extends Component {
         disabled: false,
         validation: (value, required) => {
           if (required && value == '')
-          return 'Please enter a value.'
+            return 'Please enter a value.'
           if (value.length > 30)
-          return 'The project title name must be less than 30 characters.'
+            return 'The project title name must be less than 30 characters.'
           return null
         }
       },
@@ -181,7 +181,7 @@ export default class ProjectForm extends Component {
         disabled: false,
         validation: (value, required) => {
           if (required && value == '')
-          return 'Please select a priority.'
+            return 'Please select a priority.'
           return null
         }
       },
@@ -193,9 +193,9 @@ export default class ProjectForm extends Component {
         disabled: false,
         validation: (value, required) => {
           if (required && value == '')
-          return 'Please enter a value.'
+            return 'Please enter a value.'
           if (value.length > 100)
-          return 'The description must be less than 100 characters.'
+            return 'The description must be less than 100 characters.'
           return null
         }
       },
@@ -207,9 +207,9 @@ export default class ProjectForm extends Component {
         disabled: false,
         validation: (value, required) => {
           if (required && value == '')
-          return 'Please enter a value.'
+            return 'Please enter a value.'
           if (value.length > 30)
-          return 'The reference number must be less than 30 characters.'
+            return 'The reference number must be less than 30 characters.'
           return null
         }
       },
