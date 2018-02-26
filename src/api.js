@@ -17,7 +17,6 @@ export default class API {
     .then(res => res.json())
     .then(json => {
       let customers = []
-      console.log(json.items)
       // For each returned json object...
       json.items.forEach(item => {
         let customer = API.customerModelize(item)
@@ -122,7 +121,6 @@ export default class API {
     return fetch(`${api}employee?limit=50&offset=0`)
     .then(res => res.json())
     .then(json => {
-      console.log(json)
       let employees = []
       json.items.forEach(item => {
         employees.push(API.employeeModelize(item))

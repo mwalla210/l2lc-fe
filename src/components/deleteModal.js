@@ -16,16 +16,16 @@ export default class DeleteModal extends Component {
   render(){
     return (
       <PromptModal
-        headerClass='bg-danger'
+        headerClass="bg-danger"
         title={this.props.title}
-        titleImage='warning'
-        titleClass='text-danger'
+        titleImage="warning"
+        titleClass="text-danger"
         confirmOnClick={this.props.confirmOnClick}
         denyOnClick={this.props.denyOnClick}
         open={this.props.open}
         closeFn={this.props.closeFn}
         content={this.props.content}
-        confirmClass='btn-danger'
+        confirmClass="btn-danger"
       />
     )
   }

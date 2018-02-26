@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import { inject } from 'mobx-react'
+import {Button} from 'react-bootstrap'
 
-@inject ('website')
+@inject ('website', 'page')
 export default class CustomerSummary extends Component {
   render() {
     return (
@@ -14,6 +15,8 @@ export default class CustomerSummary extends Component {
         <p>{`Ship addr: ${this.props.website.currentCustomer.formattedShipAddress}`}</p>
         <p>{`Bill addr: ${this.props.website.currentCustomer.formattedBillAddress}`}</p>
         <p>{`Past due: ${this.props.website.currentCustomer.pastDue}`}</p>
+        <Button className="btn btn-default" onClick={console.log('See customer projects')}>Projects</Button>
+        <Button className="btn btn-default" onClick={this.props.page.customerEditPage}>Edit</Button>
       </div>
     )
   }

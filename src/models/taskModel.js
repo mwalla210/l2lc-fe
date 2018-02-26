@@ -1,4 +1,5 @@
 import { action, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -19,6 +20,7 @@ export default class TaskModel {
       status: '',
     }
     extendObservable(this, addtlProps)
+    autoBind(this)
   }
 
   // Actions

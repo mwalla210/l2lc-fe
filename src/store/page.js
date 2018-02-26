@@ -1,14 +1,17 @@
 import { action, useStrict, extendObservable, observable, computed } from 'mobx'
-import CustomerTable from '../components/customerTable'
-import EmployeeTable from '../components/employeeTable'
-import ProjectTable from '../components/projectTable'
-import CustomerForm from '../components/customerForm'
-import EmployeeForm from '../components/employeeForm'
-import ProjectForm from '../components/projectForm'
-import TimeEntryForm from '../components/timeEntryForm'
+import Form from '../components/form'
+import Table from '../components/table'
 import EmployeeSummary from '../components/employeeSummary'
 import ProjectSummary from '../components/projectSummary'
 import CustomerSummary from '../components/customerSummary'
+import CustomerFormModel from '../models/customerFormModel'
+import EmployeeFormModel from '../models/employeeFormModel'
+import ProjectFormModel from '../models/projectFormModel'
+import TimeEntryFormModel from '../models/timeEntryFormModel'
+import CustomerTableModel from '../models/customerTableModel'
+import EmployeeTableModel from '../models/employeeTableModel'
+import ProjectTableModel from '../models/projectTableModel'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -19,11 +22,9 @@ useStrict(true)
  * @property {String} [title='Default Title'] Page title [observable]
  * @property {?Object} [content=null] Page inner content [observable]
  * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
- * @property {?Component} [table=null] Page-specific table component to render, if any [observable]
  * @property {?FormModel} [formModel=null] Page form model, if any [observable]
- * @property {?Boolean} [formEdit=false] Indicator for form editing [observable]
- * @property {?Component} [form=null] Page-specific table component to render, if any [observable]
- * @property {Array} [buttons=[]] Page button set [observable]
+ * @property {?ModalModel} [modal=null] Page summary modal model, if any [observable]
+ * @property {?ModalModel} [modalSecondary=null] Secondary page summary modal model, if any [observable]
  */
 class Page {
   constructor() {
@@ -32,16 +33,22 @@ class Page {
       title: 'Default Title',
       content: null,
       tableModel: null,
-      table: null,
       formModel: null,
-      formEdit: false,
-      form: null,
-      buttons: [],
+      modal: null,
+      modalSecondary: null,
       logOutModal: {
         open: false,
       }
     }
     extendObservable(this, addtlProps)
+    autoBind(this)
+    this.custFM = new CustomerFormModel(this.customerSummaryPage)
+    this.empFM = new EmployeeFormModel(this.employeeSummaryPage)
+    this.projFM = new ProjectFormModel(this.projectSummaryPage)
+    this.teFM = new TimeEntryFormModel()
+    this.custTM = new CustomerTableModel(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage)
+    this.empTM = new EmployeeTableModel(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage)
+    this.projTM = new ProjectTableModel(this.projectSummaryPage, this.projectEditPage)
   }
 
   /**
@@ -62,6 +69,24 @@ class Page {
    * @mobx action
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
+  /**
+   * @name setModal
+   * @description Sets summary modal model
+   * @method setModal
+   * @memberof Page.prototype
+   * @param  {ModalModel}      modalModel ModalModel to use for page
+   * @mobx action
+   */
+  @action setModal(modalModel){this.modal = observable(modalModel)}
+  /**
+   * @name setModalSecondary
+   * @description Sets secondary modal model
+   * @method setModalSecondary
+   * @memberof Page.prototype
+   * @param  {ModalModel}      modalModel ModalModel to use for page
+   * @mobx action
+   */
+  @action setModalSecondary(modalModel){this.modalSecondary = observable(modalModel)}
 
   // Page Changes - Projects
 
@@ -74,11 +99,9 @@ class Page {
    */
   @action createNewProjMenuItem(){
     this.title = 'New Project'
-    this.content = null
-    this.table = null
-    this.form = ProjectForm
-    this.formEdit = false
-    this.buttons = []
+    this.setFormModel(this.projFM)
+    this.projFM.setNonEdit()
+    this.content = Form
   }
 
   /**
@@ -90,10 +113,8 @@ class Page {
    */
   @action selectCustomerPage(){
     this.title = 'Select Customer'
-    this.table = CustomerTable
-    this.content = null
-    this.form = null
-    this.buttons = []
+    this.setTableModel(this.custTM)
+    this.content = Table
   }
 
   /**
@@ -105,11 +126,9 @@ class Page {
    */
   @action newCustomerPage(){
     this.title = 'New Customer'
-    this.table = null
-    this.content = null
-    this.form = CustomerForm
-    this.formEdit = false
-    this.buttons = []
+    this.setFormModel(this.custFM)
+    this.custFM.setNonEdit()
+    this.content = Form
   }
 
   /**
@@ -121,36 +140,7 @@ class Page {
    */
   @action projectSummaryPage(){
     this.title = 'Project Summary'
-    this.table = null
     this.content = ProjectSummary
-    this.form = null
-    this.buttons = [
-      {
-        title: 'Tasks',
-        onClick: () => console.log('Go to tasks page')
-      },
-      {
-        title: 'Print',
-        onClick: () => console.log('Go to print page')
-      },
-      {
-        title: 'Edit Information',
-        onClick: () => console.log('Go to edit project page')
-      },
-      {
-        title: 'Add Rework',
-        onClick: () => console.log('Rework modal')
-      },
-      {
-        title: 'Modify Hold Status',
-        onClick: () => console.log('Hold modal')
-      },
-      {
-        title: 'Delete',
-        onClick: () => console.log('Confirm delete'),
-        class: 'btn-danger'
-      },
-    ]
   }
 
   /**
@@ -161,12 +151,10 @@ class Page {
    * @mobx action
    */
   @action projectEditPage(){
-    this.title = ''
-    this.table = null
-    this.content = null
-    this.form = ProjectForm
-    this.formEdit = true
-    this.buttons = []
+    this.title = 'Edit Project'
+    this.setFormModel(this.projFM)
+    this.projFM.setEdit()
+    this.content = Form
   }
 
   /**
@@ -178,10 +166,8 @@ class Page {
    */
   @action projectsMenuItem(){
     this.title = 'Projects'
-    this.table = ProjectTable
-    this.content = null
-    this.form = null
-    this.buttons = []
+    this.setTableModel(this.projTM)
+    this.content = Table
   }
 
   /**
@@ -193,11 +179,9 @@ class Page {
    */
   @action projectTimeEntryMenuItem(){
     this.title = 'Time Entry'
-    this.content = null
-    this.table = null
-    this.form = TimeEntryForm
-    this.formEdit = false
-    this.buttons = []
+    this.setFormModel(this.teFM)
+    this.teFM.resetFields()
+    this.content = Form
   }
 
   /**
@@ -209,10 +193,8 @@ class Page {
    */
   @action customerInfoMenuItem(){
     this.title = 'Customers'
-    this.table = CustomerTable
-    this.content = null
-    this.form = null
-    this.buttons = []
+    this.setTableModel(this.custTM)
+    this.content = Table
   }
 
   /**
@@ -224,24 +206,7 @@ class Page {
    */
   @action customerSummaryPage(){
     this.title = 'Customer Summary'
-    this.table = null
     this.content = CustomerSummary
-    this.form = null
-    this.buttons = [
-      {
-        title: 'Projects',
-        onClick: () => console.log('Use customer ID to get all the projects in a table')
-      },
-      {
-        title: 'Edit',
-        onClick: () => console.log('Go to edit customer page')
-      },
-      {
-        title: 'Delete',
-        onClick: () => console.log('Do we really want this button?'),
-        class: 'btn-danger'
-      },
-    ]
   }
 
   /**
@@ -253,11 +218,9 @@ class Page {
    */
   @action customerEditPage(){
     this.title = 'Edit Customer'
-    this.table = null
-    this.content = null
-    this.form = CustomerForm
-    this.formEdit = true
-    this.buttons = []
+    this.setFormModel(this.custFM)
+    this.custFM.setEdit()
+    this.content = Form
   }
 
   // Page Changes - Analytics
@@ -271,10 +234,7 @@ class Page {
    */
   @action emplProductivityMenuItem(){
     this.title = 'Employee Productivity [Q3]'
-    this.form = null
-    this.table = null
     this.content = null
-    this.buttons = []
   }
 
   /**
@@ -286,10 +246,7 @@ class Page {
    */
   @action workstationTrackingMenuItem(){
     this.title = 'Workstation Tracking [Q3]'
-    this.form = null
-    this.table = null
     this.content = null
-    this.buttons = []
   }
 
   /**
@@ -301,10 +258,7 @@ class Page {
    */
   @action jobTypeProductivityMenuItem(){
     this.title = 'Job Type Productivity [Q3]'
-    this.form = null
-    this.table = null
     this.content = null
-    this.buttons = []
   }
 
   /**
@@ -316,10 +270,7 @@ class Page {
    */
   @action costCenterTimeMenuItem(){
     this.title = 'Cost Center Time [Q3]'
-    this.form = null
-    this.table = null
     this.content = null
-    this.buttons = []
   }
 
   // Page Changes - Admin
@@ -333,10 +284,8 @@ class Page {
    */
    @action employeeInformationMenuItem(){
      this.title = 'Employee Information'
-     this.table = EmployeeTable
-     this.content = null
-     this.form = null
-     this.buttons = []
+     this.setTableModel(this.empTM)
+     this.content = Table
    }
 
    /**
@@ -348,11 +297,9 @@ class Page {
     */
    @action newEmployeePage(){
      this.title = 'New Employee'
-     this.table = null
-     this.content = null
-     this.form = EmployeeForm
-     this.formEdit = false
-     this.buttons = []
+     this.setFormModel(this.empFM)
+     this.empFM.setNonEdit()
+     this.content = Form
    }
 
    /**
@@ -364,11 +311,9 @@ class Page {
     */
    @action employeeEditPage(){
      this.title = 'Edit Employee'
-     this.table = null
-     this.content = null
-     this.form = EmployeeForm
-     this.formEdit = true
-     this.buttons = []
+     this.setFormModel(this.empFM)
+     this.empFM.setEdit()
+     this.content = Form
    }
 
    /**
@@ -380,20 +325,7 @@ class Page {
     */
    @action employeeSummaryPage(){
      this.title = 'Employee Summary'
-     this.table = null
-     this.form = null
      this.content = EmployeeSummary
-     this.buttons = [
-       {
-         title: 'Edit',
-         onClick: () => this.employeeEditPage()
-       },
-       {
-         title: 'Delete',
-         onClick: () => this.employeeInformationMenuItem(),
-         class: 'btn-danger'
-       },
-     ]
      this.navHighlight = ''
    }
 
@@ -406,10 +338,7 @@ class Page {
    */
   @action accountManagementMenuItem(){
     this.title = 'Account Management [Q3]'
-    this.form = null
-    this.table = null
     this.content = null
-    this.buttons = []
   }
 
   // TODO remove
