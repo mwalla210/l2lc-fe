@@ -108,9 +108,14 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action createProject(project){
-    console.log(`Create project entry in API with: ${project}`)
-  }
+   @action async createProject(project){
+     let jsonProject = JSON.stringify(project)
+     console.log('Create project entry in API with:', jsonProject)
+     return API.createProject(jsonProject)
+     .then(response => {
+       this.setProject(response)
+     })
+   }
   /**
    * @name createCustomer
    * @description Sends the formatted Customer in POST to API to add entry to database; sets this.currentCustomer

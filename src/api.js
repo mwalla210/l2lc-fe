@@ -68,6 +68,8 @@ export default class API {
     return JSON.stringify(addr1) === JSON.stringify(addr2)
   }
 
+  // Projects
+
   static fetchProjects(){
     return fetch(`${api}project?limit=50&offset=0`)
     .then(res => res.json())
@@ -80,11 +82,34 @@ export default class API {
       projects = projects.map(item => {
         if (item.customer)
           item.customer.companyName = item.customer.name
-        let project = new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
+        let project = API.projectModelize(item)
         return project
       })
       return projects
     })
+  }
+
+  static fetchProject(id){
+    return fetch(`${api}project/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      let project = null
+      if (json.id == id){
+        project = API.projectModelize(json)
+      }
+      return project
+    })
+  }
+
+  static createProject(project){
+    return API.create('project/create', project)
+    .then(response => {
+      return API.projectModelize(response)
+    })
+  }
+
+  static projectModelize(item){
+    return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
   }
 
   // Employees
