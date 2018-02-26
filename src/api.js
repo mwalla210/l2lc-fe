@@ -83,7 +83,7 @@ export default class API {
         if (item.customer)
           item.customer.companyName = item.customer.name
         let project = API.projectModelize(item)
-         return project
+        return project
       })
       return projects
     })
