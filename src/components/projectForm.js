@@ -42,6 +42,11 @@ export default class ProjectForm extends Component {
                 id: 'partCount',
                 required: true,
                 disabled: false
+              },
+              {
+                id: 'projectTitle',
+                required: false,
+                disabled: false
               }
             ]
           }
@@ -57,11 +62,6 @@ export default class ProjectForm extends Component {
                 id: 'partCount',
                 required: true,
                 disabled: false
-              },
-              {
-                id: 'projectTitle',
-                required: true,
-                disabled: false
               }
             ]
           }
@@ -70,11 +70,6 @@ export default class ProjectForm extends Component {
               {
                 id: 'projectType',
                 options: ['Select...','Maintenance'],
-                required: true,
-                disabled: false
-              },
-              {
-                id: 'projectTitle',
                 required: true,
                 disabled: false
               }
@@ -87,11 +82,6 @@ export default class ProjectForm extends Component {
                 options: ['Select...','ISO','Other'],
                 required: true,
                 disabled: false
-              },
-              {
-                id: 'projectTitle',
-                required: true,
-                disabled: false
               }
             ]
           }
@@ -100,11 +90,6 @@ export default class ProjectForm extends Component {
               {
                 id: 'projectType',
                 options: ['Select...','Research and Development'],
-                required: true,
-                disabled: false
-              },
-              {
-                id: 'projectTitle',
                 required: true,
                 disabled: false
               }
@@ -117,11 +102,6 @@ export default class ProjectForm extends Component {
                 options: ['Select...','Production'],
                 required: true,
                 disabled: false
-              },
-              {
-                id: 'projectTitle',
-                required: true,
-                disabled: false
               }
             ]
           }
@@ -130,11 +110,6 @@ export default class ProjectForm extends Component {
               {
                 id: 'projectType',
                 options: ['Select...','Other'],
-                required: true,
-                disabled: false
-              },
-              {
-                id: 'projectTitle',
                 required: true,
                 disabled: false
               }
@@ -187,7 +162,7 @@ export default class ProjectForm extends Component {
         type: 'textfield',
         label: 'Project Title',
         id: 'projectTitle',
-        required: false,
+        required: true,
         disabled: false,
         validation: (value, required) => {
           if (required && value == '')
