@@ -34,11 +34,12 @@ export default class CustomerTableModel extends TableModel{
     this.columns = this.actionColumns()
   }
   /**
-   * @name actionColumns
+   * @name mainColumns
    * @description Sets columns to have action icons instead of select button
-   * @method actionColumns
+   * @method mainColumns
+   * @return {Array}
    */
-  actionColumns(){
+  mainColumns(){
     return [
       {
         Header: 'ID',
@@ -65,6 +66,17 @@ export default class CustomerTableModel extends TableModel{
         accessor: 'phone',
         filterable: true
       },
+    ]
+  }
+  /**
+   * @name actionColumns
+   * @description Sets columns to have action icons instead of select button
+   * @method actionColumns
+   * @return {Array}
+   */
+  actionColumns(){
+    let cols = this.mainColumns()
+    cols.push(
       {
         Header: 'Actions',
         sortable: false,
@@ -80,61 +92,46 @@ export default class CustomerTableModel extends TableModel{
         },
         Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
       }
-    ]
+    )
+    return cols
   }
   /**
    * @name noActionColumns
    * @description Sets columns to have select button instead of action icons
    * @method noActionColumns
+   * @return {Array}
    */
   noActionColumns(){
-    return [
-      {
-        Header: 'ID',
-        accessor: 'id',
-        filterable: true
-      },
-      {
-        Header: 'Name',
-        accessor: 'companyName',
-        filterable: true
-      },
-      {
-        Header: 'Shipping Address',
-        accessor: 'formattedShipAddress',
-        filterable: true
-      },
-      {
-        Header: 'Billing Address',
-        accessor: 'formattedBillAddress',
-        filterable: true
-      },
-      {
-        Header: 'Phone',
-        accessor: 'phone',
-        filterable: true
-      },
+    let cols = this.mainColumns()
+    // getProps: () => {
+    //   return {
+    //     className: 'center',
+    //     style: {
+    //       paddingTop: '0px',
+    //       paddingBottom: '0px'
+    //     }
+    //   }
+    // },
+    cols.push(
       {
         Header: 'Actions',
         sortable: false,
-        // maxWidth: 80,
-        // getProps: () => {
-        //   return {
-        //     className: 'center',
-        //     style: {
-        //       paddingTop: '0px',
-        //       paddingBottom: '0px'
-        //     }
-        //   }
-        // },
+        maxWidth: 80,
         Cell: row => {
           let click = () => {
             this.selectClick(row)
           }
-          return <Button className="btn btn-primary" onClick={click}>Select</Button>
+          return (
+            <span>
+              <span>
+                <Button className="btn btn-default" onClick={click}>Select</Button>
+              </span>
+            </span>
+          )
         }
       }
-    ]
+    )
+    return cols
   }
   /**
    * @name selectClick
