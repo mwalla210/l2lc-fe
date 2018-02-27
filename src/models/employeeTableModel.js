@@ -38,6 +38,8 @@ export default class EmployeeTableModel extends TableModel{
       {
         Header: 'ID',
         accessor: 'id',
+        minWidth: 30,
+        maxWidth: 30,
         filterable: true
       },
       {
@@ -53,6 +55,8 @@ export default class EmployeeTableModel extends TableModel{
       {
         Header: 'Barcode',
         accessor: 'barcode',
+        minWidth: 120,
+        maxWidth: 120,
         Cell: row => (
           <span>
             <span>

@@ -16,6 +16,7 @@ export default class CheckboxField extends Component {
         <input
           className="form-check-input"
           disabled={this.props.disabled}
+          style={{margin: 5}}
           type="checkbox"
           id={this.props.id}
           checked={this.props.value}

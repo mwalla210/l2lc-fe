@@ -48,13 +48,13 @@ export default class Form extends Component {
           }
           switch (field.type){
             case 'select':
-              child = <SelectField {...props} options={field.options}/>
+              child = <div style={{width:500}}><SelectField {...props} options={field.options}/></div>
               break
             case 'textfield':
-              child = <TextField {...props}/>
+              child = <div style={{width:500}}><TextField {...props}/></div>
               break
             case 'textarea':
-              child = <TextAreaField {...props} rows={field.rows}/>
+              child = <div style={{width:500}}><TextAreaField {...props} rows={field.rows}/></div>
               break
             case 'checkbox':
               child = <CheckboxField {...props}/>
@@ -74,11 +74,11 @@ export default class Form extends Component {
           )
         })}
         {this.props.page.formModel.secondaryButton &&
-          <button className="btn btn-secondary" onClick={this.secondaryOnClick}>
+          <button style={{margin:10}} className="btn btn-secondary" onClick={this.secondaryOnClick}>
             {this.props.page.formModel.secondaryButton.title}
           </button>
         }
-        <button className="btn btn-primary" disabled={this.props.page.formModel.buttonDisabled} onClick={this.primaryOnClick}>
+        <button style={{margin:10}} className="btn btn-primary" disabled={this.props.page.formModel.buttonDisabled} onClick={this.primaryOnClick}>
           {this.props.page.formModel.primaryButton.title}
         </button>
       </form>

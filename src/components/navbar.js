@@ -45,7 +45,7 @@ export default class NavBar extends Component{
 
   render(){
     return (
-      <div>
+      <div style={{width:800}}>
         <PromptModal
           title="Log Out"
           confirmOnClick={this.promptConfirm}
