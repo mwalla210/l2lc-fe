@@ -1,6 +1,7 @@
 import { useStrict, action } from 'mobx'
 import autoBind from 'auto-bind'
 import FormModel from './formModel'
+import ProjectModel from './projectModel'
 import Website from '../store/website'
 useStrict(true)
 
@@ -376,6 +377,7 @@ const fields = [
   * @classdesc Customer initializer for form storage object
   * @description Creates fields, sets correct onClick
   * @property {Function} onClickNav Page navigation function for successful form submission
+  * @property {Function} onClickCustomerNav Page navigation function for successful form submission
   * @property {Function} onCancelNav Page navigation function for cancelled form submission
  */
 export default class projectFormModel extends FormModel{
@@ -385,10 +387,6 @@ export default class projectFormModel extends FormModel{
       {
         title: 'Continue',
         onClick: primaryOnClick
-      },
-      {
-        title: 'Cancel',
-        onClick: onCancelNav
       }
     )
     this.onClickNav = onClickNav
@@ -458,13 +456,14 @@ export default class projectFormModel extends FormModel{
         priority: valueReturn('priority').trim(),
         partCount: valueReturn('partCount').trim(),
         refNumber: valueReturn('referenceNumber').trim(),
-        customer: {
-          id: '1'
-        }
       }
       if (costCenter == 'APC' || costCenter == 'Decorative'){
-        Website.createProject(body)
-        .then(() => this.onClickCustomerNav())
+        // Make a preliminary project model, set as Website.currentProject
+        let model = new ProjectModel(null, body.costCenter, body.jobType, body.title, body.priority, null, null, body.partCount, body.description, body.refNumber, null, null)
+        Website.setProject(model)
+        console.log(Website.currentProject)
+        // Nav to customer select to finalize customer information
+        this.onClickCustomerNav()
       }
       else {
         Website.createProject(body)

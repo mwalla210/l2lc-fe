@@ -44,9 +44,9 @@ class Page {
     autoBind(this)
     this.custFM = new CustomerFormModel(this.customerSummaryPage)
     this.empFM = new EmployeeFormModel(this.employeeSummaryPage)
-    this.projFM = new ProjectFormModel(this.projectSummaryPage)
+    this.projFM = new ProjectFormModel(this.projectSummaryPage, this.selectCustomerPage, this.projectsMenuItem)
     this.teFM = new TimeEntryFormModel()
-    this.custTM = new CustomerTableModel(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage)
+    this.custTM = new CustomerTableModel(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage, this.projectSummaryPage)
     this.empTM = new EmployeeTableModel(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage)
     this.projTM = new ProjectTableModel(this.projectSummaryPage, this.projectEditPage)
   }
@@ -114,6 +114,7 @@ class Page {
   @action selectCustomerPage(){
     this.title = 'Select Customer'
     this.setTableModel(this.custTM)
+    this.custTM.selectTable()
     this.content = Table
   }
 
@@ -194,6 +195,7 @@ class Page {
   @action customerInfoMenuItem(){
     this.title = 'Customers'
     this.setTableModel(this.custTM)
+    this.custTM.nonSelectTable()
     this.content = Table
   }
 
