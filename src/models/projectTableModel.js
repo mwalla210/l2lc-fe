@@ -113,7 +113,6 @@ export default class ProjectTableModel extends TableModel{
         Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
       }
     ]
-    this.dataFetch()
   }
   /**
    * @name clickHandler

@@ -32,7 +32,6 @@ export default class CustomerTableModel extends TableModel{
     this.selectNav = selectNav
     autoBind(this)
     this.columns = this.actionColumns()
-    this.dataFetch()
   }
   /**
    * @name actionColumns

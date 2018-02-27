@@ -24,8 +24,11 @@ export default class Form extends Component {
     this.props.page.formModel.secondaryButton.onClick()
   }
 
-  onChange = (index) => (event) => {
-    this.props.page.formModel.modifyFieldValue(index, event.target.value)
+  onChange = (index, checkbox=false) => (event) => {
+    let val = event.target.value
+    if (checkbox)
+      val = event.target.checked
+    this.props.page.formModel.modifyFieldValue(index, val)
   }
 
   onBlur = (index) => (event) => {
@@ -43,7 +46,7 @@ export default class Form extends Component {
             disabled: field.disabled,
             value: field.value,
             index,
-            onChange: this.onChange(index),
+            onChange: this.onChange(index, field.type == 'checkbox'),
             onBlur: this.onBlur(index)
           }
           switch (field.type){
