@@ -45,7 +45,7 @@ export default class NavBar extends Component{
 
   render(){
     return (
-      <div style={{width:800}}>
+      <div>
         <PromptModal
           title="Log Out"
           confirmOnClick={this.promptConfirm}
@@ -63,7 +63,7 @@ export default class NavBar extends Component{
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav>
+            <Nav style={{marginLeft: '12%'}}>
               <NavItem onClick={this.props.page.createNewProjMenuItem}>
                 New Project
               </NavItem>
