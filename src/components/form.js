@@ -44,7 +44,8 @@ export default class Form extends Component {
             value: field.value,
             index,
             onChange: this.onChange(index),
-            onBlur: this.onBlur(index)
+            onBlur: this.onBlur(index),
+            valid: field.isValid,
           }
           switch (field.type){
             case 'select':

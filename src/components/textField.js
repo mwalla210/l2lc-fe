@@ -10,14 +10,17 @@ export default class TextField extends Component {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
-    color: PropTypes.string
+    valid: PropTypes.bool.isRequired
   }
 
   render(){
+    let color = ''
+    if(!this.props.valid)
+      color = 'red'
     return (
       <input
         disabled={this.props.disabled}
-        style={{borderColor:this.props.color}}
+        style={{borderColor:color}}
         type="text"
         className="form-control"
         id={this.props.id}

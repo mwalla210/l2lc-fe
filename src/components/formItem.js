@@ -7,7 +7,7 @@ export default class FormItem extends Component {
     errorText: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     required: PropTypes.bool.isRequired,
-    disabled: PropTypes.bool.isRequired
+    disabled: PropTypes.bool.isRequired,
   }
 
   render(){
