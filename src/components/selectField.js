@@ -11,12 +11,17 @@ export default class SelectField extends Component {
     options: MobXPropTypes.observableArrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
+    valid: PropTypes.bool.isRequired
   }
 
   render(){
+    let color = ''
+    if(!this.props.valid)
+      color = 'red'
     return (
       <select
         disabled={this.props.disabled}
+        style = {{borderColor: color}}
         className="form-control"
         id={this.props.id}
         value={this.props.value}
