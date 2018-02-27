@@ -35,7 +35,7 @@ export default class Form extends Component {
 
   render() {
     return(
-      <form>
+      <form style={{marginLeft: '27%'}}>
         {this.props.page.formModel.fields.map((field, index) => {
           let child = null
           let props = {
