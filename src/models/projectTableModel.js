@@ -49,7 +49,6 @@ export default class ProjectTableModel extends TableModel{
       {
         Header: 'ID',
         accessor: 'id',
-        minWidth: 30,
         maxWidth: 30,
         filterable: true
       },
