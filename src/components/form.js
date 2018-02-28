@@ -35,7 +35,7 @@ export default class Form extends Component {
 
   render() {
     return(
-      <form style={{marginLeft: '30%'}}>
+      <form style={{marginLeft: '33%',width:'100%'}}>
         {this.props.page.formModel.fields.map((field, index) => {
           let child = null
           let props = {
@@ -49,13 +49,13 @@ export default class Form extends Component {
           }
           switch (field.type){
             case 'select':
-              child = <div style={{width:'166%'}}><SelectField {...props} options={field.options}/></div>
+              child = <div><SelectField {...props} options={field.options}/></div>
               break
             case 'textfield':
-              child = <div style={{width:'166%'}}><TextField {...props}/></div>
+              child = <div><TextField {...props}/></div>
               break
             case 'textarea':
-              child = <div style={{width:'166%'}}><TextAreaField {...props} rows={field.rows}/></div>
+              child = <div><TextAreaField {...props} rows={field.rows}/></div>
               break
             case 'checkbox':
               child = <CheckboxField {...props}/>
