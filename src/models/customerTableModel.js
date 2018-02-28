@@ -103,15 +103,6 @@ export default class CustomerTableModel extends TableModel{
    */
   noActionColumns(){
     let cols = this.mainColumns()
-    // getProps: () => {
-    //   return {
-    //     className: 'center',
-    //     style: {
-    //       paddingTop: '0px',
-    //       paddingBottom: '0px'
-    //     }
-    //   }
-    // },
     cols.push(
       {
         Header: 'Actions',
