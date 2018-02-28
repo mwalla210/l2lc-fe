@@ -80,17 +80,9 @@ export default class ProjectModel {
     if (this.customer) return this.customer.id
     else return null
   }
-  @action addTime(){
-    this.timeEntries = [
-      new Date('December 17, 1995 01:24:00'),
-      new Date('December 17, 1995 03:25:00'),
-      new Date('December 17, 1993 04:25:00'),
-      new Date('December 17, 1993 05:25:00'),
-    ]
-  }
   /**
    * @name timeSpent
-   * @description Calculates Project's time total based on dates and reworks
+   * @description Calculates Project's time total based on timeEntries
    * @memberof ProjectModel.prototype
    * @method timeSpent
    * @return {String}
