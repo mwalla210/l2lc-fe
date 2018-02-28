@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
+import Barcode from './barcode'
 import {Button} from 'react-bootstrap'
 import DeleteModal from './deleteModal'
 import FieldModal from './fieldModal'
@@ -79,6 +80,11 @@ export default class ProjectSummary extends Component {
         <p>{`Part Count: ${this.props.website.currentProject.partCount}`}</p>
         <p>{`Description: ${this.props.website.currentProject.descr}`}</p>
         <p>{`Reference Number: ${this.props.website.currentProject.refNum}`}</p>
+        <Barcode
+         imageDomID={`${this.props.website.currentProject.jobTypeTitle}${this.props.website.currentProject.id}`}
+         barcodeID={this.props.website.currentProject.id.toString()}
+        />
+        <br/>
         <Button className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
         <Button className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
         <Button className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
