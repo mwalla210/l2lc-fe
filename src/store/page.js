@@ -11,6 +11,7 @@ import TimeEntryFormModel from '../models/timeEntryFormModel'
 import CustomerTableModel from '../models/customerTableModel'
 import EmployeeTableModel from '../models/employeeTableModel'
 import ProjectTableModel from '../models/projectTableModel'
+import Website from './website'
 import autoBind from 'auto-bind'
 useStrict(true)
 
@@ -44,9 +45,9 @@ class Page {
     autoBind(this)
     this.custFM = new CustomerFormModel(this.customerSummaryPage)
     this.empFM = new EmployeeFormModel(this.employeeSummaryPage)
-    this.projFM = new ProjectFormModel(this.projectSummaryPage)
+    this.projFM = new ProjectFormModel(this.projectSummaryPage, this.selectCustomerPage, this.projectsMenuItem)
     this.teFM = new TimeEntryFormModel()
-    this.custTM = new CustomerTableModel(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage)
+    this.custTM = new CustomerTableModel(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage, this.projectSummaryPage)
     this.empTM = new EmployeeTableModel(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage)
     this.projTM = new ProjectTableModel(this.projectSummaryPage, this.projectEditPage)
   }
@@ -59,7 +60,10 @@ class Page {
    * @param  {TableModel}      tableModel TableModel to use for page
    * @mobx action
    */
-  @action setTableModel(tableModel){this.tableModel = observable(tableModel)}
+  @action setTableModel(tableModel){
+    this.tableModel = observable(tableModel)
+    this.tableModel.dataFetch()
+  }
   /**
    * @name setFormModel
    * @description Sets form model
@@ -114,6 +118,21 @@ class Page {
   @action selectCustomerPage(){
     this.title = 'Select Customer'
     this.setTableModel(this.custTM)
+    this.custTM.selectTable()
+    this.custFM.setOnClickNav(() => {
+      let body = {
+        jobType: Website.currentProject.jobTypeTitle,
+        costCenter: Website.currentProject.costCenterTitle,
+        title: Website.currentProject.title,
+        description: Website.currentProject.descr,
+        priority: Website.currentProject.priority,
+        partCount: Website.currentProject.partCount,
+        refNumber: Website.currentProject.refNum,
+        customer: {id: Website.currentCustomer.id}
+      }
+      Website.createProject(body)
+      .then(() => this.projectSummaryPage())
+    })
     this.content = Table
   }
 
@@ -194,6 +213,8 @@ class Page {
   @action customerInfoMenuItem(){
     this.title = 'Customers'
     this.setTableModel(this.custTM)
+    this.custTM.nonSelectTable()
+    this.custFM.setOnClickNav(this.customerSummaryPage)
     this.content = Table
   }
 

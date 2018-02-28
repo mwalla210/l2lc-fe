@@ -13,6 +13,7 @@ useStrict(true)
   * @class EmployeeTableModel
   * @classdesc Employee initializer for table storage object
   * @description Creates fields, sets correct onClick
+  * @property {Function} buttonClickNav Function to navigate on click of table button
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
  */
@@ -80,7 +81,6 @@ export default class EmployeeTableModel extends TableModel{
         Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
       }
     ]
-    this.dataFetch()
   }
   /**
    * @name clickHandler
