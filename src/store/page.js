@@ -1,16 +1,9 @@
-import { action, useStrict, extendObservable, observable, computed } from 'mobx'
+import { action, useStrict, extendObservable, observable } from 'mobx'
 import Form from '../components/form'
 import Table from '../components/table'
-import EmployeeSummary from '../components/employeeSummary'
-import ProjectSummary from '../components/projectSummary'
-import CustomerSummary from '../components/customerSummary'
-import CustomerFormModel from '../models/customerFormModel'
-import EmployeeFormModel from '../models/employeeFormModel'
-import ProjectFormModel from '../models/projectFormModel'
-import TimeEntryFormModel from '../models/timeEntryFormModel'
-import CustomerTableModel from '../models/customerTableModel'
-import EmployeeTableModel from '../models/employeeTableModel'
-import ProjectTableModel from '../models/projectTableModel'
+import SummarySelector from './summarySelector'
+import FormSelector from './formSelector'
+import TableSelector from './tableSelector'
 import Website from './website'
 import autoBind from 'auto-bind'
 useStrict(true)
@@ -40,13 +33,6 @@ class Page {
     }
     extendObservable(this, addtlProps)
     autoBind(this)
-    this.custFM = new CustomerFormModel(this.customerSummaryPage)
-    this.empFM = new EmployeeFormModel(this.employeeSummaryPage)
-    this.projFM = new ProjectFormModel(this.projectSummaryPage, this.selectCustomerPage, this.projectsMenuItem)
-    this.teFM = new TimeEntryFormModel()
-    this.custTM = new CustomerTableModel(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage, this.projectSummaryPage)
-    this.empTM = new EmployeeTableModel(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage)
-    this.projTM = new ProjectTableModel(this.projectSummaryPage, this.projectEditPage)
   }
 
   /**
@@ -89,7 +75,7 @@ class Page {
    */
   @action setModalSecondary(modalModel){this.modalSecondary = observable(modalModel)}
 
-  // Page Changes - Projects
+  // Page Changes - Create Projects
 
   /**
    * @name createNewProjMenuItem
@@ -100,8 +86,7 @@ class Page {
    */
   @action createNewProjMenuItem(){
     this.title = 'New Project'
-    this.setFormModel(this.projFM)
-    this.projFM.setNonEdit()
+    this.setFormModel(FormSelector.getProject(this.projectSummaryPage, this.selectCustomerPage))
     this.content = Form
   }
 
@@ -114,9 +99,20 @@ class Page {
    */
   @action selectCustomerPage(){
     this.title = 'Select Customer'
-    this.setTableModel(this.custTM)
-    this.custTM.selectTable()
-    this.custFM.setOnClickNav(() => {
+    this.setTableModel(TableSelector.getSelectCustomer(this.newProjectCustomerPage, this.projectSummaryPage))
+    this.content = Table
+  }
+
+  /**
+   * @name newProjectCustomerPage
+   * @description Updates title, form, table, content, and buttons for New Customer page.
+   * @memberof Page.prototype
+   * @method newProjectCustomerPage
+   * @mobx action
+   */
+  @action newProjectCustomerPage(){
+    this.title = 'New Customer for Project'
+    let func = () => {
       let body = {
         jobType: Website.currentProject.jobTypeTitle,
         costCenter: Website.currentProject.costCenterTitle,
@@ -129,21 +125,9 @@ class Page {
       }
       Website.createProject(body)
       .then(() => this.projectSummaryPage())
-    })
-    this.content = Table
-  }
-
-  /**
-   * @name newCustomerPage
-   * @description Updates title, form, table, content, and buttons for New Customer page.
-   * @memberof Page.prototype
-   * @method newCustomerPage
-   * @mobx action
-   */
-  @action newCustomerPage(){
-    this.title = 'New Customer'
-    this.setFormModel(this.custFM)
-    this.custFM.setNonEdit()
+    }
+    // TODO: missing cancel function
+    this.setFormModel(FormSelector.getNewCustomer(func))
     this.content = Form
   }
 
@@ -156,8 +140,10 @@ class Page {
    */
   @action projectSummaryPage(){
     this.title = 'Project Summary'
-    this.content = ProjectSummary
+    this.content = SummarySelector.getSummary('project')
   }
+
+  // Page Changes - Projects List, Editing
 
   /**
    * @name projectEditPage
@@ -168,8 +154,7 @@ class Page {
    */
   @action projectEditPage(){
     this.title = 'Edit Project'
-    this.setFormModel(this.projFM)
-    this.projFM.setEdit()
+    this.setFormModel(FormSelector.getEditProject(this.projectSummaryPage, this.projectsMenuItem))
     this.content = Form
   }
 
@@ -182,9 +167,11 @@ class Page {
    */
   @action projectsMenuItem(){
     this.title = 'Projects'
-    this.setTableModel(this.projTM)
+    this.setTableModel(TableSelector.getProject(this.projectSummaryPage, this.projectEditPage))
     this.content = Table
   }
+
+  // Page Changes - Time Entry
 
   /**
    * @name projectTimeEntryMenuItem
@@ -195,10 +182,11 @@ class Page {
    */
   @action projectTimeEntryMenuItem(){
     this.title = 'Time Entry'
-    this.setFormModel(this.teFM)
-    this.teFM.resetFields()
+    this.setFormModel(FormSelector.getTimeEntry())
     this.content = Form
   }
+
+  // Page Changes - Customers
 
   /**
    * @name customerInfoMenuItem
@@ -209,10 +197,21 @@ class Page {
    */
   @action customerInfoMenuItem(){
     this.title = 'Customers'
-    this.setTableModel(this.custTM)
-    this.custTM.nonSelectTable()
-    this.custFM.setOnClickNav(this.customerSummaryPage)
+    this.setTableModel(TableSelector.getNonSelectCustomer(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage))
     this.content = Table
+  }
+
+  /**
+   * @name newCustomerPage
+   * @description Updates title, form, table, content, and buttons for New Customer page.
+   * @memberof Page.prototype
+   * @method newCustomerPage
+   * @mobx action
+   */
+  @action newCustomerPage(){
+    this.title = 'New Customer'
+    this.setFormModel(FormSelector.getNewCustomer(this.customerSummaryPage, this.customerInfoMenuItem))
+    this.content = Form
   }
 
   /**
@@ -224,7 +223,7 @@ class Page {
    */
   @action customerSummaryPage(){
     this.title = 'Customer Summary'
-    this.content = CustomerSummary
+    this.content = SummarySelector.getSummary('customer')
   }
 
   /**
@@ -236,8 +235,7 @@ class Page {
    */
   @action customerEditPage(){
     this.title = 'Edit Customer'
-    this.setFormModel(this.custFM)
-    this.custFM.setEdit()
+    this.setFormModel(FormSelector.getEditCustomer(this.customerSummaryPage, this.customerInfoMenuItem))
     this.content = Form
   }
 
@@ -302,7 +300,7 @@ class Page {
    */
    @action employeeInformationMenuItem(){
      this.title = 'Employee Information'
-     this.setTableModel(this.empTM)
+     this.setTableModel(TableSelector.getEmployee(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage))
      this.content = Table
    }
 
@@ -315,8 +313,7 @@ class Page {
     */
    @action newEmployeePage(){
      this.title = 'New Employee'
-     this.setFormModel(this.empFM)
-     this.empFM.setNonEdit()
+     this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
      this.content = Form
    }
 
@@ -329,8 +326,7 @@ class Page {
     */
    @action employeeEditPage(){
      this.title = 'Edit Employee'
-     this.setFormModel(this.empFM)
-     this.empFM.setEdit()
+     this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
      this.content = Form
    }
 
@@ -343,8 +339,7 @@ class Page {
     */
    @action employeeSummaryPage(){
      this.title = 'Employee Summary'
-     this.content = EmployeeSummary
-     this.navHighlight = ''
+     this.content = SummarySelector.getSummary('employee')
    }
 
   /**
@@ -375,8 +370,6 @@ class Page {
   @action logOut(){
     this.loggedin = !this.loggedin
   }
-
-
 
 }
 
