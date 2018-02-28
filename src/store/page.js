@@ -37,9 +37,6 @@ class Page {
       formModel: null,
       modal: null,
       modalSecondary: null,
-      logOutModal: {
-        open: false,
-      }
     }
     extendObservable(this, addtlProps)
     autoBind(this)
@@ -379,39 +376,7 @@ class Page {
     this.loggedin = !this.loggedin
   }
 
-  /**
-   * @name logOutAlert
-   * @description Opens log out modal
-   * @method logOutAlert
-   * @memberof Page.prototype
-   * @mobx action
-   */
-  @action logOutAlert(){
-    this.logOutModal.open = true
-  }
 
-  /**
-   * @name logOutDismiss
-   * @description Closes log out modal
-   * @method logOutDismiss
-   * @memberof Page.prototype
-   * @mobx action
-   */
-  @action logOutDismiss(){
-    this.logOutModal.open = false
-  }
-
-  /**
-   * @name logOutModalOpen
-   * @description Shows status of modal
-   * @method logOutModalOpen
-   * @memberof Page.prototype
-   * @return {Boolean}
-   * @mobx computed
-   */
-  @computed get logOutModalOpen(){
-    return this.logOutModal.open
-  }
 
 }
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import { Modal, Button } from 'react-bootstrap'
 import PromptModal from './promptModal'
 
 export default class DeleteModal extends Component {
