@@ -69,24 +69,43 @@ const fields = [
   },
   {
     type: 'select',
-    label: 'Region',
-    id: 'region',
-    options: ['Select...','United States','Canada','Mexico','Europe','Asia','Africa'],
+    label: 'Country',
+    id: 'country',
+    options: ['Select...','United States of America','Canada','--------------','Afghanistan','Aland Islands','Albania','Algeria','American Samoa','Andorra','Angola','Anguilla','Antarctica','Antigua and Barbuda',
+    'Argentina','Armenia','Aruba','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium',
+    'Belize','Benin','Bermuda','Bhutan','Bolivia','Bonaire, Sint Eustatius and Saba','Bosnia and Herzegovina','Botswana','Bouvet Island',
+    'Brazil','British Indian Ocean Territory','United States Minor Outlying Islands','Virgin Islands (British)','Virgin Islands (U.S.)',
+    'Brunei Darussalam','Bulgaria','Burkina Faso','Burundi','Cambodia','Cameroon','Cabo Verde','Cayman Islands','Central African Republic',
+    'Chad','Chile','China','Christmas Island','Cocos (Keeling) Islands','Colombia','Comoros','Congo','Cook Islands','Costa Rica','Croatia',
+    'Cuba','Curaçao','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador',
+    'Equatorial Guinea','Eritrea','Estonia','Ethiopia','Falkland Islands (Malvinas)','Faroe Islands','Fiji','Finland','France',
+    'French Guiana','French Polynesia','French Southern Territories','Gabon','Gambia','Georgia','Germany','Ghana','Gibraltar','Greece',
+    'Greenland','Grenada','Guadeloupe','Guam','Guatemala','Guernsey','Guinea','Guinea-Bissau','Guyana','Haiti','Heard Island and McDonald Islands',
+    'Holy See','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Cote dIvoire','Iran (Islamic Republic of)','Iraq','Ireland',
+    'Isle of Man','Israel','Italy','Jamaica','Japan','Jersey','Jordan','Kazakhstan','Kenya','Kiribati','Kuwait','Kyrgyzstan','Lao Peoples Democratic Republic',
+    'Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macao','Macedonia','Madagascar','Malawi','Malaysia',
+    'Maldives','Mali','Malta','Marshall Islands','Martinique','Mauritania','Mauritius','Mayotte','Mexico','Micronesia','Moldova','Monaco',
+    'Mongolia','Montenegro','Montserrat','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands','New Caledonia','New Zealand',
+    'Nicaragua','Niger','Nigeria','Niue','Norfolk Island','Korea (Democratic Peoples Republic of)','Northern Mariana Islands','Norway',
+    'Oman','Pakistan','Palau','Palestine, State of','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Pitcairn','Poland','Portugal',
+    'Puerto Rico','Qatar','Republic of Kosovo','Réunion','Romania','Russian Federation','Rwanda','Saint Barthelemy',
+    'Saint Helena, Ascension, and Tristan da Cunha','Saint Kitts and Nevis','Saint Lucia','Saint Martin','Saint Pierre and Miquelon',
+    'Saint Vincent and the Grenadines','Samoa','San Marino','Sao Tome and Principe','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone',
+    'Singapore','Sint Maarten','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Georgia and the South Sandwich Islands',
+    'Korea','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Svalbard and Jan Mayen','Swaziland','Sweden','Switzerland','Syrian Arab Republic',
+    'Taiwan','Tajikistan','Tanzania, United Republic of','Thailand','Timor-Leste','Togo','Tokelau','Tonga','Trinidad and Tobago','Tunisia',
+    'Turkey','Turkmenistan','Turks and Caicos Islands','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom of Great Britain', 'Northern Ireland',
+    'Uruguay','Uzbekistan','Vanuatu','Venezuela','Vietnam','Wallis','Futuna','Western Sahara','Yemen','Zambia','Zimbabwe'],
     required: true,
     disabled: false,
     validation: (value, required) => {
       if (required && value == '')
-        return 'Please select a region.'
+        return 'Please select a country.'
       return null
     },
     onUpdate: (value) => {
-      if (value == 'United States'){
+      if (value == 'United States of America'){
         return [
-          {
-            id: 'country',
-            required: false,
-            disabled: true
-          },
           {
             id: 'state',
             options: ['Select...','Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
@@ -109,11 +128,6 @@ const fields = [
       }
       return [
         {
-          id: 'country',
-          required: true,
-          disabled: false
-        },
-        {
           id: 'state',
           options: ['Not Applicable'],
           required: false,
@@ -125,20 +139,6 @@ const fields = [
           disabled: false
         }
       ]
-    }
-  },
-  {
-    type: 'textfield',
-    label: 'Country',
-    id: 'country',
-    required: false,
-    disabled: false,
-    validation: (value, required) => {
-      if (required && value == '')
-        return 'Please enter a value.'
-      if (value.length > 30)
-        return 'The country name must be less than 30 characters.'
-      return null
     }
   },
   {
@@ -227,11 +227,6 @@ const fields = [
       if (value){
         return [
           {
-            id: 'billingRegion',
-            required: false,
-            disabled: true
-          },
-          {
             id: 'billingCountry',
             required: false,
             disabled: true
@@ -265,13 +260,8 @@ const fields = [
       }
       return [
         {
-          id: 'billingRegion',
-          required: true,
-          disabled: false
-        },
-        {
           id: 'billingCountry',
-          required: false,
+          required: true,
           disabled: false
         },
         {
@@ -304,24 +294,43 @@ const fields = [
   },
   {
     type: 'select',
-    label: 'Region',
-    id: 'billingRegion',
-    options: ['Select...','United States','Canada','Mexico','Europe','Asia','Africa'],
+    label: 'Country',
+    id: 'billingCountry',
+    options: ['Select...','United States of America','Canada','--------------','Afghanistan','Aland Islands','Albania','Algeria','American Samoa','Andorra','Angola','Anguilla','Antarctica','Antigua and Barbuda',
+    'Argentina','Armenia','Aruba','Australia','Austria','Azerbaijan','Bahamas','Bahrain','Bangladesh','Barbados','Belarus','Belgium',
+    'Belize','Benin','Bermuda','Bhutan','Bolivia','Bonaire, Sint Eustatius and Saba','Bosnia and Herzegovina','Botswana','Bouvet Island',
+    'Brazil','British Indian Ocean Territory','United States Minor Outlying Islands','Virgin Islands (British)','Virgin Islands (U.S.)',
+    'Brunei Darussalam','Bulgaria','Burkina Faso','Burundi','Cambodia','Cameroon','Cabo Verde','Cayman Islands','Central African Republic',
+    'Chad','Chile','China','Christmas Island','Cocos (Keeling) Islands','Colombia','Comoros','Congo','Cook Islands','Costa Rica','Croatia',
+    'Cuba','Curaçao','Cyprus','Czech Republic','Denmark','Djibouti','Dominica','Dominican Republic','Ecuador','Egypt','El Salvador',
+    'Equatorial Guinea','Eritrea','Estonia','Ethiopia','Falkland Islands (Malvinas)','Faroe Islands','Fiji','Finland','France',
+    'French Guiana','French Polynesia','French Southern Territories','Gabon','Gambia','Georgia','Germany','Ghana','Gibraltar','Greece',
+    'Greenland','Grenada','Guadeloupe','Guam','Guatemala','Guernsey','Guinea','Guinea-Bissau','Guyana','Haiti','Heard Island and McDonald Islands',
+    'Holy See','Honduras','Hong Kong','Hungary','Iceland','India','Indonesia','Cote dIvoire','Iran (Islamic Republic of)','Iraq','Ireland',
+    'Isle of Man','Israel','Italy','Jamaica','Japan','Jersey','Jordan','Kazakhstan','Kenya','Kiribati','Kuwait','Kyrgyzstan','Lao Peoples Democratic Republic',
+    'Latvia','Lebanon','Lesotho','Liberia','Libya','Liechtenstein','Lithuania','Luxembourg','Macao','Macedonia','Madagascar','Malawi','Malaysia',
+    'Maldives','Mali','Malta','Marshall Islands','Martinique','Mauritania','Mauritius','Mayotte','Mexico','Micronesia','Moldova','Monaco',
+    'Mongolia','Montenegro','Montserrat','Morocco','Mozambique','Myanmar','Namibia','Nauru','Nepal','Netherlands','New Caledonia','New Zealand',
+    'Nicaragua','Niger','Nigeria','Niue','Norfolk Island','Korea (Democratic Peoples Republic of)','Northern Mariana Islands','Norway',
+    'Oman','Pakistan','Palau','Palestine, State of','Panama','Papua New Guinea','Paraguay','Peru','Philippines','Pitcairn','Poland','Portugal',
+    'Puerto Rico','Qatar','Republic of Kosovo','Réunion','Romania','Russian Federation','Rwanda','Saint Barthelemy',
+    'Saint Helena, Ascension, and Tristan da Cunha','Saint Kitts and Nevis','Saint Lucia','Saint Martin','Saint Pierre and Miquelon',
+    'Saint Vincent and the Grenadines','Samoa','San Marino','Sao Tome and Principe','Saudi Arabia','Senegal','Serbia','Seychelles','Sierra Leone',
+    'Singapore','Sint Maarten','Slovakia','Slovenia','Solomon Islands','Somalia','South Africa','South Georgia and the South Sandwich Islands',
+    'Korea','South Sudan','Spain','Sri Lanka','Sudan','Suriname','Svalbard and Jan Mayen','Swaziland','Sweden','Switzerland','Syrian Arab Republic',
+    'Taiwan','Tajikistan','Tanzania, United Republic of','Thailand','Timor-Leste','Togo','Tokelau','Tonga','Trinidad and Tobago','Tunisia',
+    'Turkey','Turkmenistan','Turks and Caicos Islands','Tuvalu','Uganda','Ukraine','United Arab Emirates','United Kingdom of Great Britain', 'Northern Ireland',
+    'Uruguay','Uzbekistan','Vanuatu','Venezuela','Vietnam','Wallis','Futuna','Western Sahara','Yemen','Zambia','Zimbabwe'],
     required: false,
     disabled: false,
     validation: (value, required) => {
       if (required && value == '')
-        return 'Please select a region.'
+        return 'Please select a country.'
       return null
     },
     onUpdate: (value) => {
-      if (value !== 'United States'){
+      if (value !== 'United States of America'){
         return [
-          {
-            id: 'billingCountry',
-            required: true,
-            disabled: false
-          },
           {
             id: 'billingAddressLine1',
             required: true,
@@ -350,13 +359,8 @@ const fields = [
           }
         ]
       }
-      if (value == 'United States'){
+      if (value == 'United States of America'){
         return [
-          {
-            id: 'billingCountry',
-            required: false,
-            disabled: true
-          },
           {
             id: 'billingAddressLine1',
             required: true,
@@ -392,20 +396,6 @@ const fields = [
           }
         ]
       }
-    }
-  },
-  {
-    type: 'textfield',
-    label: 'Country',
-    id: 'billingCountry',
-    required: false,
-    disabled: false,
-    validation: (value, required) => {
-      if (required && value == '')
-        return 'Please enter a value.'
-      if (value.length > 30)
-        return 'The country name must be less than 30 characters.'
-      return null
     }
   },
   {
@@ -557,7 +547,7 @@ export default class CustomerFormModel extends FormModel{
           street: `${valueReturn('addressLine1').trim()} ${valueReturn('addressLine2').trim()}`.trim(),
           city: valueReturn('city').trim(),
           state: valueReturn('state').trim(),
-          country: valueReturn('region').trim(),
+          country: valueReturn('country').trim(),
           zip: valueReturn('zipCode').trim()
         },
         isPastDue: false,
@@ -570,7 +560,7 @@ export default class CustomerFormModel extends FormModel{
           street: `${valueReturn('billingAddressLine1').trim()} ${valueReturn('billingAddressLine2').trim()}`.trim(),
           city: valueReturn('billingCity').trim(),
           state: valueReturn('billingState').trim(),
-          country: valueReturn('billingRegion').trim(),
+          country: valueReturn('billingCountry').trim(),
           zip: valueReturn('billingZipCode').trim()
         }
       Website.createCustomer(body)
