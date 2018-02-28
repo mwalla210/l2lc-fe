@@ -63,7 +63,7 @@ export default class NavBar extends Component{
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Nav style={{marginLeft: '12%'}}>
+            <Nav>
               <NavItem onClick={this.props.page.createNewProjMenuItem}>
                 New Project
               </NavItem>

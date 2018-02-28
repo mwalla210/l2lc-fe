@@ -24,11 +24,11 @@ export default class FormItem extends Component {
       }
     }
     return (
-      <div style={{width:300}} className="form-group" {...disabledStyle}>
-        <div style={{color:'red'}} className="alert alert-warning" role="alert" {...alertStyle}>
+      <div style={{width:'33%'}} className="form-group" {...disabledStyle}>
+        <div style={{color:'orange'}} className="alert alert-warning" role="alert" {...alertStyle}>
           <strong>Warning!</strong>{` ${this.props.errorText}`}
         </div>
-        <label>{this.props.label}</label> {(this.props.required) ? <span style={{color: 'red'}}> *</span> : null}
+        <label>{this.props.label}</label> {(this.props.required) ? <span style={{color: 'orange'}}> *</span> : null}
         {this.props.children}
       </div>
     )

@@ -16,7 +16,7 @@ export default class TextField extends Component {
   render(){
     let color = ''
     if(!this.props.valid)
-      color = 'red'
+      color = 'orange'
     return (
       <input
         disabled={this.props.disabled}

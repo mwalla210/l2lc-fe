@@ -17,7 +17,7 @@ export default class SelectField extends Component {
   render(){
     let color = ''
     if(!this.props.valid)
-      color = 'red'
+      color = 'orange'
     return (
       <select
         disabled={this.props.disabled}

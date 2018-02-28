@@ -38,7 +38,6 @@ export default class EmployeeTableModel extends TableModel{
       {
         Header: 'ID',
         accessor: 'id',
-        maxWidth: 30,
         filterable: true
       },
       {
