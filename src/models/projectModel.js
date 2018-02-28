@@ -83,7 +83,9 @@ export default class ProjectModel {
   @action addTime(){
     this.timeEntries = [
       new Date('December 17, 1995 01:24:00'),
-      new Date('December 17, 1995 03:25:00')
+      new Date('December 17, 1995 03:25:00'),
+      new Date('December 17, 1993 04:25:00'),
+      new Date('December 17, 1993 05:25:00'),
     ]
   }
   /**
@@ -96,27 +98,22 @@ export default class ProjectModel {
    */
   @computed get timeSpent(){
     this.addTime()
-    let hours = 0
-    let minutes = 0
-    if (this.reworks.length > 0){
-      hours = 'Reworks'
-    }
-    else {
-      for (let i = 0; i < this.timeEntries.length; i+=2){
-        let diff = this.timeEntries[i+1]-this.timeEntries[i]
-        let diffHrs = Math.floor((diff % 86400000) / 3600000) // hours
-        let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // minutes
-        hours += diffHrs
-        if (minutes + diffMins > 60){
-          hours += 1
-          minutes += diffMins - 60
-        }
-        else {
-          minutes += diffMins
-        }
+    let hour = 0
+    let min = 0
+    for (let i = 0; i < this.timeEntries.length-1; i+=2){
+      let diff = this.timeEntries[i+1]-this.timeEntries[i]
+      let diffHrs = Math.floor((diff % 86400000) / 3600000) // hour
+      let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // min
+      hour += diffHrs
+      if (min + diffMins > 60){
+        hour += 1
+        min += diffMins - 60
+      }
+      else {
+        min += diffMins
       }
     }
-    return `${(hours != 0) ? `${hours} hour${(hours > 1) ? 's' : '' }, ` : ''}${(minutes != 0) ? `${minutes} minute${(minutes > 1) ? 's' : ''}`: ''}`
+    return `${(hour != 0) ? `${hour} hour${(hour > 1) ? 's' : '' }, ` : ''}${(min != 0) ? `${min} minute${(min > 1) ? 's' : ''}`: ''}`
   }
   /**
    * @name isOpen
