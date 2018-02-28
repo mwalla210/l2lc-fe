@@ -48,7 +48,7 @@ export default class ProjectSummary extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{marginLeft:'30%'}}>
         <FieldModal
           title={this.props.page.modalSecondary.title}
           submitButton={{
@@ -79,12 +79,12 @@ export default class ProjectSummary extends Component {
         <p>{`Part Count: ${this.props.website.currentProject.partCount}`}</p>
         <p>{`Description: ${this.props.website.currentProject.descr}`}</p>
         <p>{`Reference Number: ${this.props.website.currentProject.refNum}`}</p>
-        <Button className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
-        <Button className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
-        <Button className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
-        <Button className="btn btn-default" onClick={this.holdClick}>Change Hold</Button>
-        <Button className="btn btn-default" onClick={this.printClick}>Print</Button>
-        <Button className="btn btn-danger" onClick={this.props.page.modal.openModal}>Delete</Button>
+        <Button style={{margin:3}} className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
+        <Button style={{margin:3}} className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
+        <Button style={{margin:3}} className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
+        <Button style={{margin:3}} className="btn btn-default" onClick={this.holdClick}>Change Hold</Button>
+        <Button style={{margin:3}} className="btn btn-default" onClick={this.printClick}>Print</Button>
+        <Button style={{margin:3}} className="btn btn-danger" onClick={this.props.page.modal.openModal}>Delete</Button>
       </div>
     )
   }
