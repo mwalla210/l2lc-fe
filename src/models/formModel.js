@@ -1,4 +1,5 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -13,9 +14,10 @@ useStrict(true)
   * @property {Object} [secondaryButton] Forms secondary button properties
   * @property {String} secondaryButton.title Forms secondary button title
   * @property {Function} secondaryButton.onClick Forms secondary button onClick
+  * @property {Boolean} autoSubmit Forms auto-submit boolean
  */
 export default class FormModel {
-  constructor(fields, primaryButton, secondaryButton) {
+  constructor(fields, primaryButton, secondaryButton, autoSubmit) {
     fields.forEach(field => {
       let value = null
       switch (field.type){ // default value
@@ -31,7 +33,9 @@ export default class FormModel {
       field.value = value
       field.isValid = true
       field.errorText = ''
-      field.disabled = false
+      // Set if not present
+      if (!field.disabled)
+        field.disabled = false
     })
     let addtlProps = {
       fields
@@ -40,6 +44,31 @@ export default class FormModel {
     // non-observable properties
     this.primaryButton = primaryButton
     this.secondaryButton = secondaryButton
+    this.autoSubmit = autoSubmit
+    autoBind(this)
+  }
+  /**
+   * @name resetValues
+   * @description Resets field values to defaults
+   * @method resetValues
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action resetValues(){
+    this.fields.forEach(field => {
+      let value = null
+      switch (field.type){ // default value
+        case 'select':
+        case 'textfield':
+        case 'textarea':
+          value = ''
+          break
+        case 'checkbox':
+          value = false
+          break
+      }
+      field.value = value
+    })
   }
   /**
    * @name buttonDisabled
@@ -102,6 +131,10 @@ export default class FormModel {
         }
       })
     }
+    if(!this.buttonDisabled && this.autoSubmit)
+    {
+      this.primaryButtonWrapper()
+    }
   }
   /**
    * @name fieldValidatorWrapper
@@ -113,7 +146,7 @@ export default class FormModel {
    */
    @action fieldValidatorWrapper(index){
     if (this.fields[index].validation){
-      let invalid = this.fields[index].validation(this.fields[index].value)
+      let invalid = this.fields[index].validation(this.fields[index].value.trim(), this.fields[index].required)
       if (!invalid){
         this.fields[index].isValid = true
       }

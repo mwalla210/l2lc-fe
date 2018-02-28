@@ -1,4 +1,5 @@
 import { action, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -7,7 +8,7 @@ useStrict(true)
  * @classdesc User storage object
  * @property {Number} id Database ID of the user
  * @property {String} username Username of the user [observable]
- * @property {String} [stationID=null] Station name of the user, if any [observable]
+ * @property {?String} [stationID=null] Station name of the user, if any [observable]
  * @property {Boolean} [admin=false] Admin indicator of user [observable]
  */
 export default class UserModel {
@@ -20,6 +21,7 @@ export default class UserModel {
     }
     extendObservable(this, addtlProps)
     this.id = id
+    autoBind(this)
   }
 
   // Actions

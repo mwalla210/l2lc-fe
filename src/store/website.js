@@ -1,6 +1,6 @@
 import { action, useStrict, extendObservable } from 'mobx'
-import EmployeeModel from '../models/employeeModel'
 import API from '../api'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -8,14 +8,14 @@ useStrict(true)
  * @class Website
  * @classdesc Main MobX store for website
  * @todo Add Analytic models & reference
- * @property {Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
- * @property {Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
- * @property {Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
- * @property {User} [currentUser=null] Current User in state, or last focused User. [observable]
- * @property {Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
+ * @property {?Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
+ * @property {?Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
+ * @property {?User} [currentUser=null] Current User in state, or last focused User. [observable]
+ * @property {?Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {?Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  */
 class Website {
   constructor() {
@@ -31,6 +31,7 @@ class Website {
       jtAnalytic: null,
     }
     extendObservable(this, addtlProps)
+    autoBind(this)
   }
 
   /**
@@ -109,9 +110,14 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action createProject(project){
-    console.log(`Create project entry in API with: ${project}`)
-  }
+   @action async createProject(project){
+     let jsonProject = JSON.stringify(project)
+     console.log('Create project entry in API with:', jsonProject)
+     return API.createProject(jsonProject)
+     .then(response => {
+       this.setProject(response)
+     })
+   }
   /**
    * @name createCustomer
    * @description Sends the formatted Customer in POST to API to add entry to database; sets this.currentCustomer
@@ -121,8 +127,13 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action createCustomer(customer){
-    console.log(`Create customer entry in API with: ${customer}`)
+  @action async createCustomer(customer){
+    let jsonCustomer = JSON.stringify(customer)
+    console.log('Create customer entry in API with:', jsonCustomer)
+    return API.createCustomer(jsonCustomer)
+    .then(response => {
+      this.setCustomer(response)
+    })
   }
   /**
    * @name createEmployee
@@ -131,21 +142,33 @@ class Website {
    * @method createEmployee
    * @param  {Employee}       employee Finalized Employee to create in database
    * @mobx action
-   * @todo Implement function
    */
-  @action async createEmployee(employee){
+  @action createEmployee(employee){
     let jsonEmployee = JSON.stringify(employee)
     console.log('Create employee entry in API with:', jsonEmployee)
-    let response = await API.create('employee/create', jsonEmployee)
-    this.setEmployee(new EmployeeModel(response.id, response.firstName, response.lastName))
-    console.log(this.currentEmployee)
-    // let employees = []
-    // json.items.forEach(item => {
-    //   let employee = new EmployeeModel(item.id, item.firstName, item.lastName)
-    //   employees.push(employee)
-    // })
+    return API.createEmployee(jsonEmployee)
+    .then(response => {
+      this.setEmployee(response)
+    })
   }
 
+  /**
+   * @name createTimeEntry
+   * @description Sends the formatted time entry in POST to API to add entry to database
+   * @memberof Website.prototype
+   * @method createTimeEntry
+   * @mobx action
+   * @todo Implement function; pass/format input
+   */
+  @action async createTimeEntry(){
+    let timeEnter = {
+      employeeId: 1,
+      station: 'Receiving'
+    }
+    let jsonTime = JSON.stringify(timeEnter)
+    let response = await API.create('project/1/time-entry/create', jsonTime)
+    console.log(response)
+  }
   // Utilities
 
   /**

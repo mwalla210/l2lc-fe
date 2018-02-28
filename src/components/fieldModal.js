@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
 import { Modal, Button } from 'react-bootstrap'
 
-@observer
 export default class FieldModal extends Component {
-  //  Input field: has default bottom close button, provide title, submit button (with title, onClick)
-  //    Add hold, rework
   static propTypes = {
     title: PropTypes.string.isRequired,
     submitButton: PropTypes.shape({
@@ -15,26 +11,38 @@ export default class FieldModal extends Component {
     }).isRequired,
     open: PropTypes.bool.isRequired,
     closeFn: PropTypes.func.isRequired,
-    fieldContent: PropTypes.string.isRequired
+    onChangeFn: PropTypes.func.isRequired,
+    contents: PropTypes.string.isRequired
+  }
+
+  constructor(props){
+    super(props)
+    this.hide = this.hide.bind(this)
+    this.onChange = this.onChange.bind(this)
+  }
+
+  hide(){
+    this.props.closeFn()
+  }
+
+  onChange(event){
+    this.props.onChangeFn(event.target.value)
   }
 
   render(){
     return (
-      <Modal show={this.props.open} onHide={() => this.props.closeFn()}>
+      <Modal show={this.props.open} onHide={this.hide}>
         <Modal.Header closeButton>
             <Modal.Title>{this.props.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="form-group">
-            <textarea className="form-control" id="modalTextArea" rows="3"></textarea>
+            <textarea onChange={this.onChange} value={this.props.contents} className="form-control" id="modalTextArea" rows="3"/>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            onClick={() => this.props.closeFn()}>
-              Close
-          </Button>
-          <Button onClick={this.props.submitButton.onClick}>
+          <Button onClick={this.hide}>Close</Button>
+          <Button className="btn btn-primary" onClick={this.props.submitButton.onClick}>
             {this.props.submitButton.title || 'Submit'}
           </Button>
         </Modal.Footer>

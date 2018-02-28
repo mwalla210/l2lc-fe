@@ -10,10 +10,11 @@ export default class TableButton extends Component {
   render() {
     return (
       <button
-        type='button'
+        type="button"
         style={{float: 'right', marginBottom: '10px', marginLeft: '10px'}}
-        className='btn btn-primary'
-        onClick={this.props.onClick}>
+        className="btn btn-primary"
+        onClick={this.props.onClick}
+      >
           {this.props.title}
       </button>
     )

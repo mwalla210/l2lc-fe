@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { observer, inject } from 'mobx-react'
-import { toJS } from 'mobx'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import TableButton from './tableButton'
@@ -9,12 +7,14 @@ import DeleteModal from './deleteModal'
 
 @inject ('page') @observer
 export default class Table extends Component {
-  static propTypes = {
-    tableModel: PropTypes.object.isRequired
+  constructor(props){
+    super(props)
+    this.filter = this.filter.bind(this)
   }
 
-  modal(){
-    return
+  filter(filter, row){
+    const id = filter.pivotId || filter.id
+    return (row[id] !== undefined) ? String(row[id]).includes(filter.value) : false
   }
 
   render() {
@@ -23,53 +23,37 @@ export default class Table extends Component {
     pageSizeOptions={[5, 10, 20, 25, 50, 100]}
     */
 
-    // If onClick function for rows, redefine onClick for table elements and call function
-    let rowSelect = {}
-    if (this.props.tableModel.rowSelectFn){
-      rowSelect = {
-        getTdProps: (state, rowInfo) => {
-          return {
-            onClick: (e, handleOriginal) => {
-              if (rowInfo){
-                console.log('It was in this row:', rowInfo)
-                this.props.tableModel.rowSelectFn(rowInfo)
-              }
-              if (handleOriginal) {
-                handleOriginal()
-              }
-            }
-          }
-        },
-      }
-    }
     let rowModal = null
     // If modal to be opened when row clicked, declare in render and redefine onClick for table elements and call open modal
-    if (this.props.tableModel.deleteModal){
-      rowModal = <DeleteModal
-        title={this.props.tableModel.deleteModal.title}
-        confirmOnClick={() => this.props.tableModel.confirmAndClose()}
-        denyOnClick={() => this.props.tableModel.closeModal()}
-        open={this.props.tableModel.modalOpen}
-        closeFn={() => this.props.tableModel.closeModal()}
-        content={this.props.tableModel.deleteModal.content}
-      />
+    if (this.props.page.tableModel.deleteModal){
+      rowModal = (
+        <DeleteModal
+          title={this.props.page.tableModel.deleteModal.title}
+          confirmOnClick={this.props.page.tableModel.confirmAndClose}
+          denyOnClick={this.props.page.tableModel.closeModal}
+          open={this.props.page.tableModel.modalOpen}
+          closeFn={this.props.page.tableModel.closeModal}
+          content={this.props.page.tableModel.deleteModal.content}
+        />
+      )
     }
     let rowStyling = null
-    if (this.props.tableModel.styling){
+    if (this.props.page.tableModel.styling){
       rowStyling = {
         getTrProps: (state, rowInfo, column) => {
-          return this.props.tableModel.styling(state, rowInfo, column)
+          return this.props.page.tableModel.styling(state, rowInfo, column)
         }
       }
     }
     let buttonContent = null
-    if (this.props.tableModel.tableButton){
+    if (this.props.page.tableModel.tableButton){
       buttonContent =
-        <div>
+        (<div>
           <TableButton
-            title={this.props.tableModel.tableButton.title}
-            onClick={this.props.tableModel.tableButton.onClick}/>
-        </div>
+            title={this.props.page.tableModel.tableButton.title}
+            onClick={this.props.page.tableModel.tableButton.onClick}
+          />
+        </div>)
     }
     return (
       <div>
@@ -77,10 +61,10 @@ export default class Table extends Component {
       {rowModal}
       <div style={{clear: 'both'}}>
         <ReactTable
-          data={this.props.tableModel.data.slice()}
-          columns={this.props.tableModel.columns}
-          loading={this.props.tableModel.loading}
-          {...rowSelect}
+          data={this.props.page.tableModel.data.slice()}
+          columns={this.props.page.tableModel.columns.slice()}
+          loading={this.props.page.tableModel.loading}
+          defaultFilterMethod={this.filter}
           {...rowStyling}
         />
       </div>

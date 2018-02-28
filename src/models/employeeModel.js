@@ -1,4 +1,5 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
@@ -9,7 +10,7 @@ useStrict(true)
  * @property {String} firstName First name of Employee [observable]
  * @property {String} lastName Last name of Employee [observable]
  * @property {Boolean} [active=false] Indicator of Employee's active status [observable]
- * @property {String} [editName=null] Stores potential name changes while editing [observable]
+ * @property {?String} [editName=null] Stores potential name changes while editing [observable]
  */
 export default class EmployeeModel {
   constructor(id, firstName, lastName) {
@@ -22,6 +23,7 @@ export default class EmployeeModel {
     }
     extendObservable(this, addtlProps)
     this.id = id
+    autoBind(this)
   }
 
   /**
