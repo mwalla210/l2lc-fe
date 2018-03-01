@@ -122,7 +122,7 @@ export default class ProjectModel {
    * @mobx computed
    */
   @computed get barcodeScanID(){
-    return `p${this.id}™`
+    return `p${this.id}%`
   }
 
   // Actions

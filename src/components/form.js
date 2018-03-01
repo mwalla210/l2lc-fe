@@ -77,7 +77,7 @@ export default class Form extends Component {
           )
         })}
         {this.props.page.formModel.secondaryButton &&
-          <button className="btn btn-secondary" onClick={this.secondaryOnClick}>
+          <button type="button" className="btn btn-secondary" onClick={this.secondaryOnClick}>
             {this.props.page.formModel.secondaryButton.title}
           </button>
         }

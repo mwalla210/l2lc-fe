@@ -86,6 +86,6 @@ export default class EmployeeModel {
    * @mobx computed
    */
   @computed get barcodeScanID(){
-    return `e${this.id}™`
+    return `e${this.id}%`
   }
 }

@@ -14,8 +14,8 @@ const fields = [
         return 'Please enter a value.'
       if (value.length > 15)
         return 'The project ID must be less than 15 characters.'
-      if (!value.startsWith('p'))
-        return 'Project IDs must begin with the letter "p".'
+      if (!value.startsWith('P'))
+        return 'Project IDs must begin with the letter "P".'
       return null
     },
   },
@@ -29,8 +29,8 @@ const fields = [
         return 'Please enter a value.'
       if (value.length > 15)
         return 'The employee ID must be less than 15 characters.'
-      if (!value.startsWith('e'))
-        return 'Employee IDs must begin with the letter "e".'
+      if (!value.startsWith('E'))
+        return 'Employee IDs must begin with the letter "E".'
       return null
     }
   }
@@ -56,11 +56,11 @@ export default class TimeEntryFormModel extends FormModel{
       true,
       (fields, index, value) => {
         let changeIndex = null
-        if (value.includes('™')){
-          if (value.startsWith('p')){
+        if (value.includes('%')){
+          if (value.startsWith('P')){
             changeIndex = fields.findIndex(element => {return element.id == 'projectID'})
           }
-          if (value.startsWith('e')){
+          if (value.startsWith('E')){
             changeIndex = fields.findIndex(element => {return element.id == 'employeeID'})
           }
         }
