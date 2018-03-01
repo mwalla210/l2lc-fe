@@ -80,7 +80,14 @@ export default class ProjectTableModel extends TableModel{
       },
       {
         Header: 'Finished',
-        accessor: 'dateFinished',
+        id: 'dateFinished',
+        accessor: d => {
+          if (d.dateFinished)
+            return d.dateFinished.toString()
+          else {
+            return ''
+          }
+        },
         filterable: true
       },
       {
