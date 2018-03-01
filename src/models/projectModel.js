@@ -102,6 +102,28 @@ export default class ProjectModel {
   @computed get isOpen(){
     return (this.dateFinished == null)
   }
+  /**
+   * @name barcodeDomID
+   * @description Return the DOM computed ID for a barcode field, specific to the project
+   * @method barcodeDomID
+   * @return {String}
+   * @memberof EmployeeModel.prototype
+   * @mobx computed
+   */
+  @computed get barcodeDomID(){
+    return `${this.title}${this.id}`
+  }
+  /**
+   * @name barcodeScanID
+   * @description Returns the ID to encode in the barcode for scanning purposes
+   * @method barcodeScanID
+   * @return {String}
+   * @memberof EmployeeModel.prototype
+   * @mobx computed
+   */
+  @computed get barcodeScanID(){
+    return `p${this.id}™`
+  }
 
   // Actions
 
@@ -248,6 +270,6 @@ export default class ProjectModel {
   * @mobx action
   */
   @action addTimeEntry(employeeID){
-      console.log(`Adds time entry to project in API for employee: ${employeeID}`)
-    }
+    console.log(`Adds time entry to project in API for employee: ${employeeID}`)
+  }
 }
