@@ -589,7 +589,17 @@ export default class CustomerFormModel extends FormModel{
    * @mobx action
    */
   @action setNonEdit(){
-    this.primaryButton.onClick = this.newButton(this.onClickNav)
+    this.primaryButton.onClick = this.newButton()
     this.resetFields()
+  }
+  /**
+   * @name setOnClickNav
+   * @description Modifies primary button click
+   * @method setOnClickNav
+   * @memberof CustomerFormModel.prototype
+   * @mobx action
+   */
+  @action setOnClickNav(newOnClick){
+    this.onClickNav = newOnClick
   }
 }

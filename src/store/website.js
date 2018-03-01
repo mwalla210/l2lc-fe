@@ -16,6 +16,7 @@ useStrict(true)
  * @property {?Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {?Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {?Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
+ * @property {Object} [logOutModalOpen=false] Logging out modal
  */
 class Website {
   constructor() {
@@ -29,6 +30,7 @@ class Website {
       eAnalytic: null,
       paAnalytic: null,
       jtAnalytic: null,
+      logOutModalOpen: false,
     }
     extendObservable(this, addtlProps)
     autoBind(this)
@@ -51,7 +53,7 @@ class Website {
    * @description Sets current customer
    * @method setCustomer
    * @memberof Website.prototype
-   * @param  {Customer}   customer  Cs to set
+   * @param  {Customer}   customer  Customer to set
    * @mobx action
    */
   @action setCustomer(customer){
@@ -63,40 +65,23 @@ class Website {
    * @description Sets current employee
    * @method setEmployee
    * @memberof Website.prototype
-   * @param  {Employee}   employee  Cs to set
+   * @param  {Employee}   employee  Employee to set
    * @mobx action
    */
   @action setEmployee(employee){
     this.currentEmployee = employee
   }
 
-  // Fetches
-
   /**
-   * @name getProject
-   * @description Sets this.currentProject as Project instantiated returned data
+   * @name setUser
+   * @description Sets current user
+   * @method setUser
    * @memberof Website.prototype
-   * @method getProject
-   * @param  {Number}   id Database ID of project to fetch
-   * @return {Promise}
+   * @param  {User}   user  User to set
    * @mobx action
-   * @todo Implement function
    */
-  @action getProject(id){
-    console.log(`Fetch project from API with ID: ${id}`)
-  }
-
-  /**
-   * @name getAccounts
-   * @description Instantiates returned collection as User(s) and sets this.accounts
-   * @memberof Website.prototype
-   * @method getAccounts
-   * @return {Promise}
-   * @mobx action
-   * @todo Implement function
-   */
-  @action getAccounts(){
-    console.log('Fetch accounts from API')
+  @action setUser(user){
+    this.currentUser = user
   }
 
   // Creation
@@ -110,7 +95,7 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-   @action async createProject(project){
+   @action createProject(project){
      let jsonProject = JSON.stringify(project)
      console.log('Create project entry in API with:', jsonProject)
      return API.createProject(jsonProject)
@@ -127,7 +112,7 @@ class Website {
    * @mobx action
    * @todo Implement function
    */
-  @action async createCustomer(customer){
+  @action createCustomer(customer){
     let jsonCustomer = JSON.stringify(customer)
     console.log('Create customer entry in API with:', jsonCustomer)
     return API.createCustomer(jsonCustomer)
@@ -151,7 +136,6 @@ class Website {
       this.setEmployee(response)
     })
   }
-
   /**
    * @name createTimeEntry
    * @description Sends the formatted time entry in POST to API to add entry to database
@@ -160,29 +144,40 @@ class Website {
    * @mobx action
    * @todo Implement function; pass/format input
    */
-  @action async createTimeEntry(){
+  @action createTimeEntry(){
     let timeEnter = {
       employeeId: 1,
       station: 'Receiving'
     }
     let jsonTime = JSON.stringify(timeEnter)
-    let response = await API.create('project/1/time-entry/create', jsonTime)
-    console.log(response)
+    return API.create('project/1/time-entry/create', jsonTime)
+    .then(response => console.log(response))
   }
+
   // Utilities
 
   /**
-   * @name generateBarcode
-   * @description TBD
+   * @name logOutAlert
+   * @description Opens log out modal
+   * @method logOutAlert
    * @memberof Website.prototype
-   * @method generateBarcode
-   * @param  {Number}        id Barcode ID
-   * @return {Object}
-   * @todo Implement function
+   * @mobx action
    */
-  generateBarcode(id){
-    console.log(`Generate barcode with ID: ${id}`)
+  @action logOutAlert(){
+    this.logOutModalOpen = true
   }
+
+  /**
+   * @name logOutDismiss
+   * @description Closes log out modal
+   * @method logOutDismiss
+   * @memberof Website.prototype
+   * @mobx action
+   */
+  @action logOutDismiss(){
+    this.logOutModalOpen = false
+  }
+
 
 }
 

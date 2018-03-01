@@ -115,7 +115,7 @@ export default class ProjectModel {
    * @mobx action
    */
   @action changeCustomer(customer){
-    console.log(`Change Project Customer to: ${customer}`)
+    this.customer = customer
   }
   /**
    * @name delete
