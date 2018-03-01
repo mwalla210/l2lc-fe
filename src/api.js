@@ -107,6 +107,13 @@ export default class API {
     })
   }
 
+  static updateProjectStatus(project){
+    return API.create('project/id/status', project)
+    .then(response => {
+      return API.projectModelize(response)
+    })
+  }
+
   static projectModelize(item){
     return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
   }
@@ -139,6 +146,18 @@ export default class API {
   // Generic
 
   static create(endpoint, body){
+    return fetch(`${api}${endpoint}`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json())
+    .then(json => {
+      console.log('json',json)
+      return json
+    })
+  }
+
+  static updateStatus(endpoint, body){
     return fetch(`${api}${endpoint}`, {
       method: 'POST',
       body,
