@@ -82,14 +82,30 @@ export default class ProjectModel {
   }
   /**
    * @name timeSpent
-   * @description Calculates Project's time total based on dates and reworks
+   * @description Calculates Project's time total based on timeEntries
    * @memberof ProjectModel.prototype
    * @method timeSpent
    * @return {String}
    * @mobx computed
    */
   @computed get timeSpent(){
-    return 'Time spent'
+    this.addTime()
+    let hour = 0
+    let min = 0
+    for (let i = 0; i < this.timeEntries.length-1; i+=2){
+      let diff = this.timeEntries[i+1]-this.timeEntries[i]
+      let diffHrs = Math.floor((diff % 86400000) / 3600000) // hour
+      let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // min
+      hour += diffHrs
+      if (min + diffMins > 60){
+        hour += 1
+        min += diffMins - 60
+      }
+      else {
+        min += diffMins
+      }
+    }
+    return `${(hour != 0) ? `${hour} hour${(hour > 1) ? 's' : '' }, ` : ''}${(min != 0) ? `${min} minute${(min > 1) ? 's' : ''}`: ''}`
   }
   /**
    * @name isOpen
