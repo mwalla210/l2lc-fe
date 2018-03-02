@@ -7,26 +7,30 @@ const fields = [
   {
     type: 'textfield',
     label: 'Project ID',
-    id: 'id',
+    id: 'projectID',
     required: true,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please enter a value.'
       if (value.length > 15)
         return 'The project ID must be less than 15 characters.'
+      if (!value.startsWith('P'))
+        return 'Project IDs must begin with the letter "P".'
       return null
-    }
+    },
   },
   {
     type: 'textfield',
     label: 'Employee ID',
-    id: 'id',
+    id: 'employeeID',
     required: true,
     validation: (value, required) => {
       if (required && value == '')
         return 'Please enter a value.'
       if (value.length > 15)
         return 'The employee ID must be less than 15 characters.'
+      if (!value.startsWith('E'))
+        return 'Employee IDs must begin with the letter "E".'
       return null
     }
   }
@@ -46,18 +50,31 @@ export default class TimeEntryFormModel extends FormModel{
         onClick: (fields) => console.log('submit button onClick', fields)
       },
       {
-        title: 'Cancel',
+        title: 'Clear',
         onClick: null
+      },
+      true,
+      (fields, index, value) => {
+        let changeIndex = null
+        if (value.includes('%')){
+          if (value.startsWith('P')){
+            changeIndex = fields.findIndex(element => {return element.id == 'projectID'})
+          }
+          if (value.startsWith('E')){
+            changeIndex = fields.findIndex(element => {return element.id == 'employeeID'})
+          }
+        }
+        return changeIndex
       }
     )
     autoBind(this)
-    this.secondaryButton.onClick = this.resetValues()
+    this.secondaryButton.onClick = () => this.resetFields()
   }
   /**
    * @name resetFields
    * @description Sets all fields back to defaults
    * @method resetFields
-   * @memberof projectFormModel.prototype
+   * @memberof TimeEntryFormModel.prototype
    * @mobx action
    */
   @action resetFields(){

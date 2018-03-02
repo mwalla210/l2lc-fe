@@ -58,8 +58,8 @@ export default class EmployeeTableModel extends TableModel{
           <span>
             <span>
               <Barcode
-                imageDomID={`${row.original.firstName}${row.original.id}`}
-                barcodeID={row.original.id.toString()}
+                imageDomID={row.original.barcodeDomID}
+                barcodeID={row.original.barcodeScanID}
               />
             </span>
           </span>
