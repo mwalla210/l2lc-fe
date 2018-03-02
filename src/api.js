@@ -5,6 +5,11 @@ import EmployeeModel from './models/employeeModel'
 
 const api = 'http://138.197.88.198:8080/l2lc/api/'
 
+/**
+ * @name API
+ * @class API
+ * @classdesc API functions for interaction with database
+ */
 export default class API {
   // Fetch should compose address of api variable and endpoint (and query params as needed)
   // Fetch always converts res into json, then makes use of json obj
@@ -12,6 +17,13 @@ export default class API {
 
   // Customers
 
+  /**
+   * @name fetchCustomers
+   * @description Fetches all customers and modelizes
+   * @method fetchCustomers
+   * @memberof API
+   * @return {Promise}
+   */
   static fetchCustomers(){
     return fetch(`${api}customer?limit=50&offset=0`)
     .then(res => res.json())
@@ -28,6 +40,14 @@ export default class API {
     })
   }
 
+  /**
+   * @name fetchCustomer
+   * @description Fetches customer and modelizes
+   * @method fetchCustomer
+   * @memberof API
+   * @param  {Number}      id ID of customer to fetch
+   * @return {Promise}
+   */
   static fetchCustomer(id){
     return fetch(`${api}customer/${id}`)
     .then(res => res.json())
@@ -40,6 +60,14 @@ export default class API {
     })
   }
 
+  /**
+   * @name createCustomer
+   * @description Creates a customer and modelizes
+   * @method createCustomer
+   * @memberof API
+   * @param  {Object}       customer Customer object (JSON)
+   * @return {Promise}
+   */
   static createCustomer(customer){
     return API.create('customer/create', customer)
     .then(response => {
@@ -47,6 +75,14 @@ export default class API {
     })
   }
 
+  /**
+   * @name customerModelize
+   * @description Modelizes a database customer
+   * @method customerModelize
+   * @memberof API
+   * @param  {Object}         item Customer database object
+   * @return {CustomerModel}
+   */
   static customerModelize(item){
     let addrIsSame = false
     let addtl = []
@@ -63,12 +99,28 @@ export default class API {
     return customer
   }
 
+  /**
+   * @name addressIsSame
+   * @description Compares two address objects to check for equality
+   * @method addressIsSame
+   * @memberof API
+   * @param  {Object}      addr1 Address object for comparison
+   * @param  {Object}      addr2 Address object for comparison
+   * @return {Boolean}
+   */
   static addressIsSame(addr1, addr2){
     return JSON.stringify(addr1) === JSON.stringify(addr2)
   }
 
   // Projects
 
+  /**
+   * @name fetchProjects
+   * @description Fetches all projects and modelizes
+   * @method fetchProjects
+   * @memberof API
+   * @return {Promise}
+   */
   static fetchProjects(){
     return fetch(`${api}project?limit=50&offset=0`)
     .then(res => res.json())
@@ -88,6 +140,14 @@ export default class API {
     })
   }
 
+  /**
+   * @name fetchProject
+   * @description Fetches project and modelizes
+   * @method fetchProject
+   * @memberof API
+   * @param  {Number}     id ID of project to fetch
+   * @return {Promise}
+   */
   static fetchProject(id){
     return fetch(`${api}project/${id}`)
     .then(res => res.json())
@@ -100,6 +160,14 @@ export default class API {
     })
   }
 
+  /**
+   * @name createProject
+   * @description Creates a project and modelizes
+   * @method createProject
+   * @memberof API
+   * @param  {Object}      project Project object (JSON)
+   * @return {Promise}
+   */
   static createProject(project){
     return API.create('project/create', project)
     .then(response => {
@@ -107,16 +175,39 @@ export default class API {
     })
   }
 
+  /**
+   * @name projectModelize
+   * @description Modelizes a database project model
+   * @method projectModelize
+   * @memberof API
+   * @param  {Object}        item Database project object
+   * @return {ProjectModel}
+   */
   static projectModelize(item){
     return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
   }
 
   // Employees
 
+  /**
+   * @name employeeModelize
+   * @description Modelizes a database employee model
+   * @method employeeModelize
+   * @memberof API
+   * @param  {Object}         item Database employee object
+   * @return {EmployeeModel}
+   */
   static employeeModelize(item){
     return new EmployeeModel(item.id, item.firstName, item.lastName)
   }
 
+  /**
+   * @name fetchEmployees
+   * @description Fetches all employees and modelizes
+   * @method fetchEmployees
+   * @memberof API
+   * @return {Promise}
+   */
   static fetchEmployees(){
     return fetch(`${api}employee?limit=50&offset=0`)
     .then(res => res.json())
@@ -129,6 +220,14 @@ export default class API {
     })
   }
 
+  /**
+   * @name createEmployee
+   * @description Creates an employee and modelizes
+   * @method createEmployee
+   * @memberof API
+   * @param  {Object}       employee Employee object (JSON)
+   * @return {Promise}
+   */
   static createEmployee(employee){
     return API.create('employee/create', employee)
     .then(response => {
@@ -138,6 +237,15 @@ export default class API {
 
   // Generic
 
+  /**
+   * @name create
+   * @description POSTs to endpoint with body provided, then returns
+   * @method create
+   * @memberof API
+   * @param  {String} endpoint API endpoint name
+   * @param  {JSON} body       JSON body for POST
+   * @return {Promise}
+   */
   static create(endpoint, body){
     return fetch(`${api}${endpoint}`, {
       method: 'POST',

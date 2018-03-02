@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UserModel - Documentation</title>
+    <title>TableSelector - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">UserModel</h1>
+    <h1 class="page-title">TableSelector</h1>
     
 
     
@@ -40,10 +40,8 @@
 <header>
     
         <h2>
-        UserModel
+        TableSelector
         </h2>
-        
-            <div class="class-description"><p>User storage object</p></div>
         
     
 </header>
@@ -54,10 +52,8 @@
         
 
     
-    <h2>Constructor</h2>
-    
 
-    <h4 class="name" id="UserModel"><span class="type-signature"></span>new UserModel<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="TableSelector"><span class="type-signature"></span>new TableSelector<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -69,7 +65,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line5">line 5</a>
+        <a href="store_tableSelector.js.html">store/tableSelector.js</a>, <a href="store_tableSelector.js.html#line6">line 6</a>
     </li></ul></dd>
     
 
@@ -106,196 +102,11 @@
 
 
 
-    <h5 class="subsection-title">Properties:</h5>
-
-    
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
 
 
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Database ID of the user</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>username</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Username of the user</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>stationID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                    &lt;nullable><br>
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>null</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Station name of the user, if any</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>admin</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Admin indicator of user</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
+<div class="description">
+    <p>Autobinds function</p>
+</div>
 
 
 
@@ -343,7 +154,7 @@
 
     
 
-    <h4 class="name" id="changePassword">@action <span class="type-signature"></span>changePassword<span class="signature">(newPassword)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getEmployee"><span class="type-signature"></span>getEmployee<span class="signature">(buttonClickNav, infoClickNav, editClickNav)</span><span class="type-signature"> &rarr; {<a href="EmployeeTableModel.html">EmployeeTableModel</a>}</span></h4>
 
     
 
@@ -355,7 +166,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line65">line 65</a>
+        <a href="store_tableSelector.js.html">store/tableSelector.js</a>, <a href="store_tableSelector.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -395,7 +206,7 @@
 
 
 <div class="description">
-    <p>Calls API to change the password for the username</p>
+    <p>Provides a EmployeeTableModel set for selecting</p>
 </div>
 
 
@@ -433,13 +244,13 @@
 
         <tr>
             
-                <td class="name"><code>newPassword</code></td>
+                <td class="name"><code>buttonClickNav</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">function</span>
 
 
             
@@ -449,7 +260,53 @@
 
             
 
-            <td class="description last"><p>New password</p></td>
+            <td class="description last"><p>TableButton click function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>infoClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row info icon click function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>editClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row edit icon click function</p></td>
         </tr>
 
     
@@ -480,7 +337,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type"><a href="EmployeeTableModel.html">EmployeeTableModel</a></span>
 
 
     </dd>
@@ -493,7 +350,7 @@
 
     
 
-    <h4 class="name" id="login">@action <span class="type-signature"></span>login<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getNonSelectCustomer"><span class="type-signature"></span>getNonSelectCustomer<span class="signature">(buttonClickNav, infoClickNav, editClickNav)</span><span class="type-signature"> &rarr; {<a href="CustomerTableModel.html">CustomerTableModel</a>}</span></h4>
 
     
 
@@ -505,7 +362,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line29">line 29</a>
+        <a href="store_tableSelector.js.html">store/tableSelector.js</a>, <a href="store_tableSelector.js.html#line29">line 29</a>
     </li></ul></dd>
     
 
@@ -545,7 +402,7 @@
 
 
 <div class="description">
-    <p>Calls API to attempt the login of a user</p>
+    <p>Provides a CustomerTableModel set for selecting</p>
 </div>
 
 
@@ -556,6 +413,101 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>buttonClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>TableButton click function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>infoClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row info icon click function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>editClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row edit icon click function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -581,7 +533,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type"><a href="CustomerTableModel.html">CustomerTableModel</a></span>
 
 
     </dd>
@@ -594,7 +546,7 @@
 
     
 
-    <h4 class="name" id="logout">@action <span class="type-signature"></span>logout<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getProject"><span class="type-signature"></span>getProject<span class="signature">(infoClickNav, editClickNav)</span><span class="type-signature"> &rarr; {<a href="ProjectTableModel.html">ProjectTableModel</a>}</span></h4>
 
     
 
@@ -606,7 +558,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line41">line 41</a>
+        <a href="store_tableSelector.js.html">store/tableSelector.js</a>, <a href="store_tableSelector.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -646,7 +598,7 @@
 
 
 <div class="description">
-    <p>Calls API to logout the current user</p>
+    <p>Provides a ProjectTableModel set for selecting</p>
 </div>
 
 
@@ -657,6 +609,78 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>infoClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row info icon click function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>editClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row edit icon click function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -682,7 +706,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type"><a href="ProjectTableModel.html">ProjectTableModel</a></span>
 
 
     </dd>
@@ -695,7 +719,7 @@
 
     
 
-    <h4 class="name" id="toggleAdmin">@action <span class="type-signature"></span>toggleAdmin<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="getSelectCustomer"><span class="type-signature"></span>getSelectCustomer<span class="signature">(buttonClickNav, selectNav)</span><span class="type-signature"> &rarr; {<a href="CustomerTableModel.html">CustomerTableModel</a>}</span></h4>
 
     
 
@@ -707,7 +731,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line53">line 53</a>
+        <a href="store_tableSelector.js.html">store/tableSelector.js</a>, <a href="store_tableSelector.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -747,7 +771,7 @@
 
 
 <div class="description">
-    <p>Calls API to change the admin status of user</p>
+    <p>Provides a CustomerTableModel set for selecting</p>
 </div>
 
 
@@ -758,6 +782,78 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>buttonClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>TableButton click function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>selectNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row select button click function</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -783,7 +879,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise</span>
+<span class="param-type"><a href="CustomerTableModel.html">CustomerTableModel</a></span>
 
 
     </dd>

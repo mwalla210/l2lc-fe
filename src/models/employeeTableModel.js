@@ -88,6 +88,7 @@ export default class EmployeeTableModel extends TableModel{
    * @method clickHandler
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
+   * @memberof EmployeeTableModel.prototype
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit' || type == 'delete'){

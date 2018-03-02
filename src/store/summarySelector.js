@@ -19,6 +19,7 @@ class SummarySelector {
    * @method getSummary
    * @param  {String}   type String for switch
    * @return {Component}
+   * @memberof SummarySelector.prototype
    */
   getSummary(type){
     switch (type) {

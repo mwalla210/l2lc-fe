@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStrict } from 'mobx'
+import { useStrict, action } from 'mobx'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
@@ -37,6 +37,7 @@ export default class CustomerTableModel extends TableModel{
    * @name mainColumns
    * @description Sets columns to have action icons instead of select button
    * @method mainColumns
+   * @memberof CustomerTableModel.prototype
    * @return {Array}
    */
   mainColumns(){
@@ -72,6 +73,7 @@ export default class CustomerTableModel extends TableModel{
    * @name actionColumns
    * @description Sets columns to have action icons instead of select button
    * @method actionColumns
+   * @memberof CustomerTableModel.prototype
    * @return {Array}
    */
   actionColumns(){
@@ -99,6 +101,7 @@ export default class CustomerTableModel extends TableModel{
    * @name noActionColumns
    * @description Sets columns to have select button instead of action icons
    * @method noActionColumns
+   * @memberof CustomerTableModel.prototype
    * @return {Array}
    */
   noActionColumns(){
@@ -129,6 +132,7 @@ export default class CustomerTableModel extends TableModel{
    * @description Handles row click when table in select mode
    * @method selectClick
    * @param  {Object}     row   Row of click
+   * @memberof CustomerTableModel.prototype
    */
   selectClick(row){
     Website.currentProject.changeCustomer(row.original)
@@ -151,6 +155,7 @@ export default class CustomerTableModel extends TableModel{
    * @method clickHandler
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
+   * @memberof CustomerTableModel.prototype
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit'){
@@ -163,16 +168,24 @@ export default class CustomerTableModel extends TableModel{
       }
     }
   }
-  // Table select mode:
-  //  Provide an on-click function for rows
-  //  No action columns
-  selectTable(){
+  /**
+   * @name selectTable
+   * @description Sets table up as selectable (provide an on-click function for rows, no action columns)
+   * @method selectTable
+   * @memberof CustomerTableModel.prototype
+   * @mobx action
+   */
+  @action selectTable(){
     this.columns = this.noActionColumns()
   }
-  // Table select mode:
-  //  No on-click function for rows
-  //  Action columns
-  nonSelectTable(){
+  /**
+   * @method nonSelectTable
+   * @description Sets table up as non selectable (No on-click function for rows, action columns)
+   * @method nonSelectTable
+   * @memberof CustomerTableModel.prototype
+   * @mobx action
+   */
+  @action nonSelectTable(){
     this.columns = this.actionColumns()
   }
 }

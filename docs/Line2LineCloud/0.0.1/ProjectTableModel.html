@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UserModel - Documentation</title>
+    <title>ProjectTableModel - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">UserModel</h1>
+    <h1 class="page-title">ProjectTableModel</h1>
     
 
     
@@ -40,10 +40,10 @@
 <header>
     
         <h2>
-        UserModel
+        ProjectTableModel
         </h2>
         
-            <div class="class-description"><p>User storage object</p></div>
+            <div class="class-description"><p>Project initializer for table storage object</p></div>
         
     
 </header>
@@ -57,7 +57,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="UserModel"><span class="type-signature"></span>new UserModel<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ProjectTableModel"><span class="type-signature"></span>new ProjectTableModel<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -69,7 +69,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line5">line 5</a>
+        <a href="models_projectTableModel.js.html">models/projectTableModel.js</a>, <a href="models_projectTableModel.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -120,11 +120,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -136,156 +132,46 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>infoClickNav</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">function</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last"><p>Database ID of the user</p></td>
+            <td class="description last"><p>Function to navigate on click of info icon</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>username</code></td>
+                <td class="name"><code>editClickNav</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">function</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last"><p>Username of the user</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>stationID</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-                    &lt;nullable><br>
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>null</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Station name of the user, if any</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>admin</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Admin indicator of user</p></td>
+            <td class="description last"><p>Function to navigate on click of edit icon</p></td>
         </tr>
 
     
@@ -296,6 +182,10 @@
 
 
 
+
+<div class="description">
+    <p>Creates fields, sets correct onClick</p>
+</div>
 
 
 
@@ -343,7 +233,7 @@
 
     
 
-    <h4 class="name" id="changePassword">@action <span class="type-signature"></span>changePassword<span class="signature">(newPassword)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="clickHandler"><span class="type-signature"></span>clickHandler<span class="signature">(row, type)</span><span class="type-signature"></span></h4>
 
     
 
@@ -355,7 +245,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line65">line 65</a>
+        <a href="models_projectTableModel.js.html">models/projectTableModel.js</a>, <a href="models_projectTableModel.js.html#line124">line 124</a>
     </li></ul></dd>
     
 
@@ -395,7 +285,7 @@
 
 
 <div class="description">
-    <p>Calls API to change the password for the username</p>
+    <p>Handles action icon clicks</p>
 </div>
 
 
@@ -433,7 +323,30 @@
 
         <tr>
             
-                <td class="name"><code>newPassword</code></td>
+                <td class="name"><code>row</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row of click</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
             
 
             <td class="type">
@@ -449,7 +362,7 @@
 
             
 
-            <td class="description last"><p>New password</p></td>
+            <td class="description last"><p>Icon click type</p></td>
         </tr>
 
     
@@ -469,327 +382,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-        
-            
-
-    
-
-    <h4 class="name" id="login">@action <span class="type-signature"></span>login<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line29">line 29</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Calls API to attempt the login of a user</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-        
-            
-
-    
-
-    <h4 class="name" id="logout">@action <span class="type-signature"></span>logout<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line41">line 41</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Calls API to logout the current user</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
-
-        
-            
-
-    
-
-    <h4 class="name" id="toggleAdmin">@action <span class="type-signature"></span>toggleAdmin<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_userModel.js.html">models/userModel.js</a>, <a href="models_userModel.js.html#line53">line 53</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Calls API to change the admin status of user</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Promise</span>
-
-
-    </dd>
-</dl>
-
-    
 
         
     

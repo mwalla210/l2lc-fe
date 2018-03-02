@@ -372,8 +372,8 @@ const fields = [
 ]
 
 /**
-  * @name projectFormModel
-  * @class projectFormModel
+  * @name ProjectFormModel
+  * @class ProjectFormModel
   * @classdesc Customer initializer for form storage object
   * @description Creates fields, sets correct onClick
   * @property {Function} onClickNav Page navigation function for successful form submission
@@ -399,7 +399,7 @@ export default class projectFormModel extends FormModel{
    * @name resetFields
    * @description Sets all fields back to defaults
    * @method resetFields
-   * @memberof projectFormModel.prototype
+   * @memberof ProjectFormModel.prototype
    * @mobx action
    */
   @action resetFields(){
@@ -410,7 +410,7 @@ export default class projectFormModel extends FormModel{
    * @description Returns function for onClick of primary button when editing
    * @method editButton
    * @return {Function}
-   * @memberof projectFormModel.prototype
+   * @memberof ProjectFormModel.prototype
    */
   editButton(){
     // Change onClick functionality for primary
@@ -421,7 +421,7 @@ export default class projectFormModel extends FormModel{
    * @description Returns button props for secondary button when editing
    * @method editSecondaryButton
    * @return {Function}
-   * @memberof projectFormModel.prototype
+   * @memberof ProjectFormModel.prototype
    */
   editSecondaryButton(){
     return {
@@ -434,7 +434,7 @@ export default class projectFormModel extends FormModel{
    * @description Returns function for onClick of primary button when creating
    * @method newButton
    * @return {Function}
-   * @memberof projectFormModel.prototype
+   * @memberof ProjectFormModel.prototype
    */
   newButton(){
     return (fields) => {
@@ -476,7 +476,7 @@ export default class projectFormModel extends FormModel{
    * @name setEdit
    * @description Modifies primary button click, initializes field values as editing values corresponding to currentProject
    * @method setEdit
-   * @memberof projectFormModel.prototype
+   * @memberof ProjectFormModel.prototype
    * @mobx action
    */
   @action setEdit(){
@@ -490,7 +490,7 @@ export default class projectFormModel extends FormModel{
    * @name setNonEdit
    * @description Modifies primary button click, initializes field values as default values
    * @method setNonEdit
-   * @memberof projectFormModel.prototype
+   * @memberof ProjectFormModel.prototype
    * @mobx action
    */
   @action setNonEdit(){

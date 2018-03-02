@@ -68,7 +68,6 @@ export default class EmployeeModel {
   /**
    * @name barcodeDomID
    * @description Return the DOM computed ID for a barcode field, specific to the employee
-   * @method barcodeDomID
    * @return {String}
    * @memberof EmployeeModel.prototype
    * @mobx computed
@@ -80,7 +79,6 @@ export default class EmployeeModel {
   /**
    * @name barcodeScanID
    * @description Returns the ID to encode in the barcode for scanning purposes
-   * @method barcodeScanID
    * @return {String}
    * @memberof EmployeeModel.prototype
    * @mobx computed

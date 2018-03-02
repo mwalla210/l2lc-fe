@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CustomerModel - Documentation</title>
+    <title>ProjectFormModel - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">CustomerModel</h1>
+    <h1 class="page-title">ProjectFormModel</h1>
     
 
     
@@ -40,10 +40,10 @@
 <header>
     
         <h2>
-        CustomerModel
+        ProjectFormModel
         </h2>
         
-            <div class="class-description"><p>Customer storage object</p></div>
+            <div class="class-description"><p>Customer initializer for form storage object</p></div>
         
     
 </header>
@@ -57,7 +57,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="CustomerModel"><span class="type-signature"></span>new CustomerModel<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ProjectFormModel"><span class="type-signature"></span>new ProjectFormModel<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -69,7 +69,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_customerModel.js.html">models/customerModel.js</a>, <a href="models_customerModel.js.html#line5">line 5</a>
+        <a href="models_projectFormModel.js.html">models/projectFormModel.js</a>, <a href="models_projectFormModel.js.html#line374">line 374</a>
     </li></ul></dd>
     
 
@@ -120,11 +120,7 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -136,861 +132,69 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>onClickNav</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">function</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last"><p>ID of Customer</p></td>
+            <td class="description last"><p>Page navigation function for successful form submission</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>companyName</code></td>
+                <td class="name"><code>onClickCustomerNav</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">function</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
 
             
-                <td class="default">
-                
-                </td>
-            
 
-            <td class="description last"><p>Name of Customer</p></td>
+            <td class="description last"><p>Page navigation function for successful form submission</p></td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>email</code></td>
+                <td class="name"><code>onCancelNav</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">function</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>''</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Email of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>website</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>''</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Website of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>phone</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>''</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Phone of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>pastDue</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Indicator of overdue bills for Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>shipAddr</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Shipping address object for Customer</p>
-                <h6>Properties</h6>
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>shipAddr1</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Line one of shipping address for Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>shipAddr2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>''</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Line two of shipping address for Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>shipCity</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>City of shipping address of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>shipState</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>State of shipping address of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>shipCountry</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Country of shipping address of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>shipZip</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Zipcode of shipping address of Customer</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>billAddr</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>{}</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Line one of billing address for Customer</p>
-                <h6>Properties</h6>
-
-<table class="props">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-        <th>Attributes</th>
-        
-
-        
-        <th>Default</th>
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>billAddr1</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Line one of billing address for Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>billAddr2</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>''</code>
-                
-                </td>
-            
-
-            <td class="description last"><p>Line two of billing address for Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>billCity</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>City of billing address of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>billState</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>State of billing address of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>billCountry</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Country of billing address of Customer</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>billZip</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
-            
-
-            <td class="description last"><p>Zipcode of billing address of Customer</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>billIsSame</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                    &lt;observable><br>
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    <code>false</code>
-                
-                </td>
             
 
-            <td class="description last"><p>Indicator that billing address is same as shipping address for Customer</p></td>
+            <td class="description last"><p>Page navigation function for cancelled form submission</p></td>
         </tr>
 
     
@@ -1001,6 +205,10 @@
 
 
 
+
+<div class="description">
+    <p>Creates fields, sets correct onClick</p>
+</div>
 
 
 
@@ -1048,7 +256,7 @@
 
     
 
-    <h4 class="name" id="edit">@action <span class="type-signature"></span>edit<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="editButton"><span class="type-signature"></span>editButton<span class="signature">()</span><span class="type-signature"> &rarr; {function}</span></h4>
 
     
 
@@ -1060,7 +268,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_customerModel.js.html">models/customerModel.js</a>, <a href="models_customerModel.js.html#line77">line 77</a>
+        <a href="models_projectFormModel.js.html">models/projectFormModel.js</a>, <a href="models_projectFormModel.js.html#line408">line 408</a>
     </li></ul></dd>
     
 
@@ -1100,7 +308,310 @@
 
 
 <div class="description">
-    <p>Updates Customer object in database</p>
+    <p>Returns function for onClick of primary button when editing</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+        
+            
+
+    
+
+    <h4 class="name" id="editSecondaryButton"><span class="type-signature"></span>editSecondaryButton<span class="signature">()</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_projectFormModel.js.html">models/projectFormModel.js</a>, <a href="models_projectFormModel.js.html#line419">line 419</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Returns button props for secondary button when editing</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+        
+            
+
+    
+
+    <h4 class="name" id="newButton"><span class="type-signature"></span>newButton<span class="signature">()</span><span class="type-signature"> &rarr; {function}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_projectFormModel.js.html">models/projectFormModel.js</a>, <a href="models_projectFormModel.js.html#line432">line 432</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Returns function for onClick of primary button when creating</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+        
+            
+
+    
+
+    <h4 class="name" id="resetFields">@action <span class="type-signature"></span>resetFields<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_projectFormModel.js.html">models/projectFormModel.js</a>, <a href="models_projectFormModel.js.html#line398">line 398</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Sets all fields back to defaults</p>
 </div>
 
 
@@ -1131,7 +642,7 @@
 
     
 
-    <h4 class="name" id="getformattedBillAddress">@computed <span class="type-signature"></span>getformattedBillAddress<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="setEdit">@action <span class="type-signature"></span>setEdit<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -1143,7 +654,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_customerModel.js.html">models/customerModel.js</a>, <a href="models_customerModel.js.html#line111">line 111</a>
+        <a href="models_projectFormModel.js.html">models/projectFormModel.js</a>, <a href="models_projectFormModel.js.html#line475">line 475</a>
     </li></ul></dd>
     
 
@@ -1183,7 +694,7 @@
 
 
 <div class="description">
-    <p>Provides formatted concatenated string of billing address (if billIsSame, calls formattedShipAddress)</p>
+    <p>Modifies primary button click, initializes field values as editing values corresponding to currentProject</p>
 </div>
 
 
@@ -1214,7 +725,7 @@
 
     
 
-    <h4 class="name" id="getformattedShipAddress">@computed <span class="type-signature"></span>getformattedShipAddress<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="setNonEdit">@action <span class="type-signature"></span>setNonEdit<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -1226,7 +737,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_customerModel.js.html">models/customerModel.js</a>, <a href="models_customerModel.js.html#line99">line 99</a>
+        <a href="models_projectFormModel.js.html">models/projectFormModel.js</a>, <a href="models_projectFormModel.js.html#line489">line 489</a>
     </li></ul></dd>
     
 
@@ -1266,173 +777,7 @@
 
 
 <div class="description">
-    <p>Provides formatted concatenated string of shipping address</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="getProjects">@action <span class="type-signature"></span>getProjects<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_customerModel.js.html">models/customerModel.js</a>, <a href="models_customerModel.js.html#line88">line 88</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Fetches Projects from database that are associated with Customer ID</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="setBillIsSame">@action <span class="type-signature"></span>setBillIsSame<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="models_customerModel.js.html">models/customerModel.js</a>, <a href="models_customerModel.js.html#line68">line 68</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    <p>Sets this.billIsSame to true</p>
+    <p>Modifies primary button click, initializes field values as default values</p>
 </div>
 
 

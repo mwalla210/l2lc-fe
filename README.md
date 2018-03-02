@@ -55,8 +55,10 @@ From your terminal run:
 #### Building
 
 ```bash
-    npm run build
+    ./build.sh
 ```
+
+In the GoDaddy cloud folder, ensure no other content (aside from cgi-bin folder) is present. Upload archive.zip to cloud folder. Extract zip file once uploaded.
 
 ## Debugging
 
