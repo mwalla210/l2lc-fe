@@ -89,7 +89,6 @@ export default class ProjectModel {
    * @mobx computed
    */
   @computed get timeSpent(){
-    this.addTime()
     let hour = 0
     let min = 0
     for (let i = 0; i < this.timeEntries.length-1; i+=2){
