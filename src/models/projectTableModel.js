@@ -80,7 +80,14 @@ export default class ProjectTableModel extends TableModel{
       },
       {
         Header: 'Finished',
-        accessor: 'dateFinished',
+        id: 'dateFinished',
+        accessor: d => {
+          if (d.dateFinished)
+            return d.dateFinished.toString()
+          else {
+            return ''
+          }
+        },
         filterable: true
       },
       {
@@ -113,7 +120,6 @@ export default class ProjectTableModel extends TableModel{
         Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
       }
     ]
-    this.dataFetch()
   }
   /**
    * @name clickHandler
@@ -121,6 +127,7 @@ export default class ProjectTableModel extends TableModel{
    * @method clickHandler
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
+   * @memberof ProjectTableModel.prototype
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit' || type == 'delete'){

@@ -1,9 +1,10 @@
 import React from 'react'
-import { useStrict } from 'mobx'
+import { useStrict, action } from 'mobx'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
 import TableActionCell from '../components/tableActionCell'
+import {Button} from 'react-bootstrap'
 import API from '../api'
 useStrict(true)
 
@@ -12,11 +13,13 @@ useStrict(true)
   * @class CustomerTableModel
   * @classdesc Customer initializer for table storage object
   * @description Creates fields, sets correct onClick
+  * @property {Function} buttonClickNav Function to navigate on click of table button
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
+  * @property {Function} selectNav Function to navigate on select of row (when adding customer to project)
  */
 export default class CustomerTableModel extends TableModel{
-  constructor(buttonClickNav, infoClickNav, editClickNav) {
+  constructor(buttonClickNav, infoClickNav, editClickNav, selectNav) {
     super(
       {
         title: 'New Customer',
@@ -26,8 +29,19 @@ export default class CustomerTableModel extends TableModel{
     )
     this.infoClickNav = infoClickNav
     this.editClickNav = editClickNav
+    this.selectNav = selectNav
     autoBind(this)
-    this.columns = [
+    this.columns = this.actionColumns()
+  }
+  /**
+   * @name mainColumns
+   * @description Sets columns to have action icons instead of select button
+   * @method mainColumns
+   * @memberof CustomerTableModel.prototype
+   * @return {Array}
+   */
+  mainColumns(){
+    return [
       {
         Header: 'ID',
         accessor: 'id',
@@ -53,6 +67,18 @@ export default class CustomerTableModel extends TableModel{
         accessor: 'phone',
         filterable: true
       },
+    ]
+  }
+  /**
+   * @name actionColumns
+   * @description Sets columns to have action icons instead of select button
+   * @method actionColumns
+   * @memberof CustomerTableModel.prototype
+   * @return {Array}
+   */
+  actionColumns(){
+    let cols = this.mainColumns()
+    cols.push(
       {
         Header: 'Actions',
         sortable: false,
@@ -68,8 +94,60 @@ export default class CustomerTableModel extends TableModel{
         },
         Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
       }
-    ]
-    this.dataFetch()
+    )
+    return cols
+  }
+  /**
+   * @name noActionColumns
+   * @description Sets columns to have select button instead of action icons
+   * @method noActionColumns
+   * @memberof CustomerTableModel.prototype
+   * @return {Array}
+   */
+  noActionColumns(){
+    let cols = this.mainColumns()
+    cols.push(
+      {
+        Header: 'Actions',
+        sortable: false,
+        maxWidth: 80,
+        Cell: row => {
+          let click = () => {
+            this.selectClick(row)
+          }
+          return (
+            <span>
+              <span>
+                <Button className="btn btn-default" onClick={click}>Select</Button>
+              </span>
+            </span>
+          )
+        }
+      }
+    )
+    return cols
+  }
+  /**
+   * @name selectClick
+   * @description Handles row click when table in select mode
+   * @method selectClick
+   * @param  {Object}     row   Row of click
+   * @memberof CustomerTableModel.prototype
+   */
+  selectClick(row){
+    Website.currentProject.changeCustomer(row.original)
+    let body = {
+      jobType: Website.currentProject.jobTypeTitle,
+      costCenter: Website.currentProject.costCenterTitle,
+      title: Website.currentProject.title,
+      description: Website.currentProject.descr,
+      priority: Website.currentProject.priority,
+      partCount: Website.currentProject.partCount,
+      refNumber: Website.currentProject.refNum,
+      customer: {id: Website.currentProject.customerID}
+    }
+    Website.createProject(body)
+    .then(() => this.selectNav())
   }
   /**
    * @name clickHandler
@@ -77,6 +155,7 @@ export default class CustomerTableModel extends TableModel{
    * @method clickHandler
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
+   * @memberof CustomerTableModel.prototype
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit'){
@@ -88,5 +167,25 @@ export default class CustomerTableModel extends TableModel{
         this.editClickNav()
       }
     }
+  }
+  /**
+   * @name selectTable
+   * @description Sets table up as selectable (provide an on-click function for rows, no action columns)
+   * @method selectTable
+   * @memberof CustomerTableModel.prototype
+   * @mobx action
+   */
+  @action selectTable(){
+    this.columns = this.noActionColumns()
+  }
+  /**
+   * @method nonSelectTable
+   * @description Sets table up as non selectable (No on-click function for rows, action columns)
+   * @method nonSelectTable
+   * @memberof CustomerTableModel.prototype
+   * @mobx action
+   */
+  @action nonSelectTable(){
+    this.columns = this.actionColumns()
   }
 }

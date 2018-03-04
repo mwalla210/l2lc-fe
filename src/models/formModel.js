@@ -15,9 +15,10 @@ useStrict(true)
   * @property {String} secondaryButton.title Forms secondary button title
   * @property {Function} secondaryButton.onClick Forms secondary button onClick
   * @property {Boolean} autoSubmit Forms auto-submit boolean
+  * @property {Function} onChange Form's function to handle ANY field updates (time entry only usage)
  */
 export default class FormModel {
-  constructor(fields, primaryButton, secondaryButton, autoSubmit) {
+  constructor(fields, primaryButton, secondaryButton, autoSubmit, onChange) {
     fields.forEach(field => {
       let value = null
       switch (field.type){ // default value
@@ -45,6 +46,7 @@ export default class FormModel {
     this.primaryButton = primaryButton
     this.secondaryButton = secondaryButton
     this.autoSubmit = autoSubmit
+    this.onChange = onChange
     autoBind(this)
   }
   /**
@@ -56,19 +58,40 @@ export default class FormModel {
    */
   @action resetValues(){
     this.fields.forEach(field => {
-      let value = null
-      switch (field.type){ // default value
-        case 'select':
-        case 'textfield':
-        case 'textarea':
-          value = ''
-          break
-        case 'checkbox':
-          value = false
-          break
-      }
-      field.value = value
+      this.resetValue(field.id)
     })
+  }
+  /**
+   * @name resetValueID
+   * @description Resets field value to default based on field ID
+   * @method resetValueID
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action resetValueID(id){
+    let index = this.fields.findIndex(element => {return element.id == id})
+    this.resetValueIndex(index)
+  }
+  /**
+   * @name resetValueIndex
+   * @description Resets field value to default based on field ID
+   * @method resetValueIndex
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action resetValueIndex(index){
+    let value = null
+    switch (this.fields[index].type){
+      case 'select':
+      case 'textfield':
+      case 'textarea':
+        value = ''
+        break
+      case 'checkbox':
+        value = false
+        break
+    }
+    this.fields[index].value = value
   }
   /**
    * @name buttonDisabled
@@ -115,7 +138,22 @@ export default class FormModel {
    * @mobx action
    */
   @action modifyFieldValue(index, value){
+    // If we have special field modification checks (time entry)
+    if (this.onChange){
+      // Will return null if no changes to be made
+      let newindex = this.onChange(this.fields,index,value)
+      if (newindex != null){
+        // Clear field that was previously being updated
+        this.resetValueIndex(index)
+        // Set index for updates to one found above
+        index = newindex
+        // Strip value of special character
+        value = value.replace(/\W/g, '')
+      }
+    }
+    // Update field with value
     this.fields[index].value = value
+    // If we need to update the field properties due to a change
     if (this.fields[index].onUpdate){
       let updates = this.fields[index].onUpdate(this.fields[index].value)
       updates.forEach(update => {
@@ -131,8 +169,8 @@ export default class FormModel {
         }
       })
     }
-    if(!this.buttonDisabled && this.autoSubmit)
-    {
+    // If we need to auto submit the form
+    if(!this.buttonDisabled && this.autoSubmit){
       this.primaryButtonWrapper()
     }
   }

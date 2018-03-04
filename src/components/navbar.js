@@ -16,7 +16,7 @@ export default class NavBar extends Component{
 
   renderUser(){
     return (
-      <Navbar.Text pullRight>
+      <Navbar.Text pullRight style={{marginRight: '10px'}}>
         <img src="../../style/open-iconic-master/svg/person.svg" alt="person" style={{width: '16px', marginRight: '5px'}}/>
         {this.props.website.currentUser.username}
       </Navbar.Text>
@@ -24,7 +24,7 @@ export default class NavBar extends Component{
   }
 
   logoutClick(){
-    this.props.page.logOutAlert()
+    this.props.website.logOutAlert()
   }
 
   renderLogOut(){
@@ -40,7 +40,7 @@ export default class NavBar extends Component{
   }
 
   promptDismiss(){
-    this.props.page.logOutDismiss()
+    this.props.website.logOutDismiss()
   }
 
   render(){
@@ -50,7 +50,7 @@ export default class NavBar extends Component{
           title="Log Out"
           confirmOnClick={this.promptConfirm}
           denyOnClick={this.promptDismiss}
-          open={this.props.page.logOutModalOpen}
+          open={this.props.website.logOutModalOpen}
           closeFn={this.promptDismiss}
           content="Are you sure you want to log out?"
           confirmClass="btn-primary"
@@ -88,9 +88,7 @@ export default class NavBar extends Component{
               </NavDropdown>
             </Nav>
             {this.props.website.currentUser &&
-              this.renderLogOut()
-            }
-            {this.props.website.currentUser &&
+              this.renderLogOut() &&
               this.renderUser()
             }
           </Navbar.Collapse>

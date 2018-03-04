@@ -24,8 +24,11 @@ export default class Form extends Component {
     this.props.page.formModel.secondaryButton.onClick()
   }
 
-  onChange = (index) => (event) => {
-    this.props.page.formModel.modifyFieldValue(index, event.target.value)
+  onChange = (index, checkbox=false) => (event) => {
+    let val = event.target.value
+    if (checkbox)
+      val = event.target.checked
+    this.props.page.formModel.modifyFieldValue(index, val)
   }
 
   onBlur = (index) => (event) => {
@@ -37,6 +40,10 @@ export default class Form extends Component {
     return(
       <form style={{marginLeft: '33%',width:'100%'}}>
         {this.props.page.formModel.fields.map((field, index) => {
+          let first = true
+          if(index != 0){
+            first = false
+          }
           let child = null
           let props = {
             id: field.id,
@@ -46,16 +53,17 @@ export default class Form extends Component {
             onChange: this.onChange(index),
             onBlur: this.onBlur(index),
             valid: field.isValid,
+            focus: first
           }
           switch (field.type){
             case 'select':
-              child = <div><SelectField {...props} options={field.options}/></div>
+              child = <div><SelectField autoFocus {...props} options={field.options}/></div>
               break
             case 'textfield':
-              child = <div><TextField {...props}/></div>
+              child = <div><TextField autoFocus {...props}/></div>
               break
             case 'textarea':
-              child = <div><TextAreaField {...props} rows={field.rows}/></div>
+              child = <div><TextAreaField autoFocus {...props} rows={field.rows}/></div>
               break
             case 'checkbox':
               child = <CheckboxField {...props}/>

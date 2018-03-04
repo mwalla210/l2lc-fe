@@ -11,7 +11,8 @@ export default class SelectField extends Component {
     options: MobXPropTypes.observableArrayOf(PropTypes.string).isRequired,
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
-    valid: PropTypes.bool.isRequired
+    valid: PropTypes.bool.isRequired,
+    focus:PropTypes.bool.isRequired
   }
 
   render(){
@@ -27,6 +28,7 @@ export default class SelectField extends Component {
         value={this.props.value}
         onChange={this.props.onChange}
         onBlur={this.props.onBlur}
+        autoFocus={this.props.focus}
       >
         {this.props.options.map((option, key) =>
           <option key={key}>{option}</option>

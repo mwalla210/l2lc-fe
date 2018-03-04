@@ -10,7 +10,8 @@ export default class TextField extends Component {
     value: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
-    valid: PropTypes.bool.isRequired
+    valid: PropTypes.bool.isRequired,
+    focus:PropTypes.bool.isRequired
   }
 
   render(){
@@ -27,6 +28,7 @@ export default class TextField extends Component {
         value={this.props.value}
         onChange={this.props.onChange}
         onBlur={this.props.onBlur}
+        autoFocus={this.props.focus}
       />
     )
   }

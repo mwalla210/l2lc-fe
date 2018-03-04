@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>api.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="API.html">API</a><ul class='methods'><li data-type='method'><a href="API.html#.addressIsSame">addressIsSame</a></li><li data-type='method'><a href="API.html#.create">create</a></li><li data-type='method'><a href="API.html#.createCustomer">createCustomer</a></li><li data-type='method'><a href="API.html#.createEmployee">createEmployee</a></li><li data-type='method'><a href="API.html#.createProject">createProject</a></li><li data-type='method'><a href="API.html#.customerModelize">customerModelize</a></li><li data-type='method'><a href="API.html#.employeeModelize">employeeModelize</a></li><li data-type='method'><a href="API.html#.fetchCustomer">fetchCustomer</a></li><li data-type='method'><a href="API.html#.fetchCustomers">fetchCustomers</a></li><li data-type='method'><a href="API.html#.fetchEmployees">fetchEmployees</a></li><li data-type='method'><a href="API.html#.fetchProject">fetchProject</a></li><li data-type='method'><a href="API.html#.fetchProjects">fetchProjects</a></li><li data-type='method'><a href="API.html#.projectModelize">projectModelize</a></li></ul></li><li><a href="CustomerFormModel.html">CustomerFormModel</a><ul class='methods'><li data-type='method'><a href="CustomerFormModel.html#editButton">editButton</a></li><li data-type='method'><a href="CustomerFormModel.html#newButton">newButton</a></li><li data-type='method'><a href="CustomerFormModel.html#resetFields">resetFields</a></li><li data-type='method'><a href="CustomerFormModel.html#setEdit">setEdit</a></li><li data-type='method'><a href="CustomerFormModel.html#setNonEdit">setNonEdit</a></li><li data-type='method'><a href="CustomerFormModel.html#setOnClickNav">setOnClickNav</a></li></ul></li><li><a href="CustomerModel.html">CustomerModel</a><ul class='methods'><li data-type='method'><a href="CustomerModel.html#edit">edit</a></li><li data-type='method'><a href="CustomerModel.html#getformattedBillAddress">getformattedBillAddress</a></li><li data-type='method'><a href="CustomerModel.html#getformattedShipAddress">getformattedShipAddress</a></li><li data-type='method'><a href="CustomerModel.html#getProjects">getProjects</a></li><li data-type='method'><a href="CustomerModel.html#setBillIsSame">setBillIsSame</a></li></ul></li><li><a href="CustomerTableModel.html">CustomerTableModel</a><ul class='methods'><li data-type='method'><a href="CustomerTableModel.html#actionColumns">actionColumns</a></li><li data-type='method'><a href="CustomerTableModel.html#clickHandler">clickHandler</a></li><li data-type='method'><a href="CustomerTableModel.html#mainColumns">mainColumns</a></li><li data-type='method'><a href="CustomerTableModel.html#noActionColumns">noActionColumns</a></li><li data-type='method'><a href="CustomerTableModel.html#nonSelectTable">nonSelectTable</a></li><li data-type='method'><a href="CustomerTableModel.html#selectClick">selectClick</a></li><li data-type='method'><a href="CustomerTableModel.html#selectTable">selectTable</a></li></ul></li><li><a href="EmployeeFormModel.html">EmployeeFormModel</a><ul class='methods'><li data-type='method'><a href="EmployeeFormModel.html#editButton">editButton</a></li><li data-type='method'><a href="EmployeeFormModel.html#newButton">newButton</a></li><li data-type='method'><a href="EmployeeFormModel.html#resetFields">resetFields</a></li><li data-type='method'><a href="EmployeeFormModel.html#setEdit">setEdit</a></li><li data-type='method'><a href="EmployeeFormModel.html#setNonEdit">setNonEdit</a></li></ul></li><li><a href="EmployeeModel.html">EmployeeModel</a><ul class='methods'><li data-type='method'><a href="EmployeeModel.html#activate">activate</a></li><li data-type='method'><a href="EmployeeModel.html#barcodeDomID">barcodeDomID</a></li><li data-type='method'><a href="EmployeeModel.html#barcodeScanID">barcodeScanID</a></li><li data-type='method'><a href="EmployeeModel.html#changeName">changeName</a></li><li data-type='method'><a href="EmployeeModel.html#deactivate">deactivate</a></li></ul></li><li><a href="EmployeeTableModel.html">EmployeeTableModel</a><ul class='methods'><li data-type='method'><a href="EmployeeTableModel.html#clickHandler">clickHandler</a></li></ul></li><li><a href="FormModel.html">FormModel</a><ul class='methods'><li data-type='method'><a href="FormModel.html#buttonDisabled">buttonDisabled</a></li><li data-type='method'><a href="FormModel.html#fieldValidatorWrapper">fieldValidatorWrapper</a></li><li data-type='method'><a href="FormModel.html#modifyFieldValue">modifyFieldValue</a></li><li data-type='method'><a href="FormModel.html#primaryButtonWrapper">primaryButtonWrapper</a></li><li data-type='method'><a href="FormModel.html#resetValueID">resetValueID</a></li><li data-type='method'><a href="FormModel.html#resetValueIndex">resetValueIndex</a></li><li data-type='method'><a href="FormModel.html#resetValues">resetValues</a></li></ul></li><li><a href="FormSelector.html">FormSelector</a><ul class='methods'><li data-type='method'><a href="FormSelector.html#getEditCustomer">getEditCustomer</a></li><li data-type='method'><a href="FormSelector.html#getEditEmployee">getEditEmployee</a></li><li data-type='method'><a href="FormSelector.html#getEmployee">getEmployee</a></li><li data-type='method'><a href="FormSelector.html#getNewCustomer">getNewCustomer</a></li><li data-type='method'><a href="FormSelector.html#getProject">getProject</a></li><li data-type='method'><a href="FormSelector.html#getProject">getProject</a></li></ul></li><li><a href="ModalModel.html">ModalModel</a><ul class='methods'><li data-type='method'><a href="ModalModel.html#changeConfirmFn">changeConfirmFn</a></li><li data-type='method'><a href="ModalModel.html#changeContent">changeContent</a></li><li data-type='method'><a href="ModalModel.html#changeTitle">changeTitle</a></li><li data-type='method'><a href="ModalModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="ModalModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="ModalModel.html#openModal">openModal</a></li></ul></li><li><a href="Page.html">Page</a><ul class='methods'><li data-type='method'><a href="Page.html#accountManagementMenuItem">accountManagementMenuItem</a></li><li data-type='method'><a href="Page.html#costCenterTimeMenuItem">costCenterTimeMenuItem</a></li><li data-type='method'><a href="Page.html#createNewProjMenuItem">createNewProjMenuItem</a></li><li data-type='method'><a href="Page.html#customerEditPage">customerEditPage</a></li><li data-type='method'><a href="Page.html#customerInfoMenuItem">customerInfoMenuItem</a></li><li data-type='method'><a href="Page.html#customerSummaryPage">customerSummaryPage</a></li><li data-type='method'><a href="Page.html#employeeEditPage">employeeEditPage</a></li><li data-type='method'><a href="Page.html#employeeInformationMenuItem">employeeInformationMenuItem</a></li><li data-type='method'><a href="Page.html#employeeSummaryPage">employeeSummaryPage</a></li><li data-type='method'><a href="Page.html#emplProductivityMenuItem">emplProductivityMenuItem</a></li><li data-type='method'><a href="Page.html#jobTypeProductivityMenuItem">jobTypeProductivityMenuItem</a></li><li data-type='method'><a href="Page.html#logOut">logOut</a></li><li data-type='method'><a href="Page.html#newCustomerPage">newCustomerPage</a></li><li data-type='method'><a href="Page.html#newEmployeePage">newEmployeePage</a></li><li data-type='method'><a href="Page.html#newProjectCustomerPage">newProjectCustomerPage</a></li><li data-type='method'><a href="Page.html#projectEditPage">projectEditPage</a></li><li data-type='method'><a href="Page.html#projectsMenuItem">projectsMenuItem</a></li><li data-type='method'><a href="Page.html#projectSummaryPage">projectSummaryPage</a></li><li data-type='method'><a href="Page.html#projectTimeEntryMenuItem">projectTimeEntryMenuItem</a></li><li data-type='method'><a href="Page.html#selectCustomerPage">selectCustomerPage</a></li><li data-type='method'><a href="Page.html#setFormModel">setFormModel</a></li><li data-type='method'><a href="Page.html#setModal">setModal</a></li><li data-type='method'><a href="Page.html#setModalSecondary">setModalSecondary</a></li><li data-type='method'><a href="Page.html#setTableModel">setTableModel</a></li><li data-type='method'><a href="Page.html#workstationTrackingMenuItem">workstationTrackingMenuItem</a></li></ul></li><li><a href="ProjectFormModel.html">ProjectFormModel</a><ul class='methods'><li data-type='method'><a href="ProjectFormModel.html#editButton">editButton</a></li><li data-type='method'><a href="ProjectFormModel.html#editSecondaryButton">editSecondaryButton</a></li><li data-type='method'><a href="ProjectFormModel.html#newButton">newButton</a></li><li data-type='method'><a href="ProjectFormModel.html#resetFields">resetFields</a></li><li data-type='method'><a href="ProjectFormModel.html#setEdit">setEdit</a></li><li data-type='method'><a href="ProjectFormModel.html#setNonEdit">setNonEdit</a></li></ul></li><li><a href="ProjectModel.html">ProjectModel</a><ul class='methods'><li data-type='method'><a href="ProjectModel.html#addRework">addRework</a></li><li data-type='method'><a href="ProjectModel.html#addTask">addTask</a></li><li data-type='method'><a href="ProjectModel.html#addTimeEntry">addTimeEntry</a></li><li data-type='method'><a href="ProjectModel.html#changeCustomer">changeCustomer</a></li><li data-type='method'><a href="ProjectModel.html#changeHold">changeHold</a></li><li data-type='method'><a href="ProjectModel.html#customerID">customerID</a></li><li data-type='method'><a href="ProjectModel.html#delete">delete</a></li><li data-type='method'><a href="ProjectModel.html#edit">edit</a></li><li data-type='method'><a href="ProjectModel.html#finish">finish</a></li><li data-type='method'><a href="ProjectModel.html#getDefaultTaskList">getDefaultTaskList</a></li><li data-type='method'><a href="ProjectModel.html#isOpen">isOpen</a></li><li data-type='method'><a href="ProjectModel.html#moveTask">moveTask</a></li><li data-type='method'><a href="ProjectModel.html#removeTask">removeTask</a></li><li data-type='method'><a href="ProjectModel.html#timeSpent">timeSpent</a></li><li data-type='method'><a href="ProjectModel.html#toggleTask">toggleTask</a></li></ul></li><li><a href="ProjectTableModel.html">ProjectTableModel</a><ul class='methods'><li data-type='method'><a href="ProjectTableModel.html#clickHandler">clickHandler</a></li></ul></li><li><a href="SummarySelector.html">SummarySelector</a><ul class='methods'><li data-type='method'><a href="SummarySelector.html#getSummary">getSummary</a></li></ul></li><li><a href="TableModel.html">TableModel</a><ul class='methods'><li data-type='method'><a href="TableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="TableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="TableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="TableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="TableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="TableModel.html#openModal">openModal</a></li></ul></li><li><a href="TableSelector.html">TableSelector</a><ul class='methods'><li data-type='method'><a href="TableSelector.html#getEmployee">getEmployee</a></li><li data-type='method'><a href="TableSelector.html#getNonSelectCustomer">getNonSelectCustomer</a></li><li data-type='method'><a href="TableSelector.html#getProject">getProject</a></li><li data-type='method'><a href="TableSelector.html#getSelectCustomer">getSelectCustomer</a></li></ul></li><li><a href="TaskModel.html">TaskModel</a><ul class='methods'><li data-type='method'><a href="TaskModel.html#toggle">toggle</a></li></ul></li><li><a href="TimeEntryFormModel.html">TimeEntryFormModel</a><ul class='methods'><li data-type='method'><a href="TimeEntryFormModel.html#resetFields">resetFields</a></li></ul></li><li><a href="UserModel.html">UserModel</a><ul class='methods'><li data-type='method'><a href="UserModel.html#changePassword">changePassword</a></li><li data-type='method'><a href="UserModel.html#login">login</a></li><li data-type='method'><a href="UserModel.html#logout">logout</a></li><li data-type='method'><a href="UserModel.html#toggleAdmin">toggleAdmin</a></li></ul></li><li><a href="Website.html">Website</a><ul class='methods'><li data-type='method'><a href="Website.html#createCustomer">createCustomer</a></li><li data-type='method'><a href="Website.html#createEmployee">createEmployee</a></li><li data-type='method'><a href="Website.html#createProject">createProject</a></li><li data-type='method'><a href="Website.html#createTimeEntry">createTimeEntry</a></li><li data-type='method'><a href="Website.html#logOutAlert">logOutAlert</a></li><li data-type='method'><a href="Website.html#logOutDismiss">logOutDismiss</a></li><li data-type='method'><a href="Website.html#setCustomer">setCustomer</a></li><li data-type='method'><a href="Website.html#setEmployee">setEmployee</a></li><li data-type='method'><a href="Website.html#setProject">setProject</a></li><li data-type='method'><a href="Website.html#setUser">setUser</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">api.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import fetch from 'node-fetch'
+import ProjectModel from './models/projectModel'
+import CustomerModel from './models/customerModel'
+import EmployeeModel from './models/employeeModel'
+
+const api = 'http://138.197.88.198:8080/l2lc/api/'
+
+/**
+ * @name API
+ * @class API
+ * @classdesc API functions for interaction with database
+ */
+export default class API {
+  // Fetch should compose address of api variable and endpoint (and query params as needed)
+  // Fetch always converts res into json, then makes use of json obj
+  // Fetches for tables MUST convert their data to the proper model in the final .then statement (use fetchCustomers as an example of this)
+
+  // Customers
+
+  /**
+   * @name fetchCustomers
+   * @description Fetches all customers and modelizes
+   * @method fetchCustomers
+   * @memberof API
+   * @return {Promise}
+   */
+  static fetchCustomers(){
+    return fetch(`${api}customer?limit=50&amp;offset=0`)
+    .then(res => res.json())
+    .then(json => {
+      let customers = []
+      // For each returned json object...
+      json.items.forEach(item => {
+        let customer = API.customerModelize(item)
+        // Add to list
+        customers.push(customer)
+      })
+      // Return list of models, not json
+      return customers
+    })
+  }
+
+  /**
+   * @name fetchCustomer
+   * @description Fetches customer and modelizes
+   * @method fetchCustomer
+   * @memberof API
+   * @param  {Number}      id ID of customer to fetch
+   * @return {Promise}
+   */
+  static fetchCustomer(id){
+    return fetch(`${api}customer/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      let customer = null
+      if (json.id == id){
+        customer = API.customerModelize(json)
+      }
+      return customer
+    })
+  }
+
+  /**
+   * @name createCustomer
+   * @description Creates a customer and modelizes
+   * @method createCustomer
+   * @memberof API
+   * @param  {Object}       customer Customer object (JSON)
+   * @return {Promise}
+   */
+  static createCustomer(customer){
+    return API.create('customer/create', customer)
+    .then(response => {
+      return API.customerModelize(response)
+    })
+  }
+
+  /**
+   * @name customerModelize
+   * @description Modelizes a database customer
+   * @method customerModelize
+   * @memberof API
+   * @param  {Object}         item Customer database object
+   * @return {CustomerModel}
+   */
+  static customerModelize(item){
+    let addrIsSame = false
+    let addtl = []
+    // Check if addresses match each other
+    if (item.billingAddr){
+      addrIsSame = API.addressIsSame(item.shippingAddr, item.billingAddr)
+      if (!addrIsSame)
+        addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
+    }
+    else
+      addrIsSame = true
+    // Construct model
+    let customer = new CustomerModel(item.id, item.name, item.shippingAddr.street, null, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)
+    return customer
+  }
+
+  /**
+   * @name addressIsSame
+   * @description Compares two address objects to check for equality
+   * @method addressIsSame
+   * @memberof API
+   * @param  {Object}      addr1 Address object for comparison
+   * @param  {Object}      addr2 Address object for comparison
+   * @return {Boolean}
+   */
+  static addressIsSame(addr1, addr2){
+    return JSON.stringify(addr1) === JSON.stringify(addr2)
+  }
+
+  // Projects
+
+  /**
+   * @name fetchProjects
+   * @description Fetches all projects and modelizes
+   * @method fetchProjects
+   * @memberof API
+   * @return {Promise}
+   */
+  static fetchProjects(){
+    return fetch(`${api}project?limit=50&amp;offset=0`)
+    .then(res => res.json())
+    .then(json => {
+      let projects = []
+      json.items.forEach(item => {
+        if (item.projectStatus != 'Dropped')
+          projects.push(item)
+      })
+      projects = projects.map(item => {
+        if (item.customer)
+          item.customer.companyName = item.customer.name
+        let project = API.projectModelize(item)
+        return project
+      })
+      return projects
+    })
+  }
+
+  /**
+   * @name fetchProject
+   * @description Fetches project and modelizes
+   * @method fetchProject
+   * @memberof API
+   * @param  {Number}     id ID of project to fetch
+   * @return {Promise}
+   */
+  static fetchProject(id){
+    return fetch(`${api}project/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      let project = null
+      if (json.id == id){
+        project = API.projectModelize(json)
+      }
+      return project
+    })
+  }
+
+  /**
+   * @name createProject
+   * @description Creates a project and modelizes
+   * @method createProject
+   * @memberof API
+   * @param  {Object}      project Project object (JSON)
+   * @return {Promise}
+   */
+  static createProject(project){
+    return API.create('project/create', project)
+    .then(response => {
+      return API.projectModelize(response)
+    })
+  }
+
+  /**
+   * @name projectModelize
+   * @description Modelizes a database project model
+   * @method projectModelize
+   * @memberof API
+   * @param  {Object}        item Database project object
+   * @return {ProjectModel}
+   */
+  static projectModelize(item){
+    return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
+  }
+
+  // Employees
+
+  /**
+   * @name employeeModelize
+   * @description Modelizes a database employee model
+   * @method employeeModelize
+   * @memberof API
+   * @param  {Object}         item Database employee object
+   * @return {EmployeeModel}
+   */
+  static employeeModelize(item){
+    return new EmployeeModel(item.id, item.firstName, item.lastName)
+  }
+
+  /**
+   * @name fetchEmployees
+   * @description Fetches all employees and modelizes
+   * @method fetchEmployees
+   * @memberof API
+   * @return {Promise}
+   */
+  static fetchEmployees(){
+    return fetch(`${api}employee?limit=50&amp;offset=0`)
+    .then(res => res.json())
+    .then(json => {
+      let employees = []
+      json.items.forEach(item => {
+        employees.push(API.employeeModelize(item))
+      })
+      return employees
+    })
+  }
+
+  /**
+   * @name createEmployee
+   * @description Creates an employee and modelizes
+   * @method createEmployee
+   * @memberof API
+   * @param  {Object}       employee Employee object (JSON)
+   * @return {Promise}
+   */
+  static createEmployee(employee){
+    return API.create('employee/create', employee)
+    .then(response => {
+      return API.employeeModelize(response)
+    })
+  }
+
+  // Generic
+
+  /**
+   * @name create
+   * @description POSTs to endpoint with body provided, then returns
+   * @method create
+   * @memberof API
+   * @param  {String} endpoint API endpoint name
+   * @param  {JSON} body       JSON body for POST
+   * @return {Promise}
+   */
+  static create(endpoint, body){
+    return fetch(`${api}${endpoint}`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => res.json())
+    .then(json => {
+      console.log('json',json)
+      return json
+    })
+  }
+
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Sat Mar 03 2018 23:47:29 GMT-0500 (EST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

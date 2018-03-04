@@ -82,14 +82,29 @@ export default class ProjectModel {
   }
   /**
    * @name timeSpent
-   * @description Calculates Project's time total based on dates and reworks
+   * @description Calculates Project's time total based on timeEntries
    * @memberof ProjectModel.prototype
    * @method timeSpent
    * @return {String}
    * @mobx computed
    */
   @computed get timeSpent(){
-    return 'Time spent'
+    let hour = 0
+    let min = 0
+    for (let i = 0; i < this.timeEntries.length-1; i+=2){
+      let diff = this.timeEntries[i+1]-this.timeEntries[i]
+      let diffHrs = Math.floor((diff % 86400000) / 3600000) // hour
+      let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // min
+      hour += diffHrs
+      if (min + diffMins > 60){
+        hour += 1
+        min += diffMins - 60
+      }
+      else {
+        min += diffMins
+      }
+    }
+    return `${(hour != 0) ? `${hour} hour${(hour > 1) ? 's' : '' }, ` : ''}${(min != 0) ? `${min} minute${(min > 1) ? 's' : ''}`: ''}`
   }
   /**
    * @name isOpen
@@ -101,6 +116,28 @@ export default class ProjectModel {
    */
   @computed get isOpen(){
     return (this.dateFinished == null)
+  }
+  /**
+   * @name barcodeDomID
+   * @description Return the DOM computed ID for a barcode field, specific to the project
+   * @method barcodeDomID
+   * @return {String}
+   * @memberof EmployeeModel.prototype
+   * @mobx computed
+   */
+  @computed get barcodeDomID(){
+    return `${this.title}${this.id}`
+  }
+  /**
+   * @name barcodeScanID
+   * @description Returns the ID to encode in the barcode for scanning purposes
+   * @method barcodeScanID
+   * @return {String}
+   * @memberof EmployeeModel.prototype
+   * @mobx computed
+   */
+  @computed get barcodeScanID(){
+    return `p${this.id}%`
   }
 
   // Actions
@@ -115,7 +152,7 @@ export default class ProjectModel {
    * @mobx action
    */
   @action changeCustomer(customer){
-    console.log(`Change Project Customer to: ${customer}`)
+    this.customer = customer
   }
   /**
    * @name delete
@@ -248,6 +285,6 @@ export default class ProjectModel {
   * @mobx action
   */
   @action addTimeEntry(employeeID){
-      console.log(`Adds time entry to project in API for employee: ${employeeID}`)
-    }
+    console.log(`Adds time entry to project in API for employee: ${employeeID}`)
+  }
 }
