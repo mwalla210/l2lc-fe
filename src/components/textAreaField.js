@@ -18,6 +18,7 @@ export default class TextAreaField extends Component {
     return (
         <textarea
           className="form-control"
+          style={{height:'46px'}}
           rows={this.props.rows}
           id={this.props.id}
           value={this.props.value}

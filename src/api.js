@@ -71,7 +71,11 @@ export default class API {
   static createCustomer(customer){
     return API.create('customer/create', customer)
     .then(response => {
-      return API.customerModelize(response)
+      if(response === null){
+        console.log('Null Response')
+      } else {
+        return API.customerModelize(response)
+      }
     })
   }
 
@@ -171,7 +175,11 @@ export default class API {
   static createProject(project){
     return API.create('project/create', project)
     .then(response => {
-      return API.projectModelize(response)
+      if(response === null){
+        console.log('Null Response')
+      } else {
+        return API.projectModelize(response)
+      }
     })
   }
 
@@ -231,7 +239,11 @@ export default class API {
   static createEmployee(employee){
     return API.create('employee/create', employee)
       .then(response => {
-        return API.employeeModelize(response)
+        if(response === null){
+          console.log('Null Response')
+        } else {
+          return API.employeeModelize(response)
+        }
       }
     )
   }
@@ -259,7 +271,7 @@ export default class API {
       }
       else {
         console.log(res.errorMessages)
-        return {'firstName':'ERROR','lastName':'ERROR','id':'ERROR','costCenter':'ERROR', 'jobType':'ERROR','title':'ERROR','priority':'ERROR', 'projectStatus':'ERROR', 'partCount':'ERROR', 'description':'ERROR', 'refNumber':'ERROR', 'customer':'ERROR','name':'ERROR'}
+        return null
       }
       })
   }
