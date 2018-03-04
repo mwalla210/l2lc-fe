@@ -252,13 +252,16 @@ export default class API {
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
-    }).then(res => res.json(), reject => {
-        console.log(reject)
+    }).then(res => {
+      console.log(res.ok, res.status, res.statusText, res.errorMessages)
+      if(res.status === 200 || res.status === 201){
+        return res.json()
+      }
+      else {
+        console.log(res.errorMessages)
+        return {'firstName':'ERROR','lastName':'ERROR','id':'ERROR','costCenter':'ERROR', 'jobType':'ERROR','title':'ERROR','priority':'ERROR', 'projectStatus':'ERROR', 'partCount':'ERROR', 'description':'ERROR', 'refNumber':'ERROR', 'customer':'ERROR','name':'ERROR'}
+      }
       })
-    .then(json => {
-      console.log('json',json)
-      return json
-    })
   }
 
 }

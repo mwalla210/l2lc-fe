@@ -30,8 +30,8 @@ export default class EmployeeSummary extends Component {
         barcodeID={this.props.website.currentEmployee.barcodeScanID}
        />
        <br/>
-       <Button className="btn btn-default" onClick={this.props.page.employeeEditPage}>Edit</Button>
-       <Button className="btn btn-danger" onClick={this.props.page.modal.openModal}>Delete</Button>
+       <Button style={{marginLeft: 5}} className="btn btn-default" onClick={this.props.page.employeeEditPage}>Edit</Button>
+       <Button style={{marginLeft: 5}} className="btn btn-danger" onClick={this.props.page.modal.openModal}>Delete</Button>
       </div>
     )
   }
