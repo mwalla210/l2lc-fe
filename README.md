@@ -49,8 +49,10 @@ From your terminal run:
 #### Doc Generating
 
 ```bash
-    npm run doc
+    ./doc.sh
 ```
+
+In the GoDaddy clouddoc folder, ensure no other content (aside from cgi-bin folder) is present. Upload docarchive.zip to cloud folder. Extract zip file once uploaded.
 
 #### Building
 
