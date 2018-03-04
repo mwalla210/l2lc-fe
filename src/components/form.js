@@ -38,7 +38,7 @@ export default class Form extends Component {
 
   render() {
     return(
-      <form style={{marginLeft: '33%',width:'100%'}}>
+      <form style={{marginLeft: '33%'}}>
         {this.props.page.formModel.fields.map((field, index) => {
           let first = true
           if(index != 0){
