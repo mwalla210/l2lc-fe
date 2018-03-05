@@ -12,7 +12,6 @@ useStrict(true)
  * @name Page
  * @class Page
  * @classdesc Main MobX store for page
- * @property {Boolean} [loggedin=false] Indicates whether currently logged in [observable]
  * @property {String} [title='Default Title'] Page title [observable]
  * @property {?Object} [content=null] Page inner content [observable]
  * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
@@ -23,7 +22,6 @@ useStrict(true)
 class Page {
   constructor() {
     let addtlProps = {
-      loggedin: false,
       title: 'Default Title',
       content: null,
       tableModel: null,
@@ -352,23 +350,6 @@ class Page {
   @action accountManagementMenuItem(){
     this.title = 'Account Management [Q3]'
     this.content = null
-  }
-
-  // TODO remove
-  @action changeLogin(){
-    this.loggedin = !this.loggedin
-    this.createNewProjMenuItem()
-  }
-
-  /**
-   * @name logOut
-   * @description Log out method
-   * @method logOut
-   * @memberof Page.prototype
-   * @mobx action
-   */
-  @action logOut(){
-    this.loggedin = !this.loggedin
   }
 
 }
