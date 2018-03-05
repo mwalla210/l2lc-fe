@@ -10,7 +10,7 @@ export default class PromptModal extends Component {
     titleClass: PropTypes.string,
     confirmOnClick: PropTypes.func.isRequired,
     confirmClass: PropTypes.string,
-    denyOnClick: PropTypes.func.isRequired,
+    denyOnClick: PropTypes.func,
     open: PropTypes.bool.isRequired,
     closeFn: PropTypes.func.isRequired,
     content: PropTypes.string.isRequired,
@@ -72,9 +72,10 @@ export default class PromptModal extends Component {
           <p>{this.props.content}</p>
         </Modal.Body>
         <Modal.Footer>
+          {((this.props.denyOnClick) ?
           <Button onClick={this.deny}>
             Close
-          </Button>
+          </Button> : null)}
           <Button {...confirm} onClick={this.confirm}>
             Confirm
           </Button>

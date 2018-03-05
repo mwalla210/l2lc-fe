@@ -194,4 +194,32 @@ export default class FormModel {
       }
     }
   }
+
+  /**
+   * @name closeModal
+   * @description Sets modalOpen prop to false
+   * @method closeModal
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action closeModal(){this.modalOpen = false}
+  /**
+   * @name openModal
+   * @description Sets modalOpen prop to true
+   * @method openModal
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action openModal(){this.modalOpen = true}
+  /**
+   * @name confirmAndClose
+   * @description Closes modal and runs confirm function
+   * @method confirmAndClose
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action confirmAndClose(){
+    this.closeModal()
+    this.deleteModal.confirmOnClick()
+  }
 }

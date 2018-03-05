@@ -24,13 +24,13 @@ export default class FormItem extends Component {
       }
     }
     return (
-      <div style={{width:'50%',height:'60px',marginBottom:'10px',marginTop:'10px'}} className="form-group" {...disabledStyle}>
-        <div style={{color:'orange'},{position:'absolute',right:'10%'}} className="alert alert-warning" role="alert" {...alertStyle}>
-          <div style={{color:'orange'}}><strong>Warning!</strong>{` ${this.props.errorText}`}</div>
+        <div style={{width:'50%',height:'60px',marginBottom:'10px',marginTop:'10px'}} className="form-group" {...disabledStyle}>
+          <div style={{color:'orange'},{position:'absolute',right:'10%'}} className="alert alert-warning" role="alert" {...alertStyle}>
+            <div style={{color:'orange'}}><strong>Warning!</strong>{` ${this.props.errorText}`}</div>
+          </div>
+          <label>{this.props.label}</label> {(this.props.required) ? <span style={{color: 'orange'}}> *</span> : null}
+          {this.props.children}
         </div>
-        <label>{this.props.label}</label> {(this.props.required) ? <span style={{color: 'orange'}}> *</span> : null}
-        {this.props.children}
-      </div>
     )
   }
 }
