@@ -8,7 +8,7 @@ export default class SelectField extends Component {
     id: PropTypes.string.isRequired,
     disabled: PropTypes.bool.isRequired,
     value: PropTypes.string.isRequired,
-    options: MobXPropTypes.observableArrayOf(PropTypes.string).isRequired,
+    options: MobXPropTypes.observableArrayOf(PropTypes.object).isRequired,
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
   }
