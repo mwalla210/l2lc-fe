@@ -494,7 +494,7 @@ const fields = [
   * @property {Function} onClickNav Page navigation function for successful form submission
  */
 export default class CustomerFormModel extends FormModel{
-  constructor(onClickNav, onCancelNav) {
+  constructor(onClickNav, onCancelNav, errorClick) {
     let primaryOnClick = () => {}
     super(fields,
       {
@@ -504,7 +504,10 @@ export default class CustomerFormModel extends FormModel{
       {
         title: 'Cancel',
         onClick: onCancelNav
-      }
+      },
+      null,
+      null,
+      errorClick
     )
     this.onClickNav = onClickNav
     autoBind(this)

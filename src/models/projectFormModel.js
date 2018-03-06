@@ -381,13 +381,17 @@ const fields = [
   * @property {Function} onCancelNav Page navigation function for cancelled form submission
  */
 export default class projectFormModel extends FormModel{
-  constructor(onClickNav, onClickCustomerNav, onCancelNav) {
+  constructor(onClickNav, onClickCustomerNav, onCancelNav, errorClick) {
     let primaryOnClick = () => {}
     super(fields,
       {
         title: 'Continue',
         onClick: primaryOnClick
-      }
+      },
+      null,
+      null,
+      null,
+      errorClick
     )
     this.onClickNav = onClickNav
     this.onClickCustomerNav = onClickCustomerNav

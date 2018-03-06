@@ -48,9 +48,9 @@ export default class Form extends Component {
           title="API Return Error"
           titleImage="warning"
           titleClass="text-danger"
-          confirmOnClick={this.props.page.modal.confirmAndClose}
-          open={this.props.page.modal.modalOpen}
-          closeFn={this.props.page.modal.closeModal}
+          confirmOnClick={this.props.errorClick}
+          open={this.props.errorClick}
+          closeFn={this.props.errorClick}
           content="There was an error with the return value from the server"
           confirmClass="btn-danger"
         />

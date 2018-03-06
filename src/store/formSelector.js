@@ -22,8 +22,8 @@ class FormSelector {
    * @return {CustomerFormModel}
    * @memberof FormSelector.prototype
    */
-  getNewCustomer(onClick, onCancel){
-    return new CustomerFormModel(onClick, onCancel)
+  getNewCustomer(onClick, onCancel, errorClick){
+    return new CustomerFormModel(onClick, onCancel, errorClick)
   }
   /**
    * @name getEditCustomer
@@ -34,8 +34,8 @@ class FormSelector {
    * @return {CustomerFormModel}
    * @memberof FormSelector.prototype
    */
-  getEditCustomer(onClick, onCancel){
-    let model = new CustomerFormModel(onClick, onCancel)
+  getEditCustomer(onClick, onCancel, errorClick){
+    let model = new CustomerFormModel(onClick, onCancel, errorClick)
     model.setEdit()
     return model
   }
@@ -48,8 +48,8 @@ class FormSelector {
    * @return {EmployeeFormModel}
    * @memberof FormSelector.prototype
    */
-  getEmployee(onClick, onCancel){
-    return new EmployeeFormModel(onClick, onCancel)
+  getEmployee(onClick, onCancel, errorClick){
+    return new EmployeeFormModel(onClick, onCancel, errorClick)
   }
   /**
    * @name getEditEmployee
@@ -60,8 +60,8 @@ class FormSelector {
    * @return {EmployeeFormModel}
    * @memberof FormSelector.prototype
    */
-  getEditEmployee(onClick, onCancel){
-    let model = new EmployeeFormModel(onClick, onCancel)
+  getEditEmployee(onClick, onCancel, errorClick){
+    let model = new EmployeeFormModel(onClick, onCancel, errorClick)
     model.setEdit()
     return model
   }
@@ -74,8 +74,8 @@ class FormSelector {
    * @return {ProjectFormModel}
    * @memberof FormSelector.prototype
    */
-  getProject(onClick, onCustomer){
-    return new ProjectFormModel(onClick, onCustomer)
+  getProject(onClick, onCustomer, errorClick){
+    return new ProjectFormModel(onClick, onCustomer, errorClick)
   }
   /**
    * @name getProject
@@ -86,8 +86,8 @@ class FormSelector {
    * @return {ProjectFormModel}
    * @memberof FormSelector.prototype
    */
-  getEditProject(onClick, onCancel){
-    let model = new ProjectFormModel(onClick, null, onCancel)
+  getEditProject(onClick, onCancel, errorClick){
+    let model = new ProjectFormModel(onClick, null, onCancel, errorClick)
     model.setEdit()
     return model
   }

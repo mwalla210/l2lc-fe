@@ -18,7 +18,7 @@ useStrict(true)
   * @property {Function} onChange Form's function to handle ANY field updates (time entry only usage)
  */
 export default class FormModel {
-  constructor(fields, primaryButton, secondaryButton, autoSubmit, onChange) {
+  constructor(fields, primaryButton, secondaryButton, autoSubmit, onChange, errorClick) {
     fields.forEach(field => {
       let value = null
       switch (field.type){ // default value
@@ -39,7 +39,8 @@ export default class FormModel {
         field.disabled = false
     })
     let addtlProps = {
-      fields
+      fields,
+      modalOpen: false
     }
     extendObservable(this, addtlProps)
     // non-observable properties
@@ -47,8 +48,38 @@ export default class FormModel {
     this.secondaryButton = secondaryButton
     this.autoSubmit = autoSubmit
     this.onChange = onChange
+    this.errorClick = errorClick
     autoBind(this)
   }
+
+  /**
+   * @name closeModal
+   * @description Sets modalOpen prop to false
+   * @method closeModal
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action closeModal(){this.modalOpen = false}
+  /**
+   * @name openModal
+   * @description Sets modalOpen prop to true
+   * @method openModal
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action openModal(){this.modalOpen = true}
+  /**
+   * @name confirmAndClose
+   * @description Closes modal and runs confirm function
+   * @method confirmAndClose
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+  @action confirmAndClose(){
+    this.closeModal()
+    this.confirmOnClick(this.contents)
+  }
+
   /**
    * @name resetValues
    * @description Resets field values to defaults
@@ -193,33 +224,5 @@ export default class FormModel {
         this.fields[index].errorText = invalid
       }
     }
-  }
-
-  /**
-   * @name closeModal
-   * @description Sets modalOpen prop to false
-   * @method closeModal
-   * @memberof FormModel.prototype
-   * @mobx action
-   */
-  @action closeModal(){this.modalOpen = false}
-  /**
-   * @name openModal
-   * @description Sets modalOpen prop to true
-   * @method openModal
-   * @memberof FormModel.prototype
-   * @mobx action
-   */
-  @action openModal(){this.modalOpen = true}
-  /**
-   * @name confirmAndClose
-   * @description Closes modal and runs confirm function
-   * @method confirmAndClose
-   * @memberof FormModel.prototype
-   * @mobx action
-   */
-  @action confirmAndClose(){
-    this.closeModal()
-    this.deleteModal.confirmOnClick()
   }
 }
