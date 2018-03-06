@@ -15,9 +15,9 @@ class SummarySelector {
     autoBind(this)
   }
   /**
-   * @name getSummary
-   * @description Chooses a summary component depending on type
-   * @method getSummary
+   * @name getProject
+   * @description Chooses a summary component for a project depending on type
+   * @method getProject
    * @param  {String}   type String for switch
    * @return {Component}
    */
@@ -25,9 +25,9 @@ class SummarySelector {
     return {model: new ProjectSummaryModel(deleteOnClick, completeOnClick), component: ProjectSummary}
   }
   /**
-   * @name getSummary
-   * @description Chooses a summary component depending on type
-   * @method getSummary
+   * @name getEmployee
+   * @description Chooses a summary component for an employee depending on type
+   * @method getEmployee
    * @param  {String}   type String for switch
    * @return {Component}
    */
@@ -35,9 +35,9 @@ class SummarySelector {
     return {model: new EmployeeSummaryModel(deleteOnClick), component: EmployeeSummary}
   }
   /**
-   * @name getSummary
-   * @description Chooses a summary component depending on type
-   * @method getSummary
+   * @name getCustomer
+   * @description Chooses a summary component for a customer depending on type
+   * @method getCustomer
    * @param  {String}   type String for switch
    * @return {Component}
    */
