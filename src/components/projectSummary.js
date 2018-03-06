@@ -87,8 +87,8 @@ export default class ProjectSummary extends Component {
         <p>{`Description: ${this.props.website.currentProject.descr}`}</p>
         <p>{`Reference Number: ${this.props.website.currentProject.refNum}`}</p>
         <Barcode
-         imageDomID={`${this.props.website.currentProject.jobTypeTitle}${this.props.website.currentProject.id}`}
-         barcodeID={this.props.website.currentProject.id.toString()}
+         imageDomID={this.props.website.currentProject.barcodeDomID}
+         barcodeID={this.props.website.currentProject.barcodeScanID}
         />
         <br/>
         <Button className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
