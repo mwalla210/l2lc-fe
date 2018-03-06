@@ -40,6 +40,7 @@ class SummarySelector {
    * @method getCustomer
    * @param  {String}   type String for switch
    * @return {Component}
+   * @memberof SummarySelector.prototype
    */
   getCustomer(){
     return {model: null, component: CustomerSummary}

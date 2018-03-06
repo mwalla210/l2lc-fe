@@ -21,8 +21,8 @@ export default class EmployeeSummary extends Component {
        <p>First Name: {this.props.website.currentEmployee.firstName}</p>
        <p>Last Name: {this.props.website.currentEmployee.lastName}</p>
        <Barcode
-        imageDomID={`${this.props.website.currentEmployee.firstName}${this.props.website.currentEmployee.id}`}
-        barcodeID={this.props.website.currentEmployee.id.toString()}
+        imageDomID={this.props.website.currentEmployee.barcodeDomID}
+        barcodeID={this.props.website.currentEmployee.barcodeScanID}
        />
        <br/>
        <Button className="btn btn-default" onClick={this.props.page.employeeEditPage}>Edit</Button>

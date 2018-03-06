@@ -58,8 +58,8 @@ export default class EmployeeTableModel extends TableModel{
           <span>
             <span>
               <Barcode
-                imageDomID={`${row.original.firstName}${row.original.id}`}
-                barcodeID={row.original.id.toString()}
+                imageDomID={row.original.barcodeDomID}
+                barcodeID={row.original.barcodeScanID}
               />
             </span>
           </span>
@@ -88,6 +88,7 @@ export default class EmployeeTableModel extends TableModel{
    * @method clickHandler
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
+   * @memberof EmployeeTableModel.prototype
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit' || type == 'delete'){

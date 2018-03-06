@@ -14,7 +14,7 @@ export default class Barcode extends Component {
   }
 
   renderBarcode(){
-    JsBarcode(`#${this.props.imageDomID}`, `${this.props.barcodeID}`, {displayValue: false})
+    JsBarcode(`#${this.props.imageDomID}`, `${this.props.barcodeID}`, {displayValue: false, height: 40, format: 'CODE39'})
   }
 
   render() {

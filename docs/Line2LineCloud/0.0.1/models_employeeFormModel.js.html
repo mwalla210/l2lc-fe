@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>models/employeeFormModel.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,53 +27,142 @@
 
 <div id="main">
     
+    <h1 class="page-title">models/employeeFormModel.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useStrict, action } from 'mobx'
+import autoBind from 'auto-bind'
+import FormModel from './formModel'
+import Website from '../store/website'
+useStrict(true)
 
+const fields = [
+  {
+    type: 'textfield',
+    label: 'First Name',
+    id: 'firstName',
+    required: true,
+    validation: (value, required) => {
+      if (required &amp;&amp; value == '')
+        return 'Please enter a value.'
+      if (value.length > 30)
+        return 'The first name must be less than 30 characters.'
+      return null
+    }
+  },
+  {
+    type: 'textfield',
+    label: 'Last Name',
+    id: 'lastName',
+    required: true,
+    validation: (value, required) => {
+      if (required &amp;&amp; value == '')
+        return 'Please enter a value.'
+      if (value.length > 30)
+        return 'The last name must be less than 30 characters.'
+      return null
+    }
+  },
+]
 
+/**
+  * @name EmployeeFormModel
+  * @class EmployeeFormModel
+  * @classdesc Employee initializer for form storage object
+  * @description Creates fields, sets correct onClick
+  * @property {Function} onClickNav Page navigation function for successful form submission
+ */
+export default class EmployeeFormModel extends FormModel{
+  constructor(onClickNav, onCancelNav) {
+    let primaryOnClick = () => {}
+    super(fields,
+      {
+        title: 'Continue',
+        onClick: primaryOnClick
+      },
+      {
+        title: 'Cancel',
+        onClick: onCancelNav
+      }
+    )
+    this.onClickNav = onClickNav
+    autoBind(this)
+    this.primaryButton.onClick = this.newButton()
+  }
+  /**
+   * @name resetFields
+   * @description Sets all fields back to defaults
+   * @method resetFields
+   * @memberof EmployeeFormModel.prototype
+   * @mobx action
+   */
+  @action resetFields(){
+    this.fields = fields
+  }
+  /**
+   * @name editButton
+   * @description Returns function for onClick of primary button when editing
+   * @method editButton
+   * @return {Function}
+   * @memberof EmployeeFormModel.prototype
+   */
+  editButton(){
+    // Change onClick functionality for primary
+    return (fields) => console.log('EDIT with', fields)
+  }
+  /**
+   * @name newButton
+   * @description Returns function for onClick of primary button when creating
+   * @method newButton
+   * @return {Function}
+   * @memberof EmployeeFormModel.prototype
+   */
+  newButton(){
+    return (fields) => {
+      let body = {}
+      fields.forEach(item => {
+        body[item.id] = item.value.trim()
+      })
+      Website.createEmployee(body)
+      .then(() => this.onClickNav())
+    }
+  }
 
-
-
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>Line2LineCloud</h1><h2>About</h2><p>Documentation provided for implemented client-side <a href="https://mobx.js.org/best/store.html">MobX store/model</a> classes.</p>
-<p>The following data types are built in and do not require implementation:</p>
-<ul>
-<li>String: A character or string of characters</li>
-<li>Number: An integer or floating point number</li>
-<li>Boolean: A logical type (true or false)</li>
-<li>Type[]: An ordered list of elements of data type Type</li>
-<li>Object: A dictionary with key-value pairs</li>
-<li>null: A null value</li>
-<li>Component: An HTML DOM renderable <a href="https://reactjs.org/docs/react-component.html">React component</a> or subclass</li>
-</ul>
-<p>JavaScript is a dynamically typed language, so some class attributes can be any one of the types listed above. In this case, the attribute type is denoted as Any. If the attribute is an object that must be an instance of a particular class, the attribute type is listed as the name of the class.</p>
-<p>Class properties denoted observable are <a href="https://mobx.js.org/refguide/observable-decorator.html">MobX observables</a>.
-Class methods denoted as actions are <a href="https://mobx.js.org/refguide/action.html">MobX actions</a>.
-Class get methods denoted as computed are <a href="https://mobx.js.org/refguide/computed-decorator.html">MobX computations</a>.</p>
-<h2>Development Guide</h2><h3>Local Testing Installation</h3><p>Install <a href="https://nodejs.org/en/download/">Node</a></p>
-<p>Run package installer</p>
-<pre class="prettyprint source lang-bash"><code>    npm install npm -g
-    npm install</code></pre><p>Then copy the contents of the &quot;custom docdash&quot; folder into the folder 'node_modules/docdash' and replace contents.
-This will set up our custom styling templates for code documentation.</p>
-<h3>Locally Load Website</h3><p>From your terminal run:</p>
-<pre class="prettyprint source lang-bash"><code>    npm start</code></pre><h3>Additional Scripts</h3><h4>Doc Generating</h4><pre class="prettyprint source lang-bash"><code>    npm run doc</code></pre><p>In the GoDaddy clouddoc folder, ensure no other content (aside from cgi-bin folder) is present. Upload archive.zip to cloud folder. Extract zip file once uploaded.</p>
-<h4>Building</h4><pre class="prettyprint source lang-bash"><code>    ./build.sh</code></pre><p>In the GoDaddy cloud folder, ensure no other content (aside from cgi-bin folder) is present. Upload archive.zip to cloud folder. Extract zip file once uploaded.</p>
-<h2>Debugging</h2><p>If node packages not found during attempts to run, ensure the following is in one of your bash profiles</p>
-<pre class="prettyprint source lang-bash"><code>    export PATH=&quot;{PATH_TO_REPO}/app/node_modules/.bin:$PATH&quot;</code></pre></article>
+  /**
+   * @name setEdit
+   * @description Modifies primary button click, initializes field values as editing values corresponding to currentEmployee
+   * @method setEdit
+   * @memberof EmployeeFormModel.prototype
+   * @mobx action
+   */
+  @action setEdit(){
+    this.primaryButton.onClick = this.editButton()
+    this.resetFields()
+    // Update fields with values corresponding to currentEmployee
+    console.log(Website.currentEmployee)
+  }
+  /**
+   * @name setNonEdit
+   * @description Modifies primary button click, initializes field values as default values
+   * @method setNonEdit
+   * @memberof EmployeeFormModel.prototype
+   * @mobx action
+   */
+  @action setNonEdit(){
+    this.primaryButton.onClick = this.newButton(this.onClickNav)
+    this.resetFields()
+  }
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

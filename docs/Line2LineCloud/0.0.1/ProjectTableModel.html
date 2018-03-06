@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>ProjectTableModel - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,53 +27,371 @@
 
 <div id="main">
     
+    <h1 class="page-title">ProjectTableModel</h1>
+    
 
     
 
 
 
+
+<section>
+
+<header>
+    
+        <h2>
+        ProjectTableModel
+        </h2>
+        
+            <div class="class-description"><p>Project initializer for table storage object</p></div>
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="ProjectTableModel"><span class="type-signature"></span>new ProjectTableModel<span class="signature">()</span><span class="type-signature"></span></h4>
+
     
 
 
 
 
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_projectTableModel.js.html">models/projectTableModel.js</a>, <a href="models_projectTableModel.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>infoClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Function to navigate on click of info icon</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>editClickNav</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Function to navigate on click of edit icon</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<div class="description">
+    <p>Creates fields, sets correct onClick</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
     
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="clickHandler"><span class="type-signature"></span>clickHandler<span class="signature">(row, type)</span><span class="type-signature"></span></h4>
+
+    
 
 
-    <section class="readme">
-        <article><h1>Line2LineCloud</h1><h2>About</h2><p>Documentation provided for implemented client-side <a href="https://mobx.js.org/best/store.html">MobX store/model</a> classes.</p>
-<p>The following data types are built in and do not require implementation:</p>
-<ul>
-<li>String: A character or string of characters</li>
-<li>Number: An integer or floating point number</li>
-<li>Boolean: A logical type (true or false)</li>
-<li>Type[]: An ordered list of elements of data type Type</li>
-<li>Object: A dictionary with key-value pairs</li>
-<li>null: A null value</li>
-<li>Component: An HTML DOM renderable <a href="https://reactjs.org/docs/react-component.html">React component</a> or subclass</li>
-</ul>
-<p>JavaScript is a dynamically typed language, so some class attributes can be any one of the types listed above. In this case, the attribute type is denoted as Any. If the attribute is an object that must be an instance of a particular class, the attribute type is listed as the name of the class.</p>
-<p>Class properties denoted observable are <a href="https://mobx.js.org/refguide/observable-decorator.html">MobX observables</a>.
-Class methods denoted as actions are <a href="https://mobx.js.org/refguide/action.html">MobX actions</a>.
-Class get methods denoted as computed are <a href="https://mobx.js.org/refguide/computed-decorator.html">MobX computations</a>.</p>
-<h2>Development Guide</h2><h3>Local Testing Installation</h3><p>Install <a href="https://nodejs.org/en/download/">Node</a></p>
-<p>Run package installer</p>
-<pre class="prettyprint source lang-bash"><code>    npm install npm -g
-    npm install</code></pre><p>Then copy the contents of the &quot;custom docdash&quot; folder into the folder 'node_modules/docdash' and replace contents.
-This will set up our custom styling templates for code documentation.</p>
-<h3>Locally Load Website</h3><p>From your terminal run:</p>
-<pre class="prettyprint source lang-bash"><code>    npm start</code></pre><h3>Additional Scripts</h3><h4>Doc Generating</h4><pre class="prettyprint source lang-bash"><code>    npm run doc</code></pre><p>In the GoDaddy clouddoc folder, ensure no other content (aside from cgi-bin folder) is present. Upload archive.zip to cloud folder. Extract zip file once uploaded.</p>
-<h4>Building</h4><pre class="prettyprint source lang-bash"><code>    ./build.sh</code></pre><p>In the GoDaddy cloud folder, ensure no other content (aside from cgi-bin folder) is present. Upload archive.zip to cloud folder. Extract zip file once uploaded.</p>
-<h2>Debugging</h2><p>If node packages not found during attempts to run, ensure the following is in one of your bash profiles</p>
-<pre class="prettyprint source lang-bash"><code>    export PATH=&quot;{PATH_TO_REPO}/app/node_modules/.bin:$PATH&quot;</code></pre></article>
-    </section>
 
 
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_projectTableModel.js.html">models/projectTableModel.js</a>, <a href="models_projectTableModel.js.html#line124">line 124</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Handles action icon clicks</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>row</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Row of click</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Icon click type</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

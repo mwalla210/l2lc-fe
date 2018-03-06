@@ -10,6 +10,8 @@ export default class Table extends Component {
   constructor(props){
     super(props)
     this.filter = this.filter.bind(this)
+    this.props.page.tableModel.confirmAndClose = this.props.page.tableModel.confirmAndClose.bind(this.props.page.tableModel)
+    this.props.page.tableModel.closeModal = this.props.page.tableModel.closeModal.bind(this.props.page.tableModel)
   }
 
   filter(filter, row){

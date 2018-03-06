@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Home - Documentation</title>
+    <title>models/projectTableModel.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,53 +27,165 @@
 
 <div id="main">
     
+    <h1 class="page-title">models/projectTableModel.js</h1>
+    
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react'
+import { useStrict } from 'mobx'
+import autoBind from 'auto-bind'
+import TableModel from './tableModel'
+import Website from '../store/website'
+import TableActionCell from '../components/tableActionCell'
+import ProjectStatusFilter from '../components/projectStatusFilter'
+import ProjectStatusCell from '../components/projectStatusCell'
+import API from '../api'
+useStrict(true)
 
+const highPriority = '#f4ba61'
+const medPriority = '#f4e261'
 
-
-
-
-
-
-
-
-    
-
-
-    <section class="readme">
-        <article><h1>Line2LineCloud</h1><h2>About</h2><p>Documentation provided for implemented client-side <a href="https://mobx.js.org/best/store.html">MobX store/model</a> classes.</p>
-<p>The following data types are built in and do not require implementation:</p>
-<ul>
-<li>String: A character or string of characters</li>
-<li>Number: An integer or floating point number</li>
-<li>Boolean: A logical type (true or false)</li>
-<li>Type[]: An ordered list of elements of data type Type</li>
-<li>Object: A dictionary with key-value pairs</li>
-<li>null: A null value</li>
-<li>Component: An HTML DOM renderable <a href="https://reactjs.org/docs/react-component.html">React component</a> or subclass</li>
-</ul>
-<p>JavaScript is a dynamically typed language, so some class attributes can be any one of the types listed above. In this case, the attribute type is denoted as Any. If the attribute is an object that must be an instance of a particular class, the attribute type is listed as the name of the class.</p>
-<p>Class properties denoted observable are <a href="https://mobx.js.org/refguide/observable-decorator.html">MobX observables</a>.
-Class methods denoted as actions are <a href="https://mobx.js.org/refguide/action.html">MobX actions</a>.
-Class get methods denoted as computed are <a href="https://mobx.js.org/refguide/computed-decorator.html">MobX computations</a>.</p>
-<h2>Development Guide</h2><h3>Local Testing Installation</h3><p>Install <a href="https://nodejs.org/en/download/">Node</a></p>
-<p>Run package installer</p>
-<pre class="prettyprint source lang-bash"><code>    npm install npm -g
-    npm install</code></pre><p>Then copy the contents of the &quot;custom docdash&quot; folder into the folder 'node_modules/docdash' and replace contents.
-This will set up our custom styling templates for code documentation.</p>
-<h3>Locally Load Website</h3><p>From your terminal run:</p>
-<pre class="prettyprint source lang-bash"><code>    npm start</code></pre><h3>Additional Scripts</h3><h4>Doc Generating</h4><pre class="prettyprint source lang-bash"><code>    npm run doc</code></pre><p>In the GoDaddy clouddoc folder, ensure no other content (aside from cgi-bin folder) is present. Upload archive.zip to cloud folder. Extract zip file once uploaded.</p>
-<h4>Building</h4><pre class="prettyprint source lang-bash"><code>    ./build.sh</code></pre><p>In the GoDaddy cloud folder, ensure no other content (aside from cgi-bin folder) is present. Upload archive.zip to cloud folder. Extract zip file once uploaded.</p>
-<h2>Debugging</h2><p>If node packages not found during attempts to run, ensure the following is in one of your bash profiles</p>
-<pre class="prettyprint source lang-bash"><code>    export PATH=&quot;{PATH_TO_REPO}/app/node_modules/.bin:$PATH&quot;</code></pre></article>
+/**
+  * @name ProjectTableModel
+  * @class ProjectTableModel
+  * @classdesc Project initializer for table storage object
+  * @description Creates fields, sets correct onClick
+  * @property {Function} infoClickNav Function to navigate on click of info icon
+  * @property {Function} editClickNav Function to navigate on click of edit icon
+ */
+export default class ProjectTableModel extends TableModel{
+  constructor(infoClickNav, editClickNav) {
+    super(
+      null,
+      API.fetchProjects,
+      null,
+      {
+        title: 'Delete Project?',
+        confirmOnClick: () => console.log('confirm'),
+        content: 'This action cannot be undone.'
+      },
+      (state, rowInfo) => {
+        if (rowInfo &amp;&amp; rowInfo.row._original.priority != 'Low'){
+          return {
+            style: {
+              background: rowInfo.row._original.priority == 'High' ? highPriority : medPriority
+            }
+          }
+        }
+        return {}
+      }
+    )
+    this.infoClickNav = infoClickNav
+    this.editClickNav = editClickNav
+    autoBind(this)
+    this.columns = [
+      {
+        Header: 'ID',
+        accessor: 'id',
+        filterable: true
+      },
+      {
+        Header: 'Created',
+        id: 'dateCreated',
+        accessor: d => d.dateCreated.toString(),
+        filterable: true
+      },
+      {
+        Header: 'Title',
+        accessor: 'title',
+        filterable: true
+      },
+      {
+        id: 'customerName', // Required because our accessor is not a string
+        Header: 'Customer Name',
+        accessor: d => d.customer.companyName,
+        filterable: true
+      },
+      {
+        Header: 'Cost Center',
+        accessor: 'costCenterTitle',
+        filterable: true
+      },
+      {
+        Header: 'Time Spent',
+        accessor: 'timeSpent',
+        filterable: true
+      },
+      {
+        Header: 'Finished',
+        id: 'dateFinished',
+        accessor: d => {
+          if (d.dateFinished)
+            return d.dateFinished.toString()
+          else {
+            return ''
+          }
+        },
+        filterable: true
+      },
+      {
+        Header: 'Status',
+        accessor: 'status',
+        filterable: true,
+        headerStyle:  {
+          overflow: 'visible',
+        },
+        Cell: row => &lt;ProjectStatusCell row={row}/>,
+        filterMethod: (filter, row) => {
+          // filter.value.length==0: no filters selected
+          return filter.value.length == 0 || filter.value.includes(row[filter.id])
+        },
+        Filter: ({filter, onChange}) => &lt;ProjectStatusFilter filter={filter} onChange={onChange}/>,
+      },
+      {
+        Header: 'Actions',
+        sortable: false,
+        maxWidth: 100,
+        getProps: () => {
+          return {
+            className: 'center',
+            style: {
+              paddingTop: '0px',
+              paddingBottom: '0px'
+            }
+          }
+        },
+        Cell: row => &lt;TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
+      }
+    ]
+  }
+  /**
+   * @name clickHandler
+   * @description Handles action icon clicks
+   * @method clickHandler
+   * @param  {Object}     row   Row of click
+   * @param  {String}     type  Icon click type
+   * @memberof ProjectTableModel.prototype
+   */
+  clickHandler(row, type){
+    if (type == 'info' || type == 'edit' || type == 'delete'){
+      Website.setProject(row.original)
+      if (type == 'info'){
+        this.infoClickNav()
+      }
+      else if (type == 'edit'){
+        this.editClickNav()
+      }
+      else {
+        this.openModal()
+      }
+    }
+  }
+}
+</code></pre>
+        </article>
     </section>
-
-
 
 
 

@@ -64,4 +64,26 @@ export default class EmployeeModel {
     this.active = false
     return true
   }
+
+  /**
+   * @name barcodeDomID
+   * @description Return the DOM computed ID for a barcode field, specific to the employee
+   * @return {String}
+   * @memberof EmployeeModel.prototype
+   * @mobx computed
+   */
+  @computed get barcodeDomID(){
+    return `${this.firstName}${this.id}`
+  }
+
+  /**
+   * @name barcodeScanID
+   * @description Returns the ID to encode in the barcode for scanning purposes
+   * @return {String}
+   * @memberof EmployeeModel.prototype
+   * @mobx computed
+   */
+  @computed get barcodeScanID(){
+    return `e${this.id}%`
+  }
 }
