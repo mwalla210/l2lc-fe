@@ -8,7 +8,7 @@ export default class SelectField extends Component {
     id: PropTypes.string.isRequired,
     disabled: PropTypes.bool.isRequired,
     value: PropTypes.string.isRequired,
-    options: MobXPropTypes.observableArrayOf(PropTypes.string).isRequired,
+    options: MobXPropTypes.observableArrayOf(PropTypes.object).isRequired,
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
   }
@@ -23,9 +23,12 @@ export default class SelectField extends Component {
         onChange={this.props.onChange}
         onBlur={this.props.onBlur}
       >
-        {this.props.options.map((option, key) =>
-          <option key={key}>{option}</option>
-        )}
+        {this.props.options.map((option, key) =>{
+          let addtlProps = {}
+          if (option.disabled)
+            addtlProps = {disabled: true}
+          return (<option key={key} {...addtlProps}>{option.title}</option>)
+        })}
       </select>
     )
   }

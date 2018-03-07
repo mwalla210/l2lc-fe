@@ -258,4 +258,12 @@ export default class API {
     })
   }
 
+  static updateProjectStatus(id, status){
+    return fetch(`${api}project/${id}/status?status=${status}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => {
+      return true
+    })
+  }
 }
