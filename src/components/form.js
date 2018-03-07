@@ -16,6 +16,7 @@ export default class Form extends Component {
     //this.closeFn = this.closeFn.bind(this)
     this.primaryOnClick = this.primaryOnClick.bind(this)
     this.secondaryOnClick = this.secondaryOnClick.bind(this)
+    this.props.page.formModel.confirmAndClose = this.props.page.formModel.confirmAndClose.bind(this.props.page.formModel)
   }
 
   primaryOnClick(e){

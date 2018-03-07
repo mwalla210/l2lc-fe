@@ -76,6 +76,7 @@ export default class FormModel {
    * @mobx action
    */
   @action confirmAndClose(){
+    console.log(this)
     this.closeModal()
     if(this.errorClick){
       this.errorClick()
