@@ -1,18 +1,38 @@
 import React, { Component } from 'react'
-import { inject } from 'mobx-react'
+import { inject, observer } from 'mobx-react'
 
-@inject ('page')
+@inject ('page', 'website') @observer
 export default class Login extends Component {
   constructor(props){
     super(props)
-    this.activateLasers = this.activateLasers.bind(this)
+    this.formSubmit = this.formSubmit.bind(this)
+    this.onChangeUsername = this.onChangeUsername.bind(this)
+    this.onChangePassword = this.onChangePassword.bind(this)
+    this.props.page.createNewProjMenuItem = this.props.page.createNewProjMenuItem.bind(this)
   }
 
-  activateLasers(){
-    this.props.page.changeLogin()
+  formSubmit(event){
+    event.preventDefault()
+    this.props.website.login(this.props.page.createNewProjMenuItem)
+  }
+
+  onChangeUsername(event){
+    let value = event.target.value
+    this.props.website.updateUsername(value)
+  }
+
+  onChangePassword(event){
+    let value = event.target.value
+    this.props.website.updatePassword(value)
   }
 
   render() {
+    let alertStyle = null
+    if (!this.props.website.loginerror){
+      alertStyle = {
+        style: {display: 'none'}
+      }
+    }
     return(
       <div>
         <p className="container" style={{display: 'flex', justifyContent: 'center'}}>
@@ -21,6 +41,9 @@ export default class Login extends Component {
         <h1>Line2Line Cloud</h1>
         <div className="row">
           <div className="col-lg-12">
+            <div className="col-sm-6 col-sm-offset-3 alert alert-warning" role="alert" {...alertStyle}>
+              <strong>Warning!</strong>{' Couldn\'t authenticate this username and password combination.'}
+            </div>
             <div className="form-group">
               <div className="row">
                 <div className="col-sm-6 col-sm-offset-3">
@@ -31,7 +54,9 @@ export default class Login extends Component {
                   tabIndex="1"
                   className="form-control"
                   placeholder="Username"
-                  value=""
+                  value={this.props.website.username}
+                  onChange={this.onChangeUsername}
+                  onBlur={this.onBlur}
                 />
                 </div>
               </div>
@@ -46,6 +71,9 @@ export default class Login extends Component {
                   tabIndex="2"
                   className="form-control"
                   placeholder="Password"
+                  value={this.props.website.password}
+                  onChange={this.onChangePassword}
+                  onBlur={this.onBlur}
                 />
                 </div>
               </div>
@@ -53,7 +81,12 @@ export default class Login extends Component {
             <div className="form-group">
               <div className="row">
                 <div className="col-sm-6 col-sm-offset-3">
-                  <button type="button" className="btn btn-primary btn-lg btn-block" onClick={this.activateLasers}>
+                  <button
+                    type="button"
+                    className="btn btn-primary btn-lg btn-block"
+                    onClick={this.formSubmit}
+                    disabled={this.props.website.loginButtonDisabled}
+                  >
                     Login
                   </button>
                 </div>

@@ -1,4 +1,4 @@
-import { action, useStrict, extendObservable } from 'mobx'
+import { action, useStrict, extendObservable, computed } from 'mobx'
 import API from '../api'
 import autoBind from 'auto-bind'
 useStrict(true)
@@ -12,6 +12,8 @@ useStrict(true)
  * @property {?Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
  * @property {?Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
  * @property {?User} [currentUser=null] Current User in state, or last focused User. [observable]
+ * @property {String} [username=''] Current username field value [observable]
+ * @property {String} [password=''] Current password field value [observable]
  * @property {?Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {?Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {?Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
@@ -25,6 +27,9 @@ class Website {
       currentCustomer: null,
       currentEmployee: null,
       currentUser: null,
+      username: '',
+      password: '',
+      loginerror: false,
       // TODO Analytic models
       ccAnalytic: null,
       eAnalytic: null,
@@ -94,7 +99,7 @@ class Website {
    * @param  {Project}      project Finalized Project to create in database
    * @mobx action
    */
-   @action createProject(project){
+  @action createProject(project){
      let jsonProject = JSON.stringify(project)
      console.log('Create project entry in API with:', jsonProject)
      return API.createProject(jsonProject)
@@ -179,7 +184,6 @@ class Website {
   @action logOutAlert(){
     this.logOutModalOpen = true
   }
-
   /**
    * @name logOutDismiss
    * @description Closes log out modal
@@ -190,7 +194,69 @@ class Website {
   @action logOutDismiss(){
     this.logOutModalOpen = false
   }
-
+  /**
+   * @name updateUsername
+   * @description OnChange function for login username field
+   * @method updateUsername
+   * @param  {String}       val Username field content
+   * @memberof Website.prototype
+   * @mobx action
+   */
+  @action updateUsername(val){
+    this.username = val
+    this.loginerror = false
+  }
+  /**
+   * @name updatePassword
+   * @description OnChange function for login password field
+   * @method updatePassword
+   * @param  {String}       val Password field content
+   * @memberof Website.prototype
+   * @mobx action
+   */
+  @action updatePassword(val){
+    this.password = val
+    this.loginerror = false
+  }
+  /**
+   * @name login
+   * @description Login function, calls API
+   * @method login
+   * @param  {Function}       onSuccess Successful login page nav function
+   * @memberof Website.prototype
+   * @mobx action
+   */
+  @action login(onSuccess){
+    let body = {
+      username: this.username,
+      password: this.password
+    }
+    let json = JSON.stringify(body)
+    API.login(json)
+    .then(action('loginSuccess', response => {
+      // If not null (successful login)
+      if (response){
+        this.setUser(response)
+        this.loginerror = false
+        this.username = ''
+        this.password = ''
+        onSuccess()
+      }
+      else
+        this.loginerror = true
+    }))
+  }
+  /**
+   * @name loginButtonDisabled
+   * @description Login button disabled propertys
+   * @method loginButtonDisabled
+   * @memberof Website.prototype
+   * @return {Boolean}
+   * @mobx computed
+   */
+  @computed get loginButtonDisabled(){
+    return this.loginerror || this.username == '' || this.password == ''
+  }
 
 }
 
