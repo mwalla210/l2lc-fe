@@ -12,7 +12,7 @@ export default class FieldModal extends Component {
     open: PropTypes.bool.isRequired,
     closeFn: PropTypes.func.isRequired,
     onChangeFn: PropTypes.func.isRequired,
-    contents: PropTypes.string.isRequired,
+    contents: PropTypes.string.isRequired
   }
 
   constructor(props){

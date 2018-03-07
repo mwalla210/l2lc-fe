@@ -5,6 +5,11 @@ import EmployeeModel from './models/employeeModel'
 
 const api = 'http://138.197.88.198:8080/l2lc/api/'
 
+/**
+ * @name API
+ * @class API
+ * @classdesc API functions for interaction with database
+ */
 export default class API {
   // Fetch should compose address of api variable and endpoint (and query params as needed)
   // Fetch always converts res into json, then makes use of json obj
@@ -12,6 +17,13 @@ export default class API {
 
   // Customers
 
+  /**
+   * @name fetchCustomers
+   * @description Fetches all customers and modelizes
+   * @method fetchCustomers
+   * @memberof API
+   * @return {Promise}
+   */
   static fetchCustomers(){
     return fetch(`${api}customer?limit=50&offset=0`)
     .then(res => res.json())
@@ -28,6 +40,14 @@ export default class API {
     })
   }
 
+  /**
+   * @name fetchCustomer
+   * @description Fetches customer and modelizes
+   * @method fetchCustomer
+   * @memberof API
+   * @param  {Number}      id ID of customer to fetch
+   * @return {Promise}
+   */
   static fetchCustomer(id){
     return fetch(`${api}customer/${id}`)
     .then(res => res.json())
@@ -153,15 +173,13 @@ export default class API {
       body,
       headers: { 'Content-Type': 'application/json' }
     }).then(res => {
-      console.log(res.ok, res.status, res.statusText, res.errorMessages)
-      if(res.status === 300 || res.status === 301){
+      if(res.status === 200 || res.status === 201){
         return res.json()
       }
       else {
-        console.log(res.errorMessages)
         return null
       }
-      })
+    })
   }
 
 }

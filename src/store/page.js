@@ -30,7 +30,6 @@ class Page {
       formModel: null,
       modal: null,
       modalSecondary: null,
-      errorClick:null
     }
     extendObservable(this, addtlProps)
     autoBind(this)
@@ -87,7 +86,7 @@ class Page {
    */
   @action createNewProjMenuItem(){
     this.title = 'New Project'
-    this.setFormModel(FormSelector.getProject(this.projectSummaryPage, this.selectCustomerPage, this.errorClick))
+    this.setFormModel(FormSelector.getProject(this.projectSummaryPage, this.selectCustomerPage))
     this.content = Form
   }
 
@@ -211,7 +210,7 @@ class Page {
    */
   @action newCustomerPage(){
     this.title = 'New Customer'
-    this.setFormModel(FormSelector.getNewCustomer(this.customerSummaryPage, this.customerInfoMenuItem, this.errorClick))
+    this.setFormModel(FormSelector.getNewCustomer(this.customerSummaryPage, this.customerInfoMenuItem))
     this.content = Form
   }
 
@@ -236,7 +235,7 @@ class Page {
    */
   @action customerEditPage(){
     this.title = 'Edit Customer'
-    this.setFormModel(FormSelector.getEditCustomer(this.customerSummaryPage, this.customerInfoMenuItem, this.errorClick))
+    this.setFormModel(FormSelector.getEditCustomer(this.customerSummaryPage, this.customerInfoMenuItem))
     this.content = Form
   }
 
@@ -314,7 +313,7 @@ class Page {
     */
    @action newEmployeePage(){
      this.title = 'New Employee'
-     this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem, this.errorClick))
+     this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
      this.content = Form
    }
 
@@ -327,7 +326,7 @@ class Page {
     */
    @action employeeEditPage(){
      this.title = 'Edit Employee'
-     this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem, this.errorClick))
+     this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
      this.content = Form
    }
 

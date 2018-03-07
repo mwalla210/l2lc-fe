@@ -11,9 +11,6 @@ import PromptModal from './promptModal'
 export default class Form extends Component {
   constructor(props){
     super(props)
-    //this.confirmOnClick = this.confirmOnClick.bind(this)
-    //this.open = this.open.bind(this)
-    //this.closeFn = this.closeFn.bind(this)
     this.primaryOnClick = this.primaryOnClick.bind(this)
     this.secondaryOnClick = this.secondaryOnClick.bind(this)
     this.props.page.formModel.confirmAndClose = this.props.page.formModel.confirmAndClose.bind(this.props.page.formModel)
@@ -67,20 +64,20 @@ export default class Form extends Component {
               disabled: field.disabled,
               value: field.value,
               index,
-              onChange: this.onChange(index),
+              onChange: this.onChange(index, field.type == 'checkbox'),
               onBlur: this.onBlur(index),
               valid: field.isValid,
               focus: first
             }
             switch (field.type){
               case 'select':
-                child = <div><SelectField autoFocus {...props} options={field.options}/></div>
+                child = <SelectField autoFocus {...props} options={field.options}/>
                 break
               case 'textfield':
-                child = <div><TextField autoFocus {...props}/></div>
+                child = <TextField autoFocus {...props}/>
                 break
               case 'textarea':
-                child = <div><TextAreaField autoFocus {...props} rows={field.rows}/></div>
+                child = <TextAreaField autoFocus {...props} rows={field.rows}/>
                 break
               case 'checkbox':
                 child = <CheckboxField {...props}/>
@@ -100,7 +97,7 @@ export default class Form extends Component {
             )
           })}
           {this.props.page.formModel.secondaryButton &&
-            <button style={{margin:10}} className="btn btn-secondary" onClick={this.secondaryOnClick}>
+            <button style={{margin:10}} className="btn btn-secondary" type="button" onClick={this.secondaryOnClick}>
               {this.props.page.formModel.secondaryButton.title}
             </button>
           }
