@@ -47,7 +47,7 @@ export default class ProjectSummary extends Component {
 
   render() {
     return (
-      <div style={{marginLeft:'30%'}}>
+      <div>
         <FieldModal
           title={this.props.page.summaryModel.fieldModal.title}
           submitButton={{
