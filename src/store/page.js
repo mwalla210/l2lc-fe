@@ -12,24 +12,20 @@ useStrict(true)
  * @name Page
  * @class Page
  * @classdesc Main MobX store for page
- * @property {Boolean} [loggedin=false] Indicates whether currently logged in [observable]
  * @property {String} [title='Default Title'] Page title [observable]
  * @property {?Object} [content=null] Page inner content [observable]
  * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
  * @property {?FormModel} [formModel=null] Page form model, if any [observable]
- * @property {?ModalModel} [modal=null] Page summary modal model, if any [observable]
- * @property {?ModalModel} [modalSecondary=null] Secondary page summary modal model, if any [observable]
+ * @property {?SummaryModel} [summaryModel=null] Page summary model, if any [observable]
  */
 class Page {
   constructor() {
     let addtlProps = {
-      loggedin: false,
       title: 'Default Title',
       content: null,
       tableModel: null,
       formModel: null,
-      modal: null,
-      modalSecondary: null,
+      summaryModel: null
     }
     extendObservable(this, addtlProps)
     autoBind(this)
@@ -48,6 +44,17 @@ class Page {
     this.tableModel.dataFetch()
   }
   /**
+   * @name setSummaryModel
+   * @description Sets summary model
+   * @method setSummaryModel
+   * @memberof Page.prototype
+   * @param  {SummaryModel}      summaryModel SummaryModel to use for page
+   * @mobx action
+   */
+  @action setSummaryModel(summaryModel){
+    this.summaryModel = observable(summaryModel)
+  }
+  /**
    * @name setFormModel
    * @description Sets form model
    * @method setFormModel
@@ -56,24 +63,6 @@ class Page {
    * @mobx action
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
-  /**
-   * @name setModal
-   * @description Sets summary modal model
-   * @method setModal
-   * @memberof Page.prototype
-   * @param  {ModalModel}      modalModel ModalModel to use for page
-   * @mobx action
-   */
-  @action setModal(modalModel){this.modal = observable(modalModel)}
-  /**
-   * @name setModalSecondary
-   * @description Sets secondary modal model
-   * @method setModalSecondary
-   * @memberof Page.prototype
-   * @param  {ModalModel}      modalModel ModalModel to use for page
-   * @mobx action
-   */
-  @action setModalSecondary(modalModel){this.modalSecondary = observable(modalModel)}
 
   // Page Changes - Create Projects
 
@@ -140,7 +129,17 @@ class Page {
    */
   @action projectSummaryPage(){
     this.title = 'Project Summary'
-    this.content = SummarySelector.getSummary('project')
+    let deleteFunc = () => {
+      Website.updateProjectStatus(Website.currentProject.id, 'Dropped')
+      .then(() => this.projectsMenuItem())
+    }
+    let completeFunc = () => {
+      Website.updateProjectStatus(Website.currentProject.id, 'Completed')
+      .then(() => this.projectsMenuItem())
+    }
+    let summaryObject = SummarySelector.getProject(deleteFunc,completeFunc)
+    this.content = summaryObject.component
+    this.setSummaryModel(summaryObject.model)
   }
 
   // Page Changes - Projects List, Editing
@@ -223,7 +222,8 @@ class Page {
    */
   @action customerSummaryPage(){
     this.title = 'Customer Summary'
-    this.content = SummarySelector.getSummary('customer')
+    let summaryObject = SummarySelector.getCustomer()
+    this.content = summaryObject.component
   }
 
   /**
@@ -339,7 +339,10 @@ class Page {
     */
    @action employeeSummaryPage(){
      this.title = 'Employee Summary'
-     this.content = SummarySelector.getSummary('employee')
+     let deleteFunc = () => console.log('confirm')
+     let summaryObject = SummarySelector.getEmployee(deleteFunc)
+     this.content = summaryObject.component
+     this.setSummaryModel(summaryObject.model)
    }
 
   /**
@@ -352,23 +355,6 @@ class Page {
   @action accountManagementMenuItem(){
     this.title = 'Account Management [Q3]'
     this.content = null
-  }
-
-  // TODO remove
-  @action changeLogin(){
-    this.loggedin = !this.loggedin
-    this.createNewProjMenuItem()
-  }
-
-  /**
-   * @name logOut
-   * @description Log out method
-   * @method logOut
-   * @memberof Page.prototype
-   * @mobx action
-   */
-  @action logOut(){
-    this.loggedin = !this.loggedin
   }
 
 }

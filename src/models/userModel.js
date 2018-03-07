@@ -27,30 +27,6 @@ export default class UserModel {
   // Actions
 
   /**
-   * @name login
-   * @description Calls API to attempt the login of a user
-   * @memberof UserModel.prototype
-   * @method login
-   * @return {Promise}
-   * @mobx action
-   */
-  @action async login() {
-    console.log(`Logging in ${this.username} via API. Returns boolean success.`)
-  }
-
-  /**
-   * @name logout
-   * @description Calls API to logout the current user
-   * @memberof UserModel.prototype
-   * @method logout
-   * @return {Promise}
-   * @mobx action
-   */
-  @action async logout() {
-    console.log(`Logging out ${this.username} via API. Returns boolean success.`)
-  }
-
-  /**
    * @name toggleAdmin
    * @description Calls API to change the admin status of user
    * @memberof UserModel.prototype

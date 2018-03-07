@@ -2,6 +2,7 @@ import fetch from 'node-fetch'
 import ProjectModel from './models/projectModel'
 import CustomerModel from './models/customerModel'
 import EmployeeModel from './models/employeeModel'
+import UserModel from './models/userModel'
 
 const api = 'http://138.197.88.198:8080/l2lc/api/'
 
@@ -244,6 +245,50 @@ export default class API {
     })
   }
 
+  // Users
+
+  /**
+   * @name userModelize
+   * @description Modelizes a database user model
+   * @method userModelize
+   * @memberof API
+   * @param  {Object}         item Database user object
+   * @return {UserModel}
+   */
+  static userModelize(item){
+    return new UserModel(item.id, item.username, item.station, item.admin)
+  }
+
+  /**
+   * @name login
+   * @description POSTs to user/login with body provided, then returns modelized user
+   * @method login
+   * @memberof API
+   * @param  {JSON} body       JSON body for POST
+   * @return {Promise}
+   */
+  static login(body){
+    return fetch(`${api}user/login`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      // If not null (successful login)
+      if (res.status == 200)
+        return res.json()
+      else
+        return null
+    })
+    .then(json => {
+      // If not null (successful login)
+      if (json)
+        return API.userModelize(json)
+      else
+        return null
+    })
+  }
+
   // Generic
 
   /**
@@ -270,4 +315,12 @@ export default class API {
     })
   }
 
+  static updateProjectStatus(id, status){
+    return fetch(`${api}project/${id}/status?status=${status}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(res => {
+      return true
+    })
+  }
 }

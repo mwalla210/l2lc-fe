@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
+import Barcode from './barcode'
 import {Button} from 'react-bootstrap'
 import DeleteModal from './deleteModal'
 import FieldModal from './fieldModal'
-import ModalModel from '../models/modalModel'
+import PromptModal from './promptModal'
 
 @inject ('website', 'page') @observer
 export default class ProjectSummary extends Component {
   constructor(props){
     super(props)
-    this.props.page.setModal(new ModalModel(() => console.log('confirm')))
-    this.props.page.setModalSecondary(new ModalModel(null, ''))
     this.reworkClick = this.reworkClick.bind(this)
     this.holdClick = this.holdClick.bind(this)
     this.resetAndOpenModal = this.resetAndOpenModal.bind(this)
@@ -19,8 +18,8 @@ export default class ProjectSummary extends Component {
   }
 
   reworkClick(){
-    this.props.page.modalSecondary.changeTitle('Add Rework')
-    this.props.page.modalSecondary.changeConfirmFn((content) => console.log('Rework', content))
+    this.props.page.summaryModel.fieldModal.changeTitle('Add Rework')
+    this.props.page.summaryModel.fieldModal.changeConfirmFn((content) => console.log('Rework', content))
     this.resetAndOpenModal()
   }
 
@@ -28,14 +27,14 @@ export default class ProjectSummary extends Component {
     let title = 'Add Hold'
     if (this.props.website.currentProject.hold.flag)
       title = 'Remove Hold'
-    this.props.page.modalSecondary.changeTitle(title)
-    this.props.page.modalSecondary.changeConfirmFn((content) => console.log('Hold', content))
+    this.props.page.summaryModel.fieldModal.changeTitle(title)
+    this.props.page.summaryModel.fieldModal.changeConfirmFn((content) => console.log('Hold', content))
     this.resetAndOpenModal()
   }
 
   resetAndOpenModal(){
-    this.props.page.modalSecondary.changeContent('')
-    this.props.page.modalSecondary.openModal()
+    this.props.page.summaryModel.fieldModal.changeContent('')
+    this.props.page.summaryModel.fieldModal.openModal()
   }
 
   tasksClick(){
@@ -50,22 +49,30 @@ export default class ProjectSummary extends Component {
     return (
       <div style={{marginLeft:'30%'}}>
         <FieldModal
-          title={this.props.page.modalSecondary.title}
+          title={this.props.page.summaryModel.fieldModal.title}
           submitButton={{
             title: 'Submit',
-            onClick: this.props.page.modalSecondary.confirmAndClose
+            onClick: this.props.page.summaryModel.fieldModal.confirmAndClose
           }}
-          open={this.props.page.modalSecondary.modalOpen}
-          closeFn={this.props.page.modalSecondary.closeModal}
-          onChangeFn={this.props.page.modalSecondary.changeContent}
-          contents={this.props.page.modalSecondary.contents}
+          open={this.props.page.summaryModel.fieldModal.modalOpen}
+          closeFn={this.props.page.summaryModel.fieldModal.closeModal}
+          onChangeFn={this.props.page.summaryModel.fieldModal.changeContent}
+          contents={this.props.page.summaryModel.fieldModal.contents}
         />
         <DeleteModal
           title="Delete Project?"
-          confirmOnClick={this.props.page.modal.confirmAndClose}
-          denyOnClick={this.props.page.modal.closeModal}
-          open={this.props.page.modal.modalOpen}
-          closeFn={this.props.page.modal.closeModal}
+          confirmOnClick={this.props.page.summaryModel.deleteModal.confirmAndClose}
+          denyOnClick={this.props.page.summaryModel.deleteModal.closeModal}
+          open={this.props.page.summaryModel.deleteModal.modalOpen}
+          closeFn={this.props.page.summaryModel.deleteModal.closeModal}
+          content="This action cannot be undone."
+        />
+        <PromptModal
+          title="Complete Project?"
+          confirmOnClick={this.props.page.summaryModel.completeModal.confirmAndClose}
+          denyOnClick={this.props.page.summaryModel.completeModal.closeModal}
+          open={this.props.page.summaryModel.completeModal.modalOpen}
+          closeFn={this.props.page.summaryModel.completeModal.closeModal}
           content="This action cannot be undone."
         />
         <p>{`ID: ${this.props.website.currentProject.id}`}</p>
@@ -79,12 +86,18 @@ export default class ProjectSummary extends Component {
         <p>{`Part Count: ${this.props.website.currentProject.partCount}`}</p>
         <p>{`Description: ${this.props.website.currentProject.descr}`}</p>
         <p>{`Reference Number: ${this.props.website.currentProject.refNum}`}</p>
-        <Button style={{margin:3}} className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
-        <Button style={{margin:3}} className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
-        <Button style={{margin:3}} className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
-        <Button style={{margin:3}} className="btn btn-default" onClick={this.holdClick}>Change Hold</Button>
-        <Button style={{margin:3}} className="btn btn-default" onClick={this.printClick}>Print</Button>
-        <Button style={{margin:3}} className="btn btn-danger" onClick={this.props.page.modal.openModal}>Delete</Button>
+        <Barcode
+         imageDomID={this.props.website.currentProject.barcodeDomID}
+         barcodeID={this.props.website.currentProject.barcodeScanID}
+        />
+        <br/>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.holdClick}>{(this.props.website.currentProject.hold.flag) ? 'Remove Hold' : 'Add Hold'}</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.printClick}>Print</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-primary" onClick={this.props.page.summaryModel.completeModal.openModal}>Complete</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-danger" onClick={this.props.page.summaryModel.deleteModal.openModal}>Delete</Button>
       </div>
     )
   }

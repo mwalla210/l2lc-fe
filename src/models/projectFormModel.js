@@ -10,7 +10,7 @@ const fields = [
     type: 'select',
     label: 'Cost Center',
     id: 'costCenter',
-    options: ['Select...','APC','Decorative','Maintenance','Administration','Production','Research and Development','Other'],
+    options: [{title: 'Select...'}, {title: 'APC'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'Administration'}, {title: 'Production'}, {title: 'Research and Development'}, {title: 'Other'}],
     required: true,
     disabled: false,
     validation: (value, required) => {
@@ -23,7 +23,7 @@ const fields = [
         return [
           {
             id: 'projectType',
-            options: ['Select...','Piston', 'Turbo', 'Rotor', 'Pump', 'Avaslick', 'Specialty'],
+            options: [{title: 'Select...'}, {title: 'Piston'}, {title: 'Turbo'}, {title: 'Rotor'}, {title: 'Pump'}, {title: 'Avaslick'}, {title: 'Specialty'}],
             required: true,
             disabled: false
           },
@@ -58,7 +58,7 @@ const fields = [
         return [
           {
             id: 'projectType',
-            options: ['Select...','Decorative'],
+            options: [{title: 'Select...'}, {title: 'Decorative'}],
             required: true,
             disabled: false
           },
@@ -93,7 +93,7 @@ const fields = [
         return [
           {
             id: 'projectType',
-            options: ['Select...','Maintenance'],
+            options: [{title: 'Select...'}, {title: 'Maintenance'}],
             required: true,
             disabled: false
           },
@@ -128,7 +128,7 @@ const fields = [
         return [
           {
             id: 'projectType',
-            options: ['Select...','ISO','Other'],
+            options: [{title: 'Select...'}, {title: 'ISO'}, {title: 'Other'}],
             required: true,
             disabled: false
           },
@@ -163,7 +163,7 @@ const fields = [
         return [
           {
             id: 'projectType',
-            options: ['Select...','Research and Development'],
+            options: [{title: 'Select...'}, {title: 'Research and Development'}],
             required: true,
             disabled: false
           },
@@ -198,7 +198,7 @@ const fields = [
         return [
           {
             id: 'projectType',
-            options: ['Select...','Production'],
+            options: [{title: 'Select...'}, {title: 'Production'}],
             required: true,
             disabled: false
           },
@@ -233,7 +233,7 @@ const fields = [
         return [
           {
             id: 'projectType',
-            options: ['Select...','Other'],
+            options: [{title: 'Select...'}, {title: 'Other'}],
             required: true,
             disabled: false
           },
@@ -270,7 +270,7 @@ const fields = [
     type: 'select',
     label: 'Project Type',
     id: 'projectType',
-    options: ['Select...','Piston', 'Turbo', 'Rotor', 'Pump', 'Avaslick', 'Specialty', 'Decorative', 'Maintenance', 'ISO', 'Production', 'Research and Development', 'Other'],
+    options: [{title: 'Select...'}, {title: 'Piston'}, {title: 'Turbo'}, {title: 'Rotor'}, {title: 'Pump'}, {title: 'Avaslick'}, {title: 'Specialty'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'ISO'}, {title: 'Production'}, {title: 'Research and Development'}, {title: 'Other'}],
     required: true,
     disabled: true,
     validation: (value, required) => {
@@ -332,7 +332,7 @@ const fields = [
     type: 'select',
     label: 'Priority',
     id: 'priority',
-    options: ['Select...','Low','High'],
+    options: [{title: 'Select...'}, {title: 'Low'}, {title: 'High'}],
     required: true,
     disabled: true,
     validation: (value, required) => {

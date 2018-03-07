@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react'
 import Login from './login'
 import NavBar from './navbar'
 
-@inject ('page') @observer
+@inject ('page', 'website') @observer
 export default class Page extends Component {
   loginContent() {
     return(
@@ -28,7 +28,7 @@ export default class Page extends Component {
 
   render() {
     let content = null
-    if (!this.props.page.loggedin)
+    if (!this.props.website.currentUser)
       content = <div>{this.loginContent()}</div>
     else
       content = <div>{this.pageContent()}</div>

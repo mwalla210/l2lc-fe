@@ -7,20 +7,10 @@ import PromptModal from './promptModal'
 export default class NavBar extends Component{
   constructor(props){
     super(props)
-    this.renderUser = this.renderUser.bind(this)
     this.logoutClick = this.logoutClick.bind(this)
     this.renderLogOut = this.renderLogOut.bind(this)
     this.promptConfirm = this.promptConfirm.bind(this)
     this.promptDismiss = this.promptDismiss.bind(this)
-  }
-
-  renderUser(){
-    return (
-      <Navbar.Text pullRight style={{marginRight: '10px'}}>
-        <img src="../../style/open-iconic-master/svg/person.svg" alt="person" style={{width: '16px', marginRight: '5px'}}/>
-        {this.props.website.currentUser.username}
-      </Navbar.Text>
-    )
   }
 
   logoutClick(){
@@ -29,14 +19,20 @@ export default class NavBar extends Component{
 
   renderLogOut(){
     return (
-      <Nav pullRight>
-        <NavItem onClick={this.logoutClick}>Log Out</NavItem>
-      </Nav>
+      <div>
+        <Nav pullRight>
+          <NavItem onClick={this.logoutClick}>Log Out</NavItem>
+        </Nav>
+        <Navbar.Text pullRight style={{marginRight: '10px'}}>
+          <img src="../../style/open-iconic-master/svg/person.svg" alt="person" style={{width: '16px', marginRight: '5px'}}/>
+          {this.props.website.currentUser.username}
+        </Navbar.Text>
+      </div>
     )
   }
 
   promptConfirm(){
-    this.props.page.logOut()
+    this.props.website.setUser(null)
   }
 
   promptDismiss(){
@@ -87,10 +83,7 @@ export default class NavBar extends Component{
                 <MenuItem onClick={this.props.page.accountManagementMenuItem}>Account Information</MenuItem>
               </NavDropdown>
             </Nav>
-            {this.props.website.currentUser &&
-              this.renderLogOut() &&
-              this.renderUser()
-            }
+            {this.props.website.currentUser && this.renderLogOut()}
           </Navbar.Collapse>
         </Navbar>
       </div>

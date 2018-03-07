@@ -15,8 +15,8 @@ export default class CustomerSummary extends Component {
         <p>{`Ship addr: ${this.props.website.currentCustomer.formattedShipAddress}`}</p>
         <p>{`Bill addr: ${this.props.website.currentCustomer.formattedBillAddress}`}</p>
         <p>{`Past due: ${this.props.website.currentCustomer.pastDue}`}</p>
-        <Button className="btn btn-default" onClick={console.log('See customer projects')}>Projects</Button>
-        <Button className="btn btn-default" onClick={this.props.page.customerEditPage}>Edit</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={console.log('See customer projects')}>Projects</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.props.page.customerEditPage}>Edit</Button>
       </div>
     )
   }
