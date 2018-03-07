@@ -101,6 +101,10 @@ class Website {
      return API.createProject(jsonProject)
      .then(response => {
        this.setProject(response)
+       if(response){
+         return true
+       }
+       return false
      })
    }
   /**
@@ -118,6 +122,10 @@ class Website {
     return API.createCustomer(jsonCustomer)
     .then(response => {
       this.setCustomer(response)
+      if(response){
+        return true
+      }
+      return false
     })
   }
   /**
@@ -134,6 +142,10 @@ class Website {
     return API.createEmployee(jsonEmployee)
     .then(response => {
       this.setEmployee(response)
+      if(response){
+        return true
+      }
+      return false
     })
   }
   /**

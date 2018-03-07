@@ -95,7 +95,13 @@ export default class EmployeeFormModel extends FormModel{
         body[item.id] = item.value.trim()
       })
       Website.createEmployee(body)
-      .then(() => this.onClickNav())
+      .then((response) => {
+        if(response){
+          this.onClickNav()
+        } else{
+          this.openModal()
+        }
+      })
     }
   }
 

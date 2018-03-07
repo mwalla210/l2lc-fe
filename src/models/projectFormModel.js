@@ -471,7 +471,13 @@ export default class projectFormModel extends FormModel{
       }
       else {
         Website.createProject(body)
-        .then(() => this.onClickNav())
+        .then((response) => {
+          if(response){
+            this.onClickNav()
+          } else{
+            this.openModal()
+          }
+        })
       }
     }
   }

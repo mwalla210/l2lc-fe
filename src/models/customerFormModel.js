@@ -577,7 +577,13 @@ export default class CustomerFormModel extends FormModel{
           zip: valueReturn('billingZipCode').trim()
         }
       Website.createCustomer(body)
-      .then(() => this.onClickNav())
+      .then((response) => {
+        if(response){
+          this.onClickNav()
+        } else{
+          this.openModal()
+        }
+      })
     }
   }
 

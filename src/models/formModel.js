@@ -77,7 +77,9 @@ export default class FormModel {
    */
   @action confirmAndClose(){
     this.closeModal()
-    this.confirmOnClick(this.contents)
+    if(this.errorClick){
+      this.errorClick()
+    }
   }
 
   /**
