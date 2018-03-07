@@ -116,7 +116,7 @@ export default class API {
   }
 
   // Projects
-  
+
   /**
    * @name fetchProjects
    * @description Fetches all projects and modelizes
