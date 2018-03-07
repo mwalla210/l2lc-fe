@@ -54,7 +54,11 @@ export default class EmployeeTableModel extends TableModel{
       {
         Header: 'Barcode',
         accessor: 'barcode',
-        maxWidth: 240,
+        getProps: () => {
+          return {
+            className: 'center',
+          }
+        },
         Cell: row => (
           <span>
             <span>
