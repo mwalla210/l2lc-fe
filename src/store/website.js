@@ -52,7 +52,6 @@ class Website {
   @action setProject(project){
     this.currentProject = project
   }
-
   /**
    * @name setCustomer
    * @description Sets current customer
@@ -64,7 +63,6 @@ class Website {
   @action setCustomer(customer){
     this.currentCustomer = customer
   }
-
   /**
    * @name setEmployee
    * @description Sets current employee
@@ -76,7 +74,6 @@ class Website {
   @action setEmployee(employee){
     this.currentEmployee = employee
   }
-
   /**
    * @name setUser
    * @description Sets current user
@@ -182,6 +179,20 @@ class Website {
     let jsonTime = JSON.stringify(timeEnter)
     return API.create('project/1/time-entry/create', jsonTime)
     .then(response => console.log(response))
+  }
+
+  // Update
+
+  updateProject(id, props){
+    let jsonprops = JSON.stringify(props)
+    console.log('Create project entry in API with:', jsonprops)
+    return API.updateProject(id, jsonprops)
+    .then(response => {
+      if(response){
+        return true
+      }
+      return false
+    })
   }
 
   // Utilities

@@ -16,7 +16,6 @@ export default class ProjectSummary extends Component {
     this.tasksClick = this.tasksClick.bind(this)
     this.printClick = this.printClick.bind(this)
     this.timeEntries = this.timeEntries.bind(this)
-    this.changeCust = this.changeCust.bind(this)
   }
 
   reworkClick(){
@@ -49,10 +48,6 @@ export default class ProjectSummary extends Component {
 
   timeEntries(){
     console.log('Time Entry table')
-  }
-
-  changeCust(){
-    console.log('Customer change')
   }
 
   render() {
@@ -90,7 +85,7 @@ export default class ProjectSummary extends Component {
         <p>{`Cost Center: ${this.props.website.currentProject.costCenterTitle}`}</p>
         <p>{`Project Type: ${this.props.website.currentProject.jobTypeTitle}`}</p>
         <p>{`Project Title: ${this.props.website.currentProject.title}`}</p>
-        <p>{`Customer (TODO in model): ${this.props.website.currentProject.customer}`}</p>
+        {(this.props.website.currentProject.customer.id) ? <p>{`Customer: ${this.props.website.currentProject.customer.companyName}`}</p> : null}
         <p>{`Priority: ${this.props.website.currentProject.priority}`}</p>
         <p>{`Status: ${this.props.website.currentProject.status}`}</p>
         <p>{`Total time spent:${this.props.website.currentProject.timeSpent}`}</p>
@@ -114,7 +109,7 @@ export default class ProjectSummary extends Component {
               <MenuItem onSelect={this.reworkClick}>Add Rework</MenuItem>
               <MenuItem onSelect={this.holdClick}>{holdStr}</MenuItem>
               <MenuItem onSelect={this.props.page.projectEditPage}>Edit Details</MenuItem>
-              <MenuItem onSelect={this.changeCust}>Edit Customer</MenuItem>
+              {(this.props.website.currentProject.customer.id) ? <MenuItem onSelect={this.props.page.changeCustomerPage}>Edit Customer</MenuItem> : null}
               <MenuItem onSelect={this.props.page.summaryModel.completeModal.openModal}>Complete</MenuItem>
               <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
             </DropdownButton>

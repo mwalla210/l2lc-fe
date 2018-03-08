@@ -13,17 +13,31 @@ class TableSelector {
     autoBind(this)
   }
   /**
-   * @name getSelectCustomer
+   * @name getSelectCreateCustomer
    * @description Provides a CustomerTableModel set for selecting
-   * @method getSelectCustomer
+   * @method getSelectCreateCustomer
    * @param  {Function}          buttonClickNav TableButton click function
    * @param  {Function}          selectNav      Row select button click function
    * @return {CustomerTableModel}
    * @memberof TableSelector.prototype
    */
-  getSelectCustomer(buttonClickNav, selectNav){
+  getSelectCreateCustomer(buttonClickNav, selectNav){
     let model = new CustomerTableModel(buttonClickNav, null, null, selectNav)
-    model.selectTable()
+    model.selectCreateTable()
+    return model
+  }
+  /**
+   * @name getSelectUpdateCustomer
+   * @description Provides a CustomerTableModel set for selecting
+   * @method getSelectUpdateCustomer
+   * @param  {Function}          buttonClickNav TableButton click function
+   * @param  {Function}          selectNav      Row select button click function
+   * @return {CustomerTableModel}
+   * @memberof TableSelector.prototype
+   */
+  getSelectUpdateCustomer(buttonClickNav, selectNav){
+    let model = new CustomerTableModel(buttonClickNav, null, null, selectNav)
+    model.selectUpdateTable()
     return model
   }
   /**

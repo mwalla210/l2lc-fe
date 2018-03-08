@@ -305,7 +305,8 @@ export default class API {
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
-    }).then(res => {
+    })
+    .then(res => {
       if(res.status === 200 || res.status === 201){
         return res.json()
       }
@@ -315,11 +316,42 @@ export default class API {
     })
   }
 
+  /**
+   * @name updateProjectStatus
+   * @description POSTs to endpoint with status provided, then returns
+   * @method updateProjectStatus
+   * @memberof API
+   * @param  {Integer} id      Project ID
+   * @param  {String} status   New project status
+   * @return {Promise}
+   */
   static updateProjectStatus(id, status){
     return fetch(`${api}project/${id}/status?status=${status}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
-    }).then(res => {
+    })
+    .then(() => {
+      return true
+    })
+  }
+
+  /**
+   * @name updateProject
+   * @description POSTs to endpoint with body provided, then returns
+   * @method updateProject
+   * @memberof API
+   * @param  {Integer} id      Project ID
+   * @param  {JSON} body       JSON body for POST
+   * @return {Promise}
+   */
+  static updateProject(id, body){
+    return fetch(`${api}project/${id}/update`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      console.log(res.status)
       return true
     })
   }
