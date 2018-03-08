@@ -5,6 +5,7 @@ import TextField from './textField'
 import TextAreaField from './textAreaField'
 import CheckboxField from './checkboxField'
 import FormItem from './formItem'
+import PromptModal from './promptModal'
 
 @inject('page') @observer
 export default class Form extends Component {
@@ -12,6 +13,7 @@ export default class Form extends Component {
     super(props)
     this.primaryOnClick = this.primaryOnClick.bind(this)
     this.secondaryOnClick = this.secondaryOnClick.bind(this)
+    this.props.page.formModel.confirmAndClose = this.props.page.formModel.confirmAndClose.bind(this.props.page.formModel)
   }
 
   primaryOnClick(e){
@@ -38,53 +40,72 @@ export default class Form extends Component {
 
   render() {
     return(
-      <form>
-        {this.props.page.formModel.fields.map((field, index) => {
-          let child = null
-          let props = {
-            id: field.id,
-            disabled: field.disabled,
-            value: field.value,
-            index,
-            onChange: this.onChange(index, field.type == 'checkbox'),
-            onBlur: this.onBlur(index)
+      <div>
+        <PromptModal
+          headerClass="bg-danger"
+          title="API Return Error"
+          titleImage="warning"
+          titleClass="text-danger"
+          confirmOnClick={this.props.page.formModel.confirmAndClose}
+          open={this.props.page.formModel.modalOpen}
+          closeFn={this.props.page.formModel.closeModal}
+          content="There was an error with the return value from the server"
+          confirmClass="btn-danger"
+        />
+        <form style={{marginLeft: '33%'}}>
+          {this.props.page.formModel.fields.map((field, index) => {
+            let first = true
+            if(index != 0){
+              first = false
+            }
+            let child = null
+            let props = {
+              id: field.id,
+              disabled: field.disabled,
+              value: field.value,
+              index,
+              onChange: this.onChange(index, field.type == 'checkbox'),
+              onBlur: this.onBlur(index),
+              valid: field.isValid,
+              focus: first
+            }
+            switch (field.type){
+              case 'select':
+                child = <SelectField autoFocus {...props} options={field.options}/>
+                break
+              case 'textfield':
+                child = <TextField autoFocus {...props}/>
+                break
+              case 'textarea':
+                child = <TextAreaField autoFocus {...props} rows={field.rows}/>
+                break
+              case 'checkbox':
+                child = <CheckboxField {...props}/>
+                break
+            }
+            return (
+              <FormItem
+                isValid={field.isValid}
+                errorText={field.errorText}
+                label={field.label}
+                required={field.required}
+                disabled={field.disabled}
+                key={index}
+              >
+                {child}
+              </FormItem>
+            )
+          })}
+          {this.props.page.formModel.secondaryButton &&
+            <button style={{margin:10}} className="btn btn-secondary" type="button" onClick={this.secondaryOnClick}>
+              {this.props.page.formModel.secondaryButton.title}
+            </button>
           }
-          switch (field.type){
-            case 'select':
-              child = <SelectField {...props} options={field.options}/>
-              break
-            case 'textfield':
-              child = <TextField {...props}/>
-              break
-            case 'textarea':
-              child = <TextAreaField {...props} rows={field.rows}/>
-              break
-            case 'checkbox':
-              child = <CheckboxField {...props}/>
-              break
-          }
-          return (
-            <FormItem
-              isValid={field.isValid}
-              errorText={field.errorText}
-              label={field.label}
-              required={field.required}
-              disabled={field.disabled}
-              key={index}
-            >
-              {child}
-            </FormItem>
-          )
-        })}
-        {this.props.page.formModel.secondaryButton &&
-          <button type="button" className="btn btn-secondary" onClick={this.secondaryOnClick}>
-            {this.props.page.formModel.secondaryButton.title}
+          <button style={{margin:10}} className="btn btn-primary" disabled={this.props.page.formModel.buttonDisabled} onClick={this.primaryOnClick}>
+            {this.props.page.formModel.primaryButton.title}
           </button>
-        }
-        <button className="btn btn-primary" disabled={this.props.page.formModel.buttonDisabled} onClick={this.primaryOnClick}>
-          {this.props.page.formModel.primaryButton.title}
-        </button>
-      </form>
+        </form>
+      </div>
     )
   }
 }

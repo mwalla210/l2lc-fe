@@ -91,13 +91,13 @@ export default class ProjectSummary extends Component {
          barcodeID={this.props.website.currentProject.barcodeScanID}
         />
         <br/>
-        <Button className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
-        <Button className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
-        <Button className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
-        <Button className="btn btn-default" onClick={this.holdClick}>{(this.props.website.currentProject.hold.flag) ? 'Remove Hold' : 'Add Hold'}</Button>
-        <Button className="btn btn-default" onClick={this.printClick}>Print</Button>
-        <Button className="btn btn-primary" onClick={this.props.page.summaryModel.completeModal.openModal}>Complete</Button>
-        <Button className="btn btn-danger" onClick={this.props.page.summaryModel.deleteModal.openModal}>Delete</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.holdClick}>{(this.props.website.currentProject.hold.flag) ? 'Remove Hold' : 'Add Hold'}</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.printClick}>Print</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-primary" onClick={this.props.page.summaryModel.completeModal.openModal}>Complete</Button>
+        <Button style = {{marginRight:'3'}} className="btn btn-danger" onClick={this.props.page.summaryModel.deleteModal.openModal}>Delete</Button>
       </div>
     )
   }

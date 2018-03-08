@@ -414,13 +414,17 @@ const fields = [
   * @property {Function} onCancelNav Page navigation function for cancelled form submission
  */
 export default class projectFormModel extends FormModel{
-  constructor(onClickNav, onClickCustomerNav, onCancelNav) {
+  constructor(onClickNav, onClickCustomerNav, onCancelNav, errorClick) {
     let primaryOnClick = () => {}
     super(fields,
       {
         title: 'Continue',
         onClick: primaryOnClick
-      }
+      },
+      null,
+      null,
+      null,
+      errorClick
     )
     this.onClickNav = onClickNav
     this.onClickCustomerNav = onClickCustomerNav
@@ -500,7 +504,13 @@ export default class projectFormModel extends FormModel{
       }
       else {
         Website.createProject(body)
-        .then(() => this.onClickNav())
+        .then((response) => {
+          if(response){
+            this.onClickNav()
+          } else{
+            this.openModal()
+          }
+        })
       }
     }
   }

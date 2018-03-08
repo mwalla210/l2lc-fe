@@ -11,17 +11,24 @@ export default class SelectField extends Component {
     options: MobXPropTypes.observableArrayOf(PropTypes.object).isRequired,
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
+    valid: PropTypes.bool.isRequired,
+    focus:PropTypes.bool.isRequired
   }
 
   render(){
+    let color = ''
+    if(!this.props.valid)
+      color = 'orange'
     return (
       <select
         disabled={this.props.disabled}
+        style = {{borderColor: color}}
         className="form-control"
         id={this.props.id}
         value={this.props.value}
         onChange={this.props.onChange}
         onBlur={this.props.onBlur}
+        autoFocus={this.props.focus}
       >
         {this.props.options.map((option, key) =>{
           let addtlProps = {}

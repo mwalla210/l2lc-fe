@@ -11,18 +11,21 @@ export default class TextAreaField extends Component {
     rows: PropTypes.number,
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
+    focus:PropTypes.bool.isRequired
   }
 
   render(){
     return (
         <textarea
           className="form-control"
+          style={{height:'46px'}}
           rows={this.props.rows}
           id={this.props.id}
           value={this.props.value}
           disabled={this.props.disabled}
           onChange={this.props.onChange}
           onBlur={this.props.onBlur}
+          autoFocus={this.props.focus}
         />
     )
   }

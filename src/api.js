@@ -72,7 +72,10 @@ export default class API {
   static createCustomer(customer){
     return API.create('customer/create', customer)
     .then(response => {
-      return API.customerModelize(response)
+      if(response){
+        return API.customerModelize(response)
+      }
+      return null
     })
   }
 
@@ -172,7 +175,10 @@ export default class API {
   static createProject(project){
     return API.create('project/create', project)
     .then(response => {
-      return API.projectModelize(response)
+      if(response){
+        return API.projectModelize(response)
+      }
+      return null
     })
   }
 
@@ -232,7 +238,10 @@ export default class API {
   static createEmployee(employee){
     return API.create('employee/create', employee)
     .then(response => {
-      return API.employeeModelize(response)
+      if(response){
+        return API.employeeModelize(response)
+      }
+      return null
     })
   }
 
@@ -296,10 +305,13 @@ export default class API {
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
-    }).then(res => res.json())
-    .then(json => {
-      console.log('json',json)
-      return json
+    }).then(res => {
+      if(res.status === 200 || res.status === 201){
+        return res.json()
+      }
+      else {
+        return null
+      }
     })
   }
 
