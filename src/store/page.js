@@ -88,19 +88,19 @@ class Page {
    */
   @action selectCustomerPage(){
     this.title = 'Select Customer'
-    this.setTableModel(TableSelector.getSelectCustomer(this.newProjectCustomerPage, this.projectSummaryPage))
+    this.setTableModel(TableSelector.getSelectCreateCustomer(this.newProjectNewCustomerPage, this.projectSummaryPage))
     this.content = Table
   }
 
   /**
-   * @name newProjectCustomerPage
+   * @name newProjectNewCustomerPage
    * @description Updates title, form, table, content, and buttons for New Customer page.
    * @memberof Page.prototype
-   * @method newProjectCustomerPage
+   * @method newProjectNewCustomerPage
    * @mobx action
    */
-  @action newProjectCustomerPage(){
-    this.title = 'New Customer for Project'
+  @action newProjectNewCustomerPage(){
+    this.title = 'New Customer for New Project'
     let func = () => {
       let body = {
         jobType: Website.currentProject.jobTypeTitle,
@@ -114,6 +114,44 @@ class Page {
       }
       Website.createProject(body)
       .then(() => this.projectSummaryPage())
+    }
+    // TODO: missing cancel function
+    this.setFormModel(FormSelector.getNewCustomer(func))
+    this.content = Form
+  }
+
+  /**
+   * @name changeCustomerPage
+   * @description Updates title, form, table, content, and buttons for Change Customer page.
+   * @memberof Page.prototype
+   * @method changeCustomerPage
+   * @mobx action
+   */
+  @action changeCustomerPage(){
+    this.title = 'Change Customer'
+    this.setTableModel(TableSelector.getSelectUpdateCustomer(this.currentProjectNewCustomerPage, this.projectSummaryPage))
+    this.content = Table
+  }
+
+  /**
+   * @name currentProjectNewCustomerPage
+   * @description Updates title, form, table, content, and buttons for New Customer page.
+   * @memberof Page.prototype
+   * @method currentProjectNewCustomerPage
+   * @mobx action
+   */
+  @action currentProjectNewCustomerPage(){
+    this.title = 'New Customer for Project'
+    let func = () => {
+      console.log('send update to API with currentProject, currentCustomer.id', Website.currentProject, Website.currentCustomer.id)
+      let body = {
+        customer: {id: Website.currentCustomer.id}
+      }
+      Website.updateProject(Website.currentProject.id, body)
+      .then(() => {
+        Website.currentProject.changeCustomer(Website.currentCustomer)
+        this.projectSummaryPage()
+      })
     }
     // TODO: missing cancel function
     this.setFormModel(FormSelector.getNewCustomer(func))

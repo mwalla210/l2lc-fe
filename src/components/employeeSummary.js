@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
-import {Button} from 'react-bootstrap'
+import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 import DeleteModal from './deleteModal'
 
 @inject ('website', 'page') @observer
@@ -25,8 +25,14 @@ export default class EmployeeSummary extends Component {
         barcodeID={this.props.website.currentEmployee.barcodeScanID}
        />
        <br/>
-       <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.props.page.employeeEditPage}>Edit</Button>
-       <Button style = {{marginRight:'3'}} className="btn btn-danger" onClick={this.props.page.summaryModel.deleteModal.openModal}>Delete</Button>
+       <ButtonToolbar>
+         <ButtonGroup>
+           <DropdownButton bsStyle="primary" title="Actions" id="dropdown-primary">
+             <MenuItem onSelect={this.props.page.employeeEditPage}>Edit</MenuItem>
+             <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
+           </DropdownButton>
+         </ButtonGroup>
+       </ButtonToolbar>
       </div>
     )
   }

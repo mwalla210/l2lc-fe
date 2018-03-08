@@ -128,13 +128,13 @@ export default class CustomerTableModel extends TableModel{
     return cols
   }
   /**
-   * @name selectClick
+   * @name selectCreateClick
    * @description Handles row click when table in select mode
-   * @method selectClick
+   * @method selectCreateClick
    * @param  {Object}     row   Row of click
    * @memberof CustomerTableModel.prototype
    */
-  selectClick(row){
+  selectCreateClick(row){
     Website.currentProject.changeCustomer(row.original)
     let body = {
       jobType: Website.currentProject.jobTypeTitle,
@@ -147,6 +147,22 @@ export default class CustomerTableModel extends TableModel{
       customer: {id: Website.currentProject.customerID}
     }
     Website.createProject(body)
+    .then(() => this.selectNav())
+  }
+  /**
+   * @name selectUpdateClick
+   * @description Handles row click when table in select mode
+   * @method selectUpdateClick
+   * @param  {Object}     row   Row of click
+   * @memberof CustomerTableModel.prototype
+   */
+  selectUpdateClick(row){
+    Website.currentProject.changeCustomer(row.original)
+    console.log('send update to API with currentProject customer id', Website.currentProject)
+    let body = {
+      customer: {id: Website.currentProject.customerID}
+    }
+    Website.updateProject(Website.currentProject.id, body)
     .then(() => this.selectNav())
   }
   /**
@@ -175,8 +191,20 @@ export default class CustomerTableModel extends TableModel{
    * @memberof CustomerTableModel.prototype
    * @mobx action
    */
-  @action selectTable(){
+  @action selectCreateTable(){
     this.columns = this.noActionColumns()
+    this.selectClick = this.selectCreateClick
+  }
+  /**
+   * @name selectTable
+   * @description Sets table up as selectable (provide an on-click function for rows, no action columns)
+   * @method selectTable
+   * @memberof CustomerTableModel.prototype
+   * @mobx action
+   */
+  @action selectUpdateTable(){
+    this.columns = this.noActionColumns()
+    this.selectClick = this.selectUpdateClick
   }
   /**
    * @method nonSelectTable

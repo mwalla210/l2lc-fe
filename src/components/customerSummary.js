@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { inject } from 'mobx-react'
-import {Button} from 'react-bootstrap'
+import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 
 @inject ('website', 'page')
 export default class CustomerSummary extends Component {
@@ -15,8 +15,18 @@ export default class CustomerSummary extends Component {
         <p>{`Ship addr: ${this.props.website.currentCustomer.formattedShipAddress}`}</p>
         <p>{`Bill addr: ${this.props.website.currentCustomer.formattedBillAddress}`}</p>
         <p>{`Past due: ${this.props.website.currentCustomer.pastDue}`}</p>
-        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={console.log('See customer projects')}>Projects</Button>
-        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.props.page.customerEditPage}>Edit</Button>
+        <ButtonToolbar>
+          <ButtonGroup>
+            <DropdownButton bsStyle="info" title="More..." id="dropdown-info">
+              <MenuItem onSelect={console.log('See customer projects')}>Projects</MenuItem>
+            </DropdownButton>
+          </ButtonGroup>
+          <ButtonGroup>
+            <DropdownButton bsStyle="primary" title="Actions" id="dropdown-primary">
+              <MenuItem onSelect={this.props.page.customerEditPage}>Edit</MenuItem>
+            </DropdownButton>
+          </ButtonGroup>
+        </ButtonToolbar>
       </div>
     )
   }

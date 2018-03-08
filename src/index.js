@@ -9,4 +9,5 @@ ReactDOM.render(
   <Provider website={website} page={page}>
     <App/>
   </Provider>,
+  // eslint-disable-next-line no-undef
   document.querySelector('.container'))

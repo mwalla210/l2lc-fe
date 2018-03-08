@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
-import {Button} from 'react-bootstrap'
+import {Button, DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 import DeleteModal from './deleteModal'
 import FieldModal from './fieldModal'
 import PromptModal from './promptModal'
@@ -15,6 +15,7 @@ export default class ProjectSummary extends Component {
     this.resetAndOpenModal = this.resetAndOpenModal.bind(this)
     this.tasksClick = this.tasksClick.bind(this)
     this.printClick = this.printClick.bind(this)
+    this.timeEntries = this.timeEntries.bind(this)
   }
 
   reworkClick(){
@@ -42,10 +43,16 @@ export default class ProjectSummary extends Component {
   }
 
   printClick(){
-    console.log('Print')
+    // eslint-disable-next-line no-undef
+    window.print()
+  }
+
+  timeEntries(){
+    console.log('Time Entry table')
   }
 
   render() {
+    let holdStr = `${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`
     return (
       <div>
         <FieldModal
@@ -79,7 +86,7 @@ export default class ProjectSummary extends Component {
         <p>{`Cost Center: ${this.props.website.currentProject.costCenterTitle}`}</p>
         <p>{`Project Type: ${this.props.website.currentProject.jobTypeTitle}`}</p>
         <p>{`Project Title: ${this.props.website.currentProject.title}`}</p>
-        <p>{`Customer (TODO in model): ${this.props.website.currentProject.customer}`}</p>
+        {(this.props.website.currentProject.customer.id) ? <p>{`Customer: ${this.props.website.currentProject.customer.companyName}`}</p> : null}
         <p>{`Priority: ${this.props.website.currentProject.priority}`}</p>
         <p>{`Status: ${this.props.website.currentProject.status}`}</p>
         <p>{`Total time spent:${this.props.website.currentProject.timeSpent}`}</p>
@@ -91,13 +98,27 @@ export default class ProjectSummary extends Component {
          barcodeID={this.props.website.currentProject.barcodeScanID}
         />
         <br/>
-        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.tasksClick}>Tasks</Button>
-        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.props.page.projectEditPage}>Edit</Button>
-        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.reworkClick}>Add Rework</Button>
-        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.holdClick}>{(this.props.website.currentProject.hold.flag) ? 'Remove Hold' : 'Add Hold'}</Button>
-        <Button style = {{marginRight:'3'}} className="btn btn-default" onClick={this.printClick}>Print</Button>
-        <Button style = {{marginRight:'3'}} className="btn btn-primary" onClick={this.props.page.summaryModel.completeModal.openModal}>Complete</Button>
-        <Button style = {{marginRight:'3'}} className="btn btn-danger" onClick={this.props.page.summaryModel.deleteModal.openModal}>Delete</Button>
+        <ButtonToolbar>
+          <ButtonGroup>
+            <DropdownButton bsStyle="info" title="More..." id="dropdown-info">
+              <MenuItem onSelect={this.tasksClick}>Tasks</MenuItem>
+              <MenuItem onSelect={this.timeEntries}>Time Entries</MenuItem>
+            </DropdownButton>
+          </ButtonGroup>
+          <ButtonGroup>
+            <DropdownButton bsStyle="primary" title="Actions..." id="dropdown-primary">
+              <MenuItem onSelect={this.reworkClick}>Add Rework</MenuItem>
+              <MenuItem onSelect={this.holdClick}>{holdStr}</MenuItem>
+              <MenuItem onSelect={this.props.page.projectEditPage}>Edit Details</MenuItem>
+              {(this.props.website.currentProject.customer.id) ? <MenuItem onSelect={this.props.page.changeCustomerPage}>Edit Customer</MenuItem> : null}
+              <MenuItem onSelect={this.props.page.summaryModel.completeModal.openModal}>Complete</MenuItem>
+              <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
+            </DropdownButton>
+          </ButtonGroup>
+          <ButtonGroup>
+            <Button type="button" className="btn btn-default" onClick={this.printClick}>Print</Button>
+          </ButtonGroup>
+        </ButtonToolbar>
       </div>
     )
   }
