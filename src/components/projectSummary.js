@@ -43,7 +43,8 @@ export default class ProjectSummary extends Component {
   }
 
   printClick(){
-    console.log('Print')
+    // eslint-disable-next-line no-undef
+    window.print()
   }
 
   timeEntries(){
