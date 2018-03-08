@@ -38,60 +38,61 @@ export default class Login extends Component {
         <p className="container" style={{display: 'flex', justifyContent: 'center'}}>
           <img style={{margin: '30px'}} src={'../../img/L2L-Logo-raisedLARGE.png'}/>
         </p>
-        <h1>Line2Line Cloud</h1>
+        <h1 style={{marginBottom: '30px'}}>Line2Line Cloud</h1>
         <div className="row">
           <div className="col-lg-12">
             <div className="col-sm-6 col-sm-offset-3 alert alert-warning" role="alert" {...alertStyle}>
               <strong>Warning!</strong>{' Couldn\'t authenticate this username and password combination.'}
             </div>
-            <div className="form-group">
-              <div className="row">
-                <div className="col-sm-6 col-sm-offset-3">
-                <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  tabIndex="1"
-                  className="form-control"
-                  placeholder="Username"
-                  value={this.props.website.username}
-                  onChange={this.onChangeUsername}
-                  onBlur={this.onBlur}
-                />
+            <form>
+              <div className="form-group">
+                <div className="row">
+                  <div className="col-sm-6 col-sm-offset-3">
+                  <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    tabIndex="1"
+                    className="form-control"
+                    placeholder="Username"
+                    value={this.props.website.username}
+                    onChange={this.onChangeUsername}
+                    onBlur={this.onBlur}
+                  />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="row">
-                <div className="col-sm-6 col-sm-offset-3">
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  tabIndex="2"
-                  className="form-control"
-                  placeholder="Password"
-                  value={this.props.website.password}
-                  onChange={this.onChangePassword}
-                  onBlur={this.onBlur}
-                />
+              <div className="form-group">
+                <div className="row">
+                  <div className="col-sm-6 col-sm-offset-3">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    tabIndex="2"
+                    className="form-control"
+                    placeholder="Password"
+                    value={this.props.website.password}
+                    onChange={this.onChangePassword}
+                    onBlur={this.onBlur}
+                  />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="form-group">
-              <div className="row">
-                <div className="col-sm-6 col-sm-offset-3">
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-lg btn-block"
-                    onClick={this.formSubmit}
-                    disabled={this.props.website.loginButtonDisabled}
-                  >
-                    Login
-                  </button>
+              <div className="form-group">
+                <div className="row">
+                  <div className="col-sm-6 col-sm-offset-3">
+                    <button
+                      className="btn btn-primary btn-lg btn-block"
+                      onClick={this.formSubmit}
+                      disabled={this.props.website.loginButtonDisabled}
+                    >
+                      Login
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
