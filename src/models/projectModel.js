@@ -126,7 +126,7 @@ export default class ProjectModel {
    * @mobx computed
    */
   @computed get barcodeDomID(){
-    return `${this.jobTypeTitle}${this.id}`
+    return `project${this.id}`
   }
   /**
    * @name barcodeScanID
