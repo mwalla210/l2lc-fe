@@ -4,7 +4,6 @@ import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
 import TableActionCell from '../components/tableActionCell'
-import Barcode from '../components/barcode'
 import API from '../api'
 useStrict(true)
 
@@ -50,25 +49,6 @@ export default class EmployeeTableModel extends TableModel{
         Header: 'Last Name',
         accessor: 'lastName',
         filterable: true
-      },
-      {
-        Header: 'Barcode',
-        accessor: 'barcode',
-        getProps: () => {
-          return {
-            className: 'center',
-          }
-        },
-        Cell: row => (
-          <span>
-            <span>
-              <Barcode
-                imageDomID={row.original.barcodeDomID}
-                barcodeID={row.original.barcodeScanID}
-              />
-            </span>
-          </span>
-        )
       },
       {
         Header: 'Actions',
