@@ -16,7 +16,7 @@ export default class Table extends Component {
 
   filter(filter, row){
     const id = filter.pivotId || filter.id
-    return (row[id] !== undefined) ? String(row[id]).includes(filter.value) : false
+    return (row[id] !== undefined) ? String(row[id]).toLowerCase().includes(filter.value.toLowerCase()) : false
   }
 
   render() {
