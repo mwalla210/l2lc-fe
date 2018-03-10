@@ -48,6 +48,10 @@ export default class Page extends Component {
   }
 
   render() {
+    // history.pushState(null, null, document.URL);
+    // window.addEventListener('popstate', function () {
+    //     history.pushState(null, null, document.URL);
+    // });
     let content = null
     if (!this.props.website.currentUser)
       content = <div>{this.loginContent()}</div>
