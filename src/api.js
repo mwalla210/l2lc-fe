@@ -72,10 +72,13 @@ export default class API {
   static createCustomer(customer){
     return API.create('customer/create', customer)
     .then(response => {
-      if(response){
+      if(response === 406){
+        console.log('406')
+        return 'Response Error Code: 406, Incorrect value passed'
+      } else {
+        console.log('Project ')
         return API.customerModelize(response)
       }
-      return null
     })
   }
 
@@ -175,10 +178,11 @@ export default class API {
   static createProject(project){
     return API.create('project/create', project)
     .then(response => {
-      if(response){
+      if(response === 406){
+        return 'Response Error Code: 406, Incorrect value passed'
+      } else {
         return API.projectModelize(response)
       }
-      return null
     })
   }
 
@@ -238,10 +242,11 @@ export default class API {
   static createEmployee(employee){
     return API.create('employee/create', employee)
     .then(response => {
-      if(response){
+      if(response === 406){
+        return 'Response Error Code: 406, Incorrect value passed'
+      } else {
         return API.employeeModelize(response)
       }
-      return null
     })
   }
 
@@ -307,11 +312,12 @@ export default class API {
       headers: { 'Content-Type': 'application/json' }
     })
     .then(res => {
+      console.log(res)
       if(res.status === 200 || res.status === 201){
         return res.json()
       }
       else {
-        return null
+        return res.status
       }
     })
   }

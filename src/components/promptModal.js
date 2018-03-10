@@ -77,7 +77,7 @@ export default class PromptModal extends Component {
             Close
           </Button> : null)}
           <Button {...confirm} onClick={this.confirm}>
-            Confirm
+            Ok
           </Button>
         </Modal.Footer>
       </Modal>

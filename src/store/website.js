@@ -101,11 +101,13 @@ class Website {
      console.log('Create project entry in API with:', jsonProject)
      return API.createProject(jsonProject)
      .then(response => {
-       this.setProject(response)
-       if(response){
-         return true
+       if(typeof(response) === 'string'){
+         console.log('typeString')
+         return response
+       } else {
+         this.setProject(response)
+         return null
        }
-       return false
      })
    }
    /**

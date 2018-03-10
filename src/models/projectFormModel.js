@@ -505,9 +505,10 @@ export default class projectFormModel extends FormModel{
       else {
         Website.createProject(body)
         .then((response) => {
-          if(response){
+          if(response == null){
             this.onClickNav()
-          } else{
+          } else {
+            this.errorText = response
             this.openModal()
           }
         })
