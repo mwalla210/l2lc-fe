@@ -17,6 +17,8 @@ useStrict(true)
  * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
  * @property {?FormModel} [formModel=null] Page form model, if any [observable]
  * @property {?SummaryModel} [summaryModel=null] Page summary model, if any [observable]
+ * @property {Function[]} [backNav=[]] Back navigation function list [observable]
+ * @property {?Function} [currentPage=null] Current navigation function [observable]
  */
 class Page {
   constructor() {
@@ -25,9 +27,11 @@ class Page {
       content: null,
       tableModel: null,
       formModel: null,
-      summaryModel: null
+      summaryModel: null,
+      backNav: []
     }
     extendObservable(this, addtlProps)
+    this.currentPage = null
     autoBind(this)
   }
 
@@ -63,6 +67,30 @@ class Page {
    * @mobx action
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
+  /**
+   * @name setCurBack
+   * @description Sets backNav and currentPage
+   * @method setCurBack
+   * @memberof Page.prototype
+   * @param  {Function}      cur Current page nav function
+   * @mobx action
+   */
+  @action setCurBack(cur){
+    if (this.currentPage)
+      this.backNav.push(this.currentPage)
+    this.currentPage = cur
+  }
+  /**
+   * @name backNavPop
+   * @description Pops backNav and returns
+   * @method backNavPop
+   * @memberof Page.prototype
+   * @returns  {Function}      Previous page nav function
+   * @mobx action
+   */
+  @action backNavPop(){
+    return this.backNav.pop()
+  }
 
   // Page Changes - Create Projects
 
@@ -77,6 +105,7 @@ class Page {
     this.title = 'New Project'
     this.setFormModel(FormSelector.getProject(this.projectSummaryPage, this.selectCustomerPage))
     this.content = Form
+    this.setCurBack(this.createNewProjMenuItem)
   }
 
   /**
@@ -90,6 +119,7 @@ class Page {
     this.title = 'Select Customer'
     this.setTableModel(TableSelector.getSelectCreateCustomer(this.newProjectNewCustomerPage, this.projectSummaryPage))
     this.content = Table
+    this.setCurBack(this.selectCustomerPage)
   }
 
   /**
@@ -118,6 +148,7 @@ class Page {
     // TODO: missing cancel function
     this.setFormModel(FormSelector.getNewCustomer(func))
     this.content = Form
+    this.setCurBack(this.newProjectNewCustomerPage)
   }
 
   /**
@@ -131,6 +162,7 @@ class Page {
     this.title = 'Change Customer'
     this.setTableModel(TableSelector.getSelectUpdateCustomer(this.currentProjectNewCustomerPage, this.projectSummaryPage))
     this.content = Table
+    this.setCurBack(this.changeCustomerPage)
   }
 
   /**
@@ -156,6 +188,7 @@ class Page {
     // TODO: missing cancel function
     this.setFormModel(FormSelector.getNewCustomer(func))
     this.content = Form
+    this.setCurBack(this.currentProjectNewCustomerPage)
   }
 
   /**
@@ -178,6 +211,7 @@ class Page {
     let summaryObject = SummarySelector.getProject(deleteFunc,completeFunc)
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)
+    this.setCurBack(this.projectSummaryPage)
   }
 
   // Page Changes - Projects List, Editing
@@ -193,6 +227,7 @@ class Page {
     this.title = 'Edit Project'
     this.setFormModel(FormSelector.getEditProject(this.projectSummaryPage, this.projectsMenuItem))
     this.content = Form
+    this.setCurBack(this.projectEditPage)
   }
 
   /**
@@ -206,6 +241,7 @@ class Page {
     this.title = 'Projects'
     this.setTableModel(TableSelector.getProject(this.projectSummaryPage, this.projectEditPage))
     this.content = Table
+    this.setCurBack(this.projectsMenuItem)
   }
 
   // Page Changes - Time Entry
@@ -221,6 +257,7 @@ class Page {
     this.title = 'Time Entry'
     this.setFormModel(FormSelector.getTimeEntry())
     this.content = Form
+    this.setCurBack(this.projectTimeEntryMenuItem)
   }
 
   // Page Changes - Customers
@@ -236,6 +273,7 @@ class Page {
     this.title = 'Customers'
     this.setTableModel(TableSelector.getNonSelectCustomer(this.newCustomerPage, this.customerSummaryPage, this.customerEditPage))
     this.content = Table
+    this.setCurBack(this.customerInfoMenuItem)
   }
 
   /**
@@ -249,6 +287,7 @@ class Page {
     this.title = 'New Customer'
     this.setFormModel(FormSelector.getNewCustomer(this.customerSummaryPage, this.customerInfoMenuItem))
     this.content = Form
+    this.setCurBack(this.newCustomerPage)
   }
 
   /**
@@ -262,6 +301,7 @@ class Page {
     this.title = 'Customer Summary'
     let summaryObject = SummarySelector.getCustomer()
     this.content = summaryObject.component
+    this.setCurBack(this.customerSummaryPage)
   }
 
   /**
@@ -275,6 +315,7 @@ class Page {
     this.title = 'Edit Customer'
     this.setFormModel(FormSelector.getEditCustomer(this.customerSummaryPage, this.customerInfoMenuItem))
     this.content = Form
+    this.setCurBack(this.customerEditPage)
   }
 
   // Page Changes - Analytics
@@ -289,6 +330,7 @@ class Page {
   @action emplProductivityMenuItem(){
     this.title = 'Employee Productivity [Q3]'
     this.content = null
+    this.setCurBack(this.emplProductivityMenuItem)
   }
 
   /**
@@ -301,6 +343,7 @@ class Page {
   @action workstationTrackingMenuItem(){
     this.title = 'Workstation Tracking [Q3]'
     this.content = null
+    this.setCurBack(this.workstationTrackingMenuItem)
   }
 
   /**
@@ -313,6 +356,7 @@ class Page {
   @action jobTypeProductivityMenuItem(){
     this.title = 'Job Type Productivity [Q3]'
     this.content = null
+    this.setCurBack(this.jobTypeProductivityMenuItem)
   }
 
   /**
@@ -325,6 +369,7 @@ class Page {
   @action costCenterTimeMenuItem(){
     this.title = 'Cost Center Time [Q3]'
     this.content = null
+    this.setCurBack(this.costCenterTimeMenuItem)
   }
 
   // Page Changes - Admin
@@ -340,6 +385,7 @@ class Page {
      this.title = 'Employee Information'
      this.setTableModel(TableSelector.getEmployee(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage))
      this.content = Table
+     this.setCurBack(this.employeeInformationMenuItem)
    }
 
    /**
@@ -353,6 +399,7 @@ class Page {
      this.title = 'New Employee'
      this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
      this.content = Form
+     this.setCurBack(this.newEmployeePage)
    }
 
    /**
@@ -366,6 +413,7 @@ class Page {
      this.title = 'Edit Employee'
      this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
      this.content = Form
+     this.setCurBack(this.employeeEditPage)
    }
 
    /**
@@ -381,6 +429,7 @@ class Page {
      let summaryObject = SummarySelector.getEmployee(deleteFunc)
      this.content = summaryObject.component
      this.setSummaryModel(summaryObject.model)
+     this.setCurBack(this.employeeSummaryPage)
    }
 
   /**
@@ -393,6 +442,7 @@ class Page {
   @action accountManagementMenuItem(){
     this.title = 'Account Management [Q3]'
     this.content = null
+    this.setCurBack(this.accountManagementMenuItem)
   }
 
 }
