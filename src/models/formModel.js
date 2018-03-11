@@ -40,7 +40,8 @@ export default class FormModel {
     })
     let addtlProps = {
       fields,
-      modalOpen: false
+      modalOpen: false,
+      errorResponse: ''
     }
     extendObservable(this, addtlProps)
     // non-observable properties
@@ -51,6 +52,15 @@ export default class FormModel {
     this.errorClick = errorClick
     autoBind(this)
   }
+
+  /**
+   * @name setError
+   * @description Sets errorResponse prop to value of text
+   * @method setError
+   * @memberof FormModel.prototype
+   * @mobx action
+   */
+   @action setError(text){this.errorResponse = text}
 
   /**
    * @name closeModal

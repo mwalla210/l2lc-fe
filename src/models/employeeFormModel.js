@@ -99,7 +99,7 @@ export default class EmployeeFormModel extends FormModel{
         if(response == null){
           this.onClickNav()
         } else {
-          this.errorText = response
+          this.setError(response)
           this.openModal()
         }
       })

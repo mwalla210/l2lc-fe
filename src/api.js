@@ -73,10 +73,8 @@ export default class API {
     return API.create('customer/create', customer)
     .then(response => {
       if(response === 406){
-        console.log('406')
         return 'Response Error Code: 406, Incorrect value passed'
       } else {
-        console.log('Project ')
         return API.customerModelize(response)
       }
     })

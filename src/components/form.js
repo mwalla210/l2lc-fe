@@ -49,7 +49,7 @@ export default class Form extends Component {
           confirmOnClick={this.props.page.formModel.confirmAndClose}
           open={this.props.page.formModel.modalOpen}
           closeFn={this.props.page.formModel.closeModal}
-          content="TEXT"
+          content={this.props.page.formModel.errorResponse}
           confirmClass="btn-alert"
         />
         <form style={{marginLeft: '33%'}}>

@@ -508,7 +508,7 @@ export default class projectFormModel extends FormModel{
           if(response == null){
             this.onClickNav()
           } else {
-            this.errorText = response
+            this.setError(response)
             this.openModal()
           }
         })

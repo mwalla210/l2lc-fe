@@ -102,7 +102,6 @@ class Website {
      return API.createProject(jsonProject)
      .then(response => {
        if(typeof(response) === 'string'){
-         console.log('typeString')
          return response
        } else {
          this.setProject(response)
@@ -138,11 +137,12 @@ class Website {
     console.log('Create customer entry in API with:', jsonCustomer)
     return API.createCustomer(jsonCustomer)
     .then(response => {
-      this.setCustomer(response)
-      if(response){
-        return true
+      if(typeof(response) === 'string'){
+        return response
+      } else {
+        this.setCustomer(response)
+        return null
       }
-      return false
     })
   }
   /**
@@ -158,11 +158,12 @@ class Website {
     console.log('Create employee entry in API with:', jsonEmployee)
     return API.createEmployee(jsonEmployee)
     .then(response => {
-      this.setEmployee(response)
-      if(response){
-        return true
+      if(typeof(response) === 'string'){
+        return response
+      } else {
+        this.setEmployee(response)
+        return null
       }
-      return false
     })
   }
   /**
