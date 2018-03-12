@@ -51,6 +51,7 @@ export default class Form extends Component {
           closeFn={this.props.page.formModel.closeModal}
           content={this.props.page.formModel.errorResponse}
           confirmClass="btn-alert"
+          primaryButtonText="Ok"
         />
         <form style={{marginLeft: '33%'}}>
           {this.props.page.formModel.fields.map((field, index) => {

@@ -73,7 +73,7 @@ export default class API {
     return API.create('customer/create', customer)
     .then(response => {
       if(response === 406){
-        return 'Response Error Code: 406, Incorrect value passed'
+        return 'Response Error Code: 406, Duplicate entry exists'
       } else {
         return API.customerModelize(response)
       }
@@ -177,7 +177,7 @@ export default class API {
     return API.create('project/create', project)
     .then(response => {
       if(response === 406){
-        return 'Response Error Code: 406, Incorrect value passed'
+        return 'Response Error Code: 406, Duplicate entry exists'
       } else {
         return API.projectModelize(response)
       }
@@ -241,7 +241,7 @@ export default class API {
     return API.create('employee/create', employee)
     .then(response => {
       if(response === 406){
-        return 'Response Error Code: 406, Incorrect value passed'
+        return 'Response Error Code: 406, Duplicate entry exists'
       } else {
         return API.employeeModelize(response)
       }
@@ -310,7 +310,6 @@ export default class API {
       headers: { 'Content-Type': 'application/json' }
     })
     .then(res => {
-      console.log(res)
       if(res.status === 200 || res.status === 201){
         return res.json()
       }

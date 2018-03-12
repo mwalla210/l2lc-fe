@@ -16,6 +16,7 @@ useStrict(true)
   * @property {Function} secondaryButton.onClick Forms secondary button onClick
   * @property {Boolean} autoSubmit Forms auto-submit boolean
   * @property {Function} onChange Form's function to handle ANY field updates (time entry only usage)
+  * @property {String} errorResponse Form's string field to hold error text passed in from website
  */
 export default class FormModel {
   constructor(fields, primaryButton, secondaryButton, autoSubmit, onChange, errorClick) {
