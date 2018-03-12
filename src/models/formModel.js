@@ -16,7 +16,9 @@ useStrict(true)
   * @property {Function} secondaryButton.onClick Forms secondary button onClick
   * @property {Boolean} autoSubmit Forms auto-submit boolean
   * @property {Function} onChange Form's function to handle ANY field updates (time entry only usage)
-  * @property {String} errorResponse Form's string field to hold error text passed in from website
+  * @property {Function} errorClick Form's function to handle clicking of form error modal confirmation
+  * @property {Boolean} [modalOpen=false] Form's indicator for whether error modal is open
+  * @property {String} [errorResponse=''] Form's string field to hold error text passed in from website
  */
 export default class FormModel {
   constructor(fields, primaryButton, secondaryButton, autoSubmit, onChange, errorClick) {
@@ -59,6 +61,7 @@ export default class FormModel {
    * @description Sets errorResponse prop to value of text
    * @method setError
    * @memberof FormModel.prototype
+   * @property {String} text The error modal's content
    * @mobx action
    */
    @action setError(text){this.errorResponse = text}
@@ -111,6 +114,7 @@ export default class FormModel {
    * @description Resets field value to default based on field ID
    * @method resetValueID
    * @memberof FormModel.prototype
+   * @property {Number} id The field index to reset
    * @mobx action
    */
   @action resetValueID(id){
@@ -122,6 +126,7 @@ export default class FormModel {
    * @description Resets field value to default based on field ID
    * @method resetValueIndex
    * @memberof FormModel.prototype
+   * @property {Number} index The field index
    * @mobx action
    */
   @action resetValueIndex(index){
