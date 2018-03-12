@@ -86,7 +86,7 @@ export default class ProjectSummary extends Component {
         <p>{`ID: ${this.props.website.currentProject.id}`}</p>
         <p>{`Cost Center: ${this.props.website.currentProject.costCenterTitle}`}</p>
         <p>{`Project Type: ${this.props.website.currentProject.jobTypeTitle}`}</p>
-        {(this.props.website.currentProject.customer.id) ? <p>{`Customer: ${this.props.website.currentProject.customer.companyName}`}</p> : null}
+        {(this.props.website.currentProject.customer.id) ? <p>{`Customer: ${this.props.website.currentProject.customer.name}`}</p> : null}
         <p>{`Priority: ${this.props.website.currentProject.priority}`}</p>
         <p>{`Status: ${this.props.website.currentProject.status}`}</p>
         <p>{(this.props.website.currentProject.timeSpent == '') ? '' : `Time Spent: ${this.props.website.currentProject.timeSpent}`}</p>
