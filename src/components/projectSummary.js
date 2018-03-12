@@ -82,22 +82,23 @@ export default class ProjectSummary extends Component {
           closeFn={this.props.page.summaryModel.completeModal.closeModal}
           content="This action cannot be undone."
         />
+        <p>{(this.props.website.currentProject.title == '') ? '' : `Project Title: ${this.props.website.currentProject.title}`}</p>
         <p>{`ID: ${this.props.website.currentProject.id}`}</p>
         <p>{`Cost Center: ${this.props.website.currentProject.costCenterTitle}`}</p>
         <p>{`Project Type: ${this.props.website.currentProject.jobTypeTitle}`}</p>
-        <p>{`Project Title: ${this.props.website.currentProject.title}`}</p>
         {(this.props.website.currentProject.customer.id) ? <p>{`Customer: ${this.props.website.currentProject.customer.companyName}`}</p> : null}
         <p>{`Priority: ${this.props.website.currentProject.priority}`}</p>
         <p>{`Status: ${this.props.website.currentProject.status}`}</p>
-        <p>{`Total time spent:${this.props.website.currentProject.timeSpent}`}</p>
-        <p>{`Part Count: ${this.props.website.currentProject.partCount}`}</p>
-        <p>{`Description: ${this.props.website.currentProject.descr}`}</p>
-        <p>{`Reference Number: ${this.props.website.currentProject.refNum}`}</p>
+        <p>{(this.props.website.currentProject.timeSpent == '') ? '' : `Time Spent: ${this.props.website.currentProject.timeSpent}`}</p>
+        <p>{(this.props.website.currentProject.partCount == null) ? '' : `Part Count: ${this.props.website.currentProject.partCount}`}</p>
+        <p>{(this.props.website.currentProject.descr == '') ? '' : `Description: ${this.props.website.currentProject.descr}`}</p>
+        <p>{(this.props.website.currentProject.refNum == '') ? '' : `Reference Number: ${this.props.website.currentProject.refNum}`}</p>
         <Barcode
          imageDomID={this.props.website.currentProject.barcodeDomID}
          barcodeID={this.props.website.currentProject.barcodeScanID}
         />
         <br/>
+        <br></br>
         <ButtonToolbar>
           <ButtonGroup>
             <DropdownButton bsStyle="info" title="More..." id="dropdown-info">
