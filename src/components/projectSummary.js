@@ -81,6 +81,7 @@ export default class ProjectSummary extends Component {
           open={this.props.page.summaryModel.completeModal.modalOpen}
           closeFn={this.props.page.summaryModel.completeModal.closeModal}
           content="This action cannot be undone."
+          confirmClass="btn-primary"
         />
         <p>{`ID: ${this.props.website.currentProject.id}`}</p>
         <p>{`Cost Center: ${this.props.website.currentProject.costCenterTitle}`}</p>
