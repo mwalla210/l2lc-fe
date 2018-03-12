@@ -73,9 +73,11 @@ export default class API {
     return API.create('customer/create', customer)
     .then(response => {
       if(response === 406){
-        return 'Response Error Code: 406, Duplicate entry exists'
-      } else {
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
         return API.customerModelize(response)
+      } else {
+        return 'Unexpected error'
       }
     })
   }
@@ -177,9 +179,11 @@ export default class API {
     return API.create('project/create', project)
     .then(response => {
       if(response === 406){
-        return 'Response Error Code: 406, Duplicate entry exists'
-      } else {
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
         return API.projectModelize(response)
+      } else {
+        return 'Unexpected error'
       }
     })
   }
@@ -241,9 +245,11 @@ export default class API {
     return API.create('employee/create', employee)
     .then(response => {
       if(response === 406){
-        return 'Response Error Code: 406, Duplicate entry exists'
-      } else {
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
         return API.employeeModelize(response)
+      } else {
+        return 'Unexpected error'
       }
     })
   }
