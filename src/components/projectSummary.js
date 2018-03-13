@@ -113,44 +113,44 @@ export default class ProjectSummary extends Component {
         <div className="container">
         <h4>{projectTitleContent}</h4>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{'ID: '}</strong></div>
-          <div className="col-sm-2 center-block">{this.props.website.currentProject.id}</div>
+          <div className="col-sm-2"><strong>{'ID: '}</strong></div>
+          <div className="col-sm-2">{this.props.website.currentProject.id}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{'Cost Center: '}</strong></div>
-          <div className="col-sm-2 center-block">{this.props.website.currentProject.costCenterTitle}</div>
+          <div className="col-sm-2"><strong>{'Cost Center: '}</strong></div>
+          <div className="col-sm-2">{this.props.website.currentProject.costCenterTitle}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{'Project Type: '}</strong></div>
-          <div className="col-sm-2 center-block">{this.props.website.currentProject.jobTypeTitle}</div>
+          <div className="col-sm-2"><strong>{'Project Type: '}</strong></div>
+          <div className="col-sm-2">{this.props.website.currentProject.jobTypeTitle}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{custNameContent1}</strong></div>
-          <div className="col-sm-2 center-block">{custNameContent2}</div>
+          <div className="col-sm-2"><strong>{custNameContent1}</strong></div>
+          <div className="col-sm-2">{custNameContent2}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{'Priority: '}</strong></div>
-          <div className="col-sm-2 center-block">{this.props.website.currentProject.priority}</div>
+          <div className="col-sm-2"><strong>{'Priority: '}</strong></div>
+          <div className="col-sm-2">{this.props.website.currentProject.priority}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{'Status: '}</strong></div>
-          <div className="col-sm-2 center-block">{this.props.website.currentProject.status}</div>
+          <div className="col-sm-2"><strong>{'Status: '}</strong></div>
+          <div className="col-sm-2">{this.props.website.currentProject.status}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{timeSpentContent1}</strong></div>
-          <div className="col-sm-2 center-block">{timeSpentContent2}</div>
+          <div className="col-sm-2"><strong>{timeSpentContent1}</strong></div>
+          <div className="col-sm-2">{timeSpentContent2}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{partCountContent1}</strong></div>
-          <div className="col-sm-2 center-block">{partCountContent2}</div>
+          <div className="col-sm-2"><strong>{partCountContent1}</strong></div>
+          <div className="col-sm-2">{partCountContent2}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{descrStrContent1}</strong></div>
-          <div className="col-sm-2 center-block">{descrStrContent2}</div>
+          <div className="col-sm-2"><strong>{descrStrContent1}</strong></div>
+          <div className="col-sm-2">{descrStrContent2}</div>
         </div>
         <div className="row">
-          <div className="col-sm-2 center-block"><strong>{refNumContent1}</strong></div>
-          <div className="col-sm-2 center-block">{refNumContent2}</div>
+          <div className="col-sm-2"><strong>{refNumContent1}</strong></div>
+          <div className="col-sm-2">{refNumContent2}</div>
         </div>
         </div>
         <Barcode
