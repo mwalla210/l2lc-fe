@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
+import ButtonPrimary from './buttonPrimary'
 
 @inject ('page', 'website') @observer
 export default class Login extends Component {
@@ -82,13 +83,13 @@ export default class Login extends Component {
               <div className="form-group">
                 <div className="row">
                   <div className="col-sm-6 col-sm-offset-3">
-                    <button
-                      className="btn btn-primary btn-lg btn-block"
+                    <ButtonPrimary
+                      className="btn-lg btn-block"
                       onClick={this.formSubmit}
                       disabled={this.props.website.loginButtonDisabled}
-                    >
-                      Login
-                    </button>
+                      text="Login"
+                      type="submit"
+                    />
                   </div>
                 </div>
               </div>

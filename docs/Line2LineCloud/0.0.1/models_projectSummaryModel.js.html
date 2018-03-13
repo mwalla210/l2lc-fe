@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>models/modalModel.js - Documentation</title>
+    <title>models/projectSummaryModel.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">models/modalModel.js</h1>
+    <h1 class="page-title">models/projectSummaryModel.js</h1>
     
 
     
@@ -37,86 +37,26 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import { action, useStrict, extendObservable } from 'mobx'
-import autoBind from 'auto-bind'
+            <pre class="prettyprint source linenums"><code>import {useStrict, extendObservable } from 'mobx'
+import ModalModel from './modalModel'
 useStrict(true)
 
 /**
- * @name ModalModel
- * @class ModalModel
- * @classdesc Modal model for summary pages
- * @property {Boolean} [modalOpen=false] Modal open indicator [observable]
- * @property {String} title Modal title [observable]
- * @property {String} [contents=''] Modal contents, if any (field modals) [observable]
+ * @name ProjectSummaryModel
+ * @class ProjectSummaryModel
+ * @classdesc Project summary storage object
+ * @property {ModalModel} deleteModal  The model for the delete modal [observable]
+ * @property {ModalModel} fieldModal The model for the field modal [observable]
+ * @property {ModalModel} completeModal The model for the complete modal  [observable]
  */
-export default class ModalModel {
-  constructor(confirmOnClick, title){
+export default class ProjectSummaryModel{
+  constructor(deleteOnClick, completeOnClick){
     let addtlProps = {
-      modalOpen: false,
-      title,
-      contents: ''
+      deleteModal: new ModalModel(deleteOnClick),
+      fieldModal: new ModalModel(null, ''),
+      completeModal: new ModalModel(completeOnClick)
     }
     extendObservable(this, addtlProps)
-    this.confirmOnClick = confirmOnClick
-    autoBind(this)
-  }
-
-  /**
-   * @name closeModal
-   * @description Sets modalOpen prop to false
-   * @method closeModal
-   * @memberof ModalModel.prototype
-   * @mobx action
-   */
-  @action closeModal(){this.modalOpen = false}
-  /**
-   * @name openModal
-   * @description Sets modalOpen prop to true
-   * @method openModal
-   * @memberof ModalModel.prototype
-   * @mobx action
-   */
-  @action openModal(){this.modalOpen = true}
-  /**
-   * @name confirmAndClose
-   * @description Closes modal and runs confirm function
-   * @method confirmAndClose
-   * @memberof ModalModel.prototype
-   * @mobx action
-   */
-  @action confirmAndClose(){
-    this.closeModal()
-    this.confirmOnClick(this.contents)
-  }
-  /**
-   * @name changeTitle
-   * @description Modal title updater
-   * @method changeTitle
-   * @memberof ModalModel.prototype
-   * @mobx action
-   */
-  @action changeTitle(title){
-    this.title = title
-  }
-  /**
-   * @name changeContent
-   * @description Content change updater
-   * @method changeContent
-   * @memberof ModalModel.prototype
-   * @mobx action
-   */
-  @action changeContent(content){
-    this.contents = content
-  }
-  /**
-   * @name changeConfirmFn
-   * @description Confirmation function updater
-   * @method changeConfirmFn
-   * @memberof ModalModel.prototype
-   * @mobx action
-   */
-  @action changeConfirmFn(confirmFn){
-    this.confirmOnClick = confirmFn
   }
 }
 </code></pre>
