@@ -15,6 +15,11 @@ export default class CustomerSummary extends Component {
     let pastDueContent1 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr1}`
     let pastDueContent2 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr2}`
 
+    let billAddressStr1 = 'Address Line 2: '
+    let billAddressStr2 = this.props.website.currentCustomer.shipAddr2
+    let billAddressContent1 = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : billAddressStr1}`
+    let billAddressContent2 = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : billAddressStr2}`
+
     return (
       <div>
         <div className="container">
@@ -39,8 +44,28 @@ export default class CustomerSummary extends Component {
             <div className="col-lg-6">{websiteContent2}</div>
           </div>
           <div className="row">
-            <div className="col-sm-2"><strong>{'Ship Address: '}</strong></div>
-            <div className="col-lg-6">{this.props.website.currentCustomer.formattedShipAddress}</div>
+            <div className="col-sm-2"><strong>{'Address: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.shipAddr.shipAddr1}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{billAddressContent1}</strong></div>
+            <div className="col-lg-6">{billAddressContent2}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'City: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.shipAddr.shipCity}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'State: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.shipAddr.shipState}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'Zip Code: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.shipAddr.shipZip}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'Country: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.shipAddr.shipCountry}</div>
           </div>
           <div className="row">
             <div className="col-sm-2"><strong>{'Bill Address: '}</strong></div>
