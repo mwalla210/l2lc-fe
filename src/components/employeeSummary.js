@@ -23,35 +23,43 @@ export default class EmployeeSummary extends Component {
           closeFn={this.props.page.summaryModel.deleteModal.closeModal}
           content="This action cannot be undone."
         />
-      <div className="container">
-      <div className="row">
-        <div className="col-sm-2"><strong>{'First Name: '}</strong></div>
-        <div className="col-sm-2">{this.props.website.currentEmployee.firstName}</div>
-      </div>
-      <div className="row">
-        <div className="col-sm-2"><strong>{'Last Name: '}</strong></div>
-        <div className="col-sm-2">{this.props.website.currentEmployee.lastName}</div>
-      </div>
-      </div>
-      <br></br>
-       <Barcode
-        imageDomID={this.props.website.currentEmployee.barcodeDomID}
-        barcodeID={this.props.website.currentEmployee.barcodeScanID}
-       />
-       <br/>
-       <br></br>
-       <ButtonToolbar>
-         <ButtonGroup>
-           <DropdownButton bsStyle="primary" title="Actions" id="dropdown-primary">
-             <MenuItem onSelect={this.props.page.employeeEditPage}>Edit</MenuItem>
-             <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
-           </DropdownButton>
-         </ButtonGroup>
-         <ButtonGroup>
-           <Button type="button" className="btn btn-default" onClick={this.printClick}>Print</Button>
-         </ButtonGroup>
-       </ButtonToolbar>
-      </div>
-    )
+        <div className="row">
+          <div className="col-sm-4 col-sm-offset-4">
+            <div className="row">
+              <div className="col-lg-12 col-lg-offset-2">
+                <div className="row">
+                  <div className="col-sm-4"><strong>{'First Name: '}</strong></div>
+                  <div className="col-sm-4">{this.props.website.currentEmployee.firstName}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-4"><strong>{'Last Name: '}</strong></div>
+                  <div className="col-sm-4">{this.props.website.currentEmployee.lastName}</div>
+                </div>
+                <br/>
+                </div>
+                <div style={{textAlign: 'center'}}>
+                 <Barcode
+                  imageDomID={this.props.website.currentEmployee.barcodeDomID}
+                  barcodeID={this.props.website.currentEmployee.barcodeScanID}
+                 />
+                 <br/>
+                 <br/>
+                 <ButtonToolbar>
+                   <ButtonGroup style={{float: 'inherit'}}>
+                     <DropdownButton bsStyle="primary" title="Actions" id="dropdown-primary">
+                       <MenuItem onSelect={this.props.page.employeeEditPage}>Edit</MenuItem>
+                       <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
+                     </DropdownButton>
+                   </ButtonGroup>
+                   <ButtonGroup style={{float: 'inherit'}}>
+                     <Button type="button" className="btn btn-default" onClick={this.printClick}>Print</Button>
+                   </ButtonGroup>
+                 </ButtonToolbar>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
   }
-}

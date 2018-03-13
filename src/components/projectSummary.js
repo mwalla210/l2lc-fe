@@ -114,7 +114,7 @@ export default class ProjectSummary extends Component {
           <div className="col-sm-4 col-sm-offset-4">
             <h4 style={{textAlign: 'center'}}>{projectTitleContent}</h4>
             <div className="row">
-              <div className="col-sm-8 col-sm-offset-2">
+              <div className="col-sm-12 col-sm-offset-2">
                 <div className="row">
                   <div className="col-sm-6"><strong>{'ID: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentProject.id}</div>

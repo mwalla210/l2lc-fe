@@ -124,4 +124,103 @@ export default class CustomerModel {
       return `${this.billAddr.billAddr1}\n${(this.billAddr.billAddr2) ? `${this.billAddr.billAddr2}\n` : ''}${this.billAddr.billCity}, ${(this.billAddr.billState) ? `${this.billAddr.billState}\n` : ''}${this.billAddr.billCountry}\n${this.billAddr.billZip}`
     }
   }
+
+  /**
+  * @name getBillAddressLine1
+  * @description Provides string of billing address line 1 (if billIsSame, uses ship address instead)
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx computed
+  */
+  @computed get billAddressLine1(){
+    if (this.billIsSame == true){
+      return `${this.shipAddr.shipAddr1}`
+    }
+    else{
+      return `${this.billAddr.billAddr1}`
+    }
+  }
+
+  /**
+  * @name getBillAddressLine2
+  * @description Provides string of billing address line 2 (if billIsSame, uses ship address instead)
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx computed
+  */
+  @computed get billAddressLine2(){
+    if (this.shipAddr.shipAddr2 != null || this.billAddr.billAddr2 != null){
+      if (this.billIsSame == true){
+        return `${this.shipAddr.shipAddr1}`
+      }
+      else{
+        return `${this.billAddr.billAddr1}`
+      }
+    }
+    return null
+  }
+
+  /**
+  * @name getBillAddressCity
+  * @description Provides string of billing city (if billIsSame, uses ship city instead)
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx computed
+  */
+  @computed get billAddressCity(){
+    if (this.billIsSame == true){
+      return `${this.shipAddr.shipCity}`
+    }
+    else{
+      return `${this.billAddr.billCity}`
+    }
+  }
+
+  /**
+  * @name getBillAddressState
+  * @description Provides string of billing state (if billIsSame, uses ship state instead)
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx computed
+  */
+  @computed get billAddressState(){
+    if (this.billIsSame == true){
+      return `${this.shipAddr.shipState}`
+    }
+    else{
+      return `${this.billAddr.billState}`
+    }
+  }
+
+  /**
+  * @name getBillAddressZip
+  * @description Provides string of billing zip (if billIsSame, uses ship zip instead)
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx computed
+  */
+  @computed get billAddressZip(){
+    if (this.billIsSame == true){
+      return `${this.shipAddr.shipZip}`
+    }
+    else{
+      return `${this.billAddr.billZip}`
+    }
+  }
+
+  /**
+  * @name getBillAddressCountry
+  * @description Provides string of billing country (if billIsSame, uses ship country instead)
+  * @memberof CustomerModel.prototype
+  * @method
+  * @mobx computed
+  */
+  @computed get billAddressCountry(){
+    if (this.billIsSame == true){
+      return `${this.shipAddr.shipCountry}`
+    }
+    else{
+      return `${this.billAddr.billCountry}`
+    }
+  }
 }
