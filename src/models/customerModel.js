@@ -151,10 +151,10 @@ export default class CustomerModel {
   @computed get billAddressLine2(){
     if (this.shipAddr.shipAddr2 != null || this.billAddr.billAddr2 != null){
       if (this.billIsSame == true){
-        return `${this.shipAddr.shipAddr1}`
+        return `${this.shipAddr.shipAddr2}`
       }
       else{
-        return `${this.billAddr.billAddr1}`
+        return `${this.billAddr.billAddr2}`
       }
     }
     return null

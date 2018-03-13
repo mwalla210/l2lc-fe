@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
-import {Button, DropdownButton, MenuItem, ButtonToolbar, ButtonGroup, Grid} from 'react-bootstrap'
+import {Button, DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 import DeleteModal from './deleteModal'
 import FieldModal from './fieldModal'
 import PromptModal from './promptModal'
