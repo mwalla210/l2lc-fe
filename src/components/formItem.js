@@ -24,7 +24,7 @@ export default class FormItem extends Component {
       }
     }
     return (
-        <div style={{width:'50%'}} className="form-group" {...disabledStyle}>
+        <div className="form-group" {...disabledStyle}>
           <div style={{color:'orange'}} className="alert alert-warning" role="alert" {...alertStyle}>
             <div style={{color:'orange'}}><strong>Warning!</strong>{` ${this.props.errorText}`}</div>
           </div>

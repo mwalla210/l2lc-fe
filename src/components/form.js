@@ -52,7 +52,7 @@ export default class Form extends Component {
           content="There was an error with the return value from the server"
           confirmClass="btn-danger"
         />
-        <form style={{marginLeft: '33%'}}>
+        <form className="col-sm-6 col-sm-offset-3">
           {this.props.page.formModel.fields.map((field, index) => {
             let first = true
             if(index != 0){
