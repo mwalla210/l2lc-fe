@@ -560,9 +560,10 @@ export default class CustomerFormModel extends FormModel{
         }
       Website.createCustomer(body)
       .then((response) => {
-        if(response){
+        if(response == null){
           this.onClickNav()
-        } else{
+        } else {
+          this.setError(response)
           this.openModal()
         }
       })

@@ -14,6 +14,7 @@ export default class PromptModal extends Component {
     open: PropTypes.bool.isRequired,
     closeFn: PropTypes.func.isRequired,
     content: PropTypes.string.isRequired,
+    primaryButtonText: PropTypes.string
   }
 
   constructor(props){
@@ -36,6 +37,10 @@ export default class PromptModal extends Component {
   }
 
   render(){
+    let confirmText = 'Confirm'
+    if(this.props.primaryButtonText != null){
+      confirmText = this.props.primaryButtonText
+    }
     let confirm = {}
     if (this.props.confirmClass)
       confirm = {
@@ -77,7 +82,7 @@ export default class PromptModal extends Component {
             Close
           </Button> : null)}
           <Button {...confirm} onClick={this.confirm}>
-            Confirm
+            {confirmText}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -72,10 +72,13 @@ export default class API {
   static createCustomer(customer){
     return API.create('customer/create', customer)
     .then(response => {
-      if(response){
+      if(response === 406){
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
         return API.customerModelize(response)
+      } else {
+        return 'Unexpected error'
       }
-      return null
     })
   }
 
@@ -175,10 +178,13 @@ export default class API {
   static createProject(project){
     return API.create('project/create', project)
     .then(response => {
-      if(response){
+      if(response === 406){
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
         return API.projectModelize(response)
+      } else {
+        return 'Unexpected error'
       }
-      return null
     })
   }
 
@@ -238,10 +244,13 @@ export default class API {
   static createEmployee(employee){
     return API.create('employee/create', employee)
     .then(response => {
-      if(response){
+      if(response === 406){
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
         return API.employeeModelize(response)
+      } else {
+        return 'Unexpected error'
       }
-      return null
     })
   }
 
@@ -311,7 +320,7 @@ export default class API {
         return res.json()
       }
       else {
-        return null
+        return res.status
       }
     })
   }

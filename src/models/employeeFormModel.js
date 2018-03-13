@@ -96,9 +96,10 @@ export default class EmployeeFormModel extends FormModel{
       })
       Website.createEmployee(body)
       .then((response) => {
-        if(response){
+        if(response == null){
           this.onClickNav()
-        } else{
+        } else {
+          this.setError(response)
           this.openModal()
         }
       })

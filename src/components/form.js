@@ -42,15 +42,16 @@ export default class Form extends Component {
     return(
       <div>
         <PromptModal
-          headerClass="bg-danger"
+          headerClass="bg-alert"
           title="API Return Error"
           titleImage="warning"
-          titleClass="text-danger"
+          titleClass="text-alert"
           confirmOnClick={this.props.page.formModel.confirmAndClose}
           open={this.props.page.formModel.modalOpen}
           closeFn={this.props.page.formModel.closeModal}
-          content="There was an error with the return value from the server"
-          confirmClass="btn-danger"
+          content={this.props.page.formModel.errorResponse}
+          confirmClass="btn-alert"
+          primaryButtonText="Ok"
         />
         <form className="col-sm-6 col-sm-offset-3">
           {this.props.page.formModel.fields.map((field, index) => {
