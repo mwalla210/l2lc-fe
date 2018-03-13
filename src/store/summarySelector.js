@@ -20,6 +20,7 @@ class SummarySelector {
    * @method getProject
    * @param  {String}   type String for switch
    * @return {Component}
+   * @memberof SummarySelector.prototype
    */
   getProject(deleteOnClick, completeOnClick){
     return {model: new ProjectSummaryModel(deleteOnClick, completeOnClick), component: ProjectSummary}
@@ -30,6 +31,7 @@ class SummarySelector {
    * @method getEmployee
    * @param  {String}   type String for switch
    * @return {Component}
+   * @memberof SummarySelector.prototype
    */
   getEmployee(deleteOnClick){
     return {model: new EmployeeSummaryModel(deleteOnClick), component: EmployeeSummary}

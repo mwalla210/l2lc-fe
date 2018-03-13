@@ -9,6 +9,7 @@ export default class ButtonPrimary extends Component {
     text: PropTypes.string,
     className: PropTypes.string,
     type: PropTypes.string,
+    style: PropTypes.object
   }
 
   render(){
@@ -19,6 +20,7 @@ export default class ButtonPrimary extends Component {
         onClick={this.props.onClick}
         text={this.props.text}
         type={this.props.type}
+        style={this.props.style}
       />
     )
   }
