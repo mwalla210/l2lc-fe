@@ -28,28 +28,28 @@ export default class CustomerSummary extends Component {
     return (
     <div>
       <div className="row">
-        <div className="col-sm-6 col-sm-offset-3">
+        <div className="col-sm-8 col-sm-offset-2">
           <h4 style={{textAlign: 'center'}}>{this.props.website.currentCustomer.companyName}</h4>
           <div className="row">
-            <div className="col-lg-12 col-lg-offset-2">
+            <div className="col-lg-12 col-lg-offset-3">
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'ID: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'ID: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.id}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'Phone Number: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'Phone Number: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.phone}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'Email: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'Email: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.email}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{websiteContent1}</strong></div>
+                  <div className="col-sm-3"><strong>{websiteContent1}</strong></div>
                   <div className="col-sm-6">{websiteContent2}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{pastDueContent1}</strong></div>
+                  <div className="col-sm-3"><strong>{pastDueContent1}</strong></div>
                   <div className="col-sm-6">{pastDueContent2}</div>
                 </div>
               </div>
@@ -57,29 +57,29 @@ export default class CustomerSummary extends Component {
             <br/>
             <h4 style={{textAlign: 'center'}}>{'Shipping Info'}</h4>
             <div className="row">
-              <div className="col-lg-12 col-lg-offset-2">
+              <div className="col-lg-12 col-lg-offset-3">
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'Address: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'Address: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipAddr1}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{shipAddressContent1}</strong></div>
+                  <div className="col-sm-3"><strong>{shipAddressContent1}</strong></div>
                   <div className="col-sm-6">{shipAddressContent2}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'City: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'City: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipCity}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'State: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'State: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipState}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'Zip Code: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'Zip Code: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipZip}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'Country: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'Country: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipCountry}</div>
                 </div>
               </div>
@@ -87,29 +87,29 @@ export default class CustomerSummary extends Component {
             <br/>
             <h4 style={{textAlign: 'center'}}>{'Billing Info'}</h4>
             <div className="row">
-              <div className="col-lg-12 col-lg-offset-2">
+              <div className="col-lg-12 col-lg-offset-3">
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'Address: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'Address: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressLine1}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{billAddressContent1}</strong></div>
+                  <div className="col-sm-3"><strong>{billAddressContent1}</strong></div>
                   <div className="col-sm-6">{billAddressContent2}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'City: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'City: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressCity}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'State: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'State: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressState}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'Zip Code: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'Zip Code: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressZip}</div>
                 </div>
                 <div className="row">
-                  <div className="col-sm-6"><strong>{'Country: '}</strong></div>
+                  <div className="col-sm-3"><strong>{'Country: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressCountry}</div>
                 </div>
                 <br/>
