@@ -110,76 +110,84 @@ export default class ProjectSummary extends Component {
           closeFn={this.props.page.summaryModel.completeModal.closeModal}
           content="This action cannot be undone."
         />
-        <div className="container">
-        <h4>{projectTitleContent}</h4>
         <div className="row">
-          <div className="col-sm-2"><strong>{'ID: '}</strong></div>
-          <div className="col-sm-2">{this.props.website.currentProject.id}</div>
+          <div className="col-sm-4 col-sm-offset-4">
+            <h4 style={{textAlign: 'center'}}>{projectTitleContent}</h4>
+            <div className="row">
+              <div className="col-sm-8 col-sm-offset-2">
+                <div className="row">
+                  <div className="col-sm-6"><strong>{'ID: '}</strong></div>
+                  <div className="col-sm-6">{this.props.website.currentProject.id}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{'Cost Center: '}</strong></div>
+                  <div className="col-sm-6">{this.props.website.currentProject.costCenterTitle}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{'Project Type: '}</strong></div>
+                  <div className="col-sm-6">{this.props.website.currentProject.jobTypeTitle}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{custNameContent1}</strong></div>
+                  <div className="col-sm-6">{custNameContent2}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{'Priority: '}</strong></div>
+                  <div className="col-sm-6">{this.props.website.currentProject.priority}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{'Status: '}</strong></div>
+                  <div className="col-sm-6">{this.props.website.currentProject.status}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{timeSpentContent1}</strong></div>
+                  <div className="col-sm-6">{timeSpentContent2}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{partCountContent1}</strong></div>
+                  <div className="col-sm-6">{partCountContent2}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{descrStrContent1}</strong></div>
+                  <div className="col-sm-6">{descrStrContent2}</div>
+                </div>
+                <div className="row">
+                  <div className="col-sm-6"><strong>{refNumContent1}</strong></div>
+                  <div className="col-sm-6">{refNumContent2}</div>
+                </div>
+              </div>
+            </div>
+            <div style={{textAlign: 'center'}}>
+              <Barcode
+               imageDomID={this.props.website.currentProject.barcodeDomID}
+               barcodeID={this.props.website.currentProject.barcodeScanID}
+              />
+              <br/>
+              <br/>
+              <ButtonToolbar>
+                <ButtonGroup style={{float: 'inherit'}}>
+                  <DropdownButton bsStyle="info" title="More..." id="dropdown-info">
+                    <MenuItem onSelect={this.tasksClick}>Tasks</MenuItem>
+                    <MenuItem onSelect={this.timeEntries}>Time Entries</MenuItem>
+                  </DropdownButton>
+                </ButtonGroup>
+                <ButtonGroup style={{float: 'inherit'}}>
+                  <DropdownButton bsStyle="primary" title="Actions..." id="dropdown-primary">
+                    <MenuItem onSelect={this.reworkClick}>Add Rework</MenuItem>
+                    <MenuItem onSelect={this.holdClick}>{holdStr}</MenuItem>
+                    <MenuItem onSelect={this.props.page.projectEditPage}>Edit Details</MenuItem>
+                    {(this.props.website.currentProject.customer.id) ? <MenuItem onSelect={this.props.page.changeCustomerPage}>Edit Customer</MenuItem> : null}
+                    <MenuItem onSelect={this.props.page.summaryModel.completeModal.openModal}>Complete</MenuItem>
+                    <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
+                  </DropdownButton>
+                </ButtonGroup>
+                <ButtonGroup style={{float: 'inherit'}}>
+                  <Button type="button" className="btn btn-default" onClick={this.printClick}>Print</Button>
+                </ButtonGroup>
+              </ButtonToolbar>
+            </div>
+          </div>
         </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{'Cost Center: '}</strong></div>
-          <div className="col-sm-2">{this.props.website.currentProject.costCenterTitle}</div>
-        </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{'Project Type: '}</strong></div>
-          <div className="col-sm-2">{this.props.website.currentProject.jobTypeTitle}</div>
-        </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{custNameContent1}</strong></div>
-          <div className="col-sm-2">{custNameContent2}</div>
-        </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{'Priority: '}</strong></div>
-          <div className="col-sm-2">{this.props.website.currentProject.priority}</div>
-        </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{'Status: '}</strong></div>
-          <div className="col-sm-2">{this.props.website.currentProject.status}</div>
-        </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{timeSpentContent1}</strong></div>
-          <div className="col-sm-2">{timeSpentContent2}</div>
-        </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{partCountContent1}</strong></div>
-          <div className="col-sm-2">{partCountContent2}</div>
-        </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{descrStrContent1}</strong></div>
-          <div className="col-sm-2">{descrStrContent2}</div>
-        </div>
-        <div className="row">
-          <div className="col-sm-2"><strong>{refNumContent1}</strong></div>
-          <div className="col-sm-2">{refNumContent2}</div>
-        </div>
-        </div>
-        <Barcode
-         imageDomID={this.props.website.currentProject.barcodeDomID}
-         barcodeID={this.props.website.currentProject.barcodeScanID}
-        />
-        <br/>
-        <br></br>
-        <ButtonToolbar>
-          <ButtonGroup>
-            <DropdownButton bsStyle="info" title="More..." id="dropdown-info">
-              <MenuItem onSelect={this.tasksClick}>Tasks</MenuItem>
-              <MenuItem onSelect={this.timeEntries}>Time Entries</MenuItem>
-            </DropdownButton>
-          </ButtonGroup>
-          <ButtonGroup>
-            <DropdownButton bsStyle="primary" title="Actions..." id="dropdown-primary">
-              <MenuItem onSelect={this.reworkClick}>Add Rework</MenuItem>
-              <MenuItem onSelect={this.holdClick}>{holdStr}</MenuItem>
-              <MenuItem onSelect={this.props.page.projectEditPage}>Edit Details</MenuItem>
-              {(this.props.website.currentProject.customer.id) ? <MenuItem onSelect={this.props.page.changeCustomerPage}>Edit Customer</MenuItem> : null}
-              <MenuItem onSelect={this.props.page.summaryModel.completeModal.openModal}>Complete</MenuItem>
-              <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
-            </DropdownButton>
-          </ButtonGroup>
-          <ButtonGroup>
-            <Button type="button" className="btn btn-default" onClick={this.printClick}>Print</Button>
-          </ButtonGroup>
-        </ButtonToolbar>
       </div>
     )
   }
