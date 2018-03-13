@@ -5,16 +5,52 @@ import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootst
 @inject ('website', 'page')
 export default class CustomerSummary extends Component {
   render() {
+    let websiteStr1 = 'Website: '
+    let websiteStr2 = this.props.website.currentCustomer.website
+    let websiteContent1 = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr1}`
+    let websiteContent2 = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr2}`
+
+    let pastDueStr1 = 'Past due: '
+    let pastDueStr2 = this.props.website.currentCustomer.website
+    let pastDueContent1 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr1}`
+    let pastDueContent2 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr2}`
+
     return (
       <div>
-        <p>{`ID: ${this.props.website.currentCustomer.id}`}</p>
-        <p>{`Company Name: ${this.props.website.currentCustomer.companyName}`}</p>
-        <p>{`Phone Number: ${this.props.website.currentCustomer.phone}`}</p>
-        <p>{`Email: ${this.props.website.currentCustomer.email}`}</p>
-        <p>{(this.props.website.currentCustomer.website == '') ? '' : `Website: ${this.props.website.currentCustomer.website}`}</p>
-        <p>{`Ship addr: ${this.props.website.currentCustomer.formattedShipAddress}`}</p>
-        <p>{`Bill addr: ${this.props.website.currentCustomer.formattedBillAddress}`}</p>
-        <p>{`Past due: ${this.props.website.currentCustomer.pastDue}`}</p>
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-2"><strong>{'ID: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.id}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'Company Name: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.companyName}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'Phone Number: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.phone}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'Email: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.email}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{websiteContent1}</strong></div>
+            <div className="col-lg-6">{websiteContent2}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'Ship Address: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.formattedShipAddress}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{'Bill Address: '}</strong></div>
+            <div className="col-lg-6">{this.props.website.currentCustomer.formattedBillAddress}</div>
+          </div>
+          <div className="row">
+            <div className="col-sm-2"><strong>{pastDueContent1}</strong></div>
+            <div className="col-lg-6">{pastDueContent2}</div>
+          </div>
+        </div>
         <br></br>
         <ButtonToolbar>
           <ButtonGroup>

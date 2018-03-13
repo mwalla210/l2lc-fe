@@ -23,8 +23,17 @@ export default class EmployeeSummary extends Component {
           closeFn={this.props.page.summaryModel.deleteModal.closeModal}
           content="This action cannot be undone."
         />
-       <p>First Name: {this.props.website.currentEmployee.firstName}</p>
-       <p>Last Name: {this.props.website.currentEmployee.lastName}</p>
+      <div className="container">
+      <div className="row">
+        <div className="col-sm-2"><strong>{'First Name: '}</strong></div>
+        <div className="col-sm-2">{this.props.website.currentEmployee.firstName}</div>
+      </div>
+      <div className="row">
+        <div className="col-sm-2"><strong>{'Last Name: '}</strong></div>
+        <div className="col-sm-2">{this.props.website.currentEmployee.lastName}</div>
+      </div>
+      </div>
+      <br></br>
        <Barcode
         imageDomID={this.props.website.currentEmployee.barcodeDomID}
         barcodeID={this.props.website.currentEmployee.barcodeScanID}
