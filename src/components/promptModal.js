@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
+import ButtonDefault from './buttonDefault'
 
 export default class PromptModal extends Component {
   static propTypes = {
@@ -78,12 +79,8 @@ export default class PromptModal extends Component {
         </Modal.Body>
         <Modal.Footer>
           {((this.props.denyOnClick) ?
-          <Button onClick={this.deny}>
-            Close
-          </Button> : null)}
-          <Button {...confirm} onClick={this.confirm}>
-            {confirmText}
-          </Button>
+          <ButtonDefault onClick={this.deny} text="Close"/> : null)}
+          <ButtonDefault {...confirm} onClick={this.confirm} text={confirmText}/>
         </Modal.Footer>
       </Modal>
     )

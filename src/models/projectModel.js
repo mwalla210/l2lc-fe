@@ -41,7 +41,7 @@ export default class ProjectModel {
       descr,
       refNum,
       dateFinished,
-      customer, // TODO: initialize Customer object needed here?
+      customer,
       // Defaults
       processArea: '',
       hold: {

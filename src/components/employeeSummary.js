@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
-import {Button, DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
+import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 import DeleteModal from './deleteModal'
+import ButtonDefault from './buttonDefault'
 
 @inject ('website', 'page') @observer
 export default class EmployeeSummary extends Component {
@@ -52,7 +53,7 @@ export default class EmployeeSummary extends Component {
                      </DropdownButton>
                    </ButtonGroup>
                    <ButtonGroup style={{float: 'inherit'}}>
-                     <Button type="button" className="btn btn-default" onClick={this.printClick}>Print</Button>
+                     <ButtonDefault onClick={this.printClick} text="Print"/>
                    </ButtonGroup>
                  </ButtonToolbar>
                 </div>

@@ -269,32 +269,32 @@ const fields = [
           id: 'projectType',
           options: [{title: 'Select...'}, {title: 'Piston'}, {title: 'Turbo'}, {title: 'Rotor'}, {title: 'Pump'}, {title: 'Avaslick'}, {title: 'Specialty'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'ISO'}, {title: 'Production'}, {title: 'Research and Development'}, {title: 'Other'}],
           required: true,
-          disabled: false
+          disabled: true
         },
         {
           id: 'partCount',
           required: false,
-          disabled: false
+          disabled: true
         },
         {
           id: 'projectTitle',
           required: true,
-          disabled: false
+          disabled: true
         },
         {
           id: 'priority',
           required: true,
-          disabled: false
+          disabled: true
         },
         {
           id: 'description',
           required: false,
-          disabled: false
+          disabled: true
         },
         {
           id: 'referenceNumber',
           required: false,
-          disabled: false
+          disabled: true
         }
       ]
     }

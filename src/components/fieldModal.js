@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal, Button } from 'react-bootstrap'
+import { Modal } from 'react-bootstrap'
+import ButtonPrimary from './buttonPrimary'
+import ButtonDefault from './buttonDefault'
 
 export default class FieldModal extends Component {
   static propTypes = {
@@ -41,10 +43,8 @@ export default class FieldModal extends Component {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.hide}>Close</Button>
-          <Button className="btn btn-primary" onClick={this.props.submitButton.onClick}>
-            {this.props.submitButton.title || 'Submit'}
-          </Button>
+          <ButtonDefault onClick={this.hide} text="Close"/>
+          <ButtonPrimary onClick={this.props.submitButton.onClick} text={this.props.submitButton.title || 'Submit'}/>
         </Modal.Footer>
       </Modal>
     )

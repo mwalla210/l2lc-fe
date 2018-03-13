@@ -87,7 +87,7 @@ class Page {
    * @mobx action
    */
   @action selectCustomerPage(){
-    this.title = 'Select Customer'
+    this.title = 'Select New Project Customer'
     this.setTableModel(TableSelector.getSelectCreateCustomer(this.newProjectNewCustomerPage, this.projectSummaryPage))
     this.content = Table
   }
@@ -128,7 +128,7 @@ class Page {
    * @mobx action
    */
   @action changeCustomerPage(){
-    this.title = 'Change Customer'
+    this.title = 'Change Project Customer'
     this.setTableModel(TableSelector.getSelectUpdateCustomer(this.currentProjectNewCustomerPage, this.projectSummaryPage))
     this.content = Table
   }

@@ -6,6 +6,9 @@ import TextAreaField from './textAreaField'
 import CheckboxField from './checkboxField'
 import FormItem from './formItem'
 import PromptModal from './promptModal'
+import ButtonPrimary from './buttonPrimary'
+import ButtonDefault from './buttonDefault'
+import {ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 
 @inject('page') @observer
 export default class Form extends Component {
@@ -97,14 +100,22 @@ export default class Form extends Component {
               </FormItem>
             )
           })}
-          {this.props.page.formModel.secondaryButton &&
-            <button style={{margin:10}} className="btn btn-secondary" type="button" onClick={this.secondaryOnClick}>
-              {this.props.page.formModel.secondaryButton.title}
-            </button>
-          }
-          <button style={{margin:10}} className="btn btn-primary" disabled={this.props.page.formModel.buttonDisabled} onClick={this.primaryOnClick}>
-            {this.props.page.formModel.primaryButton.title}
-          </button>
+          <div style={{textAlign: 'center'}}>
+            <ButtonToolbar>
+              {this.props.page.formModel.secondaryButton &&
+                <ButtonGroup style={{float: 'inherit'}}>
+                  <ButtonDefault onClick={this.secondaryOnClick} text={this.props.page.formModel.secondaryButton.title}/>
+                </ButtonGroup>
+              }
+              <ButtonGroup style={{float: 'inherit'}}>
+                <ButtonPrimary
+                  disabled={this.props.page.formModel.buttonDisabled}
+                  onClick={this.primaryOnClick}
+                  text={this.props.page.formModel.primaryButton.title}
+                />
+              </ButtonGroup>
+            </ButtonToolbar>
+          </div>
         </form>
       </div>
     )

@@ -130,7 +130,6 @@ class Website {
    * @method createCustomer
    * @param  {Customer}       customer Finalized Customer to create in database
    * @mobx action
-   * @todo Implement function
    */
   @action createCustomer(customer){
     let jsonCustomer = JSON.stringify(customer)
@@ -172,7 +171,6 @@ class Website {
    * @memberof Website.prototype
    * @method createTimeEntry
    * @mobx action
-   * @todo Implement function; pass/format input
    */
   @action createTimeEntry(){
     let timeEnter = {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ButtonPrimary from './buttonPrimary'
 
 export default class TableButton extends Component {
   static propTypes = {
@@ -9,14 +10,11 @@ export default class TableButton extends Component {
 
   render() {
     return (
-      <button
-        type="button"
+      <ButtonPrimary
         style={{float: 'right', marginBottom: '10px', marginLeft: '10px'}}
-        className="btn btn-primary"
         onClick={this.props.onClick}
-      >
-          {this.props.title}
-      </button>
+        text={this.props.title}
+      />
     )
   }
 }
