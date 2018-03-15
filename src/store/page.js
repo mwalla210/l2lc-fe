@@ -167,17 +167,24 @@ class Page {
    */
   @action projectSummaryPage(){
     this.title = 'Project Summary'
-    let deleteFunc = () => {
-      Website.updateProjectStatus(Website.currentProject.id, 'Dropped')
-      .then(() => this.projectsMenuItem())
-    }
     let completeFunc = () => {
       Website.updateProjectStatus(Website.currentProject.id, 'Completed')
       .then(() => this.projectsMenuItem())
     }
-    let summaryObject = SummarySelector.getProject(deleteFunc,completeFunc)
+    let summaryObject = SummarySelector.getProject(this.projectDeleteFn,completeFunc)
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)
+  }
+
+  /**
+   * @name projectDeleteFn
+   * @description Drops a project
+   * @method projectDeleteFn
+   * @memberof Page.prototype
+   */
+  projectDeleteFn(){
+    Website.updateProjectStatus(Website.currentProject.id, 'Dropped')
+    .then(() => this.projectsMenuItem())
   }
 
   // Page Changes - Projects List, Editing
@@ -204,7 +211,7 @@ class Page {
    */
   @action projectsMenuItem(){
     this.title = 'Projects'
-    this.setTableModel(TableSelector.getProject(this.projectSummaryPage, this.projectEditPage))
+    this.setTableModel(TableSelector.getProject(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn))
     this.content = Table
   }
 
@@ -377,8 +384,7 @@ class Page {
     */
    @action employeeSummaryPage(){
      this.title = 'Employee Summary'
-     let deleteFunc = () => console.log('confirm')
-     let summaryObject = SummarySelector.getEmployee(deleteFunc)
+     let summaryObject = SummarySelector.getEmployee()
      this.content = summaryObject.component
      this.setSummaryModel(summaryObject.model)
    }

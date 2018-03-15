@@ -97,32 +97,34 @@ class Website {
    * @mobx action
    */
   @action createProject(project){
-     let jsonProject = JSON.stringify(project)
-     console.log('Create project entry in API with:', jsonProject)
-     return API.createProject(jsonProject)
-     .then(response => {
-       if(typeof(response) === 'string'){
-         return response
-       } else {
-         this.setProject(response)
-         return null
-       }
-     })
-   }
-   /**
-    * @name updateProjectStatus
-    * @description Sends the id and status in POST to API to update project's status in database
-    * @memberof Website.prototype
-    * @method createProject
-    * @param  {Project}      project Finalized Project to create in database
-    * @mobx action
-    */
-    @action updateProjectStatus(id, status){
-      return API.updateProjectStatus(id, status)
-      .then(() => {
-        return true
-      })
-    }
+    let jsonProject = JSON.stringify(project)
+    console.log('Create project entry in API with:', jsonProject)
+    return API.createProject(jsonProject)
+    .then(response => {
+      if(typeof(response) === 'string'){
+        return response
+      } else {
+        if (response.customer.id)
+          response.customer = this.currentCustomer
+        this.setProject(response)
+        return null
+      }
+    })
+  }
+  /**
+   * @name updateProjectStatus
+   * @description Sends the id and status in POST to API to update project's status in database
+   * @memberof Website.prototype
+   * @method createProject
+   * @param  {Project}      project Finalized Project to create in database
+   * @mobx action
+   */
+  @action updateProjectStatus(id, status){
+    return API.updateProjectStatus(id, status)
+    .then(() => {
+      return true
+    })
+  }
   /**
    * @name createCustomer
    * @description Sends the formatted Customer in POST to API to add entry to database; sets this.currentCustomer

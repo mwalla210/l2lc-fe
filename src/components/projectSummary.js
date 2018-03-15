@@ -57,7 +57,7 @@ export default class ProjectSummary extends Component {
     let projectTitleContent = `${(this.props.website.currentProject.title == '') ? '' : this.props.website.currentProject.title}`
 
     let custNameStr1 = 'Customer Name: '
-    let custNameStr2 = this.props.website.currentProject.customer.name
+    let custNameStr2 = this.props.website.currentProject.customer.companyName
     let custNameContent1 = `${(this.props.website.currentProject.customer.id) ? custNameStr1 : ''}`
     let custNameContent2 = `${(this.props.website.currentProject.customer.id) ? custNameStr2 : ''}`
 

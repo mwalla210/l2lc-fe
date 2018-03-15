@@ -18,8 +18,9 @@ class SummarySelector {
    * @name getProject
    * @description Chooses a summary component for a project depending on type
    * @method getProject
-   * @param  {String}   type String for switch
-   * @return {Component}
+   * @param  {Function}   deleteOnClick Delete click function
+   * @param  {Function}   completeOnClick Complete click function
+   * @return {Object}
    * @memberof SummarySelector.prototype
    */
   getProject(deleteOnClick, completeOnClick){
@@ -29,19 +30,17 @@ class SummarySelector {
    * @name getEmployee
    * @description Chooses a summary component for an employee depending on type
    * @method getEmployee
-   * @param  {String}   type String for switch
-   * @return {Component}
+   * @return {Object}
    * @memberof SummarySelector.prototype
    */
-  getEmployee(deleteOnClick){
-    return {model: new EmployeeSummaryModel(deleteOnClick), component: EmployeeSummary}
+  getEmployee(){
+    return {model: new EmployeeSummaryModel(), component: EmployeeSummary}
   }
   /**
    * @name getCustomer
    * @description Chooses a summary component for a customer depending on type
    * @method getCustomer
-   * @param  {String}   type String for switch
-   * @return {Component}
+   * @return {Object}
    * @memberof SummarySelector.prototype
    */
   getCustomer(){

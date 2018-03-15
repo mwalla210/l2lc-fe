@@ -19,16 +19,17 @@ const medPriority = '#f4e261'
   * @description Creates fields, sets correct onClick
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
+  * @property {Function} deleteClickNav Function to navigate on click of delete icon
  */
 export default class ProjectTableModel extends TableModel{
-  constructor(infoClickNav, editClickNav) {
+  constructor(infoClickNav, editClickNav, deleteClickNav) {
     super(
       null,
       API.fetchProjects,
       null,
       {
         title: 'Delete Project?',
-        confirmOnClick: () => console.log('confirm'),
+        confirmOnClick: deleteClickNav,
         content: 'This action cannot be undone.'
       },
       (state, rowInfo) => {

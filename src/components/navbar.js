@@ -60,18 +60,10 @@ export default class NavBar extends Component{
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavItem onClick={this.props.page.createNewProjMenuItem}>
-                New Project
-              </NavItem>
-              <NavItem onClick={this.props.page.projectsMenuItem}>
-                Projects List
-              </NavItem>
-              <NavItem onClick={this.props.page.projectTimeEntryMenuItem}>
-                Time Entry
-              </NavItem>
-              <NavItem onClick={this.props.page.customerInfoMenuItem}>
-                Customer Information
-              </NavItem>
+              <NavItem onClick={this.props.page.createNewProjMenuItem}>New Project</NavItem>
+              <NavItem onClick={this.props.page.projectsMenuItem}>Project Information</NavItem>
+              <NavItem onClick={this.props.page.projectTimeEntryMenuItem}>Time Entry</NavItem>
+              <NavItem onClick={this.props.page.customerInfoMenuItem}>Customer Information</NavItem>
               <NavDropdown title="Analytics" id="basic-nav-dropdown">
                 <MenuItem onClick={this.props.page.emplProductivityMenuItem}>Employee Productivity</MenuItem>
                 <MenuItem onClick={this.props.page.workstationTrackingMenuItem}>Workstation Tracking</MenuItem>
