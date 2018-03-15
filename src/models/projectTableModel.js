@@ -20,6 +20,7 @@ const medPriority = '#f4e261'
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
   * @property {Function} deleteClickNav Function to navigate on click of delete icon
+  * @extends TableModel
  */
 export default class ProjectTableModel extends TableModel{
   constructor(infoClickNav, editClickNav, deleteClickNav) {

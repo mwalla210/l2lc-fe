@@ -148,6 +148,7 @@ export default class FormModel {
    * @description Calculating button disabled state
    * @memberof FormModel.prototype
    * @method buttonDisabled
+   * @return {Boolean}
    * @mobx computed
    */
   @computed get buttonDisabled(){

@@ -17,6 +17,7 @@ useStrict(true)
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
   * @property {Function} selectNav Function to navigate on select of row (when adding customer to project)
+  * @extends TableModel
  */
 export default class CustomerTableModel extends TableModel{
   constructor(buttonClickNav, infoClickNav, editClickNav, selectNav) {

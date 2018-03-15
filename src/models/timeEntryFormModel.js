@@ -1,50 +1,19 @@
 import { useStrict, action } from 'mobx'
 import autoBind from 'auto-bind'
 import FormModel from './formModel'
+import Consts from '../consts'
 useStrict(true)
-
-const fields = [
-  {
-    type: 'textfield',
-    label: 'Project ID',
-    id: 'projectID',
-    required: true,
-    validation: (value, required) => {
-      if (required && value == '')
-        return 'Please enter a value.'
-      if (value.length > 15)
-        return 'The project ID must be less than 15 characters.'
-      if (!value.startsWith('P'))
-        return 'Project IDs must begin with the letter "P".'
-      return null
-    },
-  },
-  {
-    type: 'textfield',
-    label: 'Employee ID',
-    id: 'employeeID',
-    required: true,
-    validation: (value, required) => {
-      if (required && value == '')
-        return 'Please enter a value.'
-      if (value.length > 15)
-        return 'The employee ID must be less than 15 characters.'
-      if (!value.startsWith('E'))
-        return 'Employee IDs must begin with the letter "E".'
-      return null
-    }
-  }
-]
 
 /**
   * @name TimeEntryFormModel
   * @class TimeEntryFormModel
   * @classdesc TimeEntry initializer for form storage object
   * @description Creates fields, sets correct onClick
+  * @extends FormModel
  */
 export default class TimeEntryFormModel extends FormModel{
   constructor() {
-    super(fields,
+    super(Consts.timeEntryFields,
       {
         title: 'Continue',
         onClick: (fields) => console.log('submit button onClick', fields)
@@ -78,6 +47,6 @@ export default class TimeEntryFormModel extends FormModel{
    * @mobx action
    */
   @action resetFields(){
-    this.fields = fields
+    this.fields = Consts.timeEntryFields
   }
 }
