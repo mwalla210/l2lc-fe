@@ -14,6 +14,7 @@ useStrict(true)
   * @property {Function} onClickNav Page navigation function for successful form submission
   * @property {Function} onClickCustomerNav Page navigation function for successful form submission
   * @property {Function} onCancelNav Page navigation function for cancelled form submission
+  * @property {Function} errorClick Page navigation function error modal confirmation click
   * @extends FormModel
  */
 export default class projectFormModel extends FormModel{

@@ -3,6 +3,22 @@ import PropTypes from 'prop-types'
 import { Modal } from 'react-bootstrap'
 import ButtonDefault from './buttonDefault'
 
+/**
+ * PromptModal component; constructor binds functions
+ * @namespace PromptModal
+ * @property {String} [headerClass] Modal header style class
+ * @property {String} title Modal title
+ * @property {String} [titleImage] Modal title icon name
+ * @property {String} [titleClass] Modal title style class
+ * @property {Function} confirmOnClick Confirmation click function
+ * @property {String} [confirmClass] Confirmation button style class
+ * @property {Function} denyOnClick Deny click function
+ * @property {Boolean} open Modal open indicator
+ * @property {Function} closeFn Modal close function
+ * @property {String} content Modal content
+ * @property {String} [primaryButtonText] Modal confirm button text
+ * @extends React.Component
+ */
 export default class PromptModal extends Component {
   static propTypes = {
     headerClass: PropTypes.string,
@@ -25,18 +41,40 @@ export default class PromptModal extends Component {
     this.confirm = this.confirm.bind(this)
   }
 
+  /**
+   * Closes modal
+   * @method hide
+   * @memberof PromptModal.prototype
+   */
   hide(){
     this.props.closeFn()
   }
 
+  /**
+   * Calls denyOnClick
+   * @method deny
+   * @memberof PromptModal.prototype
+   */
   deny(){
     this.props.denyOnClick()
   }
 
+  /**
+   * Calls confirmOnClick
+   * @method confirm
+   * @memberof PromptModal.prototype
+   */
   confirm(){
     this.props.confirmOnClick()
   }
 
+  /**
+   * Renders React Bootstrap Modal component
+   * @method render
+   * @memberof PromptModal.prototype
+   * @return {Component}
+   * @see {@link https://react-bootstrap.github.io/components/modal/ ReactBootstrap.Modal}
+   */
   render(){
     let confirmText = 'Confirm'
     if(this.props.primaryButtonText != null){

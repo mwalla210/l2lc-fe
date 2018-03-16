@@ -1,6 +1,6 @@
 /**
  * @namespace Consts
- * @classdesc Contains form field lists
+ * @classdesc Contains application consts
  */
 class Consts {
   /**
@@ -979,6 +979,46 @@ class Consts {
    * @readonly
    */
   static get otherProjectSelect() {return [{title: 'Select...'}, {title: 'Other'}]}
+  /**
+   * @name doneColor
+   * @description Color to label finished projects
+   * @memberof Consts.prototype
+   * @type {String}
+   * @readonly
+   */
+  static get doneColor() {return '#49a4ff'}
+  /**
+   * @name helpColor
+   * @description Color to label projects that need assistance
+   * @memberof Consts.prototype
+   * @type {String}
+   * @readonly
+   */
+  static get helpColor() {return '#ffbf00'}
+  /**
+   * @name openColor
+   * @description Color to label open projects
+   * @memberof Consts.prototype
+   * @type {String}
+   * @readonly
+   */
+  static get openColor() {return '#57d500'}
+  /**
+   * @name highPriority
+   * @description Color to highlight high priority projects
+   * @memberof Consts.prototype
+   * @type {String}
+   * @readonly
+   */
+  static get highPriority() {return '#f4ba61'}
+  /**
+   * @name medPriority
+   * @description Color to highlight high priority projects
+   * @memberof Consts.prototype
+   * @type {String}
+   * @readonly
+   */
+  static get medPriority() {return '#f4e261'}
 }
 
 module.exports = Consts

@@ -8,7 +8,7 @@ useStrict(true)
  * @classdesc Project summary storage object
  * @property {ModalModel} deleteModal  The model for the delete modal [observable]
  * @property {ModalModel} fieldModal The model for the field modal [observable]
- * @property {ModalModel} completeModal The model for the complete modal  [observable]
+ * @property {ModalModel} completeModal The model for the complete modal [observable]
  */
 export default class ProjectSummaryModel{
   constructor(deleteOnClick, completeOnClick){

@@ -7,10 +7,8 @@ import TableActionCell from '../components/tableActionCell'
 import ProjectStatusFilter from '../components/projectStatusFilter'
 import ProjectStatusCell from '../components/projectStatusCell'
 import API from '../api'
+import Consts from '../consts'
 useStrict(true)
-
-const highPriority = '#f4ba61'
-const medPriority = '#f4e261'
 
 /**
   * @name ProjectTableModel
@@ -37,7 +35,7 @@ export default class ProjectTableModel extends TableModel{
         if (rowInfo && rowInfo.row._original.priority != 'Low'){
           return {
             style: {
-              background: rowInfo.row._original.priority == 'High' ? highPriority : medPriority
+              background: rowInfo.row._original.priority == 'High' ? Consts.highPriority : Consts.medPriority
             }
           }
         }

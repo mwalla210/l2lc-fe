@@ -7,6 +7,11 @@ import FieldModal from './fieldModal'
 import PromptModal from './promptModal'
 import ButtonDefault from './buttonDefault'
 
+/**
+ * ProjectSummary component; constructor binds functions
+ * @namespace ProjectSummary
+ * @extends React.Component
+ */
 @inject ('website', 'page') @observer
 export default class ProjectSummary extends Component {
   constructor(props){
@@ -19,12 +24,22 @@ export default class ProjectSummary extends Component {
     this.timeEntries = this.timeEntries.bind(this)
   }
 
+  /**
+   * On click handler for rework button
+   * @method reworkClick
+   * @memberof ProjectSummary.prototype
+   */
   reworkClick(){
     this.props.page.summaryModel.fieldModal.changeTitle('Add Rework')
     this.props.page.summaryModel.fieldModal.changeConfirmFn((content) => console.log('Rework', content))
     this.resetAndOpenModal()
   }
 
+  /**
+   * On click handler for hold button
+   * @method holdClick
+   * @memberof ProjectSummary.prototype
+   */
   holdClick(){
     let title = 'Add Hold'
     if (this.props.website.currentProject.hold.flag)
@@ -34,24 +49,54 @@ export default class ProjectSummary extends Component {
     this.resetAndOpenModal()
   }
 
+  /**
+   * Resets modal content and opens modal
+   * @method resetAndOpenModal
+   * @memberof ProjectSummary.prototype
+   */
   resetAndOpenModal(){
     this.props.page.summaryModel.fieldModal.changeContent('')
     this.props.page.summaryModel.fieldModal.openModal()
   }
 
+  /**
+   * On click handler for tasks button
+   * @method tasksClick
+   * @memberof ProjectSummary.prototype
+   */
   tasksClick(){
     console.log('Tasks')
   }
 
+  /**
+   * On click handler for print button
+   * @method printClick
+   * @memberof ProjectSummary.prototype
+   */
   printClick(){
     // eslint-disable-next-line no-undef
     window.print()
   }
 
+  /**
+   * On click handler for time entry button
+   * @method timeEntries
+   * @memberof ProjectSummary.prototype
+   */
   timeEntries(){
     console.log('Time Entry table')
   }
 
+  /**
+   * Renders HTML div component containing FieldModal, DeleteModal, PromptModal, project info, project barcode, and project buttons
+   * @method render
+   * @memberof ProjectSummary.prototype
+   * @return {Component}
+   * @see {@link http://lindell.me/JsBarcode/ JsBarcode}
+   * @see {@link FieldModal}
+   * @see {@link DeleteModal}
+   * @see {@link PromptModal}
+   */
   render() {
     let holdStr = `${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`
     let projectTitleContent = `${(this.props.website.currentProject.title == '') ? '' : this.props.website.currentProject.title}`

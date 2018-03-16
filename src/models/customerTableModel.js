@@ -76,6 +76,7 @@ export default class CustomerTableModel extends TableModel{
    * @method actionColumns
    * @memberof CustomerTableModel.prototype
    * @return {Array}
+   * @see {@link TableActionCell}
    */
   actionColumns(){
     let cols = this.mainColumns()
@@ -104,6 +105,7 @@ export default class CustomerTableModel extends TableModel{
    * @method noActionColumns
    * @memberof CustomerTableModel.prototype
    * @return {Array}
+   * @see {@link ButtonDefault}
    */
   noActionColumns(){
     let cols = this.mainColumns()

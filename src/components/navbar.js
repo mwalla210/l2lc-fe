@@ -3,6 +3,11 @@ import { Navbar, Nav, MenuItem, NavDropdown, NavItem } from 'react-bootstrap'
 import { inject, observer } from 'mobx-react'
 import PromptModal from './promptModal'
 
+/**
+ * NavBar component; constructor binds functions
+ * @namespace NavBar
+ * @extends React.Component
+ */
 @inject('page', 'website') @observer
 export default class NavBar extends Component{
   constructor(props){
@@ -13,10 +18,21 @@ export default class NavBar extends Component{
     this.promptDismiss = this.promptDismiss.bind(this)
   }
 
+  /**
+   * Opens log out modal
+   * @method logoutClick
+   * @memberof NavBar.prototype
+   */
   logoutClick(){
     this.props.website.logOutAlert()
   }
 
+  /**
+   * Renders log out clickable item and current user name
+   * @method renderLogOut
+   * @memberof NavBar.prototype
+   * @return {Component}
+   */
   renderLogOut(){
     return (
       <div>
@@ -31,14 +47,31 @@ export default class NavBar extends Component{
     )
   }
 
+  /**
+   * Sets user to null
+   * @method promptConfirm
+   * @memberof NavBar.prototype
+   */
   promptConfirm(){
     this.props.website.setUser(null)
   }
 
+  /**
+   * Closes log out modal
+   * @method promptDismiss
+   * @memberof NavBar.prototype
+   */
   promptDismiss(){
     this.props.website.logOutDismiss()
   }
 
+  /**
+   * Renders HTML div component containing PromptModal, NavBar
+   * @method render
+   * @memberof NavBar.prototype
+   * @see {@link PromptModal}
+   * @see {@link https://react-bootstrap.github.io/components/navbar/ ReactBootstrap.NavBar}
+   */
   render(){
     return (
       <div>

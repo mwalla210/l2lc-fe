@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+/**
+ * ButtonDefault component
+ * @namespace ButtonDefault
+ * @property {Function} onClick On click function for button
+ * @property {Boolean} [disabled] Button disabled flag
+ * @property {String} [text] Button text
+ * @property {String} [className] Button additional class name
+ * @property {String} [type='button'] Button type
+ * @property {Object} [style] Button additional styles
+ * @extends React.Component
+ */
 export default class ButtonDefault extends Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
@@ -15,6 +26,12 @@ export default class ButtonDefault extends Component {
     type: 'button'
   }
 
+  /**
+   * Renders HTML button component
+   * @method render
+   * @memberof ButtonDefault.prototype
+   * @return {Component}
+   */
   render(){
     return (
       <button

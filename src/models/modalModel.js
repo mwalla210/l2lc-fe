@@ -9,6 +9,7 @@ useStrict(true)
  * @property {Boolean} [modalOpen=false] Modal open indicator [observable]
  * @property {String} title Modal title [observable]
  * @property {String} [contents=''] Modal contents, if any (field modals) [observable]
+ * @property {Function} confirmOnClick Modal confirmation function
  */
 export default class ModalModel {
   constructor(confirmOnClick, title){

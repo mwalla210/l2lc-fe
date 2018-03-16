@@ -2,8 +2,19 @@ import React, {Component} from 'react'
 import { inject } from 'mobx-react'
 import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 
+/**
+ * CustomerSummary component
+ * @namespace CustomerSummary
+ * @extends React.Component
+ */
 @inject ('website', 'page')
 export default class CustomerSummary extends Component {
+  /**
+   * Renders HTML div component, containing customer details and buttons
+   * @method render
+   * @memberof CustomerSummary.prototype
+   * @return {Component}
+   */
   render() {
     let websiteStr1 = 'Website: '
     let websiteStr2 = this.props.website.currentCustomer.website

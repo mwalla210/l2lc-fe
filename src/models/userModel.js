@@ -34,7 +34,7 @@ export default class UserModel {
    * @return {Promise}
    * @mobx action
    */
-  @action async toggleAdmin() {
+  @action toggleAdmin() {
     console.log(`Update admin status for ${this.username} via API. Returns boolean success.`)
   }
 
@@ -47,7 +47,7 @@ export default class UserModel {
    * @return {Promise}
    * @mobx action
    */
-  @action async changePassword(newPassword) {
+  @action changePassword(newPassword) {
     console.log(`Updated password for ${this.username}.`)
   }
  }

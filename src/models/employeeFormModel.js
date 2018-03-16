@@ -11,6 +11,8 @@ useStrict(true)
   * @classdesc Employee initializer for form storage object
   * @description Creates fields, sets correct onClick
   * @property {Function} onClickNav Page navigation function for successful form submission
+  * @property {Function} onCancelNav Page navigation function for cancelled form submission
+  * @property {Function} errorClick Page navigation function for error modal confirmation click
   * @extends FormModel
  */
 export default class EmployeeFormModel extends FormModel{
