@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { inject } from 'mobx-react'
 
+/**
+ * CheckboxField component
+ * @namespace CheckboxField
+ * @property {String} id Field array index
+ * @property {Boolean} disabled Field disabled indicator
+ * @property {Boolean} value Field checked indicator
+ * @property {Function} onChange Field change function
+ * @extends React.Component
+ */
 @inject('page')
 export default class CheckboxField extends Component {
   static propTypes = {
@@ -11,17 +20,23 @@ export default class CheckboxField extends Component {
     onChange: PropTypes.func.isRequired,
   }
 
+  /**
+   * Renders HTML input component
+   * @method render
+   * @memberof CheckboxField.prototype
+   * @return {Component}
+   */
   render(){
     return (
-        <input
-          className="form-check-input"
-          disabled={this.props.disabled}
-          style={{margin: 5}}
-          type="checkbox"
-          id={this.props.id}
-          checked={this.props.value}
-          onChange={this.props.onChange}
-        />
+      <input
+        className="form-check-input"
+        disabled={this.props.disabled}
+        style={{margin: 5}}
+        type="checkbox"
+        id={this.props.id}
+        checked={this.props.value}
+        onChange={this.props.onChange}
+      />
     )
   }
 }

@@ -17,8 +17,8 @@ useStrict(true)
   * @property {Boolean} autoSubmit Forms auto-submit boolean
   * @property {Function} onChange Form's function to handle ANY field updates (time entry only usage)
   * @property {Function} errorClick Form's function to handle clicking of form error modal confirmation
-  * @property {Boolean} [modalOpen=false] Form's indicator for whether error modal is open
-  * @property {String} [errorResponse=''] Form's string field to hold error text passed in from website
+  * @property {Boolean} [modalOpen=false] Form's indicator for whether error modal is open [observable]
+  * @property {String} [errorResponse=''] Form's string field to hold error text passed in from website [observable]
  */
 export default class FormModel {
   constructor(fields, primaryButton, secondaryButton, autoSubmit, onChange, errorClick) {
@@ -90,7 +90,6 @@ export default class FormModel {
    * @mobx action
    */
   @action confirmAndClose(){
-    console.log(this)
     this.closeModal()
     if(this.errorClick){
       this.errorClick()
@@ -148,6 +147,7 @@ export default class FormModel {
    * @description Calculating button disabled state
    * @memberof FormModel.prototype
    * @method buttonDisabled
+   * @return {Boolean}
    * @mobx computed
    */
   @computed get buttonDisabled(){

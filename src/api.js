@@ -7,15 +7,10 @@ import UserModel from './models/userModel'
 const api = 'http://138.197.88.198:8080/l2lc/api/'
 
 /**
- * @name API
- * @class API
+ * @namespace API
  * @classdesc API functions for interaction with database
  */
 export default class API {
-  // Fetch should compose address of api variable and endpoint (and query params as needed)
-  // Fetch always converts res into json, then makes use of json obj
-  // Fetches for tables MUST convert their data to the proper model in the final .then statement (use fetchCustomers as an example of this)
-
   // Customers
 
   /**
@@ -24,6 +19,7 @@ export default class API {
    * @method fetchCustomers
    * @memberof API
    * @return {Promise}
+   * @async
    */
   static fetchCustomers(){
     return fetch(`${api}customer?limit=50&offset=0`)
@@ -48,6 +44,7 @@ export default class API {
    * @memberof API
    * @param  {Number}      id ID of customer to fetch
    * @return {Promise}
+   * @async
    */
   static fetchCustomer(id){
     return fetch(`${api}customer/${id}`)
@@ -68,6 +65,7 @@ export default class API {
    * @memberof API
    * @param  {Object}       customer Customer object (JSON)
    * @return {Promise}
+   * @async
    */
   static createCustomer(customer){
     return API.create('customer/create', customer)
@@ -127,6 +125,7 @@ export default class API {
    * @method fetchProjects
    * @memberof API
    * @return {Promise}
+   * @async
    */
   static fetchProjects(){
     return fetch(`${api}project?limit=50&offset=0`)
@@ -154,6 +153,7 @@ export default class API {
    * @memberof API
    * @param  {Number}     id ID of project to fetch
    * @return {Promise}
+   * @async
    */
   static fetchProject(id){
     return fetch(`${api}project/${id}`)
@@ -197,6 +197,8 @@ export default class API {
    * @return {ProjectModel}
    */
   static projectModelize(item){
+    console.log(item)
+    // Modelize customer object before providing to project
     return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
   }
 

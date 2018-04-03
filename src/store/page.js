@@ -9,8 +9,8 @@ import autoBind from 'auto-bind'
 useStrict(true)
 
 /**
- * @name Page
- * @class Page
+ * @name PageStore
+ * @class PageStore
  * @classdesc Main MobX store for page
  * @property {String} [title='Default Title'] Page title [observable]
  * @property {?Object} [content=null] Page inner content [observable]
@@ -18,7 +18,7 @@ useStrict(true)
  * @property {?FormModel} [formModel=null] Page form model, if any [observable]
  * @property {?SummaryModel} [summaryModel=null] Page summary model, if any [observable]
  */
-class Page {
+class PageStore {
   constructor() {
     let addtlProps = {
       title: 'Default Title',
@@ -35,7 +35,7 @@ class Page {
    * @name setTableModel
    * @description Sets table model
    * @method setTableModel
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @param  {TableModel}      tableModel TableModel to use for page
    * @mobx action
    */
@@ -47,7 +47,7 @@ class Page {
    * @name setSummaryModel
    * @description Sets summary model
    * @method setSummaryModel
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @param  {SummaryModel}      summaryModel SummaryModel to use for page
    * @mobx action
    */
@@ -58,7 +58,7 @@ class Page {
    * @name setFormModel
    * @description Sets form model
    * @method setFormModel
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @param  {FormModel}      formModel FormModel to use for page
    * @mobx action
    */
@@ -70,7 +70,7 @@ class Page {
    * @name createNewProjMenuItem
    * @description Updates title, form, table, content, and buttons for Create New Project page
    * @method createNewProjMenuItem
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @mobx action
    */
   @action createNewProjMenuItem(){
@@ -82,7 +82,7 @@ class Page {
   /**
    * @name selectCustomerPage
    * @description Updates title, form, table, content, and buttons for Select Customer page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method selectCustomerPage
    * @mobx action
    */
@@ -95,7 +95,7 @@ class Page {
   /**
    * @name newProjectNewCustomerPage
    * @description Updates title, form, table, content, and buttons for New Customer page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method newProjectNewCustomerPage
    * @mobx action
    */
@@ -123,7 +123,7 @@ class Page {
   /**
    * @name changeCustomerPage
    * @description Updates title, form, table, content, and buttons for Change Customer page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method changeCustomerPage
    * @mobx action
    */
@@ -136,7 +136,7 @@ class Page {
   /**
    * @name currentProjectNewCustomerPage
    * @description Updates title, form, table, content, and buttons for New Customer page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method currentProjectNewCustomerPage
    * @mobx action
    */
@@ -162,22 +162,29 @@ class Page {
    * @name projectSummaryPage
    * @description Updates title, form, table, content, and buttons for Project Summary page
    * @method projectSummaryPage
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @mobx action
    */
   @action projectSummaryPage(){
     this.title = 'Project Summary'
-    let deleteFunc = () => {
-      Website.updateProjectStatus(Website.currentProject.id, 'Dropped')
-      .then(() => this.projectsMenuItem())
-    }
     let completeFunc = () => {
       Website.updateProjectStatus(Website.currentProject.id, 'Completed')
       .then(() => this.projectsMenuItem())
     }
-    let summaryObject = SummarySelector.getProject(deleteFunc,completeFunc)
+    let summaryObject = SummarySelector.getProject(this.projectDeleteFn,completeFunc)
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)
+  }
+
+  /**
+   * @name projectDeleteFn
+   * @description Drops a project
+   * @method projectDeleteFn
+   * @memberof PageStore.prototype
+   */
+  projectDeleteFn(){
+    Website.updateProjectStatus(Website.currentProject.id, 'Dropped')
+    .then(() => this.projectsMenuItem())
   }
 
   // Page Changes - Projects List, Editing
@@ -186,7 +193,7 @@ class Page {
    * @name projectEditPage
    * @description Updates title, form, table, content, and buttons for Project Edit page
    * @method projectEditPage
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @mobx action
    */
   @action projectEditPage(){
@@ -199,12 +206,12 @@ class Page {
    * @name projectsMenuItem
    * @description Updates title, form, table, content, and buttons for Projects page
    * @method projectsMenuItem
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @mobx action
    */
   @action projectsMenuItem(){
     this.title = 'Projects'
-    this.setTableModel(TableSelector.getProject(this.projectSummaryPage, this.projectEditPage))
+    this.setTableModel(TableSelector.getProject(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn))
     this.content = Table
   }
 
@@ -213,7 +220,7 @@ class Page {
   /**
    * @name projectTimeEntryMenuItem
    * @description Updates title, form, table, content, and buttons for Project Time Entry page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method projectTimeEntryMenuItem
    * @mobx action
    */
@@ -228,7 +235,7 @@ class Page {
   /**
    * @name customerInfoMenuItem
    * @description Updates title, form, table, content, and buttons for Customer Information page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method customerInfoMenuItem
    * @mobx action
    */
@@ -241,7 +248,7 @@ class Page {
   /**
    * @name newCustomerPage
    * @description Updates title, form, table, content, and buttons for New Customer page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method newCustomerPage
    * @mobx action
    */
@@ -255,7 +262,7 @@ class Page {
    * @name customerSummaryPage
    * @description Displays information about selected customer from Customer Information page entries.
    * @method customerSummaryPage
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @mobx action
    */
   @action customerSummaryPage(){
@@ -268,7 +275,7 @@ class Page {
    * @name customerEditPage
    * @description Updates title, form, table, content, and buttons for Customer Edit page
    * @method customerEditPage
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @mobx action
    */
   @action customerEditPage(){
@@ -282,7 +289,7 @@ class Page {
   /**
    * @name emplProductivityMenuItem
    * @description Updates title, form, table, content, and buttons for Employee Productivity page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method emplProductivityMenuItem
    * @mobx action
    */
@@ -294,7 +301,7 @@ class Page {
   /**
    * @name workstationTrackingMenuItem
    * @description Updates title, form, table, content, and buttons for Workstation Tracking page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method workstationTrackingMenuItem
    * @mobx action
    */
@@ -306,7 +313,7 @@ class Page {
   /**
    * @name jobTypeProductivityMenuItem
    * @description Updates title, form, table, content, and buttons for Job Type Productivity page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method jobTypeProductivityMenuItem
    * @mobx action
    */
@@ -318,7 +325,7 @@ class Page {
   /**
    * @name costCenterTimeMenuItem
    * @description Updates title, form, table, content, and buttons for Cost Center Time page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method costCenterTimeMenuItem
    * @mobx action
    */
@@ -332,7 +339,7 @@ class Page {
   /**
    * @name employeeInformationMenuItem
    * @description Updates title, form, table, content, and buttons for Employee Information page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method employeeInformationMenuItem
    * @mobx action
    */
@@ -345,7 +352,7 @@ class Page {
    /**
     * @name newEmployeePage
     * @description Updates title, form, table, content, and buttons for New Employee page.
-    * @memberof Page.prototype
+    * @memberof PageStore.prototype
     * @method newEmployeePage
     * @mobx action
     */
@@ -358,7 +365,7 @@ class Page {
    /**
     * @name employeeEditPage
     * @description Allows changing of information for Employee Information page entries.
-    * @memberof Page.prototype
+    * @memberof PageStore.prototype
     * @method employeeEditPage
     * @mobx action
     */
@@ -371,14 +378,13 @@ class Page {
    /**
     * @name employeeSummaryPage
     * @description Displays information about selected employee from Employee Information page entries.
-    * @memberof Page.prototype
+    * @memberof PageStore.prototype
     * @method employeeSummaryPage
     * @mobx action
     */
    @action employeeSummaryPage(){
      this.title = 'Employee Summary'
-     let deleteFunc = () => console.log('confirm')
-     let summaryObject = SummarySelector.getEmployee(deleteFunc)
+     let summaryObject = SummarySelector.getEmployee()
      this.content = summaryObject.component
      this.setSummaryModel(summaryObject.model)
    }
@@ -386,7 +392,7 @@ class Page {
   /**
    * @name accountManagementMenuItem
    * @description Updates title, form, table, content, and buttons for Account Management page.
-   * @memberof Page.prototype
+   * @memberof PageStore.prototype
    * @method accountManagementMenuItem
    * @mobx action
    */
@@ -397,5 +403,5 @@ class Page {
 
 }
 
-const page = new Page()
+const page = new PageStore()
 export default page

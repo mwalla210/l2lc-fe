@@ -3,6 +3,13 @@ import PropTypes from 'prop-types'
 import { SplitButton } from 'react-bootstrap'
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group'
 
+/**
+ * ProjectStatusFilter component; constructor binds functions
+ * @namespace ProjectStatusFilter
+ * @property {Object} [filter] Current filter values
+ * @property {Function} onChange On change function for checkboxes
+ * @extends React.Component
+ */
 export default class ProjectStatusFilter extends Component {
   static propTypes = {
     filter: PropTypes.object,
@@ -14,10 +21,23 @@ export default class ProjectStatusFilter extends Component {
     this.checkChange = this.checkChange.bind(this)
   }
 
+  /**
+   * Handles onChange of checkbox filters
+   * @method checkChange
+   * @memberof ProjectStatusFilter.prototype
+   */
   checkChange(val){
     this.props.onChange(val)
   }
 
+  /**
+   * Renders SplitButton and Checkbox, CheckboxGroup
+   * @method render
+   * @memberof ProjectStatusFilter.prototype
+   * @return {Component}
+   * @see {@link https://react-bootstrap.github.io/components/dropdowns/ ReactBootstrap.SplitButton}
+   * @see {@link https://www.npmjs.com/package/react-checkbox-group Checkbox}
+   */
   render(){
     return (
       <SplitButton

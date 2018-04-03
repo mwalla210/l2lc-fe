@@ -1,7 +1,6 @@
 import EmployeeSummary from '../components/employeeSummary'
 import ProjectSummary from '../components/projectSummary'
 import CustomerSummary from '../components/customerSummary'
-import EmployeeSummaryModel from '../models/employeeSummaryModel'
 import ProjectSummaryModel from '../models/projectSummaryModel'
 import autoBind from 'auto-bind'
 
@@ -16,31 +15,36 @@ class SummarySelector {
   }
   /**
    * @name getProject
-   * @description Chooses a summary component for a project depending on type
+   * @description Provides new ProjectSummaryModel and ProjectSummary component
    * @method getProject
-   * @param  {String}   type String for switch
-   * @return {Component}
+   * @param  {Function}   deleteOnClick Delete click function
+   * @param  {Function}   completeOnClick Complete click function
+   * @return {Object}
+   * @memberof SummarySelector.prototype
+   * @see {@link ProjectSummaryModel}
+   * @see {@link ProjectSummary}
    */
   getProject(deleteOnClick, completeOnClick){
     return {model: new ProjectSummaryModel(deleteOnClick, completeOnClick), component: ProjectSummary}
   }
   /**
    * @name getEmployee
-   * @description Chooses a summary component for an employee depending on type
+   * @description Provides new EmployeeSummary component
    * @method getEmployee
-   * @param  {String}   type String for switch
-   * @return {Component}
+   * @return {Object}
+   * @memberof SummarySelector.prototype
+   * @see {@link EmployeeSummary}
    */
-  getEmployee(deleteOnClick){
-    return {model: new EmployeeSummaryModel(deleteOnClick), component: EmployeeSummary}
+  getEmployee(){
+    return {model: null, component: EmployeeSummary}
   }
   /**
    * @name getCustomer
-   * @description Chooses a summary component for a customer depending on type
+   * @description Provides new CustomerSummary component
    * @method getCustomer
-   * @param  {String}   type String for switch
-   * @return {Component}
+   * @return {Object}
    * @memberof SummarySelector.prototype
+   * @see {@link CustomerSummary}
    */
   getCustomer(){
     return {model: null, component: CustomerSummary}

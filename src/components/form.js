@@ -10,6 +10,11 @@ import ButtonPrimary from './buttonPrimary'
 import ButtonDefault from './buttonDefault'
 import {ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 
+/**
+ * Form component; constructor binds functions
+ * @namespace Form
+ * @extends React.Component
+ */
 @inject('page') @observer
 export default class Form extends Component {
   constructor(props){
@@ -19,16 +24,42 @@ export default class Form extends Component {
     this.props.page.formModel.confirmAndClose = this.props.page.formModel.confirmAndClose.bind(this.props.page.formModel)
   }
 
+  /**
+   * Calls page.formModel.primaryButtonWrapper
+   * @method primaryOnClick
+   * @param {Object} e Form "submit" event
+   * @memberof Form.prototype
+   * @see {@link PageStore}
+   * @see {@link FormModel}
+   */
   primaryOnClick(e){
     e.preventDefault()
     this.props.page.formModel.primaryButtonWrapper()
   }
 
+  /**
+   * Calls page.formModel.secondaryButton.onClick
+   * @method secondaryOnClick
+   * @param {Object} e Form "submit" event
+   * @memberof Form.prototype
+   * @see {@link PageStore}
+   * @see {@link FormModel}
+   */
   secondaryOnClick(e){
     e.preventDefault()
     this.props.page.formModel.secondaryButton.onClick()
   }
 
+  /**
+   * Calls page.formModel.modifyFieldValue with index and event's value or checked property (if checkbox)
+   * @method onChange
+   * @param {Number} index Field index
+   * @param {Boolean} [checkbox=false] Checkbox field indicator
+   * @param {Object} event Field content change event
+   * @memberof Form.prototype
+   * @see {@link PageStore}
+   * @see {@link FormModel}
+   */
   onChange = (index, checkbox=false) => (event) => {
     let val = event.target.value
     if (checkbox)
@@ -36,11 +67,27 @@ export default class Form extends Component {
     this.props.page.formModel.modifyFieldValue(index, val)
   }
 
+  /**
+   * Calls page.formModel.fieldValidatorWrapper with index
+   * @method onBlur
+   * @param {Number} index Field index
+   * @param {Object} event Field content change event
+   * @memberof Form.prototype
+   * @see {@link PageStore}
+   * @see {@link FormModel}
+   */
   onBlur = (index) => (event) => {
     event.preventDefault()
     this.props.page.formModel.fieldValidatorWrapper(index)
   }
 
+  /**
+   * Renders PromptModal and form (with fields and buttons)
+   * @method render
+   * @memberof Form.prototype
+   * @return {Component}
+   * @see {@link PromptModal}
+   */
   render() {
     return(
       <div>

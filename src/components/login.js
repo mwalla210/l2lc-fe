@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import ButtonPrimary from './buttonPrimary'
 
+/**
+ * Login component; constructor binds functions
+ * @namespace Login
+ * @extends React.Component
+ */
 @inject ('page', 'website') @observer
 export default class Login extends Component {
   constructor(props){
@@ -12,21 +17,48 @@ export default class Login extends Component {
     this.props.page.createNewProjMenuItem = this.props.page.createNewProjMenuItem.bind(this)
   }
 
+  /**
+   * Calls website.login with default page navigation
+   * @method formSubmit
+   * @param {Object} event Form submit event
+   * @memberof Login.prototype
+   * @see {@link Website}
+   */
   formSubmit(event){
     event.preventDefault()
     this.props.website.login(this.props.page.createNewProjMenuItem)
   }
 
+  /**
+   * Calls website.updateUsername with default page navigation
+   * @method onChangeUsername
+   * @param {Object} event Field content change event
+   * @memberof Login.prototype
+   * @see {@link Website}
+   */
   onChangeUsername(event){
     let value = event.target.value
     this.props.website.updateUsername(value)
   }
 
+  /**
+   * Calls website.updatePassword with default page navigation
+   * @method onChangePassword
+   * @param {Object} event Field content change event
+   * @memberof Login.prototype
+   * @see {@link Website}
+   */
   onChangePassword(event){
     let value = event.target.value
     this.props.website.updatePassword(value)
   }
 
+  /**
+   * Renders HTML div component containing logo, fields, and button
+   * @method render
+   * @memberof Login.prototype
+   * @return {Component}
+   */
   render() {
     let alertStyle = null
     if (!this.props.website.loginerror){

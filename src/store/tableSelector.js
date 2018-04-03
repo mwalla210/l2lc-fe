@@ -72,11 +72,12 @@ class TableSelector {
    * @method getProject
    * @param  {Function}          infoClickNav   Row info icon click function
    * @param  {Function}          editClickNav   Row edit icon click function
+   * @param  {Function}          deleteClickNav   Row delete icon click function
    * @return {ProjectTableModel}
    * @memberof TableSelector.prototype
    */
-  getProject(infoClickNav, editClickNav){
-    return new ProjectTableModel(infoClickNav, editClickNav)
+  getProject(infoClickNav, editClickNav, deleteClickNav){
+    return new ProjectTableModel(infoClickNav, editClickNav, deleteClickNav)
   }
 
 }

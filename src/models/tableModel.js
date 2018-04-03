@@ -1,4 +1,4 @@
-import { action, computed, useStrict, extendObservable } from 'mobx'
+import { action, useStrict, extendObservable } from 'mobx'
 import autoBind from 'auto-bind'
 useStrict(true)
 
@@ -18,7 +18,7 @@ useStrict(true)
  * @property {Boolean} [loading=true] Loading indicator [observable]
  * @property {Object[]} [data=[]] Data array for table [observable]
  * @property {Boolean} [modalOpen=false] Delete modal open indicator [observable]
- * @property {Function} [styling] Styling function
+ * @property {?Function} [styling] Styling function
  */
 export default class TableModel {
   constructor(tableButton, fetchFn, columns, deleteModal, styling){

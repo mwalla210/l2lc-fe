@@ -2,6 +2,19 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { inject, PropTypes as MobXPropTypes } from 'mobx-react'
 
+/**
+ * SelectField component
+ * @namespace SelectField
+ * @property {String} id Field array index
+ * @property {Boolean} disabled Field disabled indicator
+ * @property {String} value Field value
+ * @property {Object[]} options Field select options
+ * @property {Function} onChange Field change function
+ * @property {Function} onBlur Field blur function
+ * @property {Boolean} valid Field validity indicator
+ * @property {Boolean} focus Field autofocus indicator
+ * @extends React.Component
+ */
 @inject('page')
 export default class SelectField extends Component {
   static propTypes = {
@@ -15,6 +28,12 @@ export default class SelectField extends Component {
     focus:PropTypes.bool.isRequired
   }
 
+  /**
+   * Renders HTML select component
+   * @method render
+   * @memberof SelectField.prototype
+   * @return {Component}
+   */
   render(){
     let color = ''
     if(!this.props.valid)

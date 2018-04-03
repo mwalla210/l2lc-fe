@@ -2,36 +2,8 @@ import { useStrict, action } from 'mobx'
 import autoBind from 'auto-bind'
 import FormModel from './formModel'
 import Website from '../store/website'
+import Consts from '../consts'
 useStrict(true)
-
-const fields = [
-  {
-    type: 'textfield',
-    label: 'First Name',
-    id: 'firstName',
-    required: true,
-    validation: (value, required) => {
-      if (required && value == '')
-        return 'Please enter a value.'
-      if (value.length > 30)
-        return 'The first name must be less than 30 characters.'
-      return null
-    }
-  },
-  {
-    type: 'textfield',
-    label: 'Last Name',
-    id: 'lastName',
-    required: true,
-    validation: (value, required) => {
-      if (required && value == '')
-        return 'Please enter a value.'
-      if (value.length > 30)
-        return 'The last name must be less than 30 characters.'
-      return null
-    }
-  },
-]
 
 /**
   * @name EmployeeFormModel
@@ -39,11 +11,14 @@ const fields = [
   * @classdesc Employee initializer for form storage object
   * @description Creates fields, sets correct onClick
   * @property {Function} onClickNav Page navigation function for successful form submission
+  * @property {Function} onCancelNav Page navigation function for cancelled form submission
+  * @property {Function} errorClick Page navigation function for error modal confirmation click
+  * @extends FormModel
  */
 export default class EmployeeFormModel extends FormModel{
   constructor(onClickNav, onCancelNav, errorClick) {
     let primaryOnClick = () => {}
-    super(fields,
+    super(Consts.employeeFields,
       {
         title: 'Continue',
         onClick: primaryOnClick
@@ -68,7 +43,7 @@ export default class EmployeeFormModel extends FormModel{
    * @mobx action
    */
   @action resetFields(){
-    this.fields = fields
+    this.fields = Consts.employeeFields
   }
   /**
    * @name editButton

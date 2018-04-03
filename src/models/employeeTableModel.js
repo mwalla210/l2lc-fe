@@ -15,6 +15,8 @@ useStrict(true)
   * @property {Function} buttonClickNav Function to navigate on click of table button
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
+  * @extends TableModel
+  * @see {@link TableActionCell}
  */
 export default class EmployeeTableModel extends TableModel{
   constructor(buttonClickNav, infoClickNav, editClickNav) {
@@ -23,13 +25,7 @@ export default class EmployeeTableModel extends TableModel{
         title: 'New Employee',
         onClick: buttonClickNav
       },
-      API.fetchEmployees,
-      null,
-      {
-        title: 'Delete Employee?',
-        confirmOnClick: () => console.log('confirm'),
-        content: 'This action cannot be undone.'
-      },
+      API.fetchEmployees
     )
     this.infoClickNav = infoClickNav
     this.editClickNav = editClickNav
@@ -63,7 +59,7 @@ export default class EmployeeTableModel extends TableModel{
             }
           }
         },
-        Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
+        Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
       }
     ]
   }
@@ -76,17 +72,13 @@ export default class EmployeeTableModel extends TableModel{
    * @memberof EmployeeTableModel.prototype
    */
   clickHandler(row, type){
-    if (type == 'info' || type == 'edit' || type == 'delete'){
+    if (type == 'info' || type == 'edit'){
       Website.setEmployee(row.original)
       if (type == 'info'){
         this.infoClickNav()
       }
-      else if (type == 'edit'){
+      else
         this.editClickNav()
-      }
-      else {
-        this.openModal()
-      }
     }
   }
 }

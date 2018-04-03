@@ -3,6 +3,11 @@ import { Navbar, Nav, MenuItem, NavDropdown, NavItem } from 'react-bootstrap'
 import { inject, observer } from 'mobx-react'
 import PromptModal from './promptModal'
 
+/**
+ * NavBar component; constructor binds functions
+ * @namespace NavBar
+ * @extends React.Component
+ */
 @inject('page', 'website') @observer
 export default class NavBar extends Component{
   constructor(props){
@@ -13,10 +18,21 @@ export default class NavBar extends Component{
     this.promptDismiss = this.promptDismiss.bind(this)
   }
 
+  /**
+   * Opens log out modal
+   * @method logoutClick
+   * @memberof NavBar.prototype
+   */
   logoutClick(){
     this.props.website.logOutAlert()
   }
 
+  /**
+   * Renders log out clickable item and current user name
+   * @method renderLogOut
+   * @memberof NavBar.prototype
+   * @return {Component}
+   */
   renderLogOut(){
     return (
       <div>
@@ -31,14 +47,31 @@ export default class NavBar extends Component{
     )
   }
 
+  /**
+   * Sets user to null
+   * @method promptConfirm
+   * @memberof NavBar.prototype
+   */
   promptConfirm(){
     this.props.website.setUser(null)
   }
 
+  /**
+   * Closes log out modal
+   * @method promptDismiss
+   * @memberof NavBar.prototype
+   */
   promptDismiss(){
     this.props.website.logOutDismiss()
   }
 
+  /**
+   * Renders HTML div component containing PromptModal, NavBar
+   * @method render
+   * @memberof NavBar.prototype
+   * @see {@link PromptModal}
+   * @see {@link https://react-bootstrap.github.io/components/navbar/ ReactBootstrap.NavBar}
+   */
   render(){
     return (
       <div>
@@ -60,18 +93,10 @@ export default class NavBar extends Component{
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              <NavItem onClick={this.props.page.createNewProjMenuItem}>
-                New Project
-              </NavItem>
-              <NavItem onClick={this.props.page.projectsMenuItem}>
-                Projects List
-              </NavItem>
-              <NavItem onClick={this.props.page.projectTimeEntryMenuItem}>
-                Time Entry
-              </NavItem>
-              <NavItem onClick={this.props.page.customerInfoMenuItem}>
-                Customer Information
-              </NavItem>
+              <NavItem onClick={this.props.page.createNewProjMenuItem}>New Project</NavItem>
+              <NavItem onClick={this.props.page.projectsMenuItem}>Project Information</NavItem>
+              <NavItem onClick={this.props.page.projectTimeEntryMenuItem}>Time Entry</NavItem>
+              <NavItem onClick={this.props.page.customerInfoMenuItem}>Customer Information</NavItem>
               <NavDropdown title="Analytics" id="basic-nav-dropdown">
                 <MenuItem onClick={this.props.page.emplProductivityMenuItem}>Employee Productivity</MenuItem>
                 <MenuItem onClick={this.props.page.workstationTrackingMenuItem}>Workstation Tracking</MenuItem>

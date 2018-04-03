@@ -5,6 +5,11 @@ import 'react-table/react-table.css'
 import TableButton from './tableButton'
 import DeleteModal from './deleteModal'
 
+/**
+ * Table component; constructor binds functions
+ * @namespace Table
+ * @extends React.Component
+ */
 @inject ('page') @observer
 export default class Table extends Component {
   constructor(props){
@@ -14,11 +19,27 @@ export default class Table extends Component {
     this.props.page.tableModel.closeModal = this.props.page.tableModel.closeModal.bind(this.props.page.tableModel)
   }
 
+  /**
+   * Filters a row in table
+   * @method filter
+   * @memberof Table.prototype
+   * @param {Object} filter Row filter content
+   * @param {Object} row Row content
+   */
   filter(filter, row){
     const id = filter.pivotId || filter.id
     return (row[id] !== undefined) ? String(row[id]).toLowerCase().includes(filter.value.toLowerCase()) : false
   }
 
+  /**
+   * Renders HTML div component, containing TableButton, DeleteModal, and ReactTable
+   * @method render
+   * @memberof Table.prototype
+   * @return {Component}
+   * @see {@link https://react-table.js.org/#/story/readme ReactTable}
+   * @see {@link DeleteModal}
+   * @see {@link TableButton}
+   */
   render() {
     /* Page sizing customization
     defaultPageSize={14}

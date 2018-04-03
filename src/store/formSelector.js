@@ -19,6 +19,7 @@ class FormSelector {
    * @method getNewCustomer
    * @param  {Function}       onClick  On click function for form
    * @param  {Function}       onCancel On cancel function for form
+   * @param  {Function}       errorClick On error modal confirmation click function for form
    * @return {CustomerFormModel}
    * @memberof FormSelector.prototype
    */
@@ -31,6 +32,7 @@ class FormSelector {
    * @method getEditCustomer
    * @param  {Function}       onClick  On click function for form
    * @param  {Function}       onCancel On cancel function for form
+   * @param  {Function}       errorClick On error modal confirmation click function for form
    * @return {CustomerFormModel}
    * @memberof FormSelector.prototype
    */
@@ -45,6 +47,7 @@ class FormSelector {
    * @method getEmployee
    * @param  {Function}       onClick  On click function for form
    * @param  {Function}       onCancel On cancel function for form
+   * @param  {Function}       errorClick On error modal confirmation click function for form
    * @return {EmployeeFormModel}
    * @memberof FormSelector.prototype
    */
@@ -57,6 +60,7 @@ class FormSelector {
    * @method getEditEmployee
    * @param  {Function}       onClick  On click function for form
    * @param  {Function}       onCancel On cancel function for form
+   * @param  {Function}       errorClick On error modal confirmation click function for form
    * @return {EmployeeFormModel}
    * @memberof FormSelector.prototype
    */
@@ -71,6 +75,7 @@ class FormSelector {
    * @method getProject
    * @param  {Function}       onClick  On click function for form
    * @param  {Function}       onCustomer  On click function for form if project needs customer
+   * @param  {Function}       errorClick On error modal confirmation click function for form
    * @return {ProjectFormModel}
    * @memberof FormSelector.prototype
    */
@@ -83,6 +88,7 @@ class FormSelector {
    * @method getProject
    * @param  {Function}       onClick  On click function for form
    * @param  {Function}       onCancel On cancel function for form
+   * @param  {Function}       errorClick On error modal confirmation click function for form
    * @return {ProjectFormModel}
    * @memberof FormSelector.prototype
    */
@@ -92,6 +98,13 @@ class FormSelector {
     return model
   }
 
+  /**
+   * @name getTimeEntry
+   * @description Provides TimeEntryFormModel
+   * @method getTimeEntry
+   * @return {TimeEntryFormModel}
+   * @memberof FormSelector.prototype
+   */
   getTimeEntry(){
     return new TimeEntryFormModel()
   }

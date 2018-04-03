@@ -4,7 +4,7 @@ import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
 import TableActionCell from '../components/tableActionCell'
-import {Button} from 'react-bootstrap'
+import ButtonDefault from '../components/buttonDefault'
 import API from '../api'
 useStrict(true)
 
@@ -17,6 +17,7 @@ useStrict(true)
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
   * @property {Function} selectNav Function to navigate on select of row (when adding customer to project)
+  * @extends TableModel
  */
 export default class CustomerTableModel extends TableModel{
   constructor(buttonClickNav, infoClickNav, editClickNav, selectNav) {
@@ -75,6 +76,7 @@ export default class CustomerTableModel extends TableModel{
    * @method actionColumns
    * @memberof CustomerTableModel.prototype
    * @return {Array}
+   * @see {@link TableActionCell}
    */
   actionColumns(){
     let cols = this.mainColumns()
@@ -103,6 +105,7 @@ export default class CustomerTableModel extends TableModel{
    * @method noActionColumns
    * @memberof CustomerTableModel.prototype
    * @return {Array}
+   * @see {@link ButtonDefault}
    */
   noActionColumns(){
     let cols = this.mainColumns()
@@ -118,7 +121,7 @@ export default class CustomerTableModel extends TableModel{
           return (
             <span>
               <span>
-                <Button className="btn btn-default" onClick={click}>Select</Button>
+                <ButtonDefault className="btn-info" onClick={click} text="Select"/>
               </span>
             </span>
           )
@@ -129,7 +132,7 @@ export default class CustomerTableModel extends TableModel{
   }
   /**
    * @name selectCreateClick
-   * @description Handles row click when table in select mode
+   * @description Handles row click when table in select mode for NEW project
    * @method selectCreateClick
    * @param  {Object}     row   Row of click
    * @memberof CustomerTableModel.prototype
@@ -151,7 +154,7 @@ export default class CustomerTableModel extends TableModel{
   }
   /**
    * @name selectUpdateClick
-   * @description Handles row click when table in select mode
+   * @description Handles row click when table in select mode for EXISTING project
    * @method selectUpdateClick
    * @param  {Object}     row   Row of click
    * @memberof CustomerTableModel.prototype
@@ -186,7 +189,7 @@ export default class CustomerTableModel extends TableModel{
   }
   /**
    * @name selectTable
-   * @description Sets table up as selectable (provide an on-click function for rows, no action columns)
+   * @description Sets table up as selectable for NEW project
    * @method selectTable
    * @memberof CustomerTableModel.prototype
    * @mobx action
@@ -197,7 +200,7 @@ export default class CustomerTableModel extends TableModel{
   }
   /**
    * @name selectTable
-   * @description Sets table up as selectable (provide an on-click function for rows, no action columns)
+   * @description Sets table up as selectable for EXISTING
    * @method selectTable
    * @memberof CustomerTableModel.prototype
    * @mobx action

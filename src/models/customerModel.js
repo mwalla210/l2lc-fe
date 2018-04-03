@@ -101,6 +101,7 @@ export default class CustomerModel {
   * @description Provides formatted concatenated string of shipping address
   * @memberof CustomerModel.prototype
   * @method
+  * @return {String}
   * @mobx computed
   */
   @computed get formattedShipAddress(){
@@ -113,6 +114,7 @@ export default class CustomerModel {
   * @description Provides formatted concatenated string of billing address (if billIsSame, calls formattedShipAddress)
   * @memberof CustomerModel.prototype
   * @method
+  * @return {String}
   * @mobx computed
   */
   @computed get formattedBillAddress(){
@@ -130,6 +132,7 @@ export default class CustomerModel {
   * @description Provides string of billing address line 1 (if billIsSame, uses ship address instead)
   * @memberof CustomerModel.prototype
   * @method
+  * @return {String}
   * @mobx computed
   */
   @computed get billAddressLine1(){
@@ -146,6 +149,7 @@ export default class CustomerModel {
   * @description Provides string of billing address line 2 (if billIsSame, uses ship address instead)
   * @memberof CustomerModel.prototype
   * @method
+  * @return {String}
   * @mobx computed
   */
   @computed get billAddressLine2(){
@@ -165,6 +169,7 @@ export default class CustomerModel {
   * @description Provides string of billing city (if billIsSame, uses ship city instead)
   * @memberof CustomerModel.prototype
   * @method
+  * @return {String}
   * @mobx computed
   */
   @computed get billAddressCity(){
@@ -181,6 +186,7 @@ export default class CustomerModel {
   * @description Provides string of billing state (if billIsSame, uses ship state instead)
   * @memberof CustomerModel.prototype
   * @method
+  * @return {String}
   * @mobx computed
   */
   @computed get billAddressState(){
@@ -197,6 +203,7 @@ export default class CustomerModel {
   * @description Provides string of billing zip (if billIsSame, uses ship zip instead)
   * @memberof CustomerModel.prototype
   * @method
+  * @return {String}
   * @mobx computed
   */
   @computed get billAddressZip(){
@@ -213,6 +220,7 @@ export default class CustomerModel {
   * @description Provides string of billing country (if billIsSame, uses ship country instead)
   * @memberof CustomerModel.prototype
   * @method
+  * @return {String}
   * @mobx computed
   */
   @computed get billAddressCountry(){

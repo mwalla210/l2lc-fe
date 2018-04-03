@@ -4,6 +4,19 @@ import { Modal } from 'react-bootstrap'
 import ButtonPrimary from './buttonPrimary'
 import ButtonDefault from './buttonDefault'
 
+/**
+ * FieldModal component; constructor binds functions
+ * @namespace FieldModal
+ * @property {String} title Modal title
+ * @property {Object} submitButton Modal submit button properties
+ * @property {String} [submitButton.title] Modal submit button text
+ * @property {Function} submitButton.onClick Modal submit button click function
+ * @property {Boolean} open Modal open indicator
+ * @property {Function} closeFn Modal close function
+ * @property {Function} onChangeFn Modal content change function
+ * @property {String} contents Modal field contents
+ * @extends React.Component
+ */
 export default class FieldModal extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -23,14 +36,32 @@ export default class FieldModal extends Component {
     this.onChange = this.onChange.bind(this)
   }
 
+  /**
+   * Calls closeFn
+   * @method hide
+   * @memberof FieldModal.prototype
+   */
   hide(){
     this.props.closeFn()
   }
 
+  /**
+   * Calls onChangeFn with event
+   * @method onChange
+   * @param {Object} event Field content change event
+   * @memberof FieldModal.prototype
+   */
   onChange(event){
     this.props.onChangeFn(event.target.value)
   }
 
+  /**
+   * Renders ReactBootstrap.Modal component
+   * @method render
+   * @memberof FieldModal.prototype
+   * @return {Component}
+   * @see {@link https://react-bootstrap.github.io/components/modal/ ReactBootstrap.Modal}
+   */
   render(){
     return (
       <Modal show={this.props.open} onHide={this.hide}>

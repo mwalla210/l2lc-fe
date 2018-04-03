@@ -7,10 +7,8 @@ import TableActionCell from '../components/tableActionCell'
 import ProjectStatusFilter from '../components/projectStatusFilter'
 import ProjectStatusCell from '../components/projectStatusCell'
 import API from '../api'
+import Consts from '../consts'
 useStrict(true)
-
-const highPriority = '#f4ba61'
-const medPriority = '#f4e261'
 
 /**
   * @name ProjectTableModel
@@ -19,23 +17,25 @@ const medPriority = '#f4e261'
   * @description Creates fields, sets correct onClick
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
+  * @property {Function} deleteClickNav Function to navigate on click of delete icon
+  * @extends TableModel
  */
 export default class ProjectTableModel extends TableModel{
-  constructor(infoClickNav, editClickNav) {
+  constructor(infoClickNav, editClickNav, deleteClickNav) {
     super(
       null,
       API.fetchProjects,
       null,
       {
         title: 'Delete Project?',
-        confirmOnClick: () => console.log('confirm'),
+        confirmOnClick: deleteClickNav,
         content: 'This action cannot be undone.'
       },
       (state, rowInfo) => {
         if (rowInfo && rowInfo.row._original.priority != 'Low'){
           return {
             style: {
-              background: rowInfo.row._original.priority == 'High' ? highPriority : medPriority
+              background: rowInfo.row._original.priority == 'High' ? Consts.highPriority : Consts.medPriority
             }
           }
         }

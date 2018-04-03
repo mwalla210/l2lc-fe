@@ -2,6 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import PromptModal from './promptModal'
 
+/**
+ * DeleteModal component; constructor binds functions
+ * @namespace DeleteModal
+ * @property {String} title Modal title
+ * @property {Function} confirmOnClick Confirmation click function
+ * @property {Function} denyOnClick Deny click function
+ * @property {Boolean} open Modal open indicator
+ * @property {Function} closeFn Modal close function
+ * @property {String} content Modal content
+ * @extends React.Component
+ */
 export default class DeleteModal extends Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
@@ -12,6 +23,12 @@ export default class DeleteModal extends Component {
     content: PropTypes.string.isRequired,
   }
 
+  /**
+   * Renders PromptModal component
+   * @method render
+   * @memberof DeleteModal.prototype
+   * @return {PromptModal}
+   */
   render(){
     return (
       <PromptModal
