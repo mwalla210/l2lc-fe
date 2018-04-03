@@ -57,19 +57,19 @@ export default class ProjectSummary extends Component {
     let projectTitleContent = `${(this.props.website.currentProject.title == '') ? '' : this.props.website.currentProject.title}`
 
     let custNameStr = this.props.website.currentProject.customer.companyName
-    let custNameContent = `${(this.props.website.currentProject.customer.companyName) ? custNameStr : ''}`
+    let custNameContent = `${(custNameStr) ? custNameStr : ''}`
 
     let timeSpentStr = this.props.website.currentProject.timeSpent
-    let timeSpentContent = `${(this.props.website.currentProject.timeSpent == '') ? '' : timeSpentStr}`
+    let timeSpentContent = `${(timeSpentStr == '') ? '' : timeSpentStr}`
 
     let partCountStr = this.props.website.currentProject.partCount
-    let partCountContent = `${(this.props.website.currentProject.partCount == '') ? '' : partCountStr}`
+    let partCountContent = `${(partCountStr == '') ? '' : partCountStr}`
 
     let descrStr = this.props.website.currentProject.descr
-    let descrStrContent = `${(this.props.website.currentProject.descr == '') ? '' : descrStr}`
+    let descrStrContent = `${(descrStr == '') ? '' : descrStr}`
 
     let refNumStr = this.props.website.currentProject.refNum
-    let refNumContent = `${(this.props.website.currentProject.refNum == '') ? '' : refNumStr}`
+    let refNumContent = `${(refNumStr == '') ? '' : refNumStr}`
 
     return (
       <div>
