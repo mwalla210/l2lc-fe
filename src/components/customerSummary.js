@@ -5,25 +5,17 @@ import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootst
 @inject ('website', 'page')
 export default class CustomerSummary extends Component {
   render() {
-    let websiteStr1 = 'Website: '
-    let websiteStr2 = this.props.website.currentCustomer.website
-    let websiteContent1 = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr1}`
-    let websiteContent2 = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr2}`
+    let websiteStr = this.props.website.currentCustomer.website
+    let websiteContent = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr}`
 
-    let pastDueStr1 = 'Past due: '
-    let pastDueStr2 = this.props.website.currentCustomer.website
-    let pastDueContent1 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr1}`
-    let pastDueContent2 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr2}`
+    let pastDueStr = this.props.website.currentCustomer.pastDue
+    let pastDueContent = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr}`
 
-    let shipAddressStr1 = 'Address Line 2: '
-    let shipAddressStr2 = this.props.website.currentCustomer.shipAddr2
-    let shipAddressContent1 = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : shipAddressStr1}`
-    let shipAddressContent2 = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : shipAddressStr2}`
+    let shipAddressStr = this.props.website.currentCustomer.shipAddr2
+    let shipAddressContent = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : shipAddressStr}`
 
-    let billAddressStr1 = 'Address Line 2: '
-    let billAddressStr2 = this.props.website.currentCustomer.billAddressLine2
-    let billAddressContent1 = `${(this.props.website.currentCustomer.billAddressLine2 == null) ? '' : billAddressStr1}`
-    let billAddressContent2 = `${(this.props.website.currentCustomer.billAddressLine2 == null) ? '' : billAddressStr2}`
+    let billAddressStr = this.props.website.currentCustomer.billAddressLine2
+    let billAddressContent = `${(this.props.website.currentCustomer.billAddressLine2 == null) ? '' : billAddressStr}`
 
     return (
     <div>
@@ -44,14 +36,18 @@ export default class CustomerSummary extends Component {
                   <div className="col-sm-3"><strong>{'Email: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.email}</div>
                 </div>
+                {(websiteStr) ?
                 <div className="row">
-                  <div className="col-sm-3"><strong>{websiteContent1}</strong></div>
-                  <div className="col-sm-6">{websiteContent2}</div>
-                </div>
+                  <div className="col-sm-3"><strong>{'Website: '}</strong></div>
+                  <div className="col-sm-6">{websiteContent}</div>
+                </div> : null
+              }
+                {(pastDueStr) ?
                 <div className="row">
-                  <div className="col-sm-3"><strong>{pastDueContent1}</strong></div>
-                  <div className="col-sm-6">{pastDueContent2}</div>
-                </div>
+                  <div className="col-sm-3"><strong>{'Past due: '}</strong></div>
+                  <div className="col-sm-6">{pastDueContent}</div>
+                </div> : null
+              }
               </div>
             </div>
             <br/>
@@ -62,10 +58,12 @@ export default class CustomerSummary extends Component {
                   <div className="col-sm-3"><strong>{'Address: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipAddr1}</div>
                 </div>
+                {(shipAddressStr) ?
                 <div className="row">
-                  <div className="col-sm-3"><strong>{shipAddressContent1}</strong></div>
-                  <div className="col-sm-6">{shipAddressContent2}</div>
-                </div>
+                  <div className="col-sm-3"><strong>{'Address Line 2: '}</strong></div>
+                  <div className="col-sm-6">{shipAddressContent}</div>
+                </div> : null
+              }
                 <div className="row">
                   <div className="col-sm-3"><strong>{'City: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipCity}</div>
@@ -92,10 +90,12 @@ export default class CustomerSummary extends Component {
                   <div className="col-sm-3"><strong>{'Address: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressLine1}</div>
                 </div>
+                {(billAddressStr) ?
                 <div className="row">
-                  <div className="col-sm-3"><strong>{billAddressContent1}</strong></div>
-                  <div className="col-sm-6">{billAddressContent2}</div>
-                </div>
+                  <div className="col-sm-3"><strong>{'Address Line 2: '}</strong></div>
+                  <div className="col-sm-6">{billAddressContent}</div>
+                </div> : null
+              }
                 <div className="row">
                   <div className="col-sm-3"><strong>{'City: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressCity}</div>

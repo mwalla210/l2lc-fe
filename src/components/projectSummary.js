@@ -56,30 +56,20 @@ export default class ProjectSummary extends Component {
     let holdStr = `${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`
     let projectTitleContent = `${(this.props.website.currentProject.title == '') ? '' : this.props.website.currentProject.title}`
 
-    let custNameStr1 = 'Customer Name: '
-    let custNameStr2 = this.props.website.currentProject.customer.name
-    let custNameContent1 = `${(this.props.website.currentProject.customer.id) ? custNameStr1 : ''}`
-    let custNameContent2 = `${(this.props.website.currentProject.customer.id) ? custNameStr2 : ''}`
+    let custNameStr = this.props.website.currentProject.customer.companyName
+    let custNameContent = `${(this.props.website.currentProject.customer.companyName) ? custNameStr : ''}`
 
-    let timeSpentStr1 = 'Time Spent: '
-    let timeSpentStr2 = this.props.website.currentProject.timeSpent
-    let timeSpentContent1 = `${(this.props.website.currentProject.timeSpent == '') ? '' : timeSpentStr1}`
-    let timeSpentContent2 = `${(this.props.website.currentProject.timeSpent == '') ? '' : timeSpentStr2}`
+    let timeSpentStr = this.props.website.currentProject.timeSpent
+    let timeSpentContent = `${(this.props.website.currentProject.timeSpent == '') ? '' : timeSpentStr}`
 
-    let partCountStr1 = 'Part Count: '
-    let partCountStr2 = this.props.website.currentProject.partCount
-    let partCountContent1 = `${(this.props.website.currentProject.partCount == null) ? '' : partCountStr1}`
-    let partCountContent2 = `${(this.props.website.currentProject.partCount == null) ? '' : partCountStr2}`
+    let partCountStr = this.props.website.currentProject.partCount
+    let partCountContent = `${(this.props.website.currentProject.partCount == '') ? '' : partCountStr}`
 
-    let descrStr1 = 'Description: '
-    let descrStr2 = this.props.website.currentProject.descr
-    let descrStrContent1 = `${(this.props.website.currentProject.descr == '') ? '' : descrStr1}`
-    let descrStrContent2 = `${(this.props.website.currentProject.descr == '') ? '' : descrStr2}`
+    let descrStr = this.props.website.currentProject.descr
+    let descrStrContent = `${(this.props.website.currentProject.descr == '') ? '' : descrStr}`
 
-    let refNumStr1 = 'Reference Number: '
-    let refNumStr2 = this.props.website.currentProject.refNum
-    let refNumContent1 = `${(this.props.website.currentProject.refNum == '') ? '' : refNumStr1}`
-    let refNumContent2 = `${(this.props.website.currentProject.refNum == '') ? '' : refNumStr2}`
+    let refNumStr = this.props.website.currentProject.refNum
+    let refNumContent = `${(this.props.website.currentProject.refNum == '') ? '' : refNumStr}`
 
     return (
       <div>
@@ -128,10 +118,12 @@ export default class ProjectSummary extends Component {
                   <div className="col-sm-6"><strong>{'Project Type: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentProject.jobTypeTitle}</div>
                 </div>
+                {(custNameStr) ?
                 <div className="row">
-                  <div className="col-sm-6"><strong>{custNameContent1}</strong></div>
-                  <div className="col-sm-6">{custNameContent2}</div>
-                </div>
+                  <div className="col-sm-6"><strong>{'Customer Name: '}</strong></div>
+                  <div className="col-sm-6">{custNameContent}</div>
+                </div> : null
+              }
                 <div className="row">
                   <div className="col-sm-6"><strong>{'Priority: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentProject.priority}</div>
@@ -140,22 +132,30 @@ export default class ProjectSummary extends Component {
                   <div className="col-sm-6"><strong>{'Status: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentProject.status}</div>
                 </div>
+                {(timeSpentStr) ?
                 <div className="row">
-                  <div className="col-sm-6"><strong>{timeSpentContent1}</strong></div>
-                  <div className="col-sm-6">{timeSpentContent2}</div>
-                </div>
+                  <div className="col-sm-6"><strong>{'Time Spent: '}</strong></div>
+                  <div className="col-sm-6">{timeSpentContent}</div>
+                </div> : null
+              }
+                {(partCountStr) ?
                 <div className="row">
-                  <div className="col-sm-6"><strong>{partCountContent1}</strong></div>
-                  <div className="col-sm-6">{partCountContent2}</div>
-                </div>
+                  <div className="col-sm-6"><strong>{'Part Count: '}</strong></div>
+                  <div className="col-sm-6">{partCountContent}</div>
+                </div> : null
+              }
+                {(descrStr) ?
                 <div className="row">
-                  <div className="col-sm-6"><strong>{descrStrContent1}</strong></div>
-                  <div className="col-sm-6">{descrStrContent2}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{refNumContent1}</strong></div>
-                  <div className="col-sm-6">{refNumContent2}</div>
-                </div>
+                  <div className="col-sm-6"><strong>{'Description: '}</strong></div>
+                  <div className="col-sm-6">{descrStrContent}</div>
+                </div> : null
+              }
+                {(refNumStr) ?
+                  <div className="row">
+                    <div className="col-sm-6"><strong>{'Reference Number: '}</strong></div>
+                    <div className="col-sm-6">{refNumContent}</div>
+                  </div> : null
+                }
               </div>
             </div>
             <div style={{textAlign: 'center'}}>
