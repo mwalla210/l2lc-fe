@@ -38,7 +38,7 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>import React, {Component} from 'react'
-import { inject, observer } from 'mobx-react'
+import { inject } from 'mobx-react'
 import Barcode from './barcode'
 import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 import DeleteModal from './deleteModal'
@@ -50,8 +50,10 @@ import ButtonDefault from './buttonDefault'
  * ProjectSummary component; constructor binds functions
  * @namespace ProjectSummary
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
-@inject ('website', 'page') @observer
+@inject ('website', 'page')
 export default class ProjectSummary extends Component {
   constructor(props){
     super(props)
@@ -137,34 +139,6 @@ export default class ProjectSummary extends Component {
    * @see {@link PromptModal}
    */
   render() {
-    let holdStr = `${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`
-    let projectTitleContent = `${(this.props.website.currentProject.title == '') ? '' : this.props.website.currentProject.title}`
-
-    let custNameStr1 = 'Customer Name: '
-    let custNameStr2 = this.props.website.currentProject.customer.companyName
-    let custNameContent1 = `${(this.props.website.currentProject.customer.id) ? custNameStr1 : ''}`
-    let custNameContent2 = `${(this.props.website.currentProject.customer.id) ? custNameStr2 : ''}`
-
-    let timeSpentStr1 = 'Time Spent: '
-    let timeSpentStr2 = this.props.website.currentProject.timeSpent
-    let timeSpentContent1 = `${(this.props.website.currentProject.timeSpent == '') ? '' : timeSpentStr1}`
-    let timeSpentContent2 = `${(this.props.website.currentProject.timeSpent == '') ? '' : timeSpentStr2}`
-
-    let partCountStr1 = 'Part Count: '
-    let partCountStr2 = this.props.website.currentProject.partCount
-    let partCountContent1 = `${(this.props.website.currentProject.partCount == null) ? '' : partCountStr1}`
-    let partCountContent2 = `${(this.props.website.currentProject.partCount == null) ? '' : partCountStr2}`
-
-    let descrStr1 = 'Description: '
-    let descrStr2 = this.props.website.currentProject.descr
-    let descrStrContent1 = `${(this.props.website.currentProject.descr == '') ? '' : descrStr1}`
-    let descrStrContent2 = `${(this.props.website.currentProject.descr == '') ? '' : descrStr2}`
-
-    let refNumStr1 = 'Reference Number: '
-    let refNumStr2 = this.props.website.currentProject.refNum
-    let refNumContent1 = `${(this.props.website.currentProject.refNum == '') ? '' : refNumStr1}`
-    let refNumContent2 = `${(this.props.website.currentProject.refNum == '') ? '' : refNumStr2}`
-
     return (
       &lt;div>
         &lt;FieldModal
@@ -197,7 +171,7 @@ export default class ProjectSummary extends Component {
         />
         &lt;div className="row">
           &lt;div className="col-sm-4 col-sm-offset-4">
-            &lt;h4 style={{textAlign: 'center'}}>{projectTitleContent}&lt;/h4>
+            &lt;h4 style={{textAlign: 'center'}}>{this.props.website.currentProject.title}&lt;/h4>
             &lt;div className="row">
               &lt;div className="col-sm-12 col-sm-offset-2">
                 &lt;div className="row">
@@ -212,10 +186,12 @@ export default class ProjectSummary extends Component {
                   &lt;div className="col-sm-6">&lt;strong>{'Project Type: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentProject.jobTypeTitle}&lt;/div>
                 &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-6">&lt;strong>{custNameContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{custNameContent2}&lt;/div>
-                &lt;/div>
+                {this.props.website.currentProject.customer.companyName &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-6">&lt;strong>{'Customer Name: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentProject.customer.companyName}&lt;/div>
+                  &lt;/div>
+                }
                 &lt;div className="row">
                   &lt;div className="col-sm-6">&lt;strong>{'Priority: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentProject.priority}&lt;/div>
@@ -224,22 +200,30 @@ export default class ProjectSummary extends Component {
                   &lt;div className="col-sm-6">&lt;strong>{'Status: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentProject.status}&lt;/div>
                 &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-6">&lt;strong>{timeSpentContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{timeSpentContent2}&lt;/div>
-                &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-6">&lt;strong>{partCountContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{partCountContent2}&lt;/div>
-                &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-6">&lt;strong>{descrStrContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{descrStrContent2}&lt;/div>
-                &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-6">&lt;strong>{refNumContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{refNumContent2}&lt;/div>
-                &lt;/div>
+                {this.props.website.currentProject.timeSpent &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-6">&lt;strong>{'Time Spent: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentProject.timeSpent}&lt;/div>
+                  &lt;/div>
+                }
+                {this.props.website.currentProject.partCount &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-6">&lt;strong>{'Part Count: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentProject.partCount}&lt;/div>
+                  &lt;/div>
+                }
+                {this.props.website.currentProject.descr &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-6">&lt;strong>{'Description: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentProject.descr}&lt;/div>
+                  &lt;/div>
+                }
+                {this.props.website.currentProject.refNum &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-6">&lt;strong>{'Reference Number: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentProject.refNum}&lt;/div>
+                  &lt;/div>
+                }
               &lt;/div>
             &lt;/div>
             &lt;div style={{textAlign: 'center'}}>
@@ -259,7 +243,7 @@ export default class ProjectSummary extends Component {
                 &lt;ButtonGroup style={{float: 'inherit'}}>
                   &lt;DropdownButton bsStyle="primary" title="Actions..." id="dropdown-primary">
                     &lt;MenuItem onSelect={this.reworkClick}>Add Rework&lt;/MenuItem>
-                    &lt;MenuItem onSelect={this.holdClick}>{holdStr}&lt;/MenuItem>
+                    &lt;MenuItem onSelect={this.holdClick}>{`${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`}&lt;/MenuItem>
                     &lt;MenuItem onSelect={this.props.page.projectEditPage}>Edit Details&lt;/MenuItem>
                     {(this.props.website.currentProject.customer.id) ? &lt;MenuItem onSelect={this.props.page.changeCustomerPage}>Edit Customer&lt;/MenuItem> : null}
                     &lt;MenuItem onSelect={this.props.page.summaryModel.completeModal.openModal}>Complete&lt;/MenuItem>

@@ -45,6 +45,8 @@ import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootst
  * CustomerSummary component
  * @namespace CustomerSummary
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
 @inject ('website', 'page')
 export default class CustomerSummary extends Component {
@@ -55,26 +57,6 @@ export default class CustomerSummary extends Component {
    * @return {Component}
    */
   render() {
-    let websiteStr1 = 'Website: '
-    let websiteStr2 = this.props.website.currentCustomer.website
-    let websiteContent1 = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr1}`
-    let websiteContent2 = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr2}`
-
-    let pastDueStr1 = 'Past due: '
-    let pastDueStr2 = this.props.website.currentCustomer.website
-    let pastDueContent1 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr1}`
-    let pastDueContent2 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr2}`
-
-    let shipAddressStr1 = 'Address Line 2: '
-    let shipAddressStr2 = this.props.website.currentCustomer.shipAddr2
-    let shipAddressContent1 = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : shipAddressStr1}`
-    let shipAddressContent2 = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : shipAddressStr2}`
-
-    let billAddressStr1 = 'Address Line 2: '
-    let billAddressStr2 = this.props.website.currentCustomer.billAddressLine2
-    let billAddressContent1 = `${(this.props.website.currentCustomer.billAddressLine2 == null) ? '' : billAddressStr1}`
-    let billAddressContent2 = `${(this.props.website.currentCustomer.billAddressLine2 == null) ? '' : billAddressStr2}`
-
     return (
     &lt;div>
       &lt;div className="row">
@@ -94,14 +76,18 @@ export default class CustomerSummary extends Component {
                   &lt;div className="col-sm-3">&lt;strong>{'Email: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentCustomer.email}&lt;/div>
                 &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-3">&lt;strong>{websiteContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{websiteContent2}&lt;/div>
-                &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-3">&lt;strong>{pastDueContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{pastDueContent2}&lt;/div>
-                &lt;/div>
+                {this.props.website.currentCustomer.website &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-3">&lt;strong>{'Website: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentCustomer.website}&lt;/div>
+                  &lt;/div>
+                }
+                {this.props.website.currentCustomer.pastDue &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-3">&lt;strong>{'Past due: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentCustomer.pastDue}&lt;/div>
+                  &lt;/div>
+                }
               &lt;/div>
             &lt;/div>
             &lt;br/>
@@ -112,18 +98,22 @@ export default class CustomerSummary extends Component {
                   &lt;div className="col-sm-3">&lt;strong>{'Address: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipAddr1}&lt;/div>
                 &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-3">&lt;strong>{shipAddressContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{shipAddressContent2}&lt;/div>
-                &lt;/div>
+                {this.props.website.currentCustomer.shipAddr.shipAddr2 &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-3">&lt;strong>{'Address Line 2: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipAddr2}&lt;/div>
+                  &lt;/div>
+                }
                 &lt;div className="row">
                   &lt;div className="col-sm-3">&lt;strong>{'City: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipCity}&lt;/div>
                 &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-3">&lt;strong>{'State: '}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipState}&lt;/div>
-                &lt;/div>
+                {this.props.website.currentCustomer.shipAddr.shipState &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-3">&lt;strong>{'State: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipState}&lt;/div>
+                  &lt;/div>
+                }
                 &lt;div className="row">
                   &lt;div className="col-sm-3">&lt;strong>{'Zip Code: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipZip}&lt;/div>
@@ -142,18 +132,22 @@ export default class CustomerSummary extends Component {
                   &lt;div className="col-sm-3">&lt;strong>{'Address: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentCustomer.billAddressLine1}&lt;/div>
                 &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-3">&lt;strong>{billAddressContent1}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{billAddressContent2}&lt;/div>
-                &lt;/div>
+                {this.props.website.currentCustomer.billAddressLine2 &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-3">&lt;strong>{'Address Line 2: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentCustomer.billAddressLine2}&lt;/div>
+                  &lt;/div>
+                }
                 &lt;div className="row">
                   &lt;div className="col-sm-3">&lt;strong>{'City: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentCustomer.billAddressCity}&lt;/div>
                 &lt;/div>
-                &lt;div className="row">
-                  &lt;div className="col-sm-3">&lt;strong>{'State: '}&lt;/strong>&lt;/div>
-                  &lt;div className="col-sm-6">{this.props.website.currentCustomer.billAddressState}&lt;/div>
-                &lt;/div>
+                {this.props.website.currentCustomer.billAddressState &amp;&amp;
+                  &lt;div className="row">
+                    &lt;div className="col-sm-3">&lt;strong>{'State: '}&lt;/strong>&lt;/div>
+                    &lt;div className="col-sm-6">{this.props.website.currentCustomer.billAddressState}&lt;/div>
+                  &lt;/div>
+                }
                 &lt;div className="row">
                   &lt;div className="col-sm-3">&lt;strong>{'Zip Code: '}&lt;/strong>&lt;/div>
                   &lt;div className="col-sm-6">{this.props.website.currentCustomer.billAddressZip}&lt;/div>
