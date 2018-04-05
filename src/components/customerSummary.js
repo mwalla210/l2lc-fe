@@ -18,26 +18,6 @@ export default class CustomerSummary extends Component {
    * @return {Component}
    */
   render() {
-    let websiteStr1 = 'Website: '
-    let websiteStr2 = this.props.website.currentCustomer.website
-    let websiteContent1 = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr1}`
-    let websiteContent2 = `${(this.props.website.currentCustomer.website == '') ? '' : websiteStr2}`
-
-    let pastDueStr1 = 'Past due: '
-    let pastDueStr2 = this.props.website.currentCustomer.website
-    let pastDueContent1 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr1}`
-    let pastDueContent2 = `${(this.props.website.currentCustomer.pastDue == '') ? '' : pastDueStr2}`
-
-    let shipAddressStr1 = 'Address Line 2: '
-    let shipAddressStr2 = this.props.website.currentCustomer.shipAddr2
-    let shipAddressContent1 = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : shipAddressStr1}`
-    let shipAddressContent2 = `${(this.props.website.currentCustomer.shipAddr.shipAddr2 == null) ? '' : shipAddressStr2}`
-
-    let billAddressStr1 = 'Address Line 2: '
-    let billAddressStr2 = this.props.website.currentCustomer.billAddressLine2
-    let billAddressContent1 = `${(this.props.website.currentCustomer.billAddressLine2 == null) ? '' : billAddressStr1}`
-    let billAddressContent2 = `${(this.props.website.currentCustomer.billAddressLine2 == null) ? '' : billAddressStr2}`
-
     return (
     <div>
       <div className="row">
@@ -57,14 +37,18 @@ export default class CustomerSummary extends Component {
                   <div className="col-sm-3"><strong>{'Email: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.email}</div>
                 </div>
-                <div className="row">
-                  <div className="col-sm-3"><strong>{websiteContent1}</strong></div>
-                  <div className="col-sm-6">{websiteContent2}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-3"><strong>{pastDueContent1}</strong></div>
-                  <div className="col-sm-6">{pastDueContent2}</div>
-                </div>
+                {this.props.website.currentCustomer.website &&
+                  <div className="row">
+                    <div className="col-sm-3"><strong>{'Website: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentCustomer.website}</div>
+                  </div>
+                }
+                {this.props.website.currentCustomer.pastDue &&
+                  <div className="row">
+                    <div className="col-sm-3"><strong>{'Past due: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentCustomer.pastDue}</div>
+                  </div>
+                }
               </div>
             </div>
             <br/>
@@ -75,18 +59,22 @@ export default class CustomerSummary extends Component {
                   <div className="col-sm-3"><strong>{'Address: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipAddr1}</div>
                 </div>
-                <div className="row">
-                  <div className="col-sm-3"><strong>{shipAddressContent1}</strong></div>
-                  <div className="col-sm-6">{shipAddressContent2}</div>
-                </div>
+                {this.props.website.currentCustomer.shipAddr.shipAddr2 &&
+                  <div className="row">
+                    <div className="col-sm-3"><strong>{'Address Line 2: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipAddr2}</div>
+                  </div>
+                }
                 <div className="row">
                   <div className="col-sm-3"><strong>{'City: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipCity}</div>
                 </div>
-                <div className="row">
-                  <div className="col-sm-3"><strong>{'State: '}</strong></div>
-                  <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipState}</div>
-                </div>
+                {this.props.website.currentCustomer.shipAddr.shipState &&
+                  <div className="row">
+                    <div className="col-sm-3"><strong>{'State: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipState}</div>
+                  </div>
+                }
                 <div className="row">
                   <div className="col-sm-3"><strong>{'Zip Code: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.shipAddr.shipZip}</div>
@@ -105,18 +93,22 @@ export default class CustomerSummary extends Component {
                   <div className="col-sm-3"><strong>{'Address: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressLine1}</div>
                 </div>
-                <div className="row">
-                  <div className="col-sm-3"><strong>{billAddressContent1}</strong></div>
-                  <div className="col-sm-6">{billAddressContent2}</div>
-                </div>
+                {this.props.website.currentCustomer.billAddressLine2 &&
+                  <div className="row">
+                    <div className="col-sm-3"><strong>{'Address Line 2: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentCustomer.billAddressLine2}</div>
+                  </div>
+                }
                 <div className="row">
                   <div className="col-sm-3"><strong>{'City: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressCity}</div>
                 </div>
-                <div className="row">
-                  <div className="col-sm-3"><strong>{'State: '}</strong></div>
-                  <div className="col-sm-6">{this.props.website.currentCustomer.billAddressState}</div>
-                </div>
+                {this.props.website.currentCustomer.billAddressState &&
+                  <div className="row">
+                    <div className="col-sm-3"><strong>{'State: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentCustomer.billAddressState}</div>
+                  </div>
+                }
                 <div className="row">
                   <div className="col-sm-3"><strong>{'Zip Code: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentCustomer.billAddressZip}</div>

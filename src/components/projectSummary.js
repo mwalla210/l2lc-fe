@@ -100,34 +100,6 @@ export default class ProjectSummary extends Component {
    * @see {@link PromptModal}
    */
   render() {
-    let holdStr = `${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`
-    let projectTitleContent = `${(this.props.website.currentProject.title == '') ? '' : this.props.website.currentProject.title}`
-
-    let custNameStr1 = 'Customer Name: '
-    let custNameStr2 = this.props.website.currentProject.customer.companyName
-    let custNameContent1 = `${(this.props.website.currentProject.customer.id) ? custNameStr1 : ''}`
-    let custNameContent2 = `${(this.props.website.currentProject.customer.id) ? custNameStr2 : ''}`
-
-    let timeSpentStr1 = 'Time Spent: '
-    let timeSpentStr2 = this.props.website.currentProject.timeSpent
-    let timeSpentContent1 = `${(this.props.website.currentProject.timeSpent == '') ? '' : timeSpentStr1}`
-    let timeSpentContent2 = `${(this.props.website.currentProject.timeSpent == '') ? '' : timeSpentStr2}`
-
-    let partCountStr1 = 'Part Count: '
-    let partCountStr2 = this.props.website.currentProject.partCount
-    let partCountContent1 = `${(this.props.website.currentProject.partCount == null) ? '' : partCountStr1}`
-    let partCountContent2 = `${(this.props.website.currentProject.partCount == null) ? '' : partCountStr2}`
-
-    let descrStr1 = 'Description: '
-    let descrStr2 = this.props.website.currentProject.descr
-    let descrStrContent1 = `${(this.props.website.currentProject.descr == '') ? '' : descrStr1}`
-    let descrStrContent2 = `${(this.props.website.currentProject.descr == '') ? '' : descrStr2}`
-
-    let refNumStr1 = 'Reference Number: '
-    let refNumStr2 = this.props.website.currentProject.refNum
-    let refNumContent1 = `${(this.props.website.currentProject.refNum == '') ? '' : refNumStr1}`
-    let refNumContent2 = `${(this.props.website.currentProject.refNum == '') ? '' : refNumStr2}`
-
     return (
       <div>
         <FieldModal
@@ -160,7 +132,7 @@ export default class ProjectSummary extends Component {
         />
         <div className="row">
           <div className="col-sm-4 col-sm-offset-4">
-            <h4 style={{textAlign: 'center'}}>{projectTitleContent}</h4>
+            <h4 style={{textAlign: 'center'}}>{this.props.website.currentProject.title}</h4>
             <div className="row">
               <div className="col-sm-12 col-sm-offset-2">
                 <div className="row">
@@ -175,10 +147,12 @@ export default class ProjectSummary extends Component {
                   <div className="col-sm-6"><strong>{'Project Type: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentProject.jobTypeTitle}</div>
                 </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{custNameContent1}</strong></div>
-                  <div className="col-sm-6">{custNameContent2}</div>
-                </div>
+                {this.props.website.currentProject.customer.companyName &&
+                  <div className="row">
+                    <div className="col-sm-6"><strong>{'Customer Name: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentProject.customer.companyName}</div>
+                  </div>
+                }
                 <div className="row">
                   <div className="col-sm-6"><strong>{'Priority: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentProject.priority}</div>
@@ -187,22 +161,30 @@ export default class ProjectSummary extends Component {
                   <div className="col-sm-6"><strong>{'Status: '}</strong></div>
                   <div className="col-sm-6">{this.props.website.currentProject.status}</div>
                 </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{timeSpentContent1}</strong></div>
-                  <div className="col-sm-6">{timeSpentContent2}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{partCountContent1}</strong></div>
-                  <div className="col-sm-6">{partCountContent2}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{descrStrContent1}</strong></div>
-                  <div className="col-sm-6">{descrStrContent2}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{refNumContent1}</strong></div>
-                  <div className="col-sm-6">{refNumContent2}</div>
-                </div>
+                {this.props.website.currentProject.timeSpent &&
+                  <div className="row">
+                    <div className="col-sm-6"><strong>{'Time Spent: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentProject.timeSpent}</div>
+                  </div>
+                }
+                {this.props.website.currentProject.partCount &&
+                  <div className="row">
+                    <div className="col-sm-6"><strong>{'Part Count: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentProject.partCount}</div>
+                  </div>
+                }
+                {this.props.website.currentProject.descr &&
+                  <div className="row">
+                    <div className="col-sm-6"><strong>{'Description: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentProject.descr}</div>
+                  </div>
+                }
+                {this.props.website.currentProject.refNum &&
+                  <div className="row">
+                    <div className="col-sm-6"><strong>{'Reference Number: '}</strong></div>
+                    <div className="col-sm-6">{this.props.website.currentProject.refNum}</div>
+                  </div>
+                }
               </div>
             </div>
             <div style={{textAlign: 'center'}}>
@@ -222,7 +204,7 @@ export default class ProjectSummary extends Component {
                 <ButtonGroup style={{float: 'inherit'}}>
                   <DropdownButton bsStyle="primary" title="Actions..." id="dropdown-primary">
                     <MenuItem onSelect={this.reworkClick}>Add Rework</MenuItem>
-                    <MenuItem onSelect={this.holdClick}>{holdStr}</MenuItem>
+                    <MenuItem onSelect={this.holdClick}>{`${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`}</MenuItem>
                     <MenuItem onSelect={this.props.page.projectEditPage}>Edit Details</MenuItem>
                     {(this.props.website.currentProject.customer.id) ? <MenuItem onSelect={this.props.page.changeCustomerPage}>Edit Customer</MenuItem> : null}
                     <MenuItem onSelect={this.props.page.summaryModel.completeModal.openModal}>Complete</MenuItem>
