@@ -855,13 +855,6 @@ class Consts {
   static get timeEntryFields(){ return [
     {
       type: 'textfield',
-      label: 'Station ID',
-      id: 'stationID',
-      required: false,
-      disabled: true,
-    },
-    {
-      type: 'textfield',
       label: 'Project ID',
       id: 'projectID',
       required: true,
