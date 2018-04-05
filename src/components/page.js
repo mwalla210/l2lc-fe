@@ -7,6 +7,8 @@ import NavBar from './navbar'
  * Page component
  * @namespace Page
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
 @inject ('page', 'website') @observer
 export default class Page extends Component {

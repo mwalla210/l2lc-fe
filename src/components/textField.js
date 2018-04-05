@@ -12,6 +12,7 @@ import { inject } from 'mobx-react'
  * @property {Function} onBlur Field blur function
  * @property {Boolean} focus Field autofocus indicator
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
  */
 @inject('page')
 export default class TextField extends Component {

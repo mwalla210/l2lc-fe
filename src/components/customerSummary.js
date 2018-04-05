@@ -6,6 +6,8 @@ import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootst
  * CustomerSummary component
  * @namespace CustomerSummary
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
 @inject ('website', 'page')
 export default class CustomerSummary extends Component {

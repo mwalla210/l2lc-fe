@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { inject, observer } from 'mobx-react'
+import { inject } from 'mobx-react'
 import Barcode from './barcode'
 import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
 import DeleteModal from './deleteModal'
@@ -11,8 +11,10 @@ import ButtonDefault from './buttonDefault'
  * ProjectSummary component; constructor binds functions
  * @namespace ProjectSummary
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
-@inject ('website', 'page') @observer
+@inject ('website', 'page')
 export default class ProjectSummary extends Component {
   constructor(props){
     super(props)
