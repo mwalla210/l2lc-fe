@@ -2,6 +2,7 @@ import { useStrict, action } from 'mobx'
 import autoBind from 'auto-bind'
 import FormModel from './formModel'
 import Consts from '../consts'
+import Website from '../store/website'
 useStrict(true)
 
 /**
@@ -16,7 +17,7 @@ export default class TimeEntryFormModel extends FormModel{
     super(Consts.timeEntryFields,
       {
         title: 'Continue',
-        onClick: (fields) => console.log('submit button onClick', fields)
+        onClick: null
       },
       {
         title: 'Clear',
@@ -37,16 +38,26 @@ export default class TimeEntryFormModel extends FormModel{
       }
     )
     autoBind(this)
-    this.secondaryButton.onClick = () => this.resetFields()
+    this.primaryButton.onClick = (fields) => {
+      let arrayFields = fields.slice()
+      let body = {
+        employeeId: arrayFields[1].value.replace('E',''),
+        station: Website.currentUser.stationID,
+      }
+      Website.createTimeEntry(body, arrayFields[0].value.replace('P',''))
+      this.resetValuesAndValidation()
+    }
+    this.secondaryButton.onClick = this.resetValuesAndValidation
   }
   /**
-   * @name resetFields
-   * @description Sets all fields back to defaults
-   * @method resetFields
+   * @name resetValuesAndValidation
+   * @description Resets field values to defaults and also resets error property
+   * @method resetValuesAndValidation
    * @memberof TimeEntryFormModel.prototype
    * @mobx action
    */
-  @action resetFields(){
-    this.fields = Consts.timeEntryFields
+  @action resetValuesAndValidation(){
+    this.resetValues()
+    this.fields.forEach(field => field.isValid = true)
   }
 }

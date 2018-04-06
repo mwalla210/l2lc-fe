@@ -183,13 +183,9 @@ class Website {
    * @return {null}
    * @async
    */
-  createTimeEntry(){
-    let timeEnter = {
-      employeeId: 1,
-      station: 'Receiving'
-    }
-    let jsonTime = JSON.stringify(timeEnter)
-    return API.create('project/1/time-entry/create', jsonTime)
+  createTimeEntry(body, projectID){
+    let jsonTime = JSON.stringify(body)
+    return API.create(`project/${projectID}/time-entry/create`, jsonTime)
     .then(response => console.log(response))
   }
 

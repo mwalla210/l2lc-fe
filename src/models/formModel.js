@@ -105,7 +105,7 @@ export default class FormModel {
    */
   @action resetValues(){
     this.fields.forEach(field => {
-      this.resetValue(field.id)
+      this.resetValueID(field.id)
     })
   }
   /**
@@ -220,8 +220,14 @@ export default class FormModel {
       })
     }
     // If we need to auto submit the form
-    if(!this.buttonDisabled && this.autoSubmit){
-      this.primaryButtonWrapper()
+    if (this.autoSubmit){
+      this.fields.forEach((item, index) => {
+        if (item.value.trim() != '')
+          this.fieldValidatorWrapper(index)
+      })
+      if(!this.buttonDisabled && this.autoSubmit){
+        this.primaryButtonWrapper()
+      }
     }
   }
   /**

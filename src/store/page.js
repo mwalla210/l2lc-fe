@@ -1,6 +1,7 @@
 import { action, useStrict, extendObservable, observable } from 'mobx'
 import Form from '../components/form'
 import Table from '../components/table'
+import TimeEntry from '../components/timeEntry'
 import SummarySelector from './summarySelector'
 import FormSelector from './formSelector'
 import TableSelector from './tableSelector'
@@ -227,7 +228,7 @@ class PageStore {
   @action projectTimeEntryMenuItem(){
     this.title = 'Time Entry'
     this.setFormModel(FormSelector.getTimeEntry())
-    this.content = Form
+    this.content = TimeEntry
   }
 
   // Page Changes - Customers
