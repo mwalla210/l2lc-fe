@@ -36,16 +36,6 @@ export default class EmployeeFormModel extends FormModel{
     this.primaryButton.onClick = this.newButton()
   }
   /**
-   * @name resetFields
-   * @description Sets all fields back to defaults
-   * @method resetFields
-   * @memberof EmployeeFormModel.prototype
-   * @mobx action
-   */
-  @action resetFields(){
-    this.fields = Consts.employeeFields
-  }
-  /**
    * @name editButton
    * @description Returns function for onClick of primary button when editing
    * @method editButton
@@ -90,7 +80,7 @@ export default class EmployeeFormModel extends FormModel{
    */
   @action setEdit(){
     this.primaryButton.onClick = this.editButton()
-    this.resetFields()
+    this.resetValues()
     // Update fields with values corresponding to currentEmployee
     console.log(Website.currentEmployee)
   }
@@ -103,6 +93,6 @@ export default class EmployeeFormModel extends FormModel{
    */
   @action setNonEdit(){
     this.primaryButton.onClick = this.newButton(this.onClickNav)
-    this.resetFields()
+    this.resetValues()
   }
 }

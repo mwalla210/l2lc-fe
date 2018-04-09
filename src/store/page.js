@@ -344,51 +344,51 @@ class PageStore {
    * @method employeeInformationMenuItem
    * @mobx action
    */
-   @action employeeInformationMenuItem(){
-     this.title = 'Employee Information'
-     this.setTableModel(TableSelector.getEmployee(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage))
-     this.content = Table
-   }
+  @action employeeInformationMenuItem(){
+    this.title = 'Employee Information'
+    this.setTableModel(TableSelector.getEmployee(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage))
+    this.content = Table
+  }
 
-   /**
-    * @name newEmployeePage
-    * @description Updates title, form, table, content, and buttons for New Employee page.
-    * @memberof PageStore.prototype
-    * @method newEmployeePage
-    * @mobx action
-    */
-   @action newEmployeePage(){
-     this.title = 'New Employee'
-     this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
-     this.content = Form
-   }
+  /**
+   * @name newEmployeePage
+   * @description Updates title, form, table, content, and buttons for New Employee page.
+   * @memberof PageStore.prototype
+   * @method newEmployeePage
+   * @mobx action
+  */
+  @action newEmployeePage(){
+    this.title = 'New Employee'
+    this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
+    this.content = Form
+  }
 
-   /**
-    * @name employeeEditPage
-    * @description Allows changing of information for Employee Information page entries.
-    * @memberof PageStore.prototype
-    * @method employeeEditPage
-    * @mobx action
-    */
-   @action employeeEditPage(){
-     this.title = 'Edit Employee'
-     this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
-     this.content = Form
-   }
+  /**
+   * @name employeeEditPage
+   * @description Allows changing of information for Employee Information page entries.
+   * @memberof PageStore.prototype
+   * @method employeeEditPage
+   * @mobx action
+   */
+  @action employeeEditPage(){
+    this.title = 'Edit Employee'
+    this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
+    this.content = Form
+  }
 
-   /**
-    * @name employeeSummaryPage
-    * @description Displays information about selected employee from Employee Information page entries.
-    * @memberof PageStore.prototype
-    * @method employeeSummaryPage
-    * @mobx action
-    */
-   @action employeeSummaryPage(){
-     this.title = 'Employee Summary'
-     let summaryObject = SummarySelector.getEmployee()
-     this.content = summaryObject.component
-     this.setSummaryModel(summaryObject.model)
-   }
+  /**
+   * @name employeeSummaryPage
+   * @description Displays information about selected employee from Employee Information page entries.
+   * @memberof PageStore.prototype
+   * @method employeeSummaryPage
+   * @mobx action
+   */
+  @action employeeSummaryPage(){
+    this.title = 'Employee Summary'
+    let summaryObject = SummarySelector.getEmployee()
+    this.content = summaryObject.component
+    this.setSummaryModel(summaryObject.model)
+  }
 
   /**
    * @name accountManagementMenuItem

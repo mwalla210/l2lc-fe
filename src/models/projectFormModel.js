@@ -37,16 +37,6 @@ export default class projectFormModel extends FormModel{
     this.primaryButton.onClick = this.newButton()
   }
   /**
-   * @name resetFields
-   * @description Sets all fields back to defaults
-   * @method resetFields
-   * @memberof ProjectFormModel.prototype
-   * @mobx action
-   */
-  @action resetFields(){
-    this.fields = Consts.projectFields
-  }
-  /**
    * @name editButton
    * @description Returns function for onClick of primary button when editing
    * @method editButton
@@ -130,7 +120,7 @@ export default class projectFormModel extends FormModel{
   @action setEdit(){
     this.primaryButton.onClick = this.editButton()
     this.secondaryButton = this.editSecondaryButton()
-    this.resetFields()
+    this.resetValues()
     // Update fields with values corresponding to currentProject
     console.log(Website.currentProject)
   }
@@ -144,6 +134,6 @@ export default class projectFormModel extends FormModel{
   @action setNonEdit(){
     this.primaryButton.onClick = this.newButton(this.onClickNav)
     this.secondaryButton = null
-    this.resetFields()
+    this.resetValues()
   }
 }
