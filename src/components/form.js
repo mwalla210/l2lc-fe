@@ -14,6 +14,7 @@ import {ButtonToolbar, ButtonGroup} from 'reactstrap'
  * Form component; constructor binds functions
  * @namespace Form
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
  */
 @inject('page') @observer
 export default class Form extends Component {
@@ -29,7 +30,6 @@ export default class Form extends Component {
    * @method primaryOnClick
    * @param {Object} e Form "submit" event
    * @memberof Form.prototype
-   * @see {@link PageStore}
    * @see {@link FormModel}
    */
   primaryOnClick(e){
@@ -42,7 +42,6 @@ export default class Form extends Component {
    * @method secondaryOnClick
    * @param {Object} e Form "submit" event
    * @memberof Form.prototype
-   * @see {@link PageStore}
    * @see {@link FormModel}
    */
   secondaryOnClick(e){
@@ -57,7 +56,6 @@ export default class Form extends Component {
    * @param {Boolean} [checkbox=false] Checkbox field indicator
    * @param {Object} event Field content change event
    * @memberof Form.prototype
-   * @see {@link PageStore}
    * @see {@link FormModel}
    */
   onChange = (index, checkbox=false) => (event) => {
@@ -73,7 +71,6 @@ export default class Form extends Component {
    * @param {Number} index Field index
    * @param {Object} event Field content change event
    * @memberof Form.prototype
-   * @see {@link PageStore}
    * @see {@link FormModel}
    */
   onBlur = (index) => (event) => {

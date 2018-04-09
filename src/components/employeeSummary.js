@@ -10,6 +10,8 @@ import Consts from '../consts'
  * EmployeeSummary component
  * @namespace EmployeeSummary
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
 @inject ('website', 'page') @observer
 export default class EmployeeSummary extends Component {

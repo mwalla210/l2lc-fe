@@ -10,6 +10,7 @@ import { inject } from 'mobx-react'
  * @property {Boolean} value Field checked indicator
  * @property {Function} onChange Field change function
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
  */
 @inject('page')
 export default class CheckboxField extends Component {

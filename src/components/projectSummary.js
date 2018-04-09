@@ -12,6 +12,8 @@ import Consts from '../consts'
  * ProjectSummary component; constructor binds functions
  * @namespace ProjectSummary
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
 @inject ('website', 'page') @observer
 export default class ProjectSummary extends Component {
@@ -100,7 +102,6 @@ export default class ProjectSummary extends Component {
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    */
   render() {
-    let holdStr = `${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`
     return (
       <div>
         <FieldModal
@@ -227,7 +228,7 @@ export default class ProjectSummary extends Component {
               <DropdownToggle color="primary" caret>Actions</DropdownToggle>
               <DropdownMenu>
                 <DropdownItem onClick={this.reworkClick}>Add Rework</DropdownItem>
-                <DropdownItem onClick={this.holdClick}>{holdStr}</DropdownItem>
+                <DropdownItem onClick={this.holdClick}>{`${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`}</DropdownItem>
                 <DropdownItem onClick={this.props.page.projectEditPage}>Edit Details</DropdownItem>
                 {this.props.website.currentProject.customer.id && <DropdownItem onClick={this.props.page.changeCustomerPage}>Edit Customer</DropdownItem>}
                 <DropdownItem onClick={this.props.page.summaryModel.completeModal.openModal}>Complete</DropdownItem>

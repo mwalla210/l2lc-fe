@@ -7,6 +7,8 @@ import Consts from '../consts'
  * CustomerSummary component
  * @namespace CustomerSummary
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
 @inject ('website', 'page') @observer
 export default class CustomerSummary extends Component {
