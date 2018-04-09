@@ -20,7 +20,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The company name must be less than 30 characters.'
         return null
       }
@@ -37,7 +37,7 @@ class Consts {
         let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
         if (value.length > 0 && reg.test(value) == false)
           return 'Please enter a valid email address.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The email address must be less than 30 characters.'
         return null
       }
@@ -51,7 +51,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a phone number.'
-        if (value.length < 10) //could of put a regex here but international numbers have different formats
+        else if (value.length < 10) //could of put a regex here but international numbers have different formats
           return 'The phone number is too short.'
         return null
       }
@@ -63,12 +63,12 @@ class Consts {
       required: false,
       disabled: false,
       validation: (value, required) => {
+        let reg = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
         if (required && value == '')
           return 'Please enter a value.'
-        let reg = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
-        if (value.length > 0 && reg.test(value) == false)
+        else if (value.length > 0 && reg.test(value) == false)
           return 'Please enter a valid website address.'
-        if (value.length > 50)
+        else if (value.length > 50)
           return 'The website address must be less than 50 characters.'
         return null
       }
@@ -125,7 +125,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The address must be less than 30 characters.'
         return null
       }
@@ -139,7 +139,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The address must be less than 30 characters.'
         return null
       }
@@ -153,7 +153,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The city name must be less than 30 characters.'
         return null
       }
@@ -180,7 +180,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 10)
+        else if (value.length > 10)
           return 'The zip code must be less than 10 characters.'
         return null
       }
@@ -273,36 +273,6 @@ class Consts {
         return null
       },
       onUpdate: (value) => {
-        if (value !== 'United States of America'){
-          return [
-            {
-              id: 'billingAddressLine1',
-              required: true,
-              disabled: false
-            },
-            {
-              id: 'billingAddressLine2',
-              required: false,
-              disabled: false
-            },
-            {
-              id: 'billingCity',
-              required: true,
-              diabled: false
-            },
-            {
-              id: 'billingState',
-              options: [{title: 'Not Applicable'}],
-              required: false,
-              disabled: true
-            },
-            {
-              id: 'billingZipCode',
-              required: false,
-              disabled: false
-            }
-          ]
-        }
         if (value == 'United States of America'){
           return [
             {
@@ -333,6 +303,34 @@ class Consts {
             }
           ]
         }
+        return [
+          {
+            id: 'billingAddressLine1',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'billingAddressLine2',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'billingCity',
+            required: true,
+            diabled: false
+          },
+          {
+            id: 'billingState',
+            options: [{title: 'Not Applicable'}],
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'billingZipCode',
+            required: false,
+            disabled: false
+          }
+        ]
       }
     },
     {
@@ -344,7 +342,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The address must be less than 30 characters.'
         return null
       }
@@ -358,7 +356,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The address must be less than 30 characters.'
         return null
       }
@@ -372,7 +370,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The city name must be less than 30 characters.'
         return null
       }
@@ -399,7 +397,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 10)
+        else if (value.length > 10)
           return 'The zip code must be less than 10 characters.'
         return null
       }
@@ -461,7 +459,7 @@ class Consts {
             }
           ]
         }
-        if (value == 'Decorative'){
+        else if (value == 'Decorative'){
           return [
             {
               id: 'projectType',
@@ -496,7 +494,7 @@ class Consts {
             }
           ]
         }
-        if (value == 'Maintenance'){
+        else if (value == 'Maintenance'){
           return [
             {
               id: 'projectType',
@@ -531,7 +529,7 @@ class Consts {
             }
           ]
         }
-        if (value == 'Administration'){
+        else if (value == 'Administration'){
           return [
             {
               id: 'projectType',
@@ -566,7 +564,7 @@ class Consts {
             }
           ]
         }
-        if (value == 'Research and Development'){
+        else if (value == 'Research and Development'){
           return [
             {
               id: 'projectType',
@@ -601,7 +599,42 @@ class Consts {
             }
           ]
         }
-        if (value == 'Production'){
+        else if (value == 'Military'){
+          return [
+            {
+              id: 'projectType',
+              options: this.militaryProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: false,
+              disabled: true
+            },
+            {
+              id: 'projectTitle',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'description',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'referenceNumber',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        else if (value == 'Production'){
           return [
             {
               id: 'projectType',
@@ -636,7 +669,7 @@ class Consts {
             }
           ]
         }
-        if (value == 'Other'){
+        else if (value == 'Other'){
           return [
             {
               id: 'projectType',
@@ -749,7 +782,7 @@ class Consts {
         let reg = /^\d+$/
         if (reg.test(value.trim()) == false)
           return 'Please enter a valid number.'
-        if (value.length > 4)
+        else if (value.length > 4)
           return 'The part count number must be less than 4 characters.'
         return null
       }
@@ -763,7 +796,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The project title name must be less than 30 characters.'
         return null
       }
@@ -790,7 +823,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 100)
+        else if (value.length > 100)
           return 'The description must be less than 100 characters.'
         return null
       }
@@ -804,7 +837,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The reference number must be less than 30 characters.'
         return null
       }
@@ -826,7 +859,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The first name must be less than 30 characters.'
         return null
       }
@@ -839,7 +872,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 30)
+        else if (value.length > 30)
           return 'The last name must be less than 30 characters.'
         return null
       }
@@ -868,7 +901,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 15)
+        else if (value.length > 15)
           return 'The project ID must be less than 15 characters.'
         if (!value.startsWith('P'))
           return 'Project IDs must begin with the letter "P".'
@@ -883,7 +916,7 @@ class Consts {
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        if (value.length > 15)
+        else if (value.length > 15)
           return 'The employee ID must be less than 15 characters.'
         if (!value.startsWith('E'))
           return 'Employee IDs must begin with the letter "E".'
@@ -919,7 +952,7 @@ class Consts {
    * @readonly
    */
   static get costCenterSelect() {return [
-    {title: 'Select...'}, {title: 'APC'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'Administration'}, {title: 'Production'}, {title: 'Research and Development'}, {title: 'Other'}
+    {title: 'Select...'}, {title: 'APC'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'Administration'}, {title: 'Production'}, {title: 'Military'}, {title: 'Research and Development'}, {title: 'Other'}
   ]}
   /**
    * @name apcProjectSelect
@@ -963,6 +996,14 @@ class Consts {
    * @readonly
    */
   static get rdProjectSelect() {return [{title: 'Select...'}, {title: 'Research and Development'}]}
+  /**
+   * @name militaryProjectSelect
+   * @description List of Military project types for selecting
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get militaryProjectSelect() {return [{title: 'Select...'}, {title: 'Military'}]}
   /**
    * @name productionProjectSelect
    * @description List of Production project types for selecting
