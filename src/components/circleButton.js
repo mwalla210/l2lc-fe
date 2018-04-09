@@ -26,7 +26,7 @@ export default class CircleButton extends Component {
     let fileName = '../../style/open-iconic-master/svg/'
     fileName += `${this.props.iconName}.svg`
     return (
-      <button type="button" className="btn btn-default btn-circle" aria-label="Left Align" onClick={this.props.onClick}>
+      <button type="button" className="btn-circle btn-outline-secondary" aria-label="Left Align" onClick={this.props.onClick}>
         <img src={fileName} alt={this.props.iconName} style={this.props.styleProps}/>
       </button>
     )

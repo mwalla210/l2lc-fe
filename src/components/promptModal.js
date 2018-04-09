@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal } from 'react-bootstrap'
+import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap'
 import ButtonDefault from './buttonDefault'
 
 /**
@@ -73,7 +73,7 @@ export default class PromptModal extends Component {
    * @method render
    * @memberof PromptModal.prototype
    * @return {Component}
-   * @see {@link https://react-bootstrap.github.io/components/modal/ ReactBootstrap.Modal}
+   * @see {@link https://reactstrap.github.io/components/modals/ Reactstrap.Modal}
    */
   render(){
     let confirmText = 'Confirm'
@@ -105,21 +105,17 @@ export default class PromptModal extends Component {
         />
       )
     return (
-      <Modal bsSize="small" show={this.props.open} onHide={this.hide}>
-        <Modal.Header closeButton {...header}>
-          <Modal.Title {...titleClass}>
-            {titleImage}
-            {this.props.title}
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>{this.props.content}</p>
-        </Modal.Body>
-        <Modal.Footer>
+      <Modal size="small" isOpen={this.props.open} toggle={this.hide}>
+        <ModalHeader toggle={this.hide} {...header} {...titleClass}>
+          {titleImage}
+          {this.props.title}
+        </ModalHeader>
+        <ModalBody>{this.props.content}</ModalBody>
+        <ModalFooter>
           {((this.props.denyOnClick) ?
           <ButtonDefault onClick={this.deny} text="Close"/> : null)}
           <ButtonDefault {...confirm} onClick={this.confirm} text={confirmText}/>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     )
   }

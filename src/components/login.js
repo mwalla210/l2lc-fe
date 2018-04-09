@@ -72,15 +72,17 @@ export default class Login extends Component {
           <img style={{margin: '30px'}} src={'../../img/L2L-Logo-raisedLARGE.png'}/>
         </p>
         <h1 style={{marginBottom: '30px'}}>Line2Line Cloud</h1>
-        <div className="row">
+        <div className="row justify-content-center">
           <div className="col-lg-12">
-            <div className="col-sm-6 col-sm-offset-3 alert alert-warning" role="alert" {...alertStyle}>
-              <strong>Warning!</strong>{' Couldn\'t authenticate this username and password combination.'}
+            <div className="row justify-content-center">
+              <div className="col-6 alert alert-warning" role="alert" {...alertStyle}>
+                <strong>Warning!</strong>{' Couldn\'t authenticate this username and password combination.'}
+              </div>
             </div>
             <form>
               <div className="form-group">
-                <div className="row">
-                  <div className="col-sm-6 col-sm-offset-3">
+                <div className="row justify-content-center">
+                  <div className="col-sm-6">
                   <input
                     type="text"
                     name="username"
@@ -96,8 +98,8 @@ export default class Login extends Component {
                 </div>
               </div>
               <div className="form-group">
-                <div className="row">
-                  <div className="col-sm-6 col-sm-offset-3">
+                <div className="row justify-content-center">
+                  <div className="col-sm-6">
                   <input
                     type="password"
                     name="password"
@@ -113,8 +115,8 @@ export default class Login extends Component {
                 </div>
               </div>
               <div className="form-group">
-                <div className="row">
-                  <div className="col-sm-6 col-sm-offset-3">
+                <div className="row justify-content-center">
+                  <div className="col-sm-6">
                     <ButtonPrimary
                       className="btn-lg btn-block"
                       onClick={this.formSubmit}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Modal } from 'react-bootstrap'
+import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap'
 import ButtonPrimary from './buttonPrimary'
 import ButtonDefault from './buttonDefault'
 
@@ -60,23 +60,23 @@ export default class FieldModal extends Component {
    * @method render
    * @memberof FieldModal.prototype
    * @return {Component}
-   * @see {@link https://react-bootstrap.github.io/components/modal/ ReactBootstrap.Modal}
+   * @see {@link https://reactstrap.github.io/components/modals/ Reactstrap.Modal}
    */
   render(){
     return (
-      <Modal show={this.props.open} onHide={this.hide}>
-        <Modal.Header closeButton>
-            <Modal.Title>{this.props.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
+      <Modal isOpen={this.props.open} toggle={this.hide}>
+        <ModalHeader toggle={this.hide}>
+          {this.props.title}
+        </ModalHeader>
+        <ModalBody>
           <div className="form-group">
             <textarea onChange={this.onChange} value={this.props.contents} className="form-control" id="modalTextArea" rows="3"/>
           </div>
-        </Modal.Body>
-        <Modal.Footer>
+        </ModalBody>
+        <ModalFooter>
           <ButtonDefault onClick={this.hide} text="Close"/>
           <ButtonPrimary onClick={this.props.submitButton.onClick} text={this.props.submitButton.title || 'Submit'}/>
-        </Modal.Footer>
+        </ModalFooter>
       </Modal>
     )
   }

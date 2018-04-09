@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
-import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
+import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, ButtonGroup} from 'reactstrap'
 // import DeleteModal from './deleteModal'
 import ButtonDefault from './buttonDefault'
+import Consts from '../consts'
 
 /**
  * EmployeeSummary component
@@ -27,6 +28,8 @@ export default class EmployeeSummary extends Component {
    * @method render
    * @memberof EmployeeSummary.prototype
    * @return {Component}
+   * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
+   * @see {@link Barcode}
    */
   render() {
     /*
@@ -42,42 +45,32 @@ export default class EmployeeSummary extends Component {
      */
     return (
       <div>
-        <div className="row">
-          <div className="col-sm-4 col-sm-offset-4">
-            <div className="row">
-              <div className="col-lg-12 col-lg-offset-2">
-                <div className="row">
-                  <div className="col-sm-4"><strong>{'First Name: '}</strong></div>
-                  <div className="col-sm-4">{this.props.website.currentEmployee.firstName}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-4"><strong>{'Last Name: '}</strong></div>
-                  <div className="col-sm-4">{this.props.website.currentEmployee.lastName}</div>
-                </div>
-                <br/>
-                </div>
-                <div style={{textAlign: 'center'}}>
-                 <Barcode
-                  imageDomID={this.props.website.currentEmployee.barcodeDomID}
-                  barcodeID={this.props.website.currentEmployee.barcodeScanID}
-                 />
-                 <br/>
-                 <br/>
-                 <ButtonToolbar>
-                   <ButtonGroup style={{float: 'inherit'}}>
-                     <DropdownButton bsStyle="primary" title="Actions" id="dropdown-primary">
-                       <MenuItem onSelect={this.props.page.employeeEditPage}>Edit</MenuItem>
-                     </DropdownButton>
-                   </ButtonGroup>
-                   <ButtonGroup style={{float: 'inherit'}}>
-                     <ButtonDefault onClick={this.printClick} text="Print"/>
-                   </ButtonGroup>
-                 </ButtonToolbar>
-                </div>
-              </div>
+        <div className="row justify-content-center">
+          <div {...Consts.summaryProps}>
+            <div>
+              <h6>Name</h6>
+              <p>{this.props.website.currentEmployee.fullName}</p>
             </div>
           </div>
         </div>
-      )
-    }
+        <div className="row justify-content-center">
+          <Barcode
+           imageDomID={this.props.website.currentEmployee.barcodeDomID}
+           barcodeID={this.props.website.currentEmployee.barcodeScanID}
+          />
+        </div>
+        <div className="row justify-content-center">
+          <ButtonGroup>
+            <ButtonDefault className="btn-outline-secondary" onClick={this.printClick} text="Print"/>
+            <ButtonDropdown isOpen={this.props.website.summaryActionsDropdownOpen} toggle={this.props.website.toggleSummaryActionsDD}>
+              <DropdownToggle color="primary" caret>Actions</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={this.props.page.employeeEditPage}>Edit</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+          </ButtonGroup>
+        </div>
+      </div>
+    )
   }
+}

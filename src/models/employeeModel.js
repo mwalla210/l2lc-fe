@@ -86,4 +86,15 @@ export default class EmployeeModel {
   @computed get barcodeScanID(){
     return `e${this.id}%`
   }
+
+  /**
+   * @name fullName
+   * @description Returns employee full name
+   * @return {String}
+   * @memberof EmployeeModel.prototype
+   * @mobx computed
+   */
+  @computed get fullName(){
+    return `${this.firstName} ${this.lastName}`
+  }
 }

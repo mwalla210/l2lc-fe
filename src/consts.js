@@ -1019,6 +1019,24 @@ class Consts {
    * @readonly
    */
   static get medPriority() {return '#f4e261'}
+  /**
+   * @name summaryProps
+   * @description Summary page box properties for style and visuals
+   * @memberof Consts.prototype
+   * @type {String}
+   * @readonly
+   */
+  static get summaryProps(){
+    return {
+      style: {
+        border: '1px solid #b4b4b4',
+        borderRadius: '8px',
+        paddingTop: '1rem',
+        margin: '2px'
+      },
+      className: 'col-3'
+    }
+  }
 }
 
 module.exports = Consts

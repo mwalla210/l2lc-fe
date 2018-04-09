@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
-import {DropdownButton, MenuItem, ButtonToolbar, ButtonGroup} from 'react-bootstrap'
+import {ButtonGroup, DropdownItem, DropdownMenu, ButtonDropdown, DropdownToggle} from 'reactstrap'
 import DeleteModal from './deleteModal'
 import FieldModal from './fieldModal'
 import PromptModal from './promptModal'
 import ButtonDefault from './buttonDefault'
+import Consts from '../consts'
 
 /**
  * ProjectSummary component; constructor binds functions
@@ -92,30 +93,14 @@ export default class ProjectSummary extends Component {
    * @method render
    * @memberof ProjectSummary.prototype
    * @return {Component}
-   * @see {@link http://lindell.me/JsBarcode/ JsBarcode}
+   * @see {@link Barcode}
    * @see {@link FieldModal}
    * @see {@link DeleteModal}
    * @see {@link PromptModal}
+   * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    */
   render() {
     let holdStr = `${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`
-    let projectTitleContent = `${(this.props.website.currentProject.title == '') ? '' : this.props.website.currentProject.title}`
-
-    let custNameStr = this.props.website.currentProject.customer.companyName
-    let custNameContent = `${(custNameStr) ? custNameStr : ''}`
-
-    let timeSpentStr = this.props.website.currentProject.timeSpent
-    let timeSpentContent = `${(timeSpentStr == '') ? '' : timeSpentStr}`
-
-    let partCountStr = this.props.website.currentProject.partCount
-    let partCountContent = `${(partCountStr == '') ? '' : partCountStr}`
-
-    let descrStr = this.props.website.currentProject.descr
-    let descrStrContent = `${(descrStr == '') ? '' : descrStr}`
-
-    let refNumStr = this.props.website.currentProject.refNum
-    let refNumContent = `${(refNumStr == '') ? '' : refNumStr}`
-
     return (
       <div>
         <FieldModal
@@ -146,93 +131,110 @@ export default class ProjectSummary extends Component {
           content="This action cannot be undone."
           confirmClass="btn-primary"
         />
-        <div className="row">
-          <div className="col-sm-4 col-sm-offset-4">
-            <h4 style={{textAlign: 'center'}}>{projectTitleContent}</h4>
-            <div className="row">
-              <div className="col-sm-12 col-sm-offset-2">
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'ID: '}</strong></div>
-                  <div className="col-sm-6">{this.props.website.currentProject.id}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'Cost Center: '}</strong></div>
-                  <div className="col-sm-6">{this.props.website.currentProject.costCenterTitle}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'Project Type: '}</strong></div>
-                  <div className="col-sm-6">{this.props.website.currentProject.jobTypeTitle}</div>
-                </div>
-                {(custNameStr) ?
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'Customer Name: '}</strong></div>
-                  <div className="col-sm-6">{custNameContent}</div>
-                </div> : null
-              }
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'Priority: '}</strong></div>
-                  <div className="col-sm-6">{this.props.website.currentProject.priority}</div>
-                </div>
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'Status: '}</strong></div>
-                  <div className="col-sm-6">{this.props.website.currentProject.status}</div>
-                </div>
-                {(timeSpentStr) ?
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'Time Spent: '}</strong></div>
-                  <div className="col-sm-6">{timeSpentContent}</div>
-                </div> : null
-              }
-                {(partCountStr) ?
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'Part Count: '}</strong></div>
-                  <div className="col-sm-6">{partCountContent}</div>
-                </div> : null
-              }
-                {(descrStr) ?
-                <div className="row">
-                  <div className="col-sm-6"><strong>{'Description: '}</strong></div>
-                  <div className="col-sm-6">{descrStrContent}</div>
-                </div> : null
-              }
-                {(refNumStr) ?
-                  <div className="row">
-                    <div className="col-sm-6"><strong>{'Reference Number: '}</strong></div>
-                    <div className="col-sm-6">{refNumContent}</div>
-                  </div> : null
-                }
+        <div className="row justify-content-center">
+          <div {...Consts.summaryProps}>
+            <h5>Main Information</h5>
+            {this.props.website.currentProject.title &&
+              <div>
+                <h6>Title</h6>
+                <p>{this.props.website.currentProject.title}</p>
               </div>
+            }
+            <div>
+              <h6>Priority</h6>
+              <p><span>
+                <img
+                  src={`../../style/open-iconic-master/svg/${(this.props.website.currentProject.priority == 'Low') ? 'arrow-bottom' : 'arrow-top'}.svg`}
+                  style={{width: '13px'}}
+                />
+                {` ${this.props.website.currentProject.priority}`}
+              </span></p>
             </div>
-            <div style={{textAlign: 'center'}}>
-              <Barcode
-               imageDomID={this.props.website.currentProject.barcodeDomID}
-               barcodeID={this.props.website.currentProject.barcodeScanID}
-              />
-              <br/>
-              <br/>
-              <ButtonToolbar>
-                <ButtonGroup style={{float: 'inherit'}}>
-                  <DropdownButton bsStyle="info" title="More..." id="dropdown-info">
-                    <MenuItem onSelect={this.tasksClick}>Tasks</MenuItem>
-                    <MenuItem onSelect={this.timeEntries}>Time Entries</MenuItem>
-                  </DropdownButton>
-                </ButtonGroup>
-                <ButtonGroup style={{float: 'inherit'}}>
-                  <DropdownButton bsStyle="primary" title="Actions..." id="dropdown-primary">
-                    <MenuItem onSelect={this.reworkClick}>Add Rework</MenuItem>
-                    <MenuItem onSelect={this.holdClick}>{holdStr}</MenuItem>
-                    <MenuItem onSelect={this.props.page.projectEditPage}>Edit Details</MenuItem>
-                    {(this.props.website.currentProject.customer.id) ? <MenuItem onSelect={this.props.page.changeCustomerPage}>Edit Customer</MenuItem> : null}
-                    <MenuItem onSelect={this.props.page.summaryModel.completeModal.openModal}>Complete</MenuItem>
-                    <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
-                  </DropdownButton>
-                </ButtonGroup>
-                <ButtonGroup style={{float: 'inherit'}}>
-                  <ButtonDefault onClick={this.printClick} text="Print"/>
-                </ButtonGroup>
-              </ButtonToolbar>
+            <div>
+              <h6>Status</h6>
+              <p><span>
+                <span style={{
+                  color: this.props.website.currentProject.status === 'Completed' ? Consts.doneColor
+                    : this.props.website.currentProject.status === 'On Hold' ? Consts.helpColor
+                    // Received, In Progress
+                    : Consts.openColor,
+                  transition: 'all .3s ease'}}>
+                    &#x25cf;
+                </span>
+                {` ${this.props.website.currentProject.status}`}
+              </span></p>
+            </div>
+            <div>
+              <h6>Cost Center</h6>
+              <p>{this.props.website.currentProject.costCenterTitle}</p>
+            </div>
+            <div>
+              <h6>Project Type</h6>
+              <p>{this.props.website.currentProject.jobTypeTitle}</p>
             </div>
           </div>
+          <div {...Consts.summaryProps}>
+            <h5>Additional Information</h5>
+            {this.props.website.currentProject.customer.companyName &&
+              <div>
+                <h6>Customer Name</h6>
+                <p>{this.props.website.currentProject.customer.companyName}</p>
+              </div>
+            }
+            {this.props.website.currentProject.timeSpent &&
+              <div>
+                <h6>Time Spent</h6>
+                <p>{this.props.website.currentProject.timeSpent}</p>
+              </div>
+            }
+            {this.props.website.currentProject.partCount &&
+              <div>
+                <h6>Part Count</h6>
+                <p>{this.props.website.currentProject.partCount}</p>
+              </div>
+            }
+            {this.props.website.currentProject.descr &&
+              <div>
+                <h6>Description</h6>
+                <p>{this.props.website.currentProject.descr}</p>
+              </div>
+            }
+            {this.props.website.currentProject.refNum &&
+              <div className="row justify-content-center">
+                <h6>Reference Number</h6>
+                <p>{this.props.website.currentProject.refNum}</p>
+              </div>
+            }
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <Barcode
+           imageDomID={this.props.website.currentProject.barcodeDomID}
+           barcodeID={this.props.website.currentProject.barcodeScanID}
+          />
+        </div>
+        <div className="row justify-content-center">
+          <ButtonGroup>
+            <ButtonDefault className="btn-outline-secondary" onClick={this.printClick} text="Print"/>
+            <ButtonDropdown isOpen={this.props.website.summaryMoreDropdownOpen} toggle={this.props.website.toggleSummaryMoreDD}>
+              <DropdownToggle outline color="secondary" caret>More...</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={this.tasksClick}>Tasks</DropdownItem>
+                <DropdownItem onClick={this.timeEntries}>Time Entries</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+            <ButtonDropdown isOpen={this.props.website.summaryActionsDropdownOpen} toggle={this.props.website.toggleSummaryActionsDD}>
+              <DropdownToggle color="primary" caret>Actions</DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem onClick={this.reworkClick}>Add Rework</DropdownItem>
+                <DropdownItem onClick={this.holdClick}>{holdStr}</DropdownItem>
+                <DropdownItem onClick={this.props.page.projectEditPage}>Edit Details</DropdownItem>
+                {this.props.website.currentProject.customer.id && <DropdownItem onClick={this.props.page.changeCustomerPage}>Edit Customer</DropdownItem>}
+                <DropdownItem onClick={this.props.page.summaryModel.completeModal.openModal}>Complete</DropdownItem>
+                <DropdownItem onClick={this.props.page.summaryModel.deleteModal.openModal}>Delete</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+          </ButtonGroup>
         </div>
       </div>
     )

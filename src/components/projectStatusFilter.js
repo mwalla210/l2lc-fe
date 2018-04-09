@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import {inject, observer} from 'mobx-react'
 import PropTypes from 'prop-types'
-import { SplitButton } from 'react-bootstrap'
+import { ButtonDropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
 import {Checkbox, CheckboxGroup} from 'react-checkbox-group'
 
 /**
@@ -10,6 +11,7 @@ import {Checkbox, CheckboxGroup} from 'react-checkbox-group'
  * @property {Function} onChange On change function for checkboxes
  * @extends React.Component
  */
+@inject ('page') @observer
 export default class ProjectStatusFilter extends Component {
   static propTypes = {
     filter: PropTypes.object,
@@ -35,33 +37,37 @@ export default class ProjectStatusFilter extends Component {
    * @method render
    * @memberof ProjectStatusFilter.prototype
    * @return {Component}
-   * @see {@link https://react-bootstrap.github.io/components/dropdowns/ ReactBootstrap.SplitButton}
+   * @see {@link https://reactstrap.github.io/components/button-dropdown/ Reactstrap.ButtonDropdown}
    * @see {@link https://www.npmjs.com/package/react-checkbox-group Checkbox}
    */
   render(){
     return (
-      <SplitButton
-        bsSize="small"
-        title="Filter"
-        id="split-button-small"
-      >
-        <CheckboxGroup
-          name="Filters"
-          value={this.props.filter ? this.props.filter.value : []}
-          onChange={this.checkChange}
+      <ButtonDropdown isOpen={this.props.page.tableModel.filterDD} toggle={this.props.page.tableModel.toggleDropdown} style={{height: '30px'}}>
+        <DropdownToggle outline caret
+          color="secondary"
+          style={{paddingTop: '2px'}}
         >
-          <label style={{marginLeft: '8px'}}><Checkbox value="Received"/> Received</label>
-          <br/>
-          <label style={{marginLeft: '8px'}}><Checkbox value="In Progress"/> In Progress</label>
-          <br/>
-          <label style={{marginLeft: '8px'}}><Checkbox value="On Hold"/> On Hold</label>
-          <br/>
-          <label style={{marginLeft: '8px'}}><Checkbox value="Completed"/> Completed</label>
-          <br/>
-          <label style={{marginLeft: '8px'}}><Checkbox value="Dropped"/> Dropped</label>
-          <br/>
-        </CheckboxGroup>
-      </SplitButton>
+          Filter
+        </DropdownToggle>
+        <DropdownMenu>
+          <CheckboxGroup
+            name="Filters"
+            value={this.props.filter ? this.props.filter.value : []}
+            onChange={this.checkChange}
+          >
+            <label style={{marginLeft: '8px'}}><Checkbox value="Received"/> Received</label>
+            <br/>
+            <label style={{marginLeft: '8px'}}><Checkbox value="In Progress"/> In Progress</label>
+            <br/>
+            <label style={{marginLeft: '8px'}}><Checkbox value="On Hold"/> On Hold</label>
+            <br/>
+            <label style={{marginLeft: '8px'}}><Checkbox value="Completed"/> Completed</label>
+            <br/>
+            <label style={{marginLeft: '8px'}}><Checkbox value="Dropped"/> Dropped</label>
+            <br/>
+          </CheckboxGroup>
+        </DropdownMenu>
+      </ButtonDropdown>
     )
   }
 }

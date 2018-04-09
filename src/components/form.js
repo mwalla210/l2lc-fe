@@ -8,7 +8,7 @@ import FormItem from './formItem'
 import PromptModal from './promptModal'
 import ButtonPrimary from './buttonPrimary'
 import ButtonDefault from './buttonDefault'
-import {ButtonToolbar, ButtonGroup} from 'react-bootstrap'
+import {ButtonToolbar, ButtonGroup} from 'reactstrap'
 
 /**
  * Form component; constructor binds functions
@@ -87,10 +87,11 @@ export default class Form extends Component {
    * @memberof Form.prototype
    * @return {Component}
    * @see {@link PromptModal}
+   * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    */
   render() {
     return(
-      <div>
+      <div className="row justify-content-center">
         <PromptModal
           headerClass="bg-alert"
           title="API Return Error"
@@ -103,7 +104,7 @@ export default class Form extends Component {
           confirmClass="btn-alert"
           primaryButtonText="Ok"
         />
-        <form className="col-sm-6 col-sm-offset-3">
+        <form className="col-sm-6">
           {this.props.page.formModel.fields.map((field, index) => {
             let first = true
             if(index != 0){
@@ -147,7 +148,7 @@ export default class Form extends Component {
               </FormItem>
             )
           })}
-          <div style={{textAlign: 'center'}}>
+          <div className="row justify-content-center">
             <ButtonToolbar>
               {this.props.page.formModel.secondaryButton &&
                 <ButtonGroup style={{float: 'inherit'}}>
