@@ -28,7 +28,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Email Address',
-      id: 'emailAddress',
+      id: 'email',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -45,7 +45,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Phone Number',
-      id: 'phoneNumber',
+      id: 'phone',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -59,7 +59,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Website',
-      id: 'websiteLink',
+      id: 'website',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -76,7 +76,7 @@ class Consts {
     {
       type: 'select',
       label: 'Country',
-      id: 'country',
+      id: 'shipCountry',
       options: this.countrySelect,
       required: true,
       disabled: false,
@@ -89,13 +89,13 @@ class Consts {
         if (value == 'United States of America'){
           return [
             {
-              id: 'state',
+              id: 'shipState',
               options: this.stateSelect,
               required: true,
               disabled: false
             },
             {
-              id: 'zipCode',
+              id: 'shipZip',
               required: true,
               disabled: false
             }
@@ -103,13 +103,13 @@ class Consts {
         }
         return [
           {
-            id: 'state',
+            id: 'shipState',
             options: [{title: 'Not Applicable'}],
             required: false,
             disabled: true
           },
           {
-            id: 'zipCode',
+            id: 'shipZip',
             required: false,
             disabled: false
           }
@@ -119,7 +119,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Address Line 1',
-      id: 'addressLine1',
+      id: 'shipAddr1',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -133,7 +133,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Address Line 2',
-      id: 'addressLine2',
+      id: 'shipAddr2',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -147,7 +147,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'City',
-      id: 'city',
+      id: 'shipCity',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -161,7 +161,7 @@ class Consts {
     {
       type: 'select',
       label: 'State',
-      id: 'state',
+      id: 'shipState',
       options: this.stateSelect,
       required: true,
       disabled: false,
@@ -174,7 +174,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Zip Code',
-      id: 'zipCode',
+      id: 'shipZip',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -188,73 +188,57 @@ class Consts {
     {
       type: 'checkbox',
       label: 'Billing address same as shipping',
-      id: 'enableShippingAddress',
+      id: 'billIsSame',
       required: false,
       validation: null,
       onUpdate: (value) => {
         if (value){
           return [
             {
-              id: 'billingCountry',
-              required: false,
+              id: 'billCountry',
               disabled: true
             },
             {
-              id: 'billingAddressLine1',
-              required: false,
+              id: 'billAddr1',
               disabled: true
             },
             {
-              id: 'billingAddressLine2',
-              required: false,
+              id: 'billAddr2',
               disabled: true
             },
             {
-              id: 'billingCity',
-              required: false,
+              id: 'billCity',
               disabled: true
             },
             {
-              id: 'billingState',
-              required: false,
+              id: 'billState',
               disabled: true
             },
             {
-              id: 'billingZipCode',
-              required: false,
+              id: 'billZip',
               disabled: true
             },
           ]
         }
         return [
           {
-            id: 'billingCountry',
-            required: true,
+            id: 'billCountry',
             disabled: false
           },
           {
-            id: 'billingAddressLine1',
-            required: true,
+            id: 'billAddr1',
             disabled: false
           },
           {
-            id: 'billingAddressLine2',
-            required: false,
+            id: 'billAddr2',
             disabled: false
           },
           {
-            id: 'billingCity',
-            required: true,
+            id: 'billCity',
             disabled: false
           },
           {
-            id: 'billingState',
-            required: true,
-            disabled: false
-          },
-          {
-            id: 'billingZipCode',
-            required: true,
+            id: 'billZip',
             disabled: false
           },
         ]
@@ -263,7 +247,7 @@ class Consts {
     {
       type: 'select',
       label: 'Country',
-      id: 'billingCountry',
+      id: 'billCountry',
       options: this.countrySelect,
       required: false,
       disabled: false,
@@ -276,28 +260,28 @@ class Consts {
         if (value !== 'United States of America'){
           return [
             {
-              id: 'billingAddressLine1',
+              id: 'billAddr1',
               required: true,
               disabled: false
             },
             {
-              id: 'billingAddressLine2',
+              id: 'billAddr2',
               required: false,
               disabled: false
             },
             {
-              id: 'billingCity',
+              id: 'billCity',
               required: true,
               diabled: false
             },
             {
-              id: 'billingState',
+              id: 'billState',
               options: [{title: 'Not Applicable'}],
               required: false,
               disabled: true
             },
             {
-              id: 'billingZipCode',
+              id: 'billZip',
               required: false,
               disabled: false
             }
@@ -306,28 +290,28 @@ class Consts {
         if (value == 'United States of America'){
           return [
             {
-              id: 'billingAddressLine1',
+              id: 'billAddr1',
               required: true,
               disabled: false
             },
             {
-              id: 'billingAddressLine2',
+              id: 'billAddr2',
               required: false,
               disabled: false
             },
             {
-              id: 'billingCity',
+              id: 'billCity',
               required: true,
               diabled: false
             },
             {
-              id: 'billingState',
+              id: 'billState',
               options: this.stateSelect,
               required: true,
               disabled: false
             },
             {
-              id: 'billingZipCode',
+              id: 'billZip',
               required: true,
               disabled: false
             }
@@ -338,7 +322,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Address Line 1',
-      id: 'billingAddressLine1',
+      id: 'billAddr1',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -352,7 +336,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Address Line 2',
-      id: 'billingAddressLine2',
+      id: 'billAddr2',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -366,7 +350,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'City',
-      id: 'billingCity',
+      id: 'billCity',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -380,7 +364,7 @@ class Consts {
     {
       type: 'select',
       label: 'State',
-      id: 'billingState',
+      id: 'billState',
       options: this.stateSelect,
       required: false,
       disabled: false,
@@ -393,7 +377,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Zip Code',
-      id: 'billingZipCode',
+      id: 'billZip',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -416,7 +400,7 @@ class Consts {
     {
       type: 'select',
       label: 'Cost Center',
-      id: 'costCenter',
+      id: 'costCenterTitle',
       options: this.costCenterSelect,
       required: true,
       disabled: false,

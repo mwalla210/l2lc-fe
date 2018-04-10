@@ -93,7 +93,7 @@ export default class Form extends Component {
       <div>
         <PromptModal
           headerClass="bg-alert"
-          title="API Return Error"
+          title="Warning"
           titleImage="warning"
           titleClass="text-alert"
           confirmOnClick={this.props.page.formModel.confirmAndClose}

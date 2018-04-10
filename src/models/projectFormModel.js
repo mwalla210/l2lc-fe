@@ -45,7 +45,13 @@ export default class projectFormModel extends FormModel{
    */
   editButton(){
     // Change onClick functionality for primary
-    return (fields) => console.log('EDIT with', fields)
+    return (fields) => {
+      let body = {}
+      fields.forEach(item => {
+        body[item.id] = item.value.trim()
+      })
+      console.log('EDIT with', body)
+    }
   }
   /**
    * @name editSecondaryButton
@@ -101,7 +107,8 @@ export default class projectFormModel extends FormModel{
         .then((response) => {
           if(response == null){
             this.onClickNav()
-          } else {
+          }
+          else {
             this.setError(response)
             this.openModal()
           }
@@ -122,7 +129,17 @@ export default class projectFormModel extends FormModel{
     this.secondaryButton = this.editSecondaryButton()
     this.resetValues()
     // Update fields with values corresponding to currentProject
-    console.log(Website.currentProject)
+    console.log(this.fields.slice(),Website.currentProject)
+    this.fields.forEach((fieldObj, index) => {
+      let value
+      if (!Website.currentProject.hasOwnProperty(fieldObj.id)){
+        console.log('missing',fieldObj.id)
+      }
+      else
+        value = Website.currentProject[fieldObj.id]
+      if (value != null && value != undefined && value != '')
+        this.modifyFieldValue(index, value)
+    })
   }
   /**
    * @name setNonEdit

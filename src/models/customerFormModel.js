@@ -44,7 +44,20 @@ export default class CustomerFormModel extends FormModel{
    */
   editButton(){
     // Change onClick functionality for primary
-    return (fields) => console.log('EDIT with', fields)
+    return (fields) => {
+      let body = this.parseForm(fields)
+      console.log('EDIT with', body)
+      // Website.updateCustomer(Website.currentCustomer.id, body)
+      // .then(response => {
+      //   if(response == null){
+      //     this.onClickNav()
+      //   }
+      //   else {
+      //     this.setError(response)
+      //     this.openModal()
+      //   }
+      // })
+    }
   }
   /**
    * @name newButton
@@ -55,44 +68,13 @@ export default class CustomerFormModel extends FormModel{
    */
   newButton(){
     return (fields) => {
-      let valueReturn = (id) => {
-        let val
-        fields.forEach(item => {
-          if (item.id == id){
-            val = item.value
-          }
-        })
-        return val
-      }
-      let body = {
-        name: valueReturn('companyName').trim(),
-        email: valueReturn('emailAddress').trim(),
-        website: valueReturn('websiteLink').trim(),
-        shippingAddr: {
-          street: `${valueReturn('addressLine1').trim()} ${valueReturn('addressLine2').trim()}`.trim(),
-          city: valueReturn('city').trim(),
-          state: valueReturn('state').trim(),
-          country: valueReturn('country').trim(),
-          zip: valueReturn('zipCode').trim()
-        },
-        isPastDue: false,
-        phoneNumber: valueReturn('phoneNumber').trim(),
-      }
-      if (valueReturn('enableShippingAddress'))
-        body.billingAddr = body.shippingAddr
-      else
-        body.billingAddr = {
-          street: `${valueReturn('billingAddressLine1').trim()} ${valueReturn('billingAddressLine2').trim()}`.trim(),
-          city: valueReturn('billingCity').trim(),
-          state: valueReturn('billingState').trim(),
-          country: valueReturn('billingCountry').trim(),
-          zip: valueReturn('billingZipCode').trim()
-        }
+      let body = this.parseForm(fields)
       Website.createCustomer(body)
       .then((response) => {
         if(response == null){
           this.onClickNav()
-        } else {
+        }
+        else {
           this.setError(response)
           this.openModal()
         }
@@ -101,8 +83,52 @@ export default class CustomerFormModel extends FormModel{
   }
 
   /**
+   * @name parseForm
+   * @description Returns body for use with POST
+   * @method parseForm
+   * @return {Function}
+   * @memberof CustomerFormModel.prototype
+   */
+  parseForm(fields){
+    let valueReturn = (id) => {
+      let val
+      fields.forEach(item => {
+        if (item.id == id){
+          val = item.value
+        }
+      })
+      return val
+    }
+    let body = {
+      name: valueReturn('companyName').trim(),
+      email: valueReturn('email').trim(),
+      website: valueReturn('website').trim(),
+      shippingAddr: {
+        street: `${valueReturn('shipAddr1').trim()} ${valueReturn('shipAddr2').trim()}`.trim(),
+        city: valueReturn('shipCity').trim(),
+        state: valueReturn('shipState').trim(),
+        country: valueReturn('shipCountry').trim(),
+        zip: valueReturn('shipZip').trim()
+      },
+      isPastDue: false,
+      phoneNumber: valueReturn('phone').trim(),
+    }
+    if (valueReturn('billIsSame'))
+      body.billingAddr = body.shippingAddr
+    else
+      body.billingAddr = {
+        street: `${valueReturn('billAddr1').trim()} ${valueReturn('billAddr2').trim()}`.trim(),
+        city: valueReturn('billCity').trim(),
+        state: valueReturn('billState').trim(),
+        country: valueReturn('billCountry').trim(),
+        zip: valueReturn('billZip').trim()
+      }
+    return body
+  }
+
+  /**
    * @name setEdit
-   * @description Modifies primary button click, initializes field values as editing values corresponding to currentCustomer
+   * @description Modifies primary button click, calls modifyFieldValue to set values as editing values corresponding to currentCustomer and handle any onUpdate functions needed
    * @method setEdit
    * @memberof CustomerFormModel.prototype
    * @mobx action
@@ -111,7 +137,19 @@ export default class CustomerFormModel extends FormModel{
     this.primaryButton.onClick = this.editButton()
     this.resetValues()
     // Update fields with values corresponding to currentCustomer
-    console.log(Website.currentCustomer)
+    this.fields.forEach((fieldObj, index) => {
+      let value
+      if (!Website.currentCustomer.hasOwnProperty(fieldObj.id)){
+        if (fieldObj.id.includes('bill'))
+          value = (Website.currentCustomer.billAddr[fieldObj.id])
+        else
+          value = Website.currentCustomer.shipAddr[fieldObj.id]
+      }
+      else
+        value = Website.currentCustomer[fieldObj.id]
+      if (value != null && value != undefined && value != '')
+        this.modifyFieldValue(index, value)
+    })
   }
   /**
    * @name setNonEdit
