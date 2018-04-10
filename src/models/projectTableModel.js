@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStrict } from 'mobx'
+import { useStrict, extendObservable, action } from 'mobx'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
@@ -18,6 +18,7 @@ useStrict(true)
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
   * @property {Function} deleteClickNav Function to navigate on click of delete icon
+  * @property {Boolean} [filterDD=false] Status filter dropdown state
   * @extends TableModel
  */
 export default class ProjectTableModel extends TableModel{
@@ -42,6 +43,10 @@ export default class ProjectTableModel extends TableModel{
         return {}
       }
     )
+    let addtlProps = {
+      filterDD: false
+    }
+    extendObservable(this,addtlProps)
     this.infoClickNav = infoClickNav
     this.editClickNav = editClickNav
     autoBind(this)
@@ -102,7 +107,7 @@ export default class ProjectTableModel extends TableModel{
           // filter.value.length==0: no filters selected
           return filter.value.length == 0 || filter.value.includes(row[filter.id])
         },
-        Filter: ({filter, onChange}) => <ProjectStatusFilter filter={filter} onChange={onChange}/>,
+        Filter: ({filter, onChange}) => <ProjectStatusFilter filter={filter} onChange={onChange} dropdownOpen={this.filterDD} dropdownToggle={this.toggleDropdown}/>,
       },
       {
         Header: 'Actions',
@@ -121,6 +126,18 @@ export default class ProjectTableModel extends TableModel{
       }
     ]
   }
+
+  /**
+   * @name toggleDropdown
+   * @description Project filter status toggle
+   * @method toggleDropdown
+   * @memberof ProjectTableModel.prototype
+   * @mobx action
+   */
+  @action toggleDropdown(){
+    this.filterDD = !this.filterDD
+  }
+
   /**
    * @name clickHandler
    * @description Handles action icon clicks

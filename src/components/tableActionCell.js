@@ -10,6 +10,8 @@ import { inject } from 'mobx-react'
  * @property {String} set One of ['Full'|'Restricted']
  * @property {Function} clickHandler Icon click function
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
 @inject('website', 'page')
 export default class TableActionCell extends Component {

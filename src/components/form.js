@@ -8,12 +8,13 @@ import FormItem from './formItem'
 import PromptModal from './promptModal'
 import ButtonPrimary from './buttonPrimary'
 import ButtonDefault from './buttonDefault'
-import {ButtonToolbar, ButtonGroup} from 'react-bootstrap'
+import {ButtonToolbar, ButtonGroup} from 'reactstrap'
 
 /**
  * Form component; constructor binds functions
  * @namespace Form
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
  */
 @inject('page') @observer
 export default class Form extends Component {
@@ -29,7 +30,6 @@ export default class Form extends Component {
    * @method primaryOnClick
    * @param {Object} e Form "submit" event
    * @memberof Form.prototype
-   * @see {@link PageStore}
    * @see {@link FormModel}
    */
   primaryOnClick(e){
@@ -42,7 +42,6 @@ export default class Form extends Component {
    * @method secondaryOnClick
    * @param {Object} e Form "submit" event
    * @memberof Form.prototype
-   * @see {@link PageStore}
    * @see {@link FormModel}
    */
   secondaryOnClick(e){
@@ -57,7 +56,6 @@ export default class Form extends Component {
    * @param {Boolean} [checkbox=false] Checkbox field indicator
    * @param {Object} event Field content change event
    * @memberof Form.prototype
-   * @see {@link PageStore}
    * @see {@link FormModel}
    */
   onChange = (index, checkbox=false) => (event) => {
@@ -73,7 +71,6 @@ export default class Form extends Component {
    * @param {Number} index Field index
    * @param {Object} event Field content change event
    * @memberof Form.prototype
-   * @see {@link PageStore}
    * @see {@link FormModel}
    */
   onBlur = (index) => (event) => {
@@ -87,10 +84,11 @@ export default class Form extends Component {
    * @memberof Form.prototype
    * @return {Component}
    * @see {@link PromptModal}
+   * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    */
   render() {
     return(
-      <div>
+      <div className="row justify-content-center">
         <PromptModal
           headerClass="bg-alert"
           title="API Return Error"
@@ -103,7 +101,7 @@ export default class Form extends Component {
           confirmClass="btn-alert"
           primaryButtonText="Ok"
         />
-        <form className="col-sm-6 col-sm-offset-3">
+        <form className="col-sm-6">
           {this.props.page.formModel.fields.map((field, index) => {
             let first = true
             if(index != 0){
@@ -147,7 +145,7 @@ export default class Form extends Component {
               </FormItem>
             )
           })}
-          <div style={{textAlign: 'center'}}>
+          <div className="row justify-content-center">
             <ButtonToolbar>
               {this.props.page.formModel.secondaryButton &&
                 <ButtonGroup style={{float: 'inherit'}}>
