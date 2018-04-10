@@ -79,6 +79,8 @@ export default class Form extends Component {
   onBlur = (index) => (event) => {
     event.preventDefault()
     this.props.page.formModel.fieldValidatorWrapper(index)
+    if (this.props.page.formModel.autoSubmit)
+      this.props.page.formModel.autoSubmitter()
   }
 
   /**
