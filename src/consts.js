@@ -191,55 +191,77 @@ class Consts {
       id: 'billIsSame',
       required: false,
       validation: null,
-      onUpdate: (value) => {
+      onUpdate: (value, fields) => {
         if (value){
           return [
             {
               id: 'billCountry',
-              disabled: true
+              disabled: true,
+              required: false
             },
             {
               id: 'billAddr1',
-              disabled: true
+              disabled: true,
+              required: false
             },
             {
               id: 'billAddr2',
-              disabled: true
+              disabled: true,
+              required: false
             },
             {
               id: 'billCity',
-              disabled: true
+              disabled: true,
+              required: false
             },
             {
               id: 'billState',
-              disabled: true
+              disabled: true,
+              required: false
             },
             {
               id: 'billZip',
-              disabled: true
+              disabled: true,
+              required: false
             },
           ]
+        }
+        let stateShow = false
+        let zipRequired = false
+        if (fields.find(obj => obj.id == 'billCountry').value == 'United States of America'){
+          stateShow = true
+          zipRequired = true
         }
         return [
           {
             id: 'billCountry',
-            disabled: false
+            disabled: false,
+            required: true
           },
           {
             id: 'billAddr1',
-            disabled: false
+            disabled: false,
+            required: true
           },
           {
             id: 'billAddr2',
-            disabled: false
+            disabled: false,
+            required: false
           },
           {
             id: 'billCity',
-            disabled: false
+            disabled: false,
+            required: true
+          },
+          {
+            id: 'billState',
+            disabled: !stateShow,
+            required: stateShow
           },
           {
             id: 'billZip',
-            disabled: false
+            disabled: false,
+            required: zipRequired
           },
         ]
       }
