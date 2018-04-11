@@ -186,7 +186,17 @@ class Website {
   createTimeEntry(body, projectID){
     let jsonTime = JSON.stringify(body)
     return API.create(`project/${projectID}/time-entry/create`, jsonTime)
-    .then(response => console.log(response))
+    .then(response => {
+      if(response === 406){
+        return 'Project or Employee does not exist'
+      }
+      else if(typeof(response) != 'number'){
+        return null
+      }
+      else {
+        return 'Unexpected error'
+      }
+    })
   }
 
   // Update

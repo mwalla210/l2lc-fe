@@ -45,7 +45,15 @@ export default class TimeEntryFormModel extends FormModel{
         station: Website.currentUser.stationID,
       }
       Website.createTimeEntry(body, arrayFields[0].value.replace('P',''))
-      this.resetValuesAndValidation()
+      .then(response => {
+        if(response == null){
+          this.resetValuesAndValidation()
+        }
+        else {
+          this.setError(response)
+          this.openModal()
+        }
+      })
     }
     this.secondaryButton.onClick = this.resetValuesAndValidation
   }
