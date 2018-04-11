@@ -413,7 +413,7 @@ class Consts {
         if (value == 'APC'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.apcProjectSelect,
               required: true,
               disabled: false
@@ -424,7 +424,7 @@ class Consts {
               disabled: false
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: false,
               disabled: false
             },
@@ -434,12 +434,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -448,7 +448,7 @@ class Consts {
         if (value == 'Decorative'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.decorativeProjectSelect,
               required: true,
               disabled: false
@@ -459,7 +459,7 @@ class Consts {
               disabled: false
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -469,12 +469,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -483,7 +483,7 @@ class Consts {
         if (value == 'Maintenance'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.maintenanceProjectSelect,
               required: true,
               disabled: false
@@ -494,7 +494,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -504,12 +504,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -518,7 +518,7 @@ class Consts {
         if (value == 'Administration'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.adminProjectSelect,
               required: true,
               disabled: false
@@ -529,7 +529,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -539,12 +539,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -553,7 +553,7 @@ class Consts {
         if (value == 'Research and Development'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.rdProjectSelect,
               required: true,
               disabled: false
@@ -564,7 +564,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -574,12 +574,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -588,7 +588,7 @@ class Consts {
         if (value == 'Production'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.productionProjectSelect,
               required: true,
               disabled: false
@@ -599,7 +599,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -609,12 +609,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -623,7 +623,7 @@ class Consts {
         if (value == 'Other'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.otherProjectSelect,
               required: true,
               disabled: false
@@ -634,7 +634,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -644,12 +644,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -657,7 +657,7 @@ class Consts {
         }
         return [
           {
-            id: 'projectType',
+            id: 'jobTypeTitle',
             options: [],
             required: true,
             disabled: true
@@ -668,7 +668,7 @@ class Consts {
             disabled: true
           },
           {
-            id: 'projectTitle',
+            id: 'title',
             required: true,
             disabled: true
           },
@@ -678,12 +678,12 @@ class Consts {
             disabled: true
           },
           {
-            id: 'description',
+            id: 'descr',
             required: false,
             disabled: true
           },
           {
-            id: 'referenceNumber',
+            id: 'refNum',
             required: false,
             disabled: true
           }
@@ -693,7 +693,7 @@ class Consts {
     {
       type: 'select',
       label: 'Project Type',
-      id: 'projectType',
+      id: 'jobTypeTitle',
       options: [],
       required: true,
       disabled: true,
@@ -706,7 +706,7 @@ class Consts {
         if (value == 'Piston' || value == 'Turbo' || value == 'Rotor' || value == 'Pump'){
           return [
             {
-              id: 'projectTitle',
+              id: 'title',
               required: false,
               disabled: false
             }
@@ -714,7 +714,7 @@ class Consts {
         }
         return [
           {
-            id: 'projectTitle',
+            id: 'title',
             required: true,
             disabled: false
           }
@@ -741,7 +741,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Project Title',
-      id: 'projectTitle',
+      id: 'title',
       required: false,
       disabled: true,
       validation: (value, required) => {
@@ -768,7 +768,7 @@ class Consts {
     {
       type: 'textarea',
       label: 'Description',
-      id: 'description',
+      id: 'descr',
       required: false,
       disabled: true,
       validation: (value, required) => {
@@ -782,7 +782,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Reference Number',
-      id: 'referenceNumber',
+      id: 'refNum',
       required: false,
       disabled: true,
       validation: (value, required) => {

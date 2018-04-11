@@ -194,7 +194,6 @@ export default class API {
    * @return {ProjectModel}
    */
   static projectModelize(item){
-    console.log(item)
     // Modelize customer object before providing to project
     return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
   }
@@ -208,13 +207,8 @@ export default class API {
    * @return {Promise}
    */
   static updateProject(id, body){
-    return fetch(`${api}project/${id}/update`, {
-      method: 'POST',
-      body,
-      headers: { 'Content-Type': 'application/json' }
-    })
+    return API.update(`project/${id}/update`, body)
     .then(response => {
-      console.log(response.status)
       if(response === 406){
         return 'Duplicate entry exists'
       }
@@ -314,7 +308,6 @@ export default class API {
         return 'Duplicate entry exists'
       }
       else if(typeof(response) != 'number'){
-        console.log(response)
         return API.employeeModelize(response)
       }
       else {

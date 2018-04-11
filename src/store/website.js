@@ -194,6 +194,7 @@ class Website {
       if(typeof(response) === 'string'){
         return response
       }
+      this.setProject(response)
       return null
     })
   }
