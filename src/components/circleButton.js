@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Button } from 'reactstrap'
 
 /**
  * CircleButton component
@@ -13,7 +14,8 @@ export default class CircleButton extends Component {
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     iconName: PropTypes.string.isRequired,
-    styleProps: PropTypes.object
+    styleProps: PropTypes.object,
+    disabled: PropTypes.bool,
   }
 
   /**
@@ -26,9 +28,9 @@ export default class CircleButton extends Component {
     let fileName = '../../style/open-iconic-master/svg/'
     fileName += `${this.props.iconName}.svg`
     return (
-      <button type="button" className="btn-circle btn-outline-secondary" aria-label="Left Align" onClick={this.props.onClick}>
+      <Button outline color="secondary" className="btn-circle" aria-label="Left Align" onClick={this.props.onClick} disabled={this.props.disabled}>
         <img src={fileName} alt={this.props.iconName} style={this.props.styleProps}/>
-      </button>
+      </Button>
     )
   }
 }
