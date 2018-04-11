@@ -106,7 +106,7 @@ export default class CustomerModel {
   */
   @computed get formattedShipAddress(){
     // Allow for missing addr2, state
-    return `${this.shipAddr.shipAddr1}\n${(this.shipAddr.shipAddr2) ? `${this.shipAddr.shipAddr2}\n` : ''}${this.shipAddr.shipCity}, ${(this.shipAddr.shipState) ? `${this.shipAddr.shipState}\n` : ''}${this.shipAddr.shipCountry}\n${this.shipAddr.shipZip}`
+    return `${this.shipAddr.shipAddr1}\n${(this.shipAddr.shipAddr2) ? `${this.shipAddr.shipAddr2}\n` : ''}${this.shipAddr.shipCity}, ${(this.shipAddr.shipState) ? `${this.shipAddr.shipState} ` : ''} ${this.shipAddr.shipZip}\n${this.shipAddr.shipCountry}`
   }
 
   /**
@@ -123,7 +123,7 @@ export default class CustomerModel {
     }
     else{
       // Allow for missing addr2, state
-      return `${this.billAddr.billAddr1}\n${(this.billAddr.billAddr2) ? `${this.billAddr.billAddr2}\n` : ''}${this.billAddr.billCity}, ${(this.billAddr.billState) ? `${this.billAddr.billState}\n` : ''}${this.billAddr.billCountry}\n${this.billAddr.billZip}`
+      return `${this.billAddr.billAddr1}\n${(this.billAddr.billAddr2) ? `${this.billAddr.billAddr2}\n` : ''}${this.billAddr.billCity}, ${(this.billAddr.billState) ? `${this.billAddr.billState} ` : ''} ${this.billAddr.billZip}\n${this.billAddr.billCountry}`
     }
   }
 

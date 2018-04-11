@@ -14,6 +14,7 @@ import { inject, PropTypes as MobXPropTypes } from 'mobx-react'
  * @property {Boolean} valid Field validity indicator
  * @property {Boolean} focus Field autofocus indicator
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
  */
 @inject('page')
 export default class SelectField extends Component {

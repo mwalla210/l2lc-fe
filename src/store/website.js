@@ -18,7 +18,9 @@ useStrict(true)
  * @property {?Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {?Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {?Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {Object} [logOutModalOpen=false] Logging out modal
+ * @property {Boolean} [logOutModalOpen=false] Logging out modal
+ * @property {Boolean} [summaryMoreDropdownOpen=false] Summary pages dropdown state
+ * @property {Boolean} [summaryActionsDropdownOpen=false] Summary pages dropdown state
  */
 class Website {
   constructor() {
@@ -36,9 +38,32 @@ class Website {
       paAnalytic: null,
       jtAnalytic: null,
       logOutModalOpen: false,
+      summaryMoreDropdownOpen: false,
+      summaryActionsDropdownOpen: false,
     }
     extendObservable(this, addtlProps)
     autoBind(this)
+  }
+
+  /**
+   * @name toggleSummaryMoreDD
+   * @description Toggles summary pages dropdown state
+   * @method toggleSummaryMoreDD
+   * @memberof Website.prototype
+   * @mobx action
+   */
+  @action toggleSummaryMoreDD(){
+    this.summaryMoreDropdownOpen = !this.summaryMoreDropdownOpen
+  }
+  /**
+   * @name toggleSummaryActionsDD
+   * @description Toggles summary pages dropdown state
+   * @method toggleSummaryActionsDD
+   * @memberof Website.prototype
+   * @mobx action
+   */
+  @action toggleSummaryActionsDD(){
+    this.summaryActionsDropdownOpen = !this.summaryActionsDropdownOpen
   }
 
   /**
