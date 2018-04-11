@@ -261,6 +261,28 @@ class Website {
       return null
     })
   }
+  /**
+   * @name updateCustomer
+   * @description Sends the formatted customer props in POST to API to update entry in database
+   * @memberof Website.prototype
+   * @method updateCustomer
+   * @param  {Number}       id ID of customer to update
+   * @param  {Object}       props Finalized prop object to update on customer in database
+   * @return {Boolean}
+   * @async
+   */
+  updateCustomer(id, props){
+    let jsonprops = JSON.stringify(props)
+    console.log('Update customer entry in API with:', jsonprops)
+    return API.updateCustomer(id, jsonprops)
+    .then(response => {
+      if(typeof(response) === 'string'){
+        return response
+      }
+      this.setCustomer(response)
+      return null
+    })
+  }
 
   // Utilities
 

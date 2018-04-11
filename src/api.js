@@ -93,13 +93,28 @@ export default class API {
     // Check if addresses match each other
     if (item.billingAddr){
       addrIsSame = API.addressIsSame(item.shippingAddr, item.billingAddr)
-      if (!addrIsSame)
-        addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
+      if (!addrIsSame){
+        let split = item.shippingAddr.street.indexOf(',')
+        let street1 = item.billingAddr.street
+        let street2 = null
+        if (split != -1){
+          street1 = item.billingAddr.street.slice(0,split)
+          street2 = item.billingAddr.street.slice(split+2,item.billingAddr.street.length)
+        }
+        addtl = [street1, street2, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
+      }
     }
     else
       addrIsSame = true
     // Construct model
-    let customer = new CustomerModel(item.id, item.name, item.shippingAddr.street, null, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)
+    let split = item.shippingAddr.street.indexOf(',')
+    let street1 = item.shippingAddr.street
+    let street2 = null
+    if (split != -1){
+      street1 = item.shippingAddr.street.slice(0,split)
+      street2 = item.shippingAddr.street.slice(split+2,item.billingAddr.street.length)
+    }
+    let customer = new CustomerModel(item.id, item.name, street1, street2, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)
     return customer
   }
   /**
@@ -113,6 +128,29 @@ export default class API {
    */
   static addressIsSame(addr1, addr2){
     return JSON.stringify(addr1) === JSON.stringify(addr2)
+  }
+  /**
+   * @name updateCustomer
+   * @description POSTs to endpoint with body provided, then returns
+   * @method updateCustomer
+   * @memberof API
+   * @param  {Integer} id      Customer ID
+   * @param  {JSON} body       JSON body for POST
+   * @return {Promise}
+   */
+  static updateCustomer(id, body){
+    return API.update(`customer/${id}/update`, body)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return API.customerModelize(response)
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
   }
 
   // Projects

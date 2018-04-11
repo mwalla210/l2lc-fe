@@ -47,16 +47,16 @@ export default class CustomerFormModel extends FormModel{
     return (fields) => {
       let body = this.parseForm(fields)
       console.log('EDIT with', body)
-      // Website.updateCustomer(Website.currentCustomer.id, body)
-      // .then(response => {
-      //   if(response == null){
-      //     this.onClickNav()
-      //   }
-      //   else {
-      //     this.setError(response)
-      //     this.openModal()
-      //   }
-      // })
+      Website.updateCustomer(Website.currentCustomer.id, body)
+      .then(response => {
+        if(response == null){
+          this.onClickNav()
+        }
+        else {
+          this.setError(response)
+          this.openModal()
+        }
+      })
     }
   }
   /**
@@ -104,7 +104,7 @@ export default class CustomerFormModel extends FormModel{
       email: valueReturn('email').trim(),
       website: valueReturn('website').trim(),
       shippingAddr: {
-        street: `${valueReturn('shipAddr1').trim()} ${valueReturn('shipAddr2').trim()}`.trim(),
+        street: `${valueReturn('shipAddr1').trim()}, ${valueReturn('shipAddr2').trim()}`.trim(),
         city: valueReturn('shipCity').trim(),
         state: valueReturn('shipState').trim(),
         country: valueReturn('shipCountry').trim(),
@@ -117,7 +117,7 @@ export default class CustomerFormModel extends FormModel{
       body.billingAddr = body.shippingAddr
     else
       body.billingAddr = {
-        street: `${valueReturn('billAddr1').trim()} ${valueReturn('billAddr2').trim()}`.trim(),
+        street: `${valueReturn('billAddr1').trim()}, ${valueReturn('billAddr2').trim()}`.trim(),
         city: valueReturn('billCity').trim(),
         state: valueReturn('billState').trim(),
         country: valueReturn('billCountry').trim(),
