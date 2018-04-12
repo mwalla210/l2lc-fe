@@ -366,4 +366,26 @@ export default class API {
       return true
     })
   }
+
+  /**
+   * @name createAccount
+   * @description Creates an account and modelizes
+   * @method createAccount
+   * @memberof API
+   * @param  {Object}       account Account object (JSON)
+   * @return {Promise}
+   */
+  static createAccount(account){
+    return API.create('account/create', account)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
+        return API.accountModelize(response)
+      } else {
+        return 'Unexpected error'
+      }
+    })
+  }
+
 }

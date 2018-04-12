@@ -410,7 +410,7 @@ class PageStore {
    }
 
    @action accountEditPage(){
-     this.title = 'New Account'
+     this.title = 'Edit Account'
      this.setFormModel(FormSelector.getEditAccount(this.accountManagementMenuItem))
      this.content = Form
    }

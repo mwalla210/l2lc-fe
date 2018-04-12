@@ -29,6 +29,7 @@ class Website {
       currentCustomer: null,
       currentEmployee: null,
       currentUser: null,
+      currentAccount: null,
       username: '',
       password: '',
       loginerror: false,
@@ -347,10 +348,22 @@ class Website {
         if(typeof(response) === 'string'){
           return response
         } else {
-          //this.setAccount(response)
+          this.setAccount(response)
           return null
         }
       })
+    }
+
+    /**
+     * @name setProject
+     * @description Sets current project
+     * @method setProject
+     * @memberof Website.prototype
+     * @param  {Project}   project  Project to set
+     * @mobx action
+     */
+    @action setAccount(account){
+      this.currentAccount = account
     }
 
 }
