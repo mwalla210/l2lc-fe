@@ -389,17 +389,31 @@ class PageStore {
      this.setSummaryModel(summaryObject.model)
    }
 
-  /**
-   * @name accountManagementMenuItem
-   * @description Updates title, form, table, content, and buttons for Account Management page.
-   * @memberof PageStore.prototype
-   * @method accountManagementMenuItem
-   * @mobx action
-   */
-  @action accountManagementMenuItem(){
-    this.title = 'Account Management [Q3]'
-    this.content = null
-  }
+
+   /**
+    * @name accountManagementMenuItem
+    * @description Updates title, form, table, content, and buttons for Account Management page.
+    * @memberof PageStore.prototype
+    * @method accountManagementMenuItem
+    * @mobx action
+    */
+   @action accountManagementMenuItem(){
+     this.title = 'Account Management'
+     this.setTableModel(TableSelector.getAccount(this.newAccountPage, this.accountEditPage))
+     this.content = Table
+   }
+
+   @action newAccountPage(){
+     this.title = 'New Account'
+     this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem))
+     this.content = Form
+   }
+
+   @action accountEditPage(){
+     this.title = 'New Account'
+     this.setFormModel(FormSelector.getEditAccount(this.accountManagementMenuItem))
+     this.content = Form
+   }
 
 }
 

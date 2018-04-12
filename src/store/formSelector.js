@@ -109,6 +109,26 @@ class FormSelector {
     return new TimeEntryFormModel()
   }
 
+  /**
+     * @name getAccount
+     * @description Provides AccountFormModel
+     * @method getAccount
+     * @param  {Function}       onClick  On click function for form
+     * @param  {Function}       onCancel On cancel function for form
+     * @param  {Function}       errorClick On error modal confirmation click function for form
+     * @return {AccountFormModel}
+     * @memberof FormSelector.prototype
+     */
+    getAccount(onClick, onCancel, errorClick){
+      return new AccountFormModel(onClick, onCancel, errorClick)
+    }
+
+    getEditAccount(onClick, onCancel, errorClick){
+      let model = new AccountFormModel(onClick, onCancel, errorClick)
+      model.setEdit()
+      return model
+    }
+
 }
 
 const formSelector = new FormSelector()

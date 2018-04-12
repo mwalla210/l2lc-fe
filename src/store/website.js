@@ -329,6 +329,30 @@ class Website {
     return this.loginerror || this.username == '' || this.password == ''
   }
 
+  /**
+     * @name createAccount
+     * @description Sends the formatted Account in POST to API to add entry to database
+     * @memberof Website.prototype
+     * @method createAccount
+     * @param  {Account}       account Finalized Account to create in database
+     * @return {String|null}
+     * @async
+     * @mobx action
+     */
+    @action createAccount(account){
+      let jsonAccount = JSON.stringify(account)
+      console.log('Create account entry in API with:', jsonAccount)
+      return API.createAccount(jsonAccount)
+      .then(response => {
+        if(typeof(response) === 'string'){
+          return response
+        } else {
+          //this.setAccount(response)
+          return null
+        }
+      })
+    }
+
 }
 
 const website = new Website()

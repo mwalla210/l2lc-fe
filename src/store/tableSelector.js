@@ -1,5 +1,6 @@
 import CustomerTableModel from '../models/customerTableModel'
 import EmployeeTableModel from '../models/employeeTableModel'
+import AccountTableModel from '../models/accountTableModel'
 import ProjectTableModel from '../models/projectTableModel'
 import autoBind from 'auto-bind'
 
@@ -79,6 +80,20 @@ class TableSelector {
   getProject(infoClickNav, editClickNav, deleteClickNav){
     return new ProjectTableModel(infoClickNav, editClickNav, deleteClickNav)
   }
+
+  /**
+     * @name getAccount
+     * @description Provides a AccountTableModel set for selecting
+     * @method getAccount
+     * @param  {Function}          buttonClickNav TableButton click function
+     * @param  {Function}          infoClickNav   Row info icon click function
+     * @param  {Function}          editClickNav   Row edit icon click function
+     * @return {AccountTableModel}
+     * @memberof TableSelector.prototype
+     */
+    getAccount(buttonClickNav, editClickNav){
+      return new AccountTableModel(buttonClickNav, editClickNav)
+    }
 
 }
 
