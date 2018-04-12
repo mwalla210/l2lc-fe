@@ -26,7 +26,7 @@ export default class AccountTableModel extends TableModel{
         title: 'New Account',
         onClick: buttonClickNav
       },
-      API.fetchUsers,
+      API.fetchAccounts,
     )
     this.editClickNav = editClickNav
     autoBind(this)

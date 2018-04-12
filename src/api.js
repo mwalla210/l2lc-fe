@@ -400,4 +400,23 @@ export default class API {
     return new AccountModel(item.id, item.username, item.password) //maybe no pw?
   }
 
+  /**
+   * @name fetchAccounts
+   * @description Fetches all accounts and modelizes
+   * @method fetchAccounts
+   * @memberof API
+   * @return {Promise}
+   */
+  static fetchAccounts(){
+    return fetch(`${api}account?limit=50&offset=0`)
+    .then(res => res.json())
+    .then(json => {
+      let accounts = []
+      json.items.forEach(item => {
+        accounts.push(API.accountModelize(item))
+      })
+      return accounts
+    })
+  }
+
 }
