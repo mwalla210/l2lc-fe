@@ -403,12 +403,26 @@ class PageStore {
      this.content = Table
    }
 
+   /**
+    * @name newAccountPage
+    * @description Updates title, form, table, content, and buttons for New Account page.
+    * @memberof PageStore.prototype
+    * @method newAccountPage
+    * @mobx action
+    */
    @action newAccountPage(){
      this.title = 'New Account'
      this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem))
      this.content = Form
    }
 
+   /**
+    * @name accountEditPage
+    * @description Allows changing of information for Account Management page entries.
+    * @memberof PageStore.prototype
+    * @method accountEditPage
+    * @mobx action
+    */
    @action accountEditPage(){
      this.title = 'Edit Account'
      this.setFormModel(FormSelector.getEditAccount(this.accountManagementMenuItem))
