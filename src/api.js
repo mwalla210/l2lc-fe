@@ -388,4 +388,16 @@ export default class API {
     })
   }
 
+  /**
+   * @name accountModelize
+   * @description Modelizes a database account model
+   * @method accountModelize
+   * @memberof API
+   * @param  {Object}         item Database employee object
+   * @return {AccountModel}
+   */
+  static accountModelize(item){
+    return new AccountModel(item.id, item.username, item.password) //maybe no pw?
+  }
+
 }
