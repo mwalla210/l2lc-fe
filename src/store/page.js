@@ -169,7 +169,7 @@ class PageStore {
     this.title = 'Project Summary'
     let completeFunc = () => {
       Website.updateProjectStatus(Website.currentProject.id, 'Completed')
-      .then(() => this.projectsMenuItem())
+      .then(() => this.projectSummaryPage())
     }
     let summaryObject = SummarySelector.getProject(this.projectDeleteFn,completeFunc)
     this.content = summaryObject.component
