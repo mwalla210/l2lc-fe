@@ -94,7 +94,7 @@ export default class API {
     if (item.billingAddr){
       addrIsSame = API.addressIsSame(item.shippingAddr, item.billingAddr)
       if (!addrIsSame){
-        let split = item.shippingAddr.street.indexOf(',')
+        let split = item.billingAddr.street.indexOf(',')
         let street1 = item.billingAddr.street
         let street2 = null
         if (split != -1){
