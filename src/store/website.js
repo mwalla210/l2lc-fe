@@ -151,7 +151,6 @@ class Website {
   @action updateProjectStatus(id, status){
     return API.updateProjectStatus(id, status)
     .then(() => {
-      this.currentProject.finish()
       return true
     })
   }
