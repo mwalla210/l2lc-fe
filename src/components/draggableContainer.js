@@ -3,6 +3,7 @@ import update from 'immutability-helper'
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 import Card from './Card'
+import ReactTable from 'react-table'
 
 @DragDropContext(HTML5Backend)
 export default class DraggableContainer extends Component {
@@ -59,10 +60,42 @@ export default class DraggableContainer extends Component {
 
   render() {
     const { cards } = this.state
-
+    let data = [
+      {
+        required: true,
+        title: 'Task Index 2',
+        processArea: '',
+        status: ''
+      },
+      {
+        required: true,
+        title: 'Task Index 1',
+        processArea: '',
+        status: ''
+      },
+    ]
+    let columns = [
+      {
+        Header: 'Required',
+        accessor: 'required',
+      },
+      {
+        Header: 'Title',
+        accessor: 'title',
+      },
+      {
+        Header: 'Process Area',
+        accessor: 'processArea',
+      },
+      {
+        Header: 'Status',
+        accessor: 'status',
+      }
+    ]
     return (
       <div className="row justify-content-center">
         <div className="col-6">
+          <ReactTable data={data} columns={columns}/>
           {cards.map((card, i) => (
             <Card
               key={card.id}
