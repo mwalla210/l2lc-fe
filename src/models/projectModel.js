@@ -155,28 +155,6 @@ export default class ProjectModel {
     this.customer = customer
   }
   /**
-   * @name delete
-   * @description Makes request to API to remove Project from database
-   * @memberof ProjectModel.prototype
-   * @method delete
-   * @return {Promise}
-   * @mobx action
-   */
-  @action delete(){
-     console.log(`Delete project from API with ID: ${this.id}`)
-   }
-  /**
-   * @name edit
-   * @description Makes request to API to update Project attributes in database
-   * @memberof ProjectModel.prototype
-   * @method edit
-   * @return {Promise}
-   * @mobx action
-   */
-  @action edit(){
-     console.log(`Edit project in API with ID: ${this.id}`)
-   }
-  /**
    * @name changeHold
    * @description Makes request to API to change hold status in database; sets this.hold
    * @memberof ProjectModel.prototype
@@ -205,14 +183,13 @@ export default class ProjectModel {
    }
   /**
    * @name finish
-   * @description Makes request to API to mark project as finished; updates this.dateFinished
+   * @description Sets this.status
    * @memberof ProjectModel.prototype
    * @method finish
-   * @return {Promise}
    * @mobx action
    */
   @action finish(){
-     console.log(`Finish project in API with ID: ${this.id}`)
+     this.status = 'Completed'
    }
   /**
    * @name getDefaultTaskList
