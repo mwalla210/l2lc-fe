@@ -280,7 +280,7 @@ class PageStore {
    */
   @action customerProjectsPage(){
     this.title = 'Customer Projects'
-    this.setTableModel(TableSelector.getProject(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn))
+    this.setTableModel(TableSelector.getCustomerProjects(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn, id))
     this.content = Table
   }
 

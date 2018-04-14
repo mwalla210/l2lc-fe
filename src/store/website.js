@@ -355,11 +355,11 @@ class Website {
     }
 
     /**
-     * @name setProject
+     * @name setAccount
      * @description Sets current project
-     * @method setProject
+     * @method setAccount
      * @memberof Website.prototype
-     * @param  {Project}   project  Project to set
+     * @param  {Account}   account  Project to set
      * @mobx action
      */
     @action setAccount(account){

@@ -1,4 +1,5 @@
 import CustomerTableModel from '../models/customerTableModel'
+import CustomerProjectsTableModel from '../models/customerProjectsTableModel'
 import EmployeeTableModel from '../models/employeeTableModel'
 import AccountTableModel from '../models/accountTableModel'
 import ProjectTableModel from '../models/projectTableModel'
@@ -93,6 +94,20 @@ class TableSelector {
      */
     getAccount(buttonClickNav, editClickNav){
       return new AccountTableModel(buttonClickNav, editClickNav)
+    }
+
+    /**
+     * @name getCustomerProjects
+     * @description Provides a CustomerProjectsTableModel set for selecting
+     * @method getCustomerProjects
+     * @param  {Function}          infoClickNav   Row info icon click function
+     * @param  {Function}          editClickNav   Row edit icon click function
+     * @param  {Function}          deleteClickNav   Row delete icon click function
+     * @return {CustomerProjectTableModel}
+     * @memberof TableSelector.prototype
+     */
+    getCustomerProjects(infoClickNav, editClickNav, deleteClickNav){
+      return new CustomerProjectsTableModel(infoClickNav, editClickNav, deleteClickNav,id)
     }
 
 }

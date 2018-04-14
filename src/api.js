@@ -416,8 +416,8 @@ export default class API {
    * @return {Promise}
    * @async
    */
-  static fetchCustomerProjects(){
-    return fetch(`${api}project?limit=50&offset=0`)
+  static fetchCustomerProjects(id){
+    return fetch(`${api}project?limit=50&offset=0&customerId=${id}`)
     .then(res => res.json())
     .then(json => {
       let projects = []
@@ -450,12 +450,12 @@ export default class API {
       let entries = []
       // For each returned json object...
       json.items.forEach(item => {
-        let customer = API.customerModelize(item)
+        let entry = API.timeEntryModelize(item)
         // Add to list
-        customers.push(customer)
+        entries.push(entry)
       })
       // Return list of models, not json
-      return customers
+      return entries
     })
   }
 
