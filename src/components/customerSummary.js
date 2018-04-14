@@ -52,7 +52,7 @@ export default class CustomerSummary extends Component {
             <ButtonDropdown isOpen={this.props.website.summaryMoreDropdownOpen} toggle={this.props.website.toggleSummaryMoreDD}>
               <DropdownToggle outline color="secondary" caret>More...</DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={console.log('See customer projects')}>Projects</DropdownItem>
+                <DropdownItem onClick={this.props.website.customerProjectsPage(this.props.website.currentCustomer.id)}>Projects</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
             <ButtonDropdown isOpen={this.props.website.summaryActionsDropdownOpen} toggle={this.props.website.toggleSummaryActionsDD}>
