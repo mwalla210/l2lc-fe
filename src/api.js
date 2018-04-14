@@ -376,28 +376,16 @@ export default class API {
    * @return {Promise}
    */
   static createAccount(account){
-    return API.create('account/create', account)
+    return API.create('user/create', account)
     .then(response => {
       if(response === 406){
         return 'Duplicate entry exists'
       } else if(typeof(response) != 'number'){
-        return API.accountModelize(response)
+        return API.userModelize(response)
       } else {
         return 'Unexpected error'
       }
     })
-  }
-
-  /**
-   * @name accountModelize
-   * @description Modelizes a database account model
-   * @method accountModelize
-   * @memberof API
-   * @param  {Object}         item Database employee object
-   * @return {AccountModel}
-   */
-  static accountModelize(item){
-    return new AccountModel(item.id, item.username, item.password) //maybe no pw?
   }
 
   /**
@@ -408,15 +396,82 @@ export default class API {
    * @return {Promise}
    */
   static fetchAccounts(){
-    return fetch(`${api}account?limit=50&offset=0`)
+    //return fetch(`${api}user?limit=50&offset=0`)
+    //.then(res => res.json())
+    //.then(json => {
+    //  let accounts = []
+    //  json.items.forEach(item => {
+    //    accounts.push(API.userModelize(item))
+    //  })
+      console.log('Reach')
+      return []
+    })
+  }
+
+  /**
+   * @name fetchCustomerProjects
+   * @description Fetches all projects and modelizes
+   * @method fetchCustomerProjects
+   * @memberof API
+   * @return {Promise}
+   * @async
+   */
+  static fetchCustomerProjects(){
+    return fetch(`${api}project?limit=50&offset=0`)
     .then(res => res.json())
     .then(json => {
-      let accounts = []
+      let projects = []
       json.items.forEach(item => {
-        accounts.push(API.accountModelize(item))
+        if (item.projectStatus != 'Dropped')
+          projects.push(item)
       })
-      return accounts
+      projects = projects.map(item => {
+        if (item.customer)
+          item.customer.companyName = item.customer.name
+        let project = API.projectModelize(item)
+        return project
+      })
+      return projects
     })
+  }
+
+  /**
+   * @name fetchTimeEntries
+   * @description Fetches all time entries
+   * @method fetchTimeEntries
+   * @memberof API
+   * @return {Promise}
+   * @async
+   */
+  static fetchTimeEntries(id){
+    return fetch(`${api}project/${id}/time-entry`)
+    .then(res => res.json())
+    .then(json => {
+      let entries = []
+      // For each returned json object...
+      json.items.forEach(item => {
+        let customer = API.customerModelize(item)
+        // Add to list
+        customers.push(customer)
+      })
+      // Return list of models, not json
+      return customers
+    })
+  }
+
+  /**
+   * @name timeEntryModelize
+   * @description Modelizes a database time entry
+   * @method timeEntryModelize
+   * @memberof API
+   * @param  {Object}         item time entry database object
+   * @return {CustomerModel}
+   */
+  static timeEntryModelize(item){
+    let addtl = []
+    // Construct model
+    let timeEntry = new TimeEntryModel(item.id, item.projectId, item.employeeId, item.station, item.created, ...addtl)
+    return timeEntry
   }
 
 }

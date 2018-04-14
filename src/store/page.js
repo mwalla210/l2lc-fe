@@ -272,6 +272,19 @@ class PageStore {
   }
 
   /**
+   * @name customerProjectsPage
+   * @description Updates title, form, table, content, and buttons for Customer Projects page
+   * @method customerProjectsPage
+   * @memberof PageStore.prototype
+   * @mobx action
+   */
+  @action customerProjectsPage(){
+    this.title = 'Customer Projects'
+    this.setTableModel(TableSelector.getProject(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn))
+    this.content = Table
+  }
+
+  /**
    * @name customerEditPage
    * @description Updates title, form, table, content, and buttons for Customer Edit page
    * @method customerEditPage

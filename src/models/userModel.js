@@ -18,6 +18,9 @@ export default class UserModel {
       stationID, // changeable?
       admin
       // may need token or other form of login item for authorization
+      //Optional
+      editUsername: ''
+      editPassword: ''
     }
     extendObservable(this, addtlProps)
     this.id = id
@@ -25,6 +28,19 @@ export default class UserModel {
   }
 
   // Actions
+
+  /**
+  * @name changeUsername
+  * @description Changes Account's username
+  * @memberof UserModel.prototype
+  * @method changeUsername
+  * @return {Boolean}
+  * @mobx action
+  */
+  @action changePassword(){
+    // TODO: changes User's password
+    return true
+  }
 
   /**
    * @name toggleAdmin
