@@ -91,7 +91,7 @@ export default class Form extends Component {
       <div className="row justify-content-center">
         <PromptModal
           headerClass="bg-alert"
-          title="API Return Error"
+          title="Warning"
           titleImage="warning"
           titleClass="text-alert"
           confirmOnClick={this.props.page.formModel.confirmAndClose}
@@ -147,12 +147,10 @@ export default class Form extends Component {
           })}
           <div className="row justify-content-center">
             <ButtonToolbar>
-              {this.props.page.formModel.secondaryButton &&
-                <ButtonGroup style={{float: 'inherit'}}>
-                  <ButtonDefault onClick={this.secondaryOnClick} text={this.props.page.formModel.secondaryButton.title}/>
-                </ButtonGroup>
-              }
-              <ButtonGroup style={{float: 'inherit'}}>
+              <ButtonGroup>
+                {this.props.page.formModel.secondaryButton &&
+                  <ButtonDefault className="btn-outline-secondary" onClick={this.secondaryOnClick} text={this.props.page.formModel.secondaryButton.title}/>
+                }
                 <ButtonPrimary
                   disabled={this.props.page.formModel.buttonDisabled}
                   onClick={this.primaryOnClick}

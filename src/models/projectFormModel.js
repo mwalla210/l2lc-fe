@@ -45,7 +45,19 @@ export default class projectFormModel extends FormModel{
    */
   editButton(){
     // Change onClick functionality for primary
-    return (fields) => console.log('EDIT with', fields)
+    return (fields) => {
+      let body = this.parseForm(fields)
+      Website.updateProject(Website.currentProject.id, body)
+      .then(response => {
+        if(response == null){
+          this.onClickNav()
+        }
+        else {
+          this.setError(response)
+          this.openModal()
+        }
+      })
+    }
   }
   /**
    * @name editSecondaryButton
@@ -69,26 +81,8 @@ export default class projectFormModel extends FormModel{
    */
   newButton(){
     return (fields) => {
-      let valueReturn = (id) => {
-        let val
-        fields.forEach(item => {
-          if (item.id == id){
-            val = item.value
-          }
-        })
-        return val
-      }
-      let costCenter = valueReturn('costCenter').trim()
-      let body = {
-        jobType: valueReturn('projectType').trim(),
-        costCenter,
-        title: valueReturn('projectTitle').trim(),
-        description:valueReturn('description').trim(),
-        priority: valueReturn('priority').trim(),
-        partCount: valueReturn('partCount').trim(),
-        refNumber: valueReturn('referenceNumber').trim(),
-      }
-      if (costCenter == 'APC' || costCenter == 'Decorative'){
+      let body = this.parseForm(fields)
+      if (body.costCenter == 'APC' || body.costCenter == 'Decorative'){
         // Make a preliminary project model, set as Website.currentProject
         let model = new ProjectModel(null, body.costCenter, body.jobType, body.title, body.priority, null, null, body.partCount, body.description, body.refNumber, null, null)
         Website.setProject(model)
@@ -101,13 +95,43 @@ export default class projectFormModel extends FormModel{
         .then((response) => {
           if(response == null){
             this.onClickNav()
-          } else {
+          }
+          else {
             this.setError(response)
             this.openModal()
           }
         })
       }
     }
+  }
+
+  /**
+   * @name parseForm
+   * @description Returns body for use with POST
+   * @method parseForm
+   * @return {Function}
+   * @memberof ProjectFormModel.prototype
+   */
+  parseForm(fields){
+    let valueReturn = (id) => {
+      let val
+      fields.forEach(item => {
+        if (item.id == id){
+          val = item.value
+        }
+      })
+      return val
+    }
+    let body = {
+      jobType: valueReturn('jobTypeTitle').trim(),
+      costCenter: valueReturn('costCenterTitle').trim(),
+      title: valueReturn('title').trim(),
+      description:valueReturn('descr').trim(),
+      priority: valueReturn('priority').trim(),
+      partCount: valueReturn('partCount').trim(),
+      refNumber: valueReturn('refNum').trim(),
+    }
+    return body
   }
 
   /**
@@ -122,7 +146,18 @@ export default class projectFormModel extends FormModel{
     this.secondaryButton = this.editSecondaryButton()
     this.resetValues()
     // Update fields with values corresponding to currentProject
-    console.log(Website.currentProject)
+    console.log(this.fields.slice(),Website.currentProject)
+    this.fields.forEach((fieldObj, index) => {
+      let value
+      if (!Website.currentProject.hasOwnProperty(fieldObj.id)){
+        console.log('missing',fieldObj.id)
+      }
+      else
+        value = (Website.currentProject[fieldObj.id]).toString()
+      if (value != null && value != undefined && value != ''){
+        this.modifyFieldValue(index, value)
+      }
+    })
   }
   /**
    * @name setNonEdit

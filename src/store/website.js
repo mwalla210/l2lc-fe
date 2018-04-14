@@ -139,22 +139,6 @@ class Website {
     })
   }
   /**
-   * @name updateProjectStatus
-   * @description Sends the id and status in POST to API to update project's status in database
-   * @memberof Website.prototype
-   * @method createProject
-   * @param  {Project}      project Finalized Project to create in database
-   * @return {Boolean}
-   * @async
-   * @mobx action
-   */
-  @action updateProjectStatus(id, status){
-    return API.updateProjectStatus(id, status)
-    .then(() => {
-      return true
-    })
-  }
-  /**
    * @name createCustomer
    * @description Sends the formatted Customer in POST to API to add entry to database; sets this.currentCustomer
    * @memberof Website.prototype
@@ -194,7 +178,8 @@ class Website {
     .then(response => {
       if(typeof(response) === 'string'){
         return response
-      } else {
+      }
+      else {
         this.setEmployee(response)
         return null
       }
@@ -228,7 +213,7 @@ class Website {
 
   /**
    * @name updateProject
-   * @description Sends the formatted project props in POST to API to add entry to database
+   * @description Sends the formatted project props in POST to API to update entry in database
    * @memberof Website.prototype
    * @method updateProject
    * @param  {Number}       id ID of project to update
@@ -238,13 +223,74 @@ class Website {
    */
   updateProject(id, props){
     let jsonprops = JSON.stringify(props)
-    console.log('Create project entry in API with:', jsonprops)
+    console.log('Update project entry in API with:', jsonprops)
     return API.updateProject(id, jsonprops)
     .then(response => {
-      if(response){
-        return true
+      if(typeof(response) === 'string'){
+        return response
       }
-      return false
+      this.setProject(response)
+      return null
+    })
+  }
+  /**
+   * @name updateProjectStatus
+   * @description Sends the id and status in POST to API to update project's status in database
+   * @memberof Website.prototype
+   * @method createProject
+   * @param  {Project}      project Finalized Project to create in database
+   * @return {Boolean}
+   * @async
+   * @mobx action
+   */
+  @action updateProjectStatus(id, status){
+    return API.updateProjectStatus(id, status)
+    .then(() => {
+      return true
+    })
+  }
+  /**
+   * @name updateEmployee
+   * @description Sends the formatted employee props in POST to API to update entry in database
+   * @memberof Website.prototype
+   * @method updateEmployee
+   * @param  {Number}       id ID of employee to update
+   * @param  {Object}       props Finalized prop object to update on employee in database
+   * @return {Boolean}
+   * @async
+   */
+  updateEmployee(id, props){
+    let jsonprops = JSON.stringify(props)
+    console.log('Update employee entry in API with:', jsonprops)
+    return API.updateEmployee(id, jsonprops)
+    .then(response => {
+      if(typeof(response) === 'string'){
+        return response
+      }
+      this.setEmployee(response)
+      return null
+    })
+  }
+  /**
+   * @name updateCustomer
+   * @description Sends the formatted customer props in POST to API to update entry in database
+   * @memberof Website.prototype
+   * @method updateCustomer
+   * @param  {Number}       id ID of customer to update
+   * @param  {Object}       props Finalized prop object to update on customer in database
+   * @return {Boolean}
+   * @async
+   */
+  updateCustomer(id, props){
+    let jsonprops = JSON.stringify(props)
+    console.log('Update customer entry in API with:', jsonprops)
+    return API.updateCustomer(id, jsonprops)
+    .then(response => {
+      if(typeof(response) === 'string'){
+        return response
+      }
+      this.setCustomer(response)
+      return null
     })
   }
 

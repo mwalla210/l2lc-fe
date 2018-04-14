@@ -44,7 +44,22 @@ export default class EmployeeFormModel extends FormModel{
    */
   editButton(){
     // Change onClick functionality for primary
-    return (fields) => console.log('EDIT with', fields)
+    return (fields) => {
+      let body = {}
+      fields.forEach(item => {
+        body[item.id] = item.value.trim()
+      })
+      Website.updateEmployee(Website.currentEmployee.id, body)
+      .then(response => {
+        if(response == null){
+          this.onClickNav()
+        }
+        else {
+          this.setError(response)
+          this.openModal()
+        }
+      })
+    }
   }
   /**
    * @name newButton
@@ -63,7 +78,8 @@ export default class EmployeeFormModel extends FormModel{
       .then((response) => {
         if(response == null){
           this.onClickNav()
-        } else {
+        }
+        else {
           this.setError(response)
           this.openModal()
         }
@@ -82,7 +98,9 @@ export default class EmployeeFormModel extends FormModel{
     this.primaryButton.onClick = this.editButton()
     this.resetValues()
     // Update fields with values corresponding to currentEmployee
-    console.log(Website.currentEmployee)
+    this.fields.forEach(fieldObj => {
+      fieldObj.value = Website.currentEmployee[fieldObj.id]
+    })
   }
   /**
    * @name setNonEdit

@@ -224,15 +224,49 @@ export default class ProjectSummary extends Component {
                 <DropdownItem onClick={this.timeEntries}>Time Entries</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
-            <ButtonDropdown isOpen={this.props.website.summaryActionsDropdownOpen} toggle={this.props.website.toggleSummaryActionsDD}>
+            <ButtonDropdown
+              isOpen={this.props.website.summaryActionsDropdownOpen}
+              toggle={this.props.website.toggleSummaryActionsDD}
+            >
               <DropdownToggle color="primary" caret>Actions</DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={this.reworkClick}>Add Rework</DropdownItem>
-                <DropdownItem onClick={this.holdClick}>{`${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`}</DropdownItem>
-                <DropdownItem onClick={this.props.page.projectEditPage}>Edit Details</DropdownItem>
-                {this.props.website.currentProject.customer.id && <DropdownItem onClick={this.props.page.changeCustomerPage}>Edit Customer</DropdownItem>}
-                <DropdownItem onClick={this.props.page.summaryModel.completeModal.openModal}>Complete</DropdownItem>
-                <DropdownItem onClick={this.props.page.summaryModel.deleteModal.openModal}>Delete</DropdownItem>
+                <DropdownItem
+                  onClick={this.reworkClick}
+                  disabled={this.props.website.currentProject.status == 'Completed'}
+                >
+                  Add Rework
+                </DropdownItem>
+                <DropdownItem
+                  onClick={this.holdClick}
+                  disabled={this.props.website.currentProject.status == 'Completed'}
+                >
+                  {`${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`}
+                </DropdownItem>
+                <DropdownItem
+                  onClick={this.props.page.projectEditPage}
+                  disabled={this.props.website.currentProject.status == 'Completed'}
+                >
+                  Edit Details
+                </DropdownItem>
+                {this.props.website.currentProject.customer.id &&
+                  <DropdownItem
+                    onClick={this.props.page.changeCustomerPage}
+                    disabled={this.props.website.currentProject.status == 'Completed'}
+                  >
+                    Edit Customer
+                  </DropdownItem>
+                }
+                <DropdownItem
+                  onClick={this.props.page.summaryModel.completeModal.openModal}
+                  disabled={this.props.website.currentProject.status == 'Completed'}
+                >
+                  Complete
+                </DropdownItem>
+                <DropdownItem
+                  onClick={this.props.page.summaryModel.deleteModal.openModal}
+                >
+                  Delete
+                </DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
           </ButtonGroup>

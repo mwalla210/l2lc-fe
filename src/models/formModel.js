@@ -202,11 +202,12 @@ export default class FormModel {
         value = value.replace(/\W/g, '')
       }
     }
+    this.fields[index].isValid = true
     // Update field with value
     this.fields[index].value = value
     // If we need to update the field properties due to a change
     if (this.fields[index].onUpdate){
-      let updates = this.fields[index].onUpdate(this.fields[index].value)
+      let updates = this.fields[index].onUpdate(this.fields[index].value, this.fields)
       updates.forEach(update => {
         let fieldIndex = this.fields.findIndex(field => {return field.id == update.id})
         if(update.hasOwnProperty('required')){
