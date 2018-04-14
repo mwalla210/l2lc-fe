@@ -105,7 +105,7 @@ export default class FormModel {
    */
   @action resetValues(){
     this.fields.forEach(field => {
-      this.resetValue(field.id)
+      this.resetValueID(field.id)
     })
   }
   /**
@@ -188,6 +188,7 @@ export default class FormModel {
    * @mobx action
    */
   @action modifyFieldValue(index, value){
+    let priorVal = value
     // If we have special field modification checks (time entry)
     if (this.onChange){
       // Will return null if no changes to be made
@@ -220,6 +221,21 @@ export default class FormModel {
       })
     }
     // If we need to auto submit the form
+    if (this.autoSubmit && priorVal && priorVal.includes('%')){
+      this.autoSubmitter()
+    }
+  }
+  /**
+   * @name autoSubmitter
+   * @description Auto submit function for forms
+   * @memberof FormModel.prototype
+   * @method autoSubmitter
+   */
+  autoSubmitter(){
+    this.fields.forEach((item, index) => {
+      if (item.value.trim() != '')
+        this.fieldValidatorWrapper(index)
+    })
     if(!this.buttonDisabled && this.autoSubmit){
       this.primaryButtonWrapper()
     }

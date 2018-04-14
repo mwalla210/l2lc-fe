@@ -36,16 +36,6 @@ export default class CustomerFormModel extends FormModel{
     this.primaryButton.onClick = this.newButton()
   }
   /**
-   * @name resetFields
-   * @description Sets all fields back to defaults
-   * @method resetFields
-   * @memberof CustomerFormModel.prototype
-   * @mobx action
-   */
-  @action resetFields(){
-    this.fields = Consts.customerFields
-  }
-  /**
    * @name editButton
    * @description Returns function for onClick of primary button when editing
    * @method editButton
@@ -119,7 +109,7 @@ export default class CustomerFormModel extends FormModel{
    */
   @action setEdit(){
     this.primaryButton.onClick = this.editButton()
-    this.resetFields()
+    this.resetValues()
     // Update fields with values corresponding to currentCustomer
     console.log(Website.currentCustomer)
   }
@@ -132,7 +122,7 @@ export default class CustomerFormModel extends FormModel{
    */
   @action setNonEdit(){
     this.primaryButton.onClick = this.newButton()
-    this.resetFields()
+    this.resetValues()
   }
   /**
    * @name setOnClickNav

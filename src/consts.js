@@ -888,13 +888,6 @@ class Consts {
   static get timeEntryFields(){ return [
     {
       type: 'textfield',
-      label: 'Station ID',
-      id: 'stationID',
-      required: false,
-      disabled: true,
-    },
-    {
-      type: 'textfield',
       label: 'Project ID',
       id: 'projectID',
       required: true,
@@ -905,6 +898,8 @@ class Consts {
           return 'The project ID must be less than 15 characters.'
         if (!value.startsWith('P'))
           return 'Project IDs must begin with the letter "P".'
+        if (value.length < 2)
+          return 'Project IDs must contain at least one number.'
         return null
       },
     },
@@ -920,6 +915,8 @@ class Consts {
           return 'The employee ID must be less than 15 characters.'
         if (!value.startsWith('E'))
           return 'Employee IDs must begin with the letter "E".'
+        if (value.length < 2)
+          return 'Employee IDs must contain at least one number.'
         return null
       }
     }
