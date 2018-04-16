@@ -4,6 +4,7 @@ import Table from '../components/table'
 import SummarySelector from './summarySelector'
 import FormSelector from './formSelector'
 import TableSelector from './tableSelector'
+import DraggableRow from '../models/draggableRow'
 import Website from './website'
 import autoBind from 'auto-bind'
 useStrict(true)
@@ -25,7 +26,8 @@ class PageStore {
       content: null,
       tableModel: null,
       formModel: null,
-      summaryModel: null
+      summaryModel: null,
+      draggable: new DraggableRow()
     }
     extendObservable(this, addtlProps)
     autoBind(this)

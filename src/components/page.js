@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import Login from './login'
 import NavBar from './navbar'
-import DraggableContainer from './draggableContainer'
+import DraggableTable from './draggableTable'
 
 /**
  * Page component
@@ -42,7 +42,7 @@ export default class Page extends Component {
         <NavBar/>
         <h1>{this.props.page.title}</h1>
         {content}
-        <DraggableContainer/>
+        <DraggableTable/>
       </div>
     )
   }

@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
+import classnames from 'classnames'
 
-const cardSource = {
+const rowSource = {
   beginDrag(props) {
     return {
       id: props.id,
@@ -12,7 +13,7 @@ const cardSource = {
   },
 }
 
-const cardTarget = {
+const rowTarget = {
   hover(props, monitor, component) {
     const dragIndex = monitor.getItem().index
     const hoverIndex = props.index
@@ -47,56 +48,57 @@ const cardTarget = {
     if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
       return
     }
+    if (props.moverow){
+      // Time to actually perform the action
+      props.moverow(dragIndex, hoverIndex)
 
-    // Time to actually perform the action
-    props.moveCard(dragIndex, hoverIndex)
-
-    // Note: we're mutating the monitor item here!
-    // Generally it's better to avoid mutations,
-    // but it's good here for the sake of performance
-    // to avoid expensive index searches.
-    monitor.getItem().index = hoverIndex
+      // Note: we're mutating the monitor item here!
+      // Generally it's better to avoid mutations,
+      // but it's good here for the sake of performance
+      // to avoid expensive index searches.
+      monitor.getItem().index = hoverIndex
+    }
   },
 }
 
-@DropTarget('card', cardTarget, connect => ({
+@DropTarget('row', rowTarget, connect => ({
   connectDropTarget: connect.dropTarget(),
 }))
-@DragSource('card', cardSource, (connect, monitor) => ({
+@DragSource('row', rowSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
 }))
-export default class Card extends Component {
+export default class DraggableRow extends Component {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
-    index: PropTypes.number.isRequired,
+    index: PropTypes.number,
     isDragging: PropTypes.bool.isRequired,
-    id: PropTypes.any.isRequired,
-    text: PropTypes.string.isRequired,
-    moveCard: PropTypes.func.isRequired,
+    id: PropTypes.any,
+    moverow: PropTypes.func,
   }
 
   render() {
     const {
-      text,
       isDragging,
       connectDragSource,
       connectDropTarget,
+      children,
+      className,
+      ...rest
     } = this.props
+    let addtl = Object.assign({}, rest)
+    delete addtl.moverow
     const opacity = isDragging ? 0 : 1
-
     return connectDragSource(
       connectDropTarget(
-        <div style={{
-          border: '1px dashed gray',
-          padding: '0.5rem 1rem',
-          marginBottom: '.5rem',
-          backgroundColor: 'white',
-          cursor: 'move',
-          opacity
-        }}>
-          {text}
+        <div
+          className={classnames('rt-tr', className)}
+          role="row"
+          style={{opacity, cursor: 'move'}}
+          {...addtl}
+        >
+          {children}
         </div>
       ),
     )
