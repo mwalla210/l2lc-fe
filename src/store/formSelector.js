@@ -1,6 +1,7 @@
 import CustomerFormModel from '../models/customerFormModel'
 import EmployeeFormModel from '../models/employeeFormModel'
 import ProjectFormModel from '../models/projectFormModel'
+import AccountFormModel from '../models/accountFormModel'
 import TimeEntryFormModel from '../models/timeEntryFormModel'
 import autoBind from 'auto-bind'
 

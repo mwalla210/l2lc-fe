@@ -878,6 +878,43 @@ class Consts {
       }
     },
   ]}
+
+  /**
+   * @name accountFields
+   * @description List of account form fields
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get accountFields(){ return [
+    {
+      type: 'textfield',
+      label: 'Username',
+      id: 'username',
+      required: true,
+      validation: (value, required) => {
+        if (required && value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The username must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Password',
+      id: 'password',
+      required: true,
+      validation: (value, required) => {
+        if (required && value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The password must be less than 30 characters.'
+        return null
+      }
+    },
+  ]}
+
   /**
    * @name timeEntryFields
    * @description List of time entry form fields
