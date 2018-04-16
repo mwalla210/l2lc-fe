@@ -24,32 +24,12 @@ export default class DraggableTable extends Component {
   }
 
   render() {
-    // const { cards } = this.state
-    let columns = [
-      {
-        Header: 'Required',
-        accessor: 'required',
-      },
-      {
-        Header: 'Title',
-        accessor: 'title',
-      },
-      {
-        Header: 'Process Area',
-        accessor: 'processArea',
-      },
-      {
-        Header: 'Status',
-        accessor: 'status',
-      }
-    ]
-
-    return (
+      return (
       <div className="row justify-content-center">
         <div className="col-6">
           <ReactTable
             data={this.props.page.draggable.data.slice()}
-            columns={columns}
+            columns={this.props.page.draggable.columns.slice()}
             showPagination={false}
             defaultPageSize={this.props.page.draggable.data.length}
             TrComponent={DraggableRow}

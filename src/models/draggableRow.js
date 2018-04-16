@@ -29,6 +29,24 @@ export default class DraggableRow {
           processArea: '',
           status: ''
         },
+      ],
+      columns: [
+        {
+          Header: 'Required',
+          accessor: 'required',
+        },
+        {
+          Header: 'Title',
+          accessor: 'title',
+        },
+        {
+          Header: 'Process Area',
+          accessor: 'processArea',
+        },
+        {
+          Header: 'Status',
+          accessor: 'status',
+        }
       ]
     }
     extendObservable(this, addtlProps)

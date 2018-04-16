@@ -89,6 +89,7 @@ export default class DraggableRow extends Component {
     } = this.props
     let addtl = Object.assign({}, rest)
     delete addtl.moverow
+    delete addtl.index
     const opacity = isDragging ? 0 : 1
     return connectDragSource(
       connectDropTarget(
