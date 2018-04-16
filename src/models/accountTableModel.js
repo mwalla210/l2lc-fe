@@ -30,17 +30,7 @@ export default class AccountTableModel extends TableModel{
     )
     this.editClickNav = editClickNav
     autoBind(this)
-    this.columns = this.actionColumns()
-  }
-  /**
-   * @name mainColumns
-   * @description Sets columns to have action icons instead of select button
-   * @method mainColumns
-   * @memberof AccountTableModel.prototype
-   * @return {Array}
-   */
-  mainColumns(){
-    return [
+    this.columns = [
       {
         Header: 'ID',
         accessor: 'id',
@@ -51,19 +41,6 @@ export default class AccountTableModel extends TableModel{
         accessor: 'userName',
         filterable: true
       },
-    ]
-  }
-  /**
-   * @name actionColumns
-   * @description Sets columns to have action icons instead of select button
-   * @method actionColumns
-   * @memberof AccountTableModel.prototype
-   * @return {Array}
-   * @see {@link TableActionCell}
-   */
-  actionColumns(){
-    let cols = this.mainColumns()
-    cols.push(
       {
         Header: 'Actions',
         sortable: false,
@@ -79,8 +56,7 @@ export default class AccountTableModel extends TableModel{
         },
         Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
       }
-    )
-    return cols
+    ]
   }
 
   /**

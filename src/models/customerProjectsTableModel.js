@@ -22,10 +22,10 @@ useStrict(true)
   * @extends TableModel
  */
 export default class CustomerProjectsTableModel extends TableModel{
-  constructor(infoClickNav, editClickNav, deleteClickNav, id) {
+  constructor(infoClickNav, editClickNav, deleteClickNav) {
     super(
       null,
-      API.fetchCustomerProjects(id),
+      () => API.fetchCustomerProjects(Website.currentCustomer.id),
       null,
       {
         title: 'Delete Project?',

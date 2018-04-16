@@ -16,10 +16,10 @@ export default class UserModel {
     let addtlProps = {
       username, // changeable?
       stationID, // changeable?
-      admin
+      admin,
       // may need token or other form of login item for authorization
       //Optional
-      editUsername: ''
+      editUsername: '',
       editPassword: ''
     }
     extendObservable(this, addtlProps)

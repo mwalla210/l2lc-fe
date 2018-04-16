@@ -404,8 +404,7 @@ export default class API {
     //    accounts.push(API.userModelize(item))
     //  })
       console.log('Reach')
-      return []
-    })
+      return Promise.all([])
   }
 
   /**

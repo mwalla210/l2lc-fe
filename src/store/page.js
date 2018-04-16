@@ -278,9 +278,9 @@ class PageStore {
    * @memberof PageStore.prototype
    * @mobx action
    */
-  @action customerProjectsPage(id){
+  @action customerProjectsPage(){
     this.title = 'Customer Projects'
-    this.setTableModel(TableSelector.getCustomerProjects(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn, id))
+    this.setTableModel(TableSelector.getCustomerProjects(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn))
     this.content = Table
   }
 

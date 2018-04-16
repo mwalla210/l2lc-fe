@@ -106,8 +106,8 @@ class TableSelector {
      * @return {CustomerProjectTableModel}
      * @memberof TableSelector.prototype
      */
-    getCustomerProjects(infoClickNav, editClickNav, deleteClickNav,id){
-      return new CustomerProjectsTableModel(infoClickNav, editClickNav, deleteClickNav,id)
+    getCustomerProjects(infoClickNav, editClickNav, deleteClickNav){
+      return new CustomerProjectsTableModel(infoClickNav, editClickNav, deleteClickNav)
     }
 
 }
