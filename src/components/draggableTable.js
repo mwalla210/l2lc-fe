@@ -5,6 +5,9 @@ import HTML5Backend from 'react-dnd-html5-backend'
 import DraggableRow from './draggableRow'
 import ReactTable from 'react-table'
 
+//Go into table component and copy from the render function the section for button content starting with let button = null
+//Replace the top div stuff between table.js and here
+
 @DragDropContext(HTML5Backend) @inject('page') @observer
 export default class DraggableTable extends Component {
   constructor(){

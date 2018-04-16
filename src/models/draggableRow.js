@@ -1,14 +1,18 @@
 import { action, useStrict, extendObservable } from 'mobx'
+import TableModel from './tableModel'
 import autoBind from 'auto-bind'
 useStrict(true)
+
+//Rename class and model to projectTaskTableModel
+//Super call, API stuff, modelizer, use taskModel.js
 
 /**
  * @name DraggableRow
  * @class DraggableRow
  * @classdesc Draggable row state for draggable tables
  */
-export default class DraggableRow {
-  constructor(){
+export default class DraggableRow extends TableModel{
+  constructor(buttonClickNav){
     let addtlProps = {
       data: [
         {
@@ -29,24 +33,6 @@ export default class DraggableRow {
           processArea: '',
           status: ''
         },
-      ],
-      columns: [
-        {
-          Header: 'Required',
-          accessor: 'required',
-        },
-        {
-          Header: 'Title',
-          accessor: 'title',
-        },
-        {
-          Header: 'Process Area',
-          accessor: 'processArea',
-        },
-        {
-          Header: 'Status',
-          accessor: 'status',
-        }
       ]
     }
     extendObservable(this, addtlProps)

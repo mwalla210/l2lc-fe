@@ -26,8 +26,7 @@ class PageStore {
       content: null,
       tableModel: null,
       formModel: null,
-      summaryModel: null,
-      draggable: new DraggableRow()
+      summaryModel: null
     }
     extendObservable(this, addtlProps)
     autoBind(this)
@@ -177,6 +176,20 @@ class PageStore {
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)
   }
+
+  /**
+   * @name projectTaskList
+   * @description Updates title, form, table, content, and buttons for Project task list.
+   * @memberof PageStore.prototype
+   * @method projectTaskList
+   * @mobx action
+   */
+   @action projectTaskList(){
+     this.title = 'Project Task List'
+     this.setTableModel(TableSelector.getTasks(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage))
+     this.content = Table
+   }
+
 
   /**
    * @name projectDeleteFn
