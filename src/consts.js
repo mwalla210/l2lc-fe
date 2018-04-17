@@ -608,7 +608,7 @@ class Consts {
         else if (value == 'Military'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.militaryProjectSelect,
               required: true,
               disabled: false
@@ -616,10 +616,10 @@ class Consts {
             {
               id: 'partCount',
               required: false,
-              disabled: true
+              disabled: false
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -629,12 +629,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
