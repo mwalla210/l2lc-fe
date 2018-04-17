@@ -82,7 +82,7 @@ export default class NavBar extends Component{
                 <NavLink onClick={this.props.page.customerInfoMenuItem}>Customer Information</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink onClick={this.props.page.analytics}>Analytics</NavLink>
+                <NavLink onClick={this.props.page.analyticsMenuItem}>Analytics</NavLink>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>Admin</DropdownToggle>

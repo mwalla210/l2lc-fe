@@ -1,10 +1,12 @@
 import { action, useStrict, extendObservable, observable } from 'mobx'
 import Form from '../components/form'
 import Table from '../components/table'
+import Analytics from '../components/Analytics'
 import TimeEntry from '../components/timeEntry'
 import SummarySelector from './summarySelector'
 import FormSelector from './formSelector'
 import TableSelector from './tableSelector'
+import AnalyticsSelector from './analyticsSelector'
 import Website from './website'
 import autoBind from 'auto-bind'
 useStrict(true)
@@ -18,6 +20,7 @@ useStrict(true)
  * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
  * @property {?FormModel} [formModel=null] Page form model, if any [observable]
  * @property {?SummaryModel} [summaryModel=null] Page summary model, if any [observable]
+ * @property {?AnalyticsModel} [analyticsModel=null] Page analytics model, if any [observable]
  */
 class PageStore {
   constructor() {
@@ -26,7 +29,8 @@ class PageStore {
       content: null,
       tableModel: null,
       formModel: null,
-      summaryModel: null
+      summaryModel: null,
+      analyticsModel: null
     }
     extendObservable(this, addtlProps)
     autoBind(this)
@@ -64,6 +68,21 @@ class PageStore {
    * @mobx action
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
+
+  /**
+ * @name setAnalyticsModel
+ * @description Sets analytics model
+ * @method setAnalyticsModel
+ * @memberof PageStore.prototype
+ * @param  {AnalyticsModel}      analyticsModel AnalyticsModel to use for page
+ * @mobx action
+ */
+ @action setAnalyticsModel(analyticsList){
+   this.analyticsModel = observable(analyticsList)
+   analyticsList.forEach(analyticsModel => {
+     analyticsModel.model.dataFetch()
+   })
+ }
 
   // Page Changes - Create Projects
 
@@ -291,51 +310,16 @@ class PageStore {
   // Page Changes - Analytics
 
   /**
-   * @name emplProductivityMenuItem
-   * @description Updates title, form, table, content, and buttons for Employee Productivity page.
+   * @name analyticsMenuItem
+   * @description Updates title, form, table, content, and buttons for analytics page.
    * @memberof PageStore.prototype
-   * @method emplProductivityMenuItem
+   * @method analyticsMenuItem
    * @mobx action
    */
-  @action emplProductivityMenuItem(){
-    this.title = 'Employee Productivity [Q3]'
-    this.content = null
-  }
-
-  /**
-   * @name workstationTrackingMenuItem
-   * @description Updates title, form, table, content, and buttons for Workstation Tracking page.
-   * @memberof PageStore.prototype
-   * @method workstationTrackingMenuItem
-   * @mobx action
-   */
-  @action workstationTrackingMenuItem(){
-    this.title = 'Workstation Tracking [Q3]'
-    this.content = null
-  }
-
-  /**
-   * @name jobTypeProductivityMenuItem
-   * @description Updates title, form, table, content, and buttons for Job Type Productivity page.
-   * @memberof PageStore.prototype
-   * @method jobTypeProductivityMenuItem
-   * @mobx action
-   */
-  @action jobTypeProductivityMenuItem(){
-    this.title = 'Job Type Productivity [Q3]'
-    this.content = null
-  }
-
-  /**
-   * @name costCenterTimeMenuItem
-   * @description Updates title, form, table, content, and buttons for Cost Center Time page.
-   * @memberof PageStore.prototype
-   * @method costCenterTimeMenuItem
-   * @mobx action
-   */
-  @action costCenterTimeMenuItem(){
-    this.title = 'Cost Center Time [Q3]'
-    this.content = null
+  @action analyticsMenuItem(){
+    this.title = 'Analytics Dashboard'
+    this.setAnalyticsModel(AnalyticsSelector.getAll())
+    this.content = Analytics
   }
 
   // Page Changes - Admin
