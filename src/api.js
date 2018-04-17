@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import TimeEntryModel from './models/timeEntryModel'
 import ProjectModel from './models/projectModel'
 import CustomerModel from './models/customerModel'
 import EmployeeModel from './models/employeeModel'
@@ -448,7 +449,7 @@ export default class API {
     .then(json => {
       let entries = []
       // For each returned json object...
-      json.items.forEach(item => {
+      json.forEach(item => {
         let entry = API.timeEntryModelize(item)
         // Add to list
         entries.push(entry)
@@ -467,9 +468,10 @@ export default class API {
    * @return {CustomerModel}
    */
   static timeEntryModelize(item){
-    let addtl = []
     // Construct model
-    let timeEntry = new TimeEntryModel(item.id, item.projectId, item.employeeId, item.station, item.created, ...addtl)
+    let dateItem = new Date(item.created)
+    let date = dateItem.toString()
+    let timeEntry = new TimeEntryModel(item.id, item.projectId, item.employeeId, item.station, date )
     return timeEntry
   }
 

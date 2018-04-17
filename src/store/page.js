@@ -442,6 +442,19 @@ class PageStore {
      this.content = Form
    }
 
+   /**
+    * @name projectTimeEntryPage
+    * @description Updates title, form, table, content, and buttons for project time entry table page.
+    * @memberof PageStore.prototype
+    * @method projectTimeEntryPage
+    * @mobx action
+    */
+   @action projectTimeEntryPage(){
+     this.title = 'Project Time Entries'
+     this.setTableModel(TableSelector.getTimeEntries(this.projectSummaryPage))
+     this.content = Table
+   }
+
 }
 
 const page = new PageStore()

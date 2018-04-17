@@ -87,7 +87,7 @@ export default class ProjectSummary extends Component {
    * @memberof ProjectSummary.prototype
    */
   timeEntries(){
-    console.log('Time Entry table')
+    this.props.page.projectTimeEntryPage()
   }
 
   /**
