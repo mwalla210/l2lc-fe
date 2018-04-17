@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Renders 1`] = `
+<div>
+  <nav
+    className="navbar navbar-expand-md navbar-dark"
+    style={
+      Object {
+        "borderRadius": "8px",
+        "marginBottom": "3px",
+      }
+    }
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      L2LC Cloud
+    </a>
+    <div
+      className="collapse show navbar-collapse"
+      style={Object {}}
+    >
+      <ul
+        className="ml-auto navbar-nav"
+      >
+        <li
+          className="nav-item"
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <a
+            className="nav-link"
+            onClick={[Function]}
+          >
+            New Project
+          </a>
+        </li>
+        <li
+          className="nav-item"
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <a
+            className="nav-link"
+            onClick={[Function]}
+          >
+            Project Information
+          </a>
+        </li>
+        <li
+          className="nav-item"
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <a
+            className="nav-link"
+            onClick={[Function]}
+          >
+            Time Entry
+          </a>
+        </li>
+        <li
+          className="nav-item"
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <a
+            className="nav-link"
+            onClick={[Function]}
+          >
+            Customer Information
+          </a>
+        </li>
+        <li
+          className="nav-item"
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <a
+            className="nav-link"
+            onClick={[Function]}
+          >
+            Analytics
+          </a>
+        </li>
+        <li
+          className="dropdown nav-item"
+          onKeyDown={[Function]}
+        >
+          <a
+            aria-expanded={false}
+            aria-haspopup={true}
+            className="dropdown-toggle nav-link"
+            href="#"
+            onClick={[Function]}
+          >
+            Admin
+          </a>
+          <div
+            aria-hidden={true}
+            className="dropdown-menu dropdown-menu-right"
+            role="menu"
+            tabIndex="-1"
+          >
+            <button
+              className="dropdown-item"
+              onClick={[Function]}
+              tabIndex="0"
+              type="button"
+            >
+              Employee Information
+            </button>
+            <button
+              className="dropdown-item"
+              onClick={[Function]}
+              tabIndex="0"
+              type="button"
+            >
+              Account Information
+            </button>
+          </div>
+        </li>
+        <li
+          className="nav-item"
+        >
+          <p
+            className="nav-link nohover"
+            style={
+              Object {
+                "marginBottom": "0px",
+                "marginRight": "10px",
+              }
+            }
+          >
+            <img
+              alt="person"
+              src="../../style/open-iconic-master/svg/person.svg"
+              style={
+                Object {
+                  "marginRight": "5px",
+                  "width": "16px",
+                }
+              }
+            />
+            Name
+          </p>
+        </li>
+        <li
+          className="nav-item"
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <a
+            className="nav-link"
+            onClick={[Function]}
+          >
+            Log Out
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+`;
