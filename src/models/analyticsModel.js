@@ -7,6 +7,7 @@ useStrict(true)
  * @class AnalyticsModel
  * @classdesc Analytics storage object
  * @property {Function} fetchFn Analytics data fetch function
+ * @property {Object[]} [data=[]] Data array for analytics [observable]
  */
 export default class AnalyticsModel {
   constructor(fetchFn){
@@ -19,6 +20,13 @@ export default class AnalyticsModel {
     autoBind(this)
   }
 
+  /**
+   * @name dataFetch
+   * @description Handles fetching analytics data
+   * @memberof AnalyticsModel.prototype
+   * @method dataFetch
+   * @mobx action
+   */
   @action dataFetch(){
     this.data = this.fetchFn()
   }

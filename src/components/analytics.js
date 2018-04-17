@@ -7,6 +7,7 @@ import { Bar, Pie } from 'react-chartjs-2'
  * Analytics component; constructor binds functions
  * @namespace Analytics
  * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
  */
 @inject ('page') @observer
 export default class Analytics extends Component {
@@ -53,57 +54,3 @@ export default class Analytics extends Component {
     )
   }
 }
-
-/*
-      <div>
-        <br/>
-        <br/>
-        <Bar
-          data={this.props.page.analyticsModel.barData}
-          width={100}
-          height={50}
-          options={{
-            responsive: true,
-            scales: {
-              yAxes: [{
-                display: true,
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }}
-        />
-        <br/>
-        <br/>
-        <Pie
-          data={this.props.page.analyticsModel.pieData}
-        />
-        <br/>
-        <br/>
-        <Bar
-          data={this.props.page.analyticsModel.barData}
-          width={100}
-          height={50}
-          options={{
-            responsive: true,
-            scales: {
-              yAxes: [{
-                display: true,
-                ticks: {
-                  beginAtZero: true
-                }
-              }]
-            }
-          }}
-        />
-        <br/>
-        <br/>
-        <Pie
-          data={this.props.page.analyticsModel.pieData}
-        />
-      </div>
-    )
-  }
-}
-*/
