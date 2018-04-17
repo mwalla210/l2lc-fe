@@ -1,4 +1,4 @@
-import { action, useStrict, extendObservable } from 'mobx'
+import { action, useStrict, extendObservable, toJS, computed } from 'mobx'
 import autoBind from 'auto-bind'
 useStrict(true)
 
@@ -29,5 +29,15 @@ export default class AnalyticsModel {
    */
   @action dataFetch(){
     this.data = this.fetchFn()
+  }
+  /**
+   * @name jsData
+   * @description Converts data to regular JS array
+   * @memberof AnalyticsModel.prototype
+   * @method jsData
+   * @mobx computed
+   */
+  @computed get jsData(){
+    return toJS(this.data)
   }
 }

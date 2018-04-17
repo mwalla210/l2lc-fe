@@ -30,7 +30,7 @@ class AnalyticsSelector {
       title: 'Employee Hours in a Station',
       component: 'bar',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['Receiving','Ticketing','Preparation','Coating and Curing','Quality Control and Packaging'],
           datasets: [
             {
@@ -58,9 +58,10 @@ class AnalyticsSelector {
               data: [1,0,0,3,1]
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name totalHoursInStation
    * @description Returns the defined object specific to this analytic
@@ -72,7 +73,7 @@ class AnalyticsSelector {
       title: 'Total Hours in a Station',
       component: 'bar',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['Receiving','Ticketing','Preparation','Coating and Curing','Quality Control and Packaging'],
           datasets: [
             {
@@ -84,9 +85,10 @@ class AnalyticsSelector {
               data: [10,11,16,13,12]
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name totalHoursInStationPie
    * @description Returns the defined object specific to this analytic
@@ -98,7 +100,7 @@ class AnalyticsSelector {
       title: 'Total Hours in a Station Ratio',
       component: 'pie',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['Receiving','Ticketing','Preparation','Coating and Curing','Quality Control and Packaging'],
           datasets: [
             {
@@ -107,9 +109,10 @@ class AnalyticsSelector {
               hoverBackgroundColor: ['#96BAE8','#A1A0A0','#96E8BA','#E896BB','#FF9E58']
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name employeeHoursInCostCenter
    * @description Returns the defined object specific to this analytic
@@ -121,7 +124,7 @@ class AnalyticsSelector {
       title: 'Employee Hours in a Cost Center',
       component: 'bar',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['APC','Decorative','Maintenance','Administration','Production','Military','Research and Development'],
           datasets: [
             {
@@ -149,9 +152,10 @@ class AnalyticsSelector {
               data: [1,0,0,3,1,4,5]
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name employeeHoursInCostCenterRatio
    * @description Returns the defined object specific to this analytic
@@ -163,7 +167,7 @@ class AnalyticsSelector {
       title: 'Total Hours in a Cost Center Ratio',
       component: 'pie',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['APC','Decorative','Maintenance','Administration','Production','Military','Research and Development'],
           datasets: [
             {
@@ -172,9 +176,10 @@ class AnalyticsSelector {
               hoverBackgroundColor: ['#96BAE8','#A1A0A0','#96E8BA','#E896BB','#FF9E58','#695A83','#E3BDB0']
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name projectCountForCostCenterRatio
    * @description Returns the defined object specific to this analytic
@@ -186,7 +191,7 @@ class AnalyticsSelector {
       title: 'Total Project Count for a Cost Center Ratio',
       component: 'pie',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['APC','Decorative','Maintenance','Administration','Production','Military','Research and Development'],
           datasets: [
             {
@@ -195,9 +200,10 @@ class AnalyticsSelector {
               hoverBackgroundColor: ['#96BAE8','#A1A0A0','#96E8BA','#E896BB','#FF9E58','#695A83','#E3BDB0']
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name projectCountForAPCRatio
    * @description Returns the defined object specific to this analytic
@@ -209,7 +215,7 @@ class AnalyticsSelector {
       title: 'Total Project Type Count for APC Projects',
       component: 'pie',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['Piston','Turbo','Rotor','Pump','Avaslick','Specialty'],
           datasets: [
             {
@@ -218,9 +224,10 @@ class AnalyticsSelector {
               hoverBackgroundColor: ['#96BAE8','#A1A0A0','#96E8BA','#E896BB','#FF9E58','#695A83']
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name partCountForAPCRatio
    * @description Returns the defined object specific to this analytic
@@ -232,7 +239,7 @@ class AnalyticsSelector {
       title: 'Total Part Count for APC Projects',
       component: 'pie',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['Piston','Turbo','Rotor','Pump','Avaslick','Specialty'],
           datasets: [
             {
@@ -241,9 +248,10 @@ class AnalyticsSelector {
               hoverBackgroundColor: ['#96BAE8','#A1A0A0','#96E8BA','#E896BB','#FF9E58','#695A83']
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name projectCountForMonthsRatio
    * @description Returns the defined object specific to this analytic
@@ -255,7 +263,7 @@ class AnalyticsSelector {
       title: 'Monthly Total Project Count for a Cost Center Ratio',
       component: 'pie',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
           datasets: [
             {
@@ -264,9 +272,10 @@ class AnalyticsSelector {
               hoverBackgroundColor: ['#96BAE8','#A1A0A0','#96E8BA','#E896BB','#FF9E58','#C5C3D1','#E3BDB0','#BAC9BC','#F7E9A0','#157E8A','#695A83','#CA776E']
             }
           ]
-        })})
-      }
+        }
+      })
     }
+  }
   /**
    * @name projectCountForMonthsInCostCenter
    * @description Returns the defined object specific to this analytic
@@ -278,7 +287,7 @@ class AnalyticsSelector {
       title: 'Monthly Employee Hours in a Cost Center',
       component: 'bar',
       model: new AnalyticsModel(() => {
-        return (this.data = {
+        return {
           labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
           datasets: [
             {
@@ -306,10 +315,11 @@ class AnalyticsSelector {
               data: [1,0,0,3,1,4,5,1,0,0,1,1]
             }
           ]
-        })})
-      }
+        }
+      })
     }
   }
+}
 
 const analyticsSelector = new AnalyticsSelector()
 export default analyticsSelector

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
-import { toJS } from 'mobx'
 import { Bar, Pie } from 'react-chartjs-2'
 
 /**
@@ -11,10 +10,6 @@ import { Bar, Pie } from 'react-chartjs-2'
  */
 @inject ('page') @observer
 export default class Analytics extends Component {
-  constructor(props){
-    super(props)
-  }
-
   /**
    * Renders HTML div component, containing analytics
    * @method render
@@ -24,32 +19,27 @@ export default class Analytics extends Component {
    */
   render() {
     return (
-      <div>
-        <analytics className="col-sm-6 col-sm-offset-3">
-          {this.props.page.analyticsModel.map((analytic, index) => {
-            let content = null
-            let title = null
-            switch (analytic.component){
-              case 'bar':
-                title = analytic.title
-                content = <Bar data={toJS(analytic.model.data)} width={100} height={50} options={{responsive:true, scales:{yAxes:[{display:true,ticks:{beginAtZero:true}}],xAxes:[{display:true,ticks:{autoSkip: false}}]}}}/>
-                break
-              case 'pie':
-                title = analytic.title
-                content = <Pie data={toJS(analytic.model.data)}/>
-                break
-            }
-            return (
-              <div key={index}>
-              <br/>
-              <h2>{title}</h2>
+      <div className="row justify-content-center">
+        {this.props.page.analyticsModel.map((analytic, index) => {
+          let content = null
+          let title = null
+          switch (analytic.component){
+            case 'bar':
+              title = analytic.title
+              content = <Bar data={analytic.model.jsData} width={100} height={60} options={{responsive:true, scales:{yAxes:[{display:true,ticks:{beginAtZero:true}}],xAxes:[{display:true,ticks:{autoSkip: false}}]}}}/>
+              break
+            case 'pie':
+              title = analytic.title
+              content = <Pie data={analytic.model.jsData}/>
+              break
+          }
+          return (
+            <div key={index} className="col-6" style={{display: 'inline-block', paddingTop: 10}}>
+              <h4 style={{textAlign: 'center'}}>{title}</h4>
               {content}
-              <br/>
-              <br/>
-              </div>
-            )
-          })}
-        </analytics>
+            </div>
+          )
+        })}
       </div>
     )
   }
