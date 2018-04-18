@@ -786,7 +786,7 @@ class Consts {
         if (required && value == '')
           return 'Please enter a value.'
         let reg = /^\d+$/
-        if (reg.test(value.trim()) == false)
+        if (value.length > 0 && reg.test(value.trim()) == false)
           return 'Please enter a valid number.'
         else if (value.length > 4)
           return 'The part count number must be less than 4 characters.'
