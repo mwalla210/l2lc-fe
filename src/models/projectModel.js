@@ -252,16 +252,4 @@ export default class ProjectModel {
   @action removeTask(task){
     console.log('Removes task in project in API')
   }
-  /**
-  * @name addTimeEntry
-  * @description Calls API to add time entry to project; updates this.timeEntries
-  * @memberof ProjectModel.prototype
-  * @method addTimeEntry
-  * @param  {String}     employeeID database ID of employee adding time entry
-  * @return {Promise}
-  * @mobx action
-  */
-  @action addTimeEntry(employeeID){
-    console.log(`Adds time entry to project in API for employee: ${employeeID}`)
-  }
 }

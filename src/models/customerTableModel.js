@@ -161,7 +161,6 @@ export default class CustomerTableModel extends TableModel{
    */
   selectUpdateClick(row){
     Website.currentProject.changeCustomer(row.original)
-    console.log('send update to API with currentProject customer id', Website.currentProject)
     let body = {
       customer: {id: Website.currentProject.customerID}
     }

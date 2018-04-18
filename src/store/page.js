@@ -163,7 +163,6 @@ class PageStore {
   @action currentProjectNewCustomerPage(){
     this.title = 'New Customer for Project'
     let func = () => {
-      console.log('send update to API with currentProject, currentCustomer.id', Website.currentProject, Website.currentCustomer.id)
       let body = {
         customer: {id: Website.currentCustomer.id}
       }

@@ -46,7 +46,6 @@ export default class CustomerFormModel extends FormModel{
     // Change onClick functionality for primary
     return (fields) => {
       let body = this.parseForm(fields)
-      console.log('EDIT with', body)
       Website.updateCustomer(Website.currentCustomer.id, body)
       .then(response => {
         if(response == null){

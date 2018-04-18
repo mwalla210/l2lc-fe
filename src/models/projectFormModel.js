@@ -86,7 +86,6 @@ export default class projectFormModel extends FormModel{
         // Make a preliminary project model, set as Website.currentProject
         let model = new ProjectModel(null, body.costCenter, body.jobType, body.title, body.priority, null, null, body.partCount, body.description, body.refNumber, null, null)
         Website.setProject(model)
-        console.log(Website.currentProject)
         // Nav to customer select to finalize customer information
         this.onClickCustomerNav()
       }
@@ -146,11 +145,10 @@ export default class projectFormModel extends FormModel{
     this.secondaryButton = this.editSecondaryButton()
     this.resetValues()
     // Update fields with values corresponding to currentProject
-    console.log(this.fields.slice(),Website.currentProject)
     this.fields.forEach((fieldObj, index) => {
       let value
       if (!Website.currentProject.hasOwnProperty(fieldObj.id)){
-        console.log('missing',fieldObj.id)
+        console.log('Missing field',fieldObj.id)
       }
       else
         value = (Website.currentProject[fieldObj.id]).toString()
