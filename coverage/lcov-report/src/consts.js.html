@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">0.51% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/197</span>
+        <span class='fraction'>1/195</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/33</span>
+        <span class='fraction'>0/54</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">0.52% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/194</span>
+        <span class='fraction'>1/194</span>
       </div>
     </div>
     <p class="quiet">
@@ -2217,7 +2217,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * @namespace Consts
  * @classdesc Contains application consts
@@ -2230,14 +2230,14 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get customerFields()<span class="cstat-no" title="statement not covered" >{ <span class="cstat-no" title="statement not covered" >return [</span></span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get customerFields(){ <span class="cstat-no" title="statement not covered" >return [</span>
     {
       type: 'textfield',
       label: 'Company Name',
       id: 'companyName',
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -2251,7 +2251,7 @@ class Consts {
       id: 'email',
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         let reg = <span class="cstat-no" title="statement not covered" >/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/</span>
@@ -2268,7 +2268,7 @@ class Consts {
       id: 'phone',
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a phone number.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &lt; 10) //could of put a regex here but international numbers have different formats</span>
@@ -2282,7 +2282,7 @@ class Consts {
       id: 'website',
       required: false,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
         let reg = <span class="cstat-no" title="statement not covered" >/^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/</span>
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
@@ -2300,12 +2300,12 @@ class Consts {
       options: this.countrySelect,
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please select a country.'</span>
 <span class="cstat-no" title="statement not covered" >        return null</span>
       },
-      onUpdate: <span class="fstat-no" title="function not covered" >(</span>value) =&gt; {
+      onUpdate: <span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (value == 'United States of America'){</span>
 <span class="cstat-no" title="statement not covered" >          return [</span>
             {
@@ -2342,7 +2342,7 @@ class Consts {
       id: 'shipAddr1',
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -2356,7 +2356,7 @@ class Consts {
       id: 'shipAddr2',
       required: false,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -2370,7 +2370,7 @@ class Consts {
       id: 'shipCity',
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -2385,7 +2385,7 @@ class Consts {
       options: this.stateSelect,
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please select the state.'</span>
 <span class="cstat-no" title="statement not covered" >        return null</span>
@@ -2397,7 +2397,7 @@ class Consts {
       id: 'shipZip',
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 10)</span>
@@ -2411,7 +2411,7 @@ class Consts {
       id: 'billIsSame',
       required: false,
       validation: null,
-      onUpdate: <span class="fstat-no" title="function not covered" >(</span>value, fields) =&gt; {
+      onUpdate: <span class="fstat-no" title="function not covered" >(v</span>alue, fields) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (value){</span>
 <span class="cstat-no" title="statement not covered" >          return [</span>
             {
@@ -2448,7 +2448,7 @@ class Consts {
         }
         let stateShow = <span class="cstat-no" title="statement not covered" >false</span>
         let zipRequired = <span class="cstat-no" title="statement not covered" >false</span>
-<span class="cstat-no" title="statement not covered" >        if (fields.find(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >obj =&gt; obj.id == 'billCountry').value == 'United States of America'){</span></span></span>
+<span class="cstat-no" title="statement not covered" >        if (fields.find(<span class="fstat-no" title="function not covered" >ob</span>j =&gt; <span class="cstat-no" title="statement not covered" >obj.id == 'billCountry')</span>.value == 'United States of America'){</span>
 <span class="cstat-no" title="statement not covered" >          stateShow = true</span>
 <span class="cstat-no" title="statement not covered" >          zipRequired = true</span>
         }
@@ -2493,12 +2493,12 @@ class Consts {
       options: this.countrySelect,
       required: false,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please select a country.'</span>
 <span class="cstat-no" title="statement not covered" >        return null</span>
       },
-      onUpdate: <span class="fstat-no" title="function not covered" >(</span>value) =&gt; {
+      onUpdate: <span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (value == 'United States of America'){</span>
 <span class="cstat-no" title="statement not covered" >          return [</span>
             {
@@ -2565,7 +2565,7 @@ class Consts {
       id: 'billAddr1',
       required: false,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -2579,7 +2579,7 @@ class Consts {
       id: 'billAddr2',
       required: false,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -2593,7 +2593,7 @@ class Consts {
       id: 'billCity',
       required: false,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -2608,7 +2608,7 @@ class Consts {
       options: this.stateSelect,
       required: false,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please select the state.'</span>
 <span class="cstat-no" title="statement not covered" >        return null</span>
@@ -2620,7 +2620,7 @@ class Consts {
       id: 'billZip',
       required: false,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 10)</span>
@@ -2636,7 +2636,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get projectFields()<span class="cstat-no" title="statement not covered" >{ <span class="cstat-no" title="statement not covered" >return [</span></span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get projectFields(){ <span class="cstat-no" title="statement not covered" >return [</span>
     {
       type: 'select',
       label: 'Cost Center',
@@ -2644,12 +2644,12 @@ class Consts {
       options: this.costCenterSelect,
       required: true,
       disabled: false,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please select a cost center.'</span>
 <span class="cstat-no" title="statement not covered" >        return null</span>
       },
-      onUpdate: <span class="fstat-no" title="function not covered" >(</span>value) =&gt; {
+      onUpdate: <span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (value == 'APC'){</span>
 <span class="cstat-no" title="statement not covered" >          return [</span>
             {
@@ -2972,12 +2972,12 @@ class Consts {
       options: [],
       required: true,
       disabled: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please select a project type.'</span>
 <span class="cstat-no" title="statement not covered" >        return null</span>
       },
-      onUpdate: <span class="fstat-no" title="function not covered" >(</span>value) =&gt; {
+      onUpdate: <span class="fstat-no" title="function not covered" >(v</span>alue) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (value == 'Piston' || value == 'Turbo' || value == 'Rotor' || value == 'Pump'){</span>
 <span class="cstat-no" title="statement not covered" >          return [</span>
             {
@@ -3002,7 +3002,7 @@ class Consts {
       id: 'partCount',
       required: false,
       disabled: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         let reg = <span class="cstat-no" title="statement not covered" >/^\d+$/</span>
@@ -3019,7 +3019,7 @@ class Consts {
       id: 'title',
       required: false,
       disabled: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -3034,7 +3034,7 @@ class Consts {
       options: [{title: 'Select...'}, {title: 'Low'}, {title: 'High'}],
       required: true,
       disabled: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please select a priority.'</span>
 <span class="cstat-no" title="statement not covered" >        return null</span>
@@ -3046,7 +3046,7 @@ class Consts {
       id: 'descr',
       required: false,
       disabled: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 100)</span>
@@ -3060,7 +3060,7 @@ class Consts {
       id: 'refNum',
       required: false,
       disabled: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -3076,13 +3076,13 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get employeeFields(){ <span class="cstat-no" title="statement not covered" >return [</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get employeeFields(){ <span class="cstat-no" title="statement not covered" >return [</span>
     {
       type: 'textfield',
       label: 'First Name',
       id: 'firstName',
       required: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -3095,7 +3095,7 @@ class Consts {
       label: 'Last Name',
       id: 'lastName',
       required: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 30)</span>
@@ -3111,13 +3111,13 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get timeEntryFields(){ <span class="cstat-no" title="statement not covered" >return [</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get timeEntryFields(){ <span class="cstat-no" title="statement not covered" >return [</span>
     {
       type: 'textfield',
       label: 'Project ID',
       id: 'projectID',
       required: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 15)</span>
@@ -3134,7 +3134,7 @@ class Consts {
       label: 'Employee ID',
       id: 'employeeID',
       required: true,
-      validation: <span class="fstat-no" title="function not covered" >(</span>value, required) =&gt; {
+      validation: <span class="fstat-no" title="function not covered" >(v</span>alue, required) =&gt; {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 15)</span>
@@ -3154,7 +3154,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get countrySelect() {<span class="cstat-no" title="statement not covered" >return [</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get countrySelect() {<span class="cstat-no" title="statement not covered" >return [</span>
     {title: 'Select...'}, {title: 'United States of America'}, {title: 'Canada'}, {title: '--------------', disabled: true}, {title: 'Afghanistan'}, {title: 'Aland Islands'}, {title: 'Albania'}, {title: 'Algeria'}, {title: 'American Samoa'}, {title: 'Andorra'}, {title: 'Angola'}, {title: 'Anguilla'}, {title: 'Antarctica'}, {title: 'Antigua and Barbuda'}, {title: 'Argentina'}, {title: 'Armenia'}, {title: 'Aruba'}, {title: 'Australia'}, {title: 'Austria'}, {title: 'Azerbaijan'}, {title: 'Bahamas'}, {title: 'Bahrain'}, {title: 'Bangladesh'}, {title: 'Barbados'}, {title: 'Belarus'}, {title: 'Belgium'}, {title: 'Belize'}, {title: 'Benin'}, {title: 'Bermuda'}, {title: 'Bhutan'}, {title: 'Bolivia'}, {title: 'Bonaire, Sint Eustatius and Saba'}, {title: 'Bosnia and Herzegovina'}, {title: 'Botswana'}, {title: 'Bouvet Island'}, {title: 'Brazil'}, {title: 'British Indian Ocean Territory'}, {title: 'United States Minor Outlying Islands'}, {title: 'Virgin Islands (British)'}, {title: 'Virgin Islands (U.S.)'},{title: 'Brunei Darussalam'}, {title: 'Bulgaria'}, {title: 'Burkina Faso'}, {title: 'Burundi'}, {title: 'Cambodia'}, {title: 'Cameroon'}, {title: 'Cabo Verde'}, {title: 'Cayman Islands'}, {title: 'Central African Republic'}, {title: 'Chad'}, {title: 'Chile'}, {title: 'China'}, {title: 'Christmas Island'}, {title: 'Cocos (Keeling) Islands'}, {title: 'Colombia'}, {title: 'Comoros'}, {title: 'Congo'}, {title: 'Cook Islands'}, {title: 'Costa Rica'}, {title: 'Croatia'}, {title: 'Cuba'}, {title: 'Curaçao'}, {title: 'Cyprus'}, {title: 'Czech Republic'}, {title: 'Denmark'}, {title: 'Djibouti'}, {title: 'Dominica'}, {title: 'Dominican Republic'}, {title: 'Ecuador'}, {title: 'Egypt'}, {title: 'El Salvador'}, {title: 'Equatorial Guinea'}, {title: 'Eritrea'}, {title: 'Estonia'}, {title: 'Ethiopia'}, {title: 'Falkland Islands (Malvinas)'}, {title: 'Faroe Islands'}, {title: 'Fiji'}, {title: 'Finland'}, {title: 'France'}, {title: 'French Guiana'}, {title: 'French Polynesia'}, {title: 'French Southern Territories'}, {title: 'Gabon'}, {title: 'Gambia'}, {title: 'Georgia'}, {title: 'Germany'}, {title: 'Ghana'}, {title: 'Gibraltar'}, {title: 'Greece'}, {title: 'Greenland'}, {title: 'Grenada'}, {title: 'Guadeloupe'}, {title: 'Guam'}, {title: 'Guatemala'}, {title: 'Guernsey'}, {title: 'Guinea'}, {title: 'Guinea-Bissau'}, {title: 'Guyana'}, {title: 'Haiti'}, {title: 'Heard Island and McDonald Islands'}, {title: 'Holy See'}, {title: 'Honduras'}, {title: 'Hong Kong'}, {title: 'Hungary'}, {title: 'Iceland'}, {title: 'India'}, {title: 'Indonesia'}, {title: 'Cote dIvoire'}, {title: 'Iran (Islamic Republic of)'}, {title: 'Iraq'}, {title: 'Ireland'}, {title: 'Isle of Man'}, {title: 'Israel'}, {title: 'Italy'}, {title: 'Jamaica'}, {title: 'Japan'}, {title: 'Jersey'}, {title: 'Jordan'}, {title: 'Kazakhstan'}, {title: 'Kenya'}, {title: 'Kiribati'}, {title: 'Kuwait'}, {title: 'Kyrgyzstan'}, {title: 'Lao Peoples Democratic Republic'}, {title: 'Latvia'}, {title: 'Lebanon'}, {title: 'Lesotho'}, {title: 'Liberia'}, {title: 'Libya'}, {title: 'Liechtenstein'}, {title: 'Lithuania'}, {title: 'Luxembourg'}, {title: 'Macao'}, {title: 'Macedonia'}, {title: 'Madagascar'}, {title: 'Malawi'}, {title: 'Malaysia'},{title: 'Maldives'}, {title: 'Mali'}, {title: 'Malta'}, {title: 'Marshall Islands'}, {title: 'Martinique'}, {title: 'Mauritania'}, {title: 'Mauritius'}, {title: 'Mayotte'}, {title: 'Mexico'}, {title: 'Micronesia'}, {title: 'Moldova'}, {title: 'Monaco'}, {title: 'Mongolia'}, {title: 'Montenegro'}, {title: 'Montserrat'}, {title: 'Morocco'}, {title: 'Mozambique'}, {title: 'Myanmar'}, {title: 'Namibia'}, {title: 'Nauru'}, {title: 'Nepal'}, {title: 'Netherlands'}, {title: 'New Caledonia'}, {title: 'New Zealand'}, {title: 'Nicaragua'}, {title: 'Niger'}, {title: 'Nigeria'}, {title: 'Niue'}, {title: 'Norfolk Island'}, {title: 'Korea (Democratic Peoples Republic of)'}, {title: 'Northern Mariana Islands'}, {title: 'Norway'}, {title: 'Oman'}, {title: 'Pakistan'}, {title: 'Palau'}, {title: 'Palestine, State of'}, {title: 'Panama'}, {title: 'Papua New Guinea'}, {title: 'Paraguay'}, {title: 'Peru'}, {title: 'Philippines'}, {title: 'Pitcairn'}, {title: 'Poland'}, {title: 'Portugal'}, {title: 'Puerto Rico'}, {title: 'Qatar'}, {title: 'Republic of Kosovo'}, {title: 'Réunion'}, {title: 'Romania'}, {title: 'Russian Federation'}, {title: 'Rwanda'}, {title: 'Saint Barthelemy'}, {title: 'Saint Helena, Ascension, and Tristan da Cunha'}, {title: 'Saint Kitts and Nevis'}, {title: 'Saint Lucia'}, {title: 'Saint Martin'}, {title: 'Saint Pierre and Miquelon'}, {title: 'Saint Vincent and the Grenadines'}, {title: 'Samoa'}, {title: 'San Marino'}, {title: 'Sao Tome and Principe'}, {title: 'Saudi Arabia'}, {title: 'Senegal'}, {title: 'Serbia'}, {title: 'Seychelles'}, {title: 'Sierra Leone'}, {title: 'Singapore'}, {title: 'Sint Maarten'}, {title: 'Slovakia'}, {title: 'Slovenia'}, {title: 'Solomon Islands'}, {title: 'Somalia'}, {title: 'South Africa'}, {title: 'South Georgia and the South Sandwich Islands'}, {title: 'Korea'}, {title: 'South Sudan'}, {title: 'Spain'}, {title: 'Sri Lanka'}, {title: 'Sudan'}, {title: 'Suriname'}, {title: 'Svalbard and Jan Mayen'}, {title: 'Swaziland'}, {title: 'Sweden'}, {title: 'Switzerland'}, {title: 'Syrian Arab Republic'}, {title: 'Taiwan'}, {title: 'Tajikistan'}, {title: 'Tanzania, United Republic of'}, {title: 'Thailand'}, {title: 'Timor-Leste'}, {title: 'Togo'}, {title: 'Tokelau'}, {title: 'Tonga'}, {title: 'Trinidad and Tobago'}, {title: 'Tunisia'}, {title: 'Turkey'}, {title: 'Turkmenistan'}, {title: 'Turks and Caicos Islands'}, {title: 'Tuvalu'}, {title: 'Uganda'}, {title: 'Ukraine'}, {title: 'United Arab Emirates'}, {title: 'United Kingdom of Great Britain'}, {title: 'Northern Ireland'}, {title: 'Uruguay'}, {title: 'Uzbekistan'}, {title: 'Vanuatu'}, {title: 'Venezuela'}, {title: 'Vietnam'}, {title: 'Wallis'}, {title: 'Futuna'}, {title: 'Western Sahara'}, {title: 'Yemen'}, {title: 'Zambia'}, {title: 'Zimbabwe'}
   ]}
   /**
@@ -3164,7 +3164,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get stateSelect() {<span class="cstat-no" title="statement not covered" >return [</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get stateSelect() {<span class="cstat-no" title="statement not covered" >return [</span>
     {title: 'Select...'}, {title: 'Alabama'}, {title: 'Alaska'}, {title: 'Arizona'}, {title: 'Arkansas'}, {title: 'California'}, {title: 'Colorado'}, {title: 'Connecticut'}, {title: 'Delaware'}, {title: 'Florida'}, {title: 'Georgia'}, {title: 'Hawaii'}, {title: 'Idaho'}, {title: 'Illinois'}, {title: 'Indiana'}, {title: 'Iowa'}, {title: 'Kansas'}, {title: 'Kentucky'}, {title: 'Louisiana'}, {title: 'Maine'}, {title: 'Maryland'}, {title: 'Massachusetts'}, {title: 'Michigan'}, {title: 'Minnesota'}, {title: 'Mississippi'}, {title: 'Missouri'}, {title: 'Montana'}, {title: 'Nebraska'}, {title: 'Nevada'}, {title: 'New Hampshire'}, {title: 'New Jersey'}, {title: 'New Mexico'}, {title: 'New York'}, {title: 'North Carolina'}, {title: 'North Dakota'}, {title: 'Ohio'}, {title: 'Oklahoma'}, {title: 'Oregon'}, {title: 'Pennsylvania'}, {title: 'Rhode Island'}, {title: 'South Carolina'}, {title: 'South Dakota'}, {title: 'Tennessee'}, {title: 'Texas'}, {title: 'Utah'}, {title: 'Vermont'}, {title: 'Virginia'}, {title: 'Washington'}, {title: 'West Virginia'}, {title: 'Wisconsin'}, {title: 'Wyoming'}
   ]}
   /**
@@ -3174,7 +3174,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get costCenterSelect() {<span class="cstat-no" title="statement not covered" >return [</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get costCenterSelect() {<span class="cstat-no" title="statement not covered" >return [</span>
     {title: 'Select...'}, {title: 'APC'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'Administration'}, {title: 'Production'}, {title: 'Military'}, {title: 'Research and Development'}, {title: 'Other'}
   ]}
   /**
@@ -3184,7 +3184,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get apcProjectSelect() {<span class="cstat-no" title="statement not covered" >return [</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get apcProjectSelect() {<span class="cstat-no" title="statement not covered" >return [</span>
     {title: 'Select...'}, {title: 'Piston'}, {title: 'Turbo'}, {title: 'Rotor'}, {title: 'Pump'}, {title: 'Avaslick'}, {title: 'Specialty'}
   ]}
   /**
@@ -3194,7 +3194,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get decorativeProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Decorative'}]}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get decorativeProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Decorative'}]}</span>
   /**
    * @name maintenanceProjectSelect
    * @description List of Maintenance project types for selecting
@@ -3202,7 +3202,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get maintenanceProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Maintenance'}]}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get maintenanceProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Maintenance'}]}</span>
   /**
    * @name adminProjectSelect
    * @description List of Administration project types for selecting
@@ -3210,7 +3210,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get adminProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'ISO'}, {title: 'Other'}]}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get adminProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'ISO'}, {title: 'Other'}]}</span>
   /**
    * @name rdProjectSelect
    * @description List of R&amp;D project types for selecting
@@ -3218,7 +3218,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get rdProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Research and Development'}]}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get rdProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Research and Development'}]}</span>
   /**
    * @name militaryProjectSelect
    * @description List of Military project types for selecting
@@ -3226,7 +3226,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get militaryProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Military'}]}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get militaryProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Military'}]}</span>
   /**
    * @name productionProjectSelect
    * @description List of Production project types for selecting
@@ -3234,7 +3234,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get productionProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Production'}]}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get productionProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Production'}]}</span>
   /**
    * @name otherProjectSelect
    * @description List of Other project types for selecting
@@ -3242,7 +3242,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get otherProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Other'}]}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get otherProjectSelect() {<span class="cstat-no" title="statement not covered" >return [{title: 'Select...'}, {title: 'Other'}]}</span>
   /**
    * @name doneColor
    * @description Color to label finished projects
@@ -3250,7 +3250,7 @@ class Consts {
    * @type {String}
    * @readonly
    */
-  static get doneColor() {<span class="cstat-no" title="statement not covered" >return '#49a4ff'}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get doneColor() {<span class="cstat-no" title="statement not covered" >return '#49a4ff'}</span>
   /**
    * @name helpColor
    * @description Color to label projects that need assistance
@@ -3258,7 +3258,7 @@ class Consts {
    * @type {String}
    * @readonly
    */
-  static get helpColor() {<span class="cstat-no" title="statement not covered" >return '#ffbf00'}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get helpColor() {<span class="cstat-no" title="statement not covered" >return '#ffbf00'}</span>
   /**
    * @name openColor
    * @description Color to label open projects
@@ -3266,7 +3266,7 @@ class Consts {
    * @type {String}
    * @readonly
    */
-  static get openColor() {<span class="cstat-no" title="statement not covered" >return '#57d500'}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get openColor() {<span class="cstat-no" title="statement not covered" >return '#57d500'}</span>
   /**
    * @name highPriority
    * @description Color to highlight high priority projects
@@ -3274,7 +3274,7 @@ class Consts {
    * @type {String}
    * @readonly
    */
-  static get highPriority() {<span class="cstat-no" title="statement not covered" >return '#f4ba61'}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get highPriority() {<span class="cstat-no" title="statement not covered" >return '#f4ba61'}</span>
   /**
    * @name medPriority
    * @description Color to highlight high priority projects
@@ -3282,7 +3282,7 @@ class Consts {
    * @type {String}
    * @readonly
    */
-  static get medPriority() {<span class="cstat-no" title="statement not covered" >return '#f4e261'}</span>
+<span class="fstat-no" title="function not covered" >  st</span>atic get medPriority() {<span class="cstat-no" title="statement not covered" >return '#f4e261'}</span>
   /**
    * @name summaryProps
    * @description Summary page box properties for style and visuals
@@ -3290,7 +3290,7 @@ class Consts {
    * @type {String}
    * @readonly
    */
-  static get summaryProps(){
+<span class="fstat-no" title="function not covered" >  st</span>atic get summaryProps(){
 <span class="cstat-no" title="statement not covered" >    return {</span>
       style: {
         border: '1px solid #b4b4b4',
@@ -3303,7 +3303,7 @@ class Consts {
   }
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >module.exports = Consts</span>
+module.exports = Consts
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
