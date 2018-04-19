@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ProjectStatusFilter - Documentation</title>
+    <title>AnalyticsModel - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">ProjectStatusFilter</h1>
+    <h1 class="page-title">AnalyticsModel</h1>
     
 
     
@@ -40,8 +40,10 @@
 <header>
     
         <h2>
-        ProjectStatusFilter
+        AnalyticsModel
         </h2>
+        
+            <div class="class-description"><p>Analytics storage object</p></div>
         
     
 </header>
@@ -51,12 +53,23 @@
     
         
 
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="AnalyticsModel"><span class="type-signature"></span>new AnalyticsModel<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
 <dl class="details">
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_projectStatusFilter.js.html">components/projectStatusFilter.js</a>, <a href="components_projectStatusFilter.js.html#line7">line 7</a>
+        <a href="models_analyticsModel.js.html">models/analyticsModel.js</a>, <a href="models_analyticsModel.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -111,6 +124,8 @@
         
 
         
+        <th>Default</th>
+        
 
         <th class="last">Description</th>
     </tr>
@@ -121,40 +136,7 @@
 
         <tr>
             
-                <td class="name"><code>filter</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
-
-                
-
-                
-                </td>
-            
-
-            
-
-            <td class="description last"><p>Current filter values</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>onChange</code></td>
+                <td class="name"><code>fetchFn</code></td>
             
 
             <td class="type">
@@ -177,8 +159,205 @@
             
 
             
+                <td class="default">
+                
+                </td>
+            
 
-            <td class="description last"><p>On change function for checkboxes</p></td>
+            <td class="description last"><p>Analytics data fetch function</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;observable><br>
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>[]</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Data array for analytics</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>currentFilter</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;observable><br>
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    <code>null</code>
+                
+                </td>
+            
+
+            <td class="description last"><p>Filter title (if any filters for model)</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>component</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                    &lt;observable><br>
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Component type for model</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>filters</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array.&lt;Object></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Filter list for model, if any</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>originalData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"><p>Original set of data returned from fetch</p></td>
         </tr>
 
     
@@ -189,24 +368,32 @@
 
 
 
-        
-            <div class="description"><p>ProjectStatusFilter component; constructor binds functions</p></div>
-        
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     </div>
-
-    
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li>React.Component</li>
-    </ul>
-
 
     
 
@@ -228,7 +415,7 @@
 
     
 
-    <h4 class="name" id="checkChange"><span class="type-signature"></span>checkChange<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="dataFetch">@action <span class="type-signature"></span>dataFetch<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -240,7 +427,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_projectStatusFilter.js.html">components/projectStatusFilter.js</a>, <a href="components_projectStatusFilter.js.html#line26">line 26</a>
+        <a href="models_analyticsModel.js.html">models/analyticsModel.js</a>, <a href="models_analyticsModel.js.html#line31">line 31</a>
     </li></ul></dd>
     
 
@@ -280,7 +467,7 @@
 
 
 <div class="description">
-    <p>Handles onChange of checkbox filters</p>
+    <p>Handles fetching analytics data</p>
 </div>
 
 
@@ -311,7 +498,7 @@
 
     
 
-    <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">()</span><span class="type-signature"> &rarr; {Component}</span></h4>
+    <h4 class="name" id="jsData">@computed <span class="type-signature"></span>jsData<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -323,7 +510,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_projectStatusFilter.js.html">components/projectStatusFilter.js</a>, <a href="components_projectStatusFilter.js.html#line35">line 35</a>
+        <a href="models_analyticsModel.js.html">models/analyticsModel.js</a>, <a href="models_analyticsModel.js.html#line42">line 42</a>
     </li></ul></dd>
     
 
@@ -354,15 +541,6 @@
     
 
     
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-        <ul>
-            <li><a href="https://reactstrap.github.io/components/button-dropdown/">Reactstrap.ButtonDropdown</a></li>
-        
-            <li><a href="https://www.npmjs.com/package/react-checkbox-group">Checkbox</a></li>
-        </ul>
-    </dd>
-    
 
     
 </dl>
@@ -372,7 +550,7 @@
 
 
 <div class="description">
-    <p>Renders SplitButton and Checkbox, CheckboxGroup</p>
+    <p>Converts data to regular JS array</p>
 </div>
 
 
@@ -397,24 +575,89 @@
 
 
 
-<h5>Returns:</h5>
 
         
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">Component</span>
-
-
-    </dd>
-</dl>
+            
 
     
+
+    <h4 class="name" id="setFilteredData">@computed <span class="type-signature"></span>setFilteredData<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_analyticsModel.js.html">models/analyticsModel.js</a>, <a href="models_analyticsModel.js.html#line52">line 52</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    <p>Converts data to regular JS array</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
     
