@@ -139,6 +139,7 @@ export default class CustomerTableModel extends TableModel{
    */
   selectCreateClick(row){
     Website.currentProject.changeCustomer(row.original)
+    Website.setCustomer(row.original)
     let body = {
       jobType: Website.currentProject.jobTypeTitle,
       costCenter: Website.currentProject.costCenterTitle,

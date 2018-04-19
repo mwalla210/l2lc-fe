@@ -82,7 +82,7 @@ export default class projectFormModel extends FormModel{
   newButton(){
     return (fields) => {
       let body = this.parseForm(fields)
-      if (body.costCenter == 'APC' || body.costCenter == 'Decorative'){
+      if (body.costCenter == 'APC' || body.costCenter == 'Decorative' || body.costCenter == 'Military'){
         // Make a preliminary project model, set as Website.currentProject
         let model = new ProjectModel(null, body.costCenter, body.jobType, body.title, body.priority, null, null, body.partCount, body.description, body.refNumber, null, null)
         Website.setProject(model)
