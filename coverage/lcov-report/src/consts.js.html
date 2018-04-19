@@ -27,7 +27,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/196</span>
+        <span class='fraction'>0/198</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -3006,7 +3006,7 @@ class Consts {
 <span class="cstat-no" title="statement not covered" >        if (required &amp;&amp; value == '')</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a value.'</span>
         let reg = <span class="cstat-no" title="statement not covered" >/^\d+$/</span>
-<span class="cstat-no" title="statement not covered" >        if (reg.test(value.trim()) == false)</span>
+<span class="cstat-no" title="statement not covered" >        if (value.length &gt; 0 &amp;&amp; reg.test(value.trim()) == false)</span>
 <span class="cstat-no" title="statement not covered" >          return 'Please enter a valid number.'</span>
         else <span class="cstat-no" title="statement not covered" >if (value.length &gt; 4)</span>
 <span class="cstat-no" title="statement not covered" >          return 'The part count number must be less than 4 characters.'</span>
