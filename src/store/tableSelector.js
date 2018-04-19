@@ -1,6 +1,7 @@
 import CustomerTableModel from '../models/customerTableModel'
 import EmployeeTableModel from '../models/employeeTableModel'
 import ProjectTableModel from '../models/projectTableModel'
+import ProjectTaskTableModel from '../models/projectTaskTableModel'
 import autoBind from 'auto-bind'
 
 /**
@@ -78,6 +79,20 @@ class TableSelector {
    */
   getProject(infoClickNav, editClickNav, deleteClickNav){
     return new ProjectTableModel(infoClickNav, editClickNav, deleteClickNav)
+  }
+
+  /**
+   * @name getTasks
+   * @description Provides a ProjectTableModel set for selecting
+   * @method getTasks
+   * @param  {Function}          infoClickNav   Row info icon click function
+   * @param  {Function}          editClickNav   Row edit icon click function
+   * @param  {Function}          deleteClickNav   Row delete icon click function
+   * @return {projectTaskModel}
+   * @memberof TableSelector.prototype
+   */
+  getTasks(buttonClickNav, deleteClickNav){
+    return new ProjectTaskTableModel(buttonClickNav, deleteClickNav)
   }
 
 }

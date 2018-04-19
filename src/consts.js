@@ -1078,6 +1078,71 @@ class Consts {
       className: 'col-3'
     }
   }
+
+  /**
+   * @name customerFields
+   * @description List of customer form fields
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get taskFields(){ return [
+    {
+      type: 'textfield',
+      label: 'Required',
+      id: 'required',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required && value == '')
+          return 'Please enter a value.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Task Name',
+      id: 'taskName',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required && value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The task name must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Process Area',
+      id: 'processArea',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required && value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The process area must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Status',
+      id: 'status',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required && value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The status must be less than 30 characters.'
+        return null
+      }
+    }
+  ]}
+
 }
 
 module.exports = Consts

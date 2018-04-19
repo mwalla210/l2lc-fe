@@ -82,6 +82,20 @@ class FormSelector {
   getProject(onClick, onCustomer, errorClick){
     return new ProjectFormModel(onClick, onCustomer, errorClick)
   }
+
+  /**
+   * @name getTask
+   * @description Provides ProjectTaskFormModel
+   * @method getTask
+   * @param  {Function}       onClick  On click function for form
+   * @param  {Function}       errorClick On error modal confirmation click function for form
+   * @return {ProjectFormModel}
+   * @memberof FormSelector.prototype
+   */
+  getTask(onClick, errorClick){
+    return new ProjectTaskFormModel(onClick, errorClick)
+  }
+
   /**
    * @name getProject
    * @description Provides ProjectFormModel for editing

@@ -186,10 +186,22 @@ class PageStore {
    */
    @action projectTaskList(){
      this.title = 'Project Task List'
-     this.setTableModel(TableSelector.getTasks(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage))
+     this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList))
      this.content = Table
    }
 
+   /**
+    * @name newProjectTaskPage
+    * @description Updates title, form, table, content, and buttons for new Project Task page.
+    * @memberof PageStore.prototype
+    * @method newProjectTaskPage
+    * @mobx action
+    */
+   @action newProjectTaskPage(){
+     this.title = 'New Task'
+     this.setFormModel(FormSelector.getTask(this.employeeSummaryPage, this.employeeInformationMenuItem))
+     this.content = Form
+   }
 
   /**
    * @name projectDeleteFn
