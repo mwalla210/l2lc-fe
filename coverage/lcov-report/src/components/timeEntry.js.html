@@ -81,7 +81,9 @@
 <a name='L33'></a><a href='#L33'>33</a>
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -100,6 +102,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,15 +140,17 @@ export default class TimeEntry extends Component {
   render() {
 <span class="cstat-no" title="statement not covered" >    return (</span>
       &lt;div&gt;
-        &lt;div className="col-sm-6 col-sm-offset-3" style={{marginBottom: '20px'}}&gt;
-          &lt;label&gt;{'Station'}&lt;/label&gt;
-          &lt;input
-            disabled
-            type="text"
-            className="form-control"
-            id="stationID"
-            value={this.props.website.currentUser.stationID}
-          /&gt;
+        &lt;div className="row justify-content-center"&gt;
+          &lt;div className="col-sm-6" style={{marginBottom: '20px'}}&gt;
+            &lt;label&gt;{'Station'}&lt;/label&gt;
+            &lt;input
+              disabled
+              type="text"
+              className="form-control"
+              id="stationID"
+              value={this.props.website.currentUser.stationID}
+            /&gt;
+          &lt;/div&gt;
         &lt;/div&gt;
         &lt;Form/&gt;
       &lt;/div&gt;
