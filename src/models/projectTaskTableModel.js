@@ -30,29 +30,29 @@ export default class ProjectTaskTableModel extends TableModel{
         content: 'This action cannot be undone.'
       },
     )
-    let addtlProps = {
-      data: [
-        {
-          required: true,
-          title: 'Task Index 2',
-          processArea: '',
-          status: ''
-        },
-        {
-          required: true,
-          title: 'Task Index 1',
-          processArea: '',
-          status: ''
-        },
-        {
-          required: true,
-          title: 'Task Index 3',
-          processArea: '',
-          status: ''
-        },
-      ]
-    }
-    extendObservable(this, addtlProps)
+    // let addtlProps = {
+    //   data: [
+    //     {
+    //       required: true,
+    //       title: 'Task Index 2',
+    //       processArea: '',
+    //       status: ''
+    //     },
+    //     {
+    //       required: true,
+    //       title: 'Task Index 1',
+    //       processArea: '',
+    //       status: ''
+    //     },
+    //     {
+    //       required: true,
+    //       title: 'Task Index 3',
+    //       processArea: '',
+    //       status: ''
+    //     },
+    //   ]
+    // }
+    extendObservable(this)
     this.deleteClickNav = deleteClickNav
     autoBind(this)
     this.columns = [

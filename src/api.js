@@ -2,6 +2,7 @@ import fetch from 'node-fetch'
 import ProjectModel from './models/projectModel'
 import CustomerModel from './models/customerModel'
 import EmployeeModel from './models/employeeModel'
+import TaskModel from './models/taskModel'
 import UserModel from './models/userModel'
 
 const api = 'http://138.197.88.198:8080/l2lc/api/'
@@ -165,6 +166,41 @@ export default class API {
       }
       return project
     })
+  }
+
+  /**
+   * @name fetchProjectTasks
+   * @description Fetches project and modelizes
+   * @method fetchProjectTasks
+   * @memberof API
+   * @param  {Number}     id ID of project to fetch
+   * @return {Promise}
+   * @async
+   */
+  static fetchProjectTasks(id){
+    return fetch(`${api}task/${id}`)
+    .then(res => res.json())
+    .then(json => {
+      let project = null
+      if (json.id == id){
+        project = API.taskModelize(json)
+      }
+      return project
+    })
+  }
+
+  /**
+   * @name taskModelize
+   * @description Modelizes a database task model
+   * @method taskModelize
+   * @memberof API
+   * @param  {Object}        item Database task object
+   * @return {TaskModel}
+   */
+  static taskModelize(item){
+    console.log(item)
+    // Modelize customer object before providing to project
+    return new TaskModel(item.required, item.title, item.processArea, item.status)
   }
 
   /**

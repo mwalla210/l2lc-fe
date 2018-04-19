@@ -12,12 +12,12 @@ useStrict(true)
  * @property {String} [status=''] Current task status [observable]
  */
 export default class TaskModel {
-  constructor(title, processArea) {
+  constructor(required, title, processArea, status) {
     let addtlProps = {
-      required: false,
+      required,
       processArea,
       title, // changeable?
-      status: '',
+      status,
     }
     extendObservable(this, addtlProps)
     autoBind(this)

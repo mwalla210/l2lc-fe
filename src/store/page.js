@@ -199,7 +199,7 @@ class PageStore {
     */
    @action newProjectTaskPage(){
      this.title = 'New Task'
-     this.setFormModel(FormSelector.getTask(this.employeeSummaryPage, this.employeeInformationMenuItem))
+     this.setFormModel(FormSelector.getTask(this.projectTaskList, this.projectTaskList))
      this.content = Form
    }
 
