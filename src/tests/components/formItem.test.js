@@ -11,10 +11,10 @@ const defaultOptions = {
 }
 
 const alternateOptions = {
-  isValid: true,
+  isValid: false,
   errorText: 'errorText',
   label: 'label',
-  required: true,
+  required: false,
   disabled: true,
 }
 

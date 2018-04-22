@@ -56,7 +56,7 @@ exports[`FormItem Renders with snapshot, alternate options 1`] = `
     role="alert"
     style={
       Object {
-        "display": "none",
+        "color": "orange",
       }
     }
   >
@@ -77,14 +77,5 @@ exports[`FormItem Renders with snapshot, alternate options 1`] = `
     label
   </label>
    
-  <span
-    style={
-      Object {
-        "color": "orange",
-      }
-    }
-  >
-     *
-  </span>
 </div>
 `;

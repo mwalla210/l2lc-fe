@@ -24,9 +24,39 @@ const defaultOptions = {
     },
   }
 
+  const alternateOptions = {
+    event: {
+      target: {
+        value: 'nameOrPassword'
+      },
+      preventDefault: jest.fn()
+    },
+    page: {
+      createNewProjMenuItem: jest.fn()
+    },
+    website: {
+      login: jest.fn(),
+      updateUsername: jest.fn(),
+      updatePassword: jest.fn(),
+      loginerror: true,
+      username:'testuser',
+      password:'testpassword',
+      loginButtonDisabled: false,
+      },
+    }
+
 describe('Login', () => {
   it ('Renders with snapshot', () => {
     let options = Object.assign({}, defaultOptions)
+    const component = renderer.create(
+      <Login {...options}/>,
+    )
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
+  })
+
+  it ('Renders with snapshot, alternate arguements', () => {
+    let options = Object.assign({}, alternateOptions)
     const component = renderer.create(
       <Login {...options}/>,
     )
