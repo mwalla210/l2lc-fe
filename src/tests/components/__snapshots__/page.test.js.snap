@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page Renders with snapshot 1`] = `<div />`;
+
+exports[`Page Renders with snapshot, alternate arguements 1`] = `
+<div>
+  <div>
+    <h1>
+      title
+    </h1>
+    <Form />
+  </div>
+</div>
+`;
