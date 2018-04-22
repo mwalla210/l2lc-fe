@@ -1,43 +1,30 @@
 import React from 'react'
 import renderer from 'react-test-renderer'
-import Page from '../../components/page'
-jest.mock('../../components/login')
-jest.mock('../../components/navbar')
+import ProjectStatusCell from '../../components/projectStatusCell'
 
 const defaultOptions = {
-  page: {
-    content:null,
-    title: 'title',
-  },
-  website: {
-    currentUser:null,
-  },
+  row:{
+    value:'Completed'
+  }
 }
 
 const alternateOptions = {
-  page: {
-    content:'Form',
-    title: 'title',
-  },
-  website: {
-    currentUser:'currentUser',
-  },
+  row:{
+    value:'On Hold'
+  }
 }
 
 const tertiaryOptions = {
-  page: {
-    title: 'title',
-  },
-  website: {
-    currentUser:'currentUser',
-  },
+  row:{
+    value:''
+  }
 }
 
-describe('Page', () => {
+describe('ProjectStatusCell', () => {
   it ('Renders with snapshot', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
-      <Page {...options}/>,
+      <ProjectStatusCell {...options}/>,
     )
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
@@ -46,7 +33,7 @@ describe('Page', () => {
   it ('Renders with snapshot, alternate arguements', () => {
     let options = Object.assign({}, alternateOptions)
     const component = renderer.create(
-      <Page {...options}/>,
+      <ProjectStatusCell {...options}/>,
     )
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
@@ -55,7 +42,7 @@ describe('Page', () => {
   it ('Renders with snapshot, tertiary arguements', () => {
     let options = Object.assign({}, tertiaryOptions)
     const component = renderer.create(
-      <Page {...options}/>,
+      <ProjectStatusCell {...options}/>,
     )
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()

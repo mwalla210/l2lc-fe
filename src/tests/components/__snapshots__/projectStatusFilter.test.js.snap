@@ -1,0 +1,197 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectStatusFilter Renders with snapshot 1`] = `
+<ButtonDropdown
+  isOpen={[MockFunction]}
+  style={
+    Object {
+      "height": "30px",
+    }
+  }
+  toggle={[MockFunction]}
+>
+  <DropdownToggle
+    caret={true}
+    color="secondary"
+    outline={true}
+    style={
+      Object {
+        "paddingTop": "2px",
+      }
+    }
+  >
+    Filter
+  </DropdownToggle>
+  <DropdownMenu>
+    <CheckboxGroup
+      name="Filters"
+      onChange={[Function]}
+      value={null}
+    >
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="Received"
+        />
+         Received
+      </label>
+      <br />
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="In Progress"
+        />
+         In Progress
+      </label>
+      <br />
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="On Hold"
+        />
+         On Hold
+      </label>
+      <br />
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="Completed"
+        />
+         Completed
+      </label>
+      <br />
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="Dropped"
+        />
+         Dropped
+      </label>
+      <br />
+    </CheckboxGroup>
+  </DropdownMenu>
+</ButtonDropdown>
+`;
+
+exports[`ProjectStatusFilter Renders with snapshot, alternate arguments 1`] = `
+<ButtonDropdown
+  isOpen={[MockFunction]}
+  style={
+    Object {
+      "height": "30px",
+    }
+  }
+  toggle={[MockFunction]}
+>
+  <DropdownToggle
+    caret={true}
+    color="secondary"
+    outline={true}
+    style={
+      Object {
+        "paddingTop": "2px",
+      }
+    }
+  >
+    Filter
+  </DropdownToggle>
+  <DropdownMenu>
+    <CheckboxGroup
+      name="Filters"
+      onChange={[Function]}
+      value={Array []}
+    >
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="Received"
+        />
+         Received
+      </label>
+      <br />
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="In Progress"
+        />
+         In Progress
+      </label>
+      <br />
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="On Hold"
+        />
+         On Hold
+      </label>
+      <br />
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="Completed"
+        />
+         Completed
+      </label>
+      <br />
+      <label
+        style={
+          Object {
+            "marginLeft": "8px",
+          }
+        }
+      >
+        <Checkbox
+          value="Dropped"
+        />
+         Dropped
+      </label>
+      <br />
+    </CheckboxGroup>
+  </DropdownMenu>
+</ButtonDropdown>
+`;
