@@ -1,0 +1,118 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Renders with snapshot 1`] = `
+<div>
+  <p
+    className="container"
+    style={
+      Object {
+        "display": "flex",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <img
+      src="../../img/L2L-Logo-raisedLARGE.png"
+      style={
+        Object {
+          "margin": "30px",
+        }
+      }
+    />
+  </p>
+  <h1
+    style={
+      Object {
+        "marginBottom": "30px",
+      }
+    }
+  >
+    Line2Line Cloud
+  </h1>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-lg-12"
+    >
+      <div
+        className="row justify-content-center"
+      >
+        <div
+          className="col-6 alert alert-warning"
+          role="alert"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          <strong>
+            Warning!
+          </strong>
+           Couldn't authenticate this username and password combination.
+        </div>
+      </div>
+      <form>
+        <div
+          className="form-group"
+        >
+          <div
+            className="row justify-content-center"
+          >
+            <div
+              className="col-sm-6"
+            >
+              <input
+                className="form-control"
+                id="username"
+                name="username"
+                onBlur={undefined}
+                onChange={[Function]}
+                placeholder="Username"
+                tabIndex="1"
+                type="text"
+                value="testuser"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <div
+            className="row justify-content-center"
+          >
+            <div
+              className="col-sm-6"
+            >
+              <input
+                className="form-control"
+                id="password"
+                name="password"
+                onBlur={undefined}
+                onChange={[Function]}
+                placeholder="Password"
+                tabIndex="2"
+                type="password"
+                value="testpassword"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <div
+            className="row justify-content-center"
+          >
+            <div
+              className="col-sm-6"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,158 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Navbar Renders with snapshot 1`] = `
+<div>
+  <Navbar
+    dark={true}
+    expand="md"
+    style={
+      Object {
+        "borderRadius": "8px",
+        "marginBottom": "3px",
+      }
+    }
+  >
+    <NavbarBrand
+      href="/"
+    >
+      L2LC Cloud
+    </NavbarBrand>
+    <Collapse
+      isOpen={true}
+      navbar={true}
+    >
+      <Nav
+        className="ml-auto"
+        navbar={true}
+      >
+        <NavItem
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <NavLink
+            onClick={[MockFunction]}
+          >
+            New Project
+          </NavLink>
+        </NavItem>
+        <NavItem
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <NavLink
+            onClick={[MockFunction]}
+          >
+            Project Information
+          </NavLink>
+        </NavItem>
+        <NavItem
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <NavLink
+            onClick={[MockFunction]}
+          >
+            Time Entry
+          </NavLink>
+        </NavItem>
+        <NavItem
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <NavLink
+            onClick={[MockFunction]}
+          >
+            Customer Information
+          </NavLink>
+        </NavItem>
+        <NavItem
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <NavLink
+            onClick={[MockFunction]}
+          >
+            Analytics
+          </NavLink>
+        </NavItem>
+        <UncontrolledDropdown
+          inNavbar={true}
+          nav={true}
+        >
+          <DropdownToggle
+            caret={true}
+            nav={true}
+          >
+            Admin
+          </DropdownToggle>
+          <DropdownMenu
+            right={true}
+          >
+            <DropdownItem
+              onClick={[MockFunction]}
+            >
+              Employee Information
+            </DropdownItem>
+            <DropdownItem
+              onClick={[MockFunction]}
+            >
+              Account Information
+            </DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+        <NavItem>
+          <p
+            className="nav-link nohover"
+            style={
+              Object {
+                "marginBottom": "0px",
+                "marginRight": "10px",
+              }
+            }
+          >
+            <img
+              alt="person"
+              src="../../style/open-iconic-master/svg/person.svg"
+              style={
+                Object {
+                  "marginRight": "5px",
+                  "width": "16px",
+                }
+              }
+            />
+            testuser
+          </p>
+        </NavItem>
+        <NavItem
+          style={
+            Object {
+              "cursor": "pointer",
+            }
+          }
+        >
+          <NavLink
+            onClick={[Function]}
+          >
+            Log Out
+          </NavLink>
+        </NavItem>
+      </Nav>
+    </Collapse>
+  </Navbar>
+</div>
+`;
