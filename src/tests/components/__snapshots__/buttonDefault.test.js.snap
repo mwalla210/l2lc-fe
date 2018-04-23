@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonDefault Renders with snapshot (disabled: false) 1`] = `
+<button
+  className="btn className"
+  disabled={false}
+  onClick={[MockFunction]}
+  style={null}
+  type="button"
+>
+  text
+</button>
+`;
+
+exports[`ButtonDefault Renders with snapshot (disabled: true) 1`] = `
+<button
+  className="btn className"
+  disabled={true}
+  onClick={[MockFunction]}
+  style={null}
+  type="button"
+>
+  text
+</button>
+`;
+
+exports[`ButtonDefault Renders with snapshot (disabled: true, className: empty string) 1`] = `
+<button
+  className="btn"
+  disabled={false}
+  onClick={[MockFunction]}
+  style={null}
+  type="button"
+>
+  text
+</button>
+`;

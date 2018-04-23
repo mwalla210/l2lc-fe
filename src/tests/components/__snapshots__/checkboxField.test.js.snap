@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxField Renders with snapshot (disabled: false, value: false) 1`] = `
+<input
+  checked={false}
+  className="form-check-input"
+  disabled={false}
+  id="id"
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "margin": 5,
+    }
+  }
+  type="checkbox"
+/>
+`;
+
+exports[`CheckboxField Renders with snapshot (disabled: false, value: true) 1`] = `
+<input
+  checked={true}
+  className="form-check-input"
+  disabled={false}
+  id="id"
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "margin": 5,
+    }
+  }
+  type="checkbox"
+/>
+`;
+
+exports[`CheckboxField Renders with snapshot (disabled: true, value: false) 1`] = `
+<input
+  checked={false}
+  className="form-check-input"
+  disabled={true}
+  id="id"
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "margin": 5,
+    }
+  }
+  type="checkbox"
+/>
+`;
+
+exports[`CheckboxField Renders with snapshot (disabled: true, value: true) 1`] = `
+<input
+  checked={true}
+  className="form-check-input"
+  disabled={true}
+  id="id"
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "margin": 5,
+    }
+  }
+  type="checkbox"
+/>
+`;
