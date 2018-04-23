@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeEntry Does something 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-sm-6"
+      style={
+        Object {
+          "marginBottom": "20px",
+        }
+      }
+    >
+      <label>
+        Station
+      </label>
+      <input
+        className="form-control"
+        disabled={true}
+        id="stationID"
+        type="text"
+        value={1}
+      />
+    </div>
+  </div>
+</div>
+`;
