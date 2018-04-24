@@ -17,9 +17,50 @@ jest.mock('../../components/buttonDefault')
 const defaultOptions = {
   page: {
     formModel: {
-      fields: {
-        map: jest.fn()
-      },
+      fields:[
+        {
+          id: 1,
+          disabled: true,
+          value:'',
+          type:'select',
+          isValid: true,
+          options:[],
+          errorText: 'errortext',
+          label: 'label',
+          required: true
+        },
+        {
+          id: 1,
+          disabled: true,
+          value:'',
+          type:'textfield',
+          isValid: true,
+          errorText: 'errortext',
+          label: 'label',
+          required: true
+        },
+        {
+          id: 1,
+          disabled: true,
+          value:'',
+          type:'textarea',
+          isValid: true,
+          rows:10,
+          errorText: 'errortext',
+          label: 'label',
+          required: true
+        },
+        {
+          id: 1,
+          disabled: true,
+          value:'',
+          type:'checkbox',
+          isValid: true,
+          errorText: 'errortext',
+          label: 'label',
+          required: true
+        }
+      ],
       modalOpen: false,
       errorResponse: '',
       confirmAndClose: jest.fn(),
@@ -45,15 +86,6 @@ const defaultOptions = {
   },
   e: {
     preventDefault: jest.fn()
-  },
-  checkbox: false,
-  index: 0,
-  event: {
-    preventDefault: jest.fn(),
-    target:{
-      value: 0,
-      checked: 1,
-    },
   },
 }
 
@@ -92,28 +124,60 @@ describe('Form', () => {
     expect(inst.props.page.formModel.secondaryButton.onClick.mock.calls.length).toBe(1)
   })
 
-//  it ('Renders and calls onChange', () => {
-//    let options = Object.assign({}, defaultOptions)
-//    const component = renderer.create(
-//      <Form {...options}/>,
-//    )
-//    const inst = component.getInstance()
-//
-//    expect(inst.props.page.formModel.modifyFieldValue.mock.calls.length).toBe(0)
-//    inst.onChange(inst.props.index, inst.props.checkbox)
-//    expect(inst.props.page.formModel.modifyFieldValue.mock.calls.length).toBe(1)
-//  })
+  it ('Renders and calls onChange', () => {
+    let options = Object.assign({}, defaultOptions)
+    const component = renderer.create(
+      <Form {...options}/>,
+    )
+    const inst = component.getInstance()
 
-//  it ('Renders and calls onBlur', () => {
-//    let options = Object.assign({}, defaultOptions)
-//    const component = renderer.create(
-//      <Form {...options}/>,
-//    )
-//    const inst = component.getInstance()
-//
-//    expect(inst.props.page.formModel.fieldValidatorWrapper.mock.calls.length).toBe(0)
-//    inst.onBlur(inst.props.event)
-//    expect(inst.props.page.formModel.fieldValidatorWrapper.mock.calls.length).toBe(1)
-//  })
+    expect(inst.props.page.formModel.modifyFieldValue.mock.calls.length).toBe(0)
+    let func = inst.onChange(1, true)
+    console.log(func)
+    func({preventDefault: jest.fn(),
+        target:{
+          value: 0,
+          checked: 1,
+        }
+      })
+    expect(inst.props.page.formModel.modifyFieldValue.mock.calls.length).toBe(1)
+    expect(inst.props.page.formModel.modifyFieldValue.mock.calls[0][0]).toBe(1)
+    expect(inst.props.page.formModel.modifyFieldValue.mock.calls[0][1]).toBe(1)
+  })
+
+  it ('Renders and calls onChange, alternate arguements', () => {
+    let options = Object.assign({}, defaultOptions)
+    options.page.formModel.modifyFieldValue = jest.fn()
+    const component = renderer.create(
+      <Form {...options}/>,
+    )
+    const inst = component.getInstance()
+
+    expect(inst.props.page.formModel.modifyFieldValue.mock.calls.length).toBe(0)
+    let func = inst.onChange(1)
+    func({preventDefault: jest.fn(),
+        target:{
+          value: 0,
+          checked: 1,
+        }
+      })
+    expect(inst.props.page.formModel.modifyFieldValue.mock.calls.length).toBe(1)
+    expect(inst.props.page.formModel.modifyFieldValue.mock.calls[0][0]).toBe(1)
+    expect(inst.props.page.formModel.modifyFieldValue.mock.calls[0][1]).toBe(0)
+  })
+
+  it ('Renders and calls onBlur', () => {
+    let options = Object.assign({}, defaultOptions)
+    const component = renderer.create(
+      <Form {...options}/>,
+    )
+    const inst = component.getInstance()
+
+    expect(inst.props.page.formModel.fieldValidatorWrapper.mock.calls.length).toBe(0)
+    let func = inst.onBlur(1)
+    func({preventDefault: jest.fn()})
+    expect(inst.props.page.formModel.fieldValidatorWrapper.mock.calls.length).toBe(1)
+    expect(inst.props.page.formModel.fieldValidatorWrapper.mock.calls[0][0]).toBe(1)
+  })
 
 })
