@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/2</span>
+        <span class='fraction'>2/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/4</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>6/6</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -162,9 +162,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -173,17 +173,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -193,8 +183,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -244,10 +244,10 @@ export default class FieldModal extends Component {
     contents: PropTypes.string.isRequired
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  co</span>nstructor(props){
-<span class="cstat-no" title="statement not covered" >    super(props)</span>
-<span class="cstat-no" title="statement not covered" >    this.hide = this.hide.bind(this)</span>
-<span class="cstat-no" title="statement not covered" >    this.onChange = this.onChange.bind(this)</span>
+  constructor(props){
+    super(props)
+    this.hide = this.hide.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 &nbsp;
   /**
@@ -255,8 +255,8 @@ export default class FieldModal extends Component {
    * @method hide
    * @memberof FieldModal.prototype
    */
-<span class="fstat-no" title="function not covered" >  hi</span>de(){
-<span class="cstat-no" title="statement not covered" >    this.props.closeFn()</span>
+  hide(){
+    this.props.closeFn()
   }
 &nbsp;
   /**
@@ -265,8 +265,8 @@ export default class FieldModal extends Component {
    * @param {Object} event Field content change event
    * @memberof FieldModal.prototype
    */
-<span class="fstat-no" title="function not covered" >  on</span>Change(event){
-<span class="cstat-no" title="statement not covered" >    this.props.onChangeFn(event.target.value)</span>
+  onChange(event){
+    this.props.onChangeFn(event.target.value)
   }
 &nbsp;
   /**
@@ -276,8 +276,8 @@ export default class FieldModal extends Component {
    * @return {Component}
    * @see {@link https://reactstrap.github.io/components/modals/ Reactstrap.Modal}
    */
-<span class="fstat-no" title="function not covered" >  re</span>nder(){
-<span class="cstat-no" title="statement not covered" >    return (</span>
+  render(){
+    return (
       &lt;Modal isOpen={this.props.open} toggle={this.hide}&gt;
         &lt;ModalHeader toggle={this.hide}&gt;
           {this.props.title}
@@ -301,7 +301,7 @@ export default class FieldModal extends Component {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Apr 23 2018 01:02:55 GMT-0400 (EDT)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Apr 24 2018 18:24:35 GMT-0400 (EDT)
 </div>
 </div>
 <script src="../../prettify.js"></script>
