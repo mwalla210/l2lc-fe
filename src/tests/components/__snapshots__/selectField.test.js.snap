@@ -14,7 +14,16 @@ exports[`SelectField Renders with snapshot 1`] = `
     }
   }
   value="value"
-/>
+>
+  <option
+    disabled={true}
+  >
+    title
+  </option>
+  <option>
+    title
+  </option>
+</select>
 `;
 
 exports[`SelectField Renders with snapshot, alternate arguements 1`] = `
@@ -31,5 +40,14 @@ exports[`SelectField Renders with snapshot, alternate arguements 1`] = `
     }
   }
   value="value"
-/>
+>
+  <option
+    disabled={true}
+  >
+    title
+  </option>
+  <option>
+    title
+  </option>
+</select>
 `;

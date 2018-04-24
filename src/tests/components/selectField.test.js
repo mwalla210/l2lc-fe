@@ -11,7 +11,15 @@ const defaultOptions = {
   onChange: jest.fn(),
   onBlur: jest.fn(),
   focus: true,
-  options:observable([])
+  options:observable([
+    {
+      disabled: true,
+      title: 'title'
+    },
+    {
+      title: 'title'
+    }
+  ])
 }
 
 const alternateOptions = {
@@ -22,7 +30,15 @@ const alternateOptions = {
   onChange: jest.fn(),
   onBlur: jest.fn(),
   focus: true,
-  options:observable([])
+  options:observable([
+    {
+      disabled: true,
+      title: 'title'
+    },
+    {
+      title: 'title'
+    }
+  ])
 }
 
 describe('SelectField', () => {

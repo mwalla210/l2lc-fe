@@ -133,7 +133,6 @@ describe('Form', () => {
 
     expect(inst.props.page.formModel.modifyFieldValue.mock.calls.length).toBe(0)
     let func = inst.onChange(1, true)
-    console.log(func)
     func({preventDefault: jest.fn(),
         target:{
           value: 0,
