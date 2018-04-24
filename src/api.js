@@ -397,15 +397,17 @@ export default class API {
    * @return {Promise}
    */
   static fetchAccounts(){
-    //return fetch(`${api}user?limit=50&offset=0`)
-    //.then(res => res.json())
-    //.then(json => {
-    //  let accounts = []
-    //  json.items.forEach(item => {
-    //    accounts.push(API.userModelize(item))
-    //  })
-      console.log('Reach')
-      return Promise.all([])
+    return fetch(`${api}user?limit=50&offset=0`)
+    .then(res => res.json())
+    .then(json => {
+      console.log(json)
+      let accounts = []
+      json.items.forEach(item => {
+        accounts.push(API.userModelize(item))
+      })
+      console.log(accounts)
+      return accounts
+    })
   }
 
   /**

@@ -913,6 +913,13 @@ class Consts {
         return null
       }
     },
+    {
+      type: 'checkbox',
+      label: 'Admin Privelages',
+      id: 'admin',
+      required: true,
+      validation: null,
+    }
   ]}
 
   /**

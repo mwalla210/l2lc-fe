@@ -18,9 +18,9 @@ export default class AccountModel {
     let addtlProps = {
       username,
       password,
-      admin: false,
+      admin: admin,
       //Optional
-      editUsername: ''
+      editUsername: '',
       editPassword: ''
     }
     extendObservable(this, addtlProps)

@@ -38,7 +38,13 @@ export default class AccountTableModel extends TableModel{
       },
       {
         Header: 'Username',
-        accessor: 'userName',
+        accessor: 'username',
+        filterable: true
+      },
+      {
+        id: 'admin',
+        Header: 'Admin',
+        accessor: d => d.admin.toString(),
         filterable: true
       },
       {
@@ -68,14 +74,8 @@ export default class AccountTableModel extends TableModel{
    * @memberof AccountTableModel.prototype
    */
   clickHandler(row, type){
-    if (type == 'info' || type == 'edit'){
-      Website.setUser(row.original)
-      if (type == 'info'){
-        this.infoClickNav()
-      }
-      else{
-        this.editClickNav()
-      }
+    if (type == 'edit'){
+      this.editClickNav()
     }
   }
 }

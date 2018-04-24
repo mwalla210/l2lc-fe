@@ -67,7 +67,7 @@ export default class AccountFormModel extends FormModel{
     return (fields) => {
       let body = {}
       fields.forEach(item => {
-        body[item.id] = item.value.trim()
+        body[item.id] = item.value
       })
       Website.createAccount(body)
       .then((response) => {
