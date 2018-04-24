@@ -1088,16 +1088,12 @@ class Consts {
    */
   static get taskFields(){ return [
     {
-      type: 'textfield',
+      type: 'checkbox',
       label: 'Required',
       id: 'required',
       required: true,
       disabled: false,
-      validation: (value, required) => {
-        if (required && value == '')
-          return 'Please enter a value.'
-        return null
-      }
+      validation: null
     },
     {
       type: 'textfield',

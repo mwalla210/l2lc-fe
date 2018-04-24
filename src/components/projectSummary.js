@@ -68,7 +68,7 @@ export default class ProjectSummary extends Component {
    * @memberof ProjectSummary.prototype
    */
   tasksClick(){
-    console.log('Tasks')
+    this.props.page.projectTaskList()
   }
 
   /**
