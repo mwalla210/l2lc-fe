@@ -24,6 +24,7 @@ describe('Barcode', () => {
       <Barcode {...options}/>,
     )
     const inst = component.getInstance()
+    expect(JsBarcode.mock.calls.length).toBe(0)
     inst.renderBarcode()
     expect(JsBarcode.mock.calls.length).toBe(1)
   })

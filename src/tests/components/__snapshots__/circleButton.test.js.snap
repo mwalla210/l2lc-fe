@@ -12,7 +12,7 @@ exports[`ButtonDefault Renders with snapshot (disabled: false) 1`] = `
   <img
     alt="iconName"
     src="../../style/open-iconic-master/svg/iconName.svg"
-    style={null}
+    style={Object {}}
   />
 </Button>
 `;
@@ -29,7 +29,7 @@ exports[`ButtonDefault Renders with snapshot (disabled: true) 1`] = `
   <img
     alt="iconName"
     src="../../style/open-iconic-master/svg/iconName.svg"
-    style={null}
+    style={Object {}}
   />
 </Button>
 `;

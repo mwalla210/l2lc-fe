@@ -9,7 +9,7 @@ const defaultOptions = {
   text: 'text',
   className: 'className',
   type: 'primary',
-  style: null
+  style: {}
 }
 
 describe('ButtonPrimary', () => {

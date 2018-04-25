@@ -8,7 +8,7 @@ const defaultOptions = {
   text: 'text',
   className: 'className',
   type: 'button',
-  style: null
+  style: {}
 }
 
 describe('ButtonDefault', () => {
@@ -29,8 +29,18 @@ describe('ButtonDefault', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
+  it ('Renders with snapshot (disabled: false, className: empty string)', () => {
+    let options = Object.assign({}, defaultOptions)
+    options.className = ''
+    const component = renderer.create(
+      <ButtonDefault {...options}/>,
+    )
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   it ('Renders with snapshot (disabled: true, className: empty string)', () => {
     let options = Object.assign({}, defaultOptions)
+    options.disabled = true
     options.className = ''
     const component = renderer.create(
       <ButtonDefault {...options}/>,

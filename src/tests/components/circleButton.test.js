@@ -9,7 +9,7 @@ jest.mock('reactstrap', () => ({
 const defaultOptions = {
   onClick: jest.fn(),
   iconName: 'iconName',
-  styleProps: null,
+  styleProps: {},
   disabled: false
 }
 

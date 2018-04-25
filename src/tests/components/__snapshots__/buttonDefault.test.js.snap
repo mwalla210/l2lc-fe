@@ -5,7 +5,19 @@ exports[`ButtonDefault Renders with snapshot (disabled: false) 1`] = `
   className="btn className"
   disabled={false}
   onClick={[MockFunction]}
-  style={null}
+  style={Object {}}
+  type="button"
+>
+  text
+</button>
+`;
+
+exports[`ButtonDefault Renders with snapshot (disabled: false, className: empty string) 1`] = `
+<button
+  className="btn"
+  disabled={false}
+  onClick={[MockFunction]}
+  style={Object {}}
   type="button"
 >
   text
@@ -17,7 +29,7 @@ exports[`ButtonDefault Renders with snapshot (disabled: true) 1`] = `
   className="btn className"
   disabled={true}
   onClick={[MockFunction]}
-  style={null}
+  style={Object {}}
   type="button"
 >
   text
@@ -27,9 +39,9 @@ exports[`ButtonDefault Renders with snapshot (disabled: true) 1`] = `
 exports[`ButtonDefault Renders with snapshot (disabled: true, className: empty string) 1`] = `
 <button
   className="btn"
-  disabled={false}
+  disabled={true}
   onClick={[MockFunction]}
-  style={null}
+  style={Object {}}
   type="button"
 >
   text
