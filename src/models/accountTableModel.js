@@ -47,21 +47,11 @@ export default class AccountTableModel extends TableModel{
         accessor: d => d.admin.toString(),
         filterable: true
       },
-      {
-        Header: 'Actions',
-        sortable: false,
-        maxWidth: 80,
-        getProps: () => {
-          return {
-            className: 'center',
-            style: {
-              paddingTop: '0px',
-              paddingBottom: '0px'
-            }
-          }
-        },
-        Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
-      }
+      //{
+      //  Header: 'Actions',
+      //  sortable: false,
+      //  Cell: row => <ProjectStatusCell row={row}/>,
+      //}
     ]
   }
 
