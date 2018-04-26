@@ -143,13 +143,7 @@ export default class ProjectSummary extends Component {
             }
             <div>
               <h6>Priority</h6>
-              <p><span>
-                <img
-                  src={`../../style/open-iconic-master/svg/${(this.props.website.currentProject.priority == 'Low') ? 'arrow-bottom' : 'arrow-top'}.svg`}
-                  style={{width: '13px'}}
-                />
-                {` ${this.props.website.currentProject.priority}`}
-              </span></p>
+              <p>{this.props.website.currentProject.priority}</p>
             </div>
             <div>
               <h6>Status</h6>
@@ -188,6 +182,12 @@ export default class ProjectSummary extends Component {
                 <p>{this.props.website.currentProject.timeSpent}</p>
               </div>
             }
+            {this.props.website.currentProject.dateCreated &&
+              <div>
+                <h6>Date Created</h6>
+                <p>{this.props.website.currentProject.dateCreated.toString()}</p>
+              </div>
+            }
             {this.props.website.currentProject.partCount &&
               <div>
                 <h6>Part Count</h6>
@@ -201,8 +201,8 @@ export default class ProjectSummary extends Component {
               </div>
             }
             {this.props.website.currentProject.refNum &&
-              <div className="row justify-content-center">
-                <h6>Reference Number</h6>
+              <div>
+                <h6>Job/Work Order Number</h6>
                 <p>{this.props.website.currentProject.refNum}</p>
               </div>
             }
