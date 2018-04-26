@@ -149,7 +149,7 @@ export default class ProjectSummary extends Component {
                   style={{width: '13px'}}
                 />
                 {` ${this.props.website.currentProject.priority}`}
-            </span></p>
+              </span></p>
             </div>
             <div>
               <h6>Status</h6>
