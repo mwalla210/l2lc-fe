@@ -143,7 +143,13 @@ export default class ProjectSummary extends Component {
             }
             <div>
               <h6>Priority</h6>
-              <p>{this.props.website.currentProject.priority}</p>
+              <p><span>
+                <img
+                  src={`../../style/open-iconic-master/svg/${(this.props.website.currentProject.priority == '1-2 Days') ? 'clock' : 'calendar'}.svg`}
+                  style={{width: '13px'}}
+                />
+                {` ${this.props.website.currentProject.priority}`}
+            </span></p>
             </div>
             <div>
               <h6>Status</h6>
