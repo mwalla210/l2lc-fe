@@ -40,6 +40,10 @@ body {
   text-align: center
 }
 
+.h6, h6 {
+  font-weight: bold;
+}
+
 .row {
   font-size: 15px;
   margin-top:5px

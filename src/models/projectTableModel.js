@@ -33,10 +33,10 @@ export default class ProjectTableModel extends TableModel{
         content: 'This action cannot be undone.'
       },
       (state, rowInfo) => {
-        if (rowInfo && rowInfo.row._original.priority != 'Low'){
+        if (rowInfo && rowInfo.row._original.priority != '4-5 Days' && rowInfo.row._original.priority != '10 Days'){
           return {
             style: {
-              background: rowInfo.row._original.priority == 'High' ? Consts.highPriority : Consts.medPriority
+              background: rowInfo.row._original.priority == '1-2 Days' ? Consts.highPriority : Consts.medPriority
             }
           }
         }
