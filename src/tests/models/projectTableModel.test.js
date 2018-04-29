@@ -1,6 +1,6 @@
 import ProjectTableModel from '../../models/projectTableModel'
 import renderer from 'react-test-renderer'
-jest.mock('../../models/tableModel')
+
 jest.mock('../../components/tableActionCell')
 jest.mock('../../components/projectStatusCell')
 jest.mock('../../components/projectStatusFilter')
@@ -20,11 +20,8 @@ describe('ProjectTableModel', () => {
   it('Tests constructor', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(project).toHaveProperty('columns')
-    console.log(project.styling)
-    //expect(project.styling('state', {row:{_original:{priority:'Low'}}}))
-    //expect(project.styling('state', {row:{_original:{priority:'High'}}})).toBe({style: {
-    //          background: rowInfo.row._original.priority == 'High' ? Consts.highPriority : Consts.medPriority
-    //        }})
+    expect(project.styling('state', {row:{_original:{priority:'Low'}}}))
+    expect(project.styling('state', {row:{_original:{priority:'High'}}}))
     expect(project.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toBe('Sun Dec 17 1995 03:24:00 GMT-0500 (Eastern Standard Time)')
     expect(project.columns[3].accessor({customer: {companyName: 'companyName'}})).toBe('companyName')
     expect(project.columns[6].accessor({dateFinished: new Date('December 17, 1995 03:24:00')})).toBe('Sun Dec 17 1995 03:24:00 GMT-0500 (Eastern Standard Time)')
@@ -76,6 +73,7 @@ describe('ProjectTableModel', () => {
 
   it('Tests clickHandler with delete', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
+    project.openModal = jest.fn()
     expect(project.openModal.mock.calls.length).toBe(0)
     project.clickHandler(1,'delete')
     expect(project.openModal.mock.calls.length).toBe(1)
