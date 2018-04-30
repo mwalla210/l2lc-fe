@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomerTableModel Tests actionColumns 1`] = `null`;
+
+exports[`CustomerTableModel Tests noActionColumns 1`] = `null`;
