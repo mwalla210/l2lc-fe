@@ -31,16 +31,6 @@ export default class ProjectTableModel extends TableModel{
         title: 'Delete Project?',
         confirmOnClick: deleteClickNav,
         content: 'This action cannot be undone.'
-      },
-      (state, rowInfo) => {
-        if (rowInfo && rowInfo.row._original.priority != '4-5 Days' && rowInfo.row._original.priority != '10 Days'){
-          return {
-            style: {
-              background: rowInfo.row._original.priority == '1-2 Days' ? Consts.highPriority : Consts.medPriority
-            }
-          }
-        }
-        return {}
       }
     )
     let addtlProps = {
@@ -84,15 +74,8 @@ export default class ProjectTableModel extends TableModel{
         filterable: true
       },
       {
-        Header: 'Finished',
-        id: 'dateFinished',
-        accessor: d => {
-          if (d.dateFinished)
-            return d.dateFinished.toString()
-          else {
-            return ''
-          }
-        },
+        Header: 'Priority',
+        accessor: 'priority',
         filterable: true
       },
       {

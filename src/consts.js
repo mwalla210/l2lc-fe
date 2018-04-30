@@ -1048,22 +1048,6 @@ class Consts {
    */
   static get openColor() {return '#57d500'}
   /**
-   * @name highPriority
-   * @description Color to highlight high priority projects
-   * @memberof Consts.prototype
-   * @type {String}
-   * @readonly
-   */
-  static get highPriority() {return '#f4ba61'}
-  /**
-   * @name medPriority
-   * @description Color to highlight high priority projects
-   * @memberof Consts.prototype
-   * @type {String}
-   * @readonly
-   */
-  static get medPriority() {return '#f4e261'}
-  /**
    * @name summaryProps
    * @description Summary page box properties for style and visuals
    * @memberof Consts.prototype

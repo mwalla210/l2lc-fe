@@ -182,16 +182,22 @@ export default class ProjectSummary extends Component {
                 <p>{this.props.website.currentProject.customer.companyName}</p>
               </div>
             }
-            {this.props.website.currentProject.timeSpent &&
-              <div>
-                <h6>Time Spent</h6>
-                <p>{this.props.website.currentProject.timeSpent}</p>
-              </div>
-            }
             {this.props.website.currentProject.dateCreated &&
               <div>
                 <h6>Date Created</h6>
                 <p>{this.props.website.currentProject.dateCreated.toString()}</p>
+              </div>
+            }
+            {this.props.website.currentProject.dateFinished &&
+              <div>
+                <h6>Date Finished</h6>
+                <p>{this.props.website.currentProject.dateFinished.toString()}</p>
+              </div>
+            }
+            {this.props.website.currentProject.timeSpent &&
+              <div>
+                <h6>Time Spent</h6>
+                <p>{this.props.website.currentProject.timeSpent}</p>
               </div>
             }
             {this.props.website.currentProject.partCount &&
