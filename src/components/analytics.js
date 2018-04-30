@@ -54,10 +54,17 @@ export default class Analytics extends Component {
                     scales:{
                       yAxes:[{display:true,ticks:{beginAtZero:true}}],
                       xAxes:[{display:true,ticks:{autoSkip: false}}]
+                    },
+                    legend: {
+                      display: false
                     }
                   }}
                 /> :
-                <Pie data={analytic.model.jsData}/>
+                <Pie data={analytic.model.jsData} options={{
+                  legend: {
+                    display: false
+                  }
+                }}/>
               }
             </div>
           )

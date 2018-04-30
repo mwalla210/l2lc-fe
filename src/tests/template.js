@@ -64,10 +64,11 @@ program
         }
         // Non-bracket, non custom file imports
         else{
-          libImports.push({
-            lib: line.match(importRE)[0].replace(/'/gi, ''),
-            name: line.match(/import.*from/g)[0].replace('import','').replace('from','').trim()
-          })
+          if (!line.includes('css'))
+            libImports.push({
+              lib: line.match(importRE)[0].replace(/'/gi, ''),
+              name: line.match(/import.*from/g)[0].replace('import','').replace('from','').trim()
+            })
         }
       }
       else if (line.startsWith('@inject')){

@@ -27,7 +27,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/19</span>
+        <span class='fraction'>0/20</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -474,7 +474,7 @@ export default class projectFormModel extends FormModel{
   newButton()<span class="cstat-no" title="statement not covered" >{</span>
 <span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >(</span>fields) =&gt; {</span>
       let body = <span class="cstat-no" title="statement not covered" >this.parseForm(fields)</span>
-<span class="cstat-no" title="statement not covered" >      if (body.costCenter == 'APC' || body.costCenter == 'Decorative'){</span>
+<span class="cstat-no" title="statement not covered" >      if (body.costCenter == 'APC' || body.costCenter == 'Decorative' || body.costCenter == 'Military'){</span>
         // Make a preliminary project model, set as Website.currentProject
         let model = <span class="cstat-no" title="statement not covered" >new ProjectModel(null, body.costCenter, body.jobType, body.title, body.priority, null, null, body.partCount, body.description, body.refNumber, null, null)</span>
 <span class="cstat-no" title="statement not covered" >        Website.setProject(model)</span>
