@@ -33,4 +33,24 @@ describe('ProjectModel', () => {
     expect(project.status).toEqual('Completed')
   })
 
+  it('Tests get customerID', () => {
+    let project = new ProjectModel()
+    project.customer = null
+    project.customerID
+    expect(project.customer).toEqual(null)
+  })
+
+  it('Tests get timeSpent', () => {
+    let project = new ProjectModel()
+    project.timeEntries[0] = 1525123365596
+    project.timeEntries[1] = 1525123374645
+    project.timeSpent
+  })
+
+  it('Tests get timeSpent with alternate arguements', () => {
+    let project = new ProjectModel()
+    project.timeEntries[0] = 1525123365596
+    project.timeEntries[1] = 1525123974645
+    project.timeSpent
+  })
 })
