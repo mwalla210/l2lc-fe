@@ -5,6 +5,7 @@ import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
 import API from '../api'
+import Switch from 'react-toggle-switch'
 useStrict(true)
 
 //Rename class and model to projectTaskTableModel
@@ -58,8 +59,18 @@ export default class ProjectTaskTableModel extends TableModel{
     this.columns = [
       {
         Header: 'Required',
-        accessor: 'required',
-        filterable: true
+        sortable: false,
+        maxWidth: 100,
+        getProps: () => {
+          return {
+            className: 'center',
+            style: {
+              paddingTop: '0px',
+              paddingBottom: '0px',
+            }
+          }
+        },
+        Cell: row => <Switch clickHandler={row.original.toggleRequired} on={row.original.required}/>
       },
       {
         Header: 'Task Name',

@@ -25,6 +25,10 @@ export default class TaskModel {
 
   // Actions
 
+  @action toggleRequired() {
+    this.required = !this.required
+  }
+
   /**
    * @name toggle
    * @description Calls API to change required status of task in list; updates required
