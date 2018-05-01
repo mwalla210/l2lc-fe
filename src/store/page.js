@@ -425,7 +425,7 @@ class PageStore {
     */
    @action newAccountPage(){
      this.title = 'New Account'
-     this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem))
+     this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem,this.accountManagementMenuItem))
      this.content = Form
    }
 

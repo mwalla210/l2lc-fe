@@ -1,5 +1,6 @@
 import { action, useStrict, extendObservable } from 'mobx'
 import autoBind from 'auto-bind'
+import API from '../api'
 useStrict(true)
 
 /**
@@ -51,6 +52,8 @@ export default class UserModel {
    * @mobx action
    */
   @action toggleAdmin() {
+    this.admin = !this.admin
+    API.updateUserAdmin(this.id, !this.admin)
     console.log(`Update admin status for ${this.username} via API. Returns boolean success.`)
   }
 

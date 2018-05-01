@@ -477,4 +477,27 @@ export default class API {
     return timeEntry
   }
 
+  /**
+   * @name updateUserAdmin
+   * @description POSTs to endpoint with body provided, then returns
+   * @method updateUserAdmin
+   * @memberof API
+   * @param  {Integer} id      USer ID
+   * @param  {JSON} bool       boolean for POST
+   * @return {Promise}
+   */
+  static updateUserAdmin(id, bool){
+    return fetch(`${api}user/${id}/update`, {
+      method: 'POST',
+      body: {
+        'admin': bool
+      },
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      console.log(res.status)
+      return true
+    })
+  }
+
 }
