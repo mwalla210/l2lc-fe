@@ -14,10 +14,6 @@ useStrict(true)
  * @property {?User} [currentUser=null] Current User in state, or last focused User. [observable]
  * @property {String} [username=''] Current username field value [observable]
  * @property {String} [password=''] Current password field value [observable]
- * @property {?Analytic} [ccAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {?Analytic} [eAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {?Analytic} [paAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
- * @property {?Analytic} [jtAnalytic=null] Analytic model in state. May be default model if not fetched yet. [observable]
  * @property {Boolean} [logOutModalOpen=false] Logging out modal
  * @property {Boolean} [summaryMoreDropdownOpen=false] Summary pages dropdown state
  * @property {Boolean} [summaryActionsDropdownOpen=false] Summary pages dropdown state
@@ -32,11 +28,6 @@ class Website {
       username: '',
       password: '',
       loginerror: false,
-      // TODO Analytic models
-      ccAnalytic: null,
-      eAnalytic: null,
-      paAnalytic: null,
-      jtAnalytic: null,
       logOutModalOpen: false,
       summaryMoreDropdownOpen: false,
       summaryActionsDropdownOpen: false,

@@ -1,7 +1,7 @@
 import { action, useStrict, extendObservable, observable } from 'mobx'
 import Form from '../components/form'
 import Table from '../components/table'
-import Analytics from '../components/Analytics'
+import Analytics from '../components/analytics'
 import TimeEntry from '../components/timeEntry'
 import SummarySelector from './summarySelector'
 import FormSelector from './formSelector'

@@ -70,7 +70,8 @@
       "src/components/*.js",
       "src/store/*.js",
       "src/models/*.js",
-      "src/*.js"
+      "src/api.js",
+      "src/consts.js"
     ],
     "coverageReporters": [
       "json",
