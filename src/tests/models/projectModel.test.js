@@ -50,7 +50,22 @@ describe('ProjectModel', () => {
   it('Tests get timeSpent with alternate arguements', () => {
     let project = new ProjectModel()
     project.timeEntries[0] = 1525123365596
-    project.timeEntries[1] = 1525123974645
+    project.timeEntries[1] = 2525123974645
+    project.timeEntries[2] = 3525323365596
+    project.timeEntries[3] = 4525523974645
     project.timeSpent
+  })
+
+  it('Tests toggleTask', () => {
+    let project = new ProjectModel()
+    project.toggleTask()
+  })
+  it('Tests addTask', () => {
+    let project = new ProjectModel()
+      project.addTask()
+  })
+  it('Tests removeTask', () => {
+    let project = new ProjectModel()
+      project.removeTask()
   })
 })

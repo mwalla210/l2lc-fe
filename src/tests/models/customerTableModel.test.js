@@ -1,5 +1,6 @@
 import CustomerTableModel from '../../models/CustomerTableModel'
 import renderer from 'react-test-renderer'
+import ButtonDefault from '../../components/buttonDefault'
 
 jest.mock('../../components/tableActionCell')
 jest.mock('../../components/projectStatusCell')
@@ -20,6 +21,7 @@ jest.mock('../../store/website', () => {
     createProject: jest.fn().mockReturnValue(Promise.resolve()),
   }
 })
+import Website from '../../store/website'
 
 describe('CustomerTableModel', () => {
   it('Tests constructor', () => {
@@ -43,15 +45,12 @@ describe('CustomerTableModel', () => {
 
   it('Tests clickHandler with no input', () => {
     let customer = new CustomerTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-    const website = require('../../store/website')
-    expect(website.setCustomer.mock.calls.length).toBe(2)
     customer.clickHandler(1,'else')
-    expect(website.setCustomer.mock.calls.length).toBe(2)
+    expect(Website.setCustomer.mock.calls.length).toBe(2)
   })
 
   it('Tests actionColumns', () => {
     let customer = new CustomerTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-    customer.actionColumns()
     expect(customer.columns[5].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
     const component = renderer.create(customer.columns[5].Cell())
     let tree = component.toJSON()
@@ -60,24 +59,26 @@ describe('CustomerTableModel', () => {
 
   it('Tests noActionColumns', () => {
     let customer = new CustomerTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-    customer.noActionColumns()
+    customer.selectCreateTable()
     const component = renderer.create(customer.columns[5].Cell({}))
     let tree = component.toJSON()
+    //make a click on this component
     expect(tree).toMatchSnapshot()
+    component.root.findByType(ButtonDefault).props.onClick()
   })
 
   it('Tests selectCreateClick', () => {
     let customer = new CustomerTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-    expect(customer.selectNav.mock.calls.length).toBe(0)
+    expect(Website.setCustomer.mock.calls.length).toBe(3)
     customer.selectCreateClick(1)
-    expect(customer.selectNav.mock.calls.length).toBe(0)
+    expect(Website.setCustomer.mock.calls.length).toBe(4)
   })
 
   it('Tests selectUpdateClick', () => {
     let customer = new CustomerTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-    expect(customer.selectNav.mock.calls.length).toBe(0)
+    expect(Website.updateProject.mock.calls.length).toBe(0)
     customer.selectUpdateClick(1)
-    expect(customer.selectNav.mock.calls.length).toBe(0)
+    expect(Website.updateProject.mock.calls.length).toBe(1)
   })
 
   it('Tests selectCreateTable', () => {
