@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmployeeSummary Renders with snapshot (summaryActionsDropdownOpen: false) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <div>
+        <h6>
+          Name
+        </h6>
+        <p>
+          fullName
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  />
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`EmployeeSummary Renders with snapshot (summaryActionsDropdownOpen: true) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <div>
+        <h6>
+          Name
+        </h6>
+        <p>
+          fullName
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  />
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;

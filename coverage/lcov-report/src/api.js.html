@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">0.86% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/121</span>
+        <span class='fraction'>1/116</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/25</span>
+        <span class='fraction'>0/45</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">0.86% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/121</span>
+        <span class='fraction'>1/116</span>
       </div>
     </div>
     <p class="quiet">
@@ -497,13 +497,13 @@
 <a name='L449'></a><a href='#L449'>449</a>
 <a name='L450'></a><a href='#L450'>450</a>
 <a name='L451'></a><a href='#L451'>451</a>
-<a name='L452'></a><a href='#L452'>452</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L452'></a><a href='#L452'>452</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -948,13 +948,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import fetch from 'node-fetch'</span>
-<span class="cstat-no" title="statement not covered" >import ProjectModel from './models/projectModel'</span>
-<span class="cstat-no" title="statement not covered" >import CustomerModel from './models/customerModel'</span>
-<span class="cstat-no" title="statement not covered" >import EmployeeModel from './models/employeeModel'</span>
-<span class="cstat-no" title="statement not covered" >import UserModel from './models/userModel'</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import fetch from 'node-fetch'
+import ProjectModel from './models/projectModel'
+import CustomerModel from './models/customerModel'
+import EmployeeModel from './models/employeeModel'
+import UserModel from './models/userModel'
 &nbsp;
-const api = <span class="cstat-no" title="statement not covered" >'http://138.197.88.198:8080/l2lc/api/'</span>
+const api = 'http://138.197.88.198:8080/l2lc/api/'
 &nbsp;
 /**
  * @namespace API
@@ -971,13 +971,13 @@ export default class API {
    * @return {Promise}
    * @async
    */
-  static fetchCustomers(){
+<span class="fstat-no" title="function not covered" >  st</span>atic fetchCustomers(){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}customer?limit=50&amp;offset=0`)</span>
-    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >res =&gt; res.json())</span></span>
-    .then(<span class="fstat-no" title="function not covered" >json =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >js</span>on =&gt; {
       let customers = <span class="cstat-no" title="statement not covered" >[]</span>
       // For each returned json object...
-<span class="cstat-no" title="statement not covered" >      json.items.forEach(<span class="fstat-no" title="function not covered" >item =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >      json.items.forEach(<span class="fstat-no" title="function not covered" >it</span>em =&gt; {</span>
         let customer = <span class="cstat-no" title="statement not covered" >API.customerModelize(item)</span>
         // Add to list
 <span class="cstat-no" title="statement not covered" >        customers.push(customer)</span>
@@ -995,10 +995,10 @@ export default class API {
    * @return {Promise}
    * @async
    */
-  static fetchCustomer(id){
+<span class="fstat-no" title="function not covered" >  st</span>atic fetchCustomer(id){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}customer/${id}`)</span>
-    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >res =&gt; res.json())</span></span>
-    .then(<span class="fstat-no" title="function not covered" >json =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >js</span>on =&gt; {
       let customer = <span class="cstat-no" title="statement not covered" >null</span>
 <span class="cstat-no" title="statement not covered" >      if (json.id == id){</span>
 <span class="cstat-no" title="statement not covered" >        customer = API.customerModelize(json)</span>
@@ -1015,9 +1015,9 @@ export default class API {
    * @return {Promise}
    * @async
    */
-  static createCustomer(customer){
+<span class="fstat-no" title="function not covered" >  st</span>atic createCustomer(customer){
 <span class="cstat-no" title="statement not covered" >    return API.create('customer/create', customer)</span>
-    .then(<span class="fstat-no" title="function not covered" >response =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(response === 406){</span>
 <span class="cstat-no" title="statement not covered" >        return 'Duplicate entry exists'</span>
       }
@@ -1037,7 +1037,7 @@ export default class API {
    * @param  {Object}         item Customer database object
    * @return {CustomerModel}
    */
-  static customerModelize(item){
+<span class="fstat-no" title="function not covered" >  st</span>atic customerModelize(item){
     let addrIsSame = <span class="cstat-no" title="statement not covered" >false</span>
     let addtl = <span class="cstat-no" title="statement not covered" >[]</span>
     // Check if addresses match each other
@@ -1064,7 +1064,7 @@ export default class API {
 <span class="cstat-no" title="statement not covered" >      street1 = item.shippingAddr.street.slice(0,split)</span>
 <span class="cstat-no" title="statement not covered" >      street2 = item.shippingAddr.street.slice(split+2,item.billingAddr.street.length)</span>
     }
-    let <span class="cstat-no" title="statement not covered" >customer = new CustomerModel(item.id, item.name, street1, street2, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)</span>
+    let customer = <span class="cstat-no" title="statement not covered" >new CustomerModel(item.id, item.name, street1, street2, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)</span>
 <span class="cstat-no" title="statement not covered" >    return customer</span>
   }
   /**
@@ -1076,7 +1076,7 @@ export default class API {
    * @param  {Object}      addr2 Address object for comparison
    * @return {Boolean}
    */
-  static addressIsSame(addr1, addr2){
+<span class="fstat-no" title="function not covered" >  st</span>atic addressIsSame(addr1, addr2){
 <span class="cstat-no" title="statement not covered" >    return JSON.stringify(addr1) === JSON.stringify(addr2)</span>
   }
   /**
@@ -1088,9 +1088,9 @@ export default class API {
    * @param  {JSON} body       JSON body for POST
    * @return {Promise}
    */
-  static updateCustomer(id, body){
+<span class="fstat-no" title="function not covered" >  st</span>atic updateCustomer(id, body){
 <span class="cstat-no" title="statement not covered" >    return API.update(`customer/${id}/update`, body)</span>
-    .then(<span class="fstat-no" title="function not covered" >response =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(response === 406){</span>
 <span class="cstat-no" title="statement not covered" >        return 'Duplicate entry exists'</span>
       }
@@ -1113,16 +1113,16 @@ export default class API {
    * @return {Promise}
    * @async
    */
-  static fetchProjects(){
+<span class="fstat-no" title="function not covered" >  st</span>atic fetchProjects(){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}project?limit=50&amp;offset=0`)</span>
-    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >res =&gt; res.json())</span></span>
-    .then(<span class="fstat-no" title="function not covered" >json =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >js</span>on =&gt; {
       let projects = <span class="cstat-no" title="statement not covered" >[]</span>
-<span class="cstat-no" title="statement not covered" >      json.items.forEach(<span class="fstat-no" title="function not covered" >item =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >      json.items.forEach(<span class="fstat-no" title="function not covered" >it</span>em =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        if (item.projectStatus != 'Dropped')</span>
 <span class="cstat-no" title="statement not covered" >          projects.push(item)</span>
       })
-<span class="cstat-no" title="statement not covered" >      projects = projects.map(<span class="fstat-no" title="function not covered" >item =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >      projects = projects.map(<span class="fstat-no" title="function not covered" >it</span>em =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        if (item.customer)</span>
 <span class="cstat-no" title="statement not covered" >          item.customer.companyName = item.customer.name</span>
         let project = <span class="cstat-no" title="statement not covered" >API.projectModelize(item)</span>
@@ -1140,10 +1140,10 @@ export default class API {
    * @return {Promise}
    * @async
    */
-  static fetchProject(id){
+<span class="fstat-no" title="function not covered" >  st</span>atic fetchProject(id){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}project/${id}`)</span>
-    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >res =&gt; res.json())</span></span>
-    .then(<span class="fstat-no" title="function not covered" >json =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >js</span>on =&gt; {
       let project = <span class="cstat-no" title="statement not covered" >null</span>
 <span class="cstat-no" title="statement not covered" >      if (json.id == id){</span>
 <span class="cstat-no" title="statement not covered" >        project = API.projectModelize(json)</span>
@@ -1159,9 +1159,9 @@ export default class API {
    * @param  {Object}      project Project object (JSON)
    * @return {Promise}
    */
-  static createProject(project){
+<span class="fstat-no" title="function not covered" >  st</span>atic createProject(project){
 <span class="cstat-no" title="statement not covered" >    return API.create('project/create', project)</span>
-    .then(<span class="fstat-no" title="function not covered" >response =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(response === 406){</span>
 <span class="cstat-no" title="statement not covered" >        return 'Duplicate entry exists'</span>
       }
@@ -1181,7 +1181,7 @@ export default class API {
    * @param  {Object}        item Database project object
    * @return {ProjectModel}
    */
-  static projectModelize(item){
+<span class="fstat-no" title="function not covered" >  st</span>atic projectModelize(item){
     // Modelize customer object before providing to project
 <span class="cstat-no" title="statement not covered" >    return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))</span>
   }
@@ -1194,9 +1194,9 @@ export default class API {
    * @param  {JSON} body       JSON body for POST
    * @return {Promise}
    */
-  static updateProject(id, body){
+<span class="fstat-no" title="function not covered" >  st</span>atic updateProject(id, body){
 <span class="cstat-no" title="statement not covered" >    return API.update(`project/${id}/update`, body)</span>
-    .then(<span class="fstat-no" title="function not covered" >response =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(response === 406){</span>
 <span class="cstat-no" title="statement not covered" >        return 'Duplicate entry exists'</span>
       }
@@ -1217,12 +1217,12 @@ export default class API {
    * @param  {String} status   New project status
    * @return {Promise}
    */
-  static updateProjectStatus(id, status){
+<span class="fstat-no" title="function not covered" >  st</span>atic updateProjectStatus(id, status){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}project/${id}/status?status=${status}`, {</span>
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     })
-    .then(<span class="fstat-no" title="function not covered" >() =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >()</span> =&gt; {
 <span class="cstat-no" title="statement not covered" >      return true</span>
     })
   }
@@ -1237,7 +1237,7 @@ export default class API {
    * @param  {Object}         item Database employee object
    * @return {EmployeeModel}
    */
-  static employeeModelize(item){
+<span class="fstat-no" title="function not covered" >  st</span>atic employeeModelize(item){
 <span class="cstat-no" title="statement not covered" >    return new EmployeeModel(item.id, item.firstName, item.lastName)</span>
   }
   /**
@@ -1247,12 +1247,12 @@ export default class API {
    * @memberof API
    * @return {Promise}
    */
-  static fetchEmployees(){
+<span class="fstat-no" title="function not covered" >  st</span>atic fetchEmployees(){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}employee?limit=50&amp;offset=0`)</span>
-    .then(<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >res =&gt; res.json())</span></span>
-    .then(<span class="fstat-no" title="function not covered" >json =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>
+    .then(<span class="fstat-no" title="function not covered" >js</span>on =&gt; {
       let employees = <span class="cstat-no" title="statement not covered" >[]</span>
-<span class="cstat-no" title="statement not covered" >      json.items.forEach(<span class="fstat-no" title="function not covered" >item =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >      json.items.forEach(<span class="fstat-no" title="function not covered" >it</span>em =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        employees.push(API.employeeModelize(item))</span>
       })
 <span class="cstat-no" title="statement not covered" >      return employees</span>
@@ -1266,9 +1266,9 @@ export default class API {
    * @param  {Object}       employee Employee object (JSON)
    * @return {Promise}
    */
-  static createEmployee(employee){
+<span class="fstat-no" title="function not covered" >  st</span>atic createEmployee(employee){
 <span class="cstat-no" title="statement not covered" >    return API.create('employee/create', employee)</span>
-    .then(<span class="fstat-no" title="function not covered" >response =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(response === 406){</span>
 <span class="cstat-no" title="statement not covered" >        return 'Duplicate entry exists'</span>
       }
@@ -1289,9 +1289,9 @@ export default class API {
    * @param  {JSON} body       JSON body for POST
    * @return {Promise}
    */
-  static updateEmployee(id, body){
+<span class="fstat-no" title="function not covered" >  st</span>atic updateEmployee(id, body){
 <span class="cstat-no" title="statement not covered" >    return API.update(`employee/${id}/update`, body)</span>
-    .then(<span class="fstat-no" title="function not covered" >response =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>sponse =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(response === 406){</span>
 <span class="cstat-no" title="statement not covered" >        return 'Duplicate entry exists'</span>
       }
@@ -1314,7 +1314,7 @@ export default class API {
    * @param  {Object}         item Database user object
    * @return {UserModel}
    */
-  static userModelize(item){
+<span class="fstat-no" title="function not covered" >  st</span>atic userModelize(item){
 <span class="cstat-no" title="statement not covered" >    return new UserModel(item.id, item.username, item.station, item.admin)</span>
   }
   /**
@@ -1325,20 +1325,20 @@ export default class API {
    * @param  {JSON} body       JSON body for POST
    * @return {Promise}
    */
-  static login(body){
+<span class="fstat-no" title="function not covered" >  st</span>atic login(body){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}user/login`, {</span>
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
     })
-    .then(<span class="fstat-no" title="function not covered" >res =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; {
       // If not null (successful login)
 <span class="cstat-no" title="statement not covered" >      if (res.status == 200)</span>
 <span class="cstat-no" title="statement not covered" >        return res.json()</span>
       else
 <span class="cstat-no" title="statement not covered" >        return null</span>
     })
-    .then(<span class="fstat-no" title="function not covered" >json =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >js</span>on =&gt; {
       // If not null (successful login)
 <span class="cstat-no" title="statement not covered" >      if (json)</span>
 <span class="cstat-no" title="statement not covered" >        return API.userModelize(json)</span>
@@ -1358,13 +1358,13 @@ export default class API {
    * @param  {JSON} body       JSON body for POST
    * @return {Promise}
    */
-  static create(endpoint, body){
+<span class="fstat-no" title="function not covered" >  st</span>atic create(endpoint, body){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}${endpoint}`, {</span>
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
     })
-    .then(<span class="fstat-no" title="function not covered" >res =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(res.status === 200 || res.status === 201){</span>
 <span class="cstat-no" title="statement not covered" >        return res.json()</span>
       }
@@ -1382,13 +1382,13 @@ export default class API {
    * @param  {JSON} body       JSON body for POST
    * @return {Promise}
    */
-  static update(endpoint, body){
+<span class="fstat-no" title="function not covered" >  st</span>atic update(endpoint, body){
 <span class="cstat-no" title="statement not covered" >    return fetch(`${api}${endpoint}`, {</span>
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
     })
-    .then(<span class="fstat-no" title="function not covered" >res =&gt; </span>{
+    .then(<span class="fstat-no" title="function not covered" >re</span>s =&gt; {
 <span class="cstat-no" title="statement not covered" >      if(res.status === 200 || res.status === 202){</span>
 <span class="cstat-no" title="statement not covered" >        return res.json()</span>
       }
@@ -1405,7 +1405,7 @@ export default class API {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 01 2018 20:53:58 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 01 2018 21:10:50 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="..\prettify.js"></script>

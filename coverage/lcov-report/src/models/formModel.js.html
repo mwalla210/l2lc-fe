@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">1.2% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/89</span>
+        <span class='fraction'>1/83</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">1.23% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/87</span>
+        <span class='fraction'>1/81</span>
       </div>
     </div>
     <p class="quiet">
@@ -310,10 +310,9 @@
 <a name='L262'></a><a href='#L262'>262</a>
 <a name='L263'></a><a href='#L263'>263</a>
 <a name='L264'></a><a href='#L264'>264</a>
-<a name='L265'></a><a href='#L265'>265</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L265'></a><a href='#L265'>265</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -333,7 +332,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -415,7 +415,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -499,7 +499,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -544,7 +544,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -574,9 +574,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { action, computed, useStrict, extendObservable } from 'mobx'</span>
-<span class="cstat-no" title="statement not covered" >import autoBind from 'auto-bind'</span>
-<span class="cstat-no" title="statement not covered" >useStrict(true)</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { action, computed, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
+useStrict(true)
 &nbsp;
 /**
   * @name FormModel
@@ -597,8 +597,8 @@
   * @property {String} [errorResponse=''] Form's string field to hold error text passed in from website [observable]
  */
 export default class FormModel {
-<span class="fstat-no" title="function not covered" >  constructor(</span>fields, primaryButton, secondaryButton, autoSubmit, onChange, errorClick) <span class="cstat-no" title="statement not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    fields.forEach(<span class="fstat-no" title="function not covered" >field =&gt; </span>{</span>
+<span class="fstat-no" title="function not covered" >  co</span>nstructor(fields, primaryButton, secondaryButton, autoSubmit, onChange, errorClick) {
+<span class="cstat-no" title="statement not covered" >    fields.forEach(<span class="fstat-no" title="function not covered" >fi</span>eld =&gt; {</span>
       let value = <span class="cstat-no" title="statement not covered" >null</span>
 <span class="cstat-no" title="statement not covered" >      switch (field.type){ // default value</span>
         case 'select':
@@ -640,7 +640,7 @@ export default class FormModel {
    * @property {String} text The error modal's content
    * @mobx action
    */
-   @action setError(text){<span class="cstat-no" title="statement not covered" >this.errorResponse = text}</span>
+   @action <span class="fstat-no" title="function not covered" >se</span>tError(text){<span class="cstat-no" title="statement not covered" >this.errorResponse = text}</span>
 &nbsp;
   /**
    * @name closeModal
@@ -649,7 +649,7 @@ export default class FormModel {
    * @memberof FormModel.prototype
    * @mobx action
    */
-  @action closeModal(){<span class="cstat-no" title="statement not covered" >this.modalOpen = false}</span>
+  @action <span class="fstat-no" title="function not covered" >cl</span>oseModal(){<span class="cstat-no" title="statement not covered" >this.modalOpen = false}</span>
   /**
    * @name openModal
    * @description Sets modalOpen prop to true
@@ -657,7 +657,7 @@ export default class FormModel {
    * @memberof FormModel.prototype
    * @mobx action
    */
-  @action openModal(){<span class="cstat-no" title="statement not covered" >this.modalOpen = true}</span>
+  @action <span class="fstat-no" title="function not covered" >op</span>enModal(){<span class="cstat-no" title="statement not covered" >this.modalOpen = true}</span>
   /**
    * @name confirmAndClose
    * @description Closes modal and runs confirm function
@@ -665,7 +665,7 @@ export default class FormModel {
    * @memberof FormModel.prototype
    * @mobx action
    */
-  @action confirmAndClose(){
+  @action <span class="fstat-no" title="function not covered" >co</span>nfirmAndClose(){
 <span class="cstat-no" title="statement not covered" >    this.closeModal()</span>
 <span class="cstat-no" title="statement not covered" >    if(this.errorClick){</span>
 <span class="cstat-no" title="statement not covered" >      this.errorClick()</span>
@@ -679,8 +679,8 @@ export default class FormModel {
    * @memberof FormModel.prototype
    * @mobx action
    */
-  @action resetValues()<span class="cstat-no" title="statement not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    this.fields.forEach(<span class="fstat-no" title="function not covered" >field =&gt; </span>{</span>
+  @action <span class="fstat-no" title="function not covered" >re</span>setValues(){
+<span class="cstat-no" title="statement not covered" >    this.fields.forEach(<span class="fstat-no" title="function not covered" >fi</span>eld =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      this.resetValueID(field.id)</span>
     })
   }
@@ -692,8 +692,8 @@ export default class FormModel {
    * @property {Number} id The field index to reset
    * @mobx action
    */
-  @action resetValueID(id){
-    let index = <span class="cstat-no" title="statement not covered" >this.fields.findIndex(<span class="fstat-no" title="function not covered" >element =&gt; </span>{<span class="cstat-no" title="statement not covered" >return element.id == id})</span></span>
+  @action <span class="fstat-no" title="function not covered" >re</span>setValueID(id){
+    let index = <span class="cstat-no" title="statement not covered" >this.fields.findIndex(<span class="fstat-no" title="function not covered" >el</span>ement =&gt; {<span class="cstat-no" title="statement not covered" >return element.id == id}</span>)</span>
 <span class="cstat-no" title="statement not covered" >    this.resetValueIndex(index)</span>
   }
   /**
@@ -704,7 +704,7 @@ export default class FormModel {
    * @property {Number} index The field index
    * @mobx action
    */
-  @action resetValueIndex(index){
+  @action <span class="fstat-no" title="function not covered" >re</span>setValueIndex(index){
     let value = <span class="cstat-no" title="statement not covered" >null</span>
 <span class="cstat-no" title="statement not covered" >    switch (this.fields[index].type){</span>
       case 'select':
@@ -726,9 +726,9 @@ export default class FormModel {
    * @return {Boolean}
    * @mobx computed
    */
-  @computed get buttonDisabled(){
+  @computed <span class="fstat-no" title="function not covered" >ge</span>t buttonDisabled(){
     let disabled = <span class="cstat-no" title="statement not covered" >false</span>
-<span class="cstat-no" title="statement not covered" >    this.fields.forEach(<span class="fstat-no" title="function not covered" >field =&gt; </span>{</span>
+<span class="cstat-no" title="statement not covered" >    this.fields.forEach(<span class="fstat-no" title="function not covered" >fi</span>eld =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      if(!field.isValid){</span>
 <span class="cstat-no" title="statement not covered" >        disabled = true</span>
       }
@@ -751,7 +751,7 @@ export default class FormModel {
    * @memberof FormModel.prototype
    * @method primaryButtonWrapper
    */
-  primaryButtonWrapper(){
+<span class="fstat-no" title="function not covered" >  pr</span>imaryButtonWrapper(){
 <span class="cstat-no" title="statement not covered" >    this.primaryButton.onClick(this.fields)</span>
   }
   /**
@@ -763,7 +763,7 @@ export default class FormModel {
    * @property {String} value The field value
    * @mobx action
    */
-  @action modifyFieldValue(index, value)<span class="cstat-no" title="statement not covered" >{</span>
+  @action <span class="fstat-no" title="function not covered" >mo</span>difyFieldValue(index, value){
     let priorVal = <span class="cstat-no" title="statement not covered" >value</span>
     // If we have special field modification checks (time entry)
 <span class="cstat-no" title="statement not covered" >    if (this.onChange){</span>
@@ -784,8 +784,8 @@ export default class FormModel {
     // If we need to update the field properties due to a change
 <span class="cstat-no" title="statement not covered" >    if (this.fields[index].onUpdate){</span>
       let updates = <span class="cstat-no" title="statement not covered" >this.fields[index].onUpdate(this.fields[index].value, this.fields)</span>
-<span class="cstat-no" title="statement not covered" >      updates.forEach(<span class="fstat-no" title="function not covered" >update =&gt; </span>{</span>
-        let fieldIndex = <span class="cstat-no" title="statement not covered" >this.fields.findIndex(<span class="fstat-no" title="function not covered" >field =&gt; </span>{<span class="cstat-no" title="statement not covered" >return field.id == update.id})</span></span>
+<span class="cstat-no" title="statement not covered" >      updates.forEach(<span class="fstat-no" title="function not covered" >up</span>date =&gt; {</span>
+        let fieldIndex = <span class="cstat-no" title="statement not covered" >this.fields.findIndex(<span class="fstat-no" title="function not covered" >fi</span>eld =&gt; {<span class="cstat-no" title="statement not covered" >return field.id == update.id}</span>)</span>
 <span class="cstat-no" title="statement not covered" >        if(update.hasOwnProperty('required')){</span>
 <span class="cstat-no" title="statement not covered" >          this.fields[fieldIndex].required = update.required</span>
         }
@@ -808,8 +808,8 @@ export default class FormModel {
    * @memberof FormModel.prototype
    * @method autoSubmitter
    */
-  autoSubmitter()<span class="cstat-no" title="statement not covered" >{</span>
-<span class="cstat-no" title="statement not covered" >    this.fields.forEach(<span class="fstat-no" title="function not covered" >(</span>item, index) =&gt; {</span>
+<span class="fstat-no" title="function not covered" >  au</span>toSubmitter(){
+<span class="cstat-no" title="statement not covered" >    this.fields.forEach(<span class="fstat-no" title="function not covered" >(i</span>tem, index) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      if (item.value.trim() != '')</span>
 <span class="cstat-no" title="statement not covered" >        this.fieldValidatorWrapper(index)</span>
     })
@@ -825,7 +825,7 @@ export default class FormModel {
    * @property {Number} index The field index
    * @mobx action
    */
-   @action fieldValidatorWrapper(index){
+   @action <span class="fstat-no" title="function not covered" >fi</span>eldValidatorWrapper(index){
 <span class="cstat-no" title="statement not covered" >    if (this.fields[index].validation){</span>
       let invalid = <span class="cstat-no" title="statement not covered" >this.fields[index].validation(this.fields[index].value.trim(), this.fields[index].required)</span>
 <span class="cstat-no" title="statement not covered" >      if (!invalid){</span>
@@ -844,7 +844,7 @@ export default class FormModel {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 01 2018 20:53:58 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue May 01 2018 21:10:50 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="..\..\prettify.js"></script>

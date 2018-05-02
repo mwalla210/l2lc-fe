@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Barcode Renders with snapshot 1`] = `
+<img
+  alt="image"
+  id="imageDomID"
+  onLoad={[Function]}
+  src="../../style/open-iconic-master/svg/image.svg"
+/>
+`;
