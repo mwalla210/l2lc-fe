@@ -47,6 +47,13 @@ describe('ProjectModel', () => {
     project.timeSpent
   })
 
+  it('Tests get timeSpent', () => {
+    let project = new ProjectModel()
+    project.timeEntries[0] = 3600000
+    project.timeEntries[1] = 7260000
+    project.timeSpent
+  })
+
   it('Tests get timeSpent with alternate arguements', () => {
     let project = new ProjectModel()
     project.timeEntries[0] = 1525123365596

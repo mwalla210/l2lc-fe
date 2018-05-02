@@ -17,6 +17,11 @@ describe('UserModel', () => {
     expect(user).toHaveProperty('id')
   })
 
+  it('Tests constructor with no admin', () => {
+    let user = new UserModel(1,'username',1)
+    expect(user).toHaveProperty('id')
+  })
+
   it('Tests toggleAdmin', () => {
     let user = new UserModel(1,'username',1,false)
     user.toggleAdmin()

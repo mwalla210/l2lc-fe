@@ -21,12 +21,14 @@ describe('ProjectTableModel', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(project).toHaveProperty('columns')
     expect(project.styling('state', {row:{_original:{priority:'Low'}}}))
+    expect(project.styling('state', {row:{_original:{priority:'Medium'}}}))
     expect(project.styling('state', {row:{_original:{priority:'High'}}}))
     expect(project.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toBe('Sun Dec 17 1995 03:24:00 GMT-0500 (Eastern Standard Time)')
     expect(project.columns[3].accessor({customer: {companyName: 'companyName'}})).toBe('companyName')
     expect(project.columns[6].accessor({dateFinished: new Date('December 17, 1995 03:24:00')})).toBe('Sun Dec 17 1995 03:24:00 GMT-0500 (Eastern Standard Time)')
     expect(project.columns[6].accessor({})).toBe('')
     expect(project.columns[7].filterMethod({value:{length: 0}},[]))
+    expect(project.columns[7].filterMethod({value:{length: 9, includes: jest.fn()}},[]))
     expect(project.columns[8].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
   })
 
@@ -77,5 +79,13 @@ describe('ProjectTableModel', () => {
     expect(project.openModal.mock.calls.length).toBe(0)
     project.clickHandler(1,'delete')
     expect(project.openModal.mock.calls.length).toBe(1)
+  })
+
+  it('Tests clickHandler with no input', () => {
+    let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
+    project.openModal = jest.fn()
+    expect(project.openModal.mock.calls.length).toBe(0)
+    project.clickHandler(1, '')
+    expect(project.openModal.mock.calls.length).toBe(0)
   })
 })
