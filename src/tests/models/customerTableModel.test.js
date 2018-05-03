@@ -1,8 +1,9 @@
 import CustomerTableModel from '../../models/CustomerTableModel'
 import renderer from 'react-test-renderer'
 import ButtonDefault from '../../components/buttonDefault'
+import TableActionCell from '../../components/tableActionCell'
 
-jest.mock('../../components/tableActionCell')
+//jest.mock('../../components/tableActionCell')
 jest.mock('../../components/projectStatusCell')
 jest.mock('../../components/projectStatusFilter')
 
@@ -51,10 +52,12 @@ describe('CustomerTableModel', () => {
 
   it('Tests actionColumns', () => {
     let customer = new CustomerTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
+    customer.nonSelectTable()
     expect(customer.columns[5].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
-    const component = renderer.create(customer.columns[5].Cell())
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
+    const component = renderer.create(customer.columns[5].Cell({}))
+    let tree2 = component.toJSON()
+    expect(tree2).toMatchSnapshot()
+    component.root.findByType(TableActionCell)
   })
 
   it('Tests noActionColumns', () => {
@@ -62,7 +65,6 @@ describe('CustomerTableModel', () => {
     customer.selectCreateTable()
     const component = renderer.create(customer.columns[5].Cell({}))
     let tree = component.toJSON()
-    //make a click on this component
     expect(tree).toMatchSnapshot()
     component.root.findByType(ButtonDefault).props.onClick()
   })

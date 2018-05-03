@@ -1,3 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`employeeTableModel Tests Actions field Cell 1`] = `null`;
+exports[`employeeTableModel Tests Actions field Cell 1`] = `
+<span>
+  <span>
+    <button
+      aria-label="Left Align"
+      className="btn-circle btn btn-outline-secondary"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+    >
+      <img
+        alt="info"
+        src="../../style/open-iconic-master/svg/info.svg"
+        style={undefined}
+      />
+    </button>
+    <button
+      aria-label="Left Align"
+      className="btn-circle btn btn-outline-secondary"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+    >
+      <img
+        alt="pencil"
+        src="../../style/open-iconic-master/svg/pencil.svg"
+        style={
+          Object {
+            "marginLeft": "2px",
+          }
+        }
+      />
+    </button>
+  </span>
+</span>
+`;

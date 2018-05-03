@@ -1,9 +1,30 @@
 import ProjectTableModel from '../../models/projectTableModel'
 import renderer from 'react-test-renderer'
+import ProjectStatusCell from '../../components/projectStatusCell'
+import TableActionCell from '../../components/tableActionCell'
+import { ButtonDropdown, DropdownToggle, DropdownMenu } from 'reactstrap'
+//import ProjectStatusFilter from '../../components/projectStatusFilter'
 
-jest.mock('../../components/tableActionCell')
-jest.mock('../../components/projectStatusCell')
+
+//jest.mock('../../components/tableActionCell')
+//jest.mock('../../components/projectStatusCell')
 jest.mock('../../components/projectStatusFilter')
+// , () => {
+//   return{
+//     filter:{
+//       value: 0,
+//     },
+//     onChange: jest.fn(),
+//     props:{
+//       page:{
+//         tableModel:{
+//           filterDD: false,
+//           toggleDropdown: jest.fn()
+//         }
+//       }
+//     }
+//   }
+// })
 
 jest.mock('../../api', () => {
   return {
@@ -15,6 +36,15 @@ jest.mock('../../store/website', () => {
     setProject: jest.fn(),
   }
 })
+// jest.mock('../../components/projectStatusFilter', () => {
+//   return {
+//     filter:{
+//       value: 0,
+//     },
+//     onChange: jest.fn(),
+//   }
+// })
+//const projectStatusFilter = require('../../components/projectStatusFilter')
 
 describe('ProjectTableModel', () => {
   it('Tests constructor', () => {
