@@ -65,5 +65,3 @@ exports[`ProjectTableModel Tests Status field Cell 1`] = `
    undefined
 </span>
 `;
-
-exports[`ProjectTableModel Tests Status field Filter 1`] = `null`;
