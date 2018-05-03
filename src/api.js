@@ -397,6 +397,11 @@ export default class API {
     })
   }
 
+  static fetchTimeEntries(){
+    return fetch(`${api}project/time-entry`)
+    .then(res => res.json())
+  }
+
   // Generic
 
   /**

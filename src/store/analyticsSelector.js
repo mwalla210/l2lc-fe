@@ -1,9 +1,11 @@
 import AnalyticsModel from '../models/analyticsModel'
 import autoBind from 'auto-bind'
+import API from '../api'
+
 /**
  * @name AnalyticsSelector
  * @class AnalyticsSelector
- * @description Autobinds function
+ * @description Autobinds functions
  */
 //'#96BAE8','#A1A0A0','#96E8BA','#E896BB','#FF9E58'
 class AnalyticsSelector {
@@ -17,6 +19,8 @@ class AnalyticsSelector {
    * @memberof AnalyticsSelector.prototype
    */
   getAll(){
+    API.fetchTimeEntries()
+    .then(res => console.log(res))
     return [this.employeeHoursInStation(), this.employeeHoursInCostCenter(), this.projectCountForMonthsRatio(), this.projectCountForMonthsInCostCenter(), this.projectCountForCostCenterRatio(), this.projectCountForAPCRatio(), this.partCountForAPCRatio()]
   }
   /**
