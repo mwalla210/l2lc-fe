@@ -6,38 +6,40 @@ useStrict(true)
  * @name AnalyticsModel
  * @class AnalyticsModel
  * @classdesc Analytics storage object
- * @property {Function} fetchFn Analytics data fetch function
  * @property {Object[]} [data=[]] Data array for analytics [observable]
  * @property {String} [currentFilter=null] Filter title (if any filters for model) [observable]
  * @property {String} [component] Component type for model [observable]
  * @property {Object[]} [filters] Filter list for model, if any
+ * @property {Boolean} [loading] Loading indicator
  * @property {Object} originalData Original set of data returned from fetch
  */
 export default class AnalyticsModel {
-  constructor(fetchFn, filters, component){
+  constructor(filters, component){
     let addtlProps = {
       data: [],
       currentFilter: filters ? filters[0].type : null,
-      component: filters ? filters[0].component : component
+      component: filters ? filters[0].component : component,
+      loading: true
     }
     extendObservable(this, addtlProps)
     // Non-observable
-    this.fetchFn = fetchFn
     this.filters = filters
     this.originalData = null
     autoBind(this)
   }
 
   /**
-   * @name dataFetch
-   * @description Handles fetching analytics data
+   * @name setData
+   * @description Sets fetchFn
+   * @param {Function} func Function to set
    * @memberof AnalyticsModel.prototype
-   * @method dataFetch
+   * @method setData
    * @mobx action
    */
-  @action dataFetch(){
-    this.data = this.fetchFn()
+  @action setData(data){
+    this.data = data
     this.originalData = Object.assign({},this.data)
+    this.loading = false
   }
   /**
    * @name jsData

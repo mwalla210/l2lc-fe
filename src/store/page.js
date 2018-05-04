@@ -56,9 +56,7 @@ class PageStore {
    * @param  {SummaryModel}      summaryModel SummaryModel to use for page
    * @mobx action
    */
-  @action setSummaryModel(summaryModel){
-    this.summaryModel = observable(summaryModel)
-  }
+  @action setSummaryModel(summaryModel){this.summaryModel = observable(summaryModel)}
   /**
    * @name setFormModel
    * @description Sets form model
@@ -68,7 +66,6 @@ class PageStore {
    * @mobx action
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
-
   /**
  * @name setAnalyticsModel
  * @description Sets analytics model
@@ -77,12 +74,9 @@ class PageStore {
  * @param  {AnalyticsModel}      analyticsModel AnalyticsModel to use for page
  * @mobx action
  */
- @action setAnalyticsModel(analyticsList){
-   this.analyticsModel = observable(analyticsList)
-   analyticsList.forEach(analyticsModel => {
-     analyticsModel.model.dataFetch()
-   })
- }
+  @action setAnalyticsModel(analyticsList){
+    this.analyticsModel = observable(analyticsList)
+  }
 
   // Page Changes - Create Projects
 
