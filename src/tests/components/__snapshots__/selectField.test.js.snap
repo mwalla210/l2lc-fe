@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectField Renders with snapshot 1`] = `
+<select
+  autoFocus={true}
+  className="form-control"
+  disabled={false}
+  id="id"
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "borderColor": "",
+    }
+  }
+  value="value"
+>
+  <option
+    disabled={true}
+  >
+    title
+  </option>
+  <option>
+    title
+  </option>
+</select>
+`;
+
+exports[`SelectField Renders with snapshot, alternate arguements 1`] = `
+<select
+  autoFocus={true}
+  className="form-control"
+  disabled={false}
+  id="id"
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "borderColor": "orange",
+    }
+  }
+  value="value"
+>
+  <option
+    disabled={true}
+  >
+    title
+  </option>
+  <option>
+    title
+  </option>
+</select>
+`;

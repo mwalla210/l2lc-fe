@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonDefault Renders with snapshot (disabled: false) 1`] = `
+<Button
+  aria-label="Left Align"
+  className="btn-circle"
+  color="secondary"
+  disabled={false}
+  onClick={[MockFunction]}
+  outline={true}
+>
+  <img
+    alt="iconName"
+    src="../../style/open-iconic-master/svg/iconName.svg"
+    style={Object {}}
+  />
+</Button>
+`;
+
+exports[`ButtonDefault Renders with snapshot (disabled: true) 1`] = `
+<Button
+  aria-label="Left Align"
+  className="btn-circle"
+  color="secondary"
+  disabled={true}
+  onClick={[MockFunction]}
+  outline={true}
+>
+  <img
+    alt="iconName"
+    src="../../style/open-iconic-master/svg/iconName.svg"
+    style={Object {}}
+  />
+</Button>
+`;

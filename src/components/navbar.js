@@ -35,6 +35,7 @@ export default class NavBar extends Component{
    */
   promptConfirm(){
     this.props.website.setUser(null)
+    this.props.website.logOutDismiss()
   }
 
   /**
@@ -54,6 +55,28 @@ export default class NavBar extends Component{
    * @see {@link https://reactstrap.github.io/components/navbar/ Reactstrap.NavBar}
    */
   render(){
+    let mainLinks = [
+      {
+        click: this.props.page.createNewProjMenuItem,
+        title: 'New Project'
+      },
+      {
+        click: this.props.page.projectsMenuItem,
+        title: 'Project Information'
+      },
+      {
+        click: this.props.page.projectTimeEntryMenuItem,
+        title: 'Time Entry'
+      },
+      {
+        click: this.props.page.customerInfoMenuItem,
+        title: 'Customer Information'
+      },
+      {
+        click: this.props.page.analyticsMenuItem,
+        title: 'Analytics'
+      },
+    ]
     return (
       <div>
         <PromptModal
@@ -69,21 +92,13 @@ export default class NavBar extends Component{
           <NavbarBrand href="/">L2LC Cloud</NavbarBrand>
           <Collapse isOpen navbar>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink onClick={this.props.page.createNewProjMenuItem}>New Project</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.props.page.projectsMenuItem}>Project Information</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.props.page.projectTimeEntryMenuItem}>Time Entry</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.props.page.customerInfoMenuItem}>Customer Information</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink onClick={this.props.page.analytics}>Analytics</NavLink>
-              </NavItem>
+              {mainLinks.map((set, index) => {
+                return (
+                  <NavItem key={index} style={{cursor: 'pointer'}}>
+                    <NavLink onClick={set.click}>{set.title}</NavLink>
+                  </NavItem>
+                )
+              })}
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>Admin</DropdownToggle>
                 <DropdownMenu right>
@@ -92,12 +107,12 @@ export default class NavBar extends Component{
                 </DropdownMenu>
               </UncontrolledDropdown>
               <NavItem>
-                <p className="nav-link" style={{marginRight: '10px', marginBottom: '0px'}}>
+                <p className="nav-link nohover" style={{marginRight: '10px', marginBottom: '0px'}}>
                   <img src="../../style/open-iconic-master/svg/person.svg" alt="person" style={{width: '16px', marginRight: '5px'}}/>
                   {this.props.website.currentUser.username}
                 </p>
               </NavItem>
-              <NavItem>
+              <NavItem style={{cursor: 'pointer'}}>
                 <NavLink onClick={this.logoutClick}>Log Out</NavLink>
               </NavItem>
             </Nav>

@@ -139,6 +139,7 @@ export default class CustomerTableModel extends TableModel{
    */
   selectCreateClick(row){
     Website.currentProject.changeCustomer(row.original)
+    Website.setCustomer(row.original)
     let body = {
       jobType: Website.currentProject.jobTypeTitle,
       costCenter: Website.currentProject.costCenterTitle,
@@ -161,7 +162,6 @@ export default class CustomerTableModel extends TableModel{
    */
   selectUpdateClick(row){
     Website.currentProject.changeCustomer(row.original)
-    console.log('send update to API with currentProject customer id', Website.currentProject)
     let body = {
       customer: {id: Website.currentProject.customerID}
     }

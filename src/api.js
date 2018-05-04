@@ -37,7 +37,6 @@ export default class API {
       return customers
     })
   }
-
   /**
    * @name fetchCustomer
    * @description Fetches customer and modelizes
@@ -58,7 +57,6 @@ export default class API {
       return customer
     })
   }
-
   /**
    * @name createCustomer
    * @description Creates a customer and modelizes
@@ -73,14 +71,15 @@ export default class API {
     .then(response => {
       if(response === 406){
         return 'Duplicate entry exists'
-      } else if(typeof(response) != 'number'){
+      }
+      else if(typeof(response) != 'number'){
         return API.customerModelize(response)
-      } else {
-        return 'Unexpected error'
+      }
+      else {
+        return `Unexpected error ${response}`
       }
     })
   }
-
   /**
    * @name customerModelize
    * @description Modelizes a database customer
@@ -95,16 +94,30 @@ export default class API {
     // Check if addresses match each other
     if (item.billingAddr){
       addrIsSame = API.addressIsSame(item.shippingAddr, item.billingAddr)
-      if (!addrIsSame)
-        addtl = [item.billingAddr.street, null, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
+      if (!addrIsSame){
+        let split = item.billingAddr.street.indexOf(',')
+        let street1 = item.billingAddr.street
+        let street2 = null
+        if (split != -1){
+          street1 = item.billingAddr.street.slice(0,split)
+          street2 = item.billingAddr.street.slice(split+2,item.billingAddr.street.length)
+        }
+        addtl = [street1, street2, item.billingAddr.city, item.billingAddr.state, item.billingAddr.country, item.billingAddr.zip]
+      }
     }
     else
       addrIsSame = true
     // Construct model
-    let customer = new CustomerModel(item.id, item.name, item.shippingAddr.street, null, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)
+    let split = item.shippingAddr.street.indexOf(',')
+    let street1 = item.shippingAddr.street
+    let street2 = null
+    if (split != -1){
+      street1 = item.shippingAddr.street.slice(0,split)
+      street2 = item.shippingAddr.street.slice(split+2,item.billingAddr.street.length)
+    }
+    let customer = new CustomerModel(item.id, item.name, street1, street2, item.shippingAddr.city, item.shippingAddr.state, item.shippingAddr.country, item.shippingAddr.zip, item.email, item.phoneNumber, item.website, item.isPastDue, addrIsSame, ...addtl)
     return customer
   }
-
   /**
    * @name addressIsSame
    * @description Compares two address objects to check for equality
@@ -116,6 +129,29 @@ export default class API {
    */
   static addressIsSame(addr1, addr2){
     return JSON.stringify(addr1) === JSON.stringify(addr2)
+  }
+  /**
+   * @name updateCustomer
+   * @description POSTs to endpoint with body provided, then returns
+   * @method updateCustomer
+   * @memberof API
+   * @param  {Integer} id      Customer ID
+   * @param  {JSON} body       JSON body for POST
+   * @return {Promise}
+   */
+  static updateCustomer(id, body){
+    return API.update(`customer/${id}/update`, body)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return API.customerModelize(response)
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
   }
 
   // Projects
@@ -146,7 +182,6 @@ export default class API {
       return projects
     })
   }
-
   /**
    * @name fetchProject
    * @description Fetches project and modelizes
@@ -167,7 +202,6 @@ export default class API {
       return project
     })
   }
-
   /**
    * @name fetchProjectTasks
    * @description Fetches project and modelizes
@@ -212,14 +246,15 @@ export default class API {
     .then(response => {
       if(response === 406){
         return 'Duplicate entry exists'
-      } else if(typeof(response) != 'number'){
+      }
+      else if(typeof(response) != 'number'){
         return API.projectModelize(response)
-      } else {
-        return 'Unexpected error'
+      }
+      else {
+        return `Unexpected error ${response}`
       }
     })
   }
-
   /**
    * @name projectModelize
    * @description Modelizes a database project model
@@ -231,6 +266,47 @@ export default class API {
   static projectModelize(item){
     // Modelize customer object before providing to project
     return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
+  }
+  /**
+   * @name updateProject
+   * @description POSTs to endpoint with body provided, then returns
+   * @method updateProject
+   * @memberof API
+   * @param  {Integer} id      Project ID
+   * @param  {JSON} body       JSON body for POST
+   * @return {Promise}
+   */
+  static updateProject(id, body){
+    return API.update(`project/${id}/update`, body)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return API.projectModelize(response)
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name updateProjectStatus
+   * @description POSTs to endpoint with status provided, then returns
+   * @method updateProjectStatus
+   * @memberof API
+   * @param  {Integer} id      Project ID
+   * @param  {String} status   New project status
+   * @return {Promise}
+   */
+  static updateProjectStatus(id, status){
+    return fetch(`${api}project/${id}/status?status=${status}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(() => {
+      return true
+    })
   }
 
   // Employees
@@ -246,7 +322,6 @@ export default class API {
   static employeeModelize(item){
     return new EmployeeModel(item.id, item.firstName, item.lastName)
   }
-
   /**
    * @name fetchEmployees
    * @description Fetches all employees and modelizes
@@ -265,7 +340,6 @@ export default class API {
       return employees
     })
   }
-
   /**
    * @name createEmployee
    * @description Creates an employee and modelizes
@@ -279,10 +353,35 @@ export default class API {
     .then(response => {
       if(response === 406){
         return 'Duplicate entry exists'
-      } else if(typeof(response) != 'number'){
+      }
+      else if(typeof(response) != 'number'){
         return API.employeeModelize(response)
-      } else {
-        return 'Unexpected error'
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name updateEmployee
+   * @description POSTs to endpoint with body provided, then returns
+   * @method updateEmployee
+   * @memberof API
+   * @param  {Integer} id      Employee ID
+   * @param  {JSON} body       JSON body for POST
+   * @return {Promise}
+   */
+  static updateEmployee(id, body){
+    return API.update(`employee/${id}/update`, body)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return API.employeeModelize(response)
+      }
+      else {
+        return `Unexpected error ${response}`
       }
     })
   }
@@ -300,7 +399,6 @@ export default class API {
   static userModelize(item){
     return new UserModel(item.id, item.username, item.station, item.admin)
   }
-
   /**
    * @name login
    * @description POSTs to user/login with body provided, then returns modelized user
@@ -357,44 +455,29 @@ export default class API {
       }
     })
   }
-
   /**
-   * @name updateProjectStatus
-   * @description POSTs to endpoint with status provided, then returns
-   * @method updateProjectStatus
-   * @memberof API
-   * @param  {Integer} id      Project ID
-   * @param  {String} status   New project status
-   * @return {Promise}
-   */
-  static updateProjectStatus(id, status){
-    return fetch(`${api}project/${id}/status?status=${status}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' }
-    })
-    .then(() => {
-      return true
-    })
-  }
-
-  /**
-   * @name updateProject
+   * @name update
    * @description POSTs to endpoint with body provided, then returns
-   * @method updateProject
+   * @method update
    * @memberof API
-   * @param  {Integer} id      Project ID
+   * @param  {String} endpoint API endpoint name
    * @param  {JSON} body       JSON body for POST
    * @return {Promise}
    */
-  static updateProject(id, body){
-    return fetch(`${api}project/${id}/update`, {
+  static update(endpoint, body){
+    return fetch(`${api}${endpoint}`, {
       method: 'POST',
       body,
       headers: { 'Content-Type': 'application/json' }
     })
     .then(res => {
-      console.log(res.status)
-      return true
+      if(res.status === 200 || res.status === 202){
+        return res.json()
+      }
+      else {
+        return res.status
+      }
     })
   }
+
 }

@@ -9,6 +9,7 @@ import { inject } from 'mobx-react'
  * @property {Object} row Table row
  * @property {String} set One of ['Full'|'Restricted']
  * @property {Function} clickHandler Icon click function
+ * @property {Boolean} disabledChange Edit icon click disable flag
  * @extends React.Component
  * @see {@link PageStore @inject PageStore}
  * @see {@link Website @inject Website}
@@ -20,6 +21,7 @@ export default class TableActionCell extends Component {
     // Full: all three items; Restricted: no delete
     set: PropTypes.oneOf(['Full', 'Restricted']).isRequired,
     clickHandler: PropTypes.func.isRequired,
+    disabledChange: PropTypes.bool,
   }
 
   constructor(props){
@@ -70,8 +72,8 @@ export default class TableActionCell extends Component {
         <span>
           <CircleButton iconName="info" onClick={this.infoClick}/>
           {(full) ?
-            <CircleButton iconName="pencil" onClick={this.editClick}/> :
-            <CircleButton styleProps={{marginLeft: '2px'}} iconName="pencil" onClick={this.editClick}/>
+            <CircleButton iconName="pencil" onClick={this.editClick} disabled={this.props.disabledChange}/> :
+            <CircleButton styleProps={{marginLeft: '2px'}} iconName="pencil" onClick={this.editClick} disabled={this.props.disabledChange}/>
           }
           {full && <CircleButton styleProps={{marginLeft: '2px'}} iconName="trash" onClick={this.deleteClick}/>}
         </span>

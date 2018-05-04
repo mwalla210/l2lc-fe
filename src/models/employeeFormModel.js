@@ -17,7 +17,7 @@ useStrict(true)
  */
 export default class EmployeeFormModel extends FormModel{
   constructor(onClickNav, onCancelNav, errorClick) {
-    let primaryOnClick = () => {}
+    let primaryOnClick = null
     super(Consts.employeeFields,
       {
         title: 'Continue',
@@ -36,16 +36,6 @@ export default class EmployeeFormModel extends FormModel{
     this.primaryButton.onClick = this.newButton()
   }
   /**
-   * @name resetFields
-   * @description Sets all fields back to defaults
-   * @method resetFields
-   * @memberof EmployeeFormModel.prototype
-   * @mobx action
-   */
-  @action resetFields(){
-    this.fields = Consts.employeeFields
-  }
-  /**
    * @name editButton
    * @description Returns function for onClick of primary button when editing
    * @method editButton
@@ -54,7 +44,22 @@ export default class EmployeeFormModel extends FormModel{
    */
   editButton(){
     // Change onClick functionality for primary
-    return (fields) => console.log('EDIT with', fields)
+    return (fields) => {
+      let body = {}
+      fields.forEach(item => {
+        body[item.id] = item.value.trim()
+      })
+      Website.updateEmployee(Website.currentEmployee.id, body)
+      .then(response => {
+        if(response == null){
+          this.onClickNav()
+        }
+        else {
+          this.setError(response)
+          this.openModal()
+        }
+      })
+    }
   }
   /**
    * @name newButton
@@ -73,7 +78,8 @@ export default class EmployeeFormModel extends FormModel{
       .then((response) => {
         if(response == null){
           this.onClickNav()
-        } else {
+        }
+        else {
           this.setError(response)
           this.openModal()
         }
@@ -90,9 +96,11 @@ export default class EmployeeFormModel extends FormModel{
    */
   @action setEdit(){
     this.primaryButton.onClick = this.editButton()
-    this.resetFields()
+    this.resetValues()
     // Update fields with values corresponding to currentEmployee
-    console.log(Website.currentEmployee)
+    this.fields.forEach(fieldObj => {
+      fieldObj.value = Website.currentEmployee[fieldObj.id]
+    })
   }
   /**
    * @name setNonEdit
@@ -102,7 +110,7 @@ export default class EmployeeFormModel extends FormModel{
    * @mobx action
    */
   @action setNonEdit(){
-    this.primaryButton.onClick = this.newButton(this.onClickNav)
-    this.resetFields()
+    this.primaryButton.onClick = this.newButton()
+    this.resetValues()
   }
 }
