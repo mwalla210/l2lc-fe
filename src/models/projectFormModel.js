@@ -19,7 +19,7 @@ useStrict(true)
  */
 export default class projectFormModel extends FormModel{
   constructor(onClickNav, onClickCustomerNav, onCancelNav, errorClick) {
-    let primaryOnClick = () => {}
+    let primaryOnClick = null
     super(Consts.projectFields,
       {
         title: 'Continue',
@@ -150,8 +150,10 @@ export default class projectFormModel extends FormModel{
       if (!Website.currentProject.hasOwnProperty(fieldObj.id)){
         console.log('Missing field',fieldObj.id)
       }
-      else
-        value = (Website.currentProject[fieldObj.id]).toString()
+      else{
+        if (Website.currentProject[fieldObj.id])
+          value = (Website.currentProject[fieldObj.id]).toString()
+      }
       if (value != null && value != undefined && value != ''){
         this.modifyFieldValue(index, value)
       }

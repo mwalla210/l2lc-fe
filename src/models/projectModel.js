@@ -141,33 +141,7 @@ export default class ProjectModel {
   @action changeCustomer(customer){
     this.customer = customer
   }
-  /**
-   * @name changeHold
-   * @description Makes request to API to change hold status in database; sets this.hold
-   * @memberof ProjectModel.prototype
-   * @method changeHold
-   * @param  {Boolean}   flag        Indicator for hold to add (true) or remove (false)
-   * @param  {String}   [descr]      Hold description
-   * @param  {String}   [employeeID] Database ID of Employee adding hold
-   * @return {Promise}
-   * @mobx action
-   */
-  @action changeHold(flag, descr, employeeID){
-     console.log(`Change hold on project in API with flag: ${flag}${(flag) ? `, descr: ${descr}, employee ID: ${employeeID}` : ''}`)
-   }
-  /**
-   * @name addRework
-   * @description Makes request to API to add rework in database; updates this.reworks
-   * @memberof ProjectModel.prototype
-   * @method addRework
-   * @param  {String}  descr      Rework description
-   * @param  {String}  employeeID Database ID of Employee adding rework
-   * @return {Promise}
-   * @mobx action
-   */
-  @action addRework(descr, employeeID){
-     console.log(`Add rework on project in API with descr: ${descr}, employee ID: ${employeeID}`)
-   }
+
   /**
    * @name finish
    * @description Sets this.status
@@ -177,17 +151,6 @@ export default class ProjectModel {
    */
   @action finish(){
      this.status = 'Completed'
-   }
-  /**
-   * @name getDefaultTaskList
-   * @description Makes request to API to get default task list for project type; updates this.tasks
-   * @memberof ProjectModel.prototype
-   * @method getDefaultTaskList
-   * @return {Promise}
-   * @mobx action
-   */
-  @action getDefaultTaskList(){
-     console.log(`Fetch project's default task list from API with job type: ${this.jobType}`)
    }
   /**
    * @name toggleTask
@@ -201,19 +164,7 @@ export default class ProjectModel {
   @action toggleTask(task){
      console.log('Call\'s Task\'s toggle method')
    }
-  /**
-  * @name moveTask
-  * @description Calls API to update task list in database; sets this.tasks
-  * @memberof ProjectModel.prototype
-  * @method moveTask
-  * @param  {Task}  task     Task to move
-  * @param  {Number}  newIndex New index in list for Task
-  * @return {Promise}
-  * @mobx action
-  */
-  @action moveTask(task, newIndex){
-    console.log(`Changes task position in project in API with new index: ${newIndex}`)
-  }
+
   /**
   * @name addTask
   * @description Calls API to update task list in database; sets this.tasks
@@ -225,7 +176,7 @@ export default class ProjectModel {
   * @mobx action
   */
   @action addTask(title, processArea){
-    console.log(`Adds task to project in API with title: ${title}${(processArea) ? `and process area: ${processArea}` : ''}`)
+    //console.log(`Adds task to project in API with title: ${title}${(processArea) ? `and process area: ${processArea}` : ''}`)
   }
   /**
   * @name removeTask

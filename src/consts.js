@@ -863,7 +863,7 @@ class Consts {
       type: 'select',
       label: 'Priority',
       id: 'priority',
-      options: [{title: 'Select...'}, {title: 'Low'}, {title: 'High'}],
+      options: [{title: 'Select...'}, {title: '1-2 Days'}, {title: '3 Days'}, {title: '4-5 Days'}, {title: '10 Days'}],
       required: true,
       disabled: true,
       validation: (value, required) => {
@@ -888,7 +888,7 @@ class Consts {
     },
     {
       type: 'textfield',
-      label: 'Reference Number',
+      label: 'Job/Work Order Number',
       id: 'refNum',
       required: false,
       disabled: true,
@@ -896,7 +896,7 @@ class Consts {
         if (required && value == '')
           return 'Please enter a value.'
         else if (value.length > 30)
-          return 'The reference number must be less than 30 characters.'
+          return 'The order number must be less than 30 characters.'
         return null
       }
     },
@@ -1099,22 +1099,6 @@ class Consts {
    * @readonly
    */
   static get openColor() {return '#57d500'}
-  /**
-   * @name highPriority
-   * @description Color to highlight high priority projects
-   * @memberof Consts.prototype
-   * @type {String}
-   * @readonly
-   */
-  static get highPriority() {return '#f4ba61'}
-  /**
-   * @name medPriority
-   * @description Color to highlight high priority projects
-   * @memberof Consts.prototype
-   * @type {String}
-   * @readonly
-   */
-  static get medPriority() {return '#f4e261'}
   /**
    * @name pieColors
    * @description Colors for pie charts
