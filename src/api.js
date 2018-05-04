@@ -487,6 +487,7 @@ export default class API {
    * @return {Promise}
    */
   static updateUserAdmin(id, bool){
+    console.log('Passed: ' + id + 'Bool: ' + bool)
     return fetch(`${api}user/${id}/update`, {
       method: 'POST',
       body: {

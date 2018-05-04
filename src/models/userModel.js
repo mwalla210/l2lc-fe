@@ -31,19 +31,6 @@ export default class UserModel {
   // Actions
 
   /**
-  * @name changeUsername
-  * @description Changes Account's username
-  * @memberof UserModel.prototype
-  * @method changeUsername
-  * @return {Boolean}
-  * @mobx action
-  */
-  @action changePassword(){
-    // TODO: changes User's password
-    return true
-  }
-
-  /**
    * @name toggleAdmin
    * @description Calls API to change the admin status of user
    * @memberof UserModel.prototype
@@ -57,16 +44,4 @@ export default class UserModel {
     console.log(`Update admin status for ${this.username} via API. Returns boolean success.`)
   }
 
-  /**
-   * @name changePassword
-   * @description Calls API to change the password for the username
-   * @memberof UserModel.prototype
-   * @method changePassword
-   * @param  {String} newPassword New password
-   * @return {Promise}
-   * @mobx action
-   */
-  @action changePassword(newPassword) {
-    console.log(`Updated password for ${this.username}.`)
-  }
  }

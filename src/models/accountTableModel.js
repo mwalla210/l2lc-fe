@@ -6,6 +6,7 @@ import Website from '../store/website'
 import TableActionCell from '../components/tableActionCell'
 import ButtonDefault from '../components/buttonDefault'
 import API from '../api'
+import Switch from 'react-toggle-switch'
 useStrict(true)
 
 /**
@@ -42,16 +43,22 @@ export default class AccountTableModel extends TableModel{
         filterable: true
       },
       {
-        id: 'admin',
         Header: 'Admin',
-        accessor: d => d.admin.toString(),
-        filterable: true
+        accessor: 'admin',
+        sortable: false,
+        maxWidth: 100,
+        getProps: () => {
+          return {
+            className: 'center',
+            style: {
+              paddingTop: '0px',
+              paddingBottom: '0px'
+            }
+          }
+        },
+        //accessor: d => d.admin.toString(),
+        Cell: row => <Switch onClick={row.original.toggleAdmin} on={row.original.admin}/>
       },
-      //{
-      //  Header: 'Actions',
-      //  sortable: false,
-      //  Cell: row => <ProjectStatusCell row={row}/>,
-      //}
     ]
   }
 
