@@ -17,7 +17,7 @@ useStrict(true)
  */
 export default class EmployeeFormModel extends FormModel{
   constructor(onClickNav, onCancelNav, errorClick) {
-    let primaryOnClick = () => {}
+    let primaryOnClick = null
     super(Consts.employeeFields,
       {
         title: 'Continue',
@@ -110,7 +110,7 @@ export default class EmployeeFormModel extends FormModel{
    * @mobx action
    */
   @action setNonEdit(){
-    this.primaryButton.onClick = this.newButton(this.onClickNav)
+    this.primaryButton.onClick = this.newButton()
     this.resetValues()
   }
 }

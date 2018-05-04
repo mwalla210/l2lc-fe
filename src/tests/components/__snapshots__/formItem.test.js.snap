@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormItem Renders with snapshot 1`] = `
+<div
+  className="form-group"
+>
+  <div
+    className="alert alert-warning"
+    role="alert"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "color": "orange",
+        }
+      }
+    >
+      <strong>
+        Warning!
+      </strong>
+       errorText
+    </div>
+  </div>
+  <label>
+    label
+  </label>
+   
+  <span
+    style={
+      Object {
+        "color": "orange",
+      }
+    }
+  >
+     *
+  </span>
+</div>
+`;
+
+exports[`FormItem Renders with snapshot, alternate options 1`] = `
+<div
+  className="form-group"
+  style={
+    Object {
+      "display": "none",
+    }
+  }
+>
+  <div
+    className="alert alert-warning"
+    role="alert"
+    style={
+      Object {
+        "color": "orange",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "color": "orange",
+        }
+      }
+    >
+      <strong>
+        Warning!
+      </strong>
+       errorText
+    </div>
+  </div>
+  <label>
+    label
+  </label>
+   
+</div>
+`;

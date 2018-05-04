@@ -210,6 +210,7 @@ export default class FormModel {
       let updates = this.fields[index].onUpdate(this.fields[index].value, this.fields)
       updates.forEach(update => {
         let fieldIndex = this.fields.findIndex(field => {return field.id == update.id})
+        /* istanbul ignore else */
         if(update.hasOwnProperty('required')){
           this.fields[fieldIndex].required = update.required
         }
@@ -250,6 +251,7 @@ export default class FormModel {
    * @mobx action
    */
    @action fieldValidatorWrapper(index){
+     /* istanbul ignore else */
     if (this.fields[index].validation){
       let invalid = this.fields[index].validation(this.fields[index].value.trim(), this.fields[index].required)
       if (!invalid){

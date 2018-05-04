@@ -81,17 +81,17 @@ export default class Table extends Component {
     }
     return (
       <div>
-      {buttonContent}
-      {rowModal}
-      <div style={{clear: 'both'}}>
-        <ReactTable
-          data={this.props.page.tableModel.data.slice()}
-          columns={this.props.page.tableModel.columns.slice()}
-          loading={this.props.page.tableModel.loading}
-          defaultFilterMethod={this.filter}
-          {...rowStyling}
-        />
-      </div>
+        {buttonContent}
+        {rowModal}
+        <div style={{clear: 'both'}}>
+          <ReactTable
+            data={this.props.page.tableModel.data.slice()}
+            columns={this.props.page.tableModel.columns.slice()}
+            loading={this.props.page.tableModel.loading}
+            defaultFilterMethod={this.filter}
+            {...rowStyling}
+          />
+        </div>
       </div>
     )
 

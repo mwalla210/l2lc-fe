@@ -74,16 +74,6 @@ export default class CustomerModel {
    */
   @action setBillIsSame(){this.billIsSame = true}
 
-  /**
-  * @name edit
-  * @description Updates Customer object in database
-  * @memberof CustomerModel.prototype
-  * @method
-  * @mobx action
-  */
-  @action edit(){
-    // TODO: Description: updates Customer object in database
-  }
 
   /**
   * @name getProjects

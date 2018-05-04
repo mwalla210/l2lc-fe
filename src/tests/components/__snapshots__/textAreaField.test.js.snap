@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextAreaField Renders 1`] = `
+<textarea
+  autoFocus={false}
+  className="form-control"
+  disabled={false}
+  id=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  rows={1}
+  style={
+    Object {
+      "height": "46px",
+    }
+  }
+  value=""
+/>
+`;

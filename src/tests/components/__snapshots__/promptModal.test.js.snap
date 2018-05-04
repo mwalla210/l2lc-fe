@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromptModal Renders with snapshot 1`] = `
+<Modal
+  isOpen={true}
+  size="small"
+  toggle={[Function]}
+>
+  <ModalHeader
+    className="titleClassName"
+    toggle={[Function]}
+  >
+    <img
+      alt="imageFilePath"
+      src="../../style/open-iconic-master/svg/imageFilePath.svg"
+      style={
+        Object {
+          "marginRight": "3px",
+          "marginTop": "-2px",
+          "width": "14px",
+        }
+      }
+    />
+    title
+  </ModalHeader>
+  <ModalBody>
+    content
+  </ModalBody>
+  <ModalFooter />
+</Modal>
+`;
+
+exports[`PromptModal Renders with snapshot, alternate arguements 1`] = `
+<Modal
+  isOpen={true}
+  size="small"
+  toggle={[Function]}
+>
+  <ModalHeader
+    toggle={[Function]}
+  >
+    title
+  </ModalHeader>
+  <ModalBody>
+    content
+  </ModalBody>
+  <ModalFooter />
+</Modal>
+`;

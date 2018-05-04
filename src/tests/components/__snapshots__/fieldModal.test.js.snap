@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FieldModal Renders with snapshot (open: true) 1`] = `
+<Modal
+  isOpen={true}
+  toggle={[Function]}
+>
+  <ModalHeader
+    toggle={[Function]}
+  >
+    title
+  </ModalHeader>
+  <ModalBody>
+    <div
+      className="form-group"
+    >
+      <textarea
+        className="form-control"
+        id="modalTextArea"
+        onChange={[Function]}
+        rows="3"
+        value="contents"
+      />
+    </div>
+  </ModalBody>
+  <ModalFooter />
+</Modal>
+`;
+
+exports[`FieldModal Renders with snapshot (title: null) 1`] = `
+<Modal
+  isOpen={false}
+  toggle={[Function]}
+>
+  <ModalHeader
+    toggle={[Function]}
+  >
+    title
+  </ModalHeader>
+  <ModalBody>
+    <div
+      className="form-group"
+    >
+      <textarea
+        className="form-control"
+        id="modalTextArea"
+        onChange={[Function]}
+        rows="3"
+        value="contents"
+      />
+    </div>
+  </ModalBody>
+  <ModalFooter />
+</Modal>
+`;
+
+exports[`FieldModal Renders with snapshot 1`] = `
+<Modal
+  isOpen={false}
+  toggle={[Function]}
+>
+  <ModalHeader
+    toggle={[Function]}
+  >
+    title
+  </ModalHeader>
+  <ModalBody>
+    <div
+      className="form-group"
+    >
+      <textarea
+        className="form-control"
+        id="modalTextArea"
+        onChange={[Function]}
+        rows="3"
+        value="contents"
+      />
+    </div>
+  </ModalBody>
+  <ModalFooter />
+</Modal>
+`;
