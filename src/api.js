@@ -397,6 +397,15 @@ export default class API {
     })
   }
 
+  // Analytics
+
+  /**
+   * @name fetchTimeEntries
+   * @description Fetches a year's worth of time entries
+   * @method fetchTimeEntries
+   * @memberof API
+   * @return {Promise}
+   */
   static fetchTimeEntries(){
     return fetch(`${api}project/time-entry`)
     .then(res => res.json())

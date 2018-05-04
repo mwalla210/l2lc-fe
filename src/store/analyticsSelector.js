@@ -46,12 +46,12 @@ class AnalyticsSelector {
       res.forEach(timeEntry => {
         let dateTime = new Date(timeEntry.time)
         if (timeEntry.employeeName){
-          // If employee has pre-started list, push
           let obj = {
             costCenter: timeEntry.costCenter,
             station: timeEntry.station,
             time: dateTime,
           }
+          // If employee has pre-started list, push
           if (employeeEntries.hasOwnProperty(timeEntry.employeeName)){
             employeeEntries[timeEntry.employeeName].push(obj)
           }
@@ -60,20 +60,21 @@ class AnalyticsSelector {
             employeeEntries[timeEntry.employeeName] = [obj]
           }
         }
+        let cCJT = `${timeEntry.costCenter} - ${timeEntry.jobType}`
         // Use first occurrence for projects
         if (!projects.hasOwnProperty(timeEntry.projectId)){
           projects[timeEntry.projectId] = {
             costCenter: timeEntry.costCenter,
             jobType: timeEntry.jobType,
             partCount: timeEntry.partCount,
-            date: dateTime
+            date: dateTime,
+            costCenterJobType: cCJT
           }
         }
         if (!stations.includes(timeEntry.station))
           stations.push(timeEntry.station)
         if (!costCenters.includes(timeEntry.costCenter))
           costCenters.push(timeEntry.costCenter)
-        let cCJT = `${timeEntry.costCenter} - ${timeEntry.jobType}`
         if (!costCenterJobTypes.includes(cCJT))
           costCenterJobTypes.push(cCJT)
         if (timeEntry.costCenter == 'APC' && !apcJobTypes.includes(timeEntry.jobType))
@@ -120,23 +121,41 @@ class AnalyticsSelector {
         datasets: this.mapTimeByCategory(employeeEntries, costCenters, 'costCenter')
       })
 
-      // TODO: Projects, by cost center and job type (if cost center and job type match and only one job type for cost center, abbreviate)
+      // Projects, by cost center and job type (if cost center and job type match and only one job type for cost center, abbreviate)
+      let projectsByCostCenterJobType = []
+      costCenterJobTypes.forEach(combination => {
+        let count = 0
+        Object.keys(projects).forEach(key => {
+          if (projects[key].costCenterJobType == combination)
+            count++
+        })
+        projectsByCostCenterJobType.push(count)
+      })
       analytics[2].model.setData({
         labels: costCenterJobTypes,
         datasets: [
           {
-            data: [50,20,15,10,5,10,10],
+            data: projectsByCostCenterJobType,
             backgroundColor: Consts.pieColors,
             hoverBackgroundColor: Consts.pieColors
           }
         ]
       })
-      // TODO: APC project parts, by job type
+      // APC project parts, by job type
+      let apcProjectPartsByJobType = []
+      apcJobTypes.forEach(type => {
+        let count = 0
+        Object.keys(projects).forEach(key => {
+          if (projects[key].costCenter == 'APC' && projects[key].jobType == type)
+            count+=projects[key].partCount
+        })
+        apcProjectPartsByJobType.push(count)
+      })
       analytics[3].model.setData({
         labels: apcJobTypes,
         datasets: [
           {
-            data: [500,200,150,100,50,100],
+            data: apcProjectPartsByJobType,
             backgroundColor: Consts.pieColors,
             hoverBackgroundColor: Consts.pieColors
           }
@@ -212,16 +231,11 @@ class AnalyticsSelector {
       // Process entries per station
       // Remove stations with <2 entries
       Object.keys(entriesByCategory).forEach(key => {
-        if (entriesByCategory[key].length < 2)
-          delete entriesByCategory[key]
-        else{
-          // Uneven number
-          if (entriesByCategory[key].length % 2 != 0)
-            entriesByCategory[key].pop()
-          // Calculate time totals here
-          let {hour, min} = Consts.calculateTime(entriesByCategory[key].map(item => item.time))
-          data.push(hour+parseFloat((min / 60.0).toFixed(2)))
-        }
+        if (entriesByCategory[key].length % 2 != 0)
+          entriesByCategory[key].pop()
+        // Calculate time totals here
+        let {hour, min} = Consts.calculateTime(entriesByCategory[key].map(item => item.time))
+        data.push(hour+parseFloat((min / 60.0).toFixed(2)))
       })
       datasets.push({
         label: key,
