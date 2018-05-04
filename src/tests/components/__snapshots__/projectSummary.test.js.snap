@@ -184,18 +184,6 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
         <DropdownMenu>
           <DropdownItem
             disabled={false}
-            onClick={[Function]}
-          >
-            Add Rework
-          </DropdownItem>
-          <DropdownItem
-            disabled={false}
-            onClick={[Function]}
-          >
-            Remove Hold
-          </DropdownItem>
-          <DropdownItem
-            disabled={false}
             onClick={[MockFunction]}
           >
             Edit Details
@@ -408,18 +396,6 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
         <DropdownMenu>
           <DropdownItem
             disabled={false}
-            onClick={[Function]}
-          >
-            Add Rework
-          </DropdownItem>
-          <DropdownItem
-            disabled={false}
-            onClick={[Function]}
-          >
-            Remove Hold
-          </DropdownItem>
-          <DropdownItem
-            disabled={false}
             onClick={[MockFunction]}
           >
             Edit Details
@@ -630,18 +606,6 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
           Actions
         </DropdownToggle>
         <DropdownMenu>
-          <DropdownItem
-            disabled={true}
-            onClick={[Function]}
-          >
-            Add Rework
-          </DropdownItem>
-          <DropdownItem
-            disabled={true}
-            onClick={[Function]}
-          >
-            Add Hold
-          </DropdownItem>
           <DropdownItem
             disabled={true}
             onClick={[MockFunction]}
