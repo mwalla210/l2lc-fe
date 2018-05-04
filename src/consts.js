@@ -1078,7 +1078,6 @@ class Consts {
       className: 'col-3'
     }
   }
-
   /**
    * @name customerFields
    * @description List of customer form fields
@@ -1087,14 +1086,6 @@ class Consts {
    * @readonly
    */
   static get taskFields(){ return [
-    {
-      type: 'checkbox',
-      label: 'Required',
-      id: 'required',
-      required: true,
-      disabled: false,
-      validation: null
-    },
     {
       type: 'textfield',
       label: 'Task Name',
@@ -1123,22 +1114,7 @@ class Consts {
         return null
       }
     },
-    {
-      type: 'textfield',
-      label: 'Status',
-      id: 'status',
-      required: true,
-      disabled: false,
-      validation: (value, required) => {
-        if (required && value == '')
-          return 'Please enter a value.'
-        else if (value.length > 30)
-          return 'The status must be less than 30 characters.'
-        return null
-      }
-    }
   ]}
-
 }
 
 module.exports = Consts

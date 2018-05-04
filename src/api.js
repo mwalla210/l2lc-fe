@@ -178,14 +178,12 @@ export default class API {
    * @async
    */
   static fetchProjectTasks(id){
-    return fetch(`${api}task/${id}`)
+    return fetch(`${api}project/${id}/tasks`)
     .then(res => res.json())
     .then(json => {
-      let project = null
-      if (json.id == id){
-        project = API.taskModelize(json)
-      }
-      return project
+      let tasks = []
+      json.forEach(task => tasks.push(API.taskModelize(task)))
+      return tasks
     })
   }
 
@@ -198,8 +196,6 @@ export default class API {
    * @return {TaskModel}
    */
   static taskModelize(item){
-    console.log(item)
-    // Modelize customer object before providing to project
     return new TaskModel(item.required, item.title, item.processArea, item.status)
   }
 
@@ -233,7 +229,6 @@ export default class API {
    * @return {ProjectModel}
    */
   static projectModelize(item){
-    console.log(item)
     // Modelize customer object before providing to project
     return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null))
   }

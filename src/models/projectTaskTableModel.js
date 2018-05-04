@@ -75,17 +75,17 @@ export default class ProjectTaskTableModel extends TableModel{
       {
         Header: 'Task Name',
         accessor: 'taskName',
-        filterable: true
+        sortable: false,
       },
       {
         Header: 'Process Area',
         accessor: 'processArea',
-        filterable: true
+        sortable: false,
       },
       {
         Header: 'Status',
         accessor: 'status',
-        filterable: true
+        sortable: false,
       },
       {
         Header: 'Actions',
