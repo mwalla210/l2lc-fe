@@ -19,6 +19,7 @@ export default class AnalyticsModel {
       data: [],
       currentFilter: filters ? filters[0].type : null,
       component: filters ? filters[0].component : component,
+      yLabel: filters ? filters[0].yLabel : null,
       loading: true
     }
     extendObservable(this, addtlProps)
@@ -67,6 +68,7 @@ export default class AnalyticsModel {
       this.data = this.originalData
     }
     this.component = filterItem.component
+    this.yLabel = filterItem.yLabel
     this.currentFilter = filter
   }
 }

@@ -263,10 +263,12 @@ class AnalyticsSelector {
           {
             type: 'Split Bar',
             component: 'bar',
+            yLabel: 'Hours',
             data: null
           },
           {
             type: 'Grouped Bar',
+            yLabel: 'Hours',
             component: 'bar',
             data: (datasets) => {
               let newdataset = [{
@@ -326,6 +328,7 @@ class AnalyticsSelector {
           {
             type: 'Split Bar',
             component: 'bar',
+            yLabel: 'Hours',
             data: null
           },
           {

@@ -61,7 +61,7 @@ export default class Analytics extends Component {
                       options={{
                         responsive:true,
                         scales:{
-                          yAxes:[{display:true,ticks:{beginAtZero:true}}],
+                          yAxes:[{display:true,ticks:{beginAtZero:true},scaleLabel: {display: true,labelString:analytic.model.yLabel}}],
                           xAxes:[{display:true,ticks:{autoSkip: false}}]
                         },
                         legend: {
