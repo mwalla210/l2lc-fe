@@ -1,4 +1,5 @@
 import TimeEntryFormModel from '../../models/timeEntryFormModel'
+import {toJS} from 'mobx'
 
 jest.mock('../../store/website', () => {
   return {
@@ -18,6 +19,8 @@ describe('TimeEntryFormModel', () => {
     let entryFormModel = new TimeEntryFormModel()
     entryFormModel.modifyFieldValue(0,'Q')
     entryFormModel.fieldValidatorWrapper(0)
+    console.log(toJS(entryFormModel.fields))
+    console.log(entryFormModel.buttonDisabled)
     entryFormModel.modifyFieldValue(0,'P')
     entryFormModel.modifyFieldValue(0,'P1')
     entryFormModel.modifyFieldValue(0,'P1%')
