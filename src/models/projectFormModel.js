@@ -19,7 +19,7 @@ useStrict(true)
  */
 export default class projectFormModel extends FormModel{
   constructor(onClickNav, onClickCustomerNav, onCancelNav, errorClick) {
-    let primaryOnClick = () => {}
+    let primaryOnClick = null
     super(Consts.projectFields,
       {
         title: 'Continue',
