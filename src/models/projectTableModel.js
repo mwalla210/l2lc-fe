@@ -69,11 +69,6 @@ export default class ProjectTableModel extends TableModel{
         filterable: true
       },
       {
-        Header: 'Time Spent',
-        accessor: 'timeSpent',
-        filterable: true
-      },
-      {
         Header: 'Priority',
         accessor: 'priority',
         filterable: true
