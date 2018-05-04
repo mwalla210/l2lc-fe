@@ -26,19 +26,6 @@ exports[`ProjectTableModel Tests Actions field Cell 1`] = `
       <img
         alt="pencil"
         src="../../style/open-iconic-master/svg/pencil.svg"
-        style={undefined}
-      />
-    </button>
-    <button
-      aria-label="Left Align"
-      className="btn-circle btn btn-outline-secondary"
-      disabled={undefined}
-      onClick={[Function]}
-      type="button"
-    >
-      <img
-        alt="trash"
-        src="../../style/open-iconic-master/svg/trash.svg"
         style={
           Object {
             "marginLeft": "2px",
@@ -63,5 +50,55 @@ exports[`ProjectTableModel Tests Status field Cell 1`] = `
     ●
   </span>
    undefined
+</span>
+`;
+
+exports[`ProjectTableModel Tests non-admin Actions field Cell 1`] = `
+<span>
+  <span>
+    <button
+      aria-label="Left Align"
+      className="btn-circle btn btn-outline-secondary"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+    >
+      <img
+        alt="info"
+        src="../../style/open-iconic-master/svg/info.svg"
+        style={undefined}
+      />
+    </button>
+    <button
+      aria-label="Left Align"
+      className="btn-circle btn btn-outline-secondary disabled"
+      disabled={true}
+      onClick={[Function]}
+      type="button"
+    >
+      <img
+        alt="pencil"
+        src="../../style/open-iconic-master/svg/pencil.svg"
+        style={undefined}
+      />
+    </button>
+    <button
+      aria-label="Left Align"
+      className="btn-circle btn btn-outline-secondary"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+    >
+      <img
+        alt="trash"
+        src="../../style/open-iconic-master/svg/trash.svg"
+        style={
+          Object {
+            "marginLeft": "2px",
+          }
+        }
+      />
+    </button>
+  </span>
 </span>
 `;

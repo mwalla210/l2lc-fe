@@ -122,7 +122,7 @@ export default class ProjectTableModel extends TableModel{
             }
           }
         },
-        Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler} disabledChange={row.original.status == 'Completed'}/>
+        Cell: row => <TableActionCell row={row} set={(Website.currentUser.admin) ? 'Full' : 'Restricted'} clickHandler={this.clickHandler} disabledChange={row.original.status == 'Completed'}/>
       }
     ]
   }

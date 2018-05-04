@@ -262,11 +262,13 @@ export default class ProjectSummary extends Component {
                 >
                   Complete
                 </DropdownItem>
-                <DropdownItem
-                  onClick={this.props.page.summaryModel.deleteModal.openModal}
-                >
-                  Delete
-                </DropdownItem>
+                {this.props.website.currentUser.admin &&
+                  <DropdownItem
+                    onClick={this.props.page.summaryModel.deleteModal.openModal}
+                  >
+                    Delete
+                  </DropdownItem>
+                }
               </DropdownMenu>
             </ButtonDropdown>
           </ButtonGroup>

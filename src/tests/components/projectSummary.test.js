@@ -65,6 +65,9 @@ const defaultOptions = {
         flag: false
       }
     },
+    currentUser: {
+      admin: true
+    },
     summaryMoreDropdownOpen: false,
     toggleSummaryMoreDD: jest.fn(),
     summaryActionsDropdownOpen: false,
