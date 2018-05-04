@@ -4,7 +4,6 @@ import Table from '../components/table'
 import SummarySelector from './summarySelector'
 import FormSelector from './formSelector'
 import TableSelector from './tableSelector'
-import ProjectTaskTableModel from '../models/ProjectTaskTableModel'
 import Website from './website'
 import autoBind from 'auto-bind'
 useStrict(true)
