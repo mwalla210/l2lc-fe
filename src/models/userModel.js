@@ -1,6 +1,7 @@
 import { action, useStrict, extendObservable } from 'mobx'
 import autoBind from 'auto-bind'
 import API from '../api'
+import PageStore from '../store/page'
 useStrict(true)
 
 /**
@@ -39,9 +40,12 @@ export default class UserModel {
    * @mobx action
    */
   @action toggleAdmin() {
+    let body = {admin: !this.admin}
+    let jsonBody = JSON.stringify(body)
     this.admin = !this.admin
-    API.updateUserAdmin(this.id, !this.admin)
-    console.log(`Update admin status for ${this.username} via API. Returns boolean success.`)
+    API.updateUserAdmin(this.id, jsonBody)
+    PageStore.accountManagementMenuItem()
+    PageStore.accountManagementMenuItem()    //weird but works dont judge me
   }
 
  }

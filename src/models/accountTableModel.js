@@ -7,6 +7,7 @@ import TableActionCell from '../components/tableActionCell'
 import ButtonDefault from '../components/buttonDefault'
 import API from '../api'
 import Switch from 'react-toggle-switch'
+import '../../node_modules/react-toggle-switch/dist/css/switch.min.css'
 useStrict(true)
 
 /**

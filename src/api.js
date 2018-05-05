@@ -486,13 +486,10 @@ export default class API {
    * @param  {JSON} bool       boolean for POST
    * @return {Promise}
    */
-  static updateUserAdmin(id, bool){
-    console.log('Passed: ' + id + 'Bool: ' + bool)
+  static updateUserAdmin(id, body){
     return fetch(`${api}user/${id}/update`, {
       method: 'POST',
-      body: {
-        'admin': bool
-      },
+      body,
       headers: { 'Content-Type': 'application/json' }
     })
     .then(res => {
