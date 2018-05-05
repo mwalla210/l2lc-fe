@@ -42,8 +42,10 @@ export default class Analytics extends Component {
               {(analytic.model.loading) ?
                 <div className="row justify-content-center" style={{paddingTop: '30px', paddingBottom: '30px'}}>
                   <BarLoader
-                    color={'#123abc'}
+                    color={'#2baae2'}
                     loading={analytic.model.loading}
+                    height={8}
+                    width={200}
                   />
                 </div> :
                 <div>

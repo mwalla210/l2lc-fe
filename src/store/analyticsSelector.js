@@ -50,6 +50,7 @@ class AnalyticsSelector {
             costCenter: timeEntry.costCenter,
             station: timeEntry.station,
             time: dateTime,
+            projectId: timeEntry.projectId
           }
           // If employee has pre-started list, push
           if (employeeEntries.hasOwnProperty(timeEntry.employeeName)){
@@ -86,34 +87,6 @@ class AnalyticsSelector {
         labels: stations,
         datasets: this.mapTimeByCategory(employeeEntries, stations, 'station')
       })
-      /*
-      [
-        {
-          label: 'Employee 1',
-          backgroundColor: 'rgba(150,186,232,0.6)',
-          borderColor: 'rgba(150,186,232,1)',
-          borderWidth: 1,
-          hoverBackgroundColor: 'rgba(150,186,232,0.4)',
-          data: [4,6,8,9,5]
-        },
-        {
-          label: 'Employee 2',
-          backgroundColor: 'rgba(161,160,160,0.6)',
-          borderColor: 'rgba(161,160,160,1)',
-          borderWidth: 1,
-          hoverBackgroundColor: 'rgba(161,160,160,0.4)',
-          data: [5,5,8,1,6]
-        },
-        {
-          label: 'Employee 3',
-          backgroundColor: 'rgba(150,232,186,0.6)',
-          borderColor: 'rgba(150,232,186,1)',
-          borderWidth: 1,
-          hoverBackgroundColor: 'rgba(150,232,186,0.4)',
-          data: [1,0,0,3,1]
-        }
-      ]
-       */
 
       // Time spent, by employee, by cost center
       analytics[1].model.setData({
@@ -224,18 +197,30 @@ class AnalyticsSelector {
     Object.keys(employeeEntries).forEach((key,index) => {
       let data = []
       let entriesByCategory = this.categoryStructure(categories)
-      // Map entries to costCenters
+      // Map entries to categories
       employeeEntries[key].forEach(entry => {
         entriesByCategory[entry[categoryName]].push(entry)
       })
-      // Process entries per station
-      // Remove stations with <2 entries
+      // Process entries per category
       Object.keys(entriesByCategory).forEach(key => {
         if (entriesByCategory[key].length % 2 != 0)
           entriesByCategory[key].pop()
-        // Calculate time totals here
-        let {hour, min} = Consts.calculateTime(entriesByCategory[key].map(item => item.time))
-        data.push(hour+parseFloat((min / 60.0).toFixed(2)))
+        // Split entries by project (time entries only sequential and differable in single project context)
+        let entriesByProject = {}
+        entriesByCategory[key].forEach(entry => {
+          if (entriesByProject.hasOwnProperty(entry.projectId))
+            entriesByProject[entry.projectId].push(entry)
+          else
+            entriesByProject[entry.projectId] = [entry]
+        })
+        let count = 0
+        // Calculate time spent for projects in this station, then accumulate for total station hour count
+        Object.keys(entriesByProject).forEach(projectKey => {
+          // Calculate time totals here
+          let {hour, min} = Consts.calculateTime(entriesByProject[projectKey].map(item => item.time))
+          count += hour+parseFloat((min / 60.0).toFixed(2))
+        })
+        data.push(count)
       })
       datasets.push({
         label: key,
