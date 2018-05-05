@@ -44,7 +44,7 @@ export default class AccountTableModel extends TableModel{
       },
       {
         Header: 'Admin',
-        accessor: 'admin',
+        //accessor: 'admin',
         sortable: false,
         maxWidth: 100,
         getProps: () => {
@@ -56,7 +56,8 @@ export default class AccountTableModel extends TableModel{
             }
           }
         },
-        //accessor: d => d.admin.toString(),
+        id: 'admin',
+        //accessor: d => d.admin.toString(),        //this was how i displayed the boolean vals for checking API stuff
         Cell: row => <Switch onClick={row.original.toggleAdmin} on={row.original.admin}/>
       },
     ]

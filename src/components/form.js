@@ -10,6 +10,8 @@ import ButtonPrimary from './buttonPrimary'
 import ButtonDefault from './buttonDefault'
 import {ButtonToolbar, ButtonGroup} from 'reactstrap'
 
+import Switch from 'react-toggle-switch'
+
 /**
  * Form component; constructor binds functions
  * @namespace Form
@@ -89,6 +91,7 @@ export default class Form extends Component {
   render() {
     return(
       <div className="row justify-content-center">
+      <Switch onClick={this.primaryOnClick} on={this.props.page.test}/>
         <PromptModal
           headerClass="bg-alert"
           title="API Return Error"

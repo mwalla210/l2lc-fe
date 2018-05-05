@@ -25,7 +25,8 @@ class PageStore {
       content: null,
       tableModel: null,
       formModel: null,
-      summaryModel: null
+      summaryModel: null,
+      test: true
     }
     extendObservable(this, addtlProps)
     autoBind(this)
