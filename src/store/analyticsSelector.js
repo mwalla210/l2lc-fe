@@ -242,7 +242,7 @@ class AnalyticsSelector {
    */
   employeeHoursInStation() {
     return {
-      title: 'Employee Hours in a Station',
+      title: 'Employee Hours by Station',
       model: new AnalyticsModel(
         [
           {
@@ -307,7 +307,7 @@ class AnalyticsSelector {
    */
   employeeHoursInCostCenter() {
     return {
-      title: 'Employee Hours in a Cost Center',
+      title: 'Employee Hours by Cost Center',
       model: new AnalyticsModel(
         [
           {
@@ -348,28 +348,13 @@ class AnalyticsSelector {
    */
   projectCountForCostCenterRatio() {
     return {
-      title: 'Total Project Count for a Cost Center Ratio',
+      title: 'Projects by Cost Center',
       model: new AnalyticsModel(
         null,
         'pie'
       )
     }
   }
-  /**
-   * @name projectCountForAPCRatio
-   * @description Returns the defined object specific to this analytic
-   * @method projectCountForAPCRatio
-   * @memberof AnalyticsSelector.prototype
-   */
-  // projectCountForAPCRatio() {
-  //   return {
-  //     title: 'Total Project Type Count for APC Projects',
-  //     model: new AnalyticsModel(
-  //       null,
-  //       'pie'
-  //     )
-  //   }
-  // }
   /**
    * @name partCountForAPCRatio
    * @description Returns the defined object specific to this analytic
@@ -378,7 +363,7 @@ class AnalyticsSelector {
    */
   partCountForAPCRatio() {
     return {
-      title: 'Total Part Count for APC Projects',
+      title: 'Parts by APC Project Type',
       model: new AnalyticsModel(
         null,
         'pie'
@@ -393,7 +378,7 @@ class AnalyticsSelector {
    */
   projectCountForMonthsRatio() {
     return {
-      title: 'Monthly Total Project Count',
+      title: 'Projects by Month',
       model: new AnalyticsModel(
         null,
         'pie'
