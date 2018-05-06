@@ -9,8 +9,12 @@ jest.mock('../../api', () => {
 jest.mock('../../store/website', () => {
   return {
     setProject: jest.fn(),
+    currentUser: {
+      admin: false
+    },
   }
 })
+import Website from '../../store/website'
 
 describe('ProjectTableModel', () => {
   it('Tests constructor', () => {
@@ -76,5 +80,14 @@ describe('ProjectTableModel', () => {
     expect(project.openModal.mock.calls.length).toBe(0)
     project.clickHandler(1, '')
     expect(project.openModal.mock.calls.length).toBe(0)
+  })
+
+  it('Tests non-admin Actions field Cell', () => {
+    Website.currentUser.admin = true
+    let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
+    expect(project).toHaveProperty('columns')
+    const component = renderer.create(project.columns[7].Cell({original: {status: 'Completed'}}))
+    let tree2 = component.toJSON()
+    expect(tree2).toMatchSnapshot()
   })
 })

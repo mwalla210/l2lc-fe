@@ -94,7 +94,7 @@ export default class CustomerTableModel extends TableModel{
             }
           }
         },
-        Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
+        Cell: row => <TableActionCell row={row} set={Website.currentUser.admin ? 'Restricted' : 'View'} clickHandler={this.clickHandler}/>
       }
     )
     return cols

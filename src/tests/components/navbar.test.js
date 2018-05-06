@@ -31,7 +31,8 @@ const defaultOptions = {
     logOutDismiss: jest.fn(),
     logOutModalOpen: false,
     currentUser:{
-      username:'testuser'
+      username:'testuser',
+      admin: true
     },
   },
 }

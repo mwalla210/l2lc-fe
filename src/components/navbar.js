@@ -99,13 +99,15 @@ export default class NavBar extends Component{
                   </NavItem>
                 )
               })}
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>Admin</DropdownToggle>
-                <DropdownMenu right>
-                  <DropdownItem onClick={this.props.page.employeeInformationMenuItem}>Employee Information</DropdownItem>
-                  <DropdownItem onClick={this.props.page.accountManagementMenuItem}>Account Information</DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+              {this.props.website.currentUser.admin &&
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret>Admin</DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem onClick={this.props.page.employeeInformationMenuItem}>Employee Information</DropdownItem>
+                    <DropdownItem onClick={this.props.page.accountManagementMenuItem}>Account Information</DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              }
               <NavItem>
                 <p className="nav-link nohover" style={{marginRight: '10px', marginBottom: '0px'}}>
                   <img src="../../style/open-iconic-master/svg/person.svg" alt="person" style={{width: '16px', marginRight: '5px'}}/>
