@@ -58,8 +58,7 @@ export default class AccountTableModel extends TableModel{
           }
         },
         id: 'admin',
-        //accessor: d => d.admin.toString(),        //this was how i displayed the boolean vals for checking API stuff
-        Cell: row => <Switch onClick={row.original.toggleAdmin} on={row.original.admin}/>
+        Cell: row => <div style={{paddingTop: '7px'}}><Switch onClick={row.original.toggleAdmin} on={row.original.admin}/></div>
       },
     ]
   }
