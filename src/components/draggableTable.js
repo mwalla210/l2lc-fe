@@ -20,7 +20,7 @@ export default class DraggableTable extends Component {
       return {
         index: rowInfo.index,
         id: rowInfo.index,
-        moverow: this.props.page.draggable.move
+        moverow: this.props.page.tableModel.move
       }
     else
       return {}
@@ -29,16 +29,15 @@ export default class DraggableTable extends Component {
   render() {
       return (
       <div className="row justify-content-center">
-        <div className="col-6">
-          <ReactTable
-            data={this.props.page.draggable.data.slice()}
-            columns={this.props.page.draggable.columns.slice()}
-            showPagination={false}
-            defaultPageSize={this.props.page.draggable.data.length}
-            TrComponent={DraggableRow}
-            getTrProps={this.rowProps}
-          />
-        </div>
+        <ReactTable
+          data={this.props.page.tableModel.data.slice()}
+          columns={this.props.page.tableModel.columns.slice()}
+          showPagination={false}
+          pageSize={this.props.page.tableModel.data.length}
+          loading={this.props.page.tableModel.loading}
+          TrComponent={DraggableRow}
+          getTrProps={this.rowProps}
+        />
       </div>
     )
   }

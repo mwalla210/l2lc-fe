@@ -243,6 +243,73 @@ export default class API {
     })
   }
   /**
+   * @name createTaskList
+   * @description POSTs a task list to API, modelizes return
+   * @method createTaskList
+   * @param  {Number}   projectID  Related project
+   * @param  {Object}    taskList Task list (JSON)
+   * @return {Promise}
+   */
+  static createTaskList(projectID, taskList){
+    return API.create(`project/${projectID}/tasks/create`, taskList)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return response.map(task => API.taskModelize(task))
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name updateTaskList
+   * @description POSTs a task list to API, modelizes return
+   * @method updateTaskList
+   * @param  {Number}   projectID  Related project
+   * @param  {Object}    taskList Task list (JSON)
+   * @return {Promise}
+   */
+  static updateTaskList(projectID, taskList){
+    return API.update(`project/${projectID}/tasks/update`, taskList)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return response.map(task => API.taskModelize(task))
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name updateTask
+   * @description POSTs new task properties to API, modelizes return
+   * @method updateTask
+   * @param  {Number}   projectID  Related project
+   * @param  {Number}     taskID  Related task
+   * @param  {Object}    taskList Task props (JSON)
+   * @return {Promise}
+   */
+  static updateTask(projectID, taskID, props){
+    return API.update(`project/${projectID}/task/${taskID}/update`, props)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return API.taskModelize(response)
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
    * @name taskModelize
    * @description Modelizes a database task model
    * @method taskModelize
@@ -251,7 +318,7 @@ export default class API {
    * @return {TaskModel}
    */
   static taskModelize(item){
-    return new TaskModel(item.required, item.title, item.station, item.status)
+    return new TaskModel(item.required, item.title, item.station, item.status, item.id)
   }
 
   /**

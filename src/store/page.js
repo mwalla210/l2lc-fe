@@ -1,6 +1,7 @@
 import { action, useStrict, extendObservable, observable } from 'mobx'
 import Form from '../components/form'
 import Table from '../components/table'
+import DraggableTable from '../components/draggableTable'
 import Analytics from '../components/analytics'
 import TimeEntry from '../components/timeEntry'
 import SummarySelector from './summarySelector'
@@ -208,7 +209,7 @@ class PageStore {
    @action projectTaskList(){
      this.title = 'Project Task List'
      this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList))
-     this.content = Table
+     this.content = DraggableTable
    }
 
    /**
