@@ -1088,36 +1088,47 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get taskFields(){ return [
-    {
-      type: 'textfield',
-      label: 'Task Name',
-      id: 'taskName',
-      required: true,
-      disabled: false,
-      validation: (value, required) => {
-        if (required && value == '')
-          return 'Please enter a value.'
-        else if (value.length > 30)
-          return 'The task name must be less than 30 characters.'
-        return null
+  static get taskFields(){
+    return [
+      {
+        type: 'textfield',
+        label: 'Task Name',
+        id: 'taskName',
+        required: true,
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          else if (value.length > 30)
+            return 'The task name must be less than 30 characters.'
+          return null
+        }
+      },
+      {
+        type: 'select',
+        label: 'Process Area',
+        id: 'processArea',
+        options: this.stationSelect,
+        required: false,
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select a station.'
+          return null
+        }
       }
-    },
-    {
-      type: 'textfield',
-      label: 'Process Area',
-      id: 'processArea',
-      required: true,
-      disabled: false,
-      validation: (value, required) => {
-        if (required && value == '')
-          return 'Please enter a value.'
-        else if (value.length > 30)
-          return 'The process area must be less than 30 characters.'
-        return null
-      }
-    },
-  ]}
+    ]
+  }
+  /**
+   * @name stationSelect
+   * @description List of stations for selecting
+   * @memberof Consts.prototype
+   * @type {String[]}
+   * @readonly
+   */
+  static get stationSelect(){
+    return [{title: 'Select...'}, {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating and Curing'},{title: 'Quality Control and Packaging'}]
+  }
 }
 
 module.exports = Consts

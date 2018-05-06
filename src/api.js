@@ -220,7 +220,28 @@ export default class API {
       return tasks
     })
   }
-
+  /**
+   * @name createTask
+   * @description POSTs a task to API, modelizes return
+   * @method createTask
+   * @param  {Number}   projectID  Related project
+   * @param  {Object}       task Task object (JSON)
+   * @return {Promise}
+   */
+  static createTask(projectID, task){
+    return API.create(`project/${projectID}/task/create`, task)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return API.taskModelize(response)
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
   /**
    * @name taskModelize
    * @description Modelizes a database task model
@@ -230,7 +251,7 @@ export default class API {
    * @return {TaskModel}
    */
   static taskModelize(item){
-    return new TaskModel(item.required, item.title, item.processArea, item.status)
+    return new TaskModel(item.required, item.title, item.station, item.status)
   }
 
   /**

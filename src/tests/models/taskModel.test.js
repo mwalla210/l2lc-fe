@@ -14,6 +14,6 @@ describe('TaskModel', () => {
 
   it('Tests toggle', () => {
     let task = new TaskModel(1,'username',1,false)
-    task.toggle()
+    task.toggleRequired()
   })
 })

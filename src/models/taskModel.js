@@ -27,17 +27,6 @@ export default class TaskModel {
 
   @action toggleRequired() {
     this.required = !this.required
-  }
-
-  /**
-   * @name toggle
-   * @description Calls API to change required status of task in list; updates required
-   * @memberof TaskModel.prototype
-   * @method toggle
-   * @return {Promise}
-   * @mobx action
-   */
-  @action async toggle() {
-     console.log('Update required status for a task via API. Returns boolean success.')
+    // TODO: add API call
   }
 }

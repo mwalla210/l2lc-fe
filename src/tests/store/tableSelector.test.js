@@ -1,4 +1,7 @@
 import TableSelector from '../../store/tableSelector'
+jest.mock('../../models/projectTaskTableModel')
+jest.mock('react-toggle-switch/dist/css/switch.min.css', () => 'CSS')
+import ProjectTaskTableModel from '../../models/projectTaskTableModel'
 jest.mock('../../models/customerTableModel')
 import CustomerTableModel from '../../models/customerTableModel'
 jest.mock('../../models/employeeTableModel')

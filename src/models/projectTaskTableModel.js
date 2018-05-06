@@ -1,11 +1,12 @@
 import React from 'react'
 import { action, useStrict, extendObservable } from 'mobx'
 import TableActionCell from '../components/tableActionCell'
+import Switch from 'react-toggle-switch'
+import 'react-toggle-switch/dist/css/switch.min.css'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
 import API from '../api'
-import Switch from 'react-toggle-switch'
 useStrict(true)
 
 //Rename class and model to projectTaskTableModel
@@ -70,11 +71,19 @@ export default class ProjectTaskTableModel extends TableModel{
             }
           }
         },
-        Cell: row => <Switch clickHandler={row.original.toggleRequired} on={row.original.required}/>
+        Cell: row => {
+          let click = () => {
+            row.original.toggleRequired()
+            this.requiredClickHandler()
+          }
+          return (
+            <Switch onClick={click} on={row.original.required}/>
+          )
+        }
       },
       {
         Header: 'Task Name',
-        accessor: 'taskName',
+        accessor: 'title',
         sortable: false,
       },
       {
@@ -105,6 +114,19 @@ export default class ProjectTaskTableModel extends TableModel{
     ]
   }
 
+  /**
+   * @name requiredClickHandler
+   * @description Resets data list so table updates visually
+   * @method requiredClickHandler
+   * @memberof ProjectTaskTableModel.prototype
+   * @mobx action
+   */
+  @action requiredClickHandler(){
+    let newList = []
+    this.data.forEach(item => newList.push(item))
+    this.data = newList
+  }
+
   clickHandler(row, type){
     if (type == 'info' || type == 'edit' || type == 'delete'){
       Website.setProject(row.original)
@@ -120,7 +142,15 @@ export default class ProjectTaskTableModel extends TableModel{
     }
   }
 
-  // Take item at dragIndex, remove it from list, and insert it at hoverIndex
+  /**
+   * @name move
+   * @description Take item at dragIndex, remove it from list, and insert it at hoverIndex
+   * @method move
+   * @memberof ProjectTaskTableModel.prototype
+   * @param {Number} dragIndex Index dragging from
+   * @param {Number} hoverIndex Index dragging to
+   * @mobx action
+   */
   @action move(dragIndex, hoverIndex){
     // At dragIndex, remove 1 item
     let row = this.data.splice(dragIndex, 1)
