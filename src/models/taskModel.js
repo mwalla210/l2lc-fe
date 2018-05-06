@@ -1,4 +1,6 @@
 import { action, useStrict, extendObservable } from 'mobx'
+import Website from '../store/website'
+import API from '../api'
 import autoBind from 'auto-bind'
 useStrict(true)
 
@@ -12,28 +14,24 @@ useStrict(true)
  * @property {String} [status=''] Current task status [observable]
  */
 export default class TaskModel {
-  constructor(title, processArea) {
+  constructor(required, title, processArea, status, id) {
     let addtlProps = {
-      required: false,
+      required,
       processArea,
       title, // changeable?
-      status: '',
+      status,
     }
     extendObservable(this, addtlProps)
+    this.id = id
     autoBind(this)
   }
 
   // Actions
 
-  /**
-   * @name toggle
-   * @description Calls API to change required status of task in list; updates required
-   * @memberof TaskModel.prototype
-   * @method toggle
-   * @return {Promise}
-   * @mobx action
-   */
-  @action async toggle() {
-     console.log('Update required status for a task via API. Returns boolean success.')
+  @action toggleRequired() {
+    this.required = !this.required
+    API.updateTask(Website.currentProject.id, this.id, JSON.stringify({
+      required: this.required
+    }))
   }
 }

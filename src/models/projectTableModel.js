@@ -7,7 +7,6 @@ import TableActionCell from '../components/tableActionCell'
 import ProjectStatusFilter from '../components/projectStatusFilter'
 import ProjectStatusCell from '../components/projectStatusCell'
 import API from '../api'
-import Consts from '../consts'
 useStrict(true)
 
 /**
@@ -31,16 +30,6 @@ export default class ProjectTableModel extends TableModel{
         title: 'Delete Project?',
         confirmOnClick: deleteClickNav,
         content: 'This action cannot be undone.'
-      },
-      (state, rowInfo) => {
-        if (rowInfo && rowInfo.row._original.priority != 'Low'){
-          return {
-            style: {
-              background: rowInfo.row._original.priority == 'High' ? Consts.highPriority : Consts.medPriority
-            }
-          }
-        }
-        return {}
       }
     )
     let addtlProps = {
@@ -79,20 +68,8 @@ export default class ProjectTableModel extends TableModel{
         filterable: true
       },
       {
-        Header: 'Time Spent',
-        accessor: 'timeSpent',
-        filterable: true
-      },
-      {
-        Header: 'Finished',
-        id: 'dateFinished',
-        accessor: d => {
-          if (d.dateFinished)
-            return d.dateFinished.toString()
-          else {
-            return ''
-          }
-        },
+        Header: 'Priority',
+        accessor: 'priority',
         filterable: true
       },
       {
@@ -122,7 +99,7 @@ export default class ProjectTableModel extends TableModel{
             }
           }
         },
-        Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
+        Cell: row => <TableActionCell row={row} set={(Website.currentUser.admin) ? 'Full' : 'Restricted'} clickHandler={this.clickHandler} disabledChange={row.original.status == 'Completed'}/>
       }
     ]
   }

@@ -1,13 +1,10 @@
 import React from 'react'
-import { useStrict, action } from 'mobx'
+import { useStrict } from 'mobx'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
-import Website from '../store/website'
-import TableActionCell from '../components/tableActionCell'
-import ButtonDefault from '../components/buttonDefault'
 import API from '../api'
 import Switch from 'react-toggle-switch'
-import '../../node_modules/react-toggle-switch/dist/css/switch.min.css'
+import 'react-toggle-switch/dist/css/switch.min.css'
 useStrict(true)
 
 /**

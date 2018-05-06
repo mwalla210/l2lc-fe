@@ -28,7 +28,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Email Address',
-      id: 'emailAddress',
+      id: 'email',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -45,7 +45,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Phone Number',
-      id: 'phoneNumber',
+      id: 'phone',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -59,7 +59,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Website',
-      id: 'websiteLink',
+      id: 'website',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -76,7 +76,7 @@ class Consts {
     {
       type: 'select',
       label: 'Country',
-      id: 'country',
+      id: 'shipCountry',
       options: this.countrySelect,
       required: true,
       disabled: false,
@@ -89,13 +89,13 @@ class Consts {
         if (value == 'United States of America'){
           return [
             {
-              id: 'state',
+              id: 'shipState',
               options: this.stateSelect,
               required: true,
               disabled: false
             },
             {
-              id: 'zipCode',
+              id: 'shipZip',
               required: true,
               disabled: false
             }
@@ -103,13 +103,13 @@ class Consts {
         }
         return [
           {
-            id: 'state',
+            id: 'shipState',
             options: [{title: 'Not Applicable'}],
             required: false,
             disabled: true
           },
           {
-            id: 'zipCode',
+            id: 'shipZip',
             required: false,
             disabled: false
           }
@@ -119,7 +119,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Address Line 1',
-      id: 'addressLine1',
+      id: 'shipAddr1',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -133,7 +133,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Address Line 2',
-      id: 'addressLine2',
+      id: 'shipAddr2',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -147,7 +147,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'City',
-      id: 'city',
+      id: 'shipCity',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -161,7 +161,7 @@ class Consts {
     {
       type: 'select',
       label: 'State',
-      id: 'state',
+      id: 'shipState',
       options: this.stateSelect,
       required: true,
       disabled: false,
@@ -174,7 +174,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Zip Code',
-      id: 'zipCode',
+      id: 'shipZip',
       required: true,
       disabled: false,
       validation: (value, required) => {
@@ -188,74 +188,80 @@ class Consts {
     {
       type: 'checkbox',
       label: 'Billing address same as shipping',
-      id: 'enableShippingAddress',
+      id: 'billIsSame',
       required: false,
       validation: null,
-      onUpdate: (value) => {
+      onUpdate: (value, fields) => {
         if (value){
           return [
             {
-              id: 'billingCountry',
-              required: false,
-              disabled: true
+              id: 'billCountry',
+              disabled: true,
+              required: false
             },
             {
-              id: 'billingAddressLine1',
-              required: false,
-              disabled: true
+              id: 'billAddr1',
+              disabled: true,
+              required: false
             },
             {
-              id: 'billingAddressLine2',
-              required: false,
-              disabled: true
+              id: 'billAddr2',
+              disabled: true,
+              required: false
             },
             {
-              id: 'billingCity',
-              required: false,
-              disabled: true
+              id: 'billCity',
+              disabled: true,
+              required: false
             },
             {
-              id: 'billingState',
-              required: false,
-              disabled: true
+              id: 'billState',
+              disabled: true,
+              required: false
             },
             {
-              id: 'billingZipCode',
-              required: false,
-              disabled: true
+              id: 'billZip',
+              disabled: true,
+              required: false
             },
           ]
         }
+        let stateShow = false
+        let zipRequired = false
+        if (fields.find(obj => obj.id == 'billCountry').value == 'United States of America'){
+          stateShow = true
+          zipRequired = true
+        }
         return [
           {
-            id: 'billingCountry',
-            required: true,
-            disabled: false
+            id: 'billCountry',
+            disabled: false,
+            required: true
           },
           {
-            id: 'billingAddressLine1',
-            required: true,
-            disabled: false
+            id: 'billAddr1',
+            disabled: false,
+            required: true
           },
           {
-            id: 'billingAddressLine2',
-            required: false,
-            disabled: false
+            id: 'billAddr2',
+            disabled: false,
+            required: false
           },
           {
-            id: 'billingCity',
-            required: true,
-            disabled: false
+            id: 'billCity',
+            disabled: false,
+            required: true
           },
           {
-            id: 'billingState',
-            required: true,
-            disabled: false
+            id: 'billState',
+            disabled: !stateShow,
+            required: stateShow
           },
           {
-            id: 'billingZipCode',
-            required: true,
-            disabled: false
+            id: 'billZip',
+            disabled: false,
+            required: zipRequired
           },
         ]
       }
@@ -263,7 +269,7 @@ class Consts {
     {
       type: 'select',
       label: 'Country',
-      id: 'billingCountry',
+      id: 'billCountry',
       options: this.countrySelect,
       required: false,
       disabled: false,
@@ -276,28 +282,28 @@ class Consts {
         if (value == 'United States of America'){
           return [
             {
-              id: 'billingAddressLine1',
+              id: 'billAddr1',
               required: true,
               disabled: false
             },
             {
-              id: 'billingAddressLine2',
+              id: 'billAddr2',
               required: false,
               disabled: false
             },
             {
-              id: 'billingCity',
+              id: 'billCity',
               required: true,
               diabled: false
             },
             {
-              id: 'billingState',
+              id: 'billState',
               options: this.stateSelect,
               required: true,
               disabled: false
             },
             {
-              id: 'billingZipCode',
+              id: 'billZip',
               required: true,
               disabled: false
             }
@@ -305,28 +311,28 @@ class Consts {
         }
         return [
           {
-            id: 'billingAddressLine1',
+            id: 'billAddr1',
             required: true,
             disabled: false
           },
           {
-            id: 'billingAddressLine2',
+            id: 'billAddr2',
             required: false,
             disabled: false
           },
           {
-            id: 'billingCity',
+            id: 'billCity',
             required: true,
             diabled: false
           },
           {
-            id: 'billingState',
+            id: 'billState',
             options: [{title: 'Not Applicable'}],
             required: false,
             disabled: true
           },
           {
-            id: 'billingZipCode',
+            id: 'billZip',
             required: false,
             disabled: false
           }
@@ -336,7 +342,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Address Line 1',
-      id: 'billingAddressLine1',
+      id: 'billAddr1',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -350,7 +356,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Address Line 2',
-      id: 'billingAddressLine2',
+      id: 'billAddr2',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -364,7 +370,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'City',
-      id: 'billingCity',
+      id: 'billCity',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -378,7 +384,7 @@ class Consts {
     {
       type: 'select',
       label: 'State',
-      id: 'billingState',
+      id: 'billState',
       options: this.stateSelect,
       required: false,
       disabled: false,
@@ -391,7 +397,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Zip Code',
-      id: 'billingZipCode',
+      id: 'billZip',
       required: false,
       disabled: false,
       validation: (value, required) => {
@@ -414,7 +420,7 @@ class Consts {
     {
       type: 'select',
       label: 'Cost Center',
-      id: 'costCenter',
+      id: 'costCenterTitle',
       options: this.costCenterSelect,
       required: true,
       disabled: false,
@@ -427,7 +433,7 @@ class Consts {
         if (value == 'APC'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.apcProjectSelect,
               required: true,
               disabled: false
@@ -438,7 +444,7 @@ class Consts {
               disabled: false
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: false,
               disabled: false
             },
@@ -448,12 +454,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -462,7 +468,7 @@ class Consts {
         else if (value == 'Decorative'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.decorativeProjectSelect,
               required: true,
               disabled: false
@@ -473,7 +479,7 @@ class Consts {
               disabled: false
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -483,12 +489,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -497,7 +503,7 @@ class Consts {
         else if (value == 'Maintenance'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.maintenanceProjectSelect,
               required: true,
               disabled: false
@@ -508,7 +514,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -518,12 +524,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -532,7 +538,7 @@ class Consts {
         else if (value == 'Administration'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.adminProjectSelect,
               required: true,
               disabled: false
@@ -543,7 +549,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -553,12 +559,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -567,7 +573,7 @@ class Consts {
         else if (value == 'Research and Development'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.rdProjectSelect,
               required: true,
               disabled: false
@@ -578,7 +584,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -588,12 +594,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -602,7 +608,7 @@ class Consts {
         else if (value == 'Military'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.militaryProjectSelect,
               required: true,
               disabled: false
@@ -610,10 +616,10 @@ class Consts {
             {
               id: 'partCount',
               required: false,
-              disabled: true
+              disabled: false
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -623,12 +629,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -637,7 +643,7 @@ class Consts {
         else if (value == 'Production'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.productionProjectSelect,
               required: true,
               disabled: false
@@ -648,7 +654,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -658,12 +664,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -672,7 +678,7 @@ class Consts {
         else if (value == 'Other'){
           return [
             {
-              id: 'projectType',
+              id: 'jobTypeTitle',
               options: this.otherProjectSelect,
               required: true,
               disabled: false
@@ -683,7 +689,7 @@ class Consts {
               disabled: true
             },
             {
-              id: 'projectTitle',
+              id: 'title',
               required: true,
               disabled: false
             },
@@ -693,12 +699,12 @@ class Consts {
               disabled: false
             },
             {
-              id: 'description',
+              id: 'descr',
               required: false,
               disabled: false
             },
             {
-              id: 'referenceNumber',
+              id: 'refNum',
               required: false,
               disabled: false
             }
@@ -706,7 +712,7 @@ class Consts {
         }
         return [
           {
-            id: 'projectType',
+            id: 'jobTypeTitle',
             options: [],
             required: true,
             disabled: true
@@ -717,7 +723,7 @@ class Consts {
             disabled: true
           },
           {
-            id: 'projectTitle',
+            id: 'title',
             required: true,
             disabled: true
           },
@@ -727,12 +733,12 @@ class Consts {
             disabled: true
           },
           {
-            id: 'description',
+            id: 'descr',
             required: false,
             disabled: true
           },
           {
-            id: 'referenceNumber',
+            id: 'refNum',
             required: false,
             disabled: true
           }
@@ -742,7 +748,7 @@ class Consts {
     {
       type: 'select',
       label: 'Project Type',
-      id: 'projectType',
+      id: 'jobTypeTitle',
       options: [],
       required: true,
       disabled: true,
@@ -755,7 +761,7 @@ class Consts {
         if (value == 'Piston' || value == 'Turbo' || value == 'Rotor' || value == 'Pump'){
           return [
             {
-              id: 'projectTitle',
+              id: 'title',
               required: false,
               disabled: false
             }
@@ -763,7 +769,7 @@ class Consts {
         }
         return [
           {
-            id: 'projectTitle',
+            id: 'title',
             required: true,
             disabled: false
           }
@@ -780,7 +786,7 @@ class Consts {
         if (required && value == '')
           return 'Please enter a value.'
         let reg = /^\d+$/
-        if (reg.test(value.trim()) == false)
+        if (value.length > 0 && reg.test(value.trim()) == false)
           return 'Please enter a valid number.'
         else if (value.length > 4)
           return 'The part count number must be less than 4 characters.'
@@ -790,7 +796,7 @@ class Consts {
     {
       type: 'textfield',
       label: 'Project Title',
-      id: 'projectTitle',
+      id: 'title',
       required: false,
       disabled: true,
       validation: (value, required) => {
@@ -805,7 +811,7 @@ class Consts {
       type: 'select',
       label: 'Priority',
       id: 'priority',
-      options: [{title: 'Select...'}, {title: 'Low'}, {title: 'High'}],
+      options: [{title: 'Select...'}, {title: '1-2 Days'}, {title: '3 Days'}, {title: '4-5 Days'}, {title: '10 Days'}],
       required: true,
       disabled: true,
       validation: (value, required) => {
@@ -817,7 +823,7 @@ class Consts {
     {
       type: 'textarea',
       label: 'Description',
-      id: 'description',
+      id: 'descr',
       required: false,
       disabled: true,
       validation: (value, required) => {
@@ -830,15 +836,15 @@ class Consts {
     },
     {
       type: 'textfield',
-      label: 'Reference Number',
-      id: 'referenceNumber',
+      label: 'Job/Work Order Number',
+      id: 'refNum',
       required: false,
       disabled: true,
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
         else if (value.length > 30)
-          return 'The reference number must be less than 30 characters.'
+          return 'The order number must be less than 30 characters.'
         return null
       }
     },
@@ -932,13 +938,6 @@ class Consts {
   static get timeEntryFields(){ return [
     {
       type: 'textfield',
-      label: 'Station ID',
-      id: 'stationID',
-      required: false,
-      disabled: true,
-    },
-    {
-      type: 'textfield',
       label: 'Project ID',
       id: 'projectID',
       required: true,
@@ -949,6 +948,8 @@ class Consts {
           return 'The project ID must be less than 15 characters.'
         if (!value.startsWith('P'))
           return 'Project IDs must begin with the letter "P".'
+        if (value.length < 2)
+          return 'Project IDs must contain at least one number.'
         return null
       },
     },
@@ -964,6 +965,8 @@ class Consts {
           return 'The employee ID must be less than 15 characters.'
         if (!value.startsWith('E'))
           return 'Employee IDs must begin with the letter "E".'
+        if (value.length < 2)
+          return 'Employee IDs must contain at least one number.'
         return null
       }
     }
@@ -1089,22 +1092,6 @@ class Consts {
    */
   static get openColor() {return '#57d500'}
   /**
-   * @name highPriority
-   * @description Color to highlight high priority projects
-   * @memberof Consts.prototype
-   * @type {String}
-   * @readonly
-   */
-  static get highPriority() {return '#f4ba61'}
-  /**
-   * @name medPriority
-   * @description Color to highlight high priority projects
-   * @memberof Consts.prototype
-   * @type {String}
-   * @readonly
-   */
-  static get medPriority() {return '#f4e261'}
-  /**
    * @name summaryProps
    * @description Summary page box properties for style and visuals
    * @memberof Consts.prototype
@@ -1121,6 +1108,54 @@ class Consts {
       },
       className: 'col-3'
     }
+  }
+  /**
+   * @name customerFields
+   * @description List of customer form fields
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get taskFields(){
+    return [
+      {
+        type: 'textfield',
+        label: 'Task Name',
+        id: 'taskName',
+        required: true,
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please enter a value.'
+          else if (value.length > 30)
+            return 'The task name must be less than 30 characters.'
+          return null
+        }
+      },
+      {
+        type: 'select',
+        label: 'Process Area',
+        id: 'processArea',
+        options: this.stationSelect,
+        required: false,
+        disabled: false,
+        validation: (value, required) => {
+          if (required && value == '')
+            return 'Please select a station.'
+          return null
+        }
+      }
+    ]
+  }
+  /**
+   * @name stationSelect
+   * @description List of stations for selecting
+   * @memberof Consts.prototype
+   * @type {String[]}
+   * @readonly
+   */
+  static get stationSelect(){
+    return [{title: 'Select...'}, {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating and Curing'},{title: 'Quality Control and Packaging'}]
   }
 }
 

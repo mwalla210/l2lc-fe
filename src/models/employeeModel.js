@@ -27,19 +27,6 @@ export default class EmployeeModel {
   }
 
   /**
-  * @name changeName
-  * @description Changes Employee's name
-  * @memberof EmployeeModel.prototype
-  * @method changeName
-  * @return {Boolean}
-  * @mobx action
-  */
-  @action changeName(){
-    // TODO: changes Employee's name
-    return true
-  }
-
-  /**
   * @name activate
   * @description Activates an active Employee
   * @memberof EmployeeModel.prototype

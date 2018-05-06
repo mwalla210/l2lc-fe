@@ -105,7 +105,7 @@ export default class FormModel {
    */
   @action resetValues(){
     this.fields.forEach(field => {
-      this.resetValue(field.id)
+      this.resetValueID(field.id)
     })
   }
   /**
@@ -188,6 +188,7 @@ export default class FormModel {
    * @mobx action
    */
   @action modifyFieldValue(index, value){
+    let priorVal = value
     // If we have special field modification checks (time entry)
     if (this.onChange){
       // Will return null if no changes to be made
@@ -201,13 +202,15 @@ export default class FormModel {
         value = value.replace(/\W/g, '')
       }
     }
+    this.fields[index].isValid = true
     // Update field with value
     this.fields[index].value = value
     // If we need to update the field properties due to a change
     if (this.fields[index].onUpdate){
-      let updates = this.fields[index].onUpdate(this.fields[index].value)
+      let updates = this.fields[index].onUpdate(this.fields[index].value, this.fields)
       updates.forEach(update => {
         let fieldIndex = this.fields.findIndex(field => {return field.id == update.id})
+        /* istanbul ignore else */
         if(update.hasOwnProperty('required')){
           this.fields[fieldIndex].required = update.required
         }
@@ -220,6 +223,21 @@ export default class FormModel {
       })
     }
     // If we need to auto submit the form
+    if (this.autoSubmit && priorVal && priorVal.includes('%')){
+      this.autoSubmitter()
+    }
+  }
+  /**
+   * @name autoSubmitter
+   * @description Auto submit function for forms
+   * @memberof FormModel.prototype
+   * @method autoSubmitter
+   */
+  autoSubmitter(){
+    this.fields.forEach((item, index) => {
+      if (item.value.trim() != '')
+        this.fieldValidatorWrapper(index)
+    })
     if(!this.buttonDisabled && this.autoSubmit){
       this.primaryButtonWrapper()
     }
@@ -233,6 +251,7 @@ export default class FormModel {
    * @mobx action
    */
    @action fieldValidatorWrapper(index){
+     /* istanbul ignore else */
     if (this.fields[index].validation){
       let invalid = this.fields[index].validation(this.fields[index].value.trim(), this.fields[index].required)
       if (!invalid){

@@ -55,12 +55,14 @@ export default class CustomerSummary extends Component {
                 <DropdownItem onClick={this.props.page.customerProjectsPage}>Projects</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
-            <ButtonDropdown isOpen={this.props.website.summaryActionsDropdownOpen} toggle={this.props.website.toggleSummaryActionsDD}>
-              <DropdownToggle color="primary" caret>Actions</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem onClick={this.props.page.customerEditPage}>Edit</DropdownItem>
-              </DropdownMenu>
-            </ButtonDropdown>
+            {this.props.website.currentUser.admin &&
+              <ButtonDropdown isOpen={this.props.website.summaryActionsDropdownOpen} toggle={this.props.website.toggleSummaryActionsDD}>
+                <DropdownToggle color="primary" caret>Actions</DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem onClick={this.props.page.customerEditPage}>Edit</DropdownItem>
+                </DropdownMenu>
+              </ButtonDropdown>
+            }
           </ButtonGroup>
         </div>
       </div>

@@ -1,9 +1,13 @@
 import { action, useStrict, extendObservable, observable } from 'mobx'
 import Form from '../components/form'
 import Table from '../components/table'
+import DraggableTable from '../components/draggableTable'
+import Analytics from '../components/analytics'
+import TimeEntry from '../components/timeEntry'
 import SummarySelector from './summarySelector'
 import FormSelector from './formSelector'
 import TableSelector from './tableSelector'
+import AnalyticsSelector from './analyticsSelector'
 import Website from './website'
 import autoBind from 'auto-bind'
 useStrict(true)
@@ -17,6 +21,7 @@ useStrict(true)
  * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
  * @property {?FormModel} [formModel=null] Page form model, if any [observable]
  * @property {?SummaryModel} [summaryModel=null] Page summary model, if any [observable]
+ * @property {?AnalyticsModel} [analyticsModel=null] Page analytics model, if any [observable]
  */
 class PageStore {
   constructor() {
@@ -26,6 +31,7 @@ class PageStore {
       tableModel: null,
       formModel: null,
       summaryModel: null,
+      analyticsModel: null
     }
     extendObservable(this, addtlProps)
     autoBind(this)
@@ -63,6 +69,20 @@ class PageStore {
    * @mobx action
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
+  /**
+ * @name setAnalyticsModel
+ * @description Sets analytics model
+ * @method setAnalyticsModel
+ * @memberof PageStore.prototype
+ * @param  {AnalyticsModel}      analyticsModel AnalyticsModel to use for page
+ * @mobx action
+ */
+  @action setAnalyticsModel(analyticsList){
+    this.analyticsModel = observable(analyticsList)
+    analyticsList.forEach(analyticsModel => {
+      analyticsModel.model.dataFetch()
+    })
+  }
 
   // Page Changes - Create Projects
 
@@ -143,7 +163,6 @@ class PageStore {
   @action currentProjectNewCustomerPage(){
     this.title = 'New Customer for Project'
     let func = () => {
-      console.log('send update to API with currentProject, currentCustomer.id', Website.currentProject, Website.currentCustomer.id)
       let body = {
         customer: {id: Website.currentCustomer.id}
       }
@@ -169,12 +188,41 @@ class PageStore {
     this.title = 'Project Summary'
     let completeFunc = () => {
       Website.updateProjectStatus(Website.currentProject.id, 'Completed')
-      .then(() => this.projectsMenuItem())
+      .then(() => {
+        Website.currentProject.finish()
+        this.projectSummaryPage()
+      })
     }
     let summaryObject = SummarySelector.getProject(this.projectDeleteFn,completeFunc)
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)
   }
+
+  /**
+   * @name projectTaskList
+   * @description Updates title, form, table, content, and buttons for Project task list.
+   * @memberof PageStore.prototype
+   * @method projectTaskList
+   * @mobx action
+   */
+   @action projectTaskList(){
+     this.title = 'Project Task List'
+     this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList))
+     this.content = DraggableTable
+   }
+
+   /**
+    * @name newProjectTaskPage
+    * @description Updates title, form, table, content, and buttons for new Project Task page.
+    * @memberof PageStore.prototype
+    * @method newProjectTaskPage
+    * @mobx action
+    */
+   @action newProjectTaskPage(){
+     this.title = 'New Task'
+     this.setFormModel(FormSelector.getTask(this.projectTaskList, this.projectTaskList))
+     this.content = Form
+   }
 
   /**
    * @name projectDeleteFn
@@ -227,7 +275,7 @@ class PageStore {
   @action projectTimeEntryMenuItem(){
     this.title = 'Time Entry'
     this.setFormModel(FormSelector.getTimeEntry())
-    this.content = Form
+    this.content = TimeEntry
   }
 
   // Page Changes - Customers
@@ -300,51 +348,16 @@ class PageStore {
   // Page Changes - Analytics
 
   /**
-   * @name emplProductivityMenuItem
-   * @description Updates title, form, table, content, and buttons for Employee Productivity page.
+   * @name analyticsMenuItem
+   * @description Updates title, form, table, content, and buttons for analytics page.
    * @memberof PageStore.prototype
-   * @method emplProductivityMenuItem
+   * @method analyticsMenuItem
    * @mobx action
    */
-  @action emplProductivityMenuItem(){
-    this.title = 'Employee Productivity [Q3]'
-    this.content = null
-  }
-
-  /**
-   * @name workstationTrackingMenuItem
-   * @description Updates title, form, table, content, and buttons for Workstation Tracking page.
-   * @memberof PageStore.prototype
-   * @method workstationTrackingMenuItem
-   * @mobx action
-   */
-  @action workstationTrackingMenuItem(){
-    this.title = 'Workstation Tracking [Q3]'
-    this.content = null
-  }
-
-  /**
-   * @name jobTypeProductivityMenuItem
-   * @description Updates title, form, table, content, and buttons for Job Type Productivity page.
-   * @memberof PageStore.prototype
-   * @method jobTypeProductivityMenuItem
-   * @mobx action
-   */
-  @action jobTypeProductivityMenuItem(){
-    this.title = 'Job Type Productivity [Q3]'
-    this.content = null
-  }
-
-  /**
-   * @name costCenterTimeMenuItem
-   * @description Updates title, form, table, content, and buttons for Cost Center Time page.
-   * @memberof PageStore.prototype
-   * @method costCenterTimeMenuItem
-   * @mobx action
-   */
-  @action costCenterTimeMenuItem(){
-    this.title = 'Cost Center Time [Q3]'
-    this.content = null
+  @action analyticsMenuItem(){
+    this.title = 'Analytics Dashboard'
+    this.setAnalyticsModel(AnalyticsSelector.getAll())
+    this.content = Analytics
   }
 
   // Page Changes - Admin
@@ -356,51 +369,51 @@ class PageStore {
    * @method employeeInformationMenuItem
    * @mobx action
    */
-   @action employeeInformationMenuItem(){
-     this.title = 'Employee Information'
-     this.setTableModel(TableSelector.getEmployee(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage))
-     this.content = Table
-   }
+  @action employeeInformationMenuItem(){
+    this.title = 'Employee Information'
+    this.setTableModel(TableSelector.getEmployee(this.newEmployeePage, this.employeeSummaryPage, this.employeeEditPage))
+    this.content = Table
+  }
 
-   /**
-    * @name newEmployeePage
-    * @description Updates title, form, table, content, and buttons for New Employee page.
-    * @memberof PageStore.prototype
-    * @method newEmployeePage
-    * @mobx action
-    */
-   @action newEmployeePage(){
-     this.title = 'New Employee'
-     this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
-     this.content = Form
-   }
+  /**
+   * @name newEmployeePage
+   * @description Updates title, form, table, content, and buttons for New Employee page.
+   * @memberof PageStore.prototype
+   * @method newEmployeePage
+   * @mobx action
+  */
+  @action newEmployeePage(){
+    this.title = 'New Employee'
+    this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
+    this.content = Form
+  }
 
-   /**
-    * @name employeeEditPage
-    * @description Allows changing of information for Employee Information page entries.
-    * @memberof PageStore.prototype
-    * @method employeeEditPage
-    * @mobx action
-    */
-   @action employeeEditPage(){
-     this.title = 'Edit Employee'
-     this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
-     this.content = Form
-   }
+  /**
+   * @name employeeEditPage
+   * @description Allows changing of information for Employee Information page entries.
+   * @memberof PageStore.prototype
+   * @method employeeEditPage
+   * @mobx action
+   */
+  @action employeeEditPage(){
+    this.title = 'Edit Employee'
+    this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
+    this.content = Form
+  }
 
-   /**
-    * @name employeeSummaryPage
-    * @description Displays information about selected employee from Employee Information page entries.
-    * @memberof PageStore.prototype
-    * @method employeeSummaryPage
-    * @mobx action
-    */
-   @action employeeSummaryPage(){
-     this.title = 'Employee Summary'
-     let summaryObject = SummarySelector.getEmployee()
-     this.content = summaryObject.component
-     this.setSummaryModel(summaryObject.model)
-   }
+  /**
+   * @name employeeSummaryPage
+   * @description Displays information about selected employee from Employee Information page entries.
+   * @memberof PageStore.prototype
+   * @method employeeSummaryPage
+   * @mobx action
+   */
+  @action employeeSummaryPage(){
+    this.title = 'Employee Summary'
+    let summaryObject = SummarySelector.getEmployee()
+    this.content = summaryObject.component
+    this.setSummaryModel(summaryObject.model)
+  }
 
 
    /**

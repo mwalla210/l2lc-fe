@@ -4,6 +4,7 @@ import EmployeeTableModel from '../models/employeeTableModel'
 import AccountTableModel from '../models/accountTableModel'
 import TimeEntryTableModel from '../models/timeEntryTableModel'
 import ProjectTableModel from '../models/projectTableModel'
+import ProjectTaskTableModel from '../models/projectTaskTableModel'
 import autoBind from 'auto-bind'
 
 /**
@@ -123,6 +124,19 @@ class TableSelector {
     getTimeEntries(buttonClickNav){
       return new TimeEntryTableModel(buttonClickNav)
     }
+    /**
+    * @name getTasks
+    * @description Provides a ProjectTableModel set for selecting
+    * @method getTasks
+    * @param  {Function}          infoClickNav   Row info icon click function
+    * @param  {Function}          editClickNav   Row edit icon click function
+    * @param  {Function}          deleteClickNav   Row delete icon click function
+    * @return {projectTaskModel}
+    * @memberof TableSelector.prototype
+    */
+   getTasks(buttonClickNav, deleteClickNav){
+     return new ProjectTaskTableModel(buttonClickNav, deleteClickNav)
+   }
 
 }
 
