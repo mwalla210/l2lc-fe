@@ -1,11 +1,10 @@
 import React from 'react'
-import { useStrict, action } from 'mobx'
+import { useStrict } from 'mobx'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
-import Website from '../store/website'
-import TableActionCell from '../components/tableActionCell'
-import ButtonDefault from '../components/buttonDefault'
 import API from '../api'
+import Switch from 'react-toggle-switch'
+import 'react-toggle-switch/dist/css/switch.min.css'
 useStrict(true)
 
 /**
@@ -38,13 +37,14 @@ export default class AccountTableModel extends TableModel{
       },
       {
         Header: 'Username',
-        accessor: 'userName',
+        accessor: 'username',
         filterable: true
       },
       {
-        Header: 'Actions',
+        Header: 'Admin',
+        //accessor: 'admin',
         sortable: false,
-        maxWidth: 80,
+        maxWidth: 100,
         getProps: () => {
           return {
             className: 'center',
@@ -54,8 +54,9 @@ export default class AccountTableModel extends TableModel{
             }
           }
         },
-        Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
-      }
+        id: 'admin',
+        Cell: row => <div style={{paddingTop: '7px'}}><Switch onClick={row.original.toggleAdmin} on={row.original.admin}/></div>
+      },
     ]
   }
 
@@ -68,14 +69,8 @@ export default class AccountTableModel extends TableModel{
    * @memberof AccountTableModel.prototype
    */
   clickHandler(row, type){
-    if (type == 'info' || type == 'edit'){
-      Website.setUser(row.original)
-      if (type == 'info'){
-        this.infoClickNav()
-      }
-      else{
-        this.editClickNav()
-      }
+    if (type == 'edit'){
+      this.editClickNav()
     }
   }
 }

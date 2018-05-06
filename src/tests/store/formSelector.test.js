@@ -1,4 +1,6 @@
 import FormSelector from '../../store/formSelector'
+jest.mock('react-table/react-table.css', () => 'CSS')
+jest.mock('react-toggle-switch/dist/css/switch.min.css', () => 'CSS')
 jest.mock('../../models/customerFormModel')
 import CustomerFormModel from '../../models/customerFormModel'
 jest.mock('../../models/employeeFormModel')

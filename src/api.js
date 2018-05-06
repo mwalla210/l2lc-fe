@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import TimeEntryModel from './models/timeEntryModel'
 import ProjectModel from './models/projectModel'
 import CustomerModel from './models/customerModel'
 import EmployeeModel from './models/employeeModel'
@@ -151,6 +152,32 @@ export default class API {
       else {
         return `Unexpected error ${response}`
       }
+    })
+  }
+  /**
+   * @name fetchCustomerProjects
+   * @description Fetches all projects and modelizes
+   * @method fetchCustomerProjects
+   * @memberof API
+   * @return {Promise}
+   * @async
+   */
+  static fetchCustomerProjects(id){
+    return fetch(`${api}project?limit=50&offset=0&customerId=${id}`)
+    .then(res => res.json())
+    .then(json => {
+      let projects = []
+      json.items.forEach(item => {
+        if (item.projectStatus != 'Dropped')
+          projects.push(item)
+      })
+      projects = projects.map(item => {
+        if (item.customer)
+          item.customer.companyName = item.customer.name
+        let project = API.projectModelize(item)
+        return project
+      })
+      return projects
     })
   }
 
@@ -320,7 +347,6 @@ export default class API {
   static taskModelize(item){
     return new TaskModel(item.required, item.title, item.station, item.status, item.id)
   }
-
   /**
    * @name createProject
    * @description Creates a project and modelizes
@@ -396,6 +422,47 @@ export default class API {
       return true
     })
   }
+
+
+    /**
+     * @name fetchTimeEntries
+     * @description Fetches all time entries
+     * @method fetchTimeEntries
+     * @memberof API
+     * @return {Promise}
+     * @async
+     */
+    static fetchTimeEntries(id){
+      return fetch(`${api}project/${id}/time-entry`)
+      .then(res => res.json())
+      .then(json => {
+        let entries = []
+        // For each returned json object...
+        json.forEach(item => {
+          let entry = API.timeEntryModelize(item)
+          // Add to list
+          entries.push(entry)
+        })
+        // Return list of models, not json
+        return entries
+      })
+    }
+
+    /**
+     * @name timeEntryModelize
+     * @description Modelizes a database time entry
+     * @method timeEntryModelize
+     * @memberof API
+     * @param  {Object}         item time entry database object
+     * @return {CustomerModel}
+     */
+    static timeEntryModelize(item){
+      // Construct model
+      let dateItem = new Date(item.created)
+      let date = dateItem.toString()
+      let timeEntry = new TimeEntryModel(item.id, item.projectId, item.employeeId, item.station, date )
+      return timeEntry
+    }
 
   // Employees
 
@@ -476,6 +543,66 @@ export default class API {
 
   // Users
 
+  /**
+   * @name createAccount
+   * @description Creates an account and modelizes
+   * @method createAccount
+   * @memberof API
+   * @param  {Object}       account Account object (JSON)
+   * @return {Promise}
+   */
+  static createAccount(account){
+    return API.create('user/create', account)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
+        return API.userModelize(response)
+      } else {
+        return 'Unexpected error'
+      }
+    })
+  }
+  /**
+   * @name fetchAccounts
+   * @description Fetches all accounts and modelizes
+   * @method fetchAccounts
+   * @memberof API
+   * @return {Promise}
+   */
+  static fetchAccounts(){
+    return fetch(`${api}user?limit=50&offset=0`)
+    .then(res => res.json())
+    .then(json => {
+      console.log(json)
+      let accounts = []
+      json.items.forEach(item => {
+        accounts.push(API.userModelize(item))
+      })
+      console.log(accounts)
+      return accounts
+    })
+  }
+  /**
+   * @name updateUserAdmin
+   * @description POSTs to endpoint with body provided, then returns
+   * @method updateUserAdmin
+   * @memberof API
+   * @param  {Integer} id      USer ID
+   * @param  {JSON} bool       boolean for POST
+   * @return {Promise}
+   */
+  static updateUserAdmin(id, body){
+    return fetch(`${api}user/${id}/update`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => {
+      console.log(res.status)
+      return true
+    })
+  }
   /**
    * @name userModelize
    * @description Modelizes a database user model

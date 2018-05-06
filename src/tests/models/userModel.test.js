@@ -1,35 +1,32 @@
 import UserModel from '../../models/userModel'
 
-
 jest.mock('../../api', () => {
-  return {}
+  return {
+    updateUserAdmin: jest.fn()
+  }
 })
-
+jest.mock('../../store/page', () => {
+  return {
+    accountManagementMenuItem: jest.fn(),
+  }
+})
 
 describe('UserModel', () => {
   it('Tests constructor', () => {
-    let user = new UserModel(1,'username',1,false)
-    expect(user).toHaveProperty('id')
-  })
-
-  it('Tests constructor with admin', () => {
-    let user = new UserModel(1,'username',1,true)
-    expect(user).toHaveProperty('id')
-  })
-
-  it('Tests constructor with no admin', () => {
     let user = new UserModel(1,'username',1)
-    expect(user).toHaveProperty('id')
+    expect(user).toHaveProperty('admin')
+  })
+
+  it('Tests constructor with alternate arguements', () => {
+    let user = new UserModel(1,'username',1,true)
+    expect(user).toHaveProperty('admin')
   })
 
   it('Tests toggleAdmin', () => {
-    let user = new UserModel(1,'username',1,false)
+    let user = new UserModel(1,'username',1,true)
+    expect(user.admin).toBe(true)
     user.toggleAdmin()
-  })
-
-  it('Tests changePassword', () => {
-    let user = new UserModel(1,'username',1,false)
-    user.changePassword('newPassword')
+    expect(user.admin).toBe(false)
   })
 
 })

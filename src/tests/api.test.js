@@ -1,4 +1,6 @@
 import API from '../api'
+jest.mock('react-table/react-table.css', () => 'CSS')
+jest.mock('react-toggle-switch/dist/css/switch.min.css', () => 'CSS')
 import CustomerModel from '../models/customerModel'
 import ProjectModel from '../models/projectModel'
 import EmployeeModel from '../models/employeeModel'

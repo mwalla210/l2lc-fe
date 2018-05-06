@@ -73,6 +73,11 @@ jest.mock('../../store/tableSelector', () => {
         dataFetch: jest.fn()
       }
     },
+    getAccount: () => {
+      return {
+        dataFetch: jest.fn()
+      }
+    },
   }
 })
 jest.mock('../../store/analyticsSelector', () => {
@@ -231,7 +236,8 @@ describe('PageStore', () => {
   })
   it('Tests accountManagementMenuItem', () => {
     PageStore.accountManagementMenuItem()
-    expect(PageStore.title).toBe('Account Management [Q3]')
-    expect(PageStore.content).toBeNull()
+    expect(PageStore.title).toBe('Account Management')
+    expect(typeof PageStore.content).toBe('function')
+    expect(toJS(PageStore.tableModel)).toHaveProperty('dataFetch')
   })
 })

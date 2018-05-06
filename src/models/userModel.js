@@ -1,5 +1,7 @@
 import { action, useStrict, extendObservable } from 'mobx'
 import autoBind from 'auto-bind'
+import API from '../api'
+import PageStore from '../store/page'
 useStrict(true)
 
 /**
@@ -16,8 +18,11 @@ export default class UserModel {
     let addtlProps = {
       username, // changeable?
       stationID, // changeable?
-      admin
+      admin,
       // may need token or other form of login item for authorization
+      //Optional
+      editUsername: '',
+      editPassword: ''
     }
     extendObservable(this, addtlProps)
     this.id = id
@@ -35,19 +40,12 @@ export default class UserModel {
    * @mobx action
    */
   @action toggleAdmin() {
-    console.log(`Update admin status for ${this.username} via API. Returns boolean success.`)
+    let body = {admin: !this.admin}
+    let jsonBody = JSON.stringify(body)
+    this.admin = !this.admin
+    API.updateUserAdmin(this.id, jsonBody)
+    PageStore.accountManagementMenuItem()
+    PageStore.accountManagementMenuItem()    //weird but works dont judge me
   }
 
-  /**
-   * @name changePassword
-   * @description Calls API to change the password for the username
-   * @memberof UserModel.prototype
-   * @method changePassword
-   * @param  {String} newPassword New password
-   * @return {Promise}
-   * @mobx action
-   */
-  @action changePassword(newPassword) {
-    console.log(`Updated password for ${this.username}.`)
-  }
  }

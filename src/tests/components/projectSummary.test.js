@@ -31,6 +31,7 @@ const defaultOptions = {
     },
     projectEditPage: jest.fn(),
     changeCustomerPage: jest.fn(),
+    projectTimeEntryPage: jest.fn(),
   },
   website: {
     currentProject: {
