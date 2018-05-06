@@ -82,6 +82,7 @@ export default class AnalyticsModel {
       // Filter unProcessedData by date, then process
       let newData = {}
       Object.keys(this.unProcessedData).forEach(key => {
+        // If subset is array
         try {
           newData[key] = []
           this.unProcessedData[key].forEach(entry => {
@@ -89,6 +90,7 @@ export default class AnalyticsModel {
               newData[key].push(entry)
           })
         }
+        // If subset is object
         catch (error) {
           newData[key] = {}
           if (this.unProcessedData[key].time > date)
