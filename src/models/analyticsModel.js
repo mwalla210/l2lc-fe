@@ -10,8 +10,11 @@ useStrict(true)
  * @property {String} [currentFilter=null] Filter title (if any filters for model) [observable]
  * @property {String} [component] Component type for model [observable]
  * @property {Object[]} [filters] Filter list for model, if any
- * @property {Boolean} [loading] Loading indicator
- * @property {Object} originalData Original set of data returned from fetch
+ * @property {Boolean} [loading] Loading indicator [observable]
+ * @property {?Object} [originalData=null] Original set of processed data returned from fetch
+ * @property {?String[]} [category=null] Set of categories data is split by
+ * @property {?Object} [unProcessedData=null] Unprocessed data structure (year's worth)
+ * @property {?Function} [processor=null] Processor function
  */
 export default class AnalyticsModel {
   constructor(filters, component){
@@ -20,27 +23,85 @@ export default class AnalyticsModel {
       currentFilter: filters ? filters[0].type : null,
       component: filters ? filters[0].component : component,
       yLabel: filters ? filters[0].yLabel : null,
-      loading: true
+      loading: true,
+      currentTimeFrame: 'Year'
     }
     extendObservable(this, addtlProps)
     // Non-observable
     this.filters = filters
     this.originalData = null
+    this.unProcessedData = null
+    this.category = null
+    this.processor = null
     autoBind(this)
   }
 
   /**
    * @name setData
-   * @description Sets fetchFn
-   * @param {Function} func Function to set
+   * @description Sets category, processor, unProcessedData
+   * @param {Function} processor Processor function for data
+   * @param {String[]} category String list of category names for processing
+   * @param {Object} unProcessedData Data object for processing (year's worth)
    * @memberof AnalyticsModel.prototype
    * @method setData
    * @mobx action
    */
-  @action setData(data){
-    this.data = data
+  @action setData(processor, category, unProcessedData){
+    this.category = category
+    this.processor = processor
+    this.unProcessedData = unProcessedData
+    this.processData(this.unProcessedData)
+  }
+
+  /**
+   * @name processData
+   * @description Sets data by calling processor
+   * @method processData
+   * @param  {Object}    data Data object for processing
+   * @memberof AnalyticsModel.prototype
+   * @method setData
+   * @mobx action
+   */
+  @action processData(data){
+    this.data = {
+      labels: this.category,
+      datasets: this.processor(this.category, data)
+    }
     this.originalData = Object.assign({},this.data)
     this.loading = false
+  }
+  /**
+   * @name timeFilterData
+   * @description Sets data by calling processor
+   * @method timeFilterData
+   * @param  {?Date}       [date] Date object to be "limit", if any (no date: full year)
+   * @memberof AnalyticsModel.prototype
+   */
+  @action timeFilterData(date, filterName){
+    if (date){
+      // Filter unProcessedData by date, then process
+      let newData = {}
+      Object.keys(this.unProcessedData).forEach(key => {
+        try {
+          newData[key] = []
+          this.unProcessedData[key].forEach(entry => {
+            if (entry.time > date)
+              newData[key].push(entry)
+          })
+        }
+        catch (error) {
+          newData[key] = {}
+          if (this.unProcessedData[key].time > date)
+            newData[key] = this.unProcessedData[key]
+        }
+      })
+      this.processData(newData)
+      this.currentTimeFrame = filterName
+    }
+    else{
+      this.processData(this.unProcessedData)
+      this.currentTimeFrame = 'Year'
+    }
   }
   /**
    * @name jsData

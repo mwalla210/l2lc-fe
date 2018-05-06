@@ -28,141 +28,172 @@ class AnalyticsSelector {
     ]
     API.fetchTimeEntries()
     .then(res => {
-      // Following has structure:
-      // Keys are employee names, values are list of objects with costCenter, station, time
-      let employeeEntries = {}
-      // Following has structure:
-      // Keys are project IDs, value is object with costCenter, jobType, partCount, date (time)
-      let projects = {}
-      // List of string station names
-      let stations = []
-      // List of string cost center names
-      let costCenters = []
-      // List of string cost center and job type names
-      let costCenterJobTypes = []
-      // List of string APC job type names
-      let apcJobTypes = []
-      // Fill structures
-      res.forEach(timeEntry => {
-        let dateTime = new Date(timeEntry.time)
-        if (timeEntry.employeeName){
-          let obj = {
-            costCenter: timeEntry.costCenter,
-            station: timeEntry.station,
-            time: dateTime,
-            projectId: timeEntry.projectId
-          }
-          // If employee has pre-started list, push
-          if (employeeEntries.hasOwnProperty(timeEntry.employeeName)){
-            employeeEntries[timeEntry.employeeName].push(obj)
-          }
-          // Else start list for employee
-          else{
-            employeeEntries[timeEntry.employeeName] = [obj]
-          }
-        }
-        let cCJT = `${timeEntry.costCenter} - ${timeEntry.jobType}`
-        // Use first occurrence for projects
-        if (!projects.hasOwnProperty(timeEntry.projectId)){
-          projects[timeEntry.projectId] = {
-            costCenter: timeEntry.costCenter,
-            jobType: timeEntry.jobType,
-            partCount: timeEntry.partCount,
-            date: dateTime,
-            costCenterJobType: cCJT
-          }
-        }
-        if (!stations.includes(timeEntry.station))
-          stations.push(timeEntry.station)
-        if (!costCenters.includes(timeEntry.costCenter))
-          costCenters.push(timeEntry.costCenter)
-        if (!costCenterJobTypes.includes(cCJT))
-          costCenterJobTypes.push(cCJT)
-        if (timeEntry.costCenter == 'APC' && !apcJobTypes.includes(timeEntry.jobType))
-          apcJobTypes.push(timeEntry.jobType)
-      })
+      let {employeeEntries, projects, stations, costCenters, costCenterJobTypes, apcJobTypes, months} = this.processEntries(res)
+
+      // TODO: instead of pre-processing all analytic datasets, give models original datasets & function to process, so they can filter original datasets by time-frame and then reapply processing function?
+      // Week, month, three month, year
 
       // Time spent, by employee, by station
-      analytics[0].model.setData({
-        labels: stations,
-        datasets: this.mapTimeByCategory(employeeEntries, stations, 'station')
-      })
+      analytics[0].model.setData(
+        (stations, employeeEntries) => this.mapTimeByCategory(employeeEntries, stations, 'station'),
+        stations,
+        employeeEntries
+      )
 
       // Time spent, by employee, by cost center
-      analytics[1].model.setData({
-        labels: costCenters,
-        datasets: this.mapTimeByCategory(employeeEntries, costCenters, 'costCenter')
-      })
+      analytics[1].model.setData(
+        (costCenters, employeeEntries) => this.mapTimeByCategory(employeeEntries, costCenters, 'costCenter'),
+        costCenters,
+        employeeEntries
+      )
 
       // Projects, by cost center and job type (if cost center and job type match and only one job type for cost center, abbreviate)
-      let projectsByCostCenterJobType = []
-      costCenterJobTypes.forEach(combination => {
-        let count = 0
-        Object.keys(projects).forEach(key => {
-          if (projects[key].costCenterJobType == combination)
-            count++
-        })
-        projectsByCostCenterJobType.push(count)
-      })
-      analytics[2].model.setData({
-        labels: costCenterJobTypes,
-        datasets: [
-          {
-            data: projectsByCostCenterJobType,
-            backgroundColor: Consts.pieColors,
-            hoverBackgroundColor: Consts.pieColors
-          }
-        ]
-      })
+      analytics[2].model.setData(
+        (costCenterJobTypes, projects) => this.projectsByCCJT(costCenterJobTypes, projects),
+        costCenterJobTypes,
+        projects
+      )
       // APC project parts, by job type
-      let apcProjectPartsByJobType = []
-      apcJobTypes.forEach(type => {
-        let count = 0
-        Object.keys(projects).forEach(key => {
-          if (projects[key].costCenter == 'APC' && projects[key].jobType == type)
-            count+=projects[key].partCount
-        })
-        apcProjectPartsByJobType.push(count)
-      })
-      analytics[3].model.setData({
-        labels: apcJobTypes,
-        datasets: [
-          {
-            data: apcProjectPartsByJobType,
-            backgroundColor: Consts.pieColors,
-            hoverBackgroundColor: Consts.pieColors
-          }
-        ]
-      })
+
+      analytics[3].model.setData(
+        (apcJobTypes, projects) => this.partsByAPCJT(apcJobTypes, projects),
+        apcJobTypes,
+        projects
+      )
       // Projects, by month
-      let months = {}
-      Object.keys(projects).forEach(key => {
-        let month = projects[key].date.toLocaleString('en-us', {month: 'long'})
-        if (!months.hasOwnProperty(month))
-          months[month] = 1
-        else {
-          months[month] = months[month]+1
-        }
-      })
-      let data = []
-      let monthStr = []
-      Object.keys(months).forEach(key => {
-        data.push(months[key])
-        monthStr.push(key)
-      })
-      // [50,20,15,10,5,10,10,20,10,10,10,10]
-      analytics[4].model.setData({
-        labels: monthStr,
-        datasets: [
-          {
-            data,
-            backgroundColor: Consts.pieColors,
-            hoverBackgroundColor: Consts.pieColors
-          }
-        ]
-      })
+      analytics[4].model.setData(
+        (months, projects) => this.projectsByMonth(months, projects),
+        months,
+        projects
+      )
     })
     return analytics
+  }
+
+  projectsByMonth(months, projects){
+    let datasets = []
+    let data = []
+    months.forEach(month => {
+      let count = 0
+      Object.keys(projects).forEach(key => {
+        if (projects[key].time.toLocaleString('en-us', {month: 'long'}) == month)
+          count++
+      })
+      data.push(count)
+    })
+    datasets.push({
+      data,
+      backgroundColor: Consts.pieColors,
+      hoverBackgroundColor: Consts.pieColors
+    })
+    return datasets
+  }
+
+  projectsByCCJT(costCenterJobTypes, projects){
+    let datasets = []
+    let data = []
+    costCenterJobTypes.forEach(combination => {
+      let count = 0
+      Object.keys(projects).forEach(key => {
+        if (projects[key].costCenterJobType == combination)
+          count++
+      })
+      data.push(count)
+    })
+    datasets.push({
+      data,
+      backgroundColor: Consts.pieColors,
+      hoverBackgroundColor: Consts.pieColors
+    })
+    return datasets
+  }
+
+  partsByAPCJT(apcJobTypes,projects){
+    let datasets = []
+    let data = []
+    apcJobTypes.forEach(type => {
+      let count = 0
+      Object.keys(projects).forEach(key => {
+        if (projects[key].costCenter == 'APC' && projects[key].jobType == type)
+          count+=projects[key].partCount
+      })
+      data.push(count)
+    })
+    datasets.push({
+      data,
+      backgroundColor: Consts.pieColors,
+      hoverBackgroundColor: Consts.pieColors
+    })
+    return datasets
+  }
+
+  /**
+   * @name processEntries
+   * @description Maps category names to empty arrays in an object
+   * @method processEntries
+   * @param  {Object[]}       entries Time entries from API
+   * @return {Object}
+   * @memberof AnalyticsSelector.prototype
+   */
+  processEntries(entries){
+    // Following has structure:
+    // Keys are employee names, values are list of objects with costCenter, station, time
+    let employeeEntries = {}
+    // Following has structure:
+    // Keys are project IDs, value is object with costCenter, jobType, partCount, date (time)
+    let projects = {}
+    // List of string station names
+    let stations = []
+    // List of string cost center names
+    let costCenters = []
+    // List of string cost center and job type names
+    let costCenterJobTypes = []
+    // List of string APC job type names
+    let apcJobTypes = []
+    let months = []
+    // Fill structures
+    entries.forEach(timeEntry => {
+      let dateTime = new Date(timeEntry.time)
+      if (timeEntry.employeeName){
+        let obj = {
+          costCenter: timeEntry.costCenter,
+          station: timeEntry.station,
+          time: dateTime,
+          projectId: timeEntry.projectId
+        }
+        // If employee has pre-started list, push
+        if (employeeEntries.hasOwnProperty(timeEntry.employeeName)){
+          employeeEntries[timeEntry.employeeName].push(obj)
+        }
+        // Else start list for employee
+        else{
+          employeeEntries[timeEntry.employeeName] = [obj]
+        }
+      }
+      let cCJT = `${timeEntry.costCenter} - ${timeEntry.jobType}`
+      // Use first occurrence for projects
+      if (!projects.hasOwnProperty(timeEntry.projectId)){
+        projects[timeEntry.projectId] = {
+          costCenter: timeEntry.costCenter,
+          jobType: timeEntry.jobType,
+          partCount: timeEntry.partCount,
+          time: dateTime,
+          costCenterJobType: cCJT
+        }
+        let month = dateTime.toLocaleString('en-us', {month: 'long'})
+        if (!months.includes(month))
+          months.push(month)
+      }
+      if (!stations.includes(timeEntry.station))
+        stations.push(timeEntry.station)
+      if (!costCenters.includes(timeEntry.costCenter))
+        costCenters.push(timeEntry.costCenter)
+      if (!costCenterJobTypes.includes(cCJT))
+        costCenterJobTypes.push(cCJT)
+      if (timeEntry.costCenter == 'APC' && !apcJobTypes.includes(timeEntry.jobType))
+        apcJobTypes.push(timeEntry.jobType)
+    })
+    return {employeeEntries, projects, stations, costCenters, costCenterJobTypes, apcJobTypes, months}
   }
 
   /**
