@@ -13,12 +13,12 @@ jest.mock('../../store/page', () => {
 
 describe('UserModel', () => {
   it('Tests constructor', () => {
-    let user = new UserModel(1,'username',1,true)
+    let user = new UserModel(1,'username',1)
     expect(user).toHaveProperty('admin')
   })
 
   it('Tests constructor with alternate arguements', () => {
-    let user = new UserModel(1,'username',1,false)
+    let user = new UserModel(1,'username',1,true)
     expect(user).toHaveProperty('admin')
   })
 
