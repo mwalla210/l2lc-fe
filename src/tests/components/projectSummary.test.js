@@ -36,7 +36,7 @@ const defaultOptions = {
     currentProject: {
       title: 'title',
       status: 'Completed',
-      priority: 'Low',
+      priority: '1-2 Days',
       costCenterTitle: 'CC',
       jobTypeTitle: 'JT',
       customer: {
@@ -51,7 +51,9 @@ const defaultOptions = {
       barcodeScanID: 'barcodeScanID',
       hold: {
         flag: false
-      }
+      },
+      dateCreated: 'dateCreated',
+      dateFinished: 'dateFinished'
     },
     currentUser: {
       admin: true
@@ -64,7 +66,7 @@ const defaultOptions = {
 }
 
 describe('ProjectSummary', () => {
-  it ('Renders with snapshot (website.currentProject: priority Low, status Completed, hold.flag false)', () => {
+  it ('Renders with snapshot (website.currentProject: priority 1-2 Days, status Completed, hold.flag false)', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
       <ProjectSummary {...options}/>,
@@ -72,9 +74,9 @@ describe('ProjectSummary', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it ('Renders with snapshot (website.currentProject: priority High, status On Hold, hold.flag true)', () => {
+  it ('Renders with snapshot (website.currentProject: priority 3 Days, status On Hold, hold.flag true)', () => {
     let options = Object.assign({}, defaultOptions)
-    options.website.currentProject.priority = 'High'
+    options.website.currentProject.priority = '3 Days'
     options.website.currentProject.status = 'On Hold'
     options.website.currentProject.hold.flag = true
     const component = renderer.create(
@@ -83,8 +85,9 @@ describe('ProjectSummary', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it ('Renders with snapshot (website.currentProject: priority Low, status (!Completed, !On Hold), hold.flag false)', () => {
+  it ('Renders with snapshot (website.currentProject: priority 4-5 Days, status (!Completed, !On Hold), hold.flag false)', () => {
     let options = Object.assign({}, defaultOptions)
+    options.website.currentProject.priority = '4-5 Days'
     options.website.currentProject.status = 'Received'
     const component = renderer.create(
       <ProjectSummary {...options}/>,
