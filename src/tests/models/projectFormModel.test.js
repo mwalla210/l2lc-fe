@@ -1,4 +1,5 @@
 import ProjectFormModel from '../../models/projectFormModel'
+import {toJS} from 'mobx'
 
 jest.mock('../../store/website', () => {
   return {
@@ -11,7 +12,7 @@ jest.mock('../../store/website', () => {
       title: 'title',
       descr: 'descr',
       priority: 'priority',
-      partCount: 'partCount',
+      partCount: null,
     }
   }
 })

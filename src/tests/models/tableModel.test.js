@@ -25,7 +25,6 @@ describe('TableModel', () => {
     expect(project).toHaveProperty('styling')
   })
 
-
   it('Tests closeModal', () => {
     let project = new TableModel({},jest.fn(),[{}],{
       title: 'Delete Project?',

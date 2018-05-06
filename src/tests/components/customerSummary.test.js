@@ -24,6 +24,9 @@ const defaultOptions = {
       formattedShipAddress: 'formattedShipAddress',
       formattedBillAddress: 'formattedBillAddress'
     },
+    currentUser: {
+      admin: true
+    },
     summaryMoreDropdownOpen: false,
     toggleSummaryMoreDD: jest.fn(),
     summaryActionsDropdownOpen: false,
