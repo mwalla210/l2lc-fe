@@ -211,6 +211,19 @@ class PageStore {
      this.content = DraggableTable
    }
 
+  /**
+   * @name projectTimeEntryPage
+   * @description Updates title, form, table, content, and buttons for project time entry table page.
+   * @memberof PageStore.prototype
+   * @method projectTimeEntryPage
+   * @mobx action
+   */
+  @action projectTimeEntryPage(){
+    this.title = 'Project Time Entries'
+    this.setTableModel(TableSelector.getTimeEntries(this.projectSummaryPage))
+    this.content = Table
+  }
+
    /**
     * @name newProjectTaskPage
     * @description Updates title, form, table, content, and buttons for new Project Task page.
@@ -415,58 +428,44 @@ class PageStore {
     this.setSummaryModel(summaryObject.model)
   }
 
+  /**
+   * @name accountManagementMenuItem
+   * @description Updates title, form, table, content, and buttons for Account Management page.
+   * @memberof PageStore.prototype
+   * @method accountManagementMenuItem
+   * @mobx action
+   */
+  @action accountManagementMenuItem(){
+    this.title = 'Account Management'
+    this.setTableModel(TableSelector.getAccount(this.newAccountPage, this.accountEditPage))
+    this.content = Table
+  }
 
-   /**
-    * @name accountManagementMenuItem
-    * @description Updates title, form, table, content, and buttons for Account Management page.
-    * @memberof PageStore.prototype
-    * @method accountManagementMenuItem
-    * @mobx action
-    */
-   @action accountManagementMenuItem(){
-     this.title = 'Account Management'
-     this.setTableModel(TableSelector.getAccount(this.newAccountPage, this.accountEditPage))
-     this.content = Table
-   }
+  /**
+   * @name newAccountPage
+   * @description Updates title, form, table, content, and buttons for New Account page.
+   * @memberof PageStore.prototype
+   * @method newAccountPage
+   * @mobx action
+   */
+  @action newAccountPage(){
+    this.title = 'New Account'
+    this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem,this.accountManagementMenuItem))
+    this.content = Form
+  }
 
-   /**
-    * @name newAccountPage
-    * @description Updates title, form, table, content, and buttons for New Account page.
-    * @memberof PageStore.prototype
-    * @method newAccountPage
-    * @mobx action
-    */
-   @action newAccountPage(){
-     this.title = 'New Account'
-     this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem,this.accountManagementMenuItem))
-     this.content = Form
-   }
-
-   /**
-    * @name accountEditPage
-    * @description Allows changing of information for Account Management page entries.
-    * @memberof PageStore.prototype
-    * @method accountEditPage
-    * @mobx action
-    */
-   @action accountEditPage(){
-     this.title = 'Edit Account'
-     this.setFormModel(FormSelector.getEditAccount(this.accountManagementMenuItem))
-     this.content = Form
-   }
-
-   /**
-    * @name projectTimeEntryPage
-    * @description Updates title, form, table, content, and buttons for project time entry table page.
-    * @memberof PageStore.prototype
-    * @method projectTimeEntryPage
-    * @mobx action
-    */
-   @action projectTimeEntryPage(){
-     this.title = 'Project Time Entries'
-     this.setTableModel(TableSelector.getTimeEntries(this.projectSummaryPage))
-     this.content = Table
-   }
+  /**
+   * @name accountEditPage
+   * @description Allows changing of information for Account Management page entries.
+   * @memberof PageStore.prototype
+   * @method accountEditPage
+   * @mobx action
+   */
+  @action accountEditPage(){
+    this.title = 'Edit Account'
+    this.setFormModel(FormSelector.getEditAccount(this.accountManagementMenuItem))
+    this.content = Form
+  }
 
 }
 
