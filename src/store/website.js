@@ -1,4 +1,4 @@
-import { action, useStrict, extendObservable, computed } from 'mobx'
+import { action, useStrict, extendObservable, computed, toJS } from 'mobx'
 import API from '../api'
 import autoBind from 'auto-bind'
 useStrict(true)
@@ -100,6 +100,14 @@ class Website {
    */
   @action setUser(user){
     this.currentUser = user
+    // eslint-disable-next-line no-undef
+    sessionStorage.setItem('username', user.username)
+    // eslint-disable-next-line no-undef
+    sessionStorage.setItem('admin', user.admin)
+    // eslint-disable-next-line no-undef
+    sessionStorage.setItem('stationID', user.stationID)
+    // eslint-disable-next-line no-undef
+    sessionStorage.setItem('id', user.id)
   }
 
   // Creation
