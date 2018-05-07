@@ -192,8 +192,8 @@ describe('Website', () => {
   it('Tests login success', async function() {
     await Website.login(() => {})
     expect(Website.currentUser).toBe('login')
-    expect(Website.username).toBe('')
-    expect(Website.password).toBe('')
+    expect(Website.username).toBe('username')
+    expect(Website.password).toBe('password')
     expect(Website.loginerror).toBe(false)
   })
   it('Tests login failure', async function() {
