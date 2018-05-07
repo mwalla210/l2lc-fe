@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TableActionCell Renders with set Delete 1`] = `
+<span>
+  <span />
+</span>
+`;
+
 exports[`TableActionCell Renders with set Full 1`] = `
 <span>
   <span />

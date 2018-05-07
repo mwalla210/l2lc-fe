@@ -28,6 +28,9 @@ jest.mock('../../api', () => {
     login: jest.fn()
       .mockReturnValueOnce(Promise.resolve('login'))
       .mockReturnValueOnce(Promise.resolve(null)),
+    createAccount: jest.fn()
+      .mockReturnValueOnce(Promise.resolve('createAccount'))
+      .mockReturnValueOnce(Promise.resolve({})),
   }
 })
 
@@ -199,5 +202,18 @@ describe('Website', () => {
   it('Tests login failure', async function() {
     await Website.login(() => {})
     expect(Website.loginerror).toBe(true)
+  })
+  it('Tests createAccount (with string response)', () => {
+    expect.assertions(1)
+    Website.createAccount(1, {}).then(response => {
+      expect(response).toBe('createAccount')
+    })
+  })
+  it('Tests createAccount (with object response)', () => {
+    expect.assertions(2)
+    Website.createAccount(1, {}).then(response => {
+      expect(response).toBeNull()
+      expect(Object.keys(Website.currentProject)).toHaveLength(0)
+    })
   })
 })

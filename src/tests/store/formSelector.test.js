@@ -9,6 +9,10 @@ jest.mock('../../models/projectFormModel')
 import ProjectFormModel from '../../models/projectFormModel'
 jest.mock('../../models/timeEntryFormModel')
 import TimeEntryFormModel from '../../models/timeEntryFormModel'
+jest.mock('../../models/accountFormModel')
+import AccountFormModel from '../../models/accountFormModel'
+jest.mock('../../models/projectTaskFormModel')
+import ProjectTaskFormModel from '../../models/projectTaskFormModel'
 
 describe('FormSelector', () => {
   it('Tests getNewCustomer', () => {
@@ -41,5 +45,18 @@ describe('FormSelector', () => {
   it('Tests getTimeEntry', () => {
     let model = FormSelector.getTimeEntry()
     expect(model).toBeInstanceOf(TimeEntryFormModel)
+  })
+  it('Tests getTask', () => {
+    let model = FormSelector.getTask()
+    expect(model).toBeInstanceOf(ProjectTaskFormModel)
+  })
+  it('Tests getAccount', () => {
+    let model = FormSelector.getAccount()
+    expect(model).toBeInstanceOf(AccountFormModel)
+  })
+  it('Tests getEditAccount', () => {
+    let model = FormSelector.getEditAccount()
+    expect(model).toBeInstanceOf(AccountFormModel)
+    expect(model.setEdit).toHaveBeenCalled()
   })
 })

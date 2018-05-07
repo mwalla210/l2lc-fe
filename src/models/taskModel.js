@@ -14,7 +14,7 @@ useStrict(true)
  * @property {String} [status=''] Current task status [observable]
  */
 export default class TaskModel {
-  constructor(required, title, processArea, status, id) {
+  constructor(required, title, processArea, id) {
     let addtlProps = {
       required,
       processArea,
@@ -36,11 +36,10 @@ export default class TaskModel {
 
   @computed get status(){
     let count = 0
-    console.log(Website.currentProject.timeEntries.slice())
     Website.currentProject.timeEntries.forEach(entry => {
       if (entry.station == this.processArea)
         count++
     })
-    return (count == 0) ? 'Not Started' : (count%2 == 0) ? 'At Station' : 'Not At Station'
+    return (count == 0) ? 'Not Started' : (count%2 == 0) ? 'Not At Station' : 'At Station'
   }
 }

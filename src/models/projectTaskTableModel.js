@@ -127,11 +127,9 @@ export default class ProjectTaskTableModel extends TableModel{
    * @param  {String}     type Circle button type
    * @memberof ProjectTaskTableModel.prototype
    */
-  clickHandler(row, type){
-    if (type == 'delete'){
-      this.currentTask = row.original
-      this.openModal()
-    }
+  clickHandler(row){
+    this.currentTask = row.original
+    this.openModal()
   }
 
   /**

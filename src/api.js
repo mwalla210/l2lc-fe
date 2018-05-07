@@ -340,12 +340,11 @@ export default class API {
     })
   }
   /**
-   * @name updateTask
+   * @name dropTask
    * @description POSTs new task properties to API, modelizes return
-   * @method updateTask
+   * @method dropTask
    * @param  {Number}   projectID  Related project
-   * @param  {Number}     taskID  Related task
-   * @param  {Object}    taskList Task props (JSON)
+   * @param  {Object}    body Object with task ID for dropping (JSON)
    * @return {Promise}
    */
   static dropTask(projectID, body){
@@ -359,7 +358,7 @@ export default class API {
         return null
       }
       else {
-        return `Unexpected error ${response}`
+        return `Unexpected error ${response.status}`
       }
     })
   }
@@ -372,7 +371,7 @@ export default class API {
    * @return {TaskModel}
    */
   static taskModelize(item){
-    return new TaskModel(item.required, item.title, item.station, item.status, item.id)
+    return new TaskModel(item.required, item.title, item.station, item.id)
   }
   /**
    * @name createProject
@@ -583,7 +582,7 @@ export default class API {
       } else if(typeof(response) != 'number'){
         return API.userModelize(response)
       } else {
-        return 'Unexpected error'
+        return `Unexpected error ${response}`
       }
     })
   }
@@ -598,12 +597,10 @@ export default class API {
     return fetch(`${api}user?limit=50&offset=0`)
     .then(res => res.json())
     .then(json => {
-      console.log(json)
       let accounts = []
       json.items.forEach(item => {
         accounts.push(API.userModelize(item))
       })
-      console.log(accounts)
       return accounts
     })
   }
@@ -622,8 +619,7 @@ export default class API {
       body,
       headers: { 'Content-Type': 'application/json' }
     })
-    .then(res => {
-      console.log(res.status)
+    .then(() => {
       return true
     })
   }

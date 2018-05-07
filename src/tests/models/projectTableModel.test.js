@@ -1,5 +1,8 @@
 import ProjectTableModel from '../../models/projectTableModel'
 import renderer from 'react-test-renderer'
+jest.mock('../../components/tableActionCell')
+jest.mock('../../components/projectStatusCell')
+jest.mock('../../components/projectStatusFilter')
 
 jest.mock('../../api', () => {
   return {

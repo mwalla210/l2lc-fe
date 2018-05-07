@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import classnames from 'classnames'
-
+/* istanbul ignore next */
 const rowSource = {
   beginDrag(props) {
     return {
@@ -12,7 +12,7 @@ const rowSource = {
     }
   },
 }
-
+/* istanbul ignore next */
 const rowTarget = {
   hover(props, monitor, component) {
     const dragIndex = monitor.getItem().index
@@ -61,10 +61,10 @@ const rowTarget = {
   },
 }
 
-@DropTarget('row', rowTarget, connect => ({
+@DropTarget('row', rowTarget, /* istanbul ignore next */ connect => ({
   connectDropTarget: connect.dropTarget(),
 }))
-@DragSource('row', rowSource, (connect, monitor) => ({
+@DragSource('row', rowSource, /* istanbul ignore next */ (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging(),
 }))
