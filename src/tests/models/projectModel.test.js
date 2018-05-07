@@ -2,7 +2,8 @@ import ProjectModel from '../../models/projectModel'
 
 jest.mock('../../api', () => {
   return {
-    fetchProjects: jest.fn()
+    fetchProjects: jest.fn(),
+    fetchTimeEntries: jest.fn().mockReturnValue(Promise.resolve('res')),
   }
 })
 jest.mock('../../store/website', () => {
@@ -33,6 +34,11 @@ describe('ProjectModel', () => {
     expect(project.status).toEqual('Completed')
   })
 
+  it('Tests getTimeEntries', () => {
+    let project = new ProjectModel(1,'costCenterTitle','jobTypeTitle','title','priority','status',Date,1,'desc',1,{},Date)
+    project.getTimeEntries()
+  })
+
   it('Tests get customerID', () => {
     let project = new ProjectModel()
     project.customer = null
@@ -42,8 +48,10 @@ describe('ProjectModel', () => {
 
   it('Tests get timeSpent', () => {
     let project = new ProjectModel()
-    project.timeEntries[0] = 1525123365596
-    project.timeEntries[1] = 1525123374645
+    project.timeEntries[0] = 0
+    project.timeEntries[1] = 420000
+    project.timeEntries[2] = 820000
+    project.timeEntries[3] = 196400000
     project.timeSpent
   })
 
@@ -51,6 +59,10 @@ describe('ProjectModel', () => {
     let project = new ProjectModel()
     project.timeEntries[0] = 3600000
     project.timeEntries[1] = 7260000
+    project.timeEntries[0] = 1525123365596
+    project.timeEntries[1] = 2525123974645
+    project.timeEntries[2] = 3525323365596
+    project.timeEntries[3] = 4525523974645
     project.timeSpent
   })
 

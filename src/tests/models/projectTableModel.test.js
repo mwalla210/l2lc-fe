@@ -23,6 +23,7 @@ describe('ProjectTableModel', () => {
   it('Tests constructor', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(project).toHaveProperty('columns')
+    expect(project.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toEqual(expect.stringContaining('Dec'))
     expect(project.columns[3].accessor({customer: {companyName: 'companyName'}})).toBe('companyName')
     expect(project.columns[6].filterMethod({value:{length: 0}},[]))
     expect(project.columns[6].filterMethod({value:{length: 9, includes: jest.fn()}},[]))
