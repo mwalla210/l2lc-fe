@@ -17,8 +17,8 @@ describe('ProjectModel', () => {
     expect(project).toHaveProperty('id')
   })
 
-  it('Tests constructor with no arguements', () => {
-    let project = new ProjectModel()
+  it('Tests constructor with no arguments', () => {
+    new ProjectModel()
   })
 
   it('Tests changeCustomer', () => {
@@ -54,7 +54,7 @@ describe('ProjectModel', () => {
     project.timeSpent
   })
 
-  it('Tests get timeSpent with alternate arguements', () => {
+  it('Tests get timeSpent with alternate arguments', () => {
     let project = new ProjectModel()
     project.timeEntries[0] = 1525123365596
     project.timeEntries[1] = 2525123974645
@@ -63,16 +63,4 @@ describe('ProjectModel', () => {
     project.timeSpent
   })
 
-  it('Tests toggleTask', () => {
-    let project = new ProjectModel()
-    project.toggleTask()
-  })
-  it('Tests addTask', () => {
-    let project = new ProjectModel()
-      project.addTask()
-  })
-  it('Tests removeTask', () => {
-    let project = new ProjectModel()
-      project.removeTask()
-  })
 })

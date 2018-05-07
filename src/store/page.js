@@ -196,6 +196,7 @@ class PageStore {
     let summaryObject = SummarySelector.getProject(this.projectDeleteFn,completeFunc)
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)
+    Website.currentProject.getTimeEntries()
   }
 
   /**
@@ -205,11 +206,11 @@ class PageStore {
    * @method projectTaskList
    * @mobx action
    */
-   @action projectTaskList(){
-     this.title = 'Project Task List'
-     this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList))
-     this.content = DraggableTable
-   }
+  @action projectTaskList(){
+    this.title = 'Project Task List'
+    this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList))
+    this.content = DraggableTable
+  }
 
   /**
    * @name projectTimeEntryPage
@@ -224,18 +225,18 @@ class PageStore {
     this.content = Table
   }
 
-   /**
-    * @name newProjectTaskPage
-    * @description Updates title, form, table, content, and buttons for new Project Task page.
-    * @memberof PageStore.prototype
-    * @method newProjectTaskPage
-    * @mobx action
-    */
-   @action newProjectTaskPage(){
-     this.title = 'New Task'
-     this.setFormModel(FormSelector.getTask(this.projectTaskList, this.projectTaskList))
-     this.content = Form
-   }
+  /**
+   * @name newProjectTaskPage
+   * @description Updates title, form, table, content, and buttons for new Project Task page.
+   * @memberof PageStore.prototype
+   * @method newProjectTaskPage
+   * @mobx action
+   */
+  @action newProjectTaskPage(){
+    this.title = 'New Task'
+    this.setFormModel(FormSelector.getTask(this.projectTaskList, this.projectTaskList))
+    this.content = Form
+  }
 
   /**
    * @name projectDeleteFn

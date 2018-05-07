@@ -1,4 +1,4 @@
-import { action, useStrict, extendObservable } from 'mobx'
+import { action, useStrict, extendObservable, computed } from 'mobx'
 import Website from '../store/website'
 import API from '../api'
 import autoBind from 'auto-bind'
@@ -19,7 +19,6 @@ export default class TaskModel {
       required,
       processArea,
       title, // changeable?
-      status,
     }
     extendObservable(this, addtlProps)
     this.id = id
@@ -33,5 +32,15 @@ export default class TaskModel {
     API.updateTask(Website.currentProject.id, this.id, JSON.stringify({
       required: this.required
     }))
+  }
+
+  @computed get status(){
+    let count = 0
+    console.log(Website.currentProject.timeEntries.slice())
+    Website.currentProject.timeEntries.forEach(entry => {
+      if (entry.station == this.processArea)
+        count++
+    })
+    return (count == 0) ? 'Not Started' : (count%2 == 0) ? 'At Station' : 'Not At Station'
   }
 }

@@ -1,5 +1,6 @@
 import { action, computed, useStrict, extendObservable } from 'mobx'
 import autoBind from 'auto-bind'
+import API from '../api'
 useStrict(true)
 
 /**
@@ -92,7 +93,7 @@ export default class ProjectModel {
     let hour = 0
     let min = 0
     for (let i = 0; i < this.timeEntries.length-1; i+=2){
-      let diff = this.timeEntries[i+1]-this.timeEntries[i]
+      let diff = new Date(this.timeEntries[i+1].created)-new Date(this.timeEntries[i].created)
       let diffHrs = Math.floor((diff % 86400000) / 3600000) // hour
       let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // min
       hour += diffHrs
@@ -165,42 +166,11 @@ export default class ProjectModel {
   @action finish(){
      this.status = 'Completed'
    }
-  /**
-   * @name toggleTask
-   * @description Call's Task's toggle
-   * @memberof ProjectModel.prototype
-   * @method toggleTask
-   * @param  {Task}   task Task to toggle required status of
-   * @return {Promise}
-   * @mobx action
-   */
-  @action toggleTask(task){
-     console.log('Call\'s Task\'s toggle method')
-   }
 
-  /**
-  * @name addTask
-  * @description Calls API to update task list in database; sets this.tasks
-  * @memberof ProjectModel.prototype
-  * @method addTask
-  * @param  {String}  title         New task title
-  * @param  {String}  [processArea] New task associated process area, if any
-  * @return {Promise}
-  * @mobx action
-  */
-  @action addTask(title, processArea){
-    //console.log(`Adds task to project in API with title: ${title}${(processArea) ? `and process area: ${processArea}` : ''}`)
-  }
-  /**
-  * @name removeTask
-  * @description Calls API to update task list in database; sets this.tasks
-  * @memberof ProjectModel.prototype
-  * @method removeTask
-  * @param  {Task}   task Task to remove
-  * @return {Promise}
-  * @mobx action
-  */
-  @action removeTask(task){
-    console.log('Removes task in project in API')
+  @action getTimeEntries(){
+    API.fetchTimeEntries(this.id)
+    .then(action('fetchSuccess', res => {
+      this.timeEntries = res
+    }))
   }
 }

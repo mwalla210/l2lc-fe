@@ -1,8 +1,11 @@
 import TaskModel from '../../models/taskModel'
 
-
-jest.mock('../../api', () => {
-  return {}
+jest.mock('../../store/website', () => {
+  return {
+    currentProject: {
+      timeEntries: []
+    }
+  }
 })
 
 

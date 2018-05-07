@@ -2,7 +2,6 @@ import { useStrict } from 'mobx'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
-import API from '../api'
 useStrict(true)
 
 /**
@@ -20,7 +19,7 @@ export default class TimeEntryTableModel extends TableModel{
         title: 'Back to Project Summary',
         onClick: buttonClickNav
       },
-      () => API.fetchTimeEntries(Website.currentProject.id),
+      () => Promise.resolve(Website.currentProject.timeEntries)
     )
     autoBind(this)
     this.columns = [

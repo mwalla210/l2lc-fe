@@ -100,6 +100,7 @@ jest.mock('../../store/website', () => {
       refNum: 'refNum',
       changeCustomer: jest.fn(),
       finish: jest.fn(),
+      getTimeEntries: jest.fn(),
     },
     currentCustomer: {
       id: 'id'
