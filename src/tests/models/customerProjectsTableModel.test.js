@@ -1,9 +1,5 @@
 import CustomerProjectsTableModel from '../../models/customerProjectsTableModel'
 import renderer from 'react-test-renderer'
-import ButtonDefault from '../../components/buttonDefault'
-import TableActionCell from '../../components/tableActionCell'
-import projectStatusCell from '../../components/projectStatusCell'
-
 
 jest.mock('../../components/projectStatusFilter')
 jest.mock('../../api', () => {
@@ -33,7 +29,7 @@ describe('CustomerProjectsTableModel', () => {
     let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(customerTable).toHaveProperty('columns')
     customerTable.fetchFn()
-    expect(customerTable.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toBe('Sun Dec 17 1995 03:24:00 GMT-0500 (Eastern Standard Time)')
+    expect(customerTable.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toEqual(expect.stringContaining('Dec'))
     expect(customerTable.columns[5].filterMethod({value:{length: 0}},[]))
     expect(customerTable.columns[5].filterMethod({value:{length: 9, includes: jest.fn()}},[]))
 })

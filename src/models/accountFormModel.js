@@ -17,7 +17,7 @@ useStrict(true)
  */
 export default class AccountFormModel extends FormModel{
   constructor(onClickNav, onCancelNav, errorClick) {
-    let primaryOnClick = () => {}
+    let primaryOnClick = null
     super(Consts.accountFields,
       {
         title: 'Continue',

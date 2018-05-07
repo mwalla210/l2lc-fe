@@ -48,21 +48,21 @@ describe('ProjectModel', () => {
 
   it('Tests get timeSpent', () => {
     let project = new ProjectModel()
-    project.timeEntries[0] = 0
-    project.timeEntries[1] = 420000
-    project.timeEntries[2] = 820000
-    project.timeEntries[3] = 196400000
+    project.timeEntries[0] = {created: 0}
+    project.timeEntries[1] = {created: 420000}
+    project.timeEntries[2] = {created: 820000}
+    project.timeEntries[3] = {created: 196400000}
     project.timeSpent
   })
 
   it('Tests get timeSpent', () => {
     let project = new ProjectModel()
-    project.timeEntries[0] = 3600000
-    project.timeEntries[1] = 7260000
-    project.timeEntries[0] = 1525123365596
-    project.timeEntries[1] = 2525123974645
-    project.timeEntries[2] = 3525323365596
-    project.timeEntries[3] = 4525523974645
+    project.timeEntries[0] = {created: 3600000}
+    project.timeEntries[1] = {created: 7260000}
+    project.timeEntries[0] = {created: 1525123365596}
+    project.timeEntries[1] = {created: 2525123974645}
+    project.timeEntries[2] = {created: 3525323365596}
+    project.timeEntries[3] = {created: 4525523974645}
     project.timeSpent
   })
 
