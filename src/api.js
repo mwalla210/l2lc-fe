@@ -450,7 +450,7 @@ export default class API {
   }
   /**
    * @name fetchTimeEntries
-   * @description Fetches all time entries
+   * @description Fetches project time entries
    * @method fetchTimeEntries
    * @memberof API
    * @return {Promise}
@@ -662,6 +662,20 @@ export default class API {
       else
         return null
     })
+  }
+
+  // Analytics
+
+  /**
+   * @name fetchAnalytics
+   * @description Fetches a year's worth of time entries
+   * @method fetchAnalytics
+   * @memberof API
+   * @return {Promise}
+   */
+  static fetchAnalytics(){
+    return fetch(`${api}project/time-entry`)
+    .then(res => res.json())
   }
 
   // Generic

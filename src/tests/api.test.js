@@ -425,7 +425,6 @@ nock('http://138.197.88.198:8080/l2lc/api')
       },
     ]
   })
-
   .post('/user/login', body => {return body.success})
   .reply(200, {
     id: 'id',
@@ -435,6 +434,8 @@ nock('http://138.197.88.198:8080/l2lc/api')
   })
   .post('/user/login', body => {return !body.success})
   .reply(404)
+  .get('/project/time-entry')
+  .reply(200, [])
 
 describe('API', () => {
   it ('Tests fetchCustomers', async function() {
@@ -737,5 +738,9 @@ describe('API', () => {
       success: false
     }))
     expect(response).toBeNull()
+  })
+  it ('Tests fetchAnalytics', async function() {
+    let response = await API.fetchAnalytics()
+    expect(response.length).toBe(0)
   })
 })

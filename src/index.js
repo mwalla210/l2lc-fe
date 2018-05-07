@@ -6,6 +6,7 @@ import website from './store/website.js'
 import page from './store/page.js'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import '../scss/custom.scss'
 import '../style/style.css'
 
 ReactDOM.render(

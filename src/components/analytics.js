@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { Bar, Pie } from 'react-chartjs-2'
 import {ButtonGroup, Button} from 'reactstrap'
+import {BarLoader} from 'react-spinners'
 
 /**
  * Analytics component; constructor binds functions
@@ -35,36 +36,74 @@ export default class Analytics extends Component {
               )
             })
           }
+          let yearSwitch = () => {
+            analytic.model.timeFilterData()
+          }
+          let threeMonthSwitch = () => {
+            let d = new Date()
+            d.setMonth(d.getMonth() - 3)
+            analytic.model.timeFilterData(d, '3 Months')
+          }
+          let monthSwitch = () => {
+            let d = new Date()
+            d.setMonth(d.getMonth() - 1)
+            analytic.model.timeFilterData(d, '1 Month')
+          }
+          let weekSwitch = () => {
+            let d = new Date()
+            d.setDate(d.getDate() - 7)
+            analytic.model.timeFilterData(d, '1 Week')
+          }
           return (
-            <div key={index} className="col-6" style={{display: 'inline-block', paddingTop: 10}}>
+            <div key={index} className={`col-${analytic.model.component == 'bar' ? '12' : '6'}`} style={{display: 'inline-block', paddingTop: 10}}>
               <h4 style={{textAlign: 'center'}}>{analytic.title}</h4>
-              {analytic.model.filters && analytic.model.filters.length > 1 &&
-                <div className="row justify-content-center">
-                  <ButtonGroup>
-                    {buttons}
-                  </ButtonGroup>
-                </div>
-              }
-              {(analytic.model.component == 'bar') ?
-                <Bar
-                  data={analytic.model.jsData}
-                  width={100} height={60}
-                  options={{
-                    responsive:true,
-                    scales:{
-                      yAxes:[{display:true,ticks:{beginAtZero:true}}],
-                      xAxes:[{display:true,ticks:{autoSkip: false}}]
-                    },
-                    legend: {
-                      display: false
-                    }
-                  }}
-                /> :
-                <Pie data={analytic.model.jsData} options={{
-                  legend: {
-                    display: false
+              {(analytic.model.loading) ?
+                <div className="row justify-content-center" style={{paddingTop: '30px', paddingBottom: '30px'}}>
+                  <BarLoader
+                    color={'#2baae2'}
+                    loading={analytic.model.loading}
+                    height={8}
+                    width={200}
+                  />
+                </div> :
+                <div>
+                  {analytic.model.filters && analytic.model.filters.length > 1 &&
+                    <div className="row justify-content-center">
+                      <ButtonGroup>
+                        {buttons}
+                      </ButtonGroup>
+                    </div>
                   }
-                }}/>
+                  <div className="row justify-content-center">
+                    <ButtonGroup>
+                      <Button size="sm" color="secondary" onClick={yearSwitch} active={analytic.model.currentTimeFrame === 'Year'}>Year</Button>
+                      <Button size="sm" color="secondary" onClick={threeMonthSwitch} active={analytic.model.currentTimeFrame === '3 Months'}>3 Months</Button>
+                      <Button size="sm" color="secondary" onClick={monthSwitch} active={analytic.model.currentTimeFrame === '1 Month'}>1 Month</Button>
+                      <Button size="sm" color="secondary" onClick={weekSwitch} active={analytic.model.currentTimeFrame === '1 Week'}>1 Week</Button>
+                    </ButtonGroup>
+                  </div>
+                  {(analytic.model.component == 'bar') ?
+                    <Bar
+                      data={analytic.model.jsData}
+                      width={100} height={60}
+                      options={{
+                        responsive:true,
+                        scales:{
+                          yAxes:[{display:true,ticks:{beginAtZero:true},scaleLabel: {display: true,labelString:analytic.model.yLabel}}],
+                          xAxes:[{display:true,ticks:{autoSkip: false}}]
+                        },
+                        legend: {
+                          display: false
+                        }
+                      }}
+                    /> :
+                    <Pie data={analytic.model.jsData} options={{
+                      legend: {
+                        display: false
+                      }
+                    }}/>
+                  }
+                </div>
               }
             </div>
           )

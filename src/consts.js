@@ -1,3 +1,55 @@
+const colorsLight = [
+  'rgb(96,146,204,0.4)',
+  'rgb(150,182,68,0.4)',
+  'rgb(139,103,209,0.4)',
+  'rgb(210,155,61,0.4)',
+  'rgb(86,118,209,0.4)',
+  'rgb(205,88,57,0.4)',
+  'rgb(72,183,188,0.4)',
+  'rgb(210,66,115,0.4)',
+  'rgb(86,174,111,0.4)',
+  'rgb(200,89,183,0.4)',
+  'rgb(130,136,68,0.4)',
+  'rgb(204,158,223,0.4)',
+  'rgb(189,124,88,0.4)',
+  'rgb(149,95,149,0.4)',
+  'rgb(210,118,140,0.4)',
+]
+const colorsMedium = [
+  'rgb(96,146,204,0.6)',
+  'rgb(150,182,68,0.6)',
+  'rgb(139,103,209,0.6)',
+  'rgb(210,155,61,0.6)',
+  'rgb(86,118,209,0.6)',
+  'rgb(205,88,57,0.6)',
+  'rgb(72,183,188,0.6)',
+  'rgb(210,66,115,0.6)',
+  'rgb(86,174,111,0.6)',
+  'rgb(200,89,183,0.6)',
+  'rgb(130,136,68,0.6)',
+  'rgb(204,158,223,0.6)',
+  'rgb(189,124,88,0.6)',
+  'rgb(149,95,149,0.6)',
+  'rgb(210,118,140,0.6)',
+]
+const colorsDark = [
+  'rgb(96,146,204,1)',
+  'rgb(150,182,68,1)',
+  'rgb(139,103,209,1)',
+  'rgb(210,155,61,1)',
+  'rgb(86,118,209,1)',
+  'rgb(205,88,57,1)',
+  'rgb(72,183,188,1)',
+  'rgb(210,66,115,1)',
+  'rgb(86,174,111,1)',
+  'rgb(200,89,183,1)',
+  'rgb(130,136,68,1)',
+  'rgb(204,158,223,1)',
+  'rgb(189,124,88,1)',
+  'rgb(149,95,149,1)',
+  'rgb(210,118,140,1)',
+]
+
 /**
  * @namespace Consts
  * @classdesc Contains application consts
@@ -1091,6 +1143,38 @@ class Consts {
    */
   static get openColor() {return '#57d500'}
   /**
+   * @name pieColors
+   * @description Colors for pie charts
+   * @memberof Consts.prototype
+   * @readonly
+   * @type {String[]}
+   */
+  static get pieColors() {return colorsDark}
+  /**
+   * @name barBGColorByIndex
+   * @description Colors for bar charts
+   * @memberof Consts.prototype
+   * @param  {Number}      index Index of color
+   * @type {String}
+   */
+  static barBGColorByIndex(index) {return colorsMedium[index]}
+  /**
+   * @name barBorColorByIndex
+   * @description Colors for bar charts
+   * @memberof Consts.prototype
+   * @param  {Number}      index Index of color
+   * @type {String}
+   */
+  static barBorColorByIndex(index) {return colorsDark[index]}
+  /**
+   * @name barHovColorByIndex
+   * @description Colors for bar charts
+   * @memberof Consts.prototype
+   * @param  {Number}      index Index of color
+   * @type {String}
+   */
+  static barHovColorByIndex(index) {return colorsLight[index]}
+  /**
    * @name summaryProps
    * @description Summary page box properties for style and visuals
    * @memberof Consts.prototype
@@ -1429,6 +1513,31 @@ class Consts {
    */
   static get avaslickTasks(){
     return this.pistonTasks
+  }
+  /**
+   * @name calculateTime
+   * @description Calculates time difference total for a list of time entry pairs
+   * @memberof Consts.prototype
+   * @param  {Date[]}      timeEntries List of time entry pairs
+   * @return {Object}
+   */
+  static calculateTime(timeEntries){
+    let hour = 0
+    let min = 0
+    for (let i = 0; i < timeEntries.length-1; i+=2){
+      let diff = Math.abs(timeEntries[i+1]-timeEntries[i])
+      let diffHrs = Math.floor((diff % 86400000) / 3600000) // hour
+      let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // min
+      hour += diffHrs
+      if (min + diffMins > 60){
+        hour += 1
+        min += diffMins - 60
+      }
+      else {
+        min += diffMins
+      }
+    }
+    return {hour, min}
   }
 }
 
