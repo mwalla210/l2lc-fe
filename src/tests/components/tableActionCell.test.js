@@ -29,6 +29,15 @@ describe('TableActionCell', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
+  it ('Renders with set Delete', () => {
+    let options = Object.assign({}, defaultOptions)
+    options.set = 'Delete'
+    const component = renderer.create(
+      <TableActionCell {...options}/>,
+    )
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   it ('Calls function infoClick', () => {
     let options = Object.assign({}, defaultOptions)
     options.clickHandler = jest.fn()

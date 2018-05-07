@@ -116,14 +116,14 @@ export default class Form extends Component {
               onChange: this.onChange(index, field.type == 'checkbox'),
               onBlur: this.onBlur(index),
               valid: field.isValid,
-              focus: first
+              focus: first,
             }
             switch (field.type){
               case 'select':
                 child = <SelectField autoFocus {...props} options={field.options}/>
                 break
               case 'textfield':
-                child = <TextField autoFocus {...props}/>
+                child = <TextField autoFocus {...props} password={field.password}/>
                 break
               case 'textarea':
                 child = <TextAreaField autoFocus {...props} rows={field.rows}/>

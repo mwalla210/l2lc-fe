@@ -1,6 +1,7 @@
 import { action, useStrict, extendObservable, observable } from 'mobx'
 import Form from '../components/form'
 import Table from '../components/table'
+import DraggableTable from '../components/draggableTable'
 import Analytics from '../components/analytics'
 import TimeEntry from '../components/timeEntry'
 import SummarySelector from './summarySelector'
@@ -68,7 +69,6 @@ class PageStore {
    * @mobx action
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
-
   /**
  * @name setAnalyticsModel
  * @description Sets analytics model
@@ -77,12 +77,12 @@ class PageStore {
  * @param  {AnalyticsModel}      analyticsModel AnalyticsModel to use for page
  * @mobx action
  */
- @action setAnalyticsModel(analyticsList){
-   this.analyticsModel = observable(analyticsList)
-   analyticsList.forEach(analyticsModel => {
-     analyticsModel.model.dataFetch()
-   })
- }
+  @action setAnalyticsModel(analyticsList){
+    this.analyticsModel = observable(analyticsList)
+    analyticsList.forEach(analyticsModel => {
+      analyticsModel.model.dataFetch()
+    })
+  }
 
   // Page Changes - Create Projects
 
@@ -196,6 +196,46 @@ class PageStore {
     let summaryObject = SummarySelector.getProject(this.projectDeleteFn,completeFunc)
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)
+    Website.currentProject.getTimeEntries()
+  }
+
+  /**
+   * @name projectTaskList
+   * @description Updates title, form, table, content, and buttons for Project task list.
+   * @memberof PageStore.prototype
+   * @method projectTaskList
+   * @mobx action
+   */
+  @action projectTaskList(){
+    this.title = 'Project Task List'
+    this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList))
+    this.content = DraggableTable
+  }
+
+  /**
+   * @name projectTimeEntryPage
+   * @description Updates title, form, table, content, and buttons for project time entry table page.
+   * @memberof PageStore.prototype
+   * @method projectTimeEntryPage
+   * @mobx action
+   */
+  @action projectTimeEntryPage(){
+    this.title = 'Project Time Entries'
+    this.setTableModel(TableSelector.getTimeEntries(this.projectSummaryPage))
+    this.content = Table
+  }
+
+  /**
+   * @name newProjectTaskPage
+   * @description Updates title, form, table, content, and buttons for new Project Task page.
+   * @memberof PageStore.prototype
+   * @method newProjectTaskPage
+   * @mobx action
+   */
+  @action newProjectTaskPage(){
+    this.title = 'New Task'
+    this.setFormModel(FormSelector.getTask(this.projectTaskList, this.projectTaskList))
+    this.content = Form
   }
 
   /**
@@ -294,6 +334,19 @@ class PageStore {
   }
 
   /**
+   * @name customerProjectsPage
+   * @description Updates title, form, table, content, and buttons for Customer Projects page
+   * @method customerProjectsPage
+   * @memberof PageStore.prototype
+   * @mobx action
+   */
+  @action customerProjectsPage(){
+    this.title = 'Customer Projects'
+    this.setTableModel(TableSelector.getCustomerProjects(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn))
+    this.content = Table
+  }
+
+  /**
    * @name customerEditPage
    * @description Updates title, form, table, content, and buttons for Customer Edit page
    * @method customerEditPage
@@ -384,8 +437,35 @@ class PageStore {
    * @mobx action
    */
   @action accountManagementMenuItem(){
-    this.title = 'Account Management [Q3]'
-    this.content = null
+    this.title = 'Account Management'
+    this.setTableModel(TableSelector.getAccount(this.newAccountPage, this.accountEditPage))
+    this.content = Table
+  }
+
+  /**
+   * @name newAccountPage
+   * @description Updates title, form, table, content, and buttons for New Account page.
+   * @memberof PageStore.prototype
+   * @method newAccountPage
+   * @mobx action
+   */
+  @action newAccountPage(){
+    this.title = 'New Account'
+    this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem,this.accountManagementMenuItem))
+    this.content = Form
+  }
+
+  /**
+   * @name accountEditPage
+   * @description Allows changing of information for Account Management page entries.
+   * @memberof PageStore.prototype
+   * @method accountEditPage
+   * @mobx action
+   */
+  @action accountEditPage(){
+    this.title = 'Edit Account'
+    this.setFormModel(FormSelector.getEditAccount(this.accountManagementMenuItem))
+    this.content = Form
   }
 
 }

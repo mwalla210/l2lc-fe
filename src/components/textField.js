@@ -23,7 +23,8 @@ export default class TextField extends Component {
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired,
     valid: PropTypes.bool.isRequired,
-    focus:PropTypes.bool.isRequired
+    focus: PropTypes.bool.isRequired,
+    password: PropTypes.bool
   }
 
   /**
@@ -36,11 +37,14 @@ export default class TextField extends Component {
     let color = ''
     if(!this.props.valid)
       color = 'orange'
+    let type = 'text'
+    if (this.props.password)
+      type = 'password'
     return (
       <input
         disabled={this.props.disabled}
         style={{borderColor:color}}
-        type="text"
+        type={type}
         className="form-control"
         id={this.props.id}
         value={this.props.value}

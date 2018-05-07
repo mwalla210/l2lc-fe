@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DraggableRow Renders while dragging 1`] = `
+<div
+  className="rt-tr"
+  id={1}
+  role="row"
+  style={
+    Object {
+      "cursor": "move",
+      "opacity": 0,
+    }
+  }
+/>
+`;
+
+exports[`DraggableRow Renders with snapshot 1`] = `
+<div
+  className="rt-tr"
+  id={1}
+  role="row"
+  style={
+    Object {
+      "cursor": "move",
+      "opacity": 1,
+    }
+  }
+/>
+`;

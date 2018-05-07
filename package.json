@@ -63,6 +63,7 @@
     "react-chartjs-2": "^2.7.0",
     "react-checkbox-group": "3.3.4",
     "react-dom": "16.0.0",
+    "react-toggle-switch": "^3.0.4",
     "reactstrap": "5.0.0"
   },
   "jest": {

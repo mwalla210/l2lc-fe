@@ -2,6 +2,7 @@ import PageStore from '../../store/page'
 import {toJS} from 'mobx'
 jest.mock('../../components/form')
 jest.mock('../../components/table')
+jest.mock('../../components/draggableTable')
 jest.mock('react-table/react-table.css', () => 'CSS')
 jest.mock('../../components/analytics')
 jest.mock('../../components/timeEntry')
@@ -44,6 +45,9 @@ jest.mock('../../store/formSelector', () => {
     getEditCustomer: () => {return 'FS getEditCustomer'},
     getEmployee: () => {return 'FS getEmployee'},
     getEditEmployee: () => {return 'FS getEditEmployee'},
+    getTask: () => {return 'FS getTask'},
+    getAccount: () => {return 'FS getAccount'},
+    getEditAccount: () => {return 'FS getEditAccount'},
   }
 })
 jest.mock('../../store/tableSelector', () => {
@@ -73,6 +77,26 @@ jest.mock('../../store/tableSelector', () => {
         dataFetch: jest.fn()
       }
     },
+    getAccount: () => {
+      return {
+        dataFetch: jest.fn()
+      }
+    },
+    getTasks: () => {
+      return {
+        dataFetch: jest.fn()
+      }
+    },
+    getTimeEntries: () => {
+      return {
+        dataFetch: jest.fn()
+      }
+    },
+    getCustomerProjects: () => {
+      return {
+        dataFetch: jest.fn()
+      }
+    },
   }
 })
 jest.mock('../../store/analyticsSelector', () => {
@@ -95,6 +119,7 @@ jest.mock('../../store/website', () => {
       refNum: 'refNum',
       changeCustomer: jest.fn(),
       finish: jest.fn(),
+      getTimeEntries: jest.fn(),
     },
     currentCustomer: {
       id: 'id'
@@ -157,6 +182,24 @@ describe('PageStore', () => {
     PageStore.summaryModel.deleteFunc()
     PageStore.summaryModel.completeFunc()
   })
+  it('Tests projectTaskList', () => {
+    PageStore.projectTaskList()
+    expect(PageStore.title).toBe('Project Task List')
+    expect(typeof PageStore.content).toBe('function')
+    expect(toJS(PageStore.tableModel)).toHaveProperty('dataFetch')
+  })
+  it('Tests projectTimeEntryPage', () => {
+    PageStore.projectTimeEntryPage()
+    expect(PageStore.title).toBe('Project Time Entries')
+    expect(typeof PageStore.content).toBe('function')
+    expect(toJS(PageStore.tableModel)).toHaveProperty('dataFetch')
+  })
+  it('Tests newProjectTaskPage', () => {
+    PageStore.newProjectTaskPage()
+    expect(PageStore.title).toBe('New Task')
+    expect(typeof PageStore.content).toBe('function')
+    expect(toJS(PageStore.formModel)).toBe('FS getTask')
+  })
   it('Tests projectEditPage', () => {
     PageStore.projectEditPage()
     expect(PageStore.title).toBe('Edit Project')
@@ -192,6 +235,12 @@ describe('PageStore', () => {
     PageStore.customerSummaryPage()
     expect(PageStore.title).toBe('Customer Summary')
     expect(PageStore.content).toBe('customer component')
+  })
+  it('Tests customerProjectsPage', () => {
+    PageStore.customerProjectsPage()
+    expect(PageStore.title).toBe('Customer Projects')
+    expect(typeof PageStore.content).toBe('function')
+    expect(toJS(PageStore.tableModel)).toHaveProperty('dataFetch')
   })
   it('Tests customerEditPage', () => {
     PageStore.customerEditPage()
@@ -231,7 +280,20 @@ describe('PageStore', () => {
   })
   it('Tests accountManagementMenuItem', () => {
     PageStore.accountManagementMenuItem()
-    expect(PageStore.title).toBe('Account Management [Q3]')
-    expect(PageStore.content).toBeNull()
+    expect(PageStore.title).toBe('Account Management')
+    expect(typeof PageStore.content).toBe('function')
+    expect(toJS(PageStore.tableModel)).toHaveProperty('dataFetch')
+  })
+  it('Tests newAccountPage', () => {
+    PageStore.newAccountPage()
+    expect(PageStore.title).toBe('New Account')
+    expect(typeof PageStore.content).toBe('function')
+    expect(toJS(PageStore.formModel)).toBe('FS getAccount')
+  })
+  it('Tests accountEditPage', () => {
+    PageStore.accountEditPage()
+    expect(PageStore.title).toBe('Edit Account')
+    expect(typeof PageStore.content).toBe('function')
+    expect(toJS(PageStore.formModel)).toBe('FS getEditAccount')
   })
 })

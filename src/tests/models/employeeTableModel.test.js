@@ -1,11 +1,7 @@
 import EmployeeTableModel from '../../models/employeeTableModel'
 import renderer from 'react-test-renderer'
 
-
-//jest.mock('../../components/tableActionCell')
-jest.mock('../../components/projectStatusCell')
-jest.mock('../../components/projectStatusFilter')
-
+jest.mock('../../components/tableActionCell')
 jest.mock('../../api', () => {
   return {
     fetchProjects: jest.fn()

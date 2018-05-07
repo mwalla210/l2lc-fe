@@ -29,7 +29,7 @@ export default class ProjectSummary extends Component {
    * @memberof ProjectSummary.prototype
    */
   tasksClick(){
-    console.log('Tasks')
+    this.props.page.projectTaskList()
   }
 
   /**
@@ -48,7 +48,7 @@ export default class ProjectSummary extends Component {
    * @memberof ProjectSummary.prototype
    */
   timeEntries(){
-    console.log('Time Entry table')
+    this.props.page.projectTimeEntryPage()
   }
 
   /**
