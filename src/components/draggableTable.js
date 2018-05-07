@@ -7,12 +7,17 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import TableButton from './tableButton'
 import DeleteModal from './deleteModal'
+import PromptModal from './promptModal'
 import ButtonDefault from './buttonDefault'
 import {ButtonGroup} from 'reactstrap'
 
-//Go into table component and copy from the render function the section for button content starting with let button = null
-//Replace the top div stuff between table.js and here
-
+/**
+ * DraggableTable component; constructor binds functions; reclass of ReactTable
+ * @namespace DraggableTable
+ * @extends React.Component
+ * @see {@link https://github.com/react-dnd/react-dnd React DnD}
+ * @see {@link PageStore @inject PageStore}
+ */
 @DragDropContext(HTML5Backend) @inject('page') @observer
 export default class DraggableTable extends Component {
   constructor(props){
@@ -32,7 +37,14 @@ export default class DraggableTable extends Component {
     // eslint-disable-next-line no-undef
     window.print()
   }
-
+  /**
+   * Initializes row index, id, and moverow function if row has content
+   * @method rowProps
+   * @param  {Object} [state]   Table state
+   * @param  {Object} rowInfo   Row object
+   * @return {Object}
+   * @memberof DraggableTable.prototype
+   */
   rowProps(state, rowInfo){
     if (rowInfo)
       return {
@@ -44,6 +56,17 @@ export default class DraggableTable extends Component {
       return {}
   }
 
+  /**
+   * Renders HTML div component, with TableButton, DeleteModal, ReactTable, and ButtonGroup (with ButtonDefault)
+   * @method render
+   * @memberof DraggableTable.prototype
+   * @return {Component}
+   * @see {@link TableButton}
+   * @see {@link DeleteModal}
+   * @see {@link https://react-table.js.org ReactTable}
+   * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
+   * @see {@link ButtonDefault}
+   */
   render() {
     let rowModal = null
     // If modal to be opened when row clicked, declare in render and redefine onClick for table elements and call open modal
@@ -71,6 +94,15 @@ export default class DraggableTable extends Component {
     }
     return (
       <div>
+        <PromptModal
+          title="Add Default List"
+          confirmOnClick={this.props.page.tableModel.taskConfirmAndClose}
+          denyOnClick={this.props.page.tableModel.taskCloseModal}
+          open={this.props.page.tableModel.defaultTaskListModalOpen}
+          closeFn={this.props.page.tableModel.taskCloseModal}
+          content="This project has no current tasks. A default list is available for this project. Would you like to add these tasks?"
+          confirmClass="btn-primary"
+        />
         {buttonContent}
         {rowModal}
         <div style={{clear: 'both'}}>

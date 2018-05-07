@@ -1155,6 +1155,280 @@ class Consts {
   static get stationSelect(){
     return [{title: 'Select...'}, {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating and Curing'},{title: 'Quality Control and Packaging'}]
   }
+  /**
+   * @name pistonTasks
+   * @description List of piston default tasks
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get pistonTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Measure',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'QC Check',
+        required: true,
+        station: 'Quality Control and Packaging'
+      },
+    ]
+  }
+  /**
+   * @name turboTasks
+   * @description List of piston default tasks
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get turboTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Measure',
+        required: false,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'QC Check',
+        required: false,
+        station: 'Quality Control and Packaging'
+      },
+    ]
+  }
+  /**
+   * @name pumpTasks
+   * @description List of piston default tasks
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get pumpTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: false,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Measure',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'QC Check',
+        required: false,
+        station: 'Quality Control and Packaging'
+      },
+    ]
+  }
+  /**
+   * @name rotorTasks
+   * @description List of piston default tasks
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get rotorTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Measure',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating and Curing'
+      },
+      {
+        title: 'QC Check',
+        required: false,
+        station: 'Quality Control and Packaging'
+      },
+    ]
+  }
+  /**
+   * @name avaslickTasks
+   * @description List of piston default tasks
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get avaslickTasks(){
+    return this.pistonTasks
+  }
 }
 
 module.exports = Consts

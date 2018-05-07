@@ -1,5 +1,5 @@
 import React from 'react'
-import { action, useStrict } from 'mobx'
+import { action, useStrict, extendObservable } from 'mobx'
 import TableActionCell from '../components/tableActionCell'
 import Switch from 'react-toggle-switch'
 import 'react-toggle-switch/dist/css/switch.min.css'
@@ -7,10 +7,8 @@ import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'
 import API from '../api'
+import Consts from '../consts'
 useStrict(true)
-
-//Rename class and model to projectTaskTableModel
-//Super call, API stuff, modelizer, use taskModel.js
 
 /**
  * @name ProjectTaskTableModel
@@ -24,7 +22,7 @@ export default class ProjectTaskTableModel extends TableModel{
         title: 'New Task',
         onClick: buttonClickNav
       },
-      () => API.fetchProjectTasks(Website.currentProject.id),
+      null,
       null,
       {
         title: 'Delete Task?',
@@ -32,6 +30,9 @@ export default class ProjectTaskTableModel extends TableModel{
         content: 'This action cannot be undone.'
       },
     )
+    extendObservable(this, {
+      defaultTaskListModalOpen: false,
+    })
     this.deleteClickNav = deleteClickNav
     autoBind(this)
     this.deleteModal.confirmOnClick = this.deleteTask
@@ -90,6 +91,19 @@ export default class ProjectTaskTableModel extends TableModel{
         Cell: row => <TableActionCell row={row} set="Delete" clickHandler={this.clickHandler}/>
       }
     ]
+    this.fetchFn = () => {
+      return API.fetchProjectTasks(Website.currentProject.id)
+      .then(res => {
+        if (
+          res.length == 0 &&
+          Website.currentProject.costCenterTitle == 'APC' &&
+          ['Piston','Turbo','Rotor','Pump','Avaslick'].includes(Website.currentProject.jobTypeTitle)
+        ){
+          this.taskOpenModal()
+        }
+        return res
+      })
+    }
   }
 
   /**
@@ -161,5 +175,54 @@ export default class ProjectTaskTableModel extends TableModel{
       })
     })
     API.updateTaskList(Website.currentProject.id, JSON.stringify(jsonList))
+  }
+
+  /**
+   * @name taskCloseModal
+   * @description Sets defaultTaskListModalOpen prop to false
+   * @method taskCloseModal
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
+  @action taskCloseModal(){this.defaultTaskListModalOpen = false}
+  /**
+   * @name taskOpenModal
+   * @description Sets defaultTaskListModalOpen prop to true
+   * @method taskOpenModal
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
+  @action taskOpenModal(){this.defaultTaskListModalOpen = true}
+  /**
+   * @name taskConfirmAndClose
+   * @description Closes modal and runs confirm function
+   * @method taskConfirmAndClose
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
+  @action taskConfirmAndClose(){
+    this.taskCloseModal()
+    let tasks = null
+    switch(Website.currentProject.jobTypeTitle){
+      case 'Piston':
+        tasks = Consts.pistonTasks
+        break
+      case 'Turbo':
+        tasks = Consts.turboTasks
+        break
+      case 'Pump':
+        tasks = Consts.pumpTasks
+        break
+      case 'Rotor':
+        tasks = Consts.rotorTasks
+        break
+      case 'Avaslick':
+        tasks = Consts.avaslickTasks
+        break
+    }
+    API.createTaskList(Website.currentProject.id, JSON.stringify(tasks))
+    .then(action('fetchSuccess', res => {
+      this.data = res
+    }))
   }
 }
