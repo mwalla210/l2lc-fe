@@ -909,6 +909,7 @@ class Consts {
       type: 'textfield',
       label: 'Password',
       id: 'password',
+      password: true,
       required: true,
       validation: (value, required) => {
         if (required && value == '')
