@@ -28,17 +28,13 @@ export default class ProjectTaskTableModel extends TableModel{
       null,
       {
         title: 'Delete Task?',
-        confirmOnClick: () => {
-          API.dropTask(Website.currentProject.id, JSON.stringify({taskId: this.id}))
-          .then(() => {
-            deleteClickNav()
-          })
-        },
+        confirmOnClick: null,
         content: 'This action cannot be undone.'
       },
     )
     this.deleteClickNav = deleteClickNav
     autoBind(this)
+    this.deleteModal.confirmOnClick = this.deleteTask
     this.columns = [
       {
         Header: 'Required',
@@ -119,8 +115,22 @@ export default class ProjectTaskTableModel extends TableModel{
    */
   clickHandler(row, type){
     if (type == 'delete'){
+      this.currentTask = row.original
       this.openModal()
     }
+  }
+
+  /**
+   * @name deleteTask
+   * @description Handles delete circle button click
+   * @method deleteTask
+   * @memberof ProjectTaskTableModel.prototype
+   */
+  deleteTask(){
+    API.dropTask(Website.currentProject.id, JSON.stringify({id: this.currentTask.id}))
+    .then(() => {
+      this.deleteClickNav()
+    })
   }
 
   /**

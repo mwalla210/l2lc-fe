@@ -7,6 +7,8 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import TableButton from './tableButton'
 import DeleteModal from './deleteModal'
+import ButtonDefault from './buttonDefault'
+import {ButtonGroup} from 'reactstrap'
 
 //Go into table component and copy from the render function the section for button content starting with let button = null
 //Replace the top div stuff between table.js and here
@@ -16,8 +18,19 @@ export default class DraggableTable extends Component {
   constructor(props){
     super(props)
     this.rowProps = this.rowProps.bind(this)
+    this.printClick = this.printClick.bind(this)
     this.props.page.tableModel.confirmAndClose = this.props.page.tableModel.confirmAndClose.bind(this.props.page.tableModel)
     this.props.page.tableModel.closeModal = this.props.page.tableModel.closeModal.bind(this.props.page.tableModel)
+  }
+
+  /**
+   * On click handler for print button
+   * @method printClick
+   * @memberof DraggableTable.prototype
+   */
+  printClick(){
+    // eslint-disable-next-line no-undef
+    window.print()
   }
 
   rowProps(state, rowInfo){
@@ -70,6 +83,11 @@ export default class DraggableTable extends Component {
             TrComponent={DraggableRow}
             getTrProps={this.rowProps}
           />
+        </div>
+        <div className="row justify-content-center">
+          <ButtonGroup>
+            <ButtonDefault className="btn-outline-secondary" onClick={this.printClick} text="Print"/>
+          </ButtonGroup>
         </div>
       </div>
     )

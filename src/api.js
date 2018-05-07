@@ -243,7 +243,10 @@ export default class API {
     .then(res => res.json())
     .then(json => {
       let tasks = []
-      json.forEach(task => tasks.push(API.taskModelize(task)))
+      json.forEach(task => {
+        if (!task.dropped)
+          tasks.push(API.taskModelize(task))
+      })
       return tasks
     })
   }
@@ -346,9 +349,13 @@ export default class API {
    * @return {Promise}
    */
   static dropTask(projectID, body){
-    return API.update(`project/${projectID}/task/drop`, body)
+    return fetch(`${api}project/${projectID}/task/drop`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    })
     .then(response => {
-      if(typeof(response) != 'number'){
+      if(response.status === 202){
         return null
       }
       else {
@@ -442,47 +449,44 @@ export default class API {
       return true
     })
   }
-
-
-    /**
-     * @name fetchTimeEntries
-     * @description Fetches all time entries
-     * @method fetchTimeEntries
-     * @memberof API
-     * @return {Promise}
-     * @async
-     */
-    static fetchTimeEntries(id){
-      return fetch(`${api}project/${id}/time-entry`)
-      .then(res => res.json())
-      .then(json => {
-        let entries = []
-        // For each returned json object...
-        json.forEach(item => {
-          let entry = API.timeEntryModelize(item)
-          // Add to list
-          entries.push(entry)
-        })
-        // Return list of models, not json
-        return entries
+  /**
+   * @name fetchTimeEntries
+   * @description Fetches all time entries
+   * @method fetchTimeEntries
+   * @memberof API
+   * @return {Promise}
+   * @async
+   */
+  static fetchTimeEntries(id){
+    return fetch(`${api}project/${id}/time-entry`)
+    .then(res => res.json())
+    .then(json => {
+      let entries = []
+      // For each returned json object...
+      json.forEach(item => {
+        let entry = API.timeEntryModelize(item)
+        // Add to list
+        entries.push(entry)
       })
-    }
-
-    /**
-     * @name timeEntryModelize
-     * @description Modelizes a database time entry
-     * @method timeEntryModelize
-     * @memberof API
-     * @param  {Object}         item time entry database object
-     * @return {CustomerModel}
-     */
-    static timeEntryModelize(item){
-      // Construct model
-      let dateItem = new Date(item.created)
-      let date = dateItem.toString()
-      let timeEntry = new TimeEntryModel(item.id, item.projectId, item.employeeId, item.station, date )
-      return timeEntry
-    }
+      // Return list of models, not json
+      return entries
+    })
+  }
+  /**
+   * @name timeEntryModelize
+   * @description Modelizes a database time entry
+   * @method timeEntryModelize
+   * @memberof API
+   * @param  {Object}         item time entry database object
+   * @return {CustomerModel}
+   */
+  static timeEntryModelize(item){
+    // Construct model
+    let dateItem = new Date(item.created)
+    let date = dateItem.toString()
+    let timeEntry = new TimeEntryModel(item.id, item.projectId, item.employeeId, item.station, date )
+    return timeEntry
+  }
 
   // Employees
 
