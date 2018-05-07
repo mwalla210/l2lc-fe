@@ -18,6 +18,9 @@ jest.mock('../../store/website', () => {
     currentProject: {
       changeCustomer: jest.fn()
     },
+    currentUser: {
+      admin: false
+    },
     updateProject: jest.fn().mockReturnValue(Promise.resolve()),
     createProject: jest.fn().mockReturnValue(Promise.resolve()),
   }
@@ -57,7 +60,6 @@ describe('CustomerTableModel', () => {
     const component = renderer.create(customer.columns[5].Cell({}))
     let tree2 = component.toJSON()
     expect(tree2).toMatchSnapshot()
-    component.root.findByType(TableActionCell)
   })
 
   it('Tests noActionColumns', () => {
@@ -105,6 +107,14 @@ describe('CustomerTableModel', () => {
     expect(customer.actionColumns.mock.calls.length).toBe(0)
     customer.nonSelectTable()
     expect(customer.actionColumns.mock.calls.length).toBe(1)
+  })
+
+  it('Tests non-admin actionColumns', () => {
+    Website.currentUser.admin = true
+    let customer = new CustomerTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
+    const component = renderer.create(customer.columns[5].Cell({}))
+    let tree2 = component.toJSON()
+    expect(tree2).toMatchSnapshot()
   })
 
 })

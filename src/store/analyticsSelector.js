@@ -26,7 +26,7 @@ class AnalyticsSelector {
       this.partCountForAPCRatio(),
       this.projectCountForMonthsRatio()
     ]
-    API.fetchTimeEntries()
+    API.fetchAnalytics()
     .then(res => {
       let {employeeEntries, projects, stations, costCenters, costCenterJobTypes, apcJobTypes, months} = this.processEntries(res)
 

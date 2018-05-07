@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountTableModel Tests Admin column 1`] = `
+<div
+  style={
+    Object {
+      "paddingTop": "7px",
+    }
+  }
+>
+  <div
+    className="switch  on  "
+    onClick={[Function]}
+  >
+    <div
+      className="switch-toggle"
+    />
+  </div>
+</div>
+`;

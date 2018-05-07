@@ -28,6 +28,9 @@ jest.mock('../../api', () => {
     login: jest.fn()
       .mockReturnValueOnce(Promise.resolve('login'))
       .mockReturnValueOnce(Promise.resolve(null)),
+    createAccount: jest.fn()
+      .mockReturnValueOnce(Promise.resolve('createAccount'))
+      .mockReturnValueOnce(Promise.resolve({})),
   }
 })
 
@@ -192,12 +195,25 @@ describe('Website', () => {
   it('Tests login success', async function() {
     await Website.login(() => {})
     expect(Website.currentUser).toBe('login')
-    expect(Website.username).toBe('')
-    expect(Website.password).toBe('')
+    expect(Website.username).toBe('username')
+    expect(Website.password).toBe('password')
     expect(Website.loginerror).toBe(false)
   })
   it('Tests login failure', async function() {
     await Website.login(() => {})
     expect(Website.loginerror).toBe(true)
+  })
+  it('Tests createAccount (with string response)', () => {
+    expect.assertions(1)
+    Website.createAccount(1, {}).then(response => {
+      expect(response).toBe('createAccount')
+    })
+  })
+  it('Tests createAccount (with object response)', () => {
+    expect.assertions(2)
+    Website.createAccount(1, {}).then(response => {
+      expect(response).toBeNull()
+      expect(Object.keys(Website.currentProject)).toHaveLength(0)
+    })
   })
 })

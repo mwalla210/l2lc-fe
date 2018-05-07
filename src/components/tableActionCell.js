@@ -19,7 +19,7 @@ export default class TableActionCell extends Component {
   static propTypes = {
     row: PropTypes.object.isRequired,
     // Full: all three items; Restricted: no delete
-    set: PropTypes.oneOf(['Full', 'Restricted']).isRequired,
+    set: PropTypes.oneOf(['Full', 'Restricted', 'View', 'Delete']).isRequired,
     clickHandler: PropTypes.func.isRequired,
     disabledChange: PropTypes.bool,
   }
@@ -66,16 +66,28 @@ export default class TableActionCell extends Component {
    * @see {@link CircleButton}
    */
   render(){
-    let full = this.props.set == 'Full'
+    let infoButton = null
+    let editButton = null
+    let deleteButton = null
+    if (this.props.set == 'View'){
+      infoButton = <CircleButton iconName="info" onClick={this.infoClick}/>
+    }
+    else if (this.props.set == 'Delete'){
+      deleteButton = <CircleButton iconName="trash" onClick={this.deleteClick}/>
+    }
+    else {
+      if (this.props.set == 'Full'){
+        deleteButton = <CircleButton styleProps={{marginLeft: '2px'}} iconName="trash" onClick={this.deleteClick}/>
+      }
+      infoButton = <CircleButton iconName="info" onClick={this.infoClick}/>
+      editButton = <CircleButton styleProps={{marginLeft: '2px'}} iconName="pencil" onClick={this.editClick} disabled={this.props.disabledChange}/>
+    }
     return (
       <span>
         <span>
-          <CircleButton iconName="info" onClick={this.infoClick}/>
-          {(full) ?
-            <CircleButton iconName="pencil" onClick={this.editClick} disabled={this.props.disabledChange}/> :
-            <CircleButton styleProps={{marginLeft: '2px'}} iconName="pencil" onClick={this.editClick} disabled={this.props.disabledChange}/>
-          }
-          {full && <CircleButton styleProps={{marginLeft: '2px'}} iconName="trash" onClick={this.deleteClick}/>}
+          {infoButton}
+          {editButton}
+          {deleteButton}
         </span>
       </span>
     )

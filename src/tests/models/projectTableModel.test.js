@@ -1,5 +1,8 @@
 import ProjectTableModel from '../../models/projectTableModel'
 import renderer from 'react-test-renderer'
+jest.mock('../../components/tableActionCell')
+jest.mock('../../components/projectStatusCell')
+jest.mock('../../components/projectStatusFilter')
 
 jest.mock('../../api', () => {
   return {
@@ -9,14 +12,18 @@ jest.mock('../../api', () => {
 jest.mock('../../store/website', () => {
   return {
     setProject: jest.fn(),
+    currentUser: {
+      admin: false
+    },
   }
 })
+import Website from '../../store/website'
 
 describe('ProjectTableModel', () => {
   it('Tests constructor', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(project).toHaveProperty('columns')
-    expect(project.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toBe('Sun Dec 17 1995 03:24:00 GMT-0500 (EST)')
+    expect(project.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toEqual(expect.stringContaining('Dec'))
     expect(project.columns[3].accessor({customer: {companyName: 'companyName'}})).toBe('companyName')
     expect(project.columns[6].filterMethod({value:{length: 0}},[]))
     expect(project.columns[6].filterMethod({value:{length: 9, includes: jest.fn()}},[]))
@@ -76,5 +83,14 @@ describe('ProjectTableModel', () => {
     expect(project.openModal.mock.calls.length).toBe(0)
     project.clickHandler(1, '')
     expect(project.openModal.mock.calls.length).toBe(0)
+  })
+
+  it('Tests non-admin Actions field Cell', () => {
+    Website.currentUser.admin = true
+    let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
+    expect(project).toHaveProperty('columns')
+    const component = renderer.create(project.columns[7].Cell({original: {status: 'Completed'}}))
+    let tree2 = component.toJSON()
+    expect(tree2).toMatchSnapshot()
   })
 })

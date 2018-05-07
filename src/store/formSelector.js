@@ -1,7 +1,9 @@
 import CustomerFormModel from '../models/customerFormModel'
 import EmployeeFormModel from '../models/employeeFormModel'
 import ProjectFormModel from '../models/projectFormModel'
+import AccountFormModel from '../models/accountFormModel'
 import TimeEntryFormModel from '../models/timeEntryFormModel'
+import ProjectTaskFormModel from '../models/projectTaskFormModel'
 import autoBind from 'auto-bind'
 
 /**
@@ -82,6 +84,20 @@ class FormSelector {
   getProject(onClick, onCustomer, errorClick){
     return new ProjectFormModel(onClick, onCustomer, errorClick)
   }
+
+  /**
+   * @name getTask
+   * @description Provides ProjectTaskFormModel
+   * @method getTask
+   * @param  {Function}       onClick  On click function for form
+   * @param  {Function}       errorClick On error modal confirmation click function for form
+   * @return {ProjectFormModel}
+   * @memberof FormSelector.prototype
+   */
+  getTask(onClick, errorClick){
+    return new ProjectTaskFormModel(onClick, errorClick)
+  }
+
   /**
    * @name getProject
    * @description Provides ProjectFormModel for editing
@@ -108,6 +124,26 @@ class FormSelector {
   getTimeEntry(){
     return new TimeEntryFormModel()
   }
+
+  /**
+     * @name getAccount
+     * @description Provides AccountFormModel
+     * @method getAccount
+     * @param  {Function}       onClick  On click function for form
+     * @param  {Function}       onCancel On cancel function for form
+     * @param  {Function}       errorClick On error modal confirmation click function for form
+     * @return {AccountFormModel}
+     * @memberof FormSelector.prototype
+     */
+    getAccount(onClick, onCancel, errorClick){
+      return new AccountFormModel(onClick, onCancel, errorClick)
+    }
+
+    getEditAccount(onClick, onCancel, errorClick){
+      let model = new AccountFormModel(onClick, onCancel, errorClick)
+      model.setEdit()
+      return model
+    }
 
 }
 

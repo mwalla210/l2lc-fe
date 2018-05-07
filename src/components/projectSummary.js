@@ -3,7 +3,6 @@ import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
 import {ButtonGroup, DropdownItem, DropdownMenu, ButtonDropdown, DropdownToggle} from 'reactstrap'
 import DeleteModal from './deleteModal'
-import FieldModal from './fieldModal'
 import PromptModal from './promptModal'
 import ButtonDefault from './buttonDefault'
 import Consts from '../consts'
@@ -19,47 +18,9 @@ import Consts from '../consts'
 export default class ProjectSummary extends Component {
   constructor(props){
     super(props)
-    this.reworkClick = this.reworkClick.bind(this)
-    this.holdClick = this.holdClick.bind(this)
-    this.resetAndOpenModal = this.resetAndOpenModal.bind(this)
     this.tasksClick = this.tasksClick.bind(this)
     this.printClick = this.printClick.bind(this)
     this.timeEntries = this.timeEntries.bind(this)
-  }
-
-  /**
-   * On click handler for rework button
-   * @method reworkClick
-   * @memberof ProjectSummary.prototype
-   */
-  reworkClick(){
-    this.props.page.summaryModel.fieldModal.changeTitle('Add Rework')
-    this.props.page.summaryModel.fieldModal.changeConfirmFn((content) => console.log('Rework', content))
-    this.resetAndOpenModal()
-  }
-
-  /**
-   * On click handler for hold button
-   * @method holdClick
-   * @memberof ProjectSummary.prototype
-   */
-  holdClick(){
-    let title = 'Add Hold'
-    if (this.props.website.currentProject.hold.flag)
-      title = 'Remove Hold'
-    this.props.page.summaryModel.fieldModal.changeTitle(title)
-    this.props.page.summaryModel.fieldModal.changeConfirmFn((content) => console.log('Hold', content))
-    this.resetAndOpenModal()
-  }
-
-  /**
-   * Resets modal content and opens modal
-   * @method resetAndOpenModal
-   * @memberof ProjectSummary.prototype
-   */
-  resetAndOpenModal(){
-    this.props.page.summaryModel.fieldModal.changeContent('')
-    this.props.page.summaryModel.fieldModal.openModal()
   }
 
   /**
@@ -68,7 +29,7 @@ export default class ProjectSummary extends Component {
    * @memberof ProjectSummary.prototype
    */
   tasksClick(){
-    console.log('Tasks')
+    this.props.page.projectTaskList()
   }
 
   /**
@@ -87,16 +48,15 @@ export default class ProjectSummary extends Component {
    * @memberof ProjectSummary.prototype
    */
   timeEntries(){
-    console.log('Time Entry table')
+    this.props.page.projectTimeEntryPage()
   }
 
   /**
-   * Renders HTML div component containing FieldModal, DeleteModal, PromptModal, project info, project barcode, and project buttons
+   * Renders HTML div component containing DeleteModal, PromptModal, project info, project barcode, and project buttons
    * @method render
    * @memberof ProjectSummary.prototype
    * @return {Component}
    * @see {@link Barcode}
-   * @see {@link FieldModal}
    * @see {@link DeleteModal}
    * @see {@link PromptModal}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
@@ -104,17 +64,6 @@ export default class ProjectSummary extends Component {
   render() {
     return (
       <div>
-        <FieldModal
-          title={this.props.page.summaryModel.fieldModal.title}
-          submitButton={{
-            title: 'Submit',
-            onClick: this.props.page.summaryModel.fieldModal.confirmAndClose
-          }}
-          open={this.props.page.summaryModel.fieldModal.modalOpen}
-          closeFn={this.props.page.summaryModel.fieldModal.closeModal}
-          onChangeFn={this.props.page.summaryModel.fieldModal.changeContent}
-          contents={this.props.page.summaryModel.fieldModal.contents}
-        />
         <DeleteModal
           title="Delete Project?"
           confirmOnClick={this.props.page.summaryModel.deleteModal.confirmAndClose}
@@ -243,18 +192,6 @@ export default class ProjectSummary extends Component {
               <DropdownToggle color="primary" caret>Actions</DropdownToggle>
               <DropdownMenu>
                 <DropdownItem
-                  onClick={this.reworkClick}
-                  disabled={this.props.website.currentProject.status == 'Completed'}
-                >
-                  Add Rework
-                </DropdownItem>
-                <DropdownItem
-                  onClick={this.holdClick}
-                  disabled={this.props.website.currentProject.status == 'Completed'}
-                >
-                  {`${(this.props.website.currentProject.hold.flag) ? 'Remove' : 'Add'} Hold`}
-                </DropdownItem>
-                <DropdownItem
                   onClick={this.props.page.projectEditPage}
                   disabled={this.props.website.currentProject.status == 'Completed'}
                 >
@@ -274,11 +211,13 @@ export default class ProjectSummary extends Component {
                 >
                   Complete
                 </DropdownItem>
-                <DropdownItem
-                  onClick={this.props.page.summaryModel.deleteModal.openModal}
-                >
-                  Delete
-                </DropdownItem>
+                {this.props.website.currentUser.admin &&
+                  <DropdownItem
+                    onClick={this.props.page.summaryModel.deleteModal.openModal}
+                  >
+                    Delete
+                  </DropdownItem>
+                }
               </DropdownMenu>
             </ButtonDropdown>
           </ButtonGroup>

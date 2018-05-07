@@ -1,7 +1,9 @@
 import fetch from 'node-fetch'
+import TimeEntryModel from './models/timeEntryModel'
 import ProjectModel from './models/projectModel'
 import CustomerModel from './models/customerModel'
 import EmployeeModel from './models/employeeModel'
+import TaskModel from './models/taskModel'
 import UserModel from './models/userModel'
 
 const api = 'http://138.197.88.198:8080/l2lc/api/'
@@ -152,6 +154,32 @@ export default class API {
       }
     })
   }
+  /**
+   * @name fetchCustomerProjects
+   * @description Fetches all projects and modelizes
+   * @method fetchCustomerProjects
+   * @memberof API
+   * @return {Promise}
+   * @async
+   */
+  static fetchCustomerProjects(id){
+    return fetch(`${api}project?limit=50&offset=0&customerId=${id}`)
+    .then(res => res.json())
+    .then(json => {
+      let projects = []
+      json.items.forEach(item => {
+        if (item.projectStatus != 'Dropped')
+          projects.push(item)
+      })
+      projects = projects.map(item => {
+        if (item.customer)
+          item.customer.companyName = item.customer.name
+        let project = API.projectModelize(item)
+        return project
+      })
+      return projects
+    })
+  }
 
   // Projects
 
@@ -200,6 +228,150 @@ export default class API {
       }
       return project
     })
+  }
+  /**
+   * @name fetchProjectTasks
+   * @description Fetches project and modelizes
+   * @method fetchProjectTasks
+   * @memberof API
+   * @param  {Number}     id ID of project to fetch
+   * @return {Promise}
+   * @async
+   */
+  static fetchProjectTasks(id){
+    return fetch(`${api}project/${id}/tasks`)
+    .then(res => res.json())
+    .then(json => {
+      let tasks = []
+      json.forEach(task => {
+        if (!task.dropped)
+          tasks.push(API.taskModelize(task))
+      })
+      return tasks
+    })
+  }
+  /**
+   * @name createTask
+   * @description POSTs a task to API, modelizes return
+   * @method createTask
+   * @param  {Number}   projectID  Related project
+   * @param  {Object}       task Task object (JSON)
+   * @return {Promise}
+   */
+  static createTask(projectID, task){
+    return API.create(`project/${projectID}/task/create`, task)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return API.taskModelize(response)
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name createTaskList
+   * @description POSTs a task list to API, modelizes return
+   * @method createTaskList
+   * @param  {Number}   projectID  Related project
+   * @param  {Object}    taskList Task list (JSON)
+   * @return {Promise}
+   */
+  static createTaskList(projectID, taskList){
+    return API.create(`project/${projectID}/tasks/create`, taskList)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return response.map(task => API.taskModelize(task))
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name updateTaskList
+   * @description POSTs a task list to API, modelizes return
+   * @method updateTaskList
+   * @param  {Number}   projectID  Related project
+   * @param  {Object}    taskList Task list (JSON)
+   * @return {Promise}
+   */
+  static updateTaskList(projectID, taskList){
+    return API.update(`project/${projectID}/tasks/update`, taskList)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return response.map(task => API.taskModelize(task))
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name updateTask
+   * @description POSTs new task properties to API, modelizes return
+   * @method updateTask
+   * @param  {Number}   projectID  Related project
+   * @param  {Number}     taskID  Related task
+   * @param  {Object}    taskList Task props (JSON)
+   * @return {Promise}
+   */
+  static updateTask(projectID, taskID, props){
+    return API.update(`project/${projectID}/task/${taskID}/update`, props)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      }
+      else if(typeof(response) != 'number'){
+        return API.taskModelize(response)
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name dropTask
+   * @description POSTs new task properties to API, modelizes return
+   * @method dropTask
+   * @param  {Number}   projectID  Related project
+   * @param  {Object}    body Object with task ID for dropping (JSON)
+   * @return {Promise}
+   */
+  static dropTask(projectID, body){
+    return fetch(`${api}project/${projectID}/task/drop`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => {
+      if(response.status === 202){
+        return null
+      }
+      else {
+        return `Unexpected error ${response.status}`
+      }
+    })
+  }
+  /**
+   * @name taskModelize
+   * @description Modelizes a database task model
+   * @method taskModelize
+   * @memberof API
+   * @param  {Object}        item Database task object
+   * @return {TaskModel}
+   */
+  static taskModelize(item){
+    return new TaskModel(item.required, item.title, item.station, item.id)
   }
   /**
    * @name createProject
@@ -275,6 +447,44 @@ export default class API {
     .then(() => {
       return true
     })
+  }
+  /**
+   * @name fetchTimeEntries
+   * @description Fetches project time entries
+   * @method fetchTimeEntries
+   * @memberof API
+   * @return {Promise}
+   * @async
+   */
+  static fetchTimeEntries(id){
+    return fetch(`${api}project/${id}/time-entry`)
+    .then(res => res.json())
+    .then(json => {
+      let entries = []
+      // For each returned json object...
+      json.forEach(item => {
+        let entry = API.timeEntryModelize(item)
+        // Add to list
+        entries.push(entry)
+      })
+      // Return list of models, not json
+      return entries
+    })
+  }
+  /**
+   * @name timeEntryModelize
+   * @description Modelizes a database time entry
+   * @method timeEntryModelize
+   * @memberof API
+   * @param  {Object}         item time entry database object
+   * @return {CustomerModel}
+   */
+  static timeEntryModelize(item){
+    // Construct model
+    let dateItem = new Date(item.created)
+    let date = dateItem.toString()
+    let timeEntry = new TimeEntryModel(item.id, item.projectId, item.employeeId, item.station, date )
+    return timeEntry
   }
 
   // Employees
@@ -357,6 +567,63 @@ export default class API {
   // Users
 
   /**
+   * @name createAccount
+   * @description Creates an account and modelizes
+   * @method createAccount
+   * @memberof API
+   * @param  {Object}       account Account object (JSON)
+   * @return {Promise}
+   */
+  static createAccount(account){
+    return API.create('user/create', account)
+    .then(response => {
+      if(response === 406){
+        return 'Duplicate entry exists'
+      } else if(typeof(response) != 'number'){
+        return API.userModelize(response)
+      } else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
+   * @name fetchAccounts
+   * @description Fetches all accounts and modelizes
+   * @method fetchAccounts
+   * @memberof API
+   * @return {Promise}
+   */
+  static fetchAccounts(){
+    return fetch(`${api}user?limit=50&offset=0`)
+    .then(res => res.json())
+    .then(json => {
+      let accounts = []
+      json.items.forEach(item => {
+        accounts.push(API.userModelize(item))
+      })
+      return accounts
+    })
+  }
+  /**
+   * @name updateUserAdmin
+   * @description POSTs to endpoint with body provided, then returns
+   * @method updateUserAdmin
+   * @memberof API
+   * @param  {Integer} id      USer ID
+   * @param  {JSON} bool       boolean for POST
+   * @return {Promise}
+   */
+  static updateUserAdmin(id, body){
+    return fetch(`${api}user/${id}/update`, {
+      method: 'POST',
+      body,
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then(() => {
+      return true
+    })
+  }
+  /**
    * @name userModelize
    * @description Modelizes a database user model
    * @method userModelize
@@ -400,13 +667,13 @@ export default class API {
   // Analytics
 
   /**
-   * @name fetchTimeEntries
+   * @name fetchAnalytics
    * @description Fetches a year's worth of time entries
-   * @method fetchTimeEntries
+   * @method fetchAnalytics
    * @memberof API
    * @return {Promise}
    */
-  static fetchTimeEntries(){
+  static fetchAnalytics(){
     return fetch(`${api}project/time-entry`)
     .then(res => res.json())
   }

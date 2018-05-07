@@ -1,4 +1,4 @@
-import { action, useStrict, extendObservable, computed } from 'mobx'
+import { action, useStrict, extendObservable, computed, toJS } from 'mobx'
 import API from '../api'
 import autoBind from 'auto-bind'
 useStrict(true)
@@ -25,6 +25,7 @@ class Website {
       currentCustomer: null,
       currentEmployee: null,
       currentUser: null,
+      currentAccount: null,
       username: '',
       password: '',
       loginerror: false,
@@ -100,6 +101,14 @@ class Website {
    */
   @action setUser(user){
     this.currentUser = user
+    // eslint-disable-next-line no-undef
+    sessionStorage.setItem('username', user.username)
+    // eslint-disable-next-line no-undef
+    sessionStorage.setItem('admin', user.admin)
+    // eslint-disable-next-line no-undef
+    sessionStorage.setItem('stationID', user.stationID)
+    // eslint-disable-next-line no-undef
+    sessionStorage.setItem('id', user.id)
   }
 
   // Creation
@@ -371,6 +380,42 @@ class Website {
   @computed get loginButtonDisabled(){
     return this.loginerror || this.username == '' || this.password == ''
   }
+
+  /**
+     * @name createAccount
+     * @description Sends the formatted Account in POST to API to add entry to database
+     * @memberof Website.prototype
+     * @method createAccount
+     * @param  {Account}       account Finalized Account to create in database
+     * @return {String|null}
+     * @async
+     * @mobx action
+     */
+    @action createAccount(account){
+      let jsonAccount = JSON.stringify(account)
+      console.log('Create account entry in API with:', jsonAccount)
+      return API.createAccount(jsonAccount)
+      .then(response => {
+        if(typeof(response) === 'string'){
+          return response
+        } else {
+          this.setAccount(response)
+          return null
+        }
+      })
+    }
+
+    /**
+     * @name setAccount
+     * @description Sets current project
+     * @method setAccount
+     * @memberof Website.prototype
+     * @param  {Account}   account  Project to set
+     * @mobx action
+     */
+    @action setAccount(account){
+      this.currentAccount = account
+    }
 
 }
 

@@ -66,6 +66,7 @@
     "react-checkbox-group": "3.3.4",
     "react-dom": "16.0.0",
     "react-spinners": "0.3.2",
+    "react-toggle-switch": "3.0.4",
     "reactstrap": "5.0.0"
   },
   "jest": {

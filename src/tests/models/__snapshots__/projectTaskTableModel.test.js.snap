@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectTaskTableModel Tests Actions field Cell 1`] = `null`;
+
+exports[`ProjectTaskTableModel Tests Required field Cell 1`] = `
+<div
+  style={
+    Object {
+      "paddingTop": "7px",
+    }
+  }
+>
+  <Switch
+    on={undefined}
+    onClick={[Function]}
+  />
+</div>
+`;
