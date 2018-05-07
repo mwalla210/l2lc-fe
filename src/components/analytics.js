@@ -55,7 +55,7 @@ export default class Analytics extends Component {
             analytic.model.timeFilterData(d, '1 Week')
           }
           return (
-            <div key={index} className="col-6" style={{display: 'inline-block', paddingTop: 10}}>
+            <div key={index} className={`col-${analytic.model.component == 'bar' ? '12' : '6'}`} style={{display: 'inline-block', paddingTop: 10}}>
               <h4 style={{textAlign: 'center'}}>{analytic.title}</h4>
               {(analytic.model.loading) ?
                 <div className="row justify-content-center" style={{paddingTop: '30px', paddingBottom: '30px'}}>
