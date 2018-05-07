@@ -32,6 +32,7 @@ const defaultOptions = {
     projectEditPage: jest.fn(),
     changeCustomerPage: jest.fn(),
     projectTimeEntryPage: jest.fn(),
+    projectTaskList: jest.fn(),
   },
   website: {
     currentProject: {
@@ -96,13 +97,14 @@ describe('ProjectSummary', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  xit ('Renders and calls tasksClick', () => {
+  it ('Renders and calls tasksClick', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
       <ProjectSummary {...options}/>,
     )
     const inst = component.getInstance()
     inst.tasksClick()
+    expect(inst.props.page.projectTaskList.mock.calls.length).toBe(1)
   })
   it ('Renders and calls timeEntries', () => {
     let options = Object.assign({}, defaultOptions)
@@ -111,6 +113,7 @@ describe('ProjectSummary', () => {
     )
     const inst = component.getInstance()
     inst.timeEntries()
+    expect(inst.props.page.projectTimeEntryPage.mock.calls.length).toBe(1)
   })
   it ('Renders and calls printClick', () => {
     let options = Object.assign({}, defaultOptions)

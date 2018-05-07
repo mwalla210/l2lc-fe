@@ -32,16 +32,6 @@ export default class CustomerProjectsTableModel extends TableModel{
         confirmOnClick: deleteClickNav,
         content: 'This action cannot be undone.'
       },
-      (state, rowInfo) => {
-        if (rowInfo && rowInfo.row._original.priority != 'Low'){
-          return {
-            style: {
-              background: rowInfo.row._original.priority == 'High' ? Consts.highPriority : Consts.medPriority
-            }
-          }
-        }
-        return {}
-      }
     )
     let addtlProps = {
       filterDD: false
