@@ -73,20 +73,8 @@ export default class CustomerProjectsTableModel extends TableModel{
         filterable: true
       },
       {
-        Header: 'Time Spent',
-        accessor: 'timeSpent',
-        filterable: true
-      },
-      {
-        Header: 'Finished',
-        id: 'dateFinished',
-        accessor: d => {
-          if (d.dateFinished)
-            return d.dateFinished.toString()
-          else {
-            return ''
-          }
-        },
+        Header: 'Priority',
+        accessor: 'priority',
         filterable: true
       },
       {
@@ -116,7 +104,7 @@ export default class CustomerProjectsTableModel extends TableModel{
             }
           }
         },
-        Cell: row => <TableActionCell row={row} set="Full" clickHandler={this.clickHandler}/>
+        Cell: row => <TableActionCell row={row} set={(Website.currentUser.admin) ? 'Full' : 'Restricted'} clickHandler={this.clickHandler} disabledChange={row.original.status == 'Completed'}/>
       }
     ]
   }
