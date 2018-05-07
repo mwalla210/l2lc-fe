@@ -92,7 +92,7 @@ export default class AnalyticsModel {
         }
         // If subset is object
         catch (error) {
-          newData[key] = {}
+          delete newData[key]
           if (this.unProcessedData[key].time > date)
             newData[key] = this.unProcessedData[key]
         }

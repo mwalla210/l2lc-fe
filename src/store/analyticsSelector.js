@@ -30,9 +30,6 @@ class AnalyticsSelector {
     .then(res => {
       let {employeeEntries, projects, stations, costCenters, costCenterJobTypes, apcJobTypes, months} = this.processEntries(res)
 
-      // TODO: instead of pre-processing all analytic datasets, give models original datasets & function to process, so they can filter original datasets by time-frame and then reapply processing function?
-      // Week, month, three month, year
-
       // Time spent, by employee, by station
       analytics[0].model.setData(
         (stations, employeeEntries) => this.mapTimeByCategory(employeeEntries, stations, 'station'),
