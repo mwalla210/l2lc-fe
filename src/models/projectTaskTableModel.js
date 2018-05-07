@@ -1,5 +1,5 @@
 import React from 'react'
-import { action, useStrict, extendObservable } from 'mobx'
+import { action, useStrict } from 'mobx'
 import TableActionCell from '../components/tableActionCell'
 import Switch from 'react-toggle-switch'
 import 'react-toggle-switch/dist/css/switch.min.css'
@@ -28,18 +28,22 @@ export default class ProjectTaskTableModel extends TableModel{
       null,
       {
         title: 'Delete Task?',
-        confirmOnClick: deleteClickNav,
+        confirmOnClick: () => {
+          API.dropTask(Website.currentProject.id, JSON.stringify({taskId: this.id}))
+          .then(() => {
+            deleteClickNav()
+          })
+        },
         content: 'This action cannot be undone.'
       },
     )
-    extendObservable(this)
     this.deleteClickNav = deleteClickNav
     autoBind(this)
     this.columns = [
       {
         Header: 'Required',
         sortable: false,
-        maxWidth: 100,
+        maxWidth: 80,
         getProps: () => {
           return {
             className: 'center',
@@ -55,7 +59,7 @@ export default class ProjectTaskTableModel extends TableModel{
             this.requiredClickHandler()
           }
           return (
-            <Switch onClick={click} on={row.original.required}/>
+            <div style={{paddingTop: '7px'}}><Switch onClick={click} on={row.original.required}/></div>
           )
         }
       },
@@ -77,7 +81,7 @@ export default class ProjectTaskTableModel extends TableModel{
       {
         Header: 'Actions',
         sortable: false,
-        maxWidth: 100,
+        maxWidth: 80,
         getProps: () => {
           return {
             className: 'center',
@@ -87,7 +91,7 @@ export default class ProjectTaskTableModel extends TableModel{
             }
           }
         },
-        Cell: row => <TableActionCell row={row} set="Restricted" clickHandler={this.clickHandler}/>
+        Cell: row => <TableActionCell row={row} set="Delete" clickHandler={this.clickHandler}/>
       }
     ]
   }
@@ -105,18 +109,17 @@ export default class ProjectTaskTableModel extends TableModel{
     this.data = newList
   }
 
+  /**
+   * @name clickHandler
+   * @description Handles delete circle button click
+   * @method clickHandler
+   * @param  {Object}     row  Related row object
+   * @param  {String}     type Circle button type
+   * @memberof ProjectTaskTableModel.prototype
+   */
   clickHandler(row, type){
-    if (type == 'info' || type == 'edit' || type == 'delete'){
-      Website.setProject(row.original)
-      if (type == 'info'){
-        this.infoClickNav()
-      }
-      else if (type == 'edit'){
-        this.editClickNav()
-      }
-      else {
-        this.openModal()
-      }
+    if (type == 'delete'){
+      this.openModal()
     }
   }
 
@@ -140,7 +143,13 @@ export default class ProjectTaskTableModel extends TableModel{
       // At hoverIndex, remove 0 items and add row
       this.data.splice(hoverIndex, 0, row[0])
     }
-    // TODO: update API with new data placement
-    console.log(this.data)
+    let jsonList = []
+    this.data.forEach((model, index) => {
+      jsonList.push({
+        id: model.id,
+        placement: index+1
+      })
+    })
+    API.updateTaskList(Website.currentProject.id, JSON.stringify(jsonList))
   }
 }

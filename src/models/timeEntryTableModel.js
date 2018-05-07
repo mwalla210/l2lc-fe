@@ -1,5 +1,4 @@
-import React from 'react'
-import { useStrict, action } from 'mobx'
+import { useStrict } from 'mobx'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import Website from '../store/website'

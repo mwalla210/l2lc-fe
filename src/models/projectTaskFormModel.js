@@ -49,8 +49,10 @@ export default class ProjectTaskFormModel extends FormModel{
       let body = {
         title: valueReturn('taskName'),
         required: true,
-        station: valueReturn('processArea')
       }
+      let station = valueReturn('processArea')
+      if (station.trim() != '')
+        body.station = station
       API.createTask(Website.currentProject.id, JSON.stringify(body))
       .then((response) => {
         if(typeof response != 'string'){

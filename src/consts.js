@@ -884,7 +884,6 @@ class Consts {
       }
     },
   ]}
-
   /**
    * @name accountFields
    * @description List of account form fields
@@ -921,13 +920,12 @@ class Consts {
     },
     {
       type: 'checkbox',
-      label: 'Admin Privelages',
+      label: 'Admin User',
       id: 'admin',
       required: true,
       validation: null,
     }
   ]}
-
   /**
    * @name timeEntryFields
    * @description List of time entry form fields

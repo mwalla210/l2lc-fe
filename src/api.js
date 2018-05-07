@@ -337,6 +337,26 @@ export default class API {
     })
   }
   /**
+   * @name updateTask
+   * @description POSTs new task properties to API, modelizes return
+   * @method updateTask
+   * @param  {Number}   projectID  Related project
+   * @param  {Number}     taskID  Related task
+   * @param  {Object}    taskList Task props (JSON)
+   * @return {Promise}
+   */
+  static dropTask(projectID, body){
+    return API.update(`project/${projectID}/task/drop`, body)
+    .then(response => {
+      if(typeof(response) != 'number'){
+        return null
+      }
+      else {
+        return `Unexpected error ${response}`
+      }
+    })
+  }
+  /**
    * @name taskModelize
    * @description Modelizes a database task model
    * @method taskModelize

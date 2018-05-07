@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStrict } from 'mobx'
+import { useStrict, action } from 'mobx'
 import autoBind from 'auto-bind'
 import TableModel from './tableModel'
 import API from '../api'
@@ -44,7 +44,7 @@ export default class AccountTableModel extends TableModel{
         Header: 'Admin',
         //accessor: 'admin',
         sortable: false,
-        maxWidth: 100,
+        maxWidth: 80,
         getProps: () => {
           return {
             className: 'center',
@@ -55,9 +55,30 @@ export default class AccountTableModel extends TableModel{
           }
         },
         id: 'admin',
-        Cell: row => <div style={{paddingTop: '7px'}}><Switch onClick={row.original.toggleAdmin} on={row.original.admin}/></div>
+        Cell: row => {
+          let click = () => {
+            row.original.toggleAdmin()
+            this.requiredClickHandler()
+          }
+          return (
+            <div style={{paddingTop: '7px'}}><Switch onClick={click} on={row.original.admin}/></div>
+          )
+        }
       },
     ]
+  }
+
+  /**
+   * @name requiredClickHandler
+   * @description Resets data list so table updates visually
+   * @method requiredClickHandler
+   * @memberof AccountTableModel.prototype
+   * @mobx action
+   */
+  @action requiredClickHandler(){
+    let newList = []
+    this.data.forEach(item => newList.push(item))
+    this.data = newList
   }
 
   /**
