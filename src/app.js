@@ -7,7 +7,8 @@ import UserModel from './models/userModel'
 
 @observer
 class App extends Component {
-  render() {
+  constructor(){
+    super()
      let username = sessionStorage.getItem('username')
      let admin = sessionStorage.getItem('admin')
      let stationID = sessionStorage.getItem('stationID')
@@ -17,6 +18,9 @@ class App extends Component {
       Website.setUser(user)
       PageStore.createNewProjMenuItem()
     }
+  }
+
+  render() {
     return (
       <Page/>
     )
