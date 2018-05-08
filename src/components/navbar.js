@@ -34,8 +34,8 @@ export default class NavBar extends Component{
    * @memberof NavBar.prototype
    */
   promptConfirm(){
-    this.props.website.setUser(null)
     this.props.website.logOutDismiss()
+    this.props.website.setUser(null)
   }
 
   /**
