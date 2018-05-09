@@ -125,7 +125,6 @@ class Website {
    */
   @action createProject(project){
     let jsonProject = JSON.stringify(project)
-    console.log('Create project entry in API with:', jsonProject)
     return API.createProject(jsonProject)
     .then(response => {
       if(typeof(response) === 'string'){
@@ -150,7 +149,6 @@ class Website {
    */
   @action createCustomer(customer){
     let jsonCustomer = JSON.stringify(customer)
-    console.log('Create customer entry in API with:', jsonCustomer)
     return API.createCustomer(jsonCustomer)
     .then(response => {
       if(typeof(response) === 'string'){
@@ -173,7 +171,6 @@ class Website {
    */
   @action createEmployee(employee){
     let jsonEmployee = JSON.stringify(employee)
-    console.log('Create employee entry in API with:', jsonEmployee)
     return API.createEmployee(jsonEmployee)
     .then(response => {
       if(typeof(response) === 'string'){
@@ -393,7 +390,6 @@ class Website {
      */
     @action createAccount(account){
       let jsonAccount = JSON.stringify(account)
-      console.log('Create account entry in API with:', jsonAccount)
       return API.createAccount(jsonAccount)
       .then(response => {
         if(typeof(response) === 'string'){

@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>0/22</span>
+        <span class='fraction'>22/22</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/13</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>0/21</span>
+        <span class='fraction'>21/21</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -182,41 +182,41 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -295,15 +295,15 @@ export default class Analytics extends Component {
    * @return {Component}
    * @see {@link https://www.npmjs.com/package/react-chartjs-2 React-ChartJS-2}
    */
-<span class="fstat-no" title="function not covered" >  re</span>nder() {
-<span class="cstat-no" title="statement not covered" >    return (</span>
+  render() {
+    return (
       &lt;div className="row justify-content-center"&gt;
-        {this.props.page.analyticsModel.map(<span class="fstat-no" title="function not covered" >(a</span>nalytic, index) =&gt; {
-          let buttons = <span class="cstat-no" title="statement not covered" >[]</span>
-<span class="cstat-no" title="statement not covered" >          if (analytic.model.filters &amp;&amp; analytic.model.filters.length &gt; 1){</span>
-<span class="cstat-no" title="statement not covered" >            analytic.model.filters.map(<span class="fstat-no" title="function not covered" >(f</span>ilter,filterIndex) =&gt; {</span>
-              let click = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >analytic.model.setFilteredData(filter.type)</span></span>
-<span class="cstat-no" title="statement not covered" >              buttons.push(</span>
+        {this.props.page.analyticsModel.map((analytic, index) =&gt; {
+          let buttons = []
+          if (analytic.model.filters &amp;&amp; analytic.model.filters.length &gt; 1){
+            analytic.model.filters.map((filter,filterIndex) =&gt; {
+              let click = () =&gt; analytic.model.setFilteredData(filter.type)
+              buttons.push(
                 &lt;Button size="sm" key={filterIndex} color="primary"
                   onClick={click} active={analytic.model.currentFilter === filter.type}
                 &gt;
@@ -312,25 +312,25 @@ export default class Analytics extends Component {
               )
             })
           }
-          let yearSwitch = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            analytic.model.timeFilterData()</span>
+          let yearSwitch = () =&gt; {
+            analytic.model.timeFilterData()
           }
-          let threeMonthSwitch = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-            let d = <span class="cstat-no" title="statement not covered" >new Date()</span>
-<span class="cstat-no" title="statement not covered" >            d.setMonth(d.getMonth() - 3)</span>
-<span class="cstat-no" title="statement not covered" >            analytic.model.timeFilterData(d, '3 Months')</span>
+          let threeMonthSwitch = () =&gt; {
+            let d = new Date()
+            d.setMonth(d.getMonth() - 3)
+            analytic.model.timeFilterData(d, '3 Months')
           }
-          let monthSwitch = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-            let d = <span class="cstat-no" title="statement not covered" >new Date()</span>
-<span class="cstat-no" title="statement not covered" >            d.setMonth(d.getMonth() - 1)</span>
-<span class="cstat-no" title="statement not covered" >            analytic.model.timeFilterData(d, '1 Month')</span>
+          let monthSwitch = () =&gt; {
+            let d = new Date()
+            d.setMonth(d.getMonth() - 1)
+            analytic.model.timeFilterData(d, '1 Month')
           }
-          let weekSwitch = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-            let d = <span class="cstat-no" title="statement not covered" >new Date()</span>
-<span class="cstat-no" title="statement not covered" >            d.setDate(d.getDate() - 7)</span>
-<span class="cstat-no" title="statement not covered" >            analytic.model.timeFilterData(d, '1 Week')</span>
+          let weekSwitch = () =&gt; {
+            let d = new Date()
+            d.setDate(d.getDate() - 7)
+            analytic.model.timeFilterData(d, '1 Week')
           }
-<span class="cstat-no" title="statement not covered" >          return (</span>
+          return (
             &lt;div key={index} className={`col-${analytic.model.component == 'bar' ? '12' : '6'}`} style={{display: 'inline-block', paddingTop: 10}}&gt;
               &lt;h4 style={{textAlign: 'center'}}&gt;{analytic.title}&lt;/h4&gt;
               {(analytic.model.loading) ?

@@ -6,7 +6,7 @@ useStrict(true)
  * @name AnalyticsModel
  * @class AnalyticsModel
  * @classdesc Analytics storage object
- * @property {Object[]} [data=[]] Data array for analytics [observable]
+ * @property {Object} [data={}] Data object for analytics [observable]
  * @property {String} [currentFilter=null] Filter title (if any filters for model) [observable]
  * @property {String} [component] Component type for model [observable]
  * @property {Object[]} [filters] Filter list for model, if any
@@ -19,7 +19,7 @@ useStrict(true)
 export default class AnalyticsModel {
   constructor(filters, component){
     let addtlProps = {
-      data: [],
+      data: {},
       currentFilter: filters ? filters[0].type : null,
       component: filters ? filters[0].component : component,
       yLabel: filters ? filters[0].yLabel : null,
