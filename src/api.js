@@ -6,7 +6,7 @@ import EmployeeModel from './models/employeeModel'
 import TaskModel from './models/taskModel'
 import UserModel from './models/userModel'
 
-const api = 'http://138.197.88.198:8080/l2lc/api/'
+const api = 'https://api.line2linecoatings.us:8443/l2lc/api/'
 
 /**
  * @namespace API
@@ -24,7 +24,7 @@ export default class API {
    * @async
    */
   static fetchCustomers(){
-    return fetch(`${api}customer?limit=50&offset=0`)
+    return fetch(`${api}customer?limit=1000000&offset=0`)
     .then(res => res.json())
     .then(json => {
       let customers = []
@@ -163,7 +163,7 @@ export default class API {
    * @async
    */
   static fetchCustomerProjects(id){
-    return fetch(`${api}project?limit=50&offset=0&customerId=${id}`)
+    return fetch(`${api}project?limit=1000000&offset=0&customerId=${id}`)
     .then(res => res.json())
     .then(json => {
       let projects = []
@@ -192,7 +192,7 @@ export default class API {
    * @async
    */
   static fetchProjects(){
-    return fetch(`${api}project?limit=50&offset=0`)
+    return fetch(`${api}project?limit=1000000&offset=0`)
     .then(res => res.json())
     .then(json => {
       let projects = []
@@ -508,7 +508,7 @@ export default class API {
    * @return {Promise}
    */
   static fetchEmployees(){
-    return fetch(`${api}employee?limit=50&offset=0`)
+    return fetch(`${api}employee?limit=1000000&offset=0`)
     .then(res => res.json())
     .then(json => {
       let employees = []
@@ -594,7 +594,7 @@ export default class API {
    * @return {Promise}
    */
   static fetchAccounts(){
-    return fetch(`${api}user?limit=50&offset=0`)
+    return fetch(`${api}user?limit=1000000&offset=0`)
     .then(res => res.json())
     .then(json => {
       let accounts = []

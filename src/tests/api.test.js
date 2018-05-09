@@ -16,9 +16,9 @@ jest.mock('../store/website', () => {
     }
   }
 })
-nock('http://138.197.88.198:8080/l2lc/api')
+nock('https://api.line2linecoatings.us:8443/l2lc/api/')
   .get('/customer')
-  .query({limit: 50, offset: 0})
+  .query({limit: 1000000, offset: 0})
   .reply(200, {
     items: [
       {
@@ -117,7 +117,7 @@ nock('http://138.197.88.198:8080/l2lc/api')
   .post('/customer/3/update', () => {return true})
   .reply(500)
   .get('/project')
-  .query({limit: 50, offset: 0, customerId: 1})
+  .query({limit: 1000000, offset: 0, customerId: 1})
   .reply(200, {
     items: [
       {
@@ -163,7 +163,7 @@ nock('http://138.197.88.198:8080/l2lc/api')
     ]
   })
   .get('/project')
-  .query({limit: 50, offset: 0})
+  .query({limit: 1000000, offset: 0})
   .reply(200, {
     items: [
       {
@@ -359,7 +359,7 @@ nock('http://138.197.88.198:8080/l2lc/api')
     },
   ])
   .get('/employee')
-  .query({limit: 50, offset: 0})
+  .query({limit: 1000000, offset: 0})
   .reply(200, {
     items: [
       {
@@ -408,7 +408,7 @@ nock('http://138.197.88.198:8080/l2lc/api')
   .post('/user/1/update', () => {return true})
   .reply(200)
   .get('/user')
-  .query({limit: 50, offset: 0})
+  .query({limit: 1000000, offset: 0})
   .reply(200, {
     items: [
       {
