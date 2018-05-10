@@ -32,7 +32,7 @@ class AnalyticsSelector {
 
       // Time spent, by employee, by station
       analytics[0].model.setData(
-        (stations, employeeEntries) => this.mapTimeByCategory(employeeEntries, stations, 'station'),
+        (stations, employeeEntries) => this.mapTimeByCategory(employeeEntries, stations, 'station', true),
         stations,
         employeeEntries
       )
@@ -217,10 +217,11 @@ class AnalyticsSelector {
    * @param  {Object[]}          employeeEntries Time entries
    * @param  {String[]}          categories      List of categories
    * @param  {String}          categoryName      Property accessor name corresponding to one of categories
+   * @param  {Boolean}          apcDecOnly      Only include
    * @return {Object[]}
    * @memberof AnalyticsSelector.prototype
    */
-  mapTimeByCategory(employeeEntries, categories, categoryName){
+  mapTimeByCategory(employeeEntries, categories, categoryName, apcDecOnly=false){
     let datasets = []
     Object.keys(employeeEntries).forEach((key,index) => {
       let data = []
@@ -236,10 +237,12 @@ class AnalyticsSelector {
         // Split entries by project (time entries only sequential and differable in single project context)
         let entriesByProject = {}
         entriesByCategory[key].forEach(entry => {
-          if (entriesByProject.hasOwnProperty(entry.projectId))
-            entriesByProject[entry.projectId].push(entry)
-          else
-            entriesByProject[entry.projectId] = [entry]
+          if ((apcDecOnly && ['APC','Decorative'].includes(entry.costCenter)) || !apcDecOnly){
+            if (entriesByProject.hasOwnProperty(entry.projectId))
+              entriesByProject[entry.projectId].push(entry)
+            else
+              entriesByProject[entry.projectId] = [entry]
+          }
         })
         let count = 0
         // Calculate time spent for projects in this station, then accumulate for total station hour count

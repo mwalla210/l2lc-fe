@@ -55,7 +55,7 @@ describe('ProjectModel', () => {
     project.timeSpent
   })
 
-  it('Tests get timeSpent', () => {
+  xit('Tests get timeSpent', () => {
     let project = new ProjectModel()
     project.timeEntries[0] = {created: 3600000}
     project.timeEntries[1] = {created: 7260000}
@@ -66,7 +66,7 @@ describe('ProjectModel', () => {
     project.timeSpent
   })
 
-  it('Tests get timeSpent with alternate arguments', () => {
+  xit('Tests get timeSpent with alternate arguments', () => {
     let project = new ProjectModel()
     project.timeEntries[0] = 1525123365596
     project.timeEntries[1] = 2525123974645
