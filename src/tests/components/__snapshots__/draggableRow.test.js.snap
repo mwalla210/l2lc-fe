@@ -7,8 +7,7 @@ exports[`DraggableRow Renders while dragging 1`] = `
   role="row"
   style={
     Object {
-      "cursor": "move",
-      "opacity": 0,
+      "cursor": "-webkit-grabbing",
     }
   }
 />
@@ -21,8 +20,7 @@ exports[`DraggableRow Renders with snapshot 1`] = `
   role="row"
   style={
     Object {
-      "cursor": "move",
-      "opacity": 1,
+      "cursor": "-webkit-grab",
     }
   }
 />

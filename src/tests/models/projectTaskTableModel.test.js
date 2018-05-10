@@ -28,13 +28,13 @@ describe('ProjectTaskTableModel', () => {
   it('Tests constructor', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     expect(projectTask).toHaveProperty('columns')
-    expect(projectTask.columns[0].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
-    expect(projectTask.columns[4].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
+    expect(projectTask.columns[1].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
+    expect(projectTask.columns[5].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
   })
   it('Tests Required field Cell', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     projectTask.data = [{}]
-    const component = renderer.create(projectTask.columns[0].Cell({original: {toggleRequired: jest.fn()}}))
+    const component = renderer.create(projectTask.columns[1].Cell({original: {toggleRequired: jest.fn()}}))
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
     // Call click
@@ -42,7 +42,7 @@ describe('ProjectTaskTableModel', () => {
   })
   it('Tests Actions field Cell', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
-    const component = renderer.create(projectTask.columns[4].Cell({}))
+    const component = renderer.create(projectTask.columns[5].Cell({}))
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
