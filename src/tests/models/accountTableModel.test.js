@@ -27,21 +27,6 @@ describe('AccountTableModel', () => {
     expect(account.columns[2].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
   })
 
-  it('Tests clickHandler with edit', () => {
-    let account = new AccountTableModel(jest.fn(),jest.fn())
-    expect(account.editClickNav.mock.calls.length).toBe(0)
-    account.clickHandler(1,'edit')
-    expect(account.editClickNav.mock.calls.length).toBe(1)
-  })
-
-  it('Tests clickHandler with no input', () => {
-    let account = new AccountTableModel(jest.fn(),jest.fn())
-    account.openModal = jest.fn()
-    expect(account.openModal.mock.calls.length).toBe(0)
-    account.clickHandler(1, '')
-    expect(account.openModal.mock.calls.length).toBe(0)
-  })
-
   it('Tests requiredClickHandler', () => {
     let account = new AccountTableModel(jest.fn(),jest.fn())
     expect(account).toHaveProperty('columns')

@@ -33,38 +33,7 @@ export default class AccountFormModel extends FormModel{
     )
     this.onClickNav = onClickNav
     autoBind(this)
-    this.primaryButton.onClick = this.newButton()
-  }
-  /**
-   * @name resetFields
-   * @description Sets all fields back to defaults
-   * @method resetFields
-   * @memberof AccountFormModel.prototype
-   * @mobx action
-   */
-  @action resetFields(){
-    this.fields = Consts.accountFields
-  }
-  /**
-   * @name editButton
-   * @description Returns function for onClick of primary button when editing
-   * @method editButton
-   * @return {Function}
-   * @memberof AccountFormModel.prototype
-   */
-  editButton(){
-    // Change onClick functionality for primary
-    return (fields) => console.log('EDIT with', fields)
-  }
-  /**
-   * @name newButton
-   * @description Returns function for onClick of primary button when creating
-   * @method newButton
-   * @return {Function}
-   * @memberof AccountFormModel.prototype
-   */
-  newButton(){
-    return (fields) => {
+    this.primaryButton.onClick = (fields) => {
       let body = {}
       fields.forEach(item => {
         body[item.id] = item.value
@@ -80,27 +49,14 @@ export default class AccountFormModel extends FormModel{
       })
     }
   }
-
   /**
-   * @name setEdit
-   * @description Modifies primary button click, initializes field values as editing values corresponding to currentAccount
-   * @method setEdit
+   * @name resetFields
+   * @description Sets all fields back to defaults
+   * @method resetFields
    * @memberof AccountFormModel.prototype
    * @mobx action
    */
-  @action setEdit(){
-    this.primaryButton.onClick = this.editButton()
-    this.resetFields()
-  }
-  /**
-   * @name setNonEdit
-   * @description Modifies primary button click, initializes field values as default values
-   * @method setNonEdit
-   * @memberof AccountFormModel.prototype
-   * @mobx action
-   */
-  @action setNonEdit(){
-    this.primaryButton.onClick = this.newButton(this.onClickNav)
-    this.resetFields()
+  @action resetFields(){
+    this.fields = Consts.accountFields
   }
 }

@@ -220,7 +220,6 @@ class Website {
    */
   updateProject(id, props){
     let jsonprops = JSON.stringify(props)
-    console.log('Update project entry in API with:', jsonprops)
     return API.updateProject(id, jsonprops)
     .then(response => {
       if(typeof(response) === 'string'){
@@ -258,7 +257,6 @@ class Website {
    */
   updateEmployee(id, props){
     let jsonprops = JSON.stringify(props)
-    console.log('Update employee entry in API with:', jsonprops)
     return API.updateEmployee(id, jsonprops)
     .then(response => {
       if(typeof(response) === 'string'){
@@ -280,7 +278,6 @@ class Website {
    */
   updateCustomer(id, props){
     let jsonprops = JSON.stringify(props)
-    console.log('Update customer entry in API with:', jsonprops)
     return API.updateCustomer(id, jsonprops)
     .then(response => {
       if(typeof(response) === 'string'){
