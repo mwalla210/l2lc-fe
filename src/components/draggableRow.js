@@ -91,12 +91,20 @@ export default class DraggableRow extends Component {
     delete addtl.moverow
     delete addtl.index
     const opacity = isDragging ? 0 : 1
+    const grab = isDragging ? '-webkit-grabbing' : '-webkit-grab'
+    if (addtl.style)
+      addtl.style.cursor = grab
+    else
+      addtl.style = {
+        cursor: grab
+      }
+    console.log(addtl)
     return connectDragSource(
       connectDropTarget(
         <div
           className={classnames('rt-tr', className)}
           role="row"
-          style={{opacity, cursor: 'move'}}
+          style={{opacity}}
           {...addtl}
         >
           {children}

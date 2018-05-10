@@ -38,6 +38,15 @@ export default class ProjectTaskTableModel extends TableModel{
     this.deleteModal.confirmOnClick = this.deleteTask
     this.columns = [
       {
+        Header: '',
+        maxWidth: 80,
+        Cell: () =>
+          <img
+            style={{transform: 'rotate(90deg)', width: '13px'}}
+            src={'../../style/open-iconic-master/svg/ellipses.svg'}
+          />
+      },
+      {
         Header: 'Required',
         sortable: false,
         maxWidth: 80,
