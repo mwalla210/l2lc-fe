@@ -155,7 +155,7 @@ class AnalyticsSelector {
         let obj = {
           costCenter: timeEntry.costCenter,
           station: timeEntry.station,
-          time: dateTime,
+          time: timeEntry.time,
           projectId: timeEntry.projectId
         }
         // If employee has pre-started list, push
