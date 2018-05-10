@@ -96,8 +96,8 @@ export default class ProjectTaskTableModel extends TableModel{
       .then(res => {
         if (
           res.length == 0 &&
-          Website.currentProject.costCenterTitle == 'APC' &&
-          ['Piston','Turbo','Rotor','Pump','Avaslick'].includes(Website.currentProject.jobTypeTitle)
+          (Website.currentProject.costCenterTitle == 'APC' || Website.currentProject.costCenterTitle == 'Decorative') &&
+          ['Piston','Turbo','Rotor','Pump','Avaslick','Decorative'].includes(Website.currentProject.jobTypeTitle)
         ){
           this.taskOpenModal()
         }
@@ -216,6 +216,9 @@ export default class ProjectTaskTableModel extends TableModel{
         break
       case 'Avaslick':
         tasks = Consts.avaslickTasks
+        break
+      case 'Decorative':
+        tasks = Consts.decorativeTasks
         break
     }
     API.createTaskList(Website.currentProject.id, JSON.stringify(tasks))

@@ -1238,7 +1238,7 @@ class Consts {
    * @readonly
    */
   static get stationSelect(){
-    return [{title: 'Select...'}, {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating and Curing'},{title: 'Quality Control and Packaging'}]
+    return [{title: 'Select...'}, {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating'},{title: 'Big Blaster'},{title: 'Decorative Coating'},{title: 'Packaging'},{title: 'Other'}]
   }
   /**
    * @name pistonTasks
@@ -1277,32 +1277,32 @@ class Consts {
       {
         title: 'Mask',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Measure',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Probe Zero',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Coat',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Cure',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'QC Check',
         required: true,
-        station: 'Quality Control and Packaging'
+        station: 'Packaging'
       },
     ]
   }
@@ -1343,32 +1343,32 @@ class Consts {
       {
         title: 'Mask',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Measure',
         required: false,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Probe Zero',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Coat',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Cure',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'QC Check',
         required: false,
-        station: 'Quality Control and Packaging'
+        station: 'Packaging'
       },
     ]
   }
@@ -1409,32 +1409,32 @@ class Consts {
       {
         title: 'Mask',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Measure',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Probe Zero',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Coat',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Cure',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'QC Check',
         required: false,
-        station: 'Quality Control and Packaging'
+        station: 'Packaging'
       },
     ]
   }
@@ -1475,32 +1475,73 @@ class Consts {
       {
         title: 'Mask',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Measure',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Probe Zero',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Coat',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'Cure',
         required: true,
-        station: 'Coating and Curing'
+        station: 'Coating'
       },
       {
         title: 'QC Check',
         required: false,
-        station: 'Quality Control and Packaging'
+        station: 'Packaging'
+      },
+    ]
+  }
+  /**
+   * @name decorativeTasks
+   * @description List of piston default tasks
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get decorativeTasks(){
+    return [
+      {
+        title: 'Mask',
+        required: false,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: false,
+        station: 'Big Blaster'
+      },
+      {
+        title: 'Wash',
+        required: false,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: false,
+        station: 'Coating'
+      },
+      {
+        title: 'Coat',
+        required: false,
+        station: 'Decorative Coating'
+      },
+      {
+        title: 'QC Check',
+        required: false,
+        station: 'Packaging'
       },
     ]
   }
