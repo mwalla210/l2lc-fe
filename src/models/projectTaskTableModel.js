@@ -75,7 +75,7 @@ export default class ProjectTaskTableModel extends TableModel{
         sortable: false,
       },
       {
-        Header: 'Process Area',
+        Header: 'Station',
         accessor: 'processArea',
         sortable: false,
       },

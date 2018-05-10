@@ -1217,7 +1217,7 @@ class Consts {
       },
       {
         type: 'select',
-        label: 'Process Area',
+        label: 'Station',
         id: 'processArea',
         options: this.stationSelect,
         required: false,
