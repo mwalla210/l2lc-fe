@@ -13,13 +13,10 @@ useStrict(true)
   * @classdesc Customer initializer for table storage object
   * @description Creates fields, sets correct onClick
   * @property {Function} buttonClickNav Function to navigate on click of table button
-  * @property {Function} infoClickNav Function to navigate on click of info icon
-  * @property {Function} editClickNav Function to navigate on click of edit icon
-  * @property {Function} selectNav Function to navigate on select of row (when adding customer to project)
   * @extends TableModel
  */
 export default class AccountTableModel extends TableModel{
-  constructor(buttonClickNav, editClickNav) {
+  constructor(buttonClickNav) {
     super(
       {
         title: 'New Account',
@@ -27,7 +24,6 @@ export default class AccountTableModel extends TableModel{
       },
       API.fetchAccounts,
     )
-    this.editClickNav = editClickNav
     autoBind(this)
     this.columns = [
       {
@@ -67,7 +63,6 @@ export default class AccountTableModel extends TableModel{
       },
     ]
   }
-
   /**
    * @name requiredClickHandler
    * @description Resets data list so table updates visually
@@ -79,19 +74,5 @@ export default class AccountTableModel extends TableModel{
     let newList = []
     this.data.forEach(item => newList.push(item))
     this.data = newList
-  }
-
-  /**
-   * @name clickHandler
-   * @description Handles action icon clicks
-   * @method clickHandler
-   * @param  {Object}     row   Row of click
-   * @param  {String}     type  Icon click type
-   * @memberof AccountTableModel.prototype
-   */
-  clickHandler(row, type){
-    if (type == 'edit'){
-      this.editClickNav()
-    }
   }
 }

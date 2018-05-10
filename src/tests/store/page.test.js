@@ -290,10 +290,4 @@ describe('PageStore', () => {
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.formModel)).toBe('FS getAccount')
   })
-  it('Tests accountEditPage', () => {
-    PageStore.accountEditPage()
-    expect(PageStore.title).toBe('Edit Account')
-    expect(typeof PageStore.content).toBe('function')
-    expect(toJS(PageStore.formModel)).toBe('FS getEditAccount')
-  })
 })

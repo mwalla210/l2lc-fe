@@ -54,9 +54,4 @@ describe('FormSelector', () => {
     let model = FormSelector.getAccount()
     expect(model).toBeInstanceOf(AccountFormModel)
   })
-  it('Tests getEditAccount', () => {
-    let model = FormSelector.getEditAccount()
-    expect(model).toBeInstanceOf(AccountFormModel)
-    expect(model.setEdit).toHaveBeenCalled()
-  })
 })

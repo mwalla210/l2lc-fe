@@ -433,7 +433,7 @@ class PageStore {
    */
   @action accountManagementMenuItem(){
     this.title = 'Account Management'
-    this.setTableModel(TableSelector.getAccount(this.newAccountPage, this.accountEditPage))
+    this.setTableModel(TableSelector.getAccount(this.newAccountPage))
     this.content = Table
   }
 
@@ -449,20 +449,6 @@ class PageStore {
     this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem,this.accountManagementMenuItem))
     this.content = Form
   }
-
-  /**
-   * @name accountEditPage
-   * @description Allows changing of information for Account Management page entries.
-   * @memberof PageStore.prototype
-   * @method accountEditPage
-   * @mobx action
-   */
-  @action accountEditPage(){
-    this.title = 'Edit Account'
-    this.setFormModel(FormSelector.getEditAccount(this.accountManagementMenuItem))
-    this.content = Form
-  }
-
 }
 
 const page = new PageStore()

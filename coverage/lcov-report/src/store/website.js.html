@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>89/89</span>
+        <span class='fraction'>86/86</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>89/89</span>
+        <span class='fraction'>86/86</span>
       </div>
     </div>
     <p class="quiet">
@@ -462,10 +462,7 @@
 <a name='L414'></a><a href='#L414'>414</a>
 <a name='L415'></a><a href='#L415'>415</a>
 <a name='L416'></a><a href='#L416'>416</a>
-<a name='L417'></a><a href='#L417'>417</a>
-<a name='L418'></a><a href='#L418'>418</a>
-<a name='L419'></a><a href='#L419'>419</a>
-<a name='L420'></a><a href='#L420'>420</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L417'></a><a href='#L417'>417</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
@@ -688,7 +685,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -726,7 +722,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -746,7 +741,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1106,7 +1100,6 @@ class Website {
    */
   updateProject(id, props){
     let jsonprops = JSON.stringify(props)
-    console.log('Update project entry in API with:', jsonprops)
     return API.updateProject(id, jsonprops)
     .then(response =&gt; {
       if(typeof(response) === 'string'){
@@ -1144,7 +1137,6 @@ class Website {
    */
   updateEmployee(id, props){
     let jsonprops = JSON.stringify(props)
-    console.log('Update employee entry in API with:', jsonprops)
     return API.updateEmployee(id, jsonprops)
     .then(response =&gt; {
       if(typeof(response) === 'string'){
@@ -1166,7 +1158,6 @@ class Website {
    */
   updateCustomer(id, props){
     let jsonprops = JSON.stringify(props)
-    console.log('Update customer entry in API with:', jsonprops)
     return API.updateCustomer(id, jsonprops)
     .then(response =&gt; {
       if(typeof(response) === 'string'){

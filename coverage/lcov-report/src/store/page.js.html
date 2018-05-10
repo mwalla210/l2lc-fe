@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>103/103</span>
+        <span class='fraction'>100/100</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>38/38</span>
+        <span class='fraction'>37/37</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>103/103</span>
+        <span class='fraction'>100/100</span>
       </div>
     </div>
     <p class="quiet">
@@ -501,21 +501,7 @@
 <a name='L453'></a><a href='#L453'>453</a>
 <a name='L454'></a><a href='#L454'>454</a>
 <a name='L455'></a><a href='#L455'>455</a>
-<a name='L456'></a><a href='#L456'>456</a>
-<a name='L457'></a><a href='#L457'>457</a>
-<a name='L458'></a><a href='#L458'>458</a>
-<a name='L459'></a><a href='#L459'>459</a>
-<a name='L460'></a><a href='#L460'>460</a>
-<a name='L461'></a><a href='#L461'>461</a>
-<a name='L462'></a><a href='#L462'>462</a>
-<a name='L463'></a><a href='#L463'>463</a>
-<a name='L464'></a><a href='#L464'>464</a>
-<a name='L465'></a><a href='#L465'>465</a>
-<a name='L466'></a><a href='#L466'>466</a>
-<a name='L467'></a><a href='#L467'>467</a>
-<a name='L468'></a><a href='#L468'>468</a>
-<a name='L469'></a><a href='#L469'>469</a>
-<a name='L470'></a><a href='#L470'>470</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L456'></a><a href='#L456'>456</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -583,7 +569,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -965,20 +951,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1419,7 +1391,7 @@ class PageStore {
    */
   @action accountManagementMenuItem(){
     this.title = 'Account Management'
-    this.setTableModel(TableSelector.getAccount(this.newAccountPage, this.accountEditPage))
+    this.setTableModel(TableSelector.getAccount(this.newAccountPage))
     this.content = Table
   }
 &nbsp;
@@ -1435,20 +1407,6 @@ class PageStore {
     this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem,this.accountManagementMenuItem))
     this.content = Form
   }
-&nbsp;
-  /**
-   * @name accountEditPage
-   * @description Allows changing of information for Account Management page entries.
-   * @memberof PageStore.prototype
-   * @method accountEditPage
-   * @mobx action
-   */
-  @action accountEditPage(){
-    this.title = 'Edit Account'
-    this.setFormModel(FormSelector.getEditAccount(this.accountManagementMenuItem))
-    this.content = Form
-  }
-&nbsp;
 }
 &nbsp;
 const page = new PageStore()

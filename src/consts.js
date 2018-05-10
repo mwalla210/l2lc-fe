@@ -1525,7 +1525,7 @@ class Consts {
     let hour = 0
     let min = 0
     for (let i = 0; i < timeEntries.length-1; i+=2){
-      let diff = Math.abs(timeEntries[i+1]-timeEntries[i])
+      let diff = Math.abs(new Date(timeEntries[i+1].created)-new Date(timeEntries[i].created))
       let diffHrs = Math.floor((diff % 86400000) / 3600000) // hour
       let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // min
       hour += diffHrs
