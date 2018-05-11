@@ -17,7 +17,9 @@ export default class TimeEntryFormModel {
       value: '',
       projectID: '',
       employeeID: '',
-      station: ''
+      station: '',
+      errorModalOpen: false,
+      errorResponse: ''
     }
     extendObservable(this, addtl)
     autoBind(this)
@@ -48,6 +50,22 @@ export default class TimeEntryFormModel {
    * @mobx action
    */
   @action closeConfirmation(){this.submissionConfirmOpen = false}
+  /**
+   * @name openModal
+   * @description Opens confirmation alert
+   * @method openModal
+   * @memberof TimeEntryFormModel.prototype
+   * @mobx action
+   */
+  @action openModal(){this.errorModalOpen = true}
+  /**
+   * @name closeModal
+   * @description Closes confirmation alert
+   * @method closeModal
+   * @memberof TimeEntryFormModel.prototype
+   * @mobx action
+   */
+  @action closeModal(){this.errorModalOpen = false}
   /**
    * @name resetValuesAndValidation
    * @description Resets field values to defaults and also resets error property
@@ -128,5 +146,16 @@ export default class TimeEntryFormModel {
         this.openModal()
       }
     })
+  }
+  /**
+   * @name setError
+   * @description Sets textarea value; if finished
+   * @method setError
+   * @memberof TimeEntryFormModel.prototype
+   * @param {String} val Error message
+   * @mobx action
+   */
+  @action setError(val){
+    this.errorResponse = val
   }
 }
