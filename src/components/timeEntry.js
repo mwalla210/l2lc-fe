@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react'
 import {Alert, ButtonToolbar, ButtonGroup} from 'reactstrap'
 import ButtonPrimary from './buttonPrimary'
 import ButtonDefault from './buttonDefault'
+import PromptModal from './promptModal'
 
 /**
  * TimeEntry component
@@ -45,6 +46,18 @@ export default class TimeEntry extends Component {
   render() {
     return (
       <div className="row justify-content-center">
+        <PromptModal
+          headerClass="bg-alert"
+          title="Warning"
+          titleImage="warning"
+          titleClass="text-alert"
+          confirmOnClick={this.props.page.formModel.closeModal}
+          open={this.props.page.formModel.errorModalOpen}
+          closeFn={this.props.page.formModel.closeModal}
+          content={this.props.page.formModel.errorResponse}
+          confirmClass="btn-alert"
+          primaryButtonText="Ok"
+        />
         <div className="col-6">
           <Alert color="success" isOpen={this.props.page.formModel.submissionConfirmOpen}>
             Time entry submitted successfully!
