@@ -93,35 +93,35 @@ describe('ProjectTaskTableModel', () => {
     expect(projectTask.data[1]).toMatchObject({'id': 3})
     expect(projectTask.data[2]).toMatchObject({'id': 2})
   })
-  it('Tests taskConfirmAndClose (Piston)', async function() {
+  xit('Tests taskConfirmAndClose (Piston)', async function() {
     Website.currentProject.jobTypeTitle = 'Piston'
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     expect(projectTask.data.length).toBe(0)
     await projectTask.taskConfirmAndClose()
     expect(projectTask.data.length).toBe(11)
   })
-  it('Tests taskConfirmAndClose (Turbo)', async function() {
+  xit('Tests taskConfirmAndClose (Turbo)', async function() {
     Website.currentProject.jobTypeTitle = 'Turbo'
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     expect(projectTask.data.length).toBe(0)
     await projectTask.taskConfirmAndClose()
     expect(projectTask.data.length).toBe(11)
   })
-  it('Tests taskConfirmAndClose (Pump)', async function() {
+  xit('Tests taskConfirmAndClose (Pump)', async function() {
     Website.currentProject.jobTypeTitle = 'Pump'
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     expect(projectTask.data.length).toBe(0)
     await projectTask.taskConfirmAndClose()
     expect(projectTask.data.length).toBe(11)
   })
-  it('Tests taskConfirmAndClose (Rotor)', async function() {
+  xit('Tests taskConfirmAndClose (Rotor)', async function() {
     Website.currentProject.jobTypeTitle = 'Rotor'
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     expect(projectTask.data.length).toBe(0)
     await projectTask.taskConfirmAndClose()
     expect(projectTask.data.length).toBe(11)
   })
-  it('Tests taskConfirmAndClose (Avaslick)', async function() {
+  xit('Tests taskConfirmAndClose (Avaslick)', async function() {
     Website.currentProject.jobTypeTitle = 'Avaslick'
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     expect(projectTask.data.length).toBe(0)
