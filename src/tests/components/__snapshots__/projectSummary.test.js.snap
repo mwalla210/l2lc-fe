@@ -183,6 +183,11 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
           >
             Time Entries
           </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Customer
+          </DropdownItem>
         </DropdownMenu>
       </ButtonDropdown>
       <ButtonDropdown
@@ -409,6 +414,11 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
           >
             Time Entries
           </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Customer
+          </DropdownItem>
         </DropdownMenu>
       </ButtonDropdown>
       <ButtonDropdown
@@ -634,6 +644,11 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
             onClick={[Function]}
           >
             Time Entries
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Customer
           </DropdownItem>
         </DropdownMenu>
       </ButtonDropdown>

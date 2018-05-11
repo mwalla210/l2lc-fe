@@ -65,6 +65,10 @@ exports[`TimeEntry Renders 1`] = `
         </div>
       </div>
     </form>
+  </div>
+  <div
+    className="col-10"
+  >
     <textarea
       className="form-control"
       disabled={true}

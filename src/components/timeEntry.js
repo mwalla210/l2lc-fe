@@ -88,6 +88,8 @@ export default class TimeEntry extends Component {
               </ButtonToolbar>
             </div>
           </form>
+        </div>
+        <div className="col-10">
           <textarea
             className="form-control"
             style={{marginTop: '10px'}}

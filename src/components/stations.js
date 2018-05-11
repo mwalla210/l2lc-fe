@@ -50,56 +50,56 @@ export default class Stations extends Component {
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Receiving</h1>
             <Barcode
              imageDomID="receiving"
-             barcodeID="receiving"
+             barcodeID="receiving%"
             />
           </div>
           <div className="col-12">
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Ticketing</h1>
             <Barcode
              imageDomID="ticketing"
-             barcodeID="ticketing"
+             barcodeID="ticketing%"
             />
           </div>
           <div className="col-12">
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Preparation</h1>
             <Barcode
              imageDomID="preparation"
-             barcodeID="preparation"
+             barcodeID="preparation%"
             />
           </div>
           <div className="col-12">
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Coating</h1>
             <Barcode
              imageDomID="coating"
-             barcodeID="coating"
+             barcodeID="coating%"
             />
           </div>
           <div className="col-12">
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Big Blaster</h1>
             <Barcode
              imageDomID="bigBlaster"
-             barcodeID="big blaster"
+             barcodeID="big blaster%"
             />
           </div>
           <div className="col-12">
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Decorative Coating</h1>
             <Barcode
              imageDomID="decCoating"
-             barcodeID="decorative coating"
+             barcodeID="decorative coating%"
             />
           </div>
           <div className="col-12">
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Packaging</h1>
             <Barcode
              imageDomID="packaging"
-             barcodeID="packaging"
+             barcodeID="packaging%"
             />
           </div>
           <div className="col-12">
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Other</h1>
             <Barcode
              imageDomID="other"
-             barcodeID="other"
+             barcodeID="other%"
             />
           </div>
         </div>
