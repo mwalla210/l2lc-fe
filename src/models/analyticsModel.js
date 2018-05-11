@@ -104,6 +104,8 @@ export default class AnalyticsModel {
       this.processData(this.unProcessedData)
       this.currentTimeFrame = 'Year'
     }
+    if (this.currentFilter)
+      this.setFilteredData(this.currentFilter)
   }
   /**
    * @name jsData

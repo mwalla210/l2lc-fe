@@ -39,13 +39,18 @@ export default class SelectField extends Component {
     let color = ''
     if(!this.props.valid)
       color = 'orange'
+    let value = this.props.value
+    if(this.props.value == '' && this.props.options.length > 0){
+      let selectedItem = this.props.options.find(item => item.selected)
+      value = selectedItem.title
+    }
     return (
       <select
         disabled={this.props.disabled}
         style = {{borderColor: color}}
         className="form-control"
         id={this.props.id}
-        value={this.props.value}
+        value={value}
         onChange={this.props.onChange}
         onBlur={this.props.onBlur}
         autoFocus={this.props.focus}

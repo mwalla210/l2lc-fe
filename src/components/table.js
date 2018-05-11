@@ -4,6 +4,7 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import TableButton from './tableButton'
 import DeleteModal from './deleteModal'
+import ButtonDefault from './buttonDefault'
 
 /**
  * Table component; constructor binds functions
@@ -79,6 +80,18 @@ export default class Table extends Component {
           />
         </div>)
     }
+    let backButton = null
+    if (this.props.page.tableModel.backButtonFunc){
+      backButton =
+        (<div className="row justify-content-center">
+          <ButtonDefault
+            text="Back"
+            className="btn-secondary"
+            onClick={this.props.page.tableModel.backButtonFunc}
+            style={{marginBottom: '10px'}}
+          />
+        </div>)
+    }
     return (
       <div>
         {buttonContent}
@@ -92,6 +105,7 @@ export default class Table extends Component {
             {...rowStyling}
           />
         </div>
+        {backButton}
       </div>
     )
 

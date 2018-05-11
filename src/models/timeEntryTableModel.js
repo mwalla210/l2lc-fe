@@ -9,17 +9,18 @@ useStrict(true)
   * @class timeEntryTableModel
   * @classdesc Time entry initializer for table storage object
   * @description Creates fields, sets correct onClick
-  * @property {Function} buttonClickNav Function to navigate on click of table button
+  * @property {Function} backClickNav Function to navigate on click of back button
   * @extends TableModel
  */
 export default class TimeEntryTableModel extends TableModel{
-  constructor(buttonClickNav) {
+  constructor(backClickNav) {
     super(
-      {
-        title: 'Back to Project Summary',
-        onClick: buttonClickNav
-      },
-      () => Promise.resolve(Website.currentProject.timeEntries)
+      null,
+      () => Promise.resolve(Website.currentProject.timeEntries),
+      null,
+      null,
+      null,
+      backClickNav
     )
     autoBind(this)
     this.columns = [

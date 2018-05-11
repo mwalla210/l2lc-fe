@@ -16,7 +16,7 @@ useStrict(true)
  * @classdesc Draggable row state for draggable tables
  */
 export default class ProjectTaskTableModel extends TableModel{
-  constructor(buttonClickNav, deleteClickNav){
+  constructor(buttonClickNav, deleteClickNav, backClickNav){
     super(
       {
         title: 'New Task',
@@ -29,6 +29,8 @@ export default class ProjectTaskTableModel extends TableModel{
         confirmOnClick: null,
         content: 'This action cannot be undone.'
       },
+      null,
+      backClickNav
     )
     extendObservable(this, {
       defaultTaskListModalOpen: false,

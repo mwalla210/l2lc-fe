@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
-import Form from './form'
+import {Alert, ButtonToolbar, ButtonGroup} from 'reactstrap'
+import ButtonPrimary from './buttonPrimary'
+import ButtonDefault from './buttonDefault'
 
 /**
  * TimeEntry component
@@ -9,6 +11,31 @@ import Form from './form'
  */
 @inject ('website', 'page') @observer
 export default class TimeEntry extends Component {
+  constructor(){
+    super()
+    this.onChange = this.onChange.bind(this)
+    this.onClick = this.onClick.bind(this)
+    this.onCancel = this.onCancel.bind(this)
+  }
+
+  onChange(event){
+    let delineater = event.target.value.includes('%')
+    this.props.page.formModel.setValue(event.target.value.replace('%',''),delineater)
+  }
+
+  onClick(event){
+    event.preventDefault()
+    this.props.page.formModel.submit()
+  }
+
+  onCancel(event){
+    event.preventDefault()
+    this.props.page.setNullContent()
+    setTimeout(() => {
+      this.props.page.projectTimeEntryMenuItem()
+    }, 100)
+  }
+
   /**
    * Renders HTML div component, containing employee name, barcode, and buttons
    * @method render
@@ -17,20 +44,45 @@ export default class TimeEntry extends Component {
    */
   render() {
     return (
-      <div>
-        <div className="row justify-content-center">
-          <div className="col-sm-6" style={{marginBottom: '20px'}}>
-            <label>{'Station'}</label>
-            <input
-              disabled
-              type="text"
+      <div className="row justify-content-center">
+        <div className="col-6">
+          <Alert color="success" isOpen={this.props.page.formModel.submissionConfirmOpen}>
+            Time entry submitted successfully!
+          </Alert>
+          <p>This page is scanner-only.</p>
+          <form>
+            <textarea
               className="form-control"
-              id="stationID"
-              value={this.props.website.currentUser.stationID}
+              style={{marginBottom: '10px'}}
+              rows="5"
+              value={this.props.page.formModel.value}
+              onChange={this.onChange}
+              autoFocus
             />
-          </div>
+            {this.props.page.formModel.projectID != '' && <p>{`Project ID: ${this.props.page.formModel.projectID}`}</p>}
+            {this.props.page.formModel.employeeID != '' && <p>{`Employee ID: ${this.props.page.formModel.employeeID}`}</p>}
+            {this.props.page.formModel.station != '' && <p>{`Station: ${this.props.page.formModel.station}`}</p>}
+            <div className="row justify-content-center">
+              <ButtonToolbar>
+                <ButtonGroup>
+                  <ButtonDefault className="btn-outline-secondary" onClick={this.onCancel} text="Clear"/>
+                  <ButtonPrimary
+                    disabled={this.props.page.formModel.buttonDisabled}
+                    onClick={this.onClick}
+                    text="Continue"
+                  />
+                </ButtonGroup>
+              </ButtonToolbar>
+            </div>
+          </form>
+          <textarea
+            className="form-control"
+            style={{marginTop: '10px'}}
+            rows="11"
+            value={this.props.website.taskHistory}
+            disabled
+          />
         </div>
-        <Form/>
       </div>
     )
   }

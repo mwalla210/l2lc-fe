@@ -1,8 +1,7 @@
-import { useStrict, action } from 'mobx'
+import { useStrict, action, extendObservable, computed } from 'mobx'
 import autoBind from 'auto-bind'
-import FormModel from './formModel'
-import Consts from '../consts'
 import Website from '../store/website'
+import Page from '../store/page'
 useStrict(true)
 
 /**
@@ -10,53 +9,45 @@ useStrict(true)
   * @class TimeEntryFormModel
   * @classdesc TimeEntry initializer for form storage object
   * @description Creates fields, sets correct onClick
-  * @extends FormModel
  */
-export default class TimeEntryFormModel extends FormModel{
+export default class TimeEntryFormModel {
   constructor() {
-    super(Consts.timeEntryFields,
-      {
-        title: 'Continue',
-        onClick: null
-      },
-      {
-        title: 'Clear',
-        onClick: null
-      },
-      true,
-      (fields, index, value) => {
-        let changeIndex = null
-        if (value.includes('%')){
-          if (value.startsWith('P')){
-            changeIndex = fields.findIndex(element => {return element.id == 'projectID'})
-          }
-          if (value.startsWith('E')){
-            changeIndex = fields.findIndex(element => {return element.id == 'employeeID'})
-          }
-        }
-        return changeIndex
-      }
-    )
-    autoBind(this)
-    this.primaryButton.onClick = (fields) => {
-      let arrayFields = fields.slice()
-      let body = {
-        employeeId: arrayFields[1].value.replace('E',''),
-        station: Website.currentUser.stationID,
-      }
-      Website.createTimeEntry(body, arrayFields[0].value.replace('P',''))
-      .then(response => {
-        if(response == null){
-          this.resetValuesAndValidation()
-        }
-        else {
-          this.setError(response)
-          this.openModal()
-        }
-      })
+    let addtl = {
+      submissionConfirmOpen: false,
+      value: '',
+      projectID: '',
+      employeeID: '',
+      station: ''
     }
-    this.secondaryButton.onClick = this.resetValuesAndValidation
+    extendObservable(this, addtl)
+    autoBind(this)
   }
+  /**
+   * @name buttonDisabled
+   * @description Checks form field validity to indicate whether submit button ought to be disabled
+   * @method buttonDisabled
+   * @memberof TimeEntryFormModel.prototype
+   * @mobx computed
+   */
+  @computed get buttonDisabled(){
+    return this.projectID.trim() == '' || this.employeeID.trim() == '' || this.station.trim() == ''
+  }
+  /**
+   * @name openConfirmation
+   * @description Opens confirmation alert
+   * @method openConfirmation
+   * @memberof TimeEntryFormModel.prototype
+   * @mobx action
+   */
+  @action openConfirmation(){this.submissionConfirmOpen = true}
+  /**
+   * @name closeConfirmation
+   * @description Closes confirmation alert
+   * @method closeConfirmation
+   * @memberof TimeEntryFormModel.prototype
+   * @mobx action
+   */
+  @action closeConfirmation(){this.submissionConfirmOpen = false}
   /**
    * @name resetValuesAndValidation
    * @description Resets field values to defaults and also resets error property
@@ -65,7 +56,77 @@ export default class TimeEntryFormModel extends FormModel{
    * @mobx action
    */
   @action resetValuesAndValidation(){
-    this.resetValues()
-    this.fields.forEach(field => field.isValid = true)
+    this.station = ''
+    this.projectID = ''
+    this.employeeID = ''
+    this.value = ''
+  }
+  /**
+   * @name setValue
+   * @description Sets textarea value; if finished
+   * @method setValue
+   * @memberof TimeEntryFormModel.prototype
+   * @mobx action
+   */
+  @action setValue(value, split){
+    this.value = value
+    if (split){
+      let tokens = this.value.split('\n')
+      tokens.forEach(token => {
+        let nonNumber = /^([^0-9]*)$/
+        // Station
+        if (nonNumber.test(token)){
+          let stationTitle = token.toLowerCase().replace(
+            /\w\S*/g,
+            txt => {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()}
+          )
+          this.station = stationTitle
+        }
+        // Project ID
+        else if (token.startsWith('P')){
+          this.projectID = token
+        }
+        // Project ID
+        else if (token.startsWith('E')){
+          this.employeeID = token
+        }
+      })
+      if (!this.buttonDisabled)
+        this.submit()
+    }
+  }
+  /**
+   * @name submit
+   * @description Submits form if filled out completely
+   * @method submit
+   * @memberof TimeEntryFormModel.prototype
+   * @mobx action
+   */
+  @action submit(){
+    let body = {
+      employeeId: this.employeeID.replace('E',''),
+      station: this.station,
+    }
+    let dateFormat = require('dateformat')
+    Website.createTimeEntry(body, this.projectID.replace('P',''))
+    .then(response => {
+      if(response == null){
+        this.openConfirmation()
+        setTimeout(() => {
+          this.closeConfirmation()
+          Page.setNullContent()
+          setTimeout(() => {
+            let date = new Date()
+            this.date = dateFormat(date,'mmmm dS, yyyy, h:MM:ss TT')
+            Website.addToTaskHistory(`Task logged in ${this.station} station at ${this.date} by employee ${this.employeeID} for project ${this.projectID}\n`)
+            Page.projectTimeEntryMenuItem()
+          }, 200)
+        }, 2000)
+      }
+      else {
+        this.setError(response)
+        this.openModal()
+      }
+    })
   }
 }

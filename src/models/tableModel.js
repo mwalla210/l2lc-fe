@@ -21,7 +21,7 @@ useStrict(true)
  * @property {?Function} [styling] Styling function
  */
 export default class TableModel {
-  constructor(tableButton, fetchFn, columns, deleteModal, styling){
+  constructor(tableButton, fetchFn, columns, deleteModal, styling, backButtonFunc){
     let addtlProps = {
       data: [],
       loading: true,
@@ -34,6 +34,7 @@ export default class TableModel {
     this.fetchFn = fetchFn
     this.deleteModal = deleteModal
     this.styling = styling
+    this.backButtonFunc = backButtonFunc
     autoBind(this)
   }
 

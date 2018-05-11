@@ -149,7 +149,7 @@ export default class ProjectSummary extends Component {
                 <p>{this.props.website.currentProject.timeSpent}</p>
               </div>
             }
-            {this.props.website.currentProject.partCount &&
+            {this.props.website.currentProject.partCount != null &&
               <div>
                 <h6>Part Count</h6>
                 <p>{this.props.website.currentProject.partCount}</p>

@@ -4,6 +4,7 @@ import Table from '../components/table'
 import DraggableTable from '../components/draggableTable'
 import Analytics from '../components/analytics'
 import TimeEntry from '../components/timeEntry'
+import Stations from '../components/stations'
 import SummarySelector from './summarySelector'
 import FormSelector from './formSelector'
 import TableSelector from './tableSelector'
@@ -38,6 +39,16 @@ class PageStore {
   }
 
   /**
+   * @name setNullContent
+   * @description Sets content to null
+   * @method setNullContent
+   * @memberof PageStore.prototype
+   * @mobx action
+   */
+  @action setNullContent(){
+    this.content = null
+  }
+  /**
    * @name setTableModel
    * @description Sets table model
    * @method setTableModel
@@ -68,13 +79,13 @@ class PageStore {
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
   /**
- * @name setAnalyticsModel
- * @description Sets analytics model
- * @method setAnalyticsModel
- * @memberof PageStore.prototype
- * @param  {AnalyticsModel}      analyticsModel AnalyticsModel to use for page
- * @mobx action
- */
+   * @name setAnalyticsModel
+   * @description Sets analytics model
+   * @method setAnalyticsModel
+   * @memberof PageStore.prototype
+   * @param  {AnalyticsModel}      analyticsModel AnalyticsModel to use for page
+   * @mobx action
+   */
   @action setAnalyticsModel(analyticsList){
     this.analyticsModel = observable(analyticsList)
   }
@@ -203,7 +214,7 @@ class PageStore {
    */
   @action projectTaskList(){
     this.title = 'Project Task List for ID: ' + Website.currentProject.id
-    this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList))
+    this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList, this.projectSummaryPage))
     this.content = DraggableTable
   }
 
@@ -337,7 +348,7 @@ class PageStore {
    */
   @action customerProjectsPage(){
     this.title = 'Customer Projects ID: ' + Website.currentCustomer.id
-    this.setTableModel(TableSelector.getCustomerProjects(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn))
+    this.setTableModel(TableSelector.getCustomerProjects(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn, this.customerSummaryPage))
     this.content = Table
   }
 
@@ -390,7 +401,7 @@ class PageStore {
    * @memberof PageStore.prototype
    * @method newEmployeePage
    * @mobx action
-  */
+   */
   @action newEmployeePage(){
     this.title = 'New Employee'
     this.setFormModel(FormSelector.getEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
@@ -448,6 +459,11 @@ class PageStore {
     this.title = 'New Account'
     this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem,this.accountManagementMenuItem))
     this.content = Form
+  }
+
+  @action stationMenuItem(){
+    this.title = 'Stations'
+    this.content = Stations
   }
 }
 
