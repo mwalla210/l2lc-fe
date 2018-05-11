@@ -47,7 +47,7 @@ class Website {
    */
   @action addToTaskHistory(val){
     let tokens = this.taskHistory.split('\n')
-    if (tokens.length > 10){
+    if (tokens.length > 20){
       delete tokens[0]
       this.taskHistory = ''
       tokens.forEach(token => {
@@ -405,30 +405,30 @@ class Website {
      * @async
      * @mobx action
      */
-    @action createAccount(account){
-      let jsonAccount = JSON.stringify(account)
-      return API.createAccount(jsonAccount)
-      .then(response => {
-        if(typeof(response) === 'string'){
-          return response
-        } else {
-          this.setAccount(response)
-          return null
-        }
-      })
-    }
+  @action createAccount(account){
+    let jsonAccount = JSON.stringify(account)
+    return API.createAccount(jsonAccount)
+    .then(response => {
+      if(typeof(response) === 'string'){
+        return response
+      } else {
+        this.setAccount(response)
+        return null
+      }
+    })
+  }
 
-    /**
-     * @name setAccount
-     * @description Sets current project
-     * @method setAccount
-     * @memberof Website.prototype
-     * @param  {Account}   account  Project to set
-     * @mobx action
-     */
-    @action setAccount(account){
-      this.currentAccount = account
-    }
+  /**
+   * @name setAccount
+   * @description Sets current project
+   * @method setAccount
+   * @memberof Website.prototype
+   * @param  {Account}   account  Project to set
+   * @mobx action
+   */
+  @action setAccount(account){
+    this.currentAccount = account
+  }
 
 }
 

@@ -59,11 +59,7 @@ export default class ProjectStatusFilter extends Component {
             <br/>
             <label style={{marginLeft: '8px'}}><Checkbox value="In Progress"/> In Progress</label>
             <br/>
-            <label style={{marginLeft: '8px'}}><Checkbox value="On Hold"/> On Hold</label>
-            <br/>
             <label style={{marginLeft: '8px'}}><Checkbox value="Completed"/> Completed</label>
-            <br/>
-            <label style={{marginLeft: '8px'}}><Checkbox value="Dropped"/> Dropped</label>
             <br/>
           </CheckboxGroup>
         </DropdownMenu>

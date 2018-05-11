@@ -2,6 +2,7 @@ import { useStrict, action, extendObservable, computed } from 'mobx'
 import autoBind from 'auto-bind'
 import Website from '../store/website'
 import Page from '../store/page'
+let dateFormat = require('dateformat')
 useStrict(true)
 
 /**
@@ -15,8 +16,8 @@ export default class TimeEntryFormModel {
     let addtl = {
       submissionConfirmOpen: false,
       value: '',
-      projectID: '',
-      employeeID: '',
+      projectID: [],
+      employeeID: [],
       station: '',
       errorModalOpen: false,
       errorResponse: ''
@@ -32,7 +33,7 @@ export default class TimeEntryFormModel {
    * @mobx computed
    */
   @computed get buttonDisabled(){
-    return this.projectID.trim() == '' || this.employeeID.trim() == '' || this.station.trim() == ''
+    return this.station.trim() == ''
   }
   /**
    * @name openConfirmation
@@ -102,11 +103,13 @@ export default class TimeEntryFormModel {
         }
         // Project ID
         else if (token.startsWith('P')){
-          this.projectID = token
+          if (!this.projectID.includes(token))
+            this.projectID.push(token)
         }
         // Project ID
         else if (token.startsWith('E')){
-          this.employeeID = token
+          if (!this.employeeID.includes(token))
+            this.employeeID.push(token)
         }
       })
       if (!this.buttonDisabled)
@@ -121,28 +124,46 @@ export default class TimeEntryFormModel {
    * @mobx action
    */
   @action submit(){
-    let body = {
-      employeeId: this.employeeID.replace('E',''),
-      station: this.station,
-    }
-    let dateFormat = require('dateformat')
-    Website.createTimeEntry(body, this.projectID.replace('P',''))
-    .then(response => {
-      if(response == null){
+    let timeEntries = []
+    this.projectID.forEach(project => {
+      this.employeeID.forEach(employee => {
+        let body = {
+          employeeId: employee.replace('E',''),
+          station: this.station,
+        }
+        let fn = (body, project) => {
+          return Website.createTimeEntry(body, project.replace('P','')).then(response => {return response})
+        }
+        timeEntries.push(fn(body, project))
+      })
+    })
+    Promise.all(timeEntries)
+    .then(results => {
+      let nonNull = false
+      let error = ''
+      results.forEach(result => {
+        if (result != null)
+          nonNull = true
+          error = result
+      })
+      if(!nonNull){
         this.openConfirmation()
         setTimeout(() => {
           this.closeConfirmation()
           Page.setNullContent()
           setTimeout(() => {
-            let date = new Date()
-            this.date = dateFormat(date,'mmmm dS, yyyy, h:MM:ss TT')
-            Website.addToTaskHistory(`Task logged at ${this.station} station at ${this.date} by employee ${this.employeeID} for project ${this.projectID}\n`)
+            let date = dateFormat(new Date(), 'mmmm dS, yyyy, h:MM:ss TT')
+            this.projectID.forEach(project => {
+              this.employeeID.forEach(employee => {
+                Website.addToTaskHistory(`Task logged at ${this.station} station at ${date} by employee ${employee} for project ${project}\n`)
+              })
+            })
             Page.projectTimeEntryMenuItem()
           }, 200)
-        }, 2000)
+        }, 1500)
       }
       else {
-        this.setError(response)
+        this.setError(error)
         this.openModal()
       }
     })
