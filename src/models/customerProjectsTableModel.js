@@ -49,6 +49,11 @@ export default class CustomerProjectsTableModel extends TableModel{
         filterable: true
       },
       {
+        Header: 'Job #',
+        accessor: 'refNum',
+        filterable: true
+      },
+      {
         Header: 'Created',
         id: 'dateCreated',
         accessor: d => d.dateCreated.toString(),

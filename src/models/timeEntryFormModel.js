@@ -118,7 +118,7 @@ export default class TimeEntryFormModel {
           setTimeout(() => {
             let date = new Date()
             this.date = dateFormat(date,'mmmm dS, yyyy, h:MM:ss TT')
-            Website.addToTaskHistory(`Task logged in ${this.station} station at ${this.date} by employee ${this.employeeID} for project ${this.projectID}\n`)
+            Website.addToTaskHistory(`Task logged at ${this.station} station at ${this.date} by employee ${this.employeeID} for project ${this.projectID}\n`)
             Page.projectTimeEntryMenuItem()
           }, 200)
         }, 2000)

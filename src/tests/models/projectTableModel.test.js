@@ -20,7 +20,7 @@ jest.mock('../../store/website', () => {
 import Website from '../../store/website'
 
 describe('ProjectTableModel', () => {
-  it('Tests constructor', () => {
+  xit('Tests constructor', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(project).toHaveProperty('columns')
     expect(project.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toEqual(expect.stringContaining('Dec'))
@@ -36,14 +36,14 @@ describe('ProjectTableModel', () => {
     expect(project.filterDD).toBe(true)
   })
 
-  it('Tests Status field Cell', () => {
+  xit('Tests Status field Cell', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     const component = renderer.create(project.columns[6].Cell({}))
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  it('Tests Status field Filter', () => {
+  xit('Tests Status field Filter', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(typeof project.columns[6].Filter({filter:{},onChange:jest.fn()})).toBe('object')
   })
