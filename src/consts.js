@@ -1471,33 +1471,43 @@ class Consts {
   static get decorativeTasks(){
     return [
       {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Strip',
+        required: true,
+        station: 'Preparation'
+      },
+      {
         title: 'Mask',
-        required: false,
+        required: true,
         station: 'Preparation'
       },
       {
         title: 'Blast',
-        required: false,
+        required: true,
         station: 'Big Blaster'
       },
       {
-        title: 'Wash',
-        required: false,
+        title: 'Mask',
+        required: true,
         station: 'Preparation'
       },
       {
-        title: 'Mask',
-        required: false,
-        station: 'Coating'
+        title: 'Prime',
+        required: true,
+        station: 'Decorative Coating'
       },
       {
-        title: 'Coat',
-        required: false,
+        title: 'Paint',
+        required: true,
         station: 'Decorative Coating'
       },
       {
         title: 'QC Check',
-        required: false,
+        required: true,
         station: 'Packaging'
       },
     ]
