@@ -29,6 +29,7 @@ useStrict(true)
  * @property {Object[]} [timeEntries=[]] Array of objects containing related database employee ID, related database station ID, and date created [observable]
  * @property {Task[]} [tasks=[]] Array of Task(s) associated with Project [observable]
  * @property {String} [historyMsg=''] Time entry history message for Project [observable]
+ * @property {?String} [notes=''] Task notes for a project [observable]
  */
 export default class ProjectModel {
   constructor(id, costCenterTitle, jobTypeTitle, title, priority, status, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null) {
@@ -54,17 +55,23 @@ export default class ProjectModel {
       timeEntries: [],
       tasks: [],
       historyMsg: '',
+      notes: ''
     }
+    let dateFormat = require('dateformat')
     if(!customer)
       addtlProps.customer = {}
-    if (dateFinished)
+    if (dateFinished){
       addtlProps.dateFinished = new Date(dateFinished)
+      addtlProps.dateFinished = dateFormat(this.dateFinished, 'mmmm dS, yyyy, h:MM:ss TT')
+    }
     extendObservable(this, addtlProps)
     // Non-observable (don't change)
     this.id = id
     this.dateCreated = dateCreated
-    if (dateCreated)
+    if (dateCreated){
       this.dateCreated = new Date(dateCreated)
+      this.dateCreated = dateFormat(this.dateCreated, 'mmmm dS, yyyy, h:MM:ss TT')
+    }
     autoBind(this)
   }
 
@@ -152,6 +159,19 @@ export default class ProjectModel {
    */
   @action finish(){
      this.status = 'Completed'
+   }
+
+   /**
+    * @name changeNotes
+    * @description Sets this.notes, makes request to API to modify Project's related notes
+    * @memberof ProjectModel.prototype
+    * @method changeNotes
+    * @param  {Value}       customer value string for notes
+    * @return {Promise}
+    * @mobx action
+    */
+   @action changeNotes(event){
+     this.notes = event.target.value
    }
 
   @action getTimeEntries(){

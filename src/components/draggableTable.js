@@ -18,7 +18,7 @@ import {ButtonGroup} from 'reactstrap'
  * @see {@link https://github.com/react-dnd/react-dnd React DnD}
  * @see {@link PageStore @inject PageStore}
  */
-@DragDropContext(HTML5Backend) @inject('page') @observer
+@DragDropContext(HTML5Backend) @inject('page', 'website') @observer
 export default class DraggableTable extends Component {
   constructor(props){
     super(props)
@@ -116,7 +116,17 @@ export default class DraggableTable extends Component {
             getTrProps={this.rowProps}
           />
         </div>
+        <br/>
+        <label>{'Notes'}</label>
         <div className="row justify-content-center">
+          <textarea
+            className="form-control"
+            type="text"
+            id="notes"
+            value={this.props.website.currentProject.notes}
+            rows="3"
+            onChange={this.props.page.projectModel.changeNotes}
+          />
           <ButtonGroup>
             <ButtonDefault className="btn-outline-secondary" onClick={this.printClick} text="Print"/>
           </ButtonGroup>

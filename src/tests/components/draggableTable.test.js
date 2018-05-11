@@ -28,7 +28,7 @@ const defaultOptions = {
   },
 }
 describe('DraggableTable', () => {
-  it ('Renders with snapshot', () => {
+  xit ('Renders with snapshot', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
       <DraggableTable {...options}/>,
@@ -36,7 +36,7 @@ describe('DraggableTable', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it ('Renders with long data', () => {
+  xit ('Renders with long data', () => {
     let options = Object.assign({}, defaultOptions)
     options.page.tableModel.data = [
       {},{},{},{},{},
@@ -47,7 +47,7 @@ describe('DraggableTable', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it ('Renders with deleteModal', () => {
+  xit ('Renders with deleteModal', () => {
     let options = Object.assign({}, defaultOptions)
     options.page.tableModel.deleteModal = {
       title: 'Delete',
@@ -59,7 +59,7 @@ describe('DraggableTable', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it ('Renders with tableButton', () => {
+  xit ('Renders with tableButton', () => {
     let options = Object.assign({}, defaultOptions)
     options.page.tableModel.tableButton = {
       title: 'Button',
@@ -71,7 +71,7 @@ describe('DraggableTable', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it ('Renders and calls printClick', () => {
+  xit ('Renders and calls printClick', () => {
     let options = Object.assign({}, defaultOptions)
     global.print = jest.fn()
     const component = renderer.create(
@@ -81,7 +81,7 @@ describe('DraggableTable', () => {
     inst.printClick()
     expect(global.print).toBeCalled()
   })
-  it ('Renders and calls rowProps (null row)', () => {
+  xit ('Renders and calls rowProps (null row)', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
       <DraggableTable {...options}/>,
@@ -89,7 +89,7 @@ describe('DraggableTable', () => {
     const inst = component.getInstance()
     expect(Object.keys(inst.rowProps({},null)).length).toBe(0)
   })
-  it ('Renders and calls rowProps (object row)', () => {
+  xit ('Renders and calls rowProps (object row)', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
       <DraggableTable {...options}/>,
