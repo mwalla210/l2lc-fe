@@ -21,6 +21,7 @@ export default class ProjectSummary extends Component {
     this.tasksClick = this.tasksClick.bind(this)
     this.printClick = this.printClick.bind(this)
     this.timeEntries = this.timeEntries.bind(this)
+    this.customer = this.customer.bind(this)
   }
 
   /**
@@ -49,6 +50,16 @@ export default class ProjectSummary extends Component {
    */
   timeEntries(){
     this.props.page.projectTimeEntryPage()
+  }
+
+  /**
+   * On click handler for time entry button
+   * @method timeEntries
+   * @memberof ProjectSummary.prototype
+   */
+  customer(){
+    this.props.website.setCustomer(this.props.website.currentProject.customer)
+    this.props.page.customerSummaryPage()
   }
 
   /**
@@ -183,6 +194,9 @@ export default class ProjectSummary extends Component {
               <DropdownMenu>
                 <DropdownItem onClick={this.tasksClick}>Tasks</DropdownItem>
                 <DropdownItem onClick={this.timeEntries}>Time Entries</DropdownItem>
+                {this.props.website.currentProject.customer.companyName &&
+                  <DropdownItem onClick={this.customer}>Customer</DropdownItem>
+                }
               </DropdownMenu>
             </ButtonDropdown>
             <ButtonDropdown

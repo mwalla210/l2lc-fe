@@ -203,6 +203,7 @@ class PageStore {
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)
     Website.currentProject.getTimeEntries()
+    Website.currentProject.getCustomer()
   }
 
   /**

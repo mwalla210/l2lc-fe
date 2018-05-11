@@ -149,7 +149,6 @@ export default class ProjectModel {
   @action changeCustomer(customer){
     this.customer = customer
   }
-
   /**
    * @name finish
    * @description Sets this.status
@@ -159,6 +158,7 @@ export default class ProjectModel {
    */
   @action finish(){
      this.status = 'Completed'
+     this.dateFinished = new Date()
    }
 
    /**
@@ -191,6 +191,20 @@ export default class ProjectModel {
     API.fetchTimeEntries(this.id)
     .then(action('fetchSuccess', res => {
       this.timeEntries = res
+    }))
+  }
+  /**
+   * @name getCustomer
+   * @description Sets this.customer
+   * @memberof ProjectModel.prototype
+   * @method getCustomer
+   * @return {Promise}
+   * @mobx action
+   */
+  @action getCustomer(){
+    API.fetchCustomer(this.customer.id)
+    .then(action('fetchSuccess', res => {
+      this.customer = res
     }))
   }
 }
