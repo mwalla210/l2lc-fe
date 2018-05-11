@@ -119,6 +119,7 @@ export default class DraggableTable extends Component {
         <div className="row justify-content-center">
           <ButtonGroup>
             <ButtonDefault className="btn-outline-secondary" onClick={this.printClick} text="Print"/>
+            <ButtonDefault className="btn-secondary" onClick={this.props.page.tableModel.backButtonFunc} text="Back"/>
           </ButtonGroup>
         </div>
       </div>

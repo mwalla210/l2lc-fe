@@ -32,11 +32,31 @@ class Website {
       logOutModalOpen: false,
       summaryMoreDropdownOpen: false,
       summaryActionsDropdownOpen: false,
+      taskHistory: ''
     }
     extendObservable(this, addtlProps)
     autoBind(this)
   }
 
+  /**
+   * @name addToTaskHistory
+   * @description Adds entry to task history
+   * @method addToTaskHistory
+   * @memberof Website.prototype
+   * @mobx action
+   */
+  @action addToTaskHistory(val){
+    let tokens = this.taskHistory.split('\n')
+    if (tokens.length > 10){
+      delete tokens[0]
+      this.taskHistory = ''
+      tokens.forEach(token => {
+        if (token.trim() != '')
+          this.taskHistory += token+'\n'
+      })
+    }
+    this.taskHistory += val
+  }
   /**
    * @name toggleSummaryMoreDD
    * @description Toggles summary pages dropdown state

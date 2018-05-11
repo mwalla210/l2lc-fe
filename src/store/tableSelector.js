@@ -83,7 +83,6 @@ class TableSelector {
   getProject(infoClickNav, editClickNav, deleteClickNav){
     return new ProjectTableModel(infoClickNav, editClickNav, deleteClickNav)
   }
-
   /**
    * @name getAccount
    * @description Provides a AccountTableModel set for selecting
@@ -96,7 +95,6 @@ class TableSelector {
   getAccount(buttonClickNav, editClickNav){
     return new AccountTableModel(buttonClickNav, editClickNav)
   }
-
   /**
    * @name getCustomerProjects
    * @description Provides a CustomerProjectsTableModel set for selecting
@@ -104,36 +102,36 @@ class TableSelector {
    * @param  {Function}          infoClickNav   Row info icon click function
    * @param  {Function}          editClickNav   Row edit icon click function
    * @param  {Function}          deleteClickNav   Row delete icon click function
+   * @param  {Function}          backClickNav   Table back click function
    * @return {CustomerProjectTableModel}
    * @memberof TableSelector.prototype
    */
-  getCustomerProjects(infoClickNav, editClickNav, deleteClickNav){
-    return new CustomerProjectsTableModel(infoClickNav, editClickNav, deleteClickNav)
+  getCustomerProjects(infoClickNav, editClickNav, deleteClickNav, backClickNav){
+    return new CustomerProjectsTableModel(infoClickNav, editClickNav, deleteClickNav, backClickNav)
   }
-
   /**
    * @name getProject
    * @description Provides a ProjectTableModel set for selecting
    * @method getProject
-   * @param  {Function}          buttonClickNav   TableButton click function
+   * @param  {Function}          backClickNav   Table back click function
    * @return {ProjectTableModel}
    * @memberof TableSelector.prototype
    */
-  getTimeEntries(buttonClickNav){
-    return new TimeEntryTableModel(buttonClickNav)
+  getTimeEntries(backClickNav){
+    return new TimeEntryTableModel(backClickNav)
   }
-
   /**
    * @name getTasks
    * @description Provides a ProjectTableModel set for selecting
    * @method getTasks
    * @param  {Function}          buttonClickNav   TableButton click function
-   * @param  {Function}          deleteClickNav   Row delete icon click function
+   * @param  {Function}          deleteClickNav   Row delete icon click
+   * @param  {Function}          backClickNav   Table back click function function
    * @return {projectTaskModel}
    * @memberof TableSelector.prototype
    */
-  getTasks(buttonClickNav, deleteClickNav){
-    return new ProjectTaskTableModel(buttonClickNav, deleteClickNav)
+  getTasks(buttonClickNav, deleteClickNav, backClickNav){
+    return new ProjectTaskTableModel(buttonClickNav, deleteClickNav, backClickNav)
   }
 }
 

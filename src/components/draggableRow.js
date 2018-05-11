@@ -98,7 +98,6 @@ export default class DraggableRow extends Component {
       addtl.style = {
         cursor: grab
       }
-    console.log(addtl)
     return connectDragSource(
       connectDropTarget(
         <div

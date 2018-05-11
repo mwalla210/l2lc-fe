@@ -103,9 +103,9 @@ export default class Form extends Component {
         />
         <form className="col-sm-6">
           {this.props.page.formModel.fields.map((field, index) => {
-            let first = true
-            if(index != 0){
-              first = false
+            let first = (index == 0)
+            if(field.focus != undefined){
+              first = field.focus
             }
             let child = null
             let props = {
@@ -116,17 +116,17 @@ export default class Form extends Component {
               onChange: this.onChange(index, field.type == 'checkbox'),
               onBlur: this.onBlur(index),
               valid: field.isValid,
-              focus: first,
+              focus: (field.focus || first),
             }
             switch (field.type){
               case 'select':
-                child = <SelectField autoFocus {...props} options={field.options}/>
+                child = <SelectField {...props} options={field.options}/>
                 break
               case 'textfield':
-                child = <TextField autoFocus {...props} password={field.password}/>
+                child = <TextField {...props} password={field.password}/>
                 break
               case 'textarea':
-                child = <TextAreaField autoFocus {...props} rows={field.rows}/>
+                child = <TextAreaField {...props} rows={field.rows}/>
                 break
               case 'checkbox':
                 child = <CheckboxField {...props}/>

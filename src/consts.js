@@ -133,7 +133,7 @@ class Consts {
       required: true,
       disabled: false,
       validation: (value, required) => {
-        if (required && value == '')
+        if (required && ['','Select...'].includes(value))
           return 'Please select a country.'
         return null
       },
@@ -218,7 +218,7 @@ class Consts {
       required: true,
       disabled: false,
       validation: (value, required) => {
-        if (required && value == '')
+        if (required && ['','Select...'].includes(value))
           return 'Please select the state.'
         return null
       }
@@ -326,7 +326,7 @@ class Consts {
       required: false,
       disabled: false,
       validation: (value, required) => {
-        if (required && value == '')
+        if (required && ['','Select...'].includes(value))
           return 'Please select a country.'
         return null
       },
@@ -441,7 +441,7 @@ class Consts {
       required: false,
       disabled: false,
       validation: (value, required) => {
-        if (required && value == '')
+        if (required && ['','Select...'].includes(value))
           return 'Please select the state.'
         return null
       }
@@ -477,7 +477,7 @@ class Consts {
       required: true,
       disabled: false,
       validation: (value, required) => {
-        if (required && value == '')
+        if (required && ['','Select...'].includes(value))
           return 'Please select a cost center.'
         return null
       },
@@ -805,7 +805,7 @@ class Consts {
       required: true,
       disabled: true,
       validation: (value, required) => {
-        if (required && value == '')
+        if (required && ['','Select...'].includes(value))
           return 'Please select a project type.'
         return null
       },
@@ -863,11 +863,11 @@ class Consts {
       type: 'select',
       label: 'Priority',
       id: 'priority',
-      options: [{title: 'Select...'}, {title: '1-2 Days'}, {title: '3 Days'}, {title: '4-5 Days'}, {title: '10 Days'}],
+      options: [{title: 'Select...',disabled:true,selected:true}, {title: '1-2 Days'}, {title: '3 Days'}, {title: '4-5 Days'}, {title: '10 Days'}],
       required: true,
       disabled: true,
       validation: (value, required) => {
-        if (required && value == '')
+        if (required && ['','Select...'].includes(value))
           return 'Please select a priority.'
         return null
       }
@@ -980,49 +980,6 @@ class Consts {
     }
   ]}
   /**
-   * @name timeEntryFields
-   * @description List of time entry form fields
-   * @memberof Consts.prototype
-   * @type {Object[]}
-   * @readonly
-   */
-  static get timeEntryFields(){ return [
-    {
-      type: 'textfield',
-      label: 'Project ID',
-      id: 'projectID',
-      required: true,
-      validation: (value, required) => {
-        if (required && value == '')
-          return 'Please enter a value.'
-        else if (value.length > 15)
-          return 'The project ID must be less than 15 characters.'
-        if (!value.startsWith('P'))
-          return 'Project IDs must begin with the letter "P".'
-        if (value.length < 2)
-          return 'Project IDs must contain at least one number.'
-        return null
-      },
-    },
-    {
-      type: 'textfield',
-      label: 'Employee ID',
-      id: 'employeeID',
-      required: true,
-      validation: (value, required) => {
-        if (required && value == '')
-          return 'Please enter a value.'
-        else if (value.length > 15)
-          return 'The employee ID must be less than 15 characters.'
-        if (!value.startsWith('E'))
-          return 'Employee IDs must begin with the letter "E".'
-        if (value.length < 2)
-          return 'Employee IDs must contain at least one number.'
-        return null
-      }
-    }
-  ]}
-  /**
    * @name countrySelect
    * @description List of countries for selecting
    * @memberof Consts.prototype
@@ -1030,7 +987,7 @@ class Consts {
    * @readonly
    */
   static get countrySelect() {return [
-    {title: 'Select...'}, {title: 'United States of America'}, {title: 'Canada'}, {title: '--------------', disabled: true}, {title: 'Afghanistan'}, {title: 'Aland Islands'}, {title: 'Albania'}, {title: 'Algeria'}, {title: 'American Samoa'}, {title: 'Andorra'}, {title: 'Angola'}, {title: 'Anguilla'}, {title: 'Antarctica'}, {title: 'Antigua and Barbuda'}, {title: 'Argentina'}, {title: 'Armenia'}, {title: 'Aruba'}, {title: 'Australia'}, {title: 'Austria'}, {title: 'Azerbaijan'}, {title: 'Bahamas'}, {title: 'Bahrain'}, {title: 'Bangladesh'}, {title: 'Barbados'}, {title: 'Belarus'}, {title: 'Belgium'}, {title: 'Belize'}, {title: 'Benin'}, {title: 'Bermuda'}, {title: 'Bhutan'}, {title: 'Bolivia'}, {title: 'Bonaire, Sint Eustatius and Saba'}, {title: 'Bosnia and Herzegovina'}, {title: 'Botswana'}, {title: 'Bouvet Island'}, {title: 'Brazil'}, {title: 'British Indian Ocean Territory'}, {title: 'United States Minor Outlying Islands'}, {title: 'Virgin Islands (British)'}, {title: 'Virgin Islands (U.S.)'},{title: 'Brunei Darussalam'}, {title: 'Bulgaria'}, {title: 'Burkina Faso'}, {title: 'Burundi'}, {title: 'Cambodia'}, {title: 'Cameroon'}, {title: 'Cabo Verde'}, {title: 'Cayman Islands'}, {title: 'Central African Republic'}, {title: 'Chad'}, {title: 'Chile'}, {title: 'China'}, {title: 'Christmas Island'}, {title: 'Cocos (Keeling) Islands'}, {title: 'Colombia'}, {title: 'Comoros'}, {title: 'Congo'}, {title: 'Cook Islands'}, {title: 'Costa Rica'}, {title: 'Croatia'}, {title: 'Cuba'}, {title: 'Curaçao'}, {title: 'Cyprus'}, {title: 'Czech Republic'}, {title: 'Denmark'}, {title: 'Djibouti'}, {title: 'Dominica'}, {title: 'Dominican Republic'}, {title: 'Ecuador'}, {title: 'Egypt'}, {title: 'El Salvador'}, {title: 'Equatorial Guinea'}, {title: 'Eritrea'}, {title: 'Estonia'}, {title: 'Ethiopia'}, {title: 'Falkland Islands (Malvinas)'}, {title: 'Faroe Islands'}, {title: 'Fiji'}, {title: 'Finland'}, {title: 'France'}, {title: 'French Guiana'}, {title: 'French Polynesia'}, {title: 'French Southern Territories'}, {title: 'Gabon'}, {title: 'Gambia'}, {title: 'Georgia'}, {title: 'Germany'}, {title: 'Ghana'}, {title: 'Gibraltar'}, {title: 'Greece'}, {title: 'Greenland'}, {title: 'Grenada'}, {title: 'Guadeloupe'}, {title: 'Guam'}, {title: 'Guatemala'}, {title: 'Guernsey'}, {title: 'Guinea'}, {title: 'Guinea-Bissau'}, {title: 'Guyana'}, {title: 'Haiti'}, {title: 'Heard Island and McDonald Islands'}, {title: 'Holy See'}, {title: 'Honduras'}, {title: 'Hong Kong'}, {title: 'Hungary'}, {title: 'Iceland'}, {title: 'India'}, {title: 'Indonesia'}, {title: 'Cote dIvoire'}, {title: 'Iran (Islamic Republic of)'}, {title: 'Iraq'}, {title: 'Ireland'}, {title: 'Isle of Man'}, {title: 'Israel'}, {title: 'Italy'}, {title: 'Jamaica'}, {title: 'Japan'}, {title: 'Jersey'}, {title: 'Jordan'}, {title: 'Kazakhstan'}, {title: 'Kenya'}, {title: 'Kiribati'}, {title: 'Kuwait'}, {title: 'Kyrgyzstan'}, {title: 'Lao Peoples Democratic Republic'}, {title: 'Latvia'}, {title: 'Lebanon'}, {title: 'Lesotho'}, {title: 'Liberia'}, {title: 'Libya'}, {title: 'Liechtenstein'}, {title: 'Lithuania'}, {title: 'Luxembourg'}, {title: 'Macao'}, {title: 'Macedonia'}, {title: 'Madagascar'}, {title: 'Malawi'}, {title: 'Malaysia'},{title: 'Maldives'}, {title: 'Mali'}, {title: 'Malta'}, {title: 'Marshall Islands'}, {title: 'Martinique'}, {title: 'Mauritania'}, {title: 'Mauritius'}, {title: 'Mayotte'}, {title: 'Mexico'}, {title: 'Micronesia'}, {title: 'Moldova'}, {title: 'Monaco'}, {title: 'Mongolia'}, {title: 'Montenegro'}, {title: 'Montserrat'}, {title: 'Morocco'}, {title: 'Mozambique'}, {title: 'Myanmar'}, {title: 'Namibia'}, {title: 'Nauru'}, {title: 'Nepal'}, {title: 'Netherlands'}, {title: 'New Caledonia'}, {title: 'New Zealand'}, {title: 'Nicaragua'}, {title: 'Niger'}, {title: 'Nigeria'}, {title: 'Niue'}, {title: 'Norfolk Island'}, {title: 'Korea (Democratic Peoples Republic of)'}, {title: 'Northern Mariana Islands'}, {title: 'Norway'}, {title: 'Oman'}, {title: 'Pakistan'}, {title: 'Palau'}, {title: 'Palestine, State of'}, {title: 'Panama'}, {title: 'Papua New Guinea'}, {title: 'Paraguay'}, {title: 'Peru'}, {title: 'Philippines'}, {title: 'Pitcairn'}, {title: 'Poland'}, {title: 'Portugal'}, {title: 'Puerto Rico'}, {title: 'Qatar'}, {title: 'Republic of Kosovo'}, {title: 'Réunion'}, {title: 'Romania'}, {title: 'Russian Federation'}, {title: 'Rwanda'}, {title: 'Saint Barthelemy'}, {title: 'Saint Helena, Ascension, and Tristan da Cunha'}, {title: 'Saint Kitts and Nevis'}, {title: 'Saint Lucia'}, {title: 'Saint Martin'}, {title: 'Saint Pierre and Miquelon'}, {title: 'Saint Vincent and the Grenadines'}, {title: 'Samoa'}, {title: 'San Marino'}, {title: 'Sao Tome and Principe'}, {title: 'Saudi Arabia'}, {title: 'Senegal'}, {title: 'Serbia'}, {title: 'Seychelles'}, {title: 'Sierra Leone'}, {title: 'Singapore'}, {title: 'Sint Maarten'}, {title: 'Slovakia'}, {title: 'Slovenia'}, {title: 'Solomon Islands'}, {title: 'Somalia'}, {title: 'South Africa'}, {title: 'South Georgia and the South Sandwich Islands'}, {title: 'Korea'}, {title: 'South Sudan'}, {title: 'Spain'}, {title: 'Sri Lanka'}, {title: 'Sudan'}, {title: 'Suriname'}, {title: 'Svalbard and Jan Mayen'}, {title: 'Swaziland'}, {title: 'Sweden'}, {title: 'Switzerland'}, {title: 'Syrian Arab Republic'}, {title: 'Taiwan'}, {title: 'Tajikistan'}, {title: 'Tanzania, United Republic of'}, {title: 'Thailand'}, {title: 'Timor-Leste'}, {title: 'Togo'}, {title: 'Tokelau'}, {title: 'Tonga'}, {title: 'Trinidad and Tobago'}, {title: 'Tunisia'}, {title: 'Turkey'}, {title: 'Turkmenistan'}, {title: 'Turks and Caicos Islands'}, {title: 'Tuvalu'}, {title: 'Uganda'}, {title: 'Ukraine'}, {title: 'United Arab Emirates'}, {title: 'United Kingdom of Great Britain'}, {title: 'Northern Ireland'}, {title: 'Uruguay'}, {title: 'Uzbekistan'}, {title: 'Vanuatu'}, {title: 'Venezuela'}, {title: 'Vietnam'}, {title: 'Wallis'}, {title: 'Futuna'}, {title: 'Western Sahara'}, {title: 'Yemen'}, {title: 'Zambia'}, {title: 'Zimbabwe'}
+    {title: 'Select...',disabled:true,selected:true}, {title: 'United States of America'}, {title: 'Canada'}, {title: '--------------', disabled: true}, {title: 'Afghanistan'}, {title: 'Aland Islands'}, {title: 'Albania'}, {title: 'Algeria'}, {title: 'American Samoa'}, {title: 'Andorra'}, {title: 'Angola'}, {title: 'Anguilla'}, {title: 'Antarctica'}, {title: 'Antigua and Barbuda'}, {title: 'Argentina'}, {title: 'Armenia'}, {title: 'Aruba'}, {title: 'Australia'}, {title: 'Austria'}, {title: 'Azerbaijan'}, {title: 'Bahamas'}, {title: 'Bahrain'}, {title: 'Bangladesh'}, {title: 'Barbados'}, {title: 'Belarus'}, {title: 'Belgium'}, {title: 'Belize'}, {title: 'Benin'}, {title: 'Bermuda'}, {title: 'Bhutan'}, {title: 'Bolivia'}, {title: 'Bonaire, Sint Eustatius and Saba'}, {title: 'Bosnia and Herzegovina'}, {title: 'Botswana'}, {title: 'Bouvet Island'}, {title: 'Brazil'}, {title: 'British Indian Ocean Territory'}, {title: 'United States Minor Outlying Islands'}, {title: 'Virgin Islands (British)'}, {title: 'Virgin Islands (U.S.)'},{title: 'Brunei Darussalam'}, {title: 'Bulgaria'}, {title: 'Burkina Faso'}, {title: 'Burundi'}, {title: 'Cambodia'}, {title: 'Cameroon'}, {title: 'Cabo Verde'}, {title: 'Cayman Islands'}, {title: 'Central African Republic'}, {title: 'Chad'}, {title: 'Chile'}, {title: 'China'}, {title: 'Christmas Island'}, {title: 'Cocos (Keeling) Islands'}, {title: 'Colombia'}, {title: 'Comoros'}, {title: 'Congo'}, {title: 'Cook Islands'}, {title: 'Costa Rica'}, {title: 'Croatia'}, {title: 'Cuba'}, {title: 'Curaçao'}, {title: 'Cyprus'}, {title: 'Czech Republic'}, {title: 'Denmark'}, {title: 'Djibouti'}, {title: 'Dominica'}, {title: 'Dominican Republic'}, {title: 'Ecuador'}, {title: 'Egypt'}, {title: 'El Salvador'}, {title: 'Equatorial Guinea'}, {title: 'Eritrea'}, {title: 'Estonia'}, {title: 'Ethiopia'}, {title: 'Falkland Islands (Malvinas)'}, {title: 'Faroe Islands'}, {title: 'Fiji'}, {title: 'Finland'}, {title: 'France'}, {title: 'French Guiana'}, {title: 'French Polynesia'}, {title: 'French Southern Territories'}, {title: 'Gabon'}, {title: 'Gambia'}, {title: 'Georgia'}, {title: 'Germany'}, {title: 'Ghana'}, {title: 'Gibraltar'}, {title: 'Greece'}, {title: 'Greenland'}, {title: 'Grenada'}, {title: 'Guadeloupe'}, {title: 'Guam'}, {title: 'Guatemala'}, {title: 'Guernsey'}, {title: 'Guinea'}, {title: 'Guinea-Bissau'}, {title: 'Guyana'}, {title: 'Haiti'}, {title: 'Heard Island and McDonald Islands'}, {title: 'Holy See'}, {title: 'Honduras'}, {title: 'Hong Kong'}, {title: 'Hungary'}, {title: 'Iceland'}, {title: 'India'}, {title: 'Indonesia'}, {title: 'Cote dIvoire'}, {title: 'Iran (Islamic Republic of)'}, {title: 'Iraq'}, {title: 'Ireland'}, {title: 'Isle of Man'}, {title: 'Israel'}, {title: 'Italy'}, {title: 'Jamaica'}, {title: 'Japan'}, {title: 'Jersey'}, {title: 'Jordan'}, {title: 'Kazakhstan'}, {title: 'Kenya'}, {title: 'Kiribati'}, {title: 'Kuwait'}, {title: 'Kyrgyzstan'}, {title: 'Lao Peoples Democratic Republic'}, {title: 'Latvia'}, {title: 'Lebanon'}, {title: 'Lesotho'}, {title: 'Liberia'}, {title: 'Libya'}, {title: 'Liechtenstein'}, {title: 'Lithuania'}, {title: 'Luxembourg'}, {title: 'Macao'}, {title: 'Macedonia'}, {title: 'Madagascar'}, {title: 'Malawi'}, {title: 'Malaysia'},{title: 'Maldives'}, {title: 'Mali'}, {title: 'Malta'}, {title: 'Marshall Islands'}, {title: 'Martinique'}, {title: 'Mauritania'}, {title: 'Mauritius'}, {title: 'Mayotte'}, {title: 'Mexico'}, {title: 'Micronesia'}, {title: 'Moldova'}, {title: 'Monaco'}, {title: 'Mongolia'}, {title: 'Montenegro'}, {title: 'Montserrat'}, {title: 'Morocco'}, {title: 'Mozambique'}, {title: 'Myanmar'}, {title: 'Namibia'}, {title: 'Nauru'}, {title: 'Nepal'}, {title: 'Netherlands'}, {title: 'New Caledonia'}, {title: 'New Zealand'}, {title: 'Nicaragua'}, {title: 'Niger'}, {title: 'Nigeria'}, {title: 'Niue'}, {title: 'Norfolk Island'}, {title: 'Korea (Democratic Peoples Republic of)'}, {title: 'Northern Mariana Islands'}, {title: 'Norway'}, {title: 'Oman'}, {title: 'Pakistan'}, {title: 'Palau'}, {title: 'Palestine, State of'}, {title: 'Panama'}, {title: 'Papua New Guinea'}, {title: 'Paraguay'}, {title: 'Peru'}, {title: 'Philippines'}, {title: 'Pitcairn'}, {title: 'Poland'}, {title: 'Portugal'}, {title: 'Puerto Rico'}, {title: 'Qatar'}, {title: 'Republic of Kosovo'}, {title: 'Réunion'}, {title: 'Romania'}, {title: 'Russian Federation'}, {title: 'Rwanda'}, {title: 'Saint Barthelemy'}, {title: 'Saint Helena, Ascension, and Tristan da Cunha'}, {title: 'Saint Kitts and Nevis'}, {title: 'Saint Lucia'}, {title: 'Saint Martin'}, {title: 'Saint Pierre and Miquelon'}, {title: 'Saint Vincent and the Grenadines'}, {title: 'Samoa'}, {title: 'San Marino'}, {title: 'Sao Tome and Principe'}, {title: 'Saudi Arabia'}, {title: 'Senegal'}, {title: 'Serbia'}, {title: 'Seychelles'}, {title: 'Sierra Leone'}, {title: 'Singapore'}, {title: 'Sint Maarten'}, {title: 'Slovakia'}, {title: 'Slovenia'}, {title: 'Solomon Islands'}, {title: 'Somalia'}, {title: 'South Africa'}, {title: 'South Georgia and the South Sandwich Islands'}, {title: 'Korea'}, {title: 'South Sudan'}, {title: 'Spain'}, {title: 'Sri Lanka'}, {title: 'Sudan'}, {title: 'Suriname'}, {title: 'Svalbard and Jan Mayen'}, {title: 'Swaziland'}, {title: 'Sweden'}, {title: 'Switzerland'}, {title: 'Syrian Arab Republic'}, {title: 'Taiwan'}, {title: 'Tajikistan'}, {title: 'Tanzania, United Republic of'}, {title: 'Thailand'}, {title: 'Timor-Leste'}, {title: 'Togo'}, {title: 'Tokelau'}, {title: 'Tonga'}, {title: 'Trinidad and Tobago'}, {title: 'Tunisia'}, {title: 'Turkey'}, {title: 'Turkmenistan'}, {title: 'Turks and Caicos Islands'}, {title: 'Tuvalu'}, {title: 'Uganda'}, {title: 'Ukraine'}, {title: 'United Arab Emirates'}, {title: 'United Kingdom of Great Britain'}, {title: 'Northern Ireland'}, {title: 'Uruguay'}, {title: 'Uzbekistan'}, {title: 'Vanuatu'}, {title: 'Venezuela'}, {title: 'Vietnam'}, {title: 'Wallis'}, {title: 'Futuna'}, {title: 'Western Sahara'}, {title: 'Yemen'}, {title: 'Zambia'}, {title: 'Zimbabwe'}
   ]}
   /**
    * @name stateSelect
@@ -1040,7 +997,7 @@ class Consts {
    * @readonly
    */
   static get stateSelect() {return [
-    {title: 'Select...'}, {title: 'Alabama'}, {title: 'Alaska'}, {title: 'Arizona'}, {title: 'Arkansas'}, {title: 'California'}, {title: 'Colorado'}, {title: 'Connecticut'}, {title: 'Delaware'}, {title: 'Florida'}, {title: 'Georgia'}, {title: 'Hawaii'}, {title: 'Idaho'}, {title: 'Illinois'}, {title: 'Indiana'}, {title: 'Iowa'}, {title: 'Kansas'}, {title: 'Kentucky'}, {title: 'Louisiana'}, {title: 'Maine'}, {title: 'Maryland'}, {title: 'Massachusetts'}, {title: 'Michigan'}, {title: 'Minnesota'}, {title: 'Mississippi'}, {title: 'Missouri'}, {title: 'Montana'}, {title: 'Nebraska'}, {title: 'Nevada'}, {title: 'New Hampshire'}, {title: 'New Jersey'}, {title: 'New Mexico'}, {title: 'New York'}, {title: 'North Carolina'}, {title: 'North Dakota'}, {title: 'Ohio'}, {title: 'Oklahoma'}, {title: 'Oregon'}, {title: 'Pennsylvania'}, {title: 'Rhode Island'}, {title: 'South Carolina'}, {title: 'South Dakota'}, {title: 'Tennessee'}, {title: 'Texas'}, {title: 'Utah'}, {title: 'Vermont'}, {title: 'Virginia'}, {title: 'Washington'}, {title: 'West Virginia'}, {title: 'Wisconsin'}, {title: 'Wyoming'}
+    {title: 'Select...',disabled:true,selected:true}, {title: 'Alabama'}, {title: 'Alaska'}, {title: 'Arizona'}, {title: 'Arkansas'}, {title: 'California'}, {title: 'Colorado'}, {title: 'Connecticut'}, {title: 'Delaware'}, {title: 'Florida'}, {title: 'Georgia'}, {title: 'Hawaii'}, {title: 'Idaho'}, {title: 'Illinois'}, {title: 'Indiana'}, {title: 'Iowa'}, {title: 'Kansas'}, {title: 'Kentucky'}, {title: 'Louisiana'}, {title: 'Maine'}, {title: 'Maryland'}, {title: 'Massachusetts'}, {title: 'Michigan'}, {title: 'Minnesota'}, {title: 'Mississippi'}, {title: 'Missouri'}, {title: 'Montana'}, {title: 'Nebraska'}, {title: 'Nevada'}, {title: 'New Hampshire'}, {title: 'New Jersey'}, {title: 'New Mexico'}, {title: 'New York'}, {title: 'North Carolina'}, {title: 'North Dakota'}, {title: 'Ohio'}, {title: 'Oklahoma'}, {title: 'Oregon'}, {title: 'Pennsylvania'}, {title: 'Rhode Island'}, {title: 'South Carolina'}, {title: 'South Dakota'}, {title: 'Tennessee'}, {title: 'Texas'}, {title: 'Utah'}, {title: 'Vermont'}, {title: 'Virginia'}, {title: 'Washington'}, {title: 'West Virginia'}, {title: 'Wisconsin'}, {title: 'Wyoming'}
   ]}
   /**
    * @name costCenterSelect
@@ -1050,7 +1007,7 @@ class Consts {
    * @readonly
    */
   static get costCenterSelect() {return [
-    {title: 'Select...'}, {title: 'APC'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'Administration'}, {title: 'Production'}, {title: 'Military'}, {title: 'Research and Development'}, {title: 'Other'}
+    {title: 'Select...',disabled:true,selected:true}, {title: 'APC'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'Administration'}, {title: 'Production'}, {title: 'Military'}, {title: 'Research and Development'}, {title: 'Other'}
   ]}
   /**
    * @name apcProjectSelect
@@ -1060,7 +1017,7 @@ class Consts {
    * @readonly
    */
   static get apcProjectSelect() {return [
-    {title: 'Select...'}, {title: 'Piston'}, {title: 'Turbo'}, {title: 'Rotor'}, {title: 'Pump'}, {title: 'Avaslick'}, {title: 'Specialty'}
+    {title: 'Select...',disabled:true,selected:true}, {title: 'Piston'}, {title: 'Turbo'}, {title: 'Rotor'}, {title: 'Pump'}, {title: 'Avaslick'}, {title: 'Specialty'}
   ]}
   /**
    * @name decorativeProjectSelect
@@ -1069,7 +1026,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get decorativeProjectSelect() {return [{title: 'Select...'}, {title: 'Decorative'}]}
+  static get decorativeProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Decorative'}]}
   /**
    * @name maintenanceProjectSelect
    * @description List of Maintenance project types for selecting
@@ -1077,7 +1034,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get maintenanceProjectSelect() {return [{title: 'Select...'}, {title: 'Maintenance'}]}
+  static get maintenanceProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Maintenance'}]}
   /**
    * @name adminProjectSelect
    * @description List of Administration project types for selecting
@@ -1085,7 +1042,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get adminProjectSelect() {return [{title: 'Select...'}, {title: 'ISO'}, {title: 'Other'}]}
+  static get adminProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'ISO'}, {title: 'Other'}]}
   /**
    * @name rdProjectSelect
    * @description List of R&D project types for selecting
@@ -1093,7 +1050,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get rdProjectSelect() {return [{title: 'Select...'}, {title: 'Research and Development'}]}
+  static get rdProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Research and Development'}]}
   /**
    * @name militaryProjectSelect
    * @description List of Military project types for selecting
@@ -1101,7 +1058,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get militaryProjectSelect() {return [{title: 'Select...'}, {title: 'Military'}]}
+  static get militaryProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Military'}]}
   /**
    * @name productionProjectSelect
    * @description List of Production project types for selecting
@@ -1109,7 +1066,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get productionProjectSelect() {return [{title: 'Select...'}, {title: 'Production'}]}
+  static get productionProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Production'}]}
   /**
    * @name otherProjectSelect
    * @description List of Other project types for selecting
@@ -1117,7 +1074,7 @@ class Consts {
    * @type {Object[]}
    * @readonly
    */
-  static get otherProjectSelect() {return [{title: 'Select...'}, {title: 'Other'}]}
+  static get otherProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Other'}]}
   /**
    * @name doneColor
    * @description Color to label finished projects
@@ -1223,7 +1180,7 @@ class Consts {
         required: false,
         disabled: false,
         validation: (value, required) => {
-          if (required && value == '')
+          if (required && ['','Select...'].includes(value))
             return 'Please select a station.'
           return null
         }
@@ -1238,7 +1195,7 @@ class Consts {
    * @readonly
    */
   static get stationSelect(){
-    return [{title: 'Select...'}, {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating'},{title: 'Big Blaster'},{title: 'Decorative Coating'},{title: 'Packaging'},{title: 'Other'}]
+    return [{title: 'Select...',disabled:true,selected:true}, {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating'},{title: 'Big Blaster'},{title: 'Decorative Coating'},{title: 'Packaging'},{title: 'Other'}]
   }
   /**
    * @name pistonTasks

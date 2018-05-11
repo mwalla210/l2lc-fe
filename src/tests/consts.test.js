@@ -117,20 +117,6 @@ describe('Consts', () => {
     expect(typeof response[1].validation(THIRTYONE,true)).toBe('string')
     expect(response[1].validation('4',true)).toBeNull()
   })
-  it ('Tests timeEntryFields', () => {
-    let response = Consts.timeEntryFields
-    expect(response).toHaveLength(2)
-    expect(typeof response[0].validation('',true)).toBe('string')
-    expect(typeof response[0].validation(THIRTYONE,true)).toBe('string')
-    expect(typeof response[0].validation('E',true)).toBe('string')
-    expect(typeof response[0].validation('P',true)).toBe('string')
-    expect(response[0].validation('P2',true)).toBeNull()
-    expect(typeof response[1].validation('',true)).toBe('string')
-    expect(typeof response[1].validation(THIRTYONE,true)).toBe('string')
-    expect(typeof response[1].validation('P',true)).toBe('string')
-    expect(typeof response[1].validation('E',true)).toBe('string')
-    expect(response[1].validation('E2',true)).toBeNull()
-  })
   it ('Tests taskFields', () => {
     let response = Consts.taskFields
     expect(response).toHaveLength(2)

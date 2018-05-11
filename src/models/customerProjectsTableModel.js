@@ -7,7 +7,6 @@ import TableActionCell from '../components/tableActionCell'
 import ProjectStatusFilter from '../components/projectStatusFilter'
 import ProjectStatusCell from '../components/projectStatusCell'
 import API from '../api'
-import Consts from '../consts'
 useStrict(true)
 
 /**
@@ -18,11 +17,12 @@ useStrict(true)
   * @property {Function} infoClickNav Function to navigate on click of info icon
   * @property {Function} editClickNav Function to navigate on click of edit icon
   * @property {Function} deleteClickNav Function to navigate on click of delete icon
+  * @property {Function} backClickNav Function to navigate on click of back button
   * @property {Boolean} [filterDD=false] Status filter dropdown state
   * @extends TableModel
  */
 export default class CustomerProjectsTableModel extends TableModel{
-  constructor(infoClickNav, editClickNav, deleteClickNav) {
+  constructor(infoClickNav, editClickNav, deleteClickNav, backClickNav) {
     super(
       null,
       () => API.fetchCustomerProjects(Website.currentCustomer.id),
@@ -32,6 +32,8 @@ export default class CustomerProjectsTableModel extends TableModel{
         confirmOnClick: deleteClickNav,
         content: 'This action cannot be undone.'
       },
+      null,
+      backClickNav
     )
     let addtlProps = {
       filterDD: false

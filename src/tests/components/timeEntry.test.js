@@ -4,14 +4,18 @@ import TimeEntry from '../../components/timeEntry'
 jest.mock('../../components/form')
 
 describe('TimeEntry', () => {
-  it ('Does something', () => {
+  it ('Renders', () => {
     let options = {
       website: {
         currentUser: {
           stationID: 1
         }
       },
-      page: {}
+      page: {
+        formModel: {
+          submissionConfirmOpen: false
+        }
+      }
     }
     const component = renderer.create(
       <TimeEntry {...options}/>,

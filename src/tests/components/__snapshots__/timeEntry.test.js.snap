@@ -1,29 +1,81 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TimeEntry Does something 1`] = `
-<div>
+exports[`TimeEntry Renders 1`] = `
+<div
+  className="row justify-content-center"
+>
   <div
-    className="row justify-content-center"
+    className="col-6"
   >
-    <div
-      className="col-sm-6"
+    <p>
+      This page is scanner-only.
+    </p>
+    <form>
+      <textarea
+        autoFocus={true}
+        className="form-control"
+        onChange={[Function]}
+        rows="5"
+        style={
+          Object {
+            "marginBottom": "10px",
+          }
+        }
+        value={undefined}
+      />
+      <p>
+        Project ID: undefined
+      </p>
+      <p>
+        Employee ID: undefined
+      </p>
+      <p>
+        Station: undefined
+      </p>
+      <div
+        className="row justify-content-center"
+      >
+        <div
+          className="btn-toolbar"
+          role="toolbar"
+        >
+          <div
+            className="btn-group"
+            role="group"
+          >
+            <button
+              className="btn btn-outline-secondary"
+              disabled={undefined}
+              onClick={[Function]}
+              style={undefined}
+              type="button"
+            >
+              Clear
+            </button>
+            <button
+              className="btn btn-primary"
+              disabled={undefined}
+              onClick={[Function]}
+              style={undefined}
+              type="button"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <textarea
+      className="form-control"
+      disabled={true}
+      rows="11"
       style={
         Object {
-          "marginBottom": "20px",
+          "marginTop": "10px",
         }
       }
-    >
-      <label>
-        Station
-      </label>
-      <input
-        className="form-control"
-        disabled={true}
-        id="stationID"
-        type="text"
-        value={1}
-      />
-    </div>
+      value={undefined}
+    />
   </div>
 </div>
 `;
