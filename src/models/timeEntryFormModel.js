@@ -107,6 +107,7 @@ export default class TimeEntryFormModel {
       employeeId: this.employeeID.replace('E',''),
       station: this.station,
     }
+    let dateFormat = require('dateformat')
     Website.createTimeEntry(body, this.projectID.replace('P',''))
     .then(response => {
       if(response == null){
@@ -115,7 +116,9 @@ export default class TimeEntryFormModel {
           this.closeConfirmation()
           Page.setNullContent()
           setTimeout(() => {
-            Website.addToTaskHistory(`Task logged in ${this.station} station at ${new Date()} by employee ${this.employeeID} for project ${this.projectID}\n`)
+            let date = new Date()
+            this.date = dateFormat(date,'mmmm dS, yyyy, h:MM:ss TT')
+            Website.addToTaskHistory(`Task logged in ${this.station} station at ${this.date} by employee ${this.employeeID} for project ${this.projectID}\n`)
             Page.projectTimeEntryMenuItem()
           }, 200)
         }, 2000)

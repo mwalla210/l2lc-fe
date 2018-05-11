@@ -55,16 +55,21 @@ export default class ProjectModel {
       tasks: [],
       historyMsg: '',
     }
+    let dateFormat = require('dateformat')
     if(!customer)
       addtlProps.customer = {}
-    if (dateFinished)
+    if (dateFinished){
       addtlProps.dateFinished = new Date(dateFinished)
+      addtlProps.dateFinished = dateFormat(this.dateFinished, 'mmmm dS, yyyy, h:MM:ss TT')
+    }
     extendObservable(this, addtlProps)
     // Non-observable (don't change)
     this.id = id
     this.dateCreated = dateCreated
-    if (dateCreated)
+    if (dateCreated){
       this.dateCreated = new Date(dateCreated)
+      this.dateCreated = dateFormat(this.dateCreated, 'mmmm dS, yyyy, h:MM:ss TT')
+    }
     autoBind(this)
   }
 
