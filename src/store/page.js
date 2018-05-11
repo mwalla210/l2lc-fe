@@ -180,7 +180,7 @@ class PageStore {
    * @mobx action
    */
   @action projectSummaryPage(){
-    this.title = 'Project Summary'
+    this.title = 'Project Summary ID: ' + Website.currentProject.id
     let completeFunc = () => {
       Website.updateProjectStatus(Website.currentProject.id, 'Completed')
       .then(() => {
@@ -202,7 +202,7 @@ class PageStore {
    * @mobx action
    */
   @action projectTaskList(){
-    this.title = 'Project Task List'
+    this.title = 'Project Task List for ID: ' + Website.currentProject.id
     this.setTableModel(TableSelector.getTasks(this.newProjectTaskPage, this.projectTaskList))
     this.content = DraggableTable
   }
@@ -215,7 +215,7 @@ class PageStore {
    * @mobx action
    */
   @action projectTimeEntryPage(){
-    this.title = 'Project Time Entries'
+    this.title = 'Project Time Entries for ID: ' + Website.currentProject.id
     this.setTableModel(TableSelector.getTimeEntries(this.projectSummaryPage))
     this.content = Table
   }
@@ -228,7 +228,7 @@ class PageStore {
    * @mobx action
    */
   @action newProjectTaskPage(){
-    this.title = 'New Task'
+    this.title = 'New Task for ID: ' + Website.currentProject.id
     this.setFormModel(FormSelector.getTask(this.projectTaskList, this.projectTaskList))
     this.content = Form
   }
@@ -254,7 +254,7 @@ class PageStore {
    * @mobx action
    */
   @action projectEditPage(){
-    this.title = 'Edit Project'
+    this.title = 'Edit Project ID: ' + Website.currentProject.id
     this.setFormModel(FormSelector.getEditProject(this.projectSummaryPage, this.projectsMenuItem))
     this.content = Form
   }
@@ -323,7 +323,7 @@ class PageStore {
    * @mobx action
    */
   @action customerSummaryPage(){
-    this.title = 'Customer Summary'
+    this.title = 'Customer Summary ID: ' + Website.currentCustomer.id
     let summaryObject = SummarySelector.getCustomer()
     this.content = summaryObject.component
   }
@@ -336,7 +336,7 @@ class PageStore {
    * @mobx action
    */
   @action customerProjectsPage(){
-    this.title = 'Customer Projects'
+    this.title = 'Customer Projects ID: ' + Website.currentCustomer.id
     this.setTableModel(TableSelector.getCustomerProjects(this.projectSummaryPage, this.projectEditPage, this.projectDeleteFn))
     this.content = Table
   }
@@ -349,7 +349,7 @@ class PageStore {
    * @mobx action
    */
   @action customerEditPage(){
-    this.title = 'Edit Customer'
+    this.title = 'Edit Customer ID: ' + Website.currentCustomer.id
     this.setFormModel(FormSelector.getEditCustomer(this.customerSummaryPage, this.customerInfoMenuItem))
     this.content = Form
   }
@@ -405,7 +405,7 @@ class PageStore {
    * @mobx action
    */
   @action employeeEditPage(){
-    this.title = 'Edit Employee'
+    this.title = 'Edit Employee ID: ' + Website.currentEmployee.id
     this.setFormModel(FormSelector.getEditEmployee(this.employeeSummaryPage, this.employeeInformationMenuItem))
     this.content = Form
   }
@@ -418,7 +418,7 @@ class PageStore {
    * @mobx action
    */
   @action employeeSummaryPage(){
-    this.title = 'Employee Summary'
+    this.title = 'Employee Summary ID: ' + Website.currentEmployee.id
     let summaryObject = SummarySelector.getEmployee()
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)

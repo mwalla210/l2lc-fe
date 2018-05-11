@@ -124,6 +124,9 @@ jest.mock('../../store/website', () => {
     currentCustomer: {
       id: 'id'
     },
+    currentEmployee: {
+      id: 'id'
+    },
     createProject: jest.fn().mockReturnValue(Promise.resolve('createProject')),
     updateProject: jest.fn().mockReturnValue(Promise.resolve('updateProject')),
     updateProjectStatus: jest.fn().mockReturnValue(Promise.resolve('updateProjectStatus')),
@@ -175,7 +178,7 @@ describe('PageStore', () => {
   })
   it('Tests projectSummaryPage', () => {
     PageStore.projectSummaryPage()
-    expect(PageStore.title).toBe('Project Summary')
+    expect(PageStore.title).toBe('Project Summary ID: id')
     expect(PageStore.content).toBe('project component')
     expect(PageStore.summaryModel).toHaveProperty('name')
     expect(PageStore.summaryModel.name).toBe('project model')
@@ -184,25 +187,25 @@ describe('PageStore', () => {
   })
   it('Tests projectTaskList', () => {
     PageStore.projectTaskList()
-    expect(PageStore.title).toBe('Project Task List')
+    expect(PageStore.title).toBe('Project Task List for ID: id')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.tableModel)).toHaveProperty('dataFetch')
   })
   it('Tests projectTimeEntryPage', () => {
     PageStore.projectTimeEntryPage()
-    expect(PageStore.title).toBe('Project Time Entries')
+    expect(PageStore.title).toBe('Project Time Entries for ID: id')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.tableModel)).toHaveProperty('dataFetch')
   })
   it('Tests newProjectTaskPage', () => {
     PageStore.newProjectTaskPage()
-    expect(PageStore.title).toBe('New Task')
+    expect(PageStore.title).toBe('New Task for ID: id')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.formModel)).toBe('FS getTask')
   })
   it('Tests projectEditPage', () => {
     PageStore.projectEditPage()
-    expect(PageStore.title).toBe('Edit Project')
+    expect(PageStore.title).toBe('Edit Project ID: id')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.formModel)).toBe('FS getEditProject')
   })
@@ -233,18 +236,18 @@ describe('PageStore', () => {
   })
   it('Tests customerSummaryPage', () => {
     PageStore.customerSummaryPage()
-    expect(PageStore.title).toBe('Customer Summary')
+    expect(PageStore.title).toBe('Customer Summary ID: id')
     expect(PageStore.content).toBe('customer component')
   })
   it('Tests customerProjectsPage', () => {
     PageStore.customerProjectsPage()
-    expect(PageStore.title).toBe('Customer Projects')
+    expect(PageStore.title).toBe('Customer Projects ID: id')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.tableModel)).toHaveProperty('dataFetch')
   })
   it('Tests customerEditPage', () => {
     PageStore.customerEditPage()
-    expect(PageStore.title).toBe('Edit Customer')
+    expect(PageStore.title).toBe('Edit Customer ID: id')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.formModel)).toBe('FS getEditCustomer')
   })
@@ -268,13 +271,13 @@ describe('PageStore', () => {
   })
   it('Tests employeeEditPage', () => {
     PageStore.employeeEditPage()
-    expect(PageStore.title).toBe('Edit Employee')
+    expect(PageStore.title).toBe('Edit Employee ID: id')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.formModel)).toBe('FS getEditEmployee')
   })
   it('Tests employeeSummaryPage', () => {
     PageStore.employeeSummaryPage()
-    expect(PageStore.title).toBe('Employee Summary')
+    expect(PageStore.title).toBe('Employee Summary ID: id')
     expect(PageStore.content).toBe('employee component')
     expect(toJS(PageStore.summaryModel)).toBe('employee model')
   })
