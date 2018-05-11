@@ -113,6 +113,11 @@ exports[`Navbar Renders with snapshot 1`] = `
             >
               Account Information
             </DropdownItem>
+            <DropdownItem
+              onClick={undefined}
+            >
+              Station Information
+            </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
         <NavItem>

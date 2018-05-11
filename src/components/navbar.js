@@ -105,6 +105,7 @@ export default class NavBar extends Component{
                   <DropdownMenu right>
                     <DropdownItem onClick={this.props.page.employeeInformationMenuItem}>Employee Information</DropdownItem>
                     <DropdownItem onClick={this.props.page.accountManagementMenuItem}>Account Information</DropdownItem>
+                    <DropdownItem onClick={this.props.page.stationMenuItem}>Station Information</DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               }

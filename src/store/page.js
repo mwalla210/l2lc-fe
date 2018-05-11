@@ -4,6 +4,7 @@ import Table from '../components/table'
 import DraggableTable from '../components/draggableTable'
 import Analytics from '../components/analytics'
 import TimeEntry from '../components/timeEntry'
+import Stations from '../components/stations'
 import SummarySelector from './summarySelector'
 import FormSelector from './formSelector'
 import TableSelector from './tableSelector'
@@ -458,6 +459,11 @@ class PageStore {
     this.title = 'New Account'
     this.setFormModel(FormSelector.getAccount(this.accountManagementMenuItem,this.accountManagementMenuItem))
     this.content = Form
+  }
+
+  @action stationMenuItem(){
+    this.title = 'Stations'
+    this.content = Stations
   }
 }
 
