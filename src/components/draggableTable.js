@@ -125,7 +125,7 @@ export default class DraggableTable extends Component {
             id="notes"
             value={this.props.website.currentProject.notes}
             rows="3"
-            onChange={this.props.page.projectModel.changeNotes}
+            onChange={this.props.website.currentProject.changeNotes}
           />
           <ButtonGroup>
             <ButtonDefault className="btn-outline-secondary" onClick={this.printClick} text="Print"/>

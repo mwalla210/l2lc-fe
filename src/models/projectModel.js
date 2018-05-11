@@ -32,7 +32,7 @@ useStrict(true)
  * @property {?String} [notes=''] Task notes for a project [observable]
  */
 export default class ProjectModel {
-  constructor(id, costCenterTitle, jobTypeTitle, title, priority, status, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null) {
+  constructor(id, costCenterTitle, jobTypeTitle, title, priority, status, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null, notes='') {
     let addtlProps = {
       costCenterTitle, // changeable?
       jobTypeTitle, // changeable?
@@ -55,7 +55,7 @@ export default class ProjectModel {
       timeEntries: [],
       tasks: [],
       historyMsg: '',
-      notes: ''
+      notes
     }
     let dateFormat = require('dateformat')
     if(!customer)
@@ -172,8 +172,21 @@ export default class ProjectModel {
     */
    @action changeNotes(event){
      this.notes = event.target.value
-   }
-
+     console.log('event',event.target.value);
+     console.log('notes',this.notes);
+     API.updateProject(this.id, JSON.stringify({notes: this.notes}))
+     .then(res => {
+       console.log(res)
+     })
+  }
+  /**
+   * @name getTimeEntries
+   * @description Sets this.timeEntries
+   * @memberof ProjectModel.prototype
+   * @method getTimeEntries
+   * @return {Promise}
+   * @mobx action
+   */
   @action getTimeEntries(){
     API.fetchTimeEntries(this.id)
     .then(action('fetchSuccess', res => {
