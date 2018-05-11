@@ -77,7 +77,7 @@ export default class ProjectTaskTableModel extends TableModel{
         sortable: false,
       },
       {
-        Header: 'Process Area',
+        Header: 'Station',
         accessor: 'processArea',
         sortable: false,
       },
@@ -108,7 +108,7 @@ export default class ProjectTaskTableModel extends TableModel{
         if (
           res.length == 0 &&
           (Website.currentProject.costCenterTitle == 'APC' || Website.currentProject.costCenterTitle == 'Decorative') &&
-          ['Piston','Turbo','Rotor','Pump','Avaslick','Decorative'].includes(Website.currentProject.jobTypeTitle)
+          ['Piston','Turbo','Rotor','Pump','Avaslick','Decorative','Specialty'].includes(Website.currentProject.jobTypeTitle)
         ){
           this.taskOpenModal()
         }
@@ -230,6 +230,9 @@ export default class ProjectTaskTableModel extends TableModel{
         break
       case 'Decorative':
         tasks = Consts.decorativeTasks
+        break
+      case 'Specialty':
+        tasks = Consts.specialtyTasks
         break
     }
     API.createTaskList(Website.currentProject.id, JSON.stringify(tasks))

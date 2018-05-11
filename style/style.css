@@ -40,15 +40,21 @@ body {
 .h1, h1 {
   text-align: center;
   margin-top:15px;
+  margin-bottom:15px
 }
 
 .h6, h6 {
   font-weight: bold;
+  font-size: 18px;
+}
+
+.p, p {
+  font-size: 17px;
 }
 
 .row {
   font-size: 15px;
-  margin-top:5px
+  margin-top:5px;
 }
 
 .btn-circle {

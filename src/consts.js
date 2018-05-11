@@ -1174,7 +1174,7 @@ class Consts {
       },
       {
         type: 'select',
-        label: 'Process Area',
+        label: 'Station',
         id: 'processArea',
         options: this.stationSelect,
         required: false,
@@ -1212,6 +1212,11 @@ class Consts {
         station: 'Preparation'
       },
       {
+        title: 'Bake Clean',
+        required: true,
+        station: 'Preparation'
+      },
+      {
         title: 'Engrave',
         required: true,
         station: 'Preparation'
@@ -1227,7 +1232,7 @@ class Consts {
         station: 'Preparation'
       },
       {
-        title: 'Wash',
+        title: 'Wash - Alodine',
         required: true,
         station: 'Preparation'
       },
@@ -1278,6 +1283,11 @@ class Consts {
         station: 'Preparation'
       },
       {
+        title: 'Bake Clean',
+        required: true,
+        station: 'Preparation'
+      },
+      {
         title: 'Engrave',
         required: true,
         station: 'Preparation'
@@ -1293,7 +1303,7 @@ class Consts {
         station: 'Preparation'
       },
       {
-        title: 'Wash',
+        title: 'Wash - Alodine',
         required: true,
         station: 'Preparation'
       },
@@ -1344,8 +1354,18 @@ class Consts {
         station: 'Preparation'
       },
       {
+        title: 'EPK Bake',
+        required: true,
+        station: 'Preparation'
+      },
+      {
         title: 'Engrave',
         required: false,
+        station: 'Preparation'
+      },
+      {
+        title: 'Paint Pen',
+        required: true,
         station: 'Preparation'
       },
       {
@@ -1359,7 +1379,7 @@ class Consts {
         station: 'Preparation'
       },
       {
-        title: 'Wash',
+        title: 'Wash - Bonderite',
         required: true,
         station: 'Preparation'
       },
@@ -1410,6 +1430,11 @@ class Consts {
         station: 'Preparation'
       },
       {
+        title: 'Bake Clean',
+        required: true,
+        station: 'Preparation'
+      },
+      {
         title: 'Engrave',
         required: true,
         station: 'Preparation'
@@ -1425,7 +1450,7 @@ class Consts {
         station: 'Preparation'
       },
       {
-        title: 'Wash',
+        title: 'Wash - Alodine',
         required: true,
         station: 'Preparation'
       },
@@ -1457,6 +1482,87 @@ class Consts {
       {
         title: 'QC Check',
         required: false,
+        station: 'Packaging'
+      },
+    ]
+  }
+  /**
+   * @name specialtyTasks
+   * @description List of specialtyTasks default tasks
+   * @memberof Consts.prototype
+   * @type {Object[]}
+   * @readonly
+   */
+  static get specialtyTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Bake Clean',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'EPK Bake',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: false,
+        station: 'Preparation'
+      },
+      {
+        title: 'Paint Pen',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash - Alodine',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Measure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'QC Check',
+        required: true,
         station: 'Packaging'
       },
     ]

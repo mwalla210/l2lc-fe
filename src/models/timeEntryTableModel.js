@@ -25,13 +25,8 @@ export default class TimeEntryTableModel extends TableModel{
     autoBind(this)
     this.columns = [
       {
-        Header: 'ID',
+        Header: 'Time Entry ID',
         accessor: 'id',
-        filterable: true
-      },
-      {
-        Header: 'Project ID',
-        accessor: 'projectId',
         filterable: true
       },
       {
