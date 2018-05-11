@@ -5,24 +5,11 @@ exports[`EmployeeSummary Renders with snapshot (summaryActionsDropdownOpen: fals
   <div
     className="row justify-content-center"
   >
-    <div
-      className="col-3"
-      style={
-        Object {
-          "border": "1px solid #b4b4b4",
-          "borderRadius": "8px",
-          "margin": "2px",
-          "paddingTop": "1rem",
-        }
-      }
-    >
+    <div>
       <div>
-        <h6>
-          Name
-        </h6>
-        <p>
-          fullName
-        </p>
+        <h3>
+          ID: undefined
+        </h3>
       </div>
     </div>
   </div>
@@ -61,24 +48,11 @@ exports[`EmployeeSummary Renders with snapshot (summaryActionsDropdownOpen: true
   <div
     className="row justify-content-center"
   >
-    <div
-      className="col-3"
-      style={
-        Object {
-          "border": "1px solid #b4b4b4",
-          "borderRadius": "8px",
-          "margin": "2px",
-          "paddingTop": "1rem",
-        }
-      }
-    >
+    <div>
       <div>
-        <h6>
-          Name
-        </h6>
-        <p>
-          fullName
-        </p>
+        <h3>
+          ID: undefined
+        </h3>
       </div>
     </div>
   </div>

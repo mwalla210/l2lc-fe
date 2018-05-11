@@ -48,10 +48,9 @@ export default class EmployeeSummary extends Component {
     return (
       <div>
         <div className="row justify-content-center">
-          <div {...Consts.summaryProps}>
+          <div>
             <div>
-              <h6>Name</h6>
-              <p>{this.props.website.currentEmployee.fullName}</p>
+              <h3>{'ID: ' + this.props.website.currentEmployee.id}</h3>
             </div>
           </div>
         </div>

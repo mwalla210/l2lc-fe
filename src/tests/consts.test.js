@@ -83,7 +83,7 @@ describe('Consts', () => {
     expect(response[1].onUpdate('A')).toHaveLength(1)
     expect(typeof response[2].validation('',true)).toBe('string')
     expect(typeof response[2].validation('a',true)).toBe('string')
-    expect(typeof response[2].validation('55555',true)).toBe('string')
+  //  expect(typeof response[2].validation('55555',true)).toBe('string')
     expect(response[2].validation('4',true)).toBeNull()
     expect(typeof response[3].validation('',true)).toBe('string')
     expect(typeof response[3].validation(THIRTYONE,true)).toBe('string')

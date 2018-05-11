@@ -429,7 +429,7 @@ class PageStore {
    * @mobx action
    */
   @action employeeSummaryPage(){
-    this.title = 'Employee Summary ID: ' + Website.currentEmployee.id
+    this.title = Website.currentEmployee.fullName
     let summaryObject = SummarySelector.getEmployee()
     this.content = summaryObject.component
     this.setSummaryModel(summaryObject.model)

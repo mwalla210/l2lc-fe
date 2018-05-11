@@ -47,56 +47,56 @@ export default class Stations extends Component {
             </ButtonGroup>
           </div>
           <div className="col-12">
-            <p style={{marginBottom: '3px', marginTop: '60px'}}>Receiving</p>
+            <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Receiving</h1>
             <Barcode
              imageDomID="receiving"
              barcodeID="receiving"
             />
           </div>
           <div className="col-12">
-            <p style={{marginBottom: '3px', marginTop: '60px'}}>Ticketing</p>
+            <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Ticketing</h1>
             <Barcode
              imageDomID="ticketing"
              barcodeID="ticketing"
             />
           </div>
           <div className="col-12">
-            <p style={{marginBottom: '3px', marginTop: '60px'}}>Preparation</p>
+            <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Preparation</h1>
             <Barcode
              imageDomID="preparation"
              barcodeID="preparation"
             />
           </div>
           <div className="col-12">
-            <p style={{marginBottom: '3px', marginTop: '60px'}}>Coating</p>
+            <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Coating</h1>
             <Barcode
              imageDomID="coating"
              barcodeID="coating"
             />
           </div>
           <div className="col-12">
-            <p style={{marginBottom: '3px', marginTop: '60px'}}>Big Blaster</p>
+            <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Big Blaster</h1>
             <Barcode
              imageDomID="bigBlaster"
              barcodeID="big blaster"
             />
           </div>
           <div className="col-12">
-            <p style={{marginBottom: '3px', marginTop: '60px'}}>Decorative Coating</p>
+            <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Decorative Coating</h1>
             <Barcode
              imageDomID="decCoating"
              barcodeID="decorative coating"
             />
           </div>
           <div className="col-12">
-            <p style={{marginBottom: '3px', marginTop: '60px'}}>Packaging</p>
+            <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Packaging</h1>
             <Barcode
              imageDomID="packaging"
              barcodeID="packaging"
             />
           </div>
           <div className="col-12">
-            <p style={{marginBottom: '3px', marginTop: '60px'}}>Other</p>
+            <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Other</h1>
             <Barcode
              imageDomID="other"
              barcodeID="other"
