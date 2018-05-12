@@ -62,7 +62,7 @@ export default class TimeEntry extends Component {
           <Alert color="success" isOpen={this.props.page.formModel.submissionConfirmOpen}>
             Time entry submitted successfully!
           </Alert>
-          <p>This page is scanner-only.</p>
+          <p>Scan all projects and employees first, then scan station.</p>
           <form>
             <textarea
               className="form-control"

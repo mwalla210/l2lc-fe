@@ -2,6 +2,7 @@ import { action, computed, useStrict, extendObservable } from 'mobx'
 import autoBind from 'auto-bind'
 import Consts from '../consts'
 import API from '../api'
+let dateFormat = require('dateformat')
 useStrict(true)
 
 /**
@@ -57,7 +58,6 @@ export default class ProjectModel {
       historyMsg: '',
       notes
     }
-    let dateFormat = require('dateformat')
     if(!customer)
       addtlProps.customer = {}
     if (dateFinished){
@@ -158,7 +158,7 @@ export default class ProjectModel {
    */
   @action finish(){
      this.status = 'Completed'
-     this.dateFinished = new Date()
+     this.dateFinished = dateFormat(new Date(), 'mmmm dS, yyyy, h:MM:ss TT')
    }
 
    /**
