@@ -82,11 +82,6 @@ export default class ProjectTaskTableModel extends TableModel{
         sortable: false,
       },
       {
-        Header: 'Status',
-        accessor: 'status',
-        sortable: false,
-      },
-      {
         Header: 'Actions',
         sortable: false,
         maxWidth: 80,

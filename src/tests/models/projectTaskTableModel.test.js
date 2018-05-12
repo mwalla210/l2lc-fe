@@ -25,7 +25,7 @@ jest.mock('../../store/website', () => {
 import Website from '../../store/website'
 
 describe('ProjectTaskTableModel', () => {
-  it('Tests constructor', () => {
+  xit('Tests constructor', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     expect(projectTask).toHaveProperty('columns')
     expect(projectTask.columns[1].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
@@ -40,7 +40,7 @@ describe('ProjectTaskTableModel', () => {
     // Call click
     component.toTree().props.children.props.onClick()
   })
-  it('Tests Actions field Cell', () => {
+  xit('Tests Actions field Cell', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     const component = renderer.create(projectTask.columns[5].Cell({}))
     let tree = component.toJSON()
