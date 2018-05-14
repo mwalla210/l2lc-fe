@@ -62,35 +62,9 @@ exports[`ProjectStatusFilter Renders with snapshot 1`] = `
         }
       >
         <Checkbox
-          value="On Hold"
-        />
-         On Hold
-      </label>
-      <br />
-      <label
-        style={
-          Object {
-            "marginLeft": "8px",
-          }
-        }
-      >
-        <Checkbox
           value="Completed"
         />
          Completed
-      </label>
-      <br />
-      <label
-        style={
-          Object {
-            "marginLeft": "8px",
-          }
-        }
-      >
-        <Checkbox
-          value="Dropped"
-        />
-         Dropped
       </label>
       <br />
     </CheckboxGroup>
@@ -160,35 +134,9 @@ exports[`ProjectStatusFilter Renders with snapshot, alternate arguments 1`] = `
         }
       >
         <Checkbox
-          value="On Hold"
-        />
-         On Hold
-      </label>
-      <br />
-      <label
-        style={
-          Object {
-            "marginLeft": "8px",
-          }
-        }
-      >
-        <Checkbox
           value="Completed"
         />
          Completed
-      </label>
-      <br />
-      <label
-        style={
-          Object {
-            "marginLeft": "8px",
-          }
-        }
-      >
-        <Checkbox
-          value="Dropped"
-        />
-         Dropped
       </label>
       <br />
     </CheckboxGroup>

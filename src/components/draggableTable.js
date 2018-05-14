@@ -24,8 +24,13 @@ export default class DraggableTable extends Component {
     super(props)
     this.rowProps = this.rowProps.bind(this)
     this.printClick = this.printClick.bind(this)
+    this.confirmOnClick = this.confirmOnClick.bind(this)
     this.props.page.tableModel.confirmAndClose = this.props.page.tableModel.confirmAndClose.bind(this.props.page.tableModel)
     this.props.page.tableModel.closeModal = this.props.page.tableModel.closeModal.bind(this.props.page.tableModel)
+    this.props.page.tableModel.openModal = this.props.page.tableModel.openModal.bind(this.props.page.tableModel)
+    this.props.page.tableModel.taskConfirmAndClose = this.props.page.tableModel.taskConfirmAndClose.bind(this.props.page.tableModel)
+    this.props.page.tableModel.taskCloseModal = this.props.page.tableModel.taskCloseModal.bind(this.props.page.tableModel)
+    this.props.page.tableModel.taskOpenModal = this.props.page.tableModel.taskOpenModal.bind(this.props.page.tableModel)
   }
 
   /**
@@ -55,6 +60,14 @@ export default class DraggableTable extends Component {
     else
       return {}
   }
+  /**
+   * Calls confirmAndClose for delete modal
+   * @method confirmOnClick
+   * @memberof DraggableTable.prototype
+   */
+  confirmOnClick(){
+    this.props.page.tableModel.confirmAndClose()
+  }
 
   /**
    * Renders HTML div component, with TableButton, DeleteModal, ReactTable, and ButtonGroup (with ButtonDefault)
@@ -68,30 +81,6 @@ export default class DraggableTable extends Component {
    * @see {@link ButtonDefault}
    */
   render() {
-    let rowModal = null
-    // If modal to be opened when row clicked, declare in render and redefine onClick for table elements and call open modal
-    if (this.props.page.tableModel.deleteModal){
-      rowModal = (
-        <DeleteModal
-          title={this.props.page.tableModel.deleteModal.title}
-          confirmOnClick={this.props.page.tableModel.confirmAndClose}
-          denyOnClick={this.props.page.tableModel.closeModal}
-          open={this.props.page.tableModel.modalOpen}
-          closeFn={this.props.page.tableModel.closeModal}
-          content={this.props.page.tableModel.deleteModal.content}
-        />
-      )
-    }
-    let buttonContent = null
-    if (this.props.page.tableModel.tableButton){
-      buttonContent =
-        (<div>
-          <TableButton
-            title={this.props.page.tableModel.tableButton.title}
-            onClick={this.props.page.tableModel.tableButton.onClick}
-          />
-        </div>)
-    }
     return (
       <div>
         <PromptModal
@@ -103,8 +92,20 @@ export default class DraggableTable extends Component {
           content="This project has no current tasks. A default list is available for this project. Would you like to add these tasks?"
           confirmClass="btn-primary"
         />
-        {buttonContent}
-        {rowModal}
+        <DeleteModal
+          title={this.props.page.tableModel.deleteModal.title}
+          confirmOnClick={this.confirmOnClick}
+          denyOnClick={this.props.page.tableModel.closeModal}
+          open={this.props.page.tableModel.modalOpen}
+          closeFn={this.props.page.tableModel.closeModal}
+          content={this.props.page.tableModel.deleteModal.content}
+        />
+        <div>
+          <TableButton
+            title={this.props.page.tableModel.tableButton.title}
+            onClick={this.props.page.tableModel.tableButton.onClick}
+          />
+        </div>
         <div style={{clear: 'both'}}>
           <ReactTable
             data={this.props.page.tableModel.data.slice()}

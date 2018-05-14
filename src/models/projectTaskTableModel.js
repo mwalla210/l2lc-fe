@@ -36,7 +36,6 @@ export default class ProjectTaskTableModel extends TableModel{
       defaultTaskListModalOpen: false,
     })
     this.deleteClickNav = deleteClickNav
-    autoBind(this)
     this.deleteModal.confirmOnClick = this.deleteTask
     this.columns = [
       {
@@ -115,6 +114,7 @@ export default class ProjectTaskTableModel extends TableModel{
         return res
       })
     }
+    autoBind(this)
   }
 
   /**

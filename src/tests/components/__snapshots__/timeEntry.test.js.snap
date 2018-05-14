@@ -8,7 +8,7 @@ exports[`TimeEntry Renders 1`] = `
     className="col-6"
   >
     <p>
-      This page is scanner-only.
+      Scan all projects and employees first, then scan station.
     </p>
     <form>
       <textarea

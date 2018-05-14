@@ -17,6 +17,7 @@ export default class Table extends Component {
   constructor(props){
     super(props)
     this.filter = this.filter.bind(this)
+    this.confirmOnClick = this.confirmOnClick.bind(this)
     this.props.page.tableModel.confirmAndClose = this.props.page.tableModel.confirmAndClose.bind(this.props.page.tableModel)
     this.props.page.tableModel.closeModal = this.props.page.tableModel.closeModal.bind(this.props.page.tableModel)
   }
@@ -31,6 +32,15 @@ export default class Table extends Component {
   filter(filter, row){
     const id = filter.pivotId || filter.id
     return (row[id] !== undefined) ? String(row[id]).toLowerCase().includes(filter.value.toLowerCase()) : false
+  }
+
+  /**
+   * Calls confirmAndClose for delete modal if any
+   * @method confirmOnClick
+   * @memberof Table.prototype
+   */
+  confirmOnClick(){
+    this.props.page.tableModel.confirmAndClose()
   }
 
   /**
@@ -54,7 +64,7 @@ export default class Table extends Component {
       rowModal = (
         <DeleteModal
           title={this.props.page.tableModel.deleteModal.title}
-          confirmOnClick={this.props.page.tableModel.confirmAndClose}
+          confirmOnClick={this.confirmOnClick}
           denyOnClick={this.props.page.tableModel.closeModal}
           open={this.props.page.tableModel.modalOpen}
           closeFn={this.props.page.tableModel.closeModal}
