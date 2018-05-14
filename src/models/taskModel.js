@@ -11,7 +11,6 @@ useStrict(true)
  * @property {Boolean} [required=false] Indicates whether the task is required [observable]
  * @property {?String} [processArea=null] Process area associated with the task [observable]
  * @property {String} title Title of the task [observable]
- * @property {String} [status=''] Current task status [observable]
  */
 export default class TaskModel {
   constructor(required, title, processArea, id) {
@@ -32,14 +31,5 @@ export default class TaskModel {
     API.updateTask(Website.currentProject.id, this.id, JSON.stringify({
       required: this.required
     }))
-  }
-
-  @computed get status(){
-    let count = 0
-    Website.currentProject.timeEntries.forEach(entry => {
-      if (entry.station == this.processArea)
-        count++
-    })
-    return (count == 0) ? 'Not Started' : (count%2 == 0) ? 'Not At Station' : 'At Station'
   }
 }
