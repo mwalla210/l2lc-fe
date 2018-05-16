@@ -53,5 +53,8 @@
     "syntaxTheme"       : "default",
     "sort"              : true,
     "search"            : true
+  },
+  "docdash": {
+    "static": true
   }
 }
