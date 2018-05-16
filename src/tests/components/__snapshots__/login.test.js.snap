@@ -64,6 +64,7 @@ exports[`Login Renders with snapshot 1`] = `
               className="col-sm-6"
             >
               <input
+                autoFocus={true}
                 className="form-control"
                 id="username"
                 name="username"
@@ -176,6 +177,7 @@ exports[`Login Renders with snapshot, alternate arguements 1`] = `
               className="col-sm-6"
             >
               <input
+                autoFocus={true}
                 className="form-control"
                 id="username"
                 name="username"

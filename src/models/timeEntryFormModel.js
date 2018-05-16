@@ -2,6 +2,7 @@ import { useStrict, action, extendObservable, computed } from 'mobx'
 import autoBind from 'auto-bind'
 import Website from '../store/website'
 import Page from '../store/page'
+import Consts from '../consts'
 let dateFormat = require('dateformat')
 useStrict(true)
 
@@ -33,7 +34,7 @@ export default class TimeEntryFormModel {
    * @mobx computed
    */
   @computed get buttonDisabled(){
-    return this.station.trim() == ''
+    return this.station.trim() == '' || this.projectID.length == 0 || this.employeeID.length == 0
   }
   /**
    * @name openConfirmation
@@ -95,10 +96,17 @@ export default class TimeEntryFormModel {
         let nonNumber = /^([^0-9]*)$/
         // Station
         if (nonNumber.test(token)){
-          let stationTitle = token.toLowerCase().replace(
-            /\w\S*/g,
-            txt => {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()}
-          )
+          let stationTitle
+          let isShorthand = Consts.stationName(token.toLowerCase())
+          if (isShorthand){
+            stationTitle = isShorthand
+          }
+          else {
+            stationTitle = token.toLowerCase().replace(
+              /\w\S*/g,
+              txt => {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()}
+            )
+          }
           this.station = stationTitle
         }
         // Project ID

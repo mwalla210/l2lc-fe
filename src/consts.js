@@ -156,7 +156,7 @@ class Consts {
         return [
           {
             id: 'shipState',
-            options: [{title: 'Not Applicable'}],
+            options: [{title: 'Not Applicable',selected: true}],
             required: false,
             disabled: true
           },
@@ -379,7 +379,7 @@ class Consts {
           },
           {
             id: 'billState',
-            options: [{title: 'Not Applicable'}],
+            options: [{title: 'Not Applicable',selected:true}],
             required: false,
             disabled: true
           },
@@ -1658,6 +1658,22 @@ class Consts {
       }
     }
     return {hour, min}
+  }
+  /**
+   * @name stationName
+   * @description Swaps station short names for long names
+   * @memberof Consts.prototype
+   * @method stationName
+   * @param  {String}    name               Station short name
+   * @return {String}
+   */
+  static stationName(name){
+    let stations = {
+      deccoat: 'Decorative Coating',
+      bigblas: 'Big Blaster',
+      prep: 'Preparation'
+    }
+    return stations[name]
   }
 }
 

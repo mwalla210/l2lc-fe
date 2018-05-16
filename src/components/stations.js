@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import Barcode from './barcode'
 import {ButtonGroup} from 'reactstrap'
 import ButtonDefault from './buttonDefault'
+import Consts from '../consts'
 
 /**
  * Stations component; constructor binds functions
@@ -64,7 +65,7 @@ export default class Stations extends Component {
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Preparation</h1>
             <Barcode
              imageDomID="preparation"
-             barcodeID="preparation%"
+             barcodeID="prep%"
             />
           </div>
           <div className="col-12">
@@ -78,14 +79,14 @@ export default class Stations extends Component {
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Big Blaster</h1>
             <Barcode
              imageDomID="bigBlaster"
-             barcodeID="big blaster%"
+             barcodeID="bigblas%"
             />
           </div>
           <div className="col-12">
             <h1 style={{marginBottom: '3px', marginTop: '50px'}}>Decorative Coating</h1>
             <Barcode
              imageDomID="decCoating"
-             barcodeID="decorative coating%"
+             barcodeID="deccoat%"
             />
           </div>
           <div className="col-12">

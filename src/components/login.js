@@ -95,6 +95,7 @@ export default class Login extends Component {
                     value={this.props.website.username}
                     onChange={this.onChangeUsername}
                     onBlur={this.onBlur}
+                    autoFocus
                   />
                   </div>
                 </div>

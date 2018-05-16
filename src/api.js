@@ -90,7 +90,6 @@ export default class API {
    * @return {CustomerModel}
    */
   static customerModelize(item){
-    console.log(item)
     let addrIsSame = false
     let addtl = []
     // Check if addresses match each other
