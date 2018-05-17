@@ -12,9 +12,7 @@ jest.mock('reactstrap', () => ({
   DropdownToggle: 'DropdownToggle',
 }))
 
-const defaultOptions = {
-    printClick: jest.fn()
-}
+const defaultOptions = {}
 
 describe('Stations', () => {
   it ('Renders with snapshot', () => {
