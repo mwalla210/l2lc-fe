@@ -9,19 +9,19 @@ useStrict(true)
  * @name ProjectModel
  * @class ProjectModel
  * @classdesc Project storage object
- * @property {Number} id Database ID
- * @property {String} descr Description of project
- * @property {Object} costCenterTitle Cost center title [observable]
- * @property {String} jobTypeTitle Job type title [observable]
- * @property {String} title Project title [observable]
- * @property {String} priority Project priority [observable]
- * @property {String} status Project status [observable]
- * @property {?Number} [partCount=null] Project part count [observable]
- * @property {?String} [descr=null] Project description [observable]
- * @property {?String} [refNum=null] Project internal reference number [observable]
- * @property {Customer} [customer={}] Project Customer (defaults to empty object for table display) [observable]
- * @property {?Date} [dateCreated=null] Project date created
- * @property {?Date} [dateFinished=null] Project date finished [observable]
+ * @param {Number} id Database ID
+ * @param {String} descr Description of project
+ * @param {Object} costCenterTitle Cost center title [observable]
+ * @param {String} jobTypeTitle Job type title [observable]
+ * @param {String} title Project title [observable]
+ * @param {String} priority Project priority [observable]
+ * @param {String} status Project status [observable]
+ * @param {?Number} [partCount=null] Project part count [observable]
+ * @param {?String} [descr=null] Project description [observable]
+ * @param {?String} [refNum=null] Project internal reference number [observable]
+ * @param {Customer} [customer={}] Project Customer (defaults to empty object for table display) [observable]
+ * @param {?Date} [dateCreated=null] Project date created
+ * @param {?Date} [dateFinished=null] Project date finished [observable]
  * @property {String} [processArea=''] Project last process area [observable]
  * @property {Object} [hold] Hold object [observable]
  * @property {Boolean} hold.flag Hold indicator (true: on hold) [observable]
@@ -30,7 +30,7 @@ useStrict(true)
  * @property {Object[]} [timeEntries=[]] Array of objects containing related database employee ID, related database station ID, and date created [observable]
  * @property {Task[]} [tasks=[]] Array of Task(s) associated with Project [observable]
  * @property {String} [historyMsg=''] Time entry history message for Project [observable]
- * @property {?String} [notes=''] Task notes for a project [observable]
+ * @param {?String} [notes=''] Task notes for a project [observable]
  */
 export default class ProjectModel {
   constructor(id, costCenterTitle, jobTypeTitle, title, priority, status, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null, notes='') {
@@ -117,7 +117,7 @@ export default class ProjectModel {
    * @description Return the DOM computed ID for a barcode field, specific to the project
    * @method barcodeDomID
    * @return {String}
-   * @memberof EmployeeModel.prototype
+   * @memberof ProjectModel.prototype
    * @mobx computed
    */
   @computed get barcodeDomID(){
@@ -128,7 +128,7 @@ export default class ProjectModel {
    * @description Returns the ID to encode in the barcode for scanning purposes
    * @method barcodeScanID
    * @return {String}
-   * @memberof EmployeeModel.prototype
+   * @memberof ProjectModel.prototype
    * @mobx computed
    */
   @computed get barcodeScanID(){
@@ -142,7 +142,7 @@ export default class ProjectModel {
    * @description Sets this.customer, makes request to API to modify Project's related Customer
    * @memberof ProjectModel.prototype
    * @method changeCustomer
-   * @param  {Customer}       customer new Customer to link to Project
+   * @param  {customer}       customer new Customer to link to Project
    * @return {Promise}
    * @mobx action
    */
@@ -166,18 +166,13 @@ export default class ProjectModel {
     * @description Sets this.notes, makes request to API to modify Project's related notes
     * @memberof ProjectModel.prototype
     * @method changeNotes
-    * @param  {Value}       customer value string for notes
+    * @param  {event}       event value string for notes
     * @return {Promise}
     * @mobx action
     */
    @action changeNotes(event){
      this.notes = event.target.value
-     console.log('event',event.target.value);
-     console.log('notes',this.notes);
      API.updateProject(this.id, JSON.stringify({notes: this.notes}))
-     .then(res => {
-       console.log(res)
-     })
   }
   /**
    * @name getTimeEntries

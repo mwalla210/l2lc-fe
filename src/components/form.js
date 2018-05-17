@@ -85,6 +85,13 @@ export default class Form extends Component {
    * @return {Component}
    * @see {@link PromptModal}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
+   * @see {@link SelectField}
+   * @see {@link TextField}
+   * @see {@link TextAreaField}
+   * @see {@link CheckBoxField}
+   * @see {@link FormItem}
+   * @see {@link ButtonPrimary}
+   * @see {@link ButtonDefault}
    */
   render() {
     return(

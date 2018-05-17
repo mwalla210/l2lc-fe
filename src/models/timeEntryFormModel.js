@@ -11,6 +11,13 @@ useStrict(true)
   * @class TimeEntryFormModel
   * @classdesc TimeEntry initializer for form storage object
   * @description Creates fields, sets correct onClick
+  * @property {Boolean} submissionConfirmOpen Boolean for confirmation model
+  * @property {String} value Time entry value
+  * @property {Object[]} projectID Project
+  * @property {Object[]} employeeID Employee
+  * @property {String} station Station name
+  * @property {Boolean} errorModalOpen Boolean for error modal
+  * @property {String} errorResponse error message
  */
 export default class TimeEntryFormModel {
   constructor() {
@@ -85,6 +92,8 @@ export default class TimeEntryFormModel {
    * @name setValue
    * @description Sets textarea value; if finished
    * @method setValue
+   * @param {String} value textarea value
+   * @param {String} split textarea value
    * @memberof TimeEntryFormModel.prototype
    * @mobx action
    */
@@ -178,7 +187,7 @@ export default class TimeEntryFormModel {
   }
   /**
    * @name setError
-   * @description Sets textarea value; if finished
+   * @description Sets error message
    * @method setError
    * @memberof TimeEntryFormModel.prototype
    * @param {String} val Error message

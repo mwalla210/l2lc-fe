@@ -11,6 +11,8 @@ import { inject } from 'mobx-react'
  * @property {Function} onChange Field change function
  * @property {Function} onBlur Field blur function
  * @property {Boolean} focus Field autofocus indicator
+ * @property {Boolean} valid Field validity
+ * @property {Boolean} password Password indicator
  * @extends React.Component
  * @see {@link PageStore @inject PageStore}
  */

@@ -6,9 +6,9 @@ useStrict(true)
  * @name EmployeeModel
  * @class EmployeeModel
  * @classdesc Employee storage object
- * @property {Number} id Database ID of Employee
- * @property {String} firstName First name of Employee [observable]
- * @property {String} lastName Last name of Employee [observable]
+ * @param {Number} id Database ID of Employee
+ * @param {String} firstName First name of Employee [observable]
+ * @param {String} lastName Last name of Employee [observable]
  * @property {Boolean} [active=false] Indicator of Employee's active status [observable]
  * @property {?String} [editName=null] Stores potential name changes while editing [observable]
  */
@@ -57,6 +57,7 @@ export default class EmployeeModel {
    * @description Return the DOM computed ID for a barcode field, specific to the employee
    * @return {String}
    * @memberof EmployeeModel.prototype
+   * @method barcodeDomID
    * @mobx computed
    */
   @computed get barcodeDomID(){
@@ -68,6 +69,7 @@ export default class EmployeeModel {
    * @description Returns the ID to encode in the barcode for scanning purposes
    * @return {String}
    * @memberof EmployeeModel.prototype
+   * @method barcodeScanID
    * @mobx computed
    */
   @computed get barcodeScanID(){
@@ -79,6 +81,7 @@ export default class EmployeeModel {
    * @description Returns employee full name
    * @return {String}
    * @memberof EmployeeModel.prototype
+   * @method fullName
    * @mobx computed
    */
   @computed get fullName(){

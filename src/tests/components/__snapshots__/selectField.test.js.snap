@@ -49,5 +49,7 @@ exports[`SelectField Renders with snapshot, alternate arguements 1`] = `
   <option>
     title
   </option>
+  <option />
+  <option />
 </select>
 `;

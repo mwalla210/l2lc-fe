@@ -8,15 +8,15 @@ useStrict(true)
   * @classdesc Form storage object
   * @description Sets default values for each field item
   * @property {Object[]} fields Type of fields for the form [observable]
-  * @property {Object} primaryButton Forms primary button properties
-  * @property {String} primaryButton.title Forms primary button title
-  * @property {Function} primaryButton.onClick Forms primary button onClick
-  * @property {Object} [secondaryButton] Forms secondary button properties
-  * @property {String} secondaryButton.title Forms secondary button title
-  * @property {Function} secondaryButton.onClick Forms secondary button onClick
-  * @property {Boolean} autoSubmit Forms auto-submit boolean
-  * @property {Function} onChange Form's function to handle ANY field updates (time entry only usage)
-  * @property {Function} errorClick Form's function to handle clicking of form error modal confirmation
+  * @param {Object} primaryButton Forms primary button properties
+  * @param {String} primaryButton.title Forms primary button title
+  * @param {Function} primaryButton.onClick Forms primary button onClick
+  * @param {Object} [secondaryButton] Forms secondary button properties
+  * @param {String} secondaryButton.title Forms secondary button title
+  * @param {Function} secondaryButton.onClick Forms secondary button onClick
+  * @param {Boolean} autoSubmit Forms auto-submit boolean
+  * @param {Function} onChange Form's function to handle ANY field updates (time entry only usage)
+  * @param {Function} errorClick Form's function to handle clicking of form error modal confirmation
   * @property {Boolean} [modalOpen=false] Form's indicator for whether error modal is open [observable]
   * @property {String} [errorResponse=''] Form's string field to hold error text passed in from website [observable]
  */
@@ -122,7 +122,7 @@ export default class FormModel {
   }
   /**
    * @name resetValueIndex
-   * @description Resets field value to default based on field ID
+   * @description Resets field value to default based on index
    * @method resetValueIndex
    * @memberof FormModel.prototype
    * @property {Number} index The field index

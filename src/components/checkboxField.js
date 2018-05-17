@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { inject } from 'mobx-react'
 
 /**
  * CheckboxField component
@@ -10,9 +9,7 @@ import { inject } from 'mobx-react'
  * @property {Boolean} value Field checked indicator
  * @property {Function} onChange Field change function
  * @extends React.Component
- * @see {@link PageStore @inject PageStore}
  */
-@inject('page')
 export default class CheckboxField extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,

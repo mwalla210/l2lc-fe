@@ -33,10 +33,17 @@ const alternateOptions = {
   options:observable([
     {
       disabled: true,
-      title: 'title'
+      title: 'title',
     },
     {
-      title: 'title'
+      title: 'title',
+      length: 10,
+    },
+    {
+      length: 10
+    },
+    {
+      find: jest.fn()
     }
   ])
 }

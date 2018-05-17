@@ -7,18 +7,19 @@ useStrict(true)
  * @name UserModel
  * @class UserModel
  * @classdesc User storage object
- * @property {Number} id Database ID of the user
- * @property {String} username Username of the user [observable]
- * @property {?String} [stationID=null] Station name of the user, if any [observable]
- * @property {Boolean} [admin=false] Admin indicator of user [observable]
+ * @param {Number} id Database ID of the user
+ * @param {String} username Username of the user [observable]
+ * @param {?String} [stationID=null] Station name of the user, if any [observable]
+ * @param {Boolean} [admin=false] Admin indicator of user [observable]
+ * @property {String} editUsername Empty field for editing username
+ * @property {String} editPassword Empty field for editing password
  */
 export default class UserModel {
   constructor(id, username, stationID, admin=false) {
     let addtlProps = {
-      username, // changeable?
-      stationID, // changeable?
+      username,
+      stationID,
       admin,
-      // may need token or other form of login item for authorization
       //Optional
       editUsername: '',
       editPassword: ''
