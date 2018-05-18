@@ -6,10 +6,11 @@ useStrict(true)
  * @name ModalModel
  * @class ModalModel
  * @classdesc Modal model for summary pages
+ * @description Sets up modal
+ * @param {Function} confirmOnClick Modal confirmation function
+ * @param {String} title Modal title [observable]
  * @property {Boolean} [modalOpen=false] Modal open indicator [observable]
- * @property {String} title Modal title [observable]
  * @property {String} [contents=''] Modal contents, if any (field modals) [observable]
- * @property {Function} confirmOnClick Modal confirmation function
  */
 export default class ModalModel {
   constructor(confirmOnClick, title){

@@ -21,7 +21,7 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
       </h5>
       <div>
         <h6>
-          Title
+          Description
         </h6>
         <p>
           title
@@ -138,7 +138,7 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
       </div>
       <div>
         <h6>
-          Description
+          Details
         </h6>
         <p>
           descr
@@ -252,7 +252,7 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
       </h5>
       <div>
         <h6>
-          Title
+          Description
         </h6>
         <p>
           title
@@ -369,7 +369,7 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
       </div>
       <div>
         <h6>
-          Description
+          Details
         </h6>
         <p>
           descr
@@ -483,7 +483,7 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
       </h5>
       <div>
         <h6>
-          Title
+          Description
         </h6>
         <p>
           title
@@ -600,7 +600,7 @@ exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 
       </div>
       <div>
         <h6>
-          Description
+          Details
         </h6>
         <p>
           descr

@@ -25,13 +25,13 @@ jest.mock('../../store/website', () => {
 import Website from '../../store/website'
 
 describe('CustomerProjectsTableModel', () => {
-  xit('Tests constructor', () => {
-    let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn())
+  it('Tests constructor', () => {
+    let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
     expect(customerTable).toHaveProperty('columns')
     customerTable.fetchFn()
-    expect(customerTable.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toEqual(expect.stringContaining('Dec'))
-    expect(customerTable.columns[5].filterMethod({value:{length: 0}},[]))
-    expect(customerTable.columns[5].filterMethod({value:{length: 9, includes: jest.fn()}},[]))
+    expect(customerTable.columns[2].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toEqual(expect.stringContaining('Dec'))
+    expect(customerTable.columns[6].filterMethod({value:{length: 0}},[]))
+    expect(customerTable.columns[6].filterMethod({value:{length: 9, includes: jest.fn()}},[]))
 })
 
   it('Tests clickHandler with info', () => {
@@ -51,13 +51,13 @@ describe('CustomerProjectsTableModel', () => {
   it('Tests clickHandler with delete', () => {
     let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
     customerTable.clickHandler(1,'delete')
-    //else case, if it ran then it ran
+    expect(customerTable.modalOpen).toBe(true)
   })
 
-  it('Tests clickHandler with no input', () => {
+  it('Tests clickHandler with null', () => {
     let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-    customerTable.clickHandler(1,'null')
-    //else case, if it ran then it ran
+    customerTable.clickHandler(1,null)
+    expect(customerTable.editClickNav.mock.calls.length).toBe(0)
   })
 
   it('Tests toggleDropdown', () => {
@@ -66,35 +66,35 @@ describe('CustomerProjectsTableModel', () => {
     expect(customerTable.filterDD).toEqual(true)
   })
 
-  xit('Tests Actions column', () => {
+  it('Tests Actions column', () => {
     let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-    expect(customerTable.columns[6].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
-    const component = renderer.create(customerTable.columns[6].Cell({original:{toggleAdmin: jest.fn(), status: 'Completed'}}))
+    expect(customerTable.columns[7].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
+    const component = renderer.create(customerTable.columns[7].Cell({original:{toggleAdmin: jest.fn(), status: 'Completed'}}))
     let tree2 = component.toJSON()
     expect(tree2).toMatchSnapshot()
     //component.root.findByType(Switch).props.onClick()
   })
 
-  xit('Tests Actions column', () => {
+  it('Tests Actions column', () => {
     let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
     Website.currentUser.admin = true
-    expect(customerTable.columns[6].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
-    const component = renderer.create(customerTable.columns[6].Cell({original:{toggleAdmin: jest.fn(), status: 'Completed'}}))
+    expect(customerTable.columns[7].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
+    const component = renderer.create(customerTable.columns[7].Cell({original:{toggleAdmin: jest.fn(), status: 'Completed'}}))
     let tree2 = component.toJSON()
     expect(tree2).toMatchSnapshot()
     //component.root.findByType(Switch).props.onClick()
   })
 
-  xit('Tests Status Cell', () => {
+  it('Tests Status Cell', () => {
     let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-    const component = renderer.create(customerTable.columns[5].Cell({}))
+    const component = renderer.create(customerTable.columns[6].Cell({}))
     let tree2 = component.toJSON()
     expect(tree2).toMatchSnapshot()
   })
 
-  xit('Tests Status Filter', () => {
+  it('Tests Status Filter', () => {
     let customerTable = new CustomerProjectsTableModel(jest.fn(),jest.fn(),jest.fn(),jest.fn())
-      expect(typeof customerTable.columns[5].Filter({filter:{},onChange:jest.fn()})).toBe('object')
+      expect(typeof customerTable.columns[6].Filter({filter:{},onChange:jest.fn()})).toBe('object')
   })
 
 })

@@ -7,7 +7,7 @@ import { inject } from 'mobx-react'
  * TableActionCell component; constructor binds functions
  * @namespace TableActionCell
  * @property {Object} row Table row
- * @property {String} set One of ['Full'|'Restricted']
+ * @property {String} set One of ['Full'|'Restricted'|'View'|'Delete']
  * @property {Function} clickHandler Icon click function
  * @property {Boolean} disabledChange Edit icon click disable flag
  * @extends React.Component

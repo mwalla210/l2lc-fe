@@ -12,12 +12,13 @@ useStrict(true)
   * @name CustomerTableModel
   * @class CustomerTableModel
   * @classdesc Customer initializer for table storage object
-  * @description Creates fields, sets correct onClick
-  * @property {Function} buttonClickNav Function to navigate on click of table button
-  * @property {Function} infoClickNav Function to navigate on click of info icon
-  * @property {Function} editClickNav Function to navigate on click of edit icon
-  * @property {Function} selectNav Function to navigate on select of row (when adding customer to project)
+  * @description Sets correct onClicks, table columns, and actions
+  * @param {Function} buttonClickNav Function to navigate on click of table button
+  * @param {Function} infoClickNav Function to navigate on click of info icon
+  * @param {Function} editClickNav Function to navigate on click of edit icon
+  * @param {Function} selectNav Function to navigate on select of row (when adding customer to project)
   * @extends TableModel
+  * @see {@link API}
  */
 export default class CustomerTableModel extends TableModel{
   constructor(buttonClickNav, infoClickNav, editClickNav, selectNav) {
@@ -77,6 +78,7 @@ export default class CustomerTableModel extends TableModel{
    * @memberof CustomerTableModel.prototype
    * @return {Array}
    * @see {@link TableActionCell}
+   * @see {@link Website}
    */
   actionColumns(){
     let cols = this.mainColumns()
@@ -136,6 +138,7 @@ export default class CustomerTableModel extends TableModel{
    * @method selectCreateClick
    * @param  {Object}     row   Row of click
    * @memberof CustomerTableModel.prototype
+   * @see {@link Website}
    */
   selectCreateClick(row){
     Website.currentProject.changeCustomer(row.original)
@@ -159,6 +162,7 @@ export default class CustomerTableModel extends TableModel{
    * @method selectUpdateClick
    * @param  {Object}     row   Row of click
    * @memberof CustomerTableModel.prototype
+   * @see {@link Website}
    */
   selectUpdateClick(row){
     Website.currentProject.changeCustomer(row.original)
@@ -175,6 +179,7 @@ export default class CustomerTableModel extends TableModel{
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
    * @memberof CustomerTableModel.prototype
+   * @see {@link Website}
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit'){

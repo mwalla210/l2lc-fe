@@ -14,6 +14,19 @@ useStrict(true)
  * @name ProjectTaskTableModel
  * @class ProjectTaskTableModel
  * @classdesc Draggable row state for draggable tables
+ * @description Sets correct onClicks, table columns, actions, and fetchFn
+ * @param {Function} buttonClickNav Function to navigate on click of New Task button
+ * @param {Function} deleteClickNav Function to navigate on click of delete icon
+ * @param {Function} backClickNav Function to navigate on click of back button
+ * @property {Function} deleteModal.confirmOnClick Confirm function
+ * @property {Object[]} [columns] Sets columns in array for ReactTable
+ * @property {Function} fetchFn Table data fetch function for projects
+ * @property {Boolean} [defaultTaskListModalOpen=false] Task list modal open indicator [observable]
+ * @extends TableModel
+ * @see {@link TableActionCell}
+ * @see {@link Website}
+ * @see {@link API}
+ * @see {@link Switch}
  */
 export default class ProjectTaskTableModel extends TableModel{
   constructor(buttonClickNav, deleteClickNav, backClickNav){
@@ -130,7 +143,6 @@ export default class ProjectTaskTableModel extends TableModel{
    * @description Handles delete circle button click
    * @method clickHandler
    * @param  {Object}     row  Related row object
-   * @param  {String}     type Circle button type
    * @memberof ProjectTaskTableModel.prototype
    */
   clickHandler(row){
@@ -143,6 +155,8 @@ export default class ProjectTaskTableModel extends TableModel{
    * @description Handles delete circle button click
    * @method deleteTask
    * @memberof ProjectTaskTableModel.prototype
+   * @see {@link API}
+   * @see {@link Website}
    */
   deleteTask(){
     API.dropTask(Website.currentProject.id, JSON.stringify({id: this.currentTask.id}))
@@ -158,6 +172,8 @@ export default class ProjectTaskTableModel extends TableModel{
    * @memberof ProjectTaskTableModel.prototype
    * @param {Number} dragIndex Index dragging from
    * @param {Number} hoverIndex Index dragging to
+   * @see {@link API}
+   * @see {@link Website}
    * @mobx action
    */
   @action move(dragIndex, hoverIndex){
@@ -185,7 +201,7 @@ export default class ProjectTaskTableModel extends TableModel{
    * @name taskCloseModal
    * @description Sets defaultTaskListModalOpen prop to false
    * @method taskCloseModal
-   * @memberof TableModel.prototype
+   * @memberof ProjectTaskTableModel.prototype
    * @mobx action
    */
   @action taskCloseModal(){this.defaultTaskListModalOpen = false}
@@ -193,7 +209,7 @@ export default class ProjectTaskTableModel extends TableModel{
    * @name taskOpenModal
    * @description Sets defaultTaskListModalOpen prop to true
    * @method taskOpenModal
-   * @memberof TableModel.prototype
+   * @memberof ProjectTaskTableModel.prototype
    * @mobx action
    */
   @action taskOpenModal(){this.defaultTaskListModalOpen = true}
@@ -201,7 +217,10 @@ export default class ProjectTaskTableModel extends TableModel{
    * @name taskConfirmAndClose
    * @description Closes modal and runs confirm function
    * @method taskConfirmAndClose
-   * @memberof TableModel.prototype
+   * @memberof ProjectTaskTableModel.prototype
+   * @see {@link Website}
+   * @see {@link Consts}
+   * @see {@link API}
    * @mobx action
    */
   @action taskConfirmAndClose(){

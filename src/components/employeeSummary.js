@@ -4,7 +4,6 @@ import Barcode from './barcode'
 import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, ButtonGroup} from 'reactstrap'
 // import DeleteModal from './deleteModal'
 import ButtonDefault from './buttonDefault'
-import Consts from '../consts'
 
 /**
  * EmployeeSummary component
@@ -32,19 +31,9 @@ export default class EmployeeSummary extends Component {
    * @return {Component}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    * @see {@link Barcode}
+   * @see {@link ButtonDefault}
    */
   render() {
-    /*
-    <DeleteModal
-      title="Delete Employee?"
-      confirmOnClick={this.props.page.summaryModel.deleteModal.confirmAndClose}
-      denyOnClick={this.props.page.summaryModel.deleteModal.closeModal}
-      open={this.props.page.summaryModel.deleteModal.modalOpen}
-      closeFn={this.props.page.summaryModel.deleteModal.closeModal}
-      content="This action cannot be undone."
-    />
-    <MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}>Delete</MenuItem>
-     */
     return (
       <div>
         <div className="row justify-content-center">

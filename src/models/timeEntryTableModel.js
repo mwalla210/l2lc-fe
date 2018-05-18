@@ -5,12 +5,14 @@ import Website from '../store/website'
 useStrict(true)
 
 /**
-  * @name timeEntryTableModel
+  * @name TimeEntryTableModel
   * @class timeEntryTableModel
   * @classdesc Time entry initializer for table storage object
-  * @description Creates fields, sets correct onClick
-  * @property {Function} backClickNav Function to navigate on click of back button
+  * @description Sets correct onClick and table columns
+  * @param {Function} backClickNav Function to navigate on click of back button
+  * @property {Object[]} [columns] Sets columns in array for ReactTable
   * @extends TableModel
+  * @see {@link Website}
  */
 export default class TimeEntryTableModel extends TableModel{
   constructor(backClickNav) {

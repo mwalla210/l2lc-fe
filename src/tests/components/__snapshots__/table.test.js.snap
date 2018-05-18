@@ -1,5 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Table Renders with back button 1`] = `
+<div>
+  <div />
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  >
+    <ReactTable
+      columns={Array []}
+      data={Array []}
+      defaultFilterMethod={[Function]}
+      getTrProps={[Function]}
+      loading={false}
+    />
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <button
+      className="btn btn-secondary"
+      disabled={undefined}
+      onClick={
+        Object {
+          "className": "btn-secondary",
+          "onClick": [MockFunction],
+          "title": "Back",
+        }
+      }
+      style={
+        Object {
+          "marginBottom": "10px",
+        }
+      }
+      type="button"
+    >
+      Back
+    </button>
+  </div>
+</div>
+`;
+
 exports[`Table Renders with default content 1`] = `
 <div>
   <div

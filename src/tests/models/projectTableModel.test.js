@@ -20,14 +20,14 @@ jest.mock('../../store/website', () => {
 import Website from '../../store/website'
 
 describe('ProjectTableModel', () => {
-  xit('Tests constructor', () => {
+  it('Tests constructor', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(project).toHaveProperty('columns')
-    expect(project.columns[1].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toEqual(expect.stringContaining('Dec'))
-    expect(project.columns[3].accessor({customer: {companyName: 'companyName'}})).toBe('companyName')
-    expect(project.columns[6].filterMethod({value:{length: 0}},[]))
-    expect(project.columns[6].filterMethod({value:{length: 9, includes: jest.fn()}},[]))
-    expect(project.columns[7].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
+    expect(project.columns[2].accessor({dateCreated: new Date('December 17, 1995 03:24:00')})).toEqual(expect.stringContaining('Dec'))
+    expect(project.columns[4].accessor({customer: {companyName: 'companyName'}})).toBe('companyName')
+    expect(project.columns[7].filterMethod({value:{length: 0}},[]))
+    expect(project.columns[7].filterMethod({value:{length: 9, includes: jest.fn()}},[]))
+    expect(project.columns[8].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
   })
 
   it('Tests toggleDropdown', () => {
@@ -36,21 +36,21 @@ describe('ProjectTableModel', () => {
     expect(project.filterDD).toBe(true)
   })
 
-  xit('Tests Status field Cell', () => {
+  it('Tests Status field Cell', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
-    const component = renderer.create(project.columns[6].Cell({}))
+    const component = renderer.create(project.columns[7].Cell({}))
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
 
-  xit('Tests Status field Filter', () => {
+  it('Tests Status field Filter', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
-    expect(typeof project.columns[6].Filter({filter:{},onChange:jest.fn()})).toBe('object')
+    expect(typeof project.columns[7].Filter({filter:{},onChange:jest.fn()})).toBe('object')
   })
 
   it('Tests Actions field Cell', () => {
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
-    const component = renderer.create(project.columns[7].Cell({original: {status: 'Completed'}}))
+    const component = renderer.create(project.columns[8].Cell({original: {status: 'Completed'}}))
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
@@ -89,7 +89,7 @@ describe('ProjectTableModel', () => {
     Website.currentUser.admin = true
     let project = new ProjectTableModel(jest.fn(),jest.fn(),jest.fn())
     expect(project).toHaveProperty('columns')
-    const component = renderer.create(project.columns[7].Cell({original: {status: 'Completed'}}))
+    const component = renderer.create(project.columns[8].Cell({original: {status: 'Completed'}}))
     let tree2 = component.toJSON()
     expect(tree2).toMatchSnapshot()
   })
