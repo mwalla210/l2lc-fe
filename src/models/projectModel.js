@@ -143,7 +143,7 @@ export default class ProjectModel {
    * @mobx computed
    */
   @computed get costCenterProjectType(){
-    if(this.costCenterTitle == 'APC'){
+    if(this.costCenterTitle != this.jobTypeTitle){
       return `${this.costCenterTitle} - ${this.jobTypeTitle}`
     }
     else {

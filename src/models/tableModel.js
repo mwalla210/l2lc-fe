@@ -7,14 +7,20 @@ useStrict(true)
  * @class TableModel
  * @classdesc Table storage object
  * @description Sets up default table
- * @param {?Object} [tableButton=null] Button object for display above table
+ * @param {Object} [tableButton] Button object for display above table
  * @param {Function} fetchFn Table data fetch function
- * @param {Object[]} columns Column header array for ReactTable [observable]
- * @param {?Object} [deleteModal=null] Object containing props for row delete modal
+ * @param {Object[]} columns Column header array for ReactTable
+ * @param {Object} [deleteModal] Object containing props for row delete modal
  * @param {?Function} [styling] Styling function
  * @param {?Function} [backButtonFunc] Back button function
+ * @property {Function} fetchFn Table data fetch function
+ * @property {Object[]} columns Column header array for ReactTable [observable]
+ * @property {?Function} [styling] Styling function
+ * @property {?Function} [backButtonFunc] Back button function
+ * @property {Object} [tableButton] Button object for display above table
  * @property {String} tableButton.title Button title for display above table
  * @property {Function} tableButton.onClick Button click function for display above table
+ * @property {Object} [deleteModal] Object containing props for row delete modal
  * @property {String} deleteModal.title Title for modal
  * @property {String} deleteModal.content Content for modal
  * @property {Function} deleteModal.confirmOnClick Confirm function

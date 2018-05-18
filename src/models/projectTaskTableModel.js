@@ -18,9 +18,8 @@ useStrict(true)
  * @param {Function} buttonClickNav Function to navigate on click of New Task button
  * @param {Function} deleteClickNav Function to navigate on click of delete icon
  * @param {Function} backClickNav Function to navigate on click of back button
+ * @property {Function} deleteClickNav Function to navigate on click of delete icon
  * @property {Function} deleteModal.confirmOnClick Confirm function
- * @property {Object[]} [columns] Sets columns in array for ReactTable
- * @property {Function} fetchFn Table data fetch function for projects
  * @property {Boolean} [defaultTaskListModalOpen=false] Task list modal open indicator [observable]
  * @extends TableModel
  * @see {@link TableActionCell}

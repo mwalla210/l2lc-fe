@@ -11,15 +11,16 @@ useStrict(true)
 
 /**
   * @name CustomerProjectsTableModel
-  * @class customerProjectsTableModel
+  * @class CustomerProjectsTableModel
   * @classdesc Project table storage object for a specific customer
   * @description Sets correct onClicks, table columns, filter, and actions
   * @param {Function} infoClickNav Function to navigate on click of info icon
   * @param {Function} editClickNav Function to navigate on click of edit icon
   * @param {Function} deleteClickNav Function to navigate on click of delete icon
   * @param {Function} backClickNav Function to navigate on click of back button
+  * @property {Function} infoClickNav Function to navigate on click of info icon [observable]
+  * @property {Function} editClickNav Function to navigate on click of edit icon [observable]
   * @property {Boolean} [filterDD=false] Status filter dropdown state [observable]
-  * @property {Object[]} [columns] Sets columns in array for ReactTable
   * @extends TableModel
   * @see {@link Website}
   * @see {@link TableActionCell}

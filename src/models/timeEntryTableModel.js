@@ -6,7 +6,7 @@ useStrict(true)
 
 /**
   * @name TimeEntryTableModel
-  * @class timeEntryTableModel
+  * @class TimeEntryTableModel
   * @classdesc Time entry initializer for table storage object
   * @description Sets correct onClick and table columns
   * @param {Function} backClickNav Function to navigate on click of back button

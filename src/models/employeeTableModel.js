@@ -15,7 +15,8 @@ useStrict(true)
   * @param {Function} buttonClickNav Function to navigate on click of table button
   * @param {Function} infoClickNav Function to navigate on click of info icon
   * @param {Function} editClickNav Function to navigate on click of edit icon
-  * @property {Object[]} [columns] Sets columns in array for ReactTable
+  * @property {Function} infoClickNav Function to navigate on click of info icon [observable]
+  * @property {Function} editClickNav Function to navigate on click of edit icon [observable]
   * @extends TableModel
   * @see {@link TableActionCell}
   * @see {@link API}

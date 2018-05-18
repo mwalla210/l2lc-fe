@@ -72,7 +72,6 @@ describe('CustomerProjectsTableModel', () => {
     const component = renderer.create(customerTable.columns[7].Cell({original:{toggleAdmin: jest.fn(), status: 'Completed'}}))
     let tree2 = component.toJSON()
     expect(tree2).toMatchSnapshot()
-    //component.root.findByType(Switch).props.onClick()
   })
 
   it('Tests Actions column', () => {
@@ -82,7 +81,6 @@ describe('CustomerProjectsTableModel', () => {
     const component = renderer.create(customerTable.columns[7].Cell({original:{toggleAdmin: jest.fn(), status: 'Completed'}}))
     let tree2 = component.toJSON()
     expect(tree2).toMatchSnapshot()
-    //component.root.findByType(Switch).props.onClick()
   })
 
   it('Tests Status Cell', () => {

@@ -17,6 +17,9 @@ useStrict(true)
   * @param {Function} infoClickNav Function to navigate on click of info icon
   * @param {Function} editClickNav Function to navigate on click of edit icon
   * @param {Function} selectNav Function to navigate on select of row (when adding customer to project)
+  * @property {Function} infoClickNav Function to navigate on click of info icon [observable]
+  * @property {Function} editClickNav Function to navigate on click of edit icon [observable]
+  * @property {Function} selectNav Function to navigate on select of row (when adding customer to project) [observable]
   * @extends TableModel
   * @see {@link API}
  */

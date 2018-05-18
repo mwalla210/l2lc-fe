@@ -9,10 +9,14 @@ useStrict(true)
  * @class TaskModel
  * @classdesc Task storage object
  * @description Sets up tasks with its relevant properties
+ * @param {Boolean} [required=false] Indicates whether the task is required
+ * @param {String} title Title of the task
+ * @param {?String} [processArea=null] Process area associated with the task
+ * @param {String} id ID of the task
  * @param {Boolean} [required=false] Indicates whether the task is required [observable]
  * @param {String} title Title of the task [observable]
  * @param {?String} [processArea=null] Process area associated with the task [observable]
- * @param {String} id ID of the task
+ * @property {String} id ID of the task
  */
 export default class TaskModel {
   constructor(required, title, processArea, id) {

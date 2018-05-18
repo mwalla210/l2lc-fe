@@ -109,7 +109,7 @@ class TableSelector {
    * @param  {Function}          editClickNav   Row edit icon click function
    * @param  {Function}          deleteClickNav   Row delete icon click function
    * @param  {Function}          backClickNav   Table back click function
-   * @return {CustomerProjectTableModel}
+   * @return {CustomerProjectsTableModel}
    * @memberof TableSelector.prototype
    * @see {@link CustomerProjectsTableModel}
    */
