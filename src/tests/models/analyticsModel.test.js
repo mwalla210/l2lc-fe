@@ -40,6 +40,7 @@ describe('AnalyticsModel', () => {
       ]
     }
     analytics.timeFilterData(new Date('December 15, 1995 03:24:00'), 'filter')
+    expect(analytics.currentTimeFrame).toBe('filter')
   })
   it ('Tests timeFilterData (object)', () => {
     let analytics = new AnalyticsModel(null, 'bar')
@@ -53,6 +54,7 @@ describe('AnalyticsModel', () => {
       },
     }
     analytics.timeFilterData(new Date('December 15, 1995 03:24:00'), 'filter')
+    expect(analytics.currentTimeFrame).toBe('filter')
   })
   it ('Tests timeFilterData (null date)', () => {
     let analytics = new AnalyticsModel(null, 'bar')
@@ -74,6 +76,10 @@ describe('AnalyticsModel', () => {
       }
     ]
     analytics.setFilteredData('bar')
+    expect(analytics.currentFilter).toBe('bar')
+    expect(analytics.yLabel).toBe('yLabel')
+    expect(analytics.component).toBe('component')
+    expect(Object.keys(analytics.data)).toHaveLength(0)
   })
   it ('Tests setFilteredData (other data)', () => {
     let analytics = new AnalyticsModel(null, 'bar')
@@ -88,5 +94,9 @@ describe('AnalyticsModel', () => {
       }
     ]
     analytics.setFilteredData('bar')
+    expect(analytics.currentFilter).toBe('bar')
+    expect(analytics.yLabel).toBe('yLabel')
+    expect(analytics.component).toBe('component')
+    expect(Object.keys(analytics.data)).toHaveLength(1)
   })
 })

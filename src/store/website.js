@@ -1,4 +1,4 @@
-import { action, useStrict, extendObservable, computed, toJS } from 'mobx'
+import { action, useStrict, extendObservable, computed } from 'mobx'
 import API from '../api'
 import autoBind from 'auto-bind'
 useStrict(true)
@@ -7,7 +7,6 @@ useStrict(true)
  * @name Website
  * @class Website
  * @classdesc Main MobX store for website
- * @todo Add Analytic models & reference
  * @property {?Project} [currentProject=null] Current Project in state, or last focused Project. [observable]
  * @property {?Customer} [currentCustomer=null] Current Customer in state, or last focused Customer. [observable]
  * @property {?Employee} [currentEmployee=null] Current Employee in state or last focuess Employee. [observable]
@@ -59,7 +58,7 @@ class Website {
   }
   /**
    * @name toggleSummaryMoreDD
-   * @description Toggles summary pages dropdown state
+   * @description Toggles summary pages "More" dropdown state
    * @method toggleSummaryMoreDD
    * @memberof Website.prototype
    * @mobx action
@@ -69,7 +68,7 @@ class Website {
   }
   /**
    * @name toggleSummaryActionsDD
-   * @description Toggles summary pages dropdown state
+   * @description Toggles summary pages "Actions" dropdown state
    * @method toggleSummaryActionsDD
    * @memberof Website.prototype
    * @mobx action
@@ -129,6 +128,17 @@ class Website {
     sessionStorage.setItem('stationID', user.stationID)
     // eslint-disable-next-line no-undef
     sessionStorage.setItem('id', user.id)
+  }
+  /**
+   * @name setAccount
+   * @description Sets current account
+   * @method setAccount
+   * @memberof Website.prototype
+   * @param  {Account}   account  Project to set
+   * @mobx action
+   */
+  @action setAccount(account){
+    this.currentAccount = account
   }
 
   // Creation
@@ -207,7 +217,9 @@ class Website {
    * @description Sends the formatted time entry in POST to API to add entry to database
    * @memberof Website.prototype
    * @method createTimeEntry
-   * @return {null}
+   * @param {Object}   body Time Entry body for POST
+   * @param {Number}   projectID ID of project time entry is for
+   * @return {String|null}
    * @async
    */
   createTimeEntry(body, projectID){
@@ -235,7 +247,7 @@ class Website {
    * @method updateProject
    * @param  {Number}       id ID of project to update
    * @param  {Object}       props Finalized prop object to update on project in database
-   * @return {Boolean}
+   * @return {String|null}
    * @async
    */
   updateProject(id, props){
@@ -253,8 +265,9 @@ class Website {
    * @name updateProjectStatus
    * @description Sends the id and status in POST to API to update project's status in database
    * @memberof Website.prototype
-   * @method createProject
-   * @param  {Project}      project Finalized Project to create in database
+   * @method updateProjectStatus
+   * @param  {Number}      id Project ID
+   * @param  {String}      status Project status to POST
    * @return {Boolean}
    * @async
    * @mobx action
@@ -272,7 +285,7 @@ class Website {
    * @method updateEmployee
    * @param  {Number}       id ID of employee to update
    * @param  {Object}       props Finalized prop object to update on employee in database
-   * @return {Boolean}
+   * @return {String|null}
    * @async
    */
   updateEmployee(id, props){
@@ -293,7 +306,7 @@ class Website {
    * @method updateCustomer
    * @param  {Number}       id ID of customer to update
    * @param  {Object}       props Finalized prop object to update on customer in database
-   * @return {Boolean}
+   * @return {String|null}
    * @async
    */
   updateCustomer(id, props){
@@ -385,7 +398,7 @@ class Website {
   }
   /**
    * @name loginButtonDisabled
-   * @description Login button disabled propertys
+   * @description Login button disabled indicator
    * @method loginButtonDisabled
    * @memberof Website.prototype
    * @return {Boolean}
@@ -396,15 +409,15 @@ class Website {
   }
 
   /**
-     * @name createAccount
-     * @description Sends the formatted Account in POST to API to add entry to database
-     * @memberof Website.prototype
-     * @method createAccount
-     * @param  {Account}       account Finalized Account to create in database
-     * @return {String|null}
-     * @async
-     * @mobx action
-     */
+   * @name createAccount
+   * @description Sends the formatted Account in POST to API to add entry to database
+   * @memberof Website.prototype
+   * @method createAccount
+   * @param  {Account}       account Finalized Account to create in database
+   * @return {String|null}
+   * @async
+   * @mobx action
+   */
   @action createAccount(account){
     let jsonAccount = JSON.stringify(account)
     return API.createAccount(jsonAccount)
@@ -416,18 +429,6 @@ class Website {
         return null
       }
     })
-  }
-
-  /**
-   * @name setAccount
-   * @description Sets current project
-   * @method setAccount
-   * @memberof Website.prototype
-   * @param  {Account}   account  Project to set
-   * @mobx action
-   */
-  @action setAccount(account){
-    this.currentAccount = account
   }
 
 }

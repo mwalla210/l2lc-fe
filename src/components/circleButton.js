@@ -8,6 +8,7 @@ import { Button } from 'reactstrap'
  * @property {Function} onClick Button click function
  * @property {String} iconName Name of icon to render for button
  * @property {Object} [styleProps] Object of style properties if needed
+ * @property {Boolean} [disabled] Disabled indicator (used by user roles)
  * @extends React.Component
  */
 export default class CircleButton extends Component {
@@ -23,6 +24,7 @@ export default class CircleButton extends Component {
    * @method render
    * @memberof CircleButton.prototype
    * @return {Component}
+   * @see {@link https://reactstrap.github.io/components/buttons/ Reactstrap.Buttons}
    */
   render(){
     let fileName = '../../style/open-iconic-master/svg/'

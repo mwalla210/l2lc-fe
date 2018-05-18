@@ -46,18 +46,16 @@ describe('ProjectTaskTableModel', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it('Tests fetchFn with empty list for APC Pump', async function() {
+  it('Tests fetchFn with for APC Pump', async function() {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     let res = await projectTask.fetchFn()
-    expect(res.length).toBe(0)
-    expect(projectTask.defaultTaskListModalOpen).toBe(true)
+    expect(res.length).toBe(13)
   })
   it('Tests fetchFn with empty list for non-APC', async function() {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     Website.currentProject.costCenterTitle = 'Other'
     let res = await projectTask.fetchFn()
     expect(res.length).toBe(0)
-    expect(projectTask.defaultTaskListModalOpen).toBe(false)
   })
   it('Tests clickHandler with delete', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())

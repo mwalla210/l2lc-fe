@@ -22,7 +22,7 @@ useStrict(true)
  * @property {?TableModel} [tableModel=null] Page table model, if any [observable]
  * @property {?FormModel} [formModel=null] Page form model, if any [observable]
  * @property {?SummaryModel} [summaryModel=null] Page summary model, if any [observable]
- * @property {?AnalyticsModel} [analyticsModel=null] Page analytics model, if any [observable]
+ * @property {?AnalyticsModel} [analyticsModelList=null] Page analytics models, if any [observable]
  */
 class PageStore {
   constructor() {
@@ -32,7 +32,7 @@ class PageStore {
       tableModel: null,
       formModel: null,
       summaryModel: null,
-      analyticsModel: null
+      analyticsModelList: null
     }
     extendObservable(this, addtlProps)
     autoBind(this)
@@ -45,12 +45,10 @@ class PageStore {
    * @memberof PageStore.prototype
    * @mobx action
    */
-  @action setNullContent(){
-    this.content = null
-  }
+  @action setNullContent(){this.content = null}
   /**
    * @name setTableModel
-   * @description Sets table model
+   * @description Sets table model, calls dataFetch
    * @method setTableModel
    * @memberof PageStore.prototype
    * @param  {TableModel}      tableModel TableModel to use for page
@@ -79,24 +77,24 @@ class PageStore {
    */
   @action setFormModel(formModel){this.formModel = observable(formModel)}
   /**
-   * @name setAnalyticsModel
-   * @description Sets analytics model
-   * @method setAnalyticsModel
+   * @name setAnalyticsModelList
+   * @description Sets analytics model list
+   * @method setAnalyticsModelList
    * @memberof PageStore.prototype
-   * @param  {AnalyticsModel}      analyticsModel AnalyticsModel to use for page
+   * @param  {Object[]}      analyticsList List of models to use for page
    * @mobx action
    */
-  @action setAnalyticsModel(analyticsList){
-    this.analyticsModel = observable(analyticsList)
-  }
+  @action setAnalyticsModelList(analyticsList){this.analyticsModelList = observable(analyticsList)}
 
   // Page Changes - Create Projects
 
   /**
    * @name createNewProjMenuItem
-   * @description Updates title, form, table, content, and buttons for Create New Project page
+   * @description Updates title, content, and formModel for Create New Project page.
    * @method createNewProjMenuItem
    * @memberof PageStore.prototype
+   * @see {@link FormSelector}
+   * @see {@link Form}
    * @mobx action
    */
   @action createNewProjMenuItem(){
@@ -107,9 +105,11 @@ class PageStore {
 
   /**
    * @name selectCustomerPage
-   * @description Updates title, form, table, content, and buttons for Select Customer page.
+   * @description Updates title, content, and tableModel for Select Customer (for new project) page.
    * @memberof PageStore.prototype
    * @method selectCustomerPage
+   * @see {@link TableSelector}
+   * @see {@link Table}
    * @mobx action
    */
   @action selectCustomerPage(){
@@ -120,9 +120,12 @@ class PageStore {
 
   /**
    * @name newProjectNewCustomerPage
-   * @description Updates title, form, table, content, and buttons for New Customer page.
+   * @description Updates title, content, and formModel for New Customer (for new project) page. Form submission function calls Website.createProject.
    * @memberof PageStore.prototype
    * @method newProjectNewCustomerPage
+   * @see {@link FormSelector}
+   * @see {@link Form}
+   * @see {@link Website}
    * @mobx action
    */
   @action newProjectNewCustomerPage(){
@@ -148,9 +151,11 @@ class PageStore {
 
   /**
    * @name changeCustomerPage
-   * @description Updates title, form, table, content, and buttons for Change Customer page.
+   * @description Updates title, content, and tableModel for Change Customer (for current project) page.
    * @memberof PageStore.prototype
    * @method changeCustomerPage
+   * @see {@link TableSelector}
+   * @see {@link Table}
    * @mobx action
    */
   @action changeCustomerPage(){
@@ -161,9 +166,12 @@ class PageStore {
 
   /**
    * @name currentProjectNewCustomerPage
-   * @description Updates title, form, table, content, and buttons for New Customer page.
+   * @description Updates title, content, and formModel for New Customer (for current project) page. Form submission function calls Website.updateProject.
    * @memberof PageStore.prototype
    * @method currentProjectNewCustomerPage
+   * @see {@link FormSelector}
+   * @see {@link Form}
+   * @see {@link Website}
    * @mobx action
    */
   @action currentProjectNewCustomerPage(){
@@ -185,9 +193,13 @@ class PageStore {
 
   /**
    * @name projectSummaryPage
-   * @description Updates title, form, table, content, and buttons for Project Summary page
+   * @description Updates title, content, and formModel for Project Summary page. Form submission function calls Website.updateProjectStatus.
    * @method projectSummaryPage
    * @memberof PageStore.prototype
+   * @see {@link FormSelector}
+   * @see {@link Form}
+   * @see {@link Website}
+   * @see {@link SummarySelector}
    * @mobx action
    */
   @action projectSummaryPage(){
@@ -208,9 +220,11 @@ class PageStore {
 
   /**
    * @name projectTaskList
-   * @description Updates title, form, table, content, and buttons for Project task list.
+   * @description Updates title, content, and tableModel for Project task list.
    * @memberof PageStore.prototype
    * @method projectTaskList
+   * @see {@link TableSelector}
+   * @see {@link DraggableTable}
    * @mobx action
    */
   @action projectTaskList(){
@@ -221,9 +235,11 @@ class PageStore {
 
   /**
    * @name projectTimeEntryPage
-   * @description Updates title, form, table, content, and buttons for project time entry table page.
+   * @description Updates title, content, and tableModel for project time entry table page.
    * @memberof PageStore.prototype
    * @method projectTimeEntryPage
+   * @see {@link TableSelector}
+   * @see {@link Table}
    * @mobx action
    */
   @action projectTimeEntryPage(){
@@ -234,9 +250,11 @@ class PageStore {
 
   /**
    * @name newProjectTaskPage
-   * @description Updates title, form, table, content, and buttons for new Project Task page.
+   * @description Updates title, content, and formModel for new Project Task page.
    * @memberof PageStore.prototype
    * @method newProjectTaskPage
+   * @see {@link FormSelector}
+   * @see {@link Form}
    * @mobx action
    */
   @action newProjectTaskPage(){
@@ -247,9 +265,10 @@ class PageStore {
 
   /**
    * @name projectDeleteFn
-   * @description Drops a project
+   * @description Drops a project. Calls Website.updateProjectStatus.
    * @method projectDeleteFn
    * @memberof PageStore.prototype
+   * @see {@link Website}
    */
   projectDeleteFn(){
     Website.updateProjectStatus(Website.currentProject.id, 'Dropped')
@@ -260,9 +279,11 @@ class PageStore {
 
   /**
    * @name projectEditPage
-   * @description Updates title, form, table, content, and buttons for Project Edit page
+   * @description Updates title, content, and formModel for Project Edit page.
    * @method projectEditPage
    * @memberof PageStore.prototype
+   * @see {@link FormSelector}
+   * @see {@link Form}
    * @mobx action
    */
   @action projectEditPage(){
@@ -273,9 +294,11 @@ class PageStore {
 
   /**
    * @name projectsMenuItem
-   * @description Updates title, form, table, content, and buttons for Projects page
+   * @description Updates title, content, and tableModel for Projects page.
    * @method projectsMenuItem
    * @memberof PageStore.prototype
+   * @see {@link TableSelector}
+   * @see {@link Table}
    * @mobx action
    */
   @action projectsMenuItem(){
@@ -288,9 +311,11 @@ class PageStore {
 
   /**
    * @name projectTimeEntryMenuItem
-   * @description Updates title, form, table, content, and buttons for Project Time Entry page.
+   * @description Updates title, content, and formModel for Time Entry page.
    * @memberof PageStore.prototype
    * @method projectTimeEntryMenuItem
+   * @see {@link FormSelector}
+   * @see {@link TimeEntry}
    * @mobx action
    */
   @action projectTimeEntryMenuItem(){
@@ -303,9 +328,11 @@ class PageStore {
 
   /**
    * @name customerInfoMenuItem
-   * @description Updates title, form, table, content, and buttons for Customer Information page.
+   * @description Updates title, content, and tableModel for Customer Information page.
    * @memberof PageStore.prototype
    * @method customerInfoMenuItem
+   * @see {@link TableSelector}
+   * @see {@link Table}
    * @mobx action
    */
   @action customerInfoMenuItem(){
@@ -316,9 +343,11 @@ class PageStore {
 
   /**
    * @name newCustomerPage
-   * @description Updates title, form, table, content, and buttons for New Customer page.
+   * @description Updates title, content, and formModel for New Customer page.
    * @memberof PageStore.prototype
    * @method newCustomerPage
+   * @see {@link FormSelector}
+   * @see {@link Form}
    * @mobx action
    */
   @action newCustomerPage(){
@@ -332,6 +361,7 @@ class PageStore {
    * @description Displays information about selected customer from Customer Information page entries.
    * @method customerSummaryPage
    * @memberof PageStore.prototype
+   * @see {@link SummarySelector}
    * @mobx action
    */
   @action customerSummaryPage(){
@@ -342,9 +372,11 @@ class PageStore {
 
   /**
    * @name customerProjectsPage
-   * @description Updates title, form, table, content, and buttons for Customer Projects page
+   * @description Updates title, content, and tableModel for Customer Projects page.
    * @method customerProjectsPage
    * @memberof PageStore.prototype
+   * @see {@link TableSelector}
+   * @see {@link Table}
    * @mobx action
    */
   @action customerProjectsPage(){
@@ -355,9 +387,11 @@ class PageStore {
 
   /**
    * @name customerEditPage
-   * @description Updates title, form, table, content, and buttons for Customer Edit page
+   * @description Updates title, content, and formModel for Customer Edit page.
    * @method customerEditPage
    * @memberof PageStore.prototype
+   * @see {@link FormSelector}
+   * @see {@link Form}
    * @mobx action
    */
   @action customerEditPage(){
@@ -370,14 +404,16 @@ class PageStore {
 
   /**
    * @name analyticsMenuItem
-   * @description Updates title, form, table, content, and buttons for analytics page.
+   * @description Updates title, content, and analyticsModelList for Analytics page.
    * @memberof PageStore.prototype
    * @method analyticsMenuItem
+   * @see {@link AnalyticsSelector}
+   * @see {@link Analytics}
    * @mobx action
    */
   @action analyticsMenuItem(){
     this.title = 'Analytics Dashboard'
-    this.setAnalyticsModel(AnalyticsSelector.getAll())
+    this.setAnalyticsModelList(AnalyticsSelector.getAll())
     this.content = Analytics
   }
 
@@ -385,9 +421,11 @@ class PageStore {
 
   /**
    * @name employeeInformationMenuItem
-   * @description Updates title, form, table, content, and buttons for Employee Information page.
+   * @description Updates title, content, and tableModel for Employee Information page.
    * @memberof PageStore.prototype
    * @method employeeInformationMenuItem
+   * @see {@link TableSelector}
+   * @see {@link Table}
    * @mobx action
    */
   @action employeeInformationMenuItem(){
@@ -398,9 +436,11 @@ class PageStore {
 
   /**
    * @name newEmployeePage
-   * @description Updates title, form, table, content, and buttons for New Employee page.
+   * @description Updates title, content, and formModel for New Employee page.
    * @memberof PageStore.prototype
    * @method newEmployeePage
+   * @see {@link FormSelector}
+   * @see {@link Form}
    * @mobx action
    */
   @action newEmployeePage(){
@@ -427,6 +467,7 @@ class PageStore {
    * @description Displays information about selected employee from Employee Information page entries.
    * @memberof PageStore.prototype
    * @method employeeSummaryPage
+   * @see {@link SummarySelector}
    * @mobx action
    */
   @action employeeSummaryPage(){
@@ -438,9 +479,11 @@ class PageStore {
 
   /**
    * @name accountManagementMenuItem
-   * @description Updates title, form, table, content, and buttons for Account Management page.
+   * @description Updates title, content, and tableModel for Account Management page.
    * @memberof PageStore.prototype
    * @method accountManagementMenuItem
+   * @see {@link TableSelector}
+   * @see {@link Table}
    * @mobx action
    */
   @action accountManagementMenuItem(){
@@ -451,9 +494,11 @@ class PageStore {
 
   /**
    * @name newAccountPage
-   * @description Updates title, form, table, content, and buttons for New Account page.
+   * @description Updates title, content, and formModel for New Account page.
    * @memberof PageStore.prototype
    * @method newAccountPage
+   * @see {@link FormSelector}
+   * @see {@link Form}
    * @mobx action
    */
   @action newAccountPage(){
@@ -462,6 +507,14 @@ class PageStore {
     this.content = Form
   }
 
+  /**
+   * @name stationMenuItem
+   * @description Updates title and content for Stations page.
+   * @memberof PageStore.prototype
+   * @method stationMenuItem
+   * @see {@link Stations}
+   * @mobx action
+   */
   @action stationMenuItem(){
     this.title = 'Stations'
     this.content = Stations
