@@ -126,7 +126,8 @@ jest.mock('../../store/website', () => {
       id: 'id'
     },
     currentEmployee: {
-      id: 'id'
+      id: 'id',
+      fullName: 'fullName'
     },
     createProject: jest.fn().mockReturnValue(Promise.resolve('createProject')),
     updateProject: jest.fn().mockReturnValue(Promise.resolve('updateProject')),
@@ -141,13 +142,19 @@ describe('PageStore', () => {
     expect(PageStore.tableModel).toBeNull()
     expect(PageStore.formModel).toBeNull()
     expect(PageStore.summaryModel).toBeNull()
-    expect(PageStore.analyticsModel).toBeNull()
+    expect(PageStore.analyticsModelList).toBeNull()
   })
   it('Tests createNewProjMenuItem', () => {
     PageStore.createNewProjMenuItem()
     expect(PageStore.title).toBe('New Project')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.formModel)).toBe('FS getProject')
+  })
+  it('Tests setNullContent', () => {
+    PageStore.content = 'content'
+    expect(PageStore.content).toBe('content')
+    PageStore.setNullContent()
+    expect(PageStore.content).toBeNull()
   })
   it('Tests selectCustomerPage', () => {
     PageStore.selectCustomerPage()
@@ -256,7 +263,7 @@ describe('PageStore', () => {
     PageStore.analyticsMenuItem()
     expect(PageStore.title).toBe('Analytics Dashboard')
     expect(typeof PageStore.content).toBe('function')
-    expect(toJS(PageStore.analyticsModel)).toHaveLength(1)
+    expect(toJS(PageStore.analyticsModelList)).toHaveLength(1)
   })
   it('Tests employeeInformationMenuItem', () => {
     PageStore.employeeInformationMenuItem()
@@ -276,9 +283,9 @@ describe('PageStore', () => {
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.formModel)).toBe('FS getEditEmployee')
   })
-  xit('Tests employeeSummaryPage', () => {
+  it('Tests employeeSummaryPage', () => {
     PageStore.employeeSummaryPage()
-    expect(PageStore.title).toBe('Employee Summary ID: id')
+    expect(PageStore.title).toBe('fullName')
     expect(PageStore.content).toBe('employee component')
     expect(toJS(PageStore.summaryModel)).toBe('employee model')
   })
@@ -293,5 +300,10 @@ describe('PageStore', () => {
     expect(PageStore.title).toBe('New Account')
     expect(typeof PageStore.content).toBe('function')
     expect(toJS(PageStore.formModel)).toBe('FS getAccount')
+  })
+  it('Tests stationMenuItem', () => {
+    PageStore.stationMenuItem()
+    expect(PageStore.title).toBe('Stations')
+    expect(typeof PageStore.content).toBe('function')
   })
 })

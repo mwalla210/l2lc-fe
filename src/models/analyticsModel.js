@@ -6,14 +6,18 @@ useStrict(true)
  * @name AnalyticsModel
  * @class AnalyticsModel
  * @classdesc Analytics storage object
+ * @param {Object[]} [filters] Filter list for model, if any
+ * @param {String} [component] Component type for model
  * @property {Object} [data={}] Data object for analytics [observable]
- * @property {String} [currentFilter=null] Filter title (if any filters for model) [observable]
- * @property {String} [component] Component type for model [observable]
- * @property {Object[]} [filters] Filter list for model, if any
+ * @property {?String} [currentFilter=null] Filter title (if any filters for model) [observable]
+ * @property {String} component Component type for model [observable]
+ * @property {?String} [yLabel=null] Label for y axis on graph [observable]
  * @property {Boolean} [loading] Loading indicator [observable]
+ * @property {String} [currentTimeFrame='Year'] Current time frame indicator for model [observable]
+ * @property {Object[]} [filters] Filter list for model, if any
  * @property {?Object} [originalData=null] Original set of processed data returned from fetch
- * @property {?String[]} [category=null] Set of categories data is split by
  * @property {?Object} [unProcessedData=null] Unprocessed data structure (year's worth)
+ * @property {?String[]} [category=null] Set of categories data is split by
  * @property {?Function} [processor=null] Processor function
  */
 export default class AnalyticsModel {
@@ -59,7 +63,6 @@ export default class AnalyticsModel {
    * @method processData
    * @param  {Object}    data Data object for processing
    * @memberof AnalyticsModel.prototype
-   * @method setData
    * @mobx action
    */
   @action processData(data){
@@ -72,10 +75,12 @@ export default class AnalyticsModel {
   }
   /**
    * @name timeFilterData
-   * @description Sets data by calling processor
+   * @description Sets data by calling processor on date-filtered unProcessedData, sets currentTimeFrame
    * @method timeFilterData
    * @param  {?Date}       [date] Date object to be "limit", if any (no date: full year)
+   * @param  {String}       filterName Name of time filter
    * @memberof AnalyticsModel.prototype
+   * @mobx action
    */
   @action timeFilterData(date, filterName){
     if (date){
@@ -119,10 +124,11 @@ export default class AnalyticsModel {
   }
   /**
    * @name setFilteredData
-   * @description Converts data to regular JS array
+   * @description Filters data into different set, out of original list of filters
+   * @param  {String}       filter Type of filter selected from buttons, matching an filter in set given to model
    * @memberof AnalyticsModel.prototype
    * @method setFilteredData
-   * @mobx computed
+   * @mobx action
    */
   @action setFilteredData(filter){
     let filterItem = this.filters.find(item => {return item.type == filter})

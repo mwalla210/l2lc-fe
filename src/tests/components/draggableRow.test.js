@@ -19,9 +19,10 @@ describe('DraggableRow', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it ('Renders while dragging', () => {
+  it ('Renders while dragging, with cursor', () => {
     let options = Object.assign({}, defaultOptions)
     options.isDragging = true
+    options.style = {}
     const component = renderer.create(
       <DraggableRow {...options}/>,
     )

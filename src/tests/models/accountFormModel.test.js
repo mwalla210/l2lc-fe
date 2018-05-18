@@ -19,6 +19,7 @@ describe('AccountFormModel', () => {
         value: 'value'
       }
     ])
+    expect(typeof(accountFormModel.fields)).toBe('object')
   })
   it ('Tests primaryButton.onClick (value response)', async function() {
     let accountFormModel = new AccountFormModel(jest.fn(), jest.fn(), jest.fn())
@@ -28,9 +29,11 @@ describe('AccountFormModel', () => {
         value: 'value'
       }
     ])
+    expect(typeof(accountFormModel.fields)).toBe('object')
   })
   it ('Tests resetFields', () => {
     let accountFormModel = new AccountFormModel(jest.fn(), jest.fn(), jest.fn())
     accountFormModel.resetFields()
+    expect(typeof(accountFormModel.fields)).toBe('object')
   })
 })
