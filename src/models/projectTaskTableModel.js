@@ -32,9 +32,6 @@ export default class ProjectTaskTableModel extends TableModel{
       null,
       backClickNav
     )
-    extendObservable(this, {
-      defaultTaskListModalOpen: false,
-    })
     this.deleteClickNav = deleteClickNav
     this.deleteModal.confirmOnClick = this.deleteTask
     this.columns = [
@@ -104,7 +101,32 @@ export default class ProjectTaskTableModel extends TableModel{
           (Website.currentProject.costCenterTitle == 'APC' || Website.currentProject.costCenterTitle == 'Decorative') &&
           ['Piston','Turbo','Rotor','Pump','Avaslick','Decorative','Specialty'].includes(Website.currentProject.jobTypeTitle)
         ){
-          this.taskOpenModal()
+          let tasks = null
+          switch(Website.currentProject.jobTypeTitle){
+            case 'Piston':
+              tasks = Consts.pistonTasks
+              break
+            case 'Turbo':
+              tasks = Consts.turboTasks
+              break
+            case 'Pump':
+              tasks = Consts.pumpTasks
+              break
+            case 'Rotor':
+              tasks = Consts.rotorTasks
+              break
+            case 'Avaslick':
+              tasks = Consts.avaslickTasks
+              break
+            case 'Decorative':
+              tasks = Consts.decorativeTasks
+              break
+            case 'Specialty':
+              tasks = Consts.specialtyTasks
+              break
+          }
+          API.createTaskList(Website.currentProject.id, JSON.stringify(tasks))
+          res = tasks
         }
         return res
       })
@@ -180,23 +202,6 @@ export default class ProjectTaskTableModel extends TableModel{
     })
     API.updateTaskList(Website.currentProject.id, JSON.stringify(jsonList))
   }
-
-  /**
-   * @name taskCloseModal
-   * @description Sets defaultTaskListModalOpen prop to false
-   * @method taskCloseModal
-   * @memberof TableModel.prototype
-   * @mobx action
-   */
-  @action taskCloseModal(){this.defaultTaskListModalOpen = false}
-  /**
-   * @name taskOpenModal
-   * @description Sets defaultTaskListModalOpen prop to true
-   * @method taskOpenModal
-   * @memberof TableModel.prototype
-   * @mobx action
-   */
-  @action taskOpenModal(){this.defaultTaskListModalOpen = true}
   /**
    * @name taskConfirmAndClose
    * @description Closes modal and runs confirm function
@@ -206,33 +211,6 @@ export default class ProjectTaskTableModel extends TableModel{
    */
   @action taskConfirmAndClose(){
     this.taskCloseModal()
-    let tasks = null
-    switch(Website.currentProject.jobTypeTitle){
-      case 'Piston':
-        tasks = Consts.pistonTasks
-        break
-      case 'Turbo':
-        tasks = Consts.turboTasks
-        break
-      case 'Pump':
-        tasks = Consts.pumpTasks
-        break
-      case 'Rotor':
-        tasks = Consts.rotorTasks
-        break
-      case 'Avaslick':
-        tasks = Consts.avaslickTasks
-        break
-      case 'Decorative':
-        tasks = Consts.decorativeTasks
-        break
-      case 'Specialty':
-        tasks = Consts.specialtyTasks
-        break
-    }
-    API.createTaskList(Website.currentProject.id, JSON.stringify(tasks))
-    .then(action('fetchSuccess', res => {
-      this.data = res
-    }))
+
   }
 }

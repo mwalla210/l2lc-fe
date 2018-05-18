@@ -24,10 +24,28 @@ jest.mock('../../api', () => {
       },
       {
         time: 'August 17, 1995 03:27:00',
-        costCenter: 'APC',
+        costCenter: 'other',
         station: 'station',
         projectId: 'projectId',
         employeeName: 'employeeName2',
+        jobType: 'jobType',
+        partCount: 2
+      },
+      {
+        time: 'August 17, 1995 03:37:00',
+        costCenter: 'other',
+        station: 'station',
+        projectId: 'projectId',
+        employeeName: 'employeeName2',
+        jobType: 'jobType',
+        partCount: 2
+      },
+      {
+        time: 'August 17, 1995 03:27:00',
+        costCenter: 'other',
+        station: 'station',
+        projectId: 'projectId',
+        employeeName: 'employeeName3',
         jobType: 'jobType',
         partCount: 2
       },

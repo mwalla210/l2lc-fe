@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { findDOMNode } from 'react-dom'
 import { DragSource, DropTarget } from 'react-dnd'
 import classnames from 'classnames'
+
 /* istanbul ignore next */
 const rowSource = {
   beginDrag(props) {
@@ -61,6 +62,18 @@ const rowTarget = {
   },
 }
 
+/**
+ * DraggableRow component for DraggableTable; reclass of ReactTable row
+ * @namespace DraggableRow
+ * @extends React.Component
+ * @property {Function} connectDragSource React DnD function provided by decorator
+ * @property {Function} connectDropTarget React DnD function provided by decorator
+ * @property {Number} [index] Index of row
+ * @property {Boolean} isDragging Dragging indicator
+ * @property {Any} [id] Row ID
+ * @property {Function} [moverow] Row moving function
+ * @see {@link https://github.com/react-dnd/react-dnd React DnD}
+ */
 @DropTarget('row', rowTarget, /* istanbul ignore next */ connect => ({
   connectDropTarget: connect.dropTarget(),
 }))
@@ -78,6 +91,12 @@ export default class DraggableRow extends Component {
     moverow: PropTypes.func,
   }
 
+  /**
+   * Renders HTML div component, encapsulated by connectDragSource and connectDropTarget functions, to allow dragging and dropping
+   * @method render
+   * @memberof DraggableRow.prototype
+   * @return {Component}
+   */
   render() {
     const {
       isDragging,

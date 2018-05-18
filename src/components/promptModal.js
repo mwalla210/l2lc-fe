@@ -74,6 +74,7 @@ export default class PromptModal extends Component {
    * @memberof PromptModal.prototype
    * @return {Component}
    * @see {@link https://reactstrap.github.io/components/modals/ Reactstrap.Modal}
+   * @see {@link ButtonDefault}
    */
   render(){
     let confirmText = 'Confirm'

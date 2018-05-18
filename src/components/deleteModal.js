@@ -28,6 +28,7 @@ export default class DeleteModal extends Component {
    * @method render
    * @memberof DeleteModal.prototype
    * @return {PromptModal}
+   * @see {@link PromptModal}
    */
   render(){
     return (

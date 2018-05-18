@@ -18,11 +18,13 @@ export default class Analytics extends Component {
    * @memberof Analytics.prototype
    * @return {Component}
    * @see {@link https://www.npmjs.com/package/react-chartjs-2 React-ChartJS-2}
+   * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
+   * @see {@link https://github.com/davidhu2000/react-spinners BarLoader}
    */
   render() {
     return (
       <div className="row justify-content-center">
-        {this.props.page.analyticsModel.map((analytic, index) => {
+        {this.props.page.analyticsModelList.map((analytic, index) => {
           let buttons = []
           if (analytic.model.filters && analytic.model.filters.length > 1){
             analytic.model.filters.map((filter,filterIndex) => {
@@ -92,16 +94,9 @@ export default class Analytics extends Component {
                           yAxes:[{display:true,ticks:{beginAtZero:true},scaleLabel: {display: true,labelString:analytic.model.yLabel}}],
                           xAxes:[{display:true,ticks:{autoSkip: false}}]
                         },
-                        legend: {
-                          display: false
-                        }
                       }}
                     /> :
-                    <Pie data={analytic.model.jsData} options={{
-                      legend: {
-                        display: false
-                      }
-                    }}/>
+                    <Pie data={analytic.model.jsData}/>
                   }
                 </div>
               }

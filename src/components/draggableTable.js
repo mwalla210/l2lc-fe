@@ -7,7 +7,6 @@ import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 import TableButton from './tableButton'
 import DeleteModal from './deleteModal'
-import PromptModal from './promptModal'
 import ButtonDefault from './buttonDefault'
 import {ButtonGroup} from 'reactstrap'
 
@@ -17,6 +16,7 @@ import {ButtonGroup} from 'reactstrap'
  * @extends React.Component
  * @see {@link https://github.com/react-dnd/react-dnd React DnD}
  * @see {@link PageStore @inject PageStore}
+ * @see {@link Website @inject Website}
  */
 @DragDropContext(HTML5Backend) @inject('page', 'website') @observer
 export default class DraggableTable extends Component {
@@ -28,9 +28,6 @@ export default class DraggableTable extends Component {
     this.props.page.tableModel.confirmAndClose = this.props.page.tableModel.confirmAndClose.bind(this.props.page.tableModel)
     this.props.page.tableModel.closeModal = this.props.page.tableModel.closeModal.bind(this.props.page.tableModel)
     this.props.page.tableModel.openModal = this.props.page.tableModel.openModal.bind(this.props.page.tableModel)
-    this.props.page.tableModel.taskConfirmAndClose = this.props.page.tableModel.taskConfirmAndClose.bind(this.props.page.tableModel)
-    this.props.page.tableModel.taskCloseModal = this.props.page.tableModel.taskCloseModal.bind(this.props.page.tableModel)
-    this.props.page.tableModel.taskOpenModal = this.props.page.tableModel.taskOpenModal.bind(this.props.page.tableModel)
   }
 
   /**
@@ -79,19 +76,11 @@ export default class DraggableTable extends Component {
    * @see {@link https://react-table.js.org ReactTable}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    * @see {@link ButtonDefault}
+   * @see {@link DraggableRow}
    */
   render() {
     return (
       <div>
-        <PromptModal
-          title="Add Default List"
-          confirmOnClick={this.props.page.tableModel.taskConfirmAndClose}
-          denyOnClick={this.props.page.tableModel.taskCloseModal}
-          open={this.props.page.tableModel.defaultTaskListModalOpen}
-          closeFn={this.props.page.tableModel.taskCloseModal}
-          content="This project has no current tasks. A default list is available for this project. Would you like to add these tasks?"
-          confirmClass="btn-primary"
-        />
         <DeleteModal
           title={this.props.page.tableModel.deleteModal.title}
           confirmOnClick={this.confirmOnClick}

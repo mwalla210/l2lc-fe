@@ -13,10 +13,6 @@ describe('CustomerModel', () => {
     customer.setBillIsSame()
     expect(customer.billIsSame).toBe(true)
   })
-  it ('Tests getProjects', () => {
-    let customer = new CustomerModel(1, 'companyName', 'shipAddr1', 'shipAddr2', 'shipCity', 'shipState', 'shipCountry', 19104, 'email', 'phone', 'website', false, false, 'billAddr1', 'billAddr2', 'billCity', 'billState', 'billCountry', 19601)
-    customer.getProjects() //function does nothing
-  })
   it ('Tests get formattedShipAddress', () => {
     let customer = new CustomerModel()
     customer.shipAddr.shipAddr1 = 'a'
