@@ -20,6 +20,7 @@ export default class TableButton extends Component {
    * @method render
    * @memberof TableButton.prototype
    * @return {ButtonPrimary}
+   * @see {@link ButtonPrimary}
    */
   render() {
     return (

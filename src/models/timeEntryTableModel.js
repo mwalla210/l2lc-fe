@@ -5,12 +5,13 @@ import Website from '../store/website'
 useStrict(true)
 
 /**
-  * @name timeEntryTableModel
-  * @class timeEntryTableModel
+  * @name TimeEntryTableModel
+  * @class TimeEntryTableModel
   * @classdesc Time entry initializer for table storage object
-  * @description Creates fields, sets correct onClick
-  * @property {Function} backClickNav Function to navigate on click of back button
+  * @description Sets correct onClick and table columns
+  * @param {Function} backClickNav Function to navigate on click of back button
   * @extends TableModel
+  * @see {@link Website}
  */
 export default class TimeEntryTableModel extends TableModel{
   constructor(backClickNav) {

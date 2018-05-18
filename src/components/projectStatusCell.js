@@ -18,6 +18,7 @@ export default class ProjectStatusCell extends Component {
    * @method render
    * @memberof ProjectStatusCell.prototype
    * @return {Component}
+   * @see {@link Consts}
    */
   render(){
     return (

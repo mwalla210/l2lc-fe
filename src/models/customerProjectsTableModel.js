@@ -10,16 +10,23 @@ import API from '../api'
 useStrict(true)
 
 /**
-  * @name customerProjectsTableModel
-  * @class customerProjectsTableModel
-  * @classdesc Project initializer for table storage object
-  * @description Creates fields, sets correct onClick
-  * @property {Function} infoClickNav Function to navigate on click of info icon
-  * @property {Function} editClickNav Function to navigate on click of edit icon
-  * @property {Function} deleteClickNav Function to navigate on click of delete icon
-  * @property {Function} backClickNav Function to navigate on click of back button
-  * @property {Boolean} [filterDD=false] Status filter dropdown state
+  * @name CustomerProjectsTableModel
+  * @class CustomerProjectsTableModel
+  * @classdesc Project table storage object for a specific customer
+  * @description Sets correct onClicks, table columns, filter, and actions
+  * @param {Function} infoClickNav Function to navigate on click of info icon
+  * @param {Function} editClickNav Function to navigate on click of edit icon
+  * @param {Function} deleteClickNav Function to navigate on click of delete icon
+  * @param {Function} backClickNav Function to navigate on click of back button
+  * @property {Function} infoClickNav Function to navigate on click of info icon [observable]
+  * @property {Function} editClickNav Function to navigate on click of edit icon [observable]
+  * @property {Boolean} [filterDD=false] Status filter dropdown state [observable]
   * @extends TableModel
+  * @see {@link Website}
+  * @see {@link TableActionCell}
+  * @see {@link ProjectStatusFilter}
+  * @see {@link ProjectStatusCell}
+  * @see {@link API}
  */
 export default class CustomerProjectsTableModel extends TableModel{
   constructor(infoClickNav, editClickNav, deleteClickNav, backClickNav) {
@@ -60,13 +67,13 @@ export default class CustomerProjectsTableModel extends TableModel{
         filterable: true
       },
       {
-        Header: 'Title',
+        Header: 'Description',
         accessor: 'title',
         filterable: true
       },
       {
         Header: 'Cost Center',
-        accessor: 'costCenterTitle',
+        accessor: 'costCenterProjectType',
         filterable: true
       },
       {
@@ -110,7 +117,7 @@ export default class CustomerProjectsTableModel extends TableModel{
    * @name toggleDropdown
    * @description Project filter status toggle
    * @method toggleDropdown
-   * @memberof ProjectTableModel.prototype
+   * @memberof CustomerProjectsTableModel.prototype
    * @mobx action
    */
   @action toggleDropdown(){
@@ -123,7 +130,8 @@ export default class CustomerProjectsTableModel extends TableModel{
    * @method clickHandler
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
-   * @memberof ProjectTableModel.prototype
+   * @memberof CustomerProjectsTableModel.prototype
+   * @see {@link Website}
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit' || type == 'delete'){

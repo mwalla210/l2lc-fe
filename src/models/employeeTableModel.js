@@ -11,12 +11,15 @@ useStrict(true)
   * @name EmployeeTableModel
   * @class EmployeeTableModel
   * @classdesc Employee initializer for table storage object
-  * @description Creates fields, sets correct onClick
-  * @property {Function} buttonClickNav Function to navigate on click of table button
-  * @property {Function} infoClickNav Function to navigate on click of info icon
-  * @property {Function} editClickNav Function to navigate on click of edit icon
+  * @description Sets correct onClicks, table columns, and actions
+  * @param {Function} buttonClickNav Function to navigate on click of table button
+  * @param {Function} infoClickNav Function to navigate on click of info icon
+  * @param {Function} editClickNav Function to navigate on click of edit icon
+  * @property {Function} infoClickNav Function to navigate on click of info icon [observable]
+  * @property {Function} editClickNav Function to navigate on click of edit icon [observable]
   * @extends TableModel
   * @see {@link TableActionCell}
+  * @see {@link API}
  */
 export default class EmployeeTableModel extends TableModel{
   constructor(buttonClickNav, infoClickNav, editClickNav) {
@@ -70,6 +73,7 @@ export default class EmployeeTableModel extends TableModel{
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
    * @memberof EmployeeTableModel.prototype
+   * @see {@link Website}
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit'){

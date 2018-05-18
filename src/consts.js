@@ -58,7 +58,7 @@ class Consts {
   /**
    * @name customerFields
    * @description List of customer form fields
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -81,7 +81,7 @@ class Consts {
       type: 'textfield',
       label: 'Email Address',
       id: 'email',
-      required: true,
+      required: false,
       disabled: false,
       validation: (value, required) => {
         if (required && value == '')
@@ -464,7 +464,7 @@ class Consts {
   /**
    * @name projectFields
    * @description List of project form fields
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -847,15 +847,15 @@ class Consts {
     },
     {
       type: 'textfield',
-      label: 'Project Title',
+      label: 'Description',
       id: 'title',
       required: false,
       disabled: true,
       validation: (value, required) => {
         if (required && value == '')
           return 'Please enter a value.'
-        else if (value.length > 30)
-          return 'The project title name must be less than 30 characters.'
+        else if (value.length > 100)
+          return 'The description must be less than 100 characters.'
         return null
       }
     },
@@ -874,7 +874,7 @@ class Consts {
     },
     {
       type: 'textarea',
-      label: 'Description',
+      label: 'Details',
       id: 'descr',
       required: false,
       disabled: true,
@@ -904,7 +904,7 @@ class Consts {
   /**
    * @name employeeFields
    * @description List of employee form fields
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -939,7 +939,7 @@ class Consts {
   /**
    * @name accountFields
    * @description List of account form fields
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -982,7 +982,7 @@ class Consts {
   /**
    * @name countrySelect
    * @description List of countries for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -992,7 +992,7 @@ class Consts {
   /**
    * @name stateSelect
    * @description List of states for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1002,7 +1002,7 @@ class Consts {
   /**
    * @name costCenterSelect
    * @description List of cost centers for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1012,7 +1012,7 @@ class Consts {
   /**
    * @name apcProjectSelect
    * @description List of APC project types for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1022,7 +1022,7 @@ class Consts {
   /**
    * @name decorativeProjectSelect
    * @description List of Decorative project types for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1030,7 +1030,7 @@ class Consts {
   /**
    * @name maintenanceProjectSelect
    * @description List of Maintenance project types for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1038,7 +1038,7 @@ class Consts {
   /**
    * @name adminProjectSelect
    * @description List of Administration project types for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1046,7 +1046,7 @@ class Consts {
   /**
    * @name rdProjectSelect
    * @description List of R&D project types for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1054,7 +1054,7 @@ class Consts {
   /**
    * @name militaryProjectSelect
    * @description List of Military project types for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1062,7 +1062,7 @@ class Consts {
   /**
    * @name productionProjectSelect
    * @description List of Production project types for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1070,7 +1070,7 @@ class Consts {
   /**
    * @name otherProjectSelect
    * @description List of Other project types for selecting
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1078,7 +1078,7 @@ class Consts {
   /**
    * @name doneColor
    * @description Color to label finished projects
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {String}
    * @readonly
    */
@@ -1086,7 +1086,7 @@ class Consts {
   /**
    * @name helpColor
    * @description Color to label projects that need assistance
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {String}
    * @readonly
    */
@@ -1094,7 +1094,7 @@ class Consts {
   /**
    * @name openColor
    * @description Color to label open projects
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {String}
    * @readonly
    */
@@ -1102,7 +1102,7 @@ class Consts {
   /**
    * @name pieColors
    * @description Colors for pie charts
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @readonly
    * @type {String[]}
    */
@@ -1110,7 +1110,8 @@ class Consts {
   /**
    * @name barBGColorByIndex
    * @description Colors for bar charts
-   * @memberof Consts.prototype
+   * @method barBGColorByIndex
+   * @memberof Consts
    * @param  {Number}      index Index of color
    * @type {String}
    */
@@ -1118,7 +1119,8 @@ class Consts {
   /**
    * @name barBorColorByIndex
    * @description Colors for bar charts
-   * @memberof Consts.prototype
+   * @method barBorColorByIndex
+   * @memberof Consts
    * @param  {Number}      index Index of color
    * @type {String}
    */
@@ -1126,7 +1128,8 @@ class Consts {
   /**
    * @name barHovColorByIndex
    * @description Colors for bar charts
-   * @memberof Consts.prototype
+   * @method barHovColorByIndex
+   * @memberof Consts
    * @param  {Number}      index Index of color
    * @type {String}
    */
@@ -1134,8 +1137,8 @@ class Consts {
   /**
    * @name summaryProps
    * @description Summary page box properties for style and visuals
-   * @memberof Consts.prototype
-   * @type {String}
+   * @memberof Consts
+   * @type {Object}
    * @readonly
    */
   static get summaryProps(){
@@ -1150,9 +1153,9 @@ class Consts {
     }
   }
   /**
-   * @name customerFields
-   * @description List of customer form fields
-   * @memberof Consts.prototype
+   * @name taskFields
+   * @description List of new task form fields
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1190,8 +1193,8 @@ class Consts {
   /**
    * @name stationSelect
    * @description List of stations for selecting
-   * @memberof Consts.prototype
-   * @type {String[]}
+   * @memberof Consts
+   * @type {Object[]}
    * @readonly
    */
   static get stationSelect(){
@@ -1200,7 +1203,7 @@ class Consts {
   /**
    * @name pistonTasks
    * @description List of piston default tasks
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1270,8 +1273,8 @@ class Consts {
   }
   /**
    * @name turboTasks
-   * @description List of piston default tasks
-   * @memberof Consts.prototype
+   * @description List of turbo default tasks
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1341,8 +1344,8 @@ class Consts {
   }
   /**
    * @name pumpTasks
-   * @description List of piston default tasks
-   * @memberof Consts.prototype
+   * @description List of pump default tasks
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1417,8 +1420,8 @@ class Consts {
   }
   /**
    * @name rotorTasks
-   * @description List of piston default tasks
-   * @memberof Consts.prototype
+   * @description List of rotor default tasks
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1489,7 +1492,7 @@ class Consts {
   /**
    * @name specialtyTasks
    * @description List of specialtyTasks default tasks
-   * @memberof Consts.prototype
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1569,8 +1572,8 @@ class Consts {
   }
   /**
    * @name decorativeTasks
-   * @description List of piston default tasks
-   * @memberof Consts.prototype
+   * @description List of decorative default tasks
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1620,8 +1623,8 @@ class Consts {
   }
   /**
    * @name avaslickTasks
-   * @description List of piston default tasks
-   * @memberof Consts.prototype
+   * @description List of avaslick default tasks
+   * @memberof Consts
    * @type {Object[]}
    * @readonly
    */
@@ -1631,7 +1634,8 @@ class Consts {
   /**
    * @name calculateTime
    * @description Calculates time difference total for a list of time entry pairs
-   * @memberof Consts.prototype
+   * @method calculateTime
+   * @memberof Consts
    * @param  {Date[]}      timeEntries List of time entry pairs
    * @return {Object}
    */
@@ -1662,7 +1666,8 @@ class Consts {
   /**
    * @name stationName
    * @description Swaps station short names for long names
-   * @memberof Consts.prototype
+   * @method stationName
+   * @memberof Consts
    * @method stationName
    * @param  {String}    name               Station short name
    * @return {String}

@@ -27,7 +27,7 @@ export default class CustomerSummary extends Component {
             <h5>Main Information</h5>
             <div><h6>Company</h6><p>{this.props.website.currentCustomer.companyName}</p></div>
             <div><h6>Phone Number</h6><p>{this.props.website.currentCustomer.phone}</p></div>
-            <div><h6>Email</h6><p>{this.props.website.currentCustomer.email}</p></div>
+            {this.props.website.currentCustomer.email &&<div><h6>Email</h6><p>{this.props.website.currentCustomer.email}</p></div>}
             {this.props.website.currentCustomer.website && <div><h6>Website</h6><p>{this.props.website.currentCustomer.website}</p></div>}
             {this.props.website.currentCustomer.pastDue && <div><h6>Past Due</h6><p>{this.props.website.currentCustomer.pastDue}</p></div>}
           </div>

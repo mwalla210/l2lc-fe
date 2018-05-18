@@ -54,7 +54,7 @@ export default class ProjectSummary extends Component {
 
   /**
    * On click handler for time entry button
-   * @method timeEntries
+   * @method customer
    * @memberof ProjectSummary.prototype
    */
   customer(){
@@ -70,6 +70,8 @@ export default class ProjectSummary extends Component {
    * @see {@link Barcode}
    * @see {@link DeleteModal}
    * @see {@link PromptModal}
+   * @see {@link ButtonDefault}
+   * @see {@link Consts}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    */
   render() {
@@ -97,7 +99,7 @@ export default class ProjectSummary extends Component {
             <h5>Main Information</h5>
             {this.props.website.currentProject.title &&
               <div>
-                <h6>Title</h6>
+                <h6>Description</h6>
                 <p>{this.props.website.currentProject.title}</p>
               </div>
             }
@@ -168,7 +170,7 @@ export default class ProjectSummary extends Component {
             }
             {this.props.website.currentProject.descr &&
               <div>
-                <h6>Description</h6>
+                <h6>Details</h6>
                 <p>{this.props.website.currentProject.descr}</p>
               </div>
             }

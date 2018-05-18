@@ -33,6 +33,7 @@ const defaultOptions = {
     changeCustomerPage: jest.fn(),
     projectTimeEntryPage: jest.fn(),
     projectTaskList: jest.fn(),
+    customerSummaryPage: jest.fn()
   },
   website: {
     currentProject: {
@@ -64,6 +65,7 @@ const defaultOptions = {
     toggleSummaryMoreDD: jest.fn(),
     summaryActionsDropdownOpen: false,
     toggleSummaryActionsDD: jest.fn(),
+    setCustomer: jest.fn()
   }
 }
 
@@ -114,6 +116,15 @@ describe('ProjectSummary', () => {
     const inst = component.getInstance()
     inst.timeEntries()
     expect(inst.props.page.projectTimeEntryPage.mock.calls.length).toBe(1)
+  })
+  it ('Renders and calls customer', () => {
+    let options = Object.assign({}, defaultOptions)
+    const component = renderer.create(
+      <ProjectSummary {...options}/>,
+    )
+    const inst = component.getInstance()
+    inst.customer()
+    expect(inst.props.page.customerSummaryPage.mock.calls.length).toBe(1)
   })
   it ('Renders and calls printClick', () => {
     let options = Object.assign({}, defaultOptions)

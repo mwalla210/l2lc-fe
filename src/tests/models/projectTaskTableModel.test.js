@@ -25,11 +25,11 @@ jest.mock('../../store/website', () => {
 import Website from '../../store/website'
 
 describe('ProjectTaskTableModel', () => {
-  xit('Tests constructor', () => {
+  it('Tests constructor', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     expect(projectTask).toHaveProperty('columns')
     expect(projectTask.columns[1].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
-    expect(projectTask.columns[5].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
+    expect(projectTask.columns[4].getProps()).toEqual({className: 'center',style: {paddingTop: '0px',paddingBottom: '0px'}})
   })
   it('Tests Required field Cell', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
@@ -40,20 +40,58 @@ describe('ProjectTaskTableModel', () => {
     // Call click
     component.toTree().props.children.props.onClick()
   })
-  xit('Tests Actions field Cell', () => {
+  it('Tests Actions field Cell', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
-    const component = renderer.create(projectTask.columns[5].Cell({}))
+    const component = renderer.create(projectTask.columns[4].Cell({}))
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  it('Tests fetchFn with for APC Pump', async function() {
+  it('Tests fetchFn for APC Pump', async function() {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     let res = await projectTask.fetchFn()
     expect(res.length).toBe(13)
   })
-  it('Tests fetchFn with empty list for non-APC', async function() {
+  it('Tests fetchFnfor Piston', async function() {
+    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
+    Website.currentProject.jobTypeTitle = 'Piston'
+    let res = await projectTask.fetchFn()
+    expect(res.length).toBe(12)
+  })
+  it('Tests fetchFn for Turbo', async function() {
+    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
+    Website.currentProject.jobTypeTitle = 'Turbo'
+    let res = await projectTask.fetchFn()
+    expect(res.length).toBe(12)
+  })
+  it('Tests fetchFn for Rotor', async function() {
+    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
+    Website.currentProject.jobTypeTitle = 'Rotor'
+    let res = await projectTask.fetchFn()
+    expect(res.length).toBe(12)
+  })
+  it('Tests fetchFn for Avaslick', async function() {
+    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
+    Website.currentProject.jobTypeTitle = 'Avaslick'
+    let res = await projectTask.fetchFn()
+    expect(res.length).toBe(12)
+  })
+  it('Tests fetchFn for Decorative', async function() {
+    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
+    Website.currentProject.costCenterTitle = 'Decorative'
+    Website.currentProject.jobTypeTitle = 'Decorative'
+    let res = await projectTask.fetchFn()
+    expect(res.length).toBe(8)
+  })
+  it('Tests fetchFn for Specialty', async function() {
+    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
+    Website.currentProject.jobTypeTitle = 'Specialty'
+    let res = await projectTask.fetchFn()
+    expect(res.length).toBe(14)
+  })
+  it('Tests fetchFn for other', async function() {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
     Website.currentProject.costCenterTitle = 'Other'
+    Website.currentProject.jobTypeTitle = 'Other'
     let res = await projectTask.fetchFn()
     expect(res.length).toBe(0)
   })
@@ -91,39 +129,10 @@ describe('ProjectTaskTableModel', () => {
     expect(projectTask.data[1]).toMatchObject({'id': 3})
     expect(projectTask.data[2]).toMatchObject({'id': 2})
   })
-  xit('Tests taskConfirmAndClose (Piston)', async function() {
-    Website.currentProject.jobTypeTitle = 'Piston'
+  it('Tests cell', () => {
     let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
-    expect(projectTask.data.length).toBe(0)
-    await projectTask.taskConfirmAndClose()
-    expect(projectTask.data.length).toBe(11)
-  })
-  xit('Tests taskConfirmAndClose (Turbo)', async function() {
-    Website.currentProject.jobTypeTitle = 'Turbo'
-    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
-    expect(projectTask.data.length).toBe(0)
-    await projectTask.taskConfirmAndClose()
-    expect(projectTask.data.length).toBe(11)
-  })
-  xit('Tests taskConfirmAndClose (Pump)', async function() {
-    Website.currentProject.jobTypeTitle = 'Pump'
-    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
-    expect(projectTask.data.length).toBe(0)
-    await projectTask.taskConfirmAndClose()
-    expect(projectTask.data.length).toBe(11)
-  })
-  xit('Tests taskConfirmAndClose (Rotor)', async function() {
-    Website.currentProject.jobTypeTitle = 'Rotor'
-    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
-    expect(projectTask.data.length).toBe(0)
-    await projectTask.taskConfirmAndClose()
-    expect(projectTask.data.length).toBe(11)
-  })
-  xit('Tests taskConfirmAndClose (Avaslick)', async function() {
-    Website.currentProject.jobTypeTitle = 'Avaslick'
-    let projectTask = new ProjectTaskTableModel(jest.fn(),jest.fn())
-    expect(projectTask.data.length).toBe(0)
-    await projectTask.taskConfirmAndClose()
-    expect(projectTask.data.length).toBe(11)
+    const component = renderer.create(projectTask.columns[0].Cell())
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
   })
 })

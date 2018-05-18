@@ -51,6 +51,7 @@ export default class Table extends Component {
    * @see {@link https://react-table.js.org/#/story/readme ReactTable}
    * @see {@link DeleteModal}
    * @see {@link TableButton}
+   * @see {@link ButtonDefault}
    */
   render() {
     /* Page sizing customization

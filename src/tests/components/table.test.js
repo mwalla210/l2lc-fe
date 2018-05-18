@@ -9,12 +9,14 @@ jest.mock('../../components/deleteModal')
 const defaultOptions = {
   page: {
     tableModel: {
-      confirmAndClose: jest.fn(),
       closeModal: jest.fn(),
       modalOpen: false,
       columns: [],
       data: [],
-      loading: false
+      loading: false,
+      confirmAndClose: () => {
+        console.log('confirmAndClose')
+      }
     }
   }
 }
@@ -68,6 +70,19 @@ describe('Table', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
+  it ('Renders with back button', () => {
+    let options = Object.assign({}, defaultOptions)
+    options.page.tableModel.backButtonFunc = {
+      title: 'Back',
+      className: "btn-secondary",
+      onClick: jest.fn()
+    }
+    const component = renderer.create(
+      <Table {...options}/>,
+    )
+    let tree = component.toJSON()
+    expect(tree).toMatchSnapshot()
+  })
   it ('Calls filter function', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
@@ -77,5 +92,15 @@ describe('Table', () => {
     expect(inst.filter({id: 1},{})).toBe(false)
     expect(inst.filter({id: 1, value: 'value'},{1: 'value'})).toBe(true)
     expect(inst.filter({id: 1, value: 'value'},{2: 'value'})).toBe(false)
+  })
+  it ('Renders and calls confirmOnClick', () => {
+    let options = Object.assign({}, defaultOptions)
+    const component = renderer.create(
+      <Table {...options}/>,
+    )
+    const inst = component.getInstance()
+    global.console = {log: jest.fn()}
+    inst.confirmOnClick()
+    expect(console.log).toBeCalled()
   })
 })

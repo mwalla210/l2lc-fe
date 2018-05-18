@@ -134,6 +134,22 @@ export default class ProjectModel {
   @computed get barcodeScanID(){
     return `p${this.id}%`
   }
+  /**
+   * @name costCenterProjectType
+   * @description Returns cost center and project type concatenated
+   * @method costCenterProjectType
+   * @return {String}
+   * @memberof ProjectModel.prototype
+   * @mobx computed
+   */
+  @computed get costCenterProjectType(){
+    if(this.costCenterTitle != this.jobTypeTitle){
+      return `${this.costCenterTitle} - ${this.jobTypeTitle}`
+    }
+    else {
+      return `${this.costCenterTitle}`
+    }
+  }
 
   // Actions
 
@@ -172,8 +188,6 @@ export default class ProjectModel {
     */
    @action changeNotes(event){
      this.notes = event.target.value
-     console.log('event',event.target.value);
-     console.log('notes',this.notes);
      API.updateProject(this.id, JSON.stringify({notes: this.notes}))
      .then(res => {
        console.log(res)
