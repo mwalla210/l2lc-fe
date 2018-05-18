@@ -10,7 +10,6 @@ useStrict(true)
   * @classdesc Time entry initializer for table storage object
   * @description Sets correct onClick and table columns
   * @param {Function} backClickNav Function to navigate on click of back button
-  * @property {Object[]} [columns] Sets columns in array for ReactTable
   * @extends TableModel
   * @see {@link Website}
  */
