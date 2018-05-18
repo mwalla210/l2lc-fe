@@ -49,6 +49,14 @@ describe('Website', () => {
     expect(Website.logOutModalOpen).toBe(false)
     expect(Website.summaryMoreDropdownOpen).toBe(false)
     expect(Website.summaryActionsDropdownOpen).toBe(false)
+    expect(Website.taskHistory).toBe('')
+  })
+  it('Tests addToTaskHistory', () => {
+    expect(Website.taskHistory).toBe('')
+    Website.addToTaskHistory('val\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\n')
+    expect(Website.taskHistory).toBe('val\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\n')
+    Website.addToTaskHistory('new\n')
+    expect(Website.taskHistory).toBe('val\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nval\nnew\n')
   })
   it('Tests toggleSummaryMoreDD', () => {
     Website.toggleSummaryMoreDD()

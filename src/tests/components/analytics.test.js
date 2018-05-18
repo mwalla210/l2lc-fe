@@ -17,7 +17,7 @@ describe('Analytics', () => {
   it ('Renders (non-loading bar with filters)', () => {
     let options = {
       page: {
-        analyticsModel: [
+        analyticsModelList: [
           {
             model: {
               filters: [
@@ -57,7 +57,7 @@ describe('Analytics', () => {
   it ('Renders (non-loading pie)', () => {
     let options = {
       page: {
-        analyticsModel: [
+        analyticsModelList: [
           {
             model: {
               timeFilterData: jest.fn(),
@@ -80,7 +80,7 @@ describe('Analytics', () => {
   it ('Renders (loading)', () => {
     let options = {
       page: {
-        analyticsModel: [
+        analyticsModelList: [
           {
             model: {
               timeFilterData: jest.fn(),

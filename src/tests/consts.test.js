@@ -89,6 +89,7 @@ describe('Consts', () => {
     expect(typeof response[2].validation('',true)).toBe('string')
     expect(typeof response[2].validation('a',true)).toBe('string')
     expect(typeof response[2].validation(HUNDRED,true)).toBe('string')
+    expect(typeof response[2].validation('5555555555555555555555555555',true)).toBe('string')
     expect(response[2].validation('4',true)).toBeNull()
     expect(typeof response[3].validation('',true)).toBe('string')
     expect(typeof response[3].validation(HUNDRED,true)).toBe('string')
@@ -150,12 +151,12 @@ describe('Consts', () => {
   it ('Tests pieColors', () => {
     let response = Consts.pieColors
     expect(response).toHaveLength(15)
-    expect(response).toEqual(["rgb(96,146,204,1)", "rgb(150,182,68,1)", "rgb(139,103,209,1)", "rgb(210,155,61,1)", "rgb(86,118,209,1)", "rgb(205,88,57,1)", "rgb(72,183,188,1)", "rgb(210,66,115,1)", "rgb(86,174,111,1)", "rgb(200,89,183,1)", "rgb(130,136,68,1)", "rgb(204,158,223,1)", "rgb(189,124,88,1)", "rgb(149,95,149,1)", "rgb(210,118,140,1)"])
+    expect(response).toEqual(["rgba(96,146,204,1)", "rgba(150,182,68,1)", "rgba(139,103,209,1)", "rgba(210,155,61,1)", "rgba(86,118,209,1)", "rgba(205,88,57,1)", "rgba(72,183,188,1)", "rgba(210,66,115,1)", "rgba(86,174,111,1)", "rgba(200,89,183,1)", "rgba(130,136,68,1)", "rgba(204,158,223,1)", "rgba(189,124,88,1)", "rgba(149,95,149,1)", "rgba(210,118,140,1)"])
   })
   it ('Tests barBGColorByIndex', () => {
     let index = 0
     let response = Consts.barBGColorByIndex(index)
-    expect(response).toEqual("rgb(96,146,204,0.6)")
+    expect(response).toEqual("rgba(96,146,204,0.6)")
   })
   it ('Tests barBorColorByIndex', () => {
     let response = Consts.barBorColorByIndex

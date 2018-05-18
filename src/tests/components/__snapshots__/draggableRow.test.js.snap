@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DraggableRow Renders while dragging 1`] = `
+exports[`DraggableRow Renders while dragging, with cursor 1`] = `
 <div
   className="rt-tr"
   id={1}

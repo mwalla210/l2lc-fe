@@ -6,27 +6,46 @@ useStrict(true)
  * @name CustomerModel
  * @class CustomerModel
  * @classdesc Customer storage object
- * @property {Number} id  ID of Customer
+ * @param {Number} id  ID of Customer
+ * @param {String} companyName Name of Customer
+ * @param {String} shipAddr1 Line one of shipping address for Customer
+ * @param {String} shipAddr2 Line two of shipping address for Customer
+ * @param {String} shipCity City of shipping address of Customer
+ * @param {String} shipState State of shipping address of Customer
+ * @param {String} shipCountry Country of shipping address of Customer
+ * @param {Number} shipZip Zipcode of shipping address of Customer
+ * @param {String} email Email of Customer
+ * @param {String} phone Phone of Customer
+ * @param {String} website Website of Customer
+ * @param {Boolean} pastDue Indicator of overdue bills for Customer
+ * @param {Boolean} billIsSame Indicator that billing address is same as shipping address for Customer
+ * @param {String} billAddr1 Line one of billing address for Customer
+ * @param {String} billAddr2 Line two of billing address for Customer
+ * @param {String} billCity City of billing address of Customer
+ * @param {String} billState State of billing address of Customer
+ * @param {String} billCountry Country of billing address of Customer
+ * @param {Number} billZip Zipcode of billing address of Customer
  * @property {String} companyName Name of Customer [observable]
- * @property {String} [email=''] Email of Customer [observable]
- * @property {String} [website=''] Website of Customer [observable]
- * @property {String} [phone=''] Phone of Customer [observable]
+ * @property {Boolean} billIsSame Indicator that billing address is same as shipping address for Customer [observable]
  * @property {Boolean} pastDue Indicator of overdue bills for Customer [observable]
  * @property {Object} shipAddr Shipping address object for Customer [observable]
  * @property {String} shipAddr.shipAddr1 Line one of shipping address for Customer [observable]
- * @property {String} [shipAddr.shipAddr2=''] Line two of shipping address for Customer [observable]
+ * @property {String} [shipAddr.shipAddr2] Line two of shipping address for Customer [observable]
  * @property {String} shipAddr.shipCity City of shipping address of Customer [observable]
  * @property {String} shipAddr.shipState State of shipping address of Customer [observable]
  * @property {String} shipAddr.shipCountry Country of shipping address of Customer [observable]
  * @property {Number} shipAddr.shipZip Zipcode of shipping address of Customer [observable]
- * @property {Object} [billAddr={}] Line one of billing address for Customer [observable]
+ * @property {String} [email] Email of Customer [observable]
+ * @property {String} [website] Website of Customer [observable]
+ * @property {String} [phone] Phone of Customer [observable]
+ * @property {Object} [billAddr] Line one of billing address for Customer [observable]
  * @property {String} billAddr.billAddr1 Line one of billing address for Customer [observable]
- * @property {String} [billAddr.billAddr2=''] Line two of billing address for Customer [observable]
+ * @property {String} [billAddr.billAddr2] Line two of billing address for Customer [observable]
  * @property {String} billAddr.billCity City of billing address of Customer [observable]
  * @property {String} billAddr.billState State of billing address of Customer [observable]
  * @property {String} billAddr.billCountry Country of billing address of Customer [observable]
  * @property {Number} billAddr.billZip Zipcode of billing address of Customer [observable]
- * @property {Boolean} [billIsSame=false] Indicator that billing address is same as shipping address for Customer [observable]
+ * @property {Number} id  ID of Customer
  */
 export default class CustomerModel {
   constructor(id, companyName, shipAddr1, shipAddr2, shipCity, shipState, shipCountry, shipZip, email, phone, website, pastDue, billIsSame, billAddr1, billAddr2, billCity, billState, billCountry, billZip) {
@@ -73,18 +92,6 @@ export default class CustomerModel {
    * @mobx action
    */
   @action setBillIsSame(){this.billIsSame = true}
-
-
-  /**
-  * @name getProjects
-  * @description Fetches Projects from database that are associated with Customer ID
-  * @memberof CustomerModel.prototype
-  * @method
-  * @mobx action
-  */
-  @action getProjects(){
-    // TODO: Fetches Projects from database that are associated with Customer ID
-  }
 
   /**
   * @name getformattedShipAddress

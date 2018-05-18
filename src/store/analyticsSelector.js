@@ -67,6 +67,15 @@ class AnalyticsSelector {
     return analytics
   }
 
+  /**
+   * @name projectsByMonth
+   * @description Maps projects to their created months in list
+   * @method projectsByMonth
+   * @param  {String[]}        months   String list of month names in which projects may have occurred
+   * @param  {Object}        projects   Project object (keys: project IDs, values: project info object)
+   * @return {Object[]}
+   * @memberof AnalyticsSelector.prototype
+   */
   projectsByMonth(months, projects){
     let datasets = []
     let data = []
@@ -86,6 +95,15 @@ class AnalyticsSelector {
     return datasets
   }
 
+  /**
+   * @name projectsByCCJT
+   * @description Maps projects to their cost center/job type combination in list
+   * @method projectsByCCJT
+   * @param  {String[]}       costCenterJobTypes String list of project cost center/job types in which projects may have occurred
+   * @param  {Object}        projects   Project object (keys: project IDs, values: project info object)
+   * @return {Object[]}
+   * @memberof AnalyticsSelector.prototype
+   */
   projectsByCCJT(costCenterJobTypes, projects){
     let datasets = []
     let data = []
@@ -105,6 +123,15 @@ class AnalyticsSelector {
     return datasets
   }
 
+  /**
+   * @name partsByAPCJT
+   * @description Maps projects to job types in list if cost center is APC
+   * @method partsByAPCJT
+   * @param  {String[]}     apcJobTypes String list of APC job types in which projects may have occurred
+   * @param  {Object}        projects   Project object (keys: project IDs, values: project info object)
+   * @return {Object[]}
+   * @memberof AnalyticsSelector.prototype
+   */
   partsByAPCJT(apcJobTypes,projects){
     let datasets = []
     let data = []
@@ -126,7 +153,7 @@ class AnalyticsSelector {
 
   /**
    * @name processEntries
-   * @description Maps category names to empty arrays in an object
+   * @description Processes API list of time entries to create category lists for analytic sets and creates structures for entries sorted by employee, and sorted by project
    * @method processEntries
    * @param  {Object[]}       entries Time entries from API
    * @return {Object}
@@ -217,7 +244,7 @@ class AnalyticsSelector {
    * @param  {Object[]}          employeeEntries Time entries
    * @param  {String[]}          categories      List of categories
    * @param  {String}          categoryName      Property accessor name corresponding to one of categories
-   * @param  {Boolean}          apcDecOnly      Only include
+   * @param  {Boolean}          [apcDecOnly=false]      Only include APC or Decorative projects
    * @return {Object[]}
    * @memberof AnalyticsSelector.prototype
    */

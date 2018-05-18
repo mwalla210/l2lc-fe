@@ -156,8 +156,9 @@ export default class API {
   }
   /**
    * @name fetchCustomerProjects
-   * @description Fetches all projects and modelizes
+   * @description Fetches all customer projects and modelizes
    * @method fetchCustomerProjects
+   * @param  {Integer} id      Customer ID
    * @memberof API
    * @return {Promise}
    * @async
@@ -231,7 +232,7 @@ export default class API {
   }
   /**
    * @name fetchProjectTasks
-   * @description Fetches project and modelizes
+   * @description Fetches project's tasks and modelizes
    * @method fetchProjectTasks
    * @memberof API
    * @param  {Number}     id ID of project to fetch
@@ -254,6 +255,7 @@ export default class API {
    * @name createTask
    * @description POSTs a task to API, modelizes return
    * @method createTask
+   * @memberof API
    * @param  {Number}   projectID  Related project
    * @param  {Object}       task Task object (JSON)
    * @return {Promise}
@@ -276,6 +278,7 @@ export default class API {
    * @name createTaskList
    * @description POSTs a task list to API, modelizes return
    * @method createTaskList
+   * @memberof API
    * @param  {Number}   projectID  Related project
    * @param  {Object}    taskList Task list (JSON)
    * @return {Promise}
@@ -298,6 +301,7 @@ export default class API {
    * @name updateTaskList
    * @description POSTs a task list to API, modelizes return
    * @method updateTaskList
+   * @memberof API
    * @param  {Number}   projectID  Related project
    * @param  {Object}    taskList Task list (JSON)
    * @return {Promise}
@@ -320,9 +324,10 @@ export default class API {
    * @name updateTask
    * @description POSTs new task properties to API, modelizes return
    * @method updateTask
+   * @memberof API
    * @param  {Number}   projectID  Related project
    * @param  {Number}     taskID  Related task
-   * @param  {Object}    taskList Task props (JSON)
+   * @param  {Object}    props Task props (JSON)
    * @return {Promise}
    */
   static updateTask(projectID, taskID, props){
@@ -341,8 +346,9 @@ export default class API {
   }
   /**
    * @name dropTask
-   * @description POSTs new task properties to API, modelizes return
+   * @description POSTs task details to API to drop
    * @method dropTask
+   * @memberof API
    * @param  {Number}   projectID  Related project
    * @param  {Object}    body Object with task ID for dropping (JSON)
    * @return {Promise}
@@ -405,7 +411,7 @@ export default class API {
    */
   static projectModelize(item){
     // Modelize customer object before providing to project
-    return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null), item.notes)
+    return new ProjectModel(item.id, item.costCenter, item.jobType, item.title, item.priority, item.projectStatus, ((item.created) ? new Date(item.created) : null), item.partCount, item.description, item.refNumber, item.customer, ((item.finished) ? new Date(item.finished) : null), ((item.notes) ? item.notes : ''))
   }
   /**
    * @name updateProject
@@ -452,6 +458,7 @@ export default class API {
    * @name fetchTimeEntries
    * @description Fetches project time entries
    * @method fetchTimeEntries
+   * @param  {Integer} id      Project ID
    * @memberof API
    * @return {Promise}
    * @async
@@ -476,8 +483,8 @@ export default class API {
    * @description Modelizes a database time entry
    * @method timeEntryModelize
    * @memberof API
-   * @param  {Object}         item time entry database object
-   * @return {CustomerModel}
+   * @param  {Object}         item Time entry database object
+   * @return {TimeEntryModel}
    */
   static timeEntryModelize(item){
     // Construct model
@@ -606,11 +613,11 @@ export default class API {
   }
   /**
    * @name updateUserAdmin
-   * @description POSTs to endpoint with body provided, then returns
+   * @description POSTs to endpoint with body provided to change user admin status, then returns
    * @method updateUserAdmin
    * @memberof API
-   * @param  {Integer} id      USer ID
-   * @param  {JSON} bool       boolean for POST
+   * @param  {Integer} id      User ID
+   * @param  {JSON} body       Body for POST
    * @return {Promise}
    */
   static updateUserAdmin(id, body){

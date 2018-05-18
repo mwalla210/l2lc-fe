@@ -126,9 +126,6 @@ exports[`Analytics Renders (non-loading bar with filters) 1`] = `
         height={60}
         options={
           Object {
-            "legend": Object {
-              "display": false,
-            },
             "responsive": true,
             "scales": Object {
               "xAxes": Array [
@@ -222,13 +219,6 @@ exports[`Analytics Renders (non-loading pie) 1`] = `
       </div>
       <Pie
         data={Array []}
-        options={
-          Object {
-            "legend": Object {
-              "display": false,
-            },
-          }
-        }
       />
     </div>
   </div>

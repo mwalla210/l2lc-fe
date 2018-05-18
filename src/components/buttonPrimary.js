@@ -9,7 +9,7 @@ import ButtonDefault from './buttonDefault'
  * @property {Boolean} [disabled] Button disabled flag
  * @property {String} [text] Button text
  * @property {String} [className] Button additional class name
- * @property {String} [type='button'] Button type
+ * @property {String} [type] Button type
  * @property {Object} [style] Button additional styles
  * @extends React.Component
  */
