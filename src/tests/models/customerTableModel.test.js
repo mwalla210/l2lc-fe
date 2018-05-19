@@ -1,9 +1,7 @@
 import CustomerTableModel from '../../models/CustomerTableModel'
 import renderer from 'react-test-renderer'
 import ButtonDefault from '../../components/buttonDefault'
-import TableActionCell from '../../components/tableActionCell'
 
-//jest.mock('../../components/tableActionCell')
 jest.mock('../../components/projectStatusCell')
 jest.mock('../../components/projectStatusFilter')
 

@@ -74,7 +74,7 @@ describe('Table', () => {
     let options = Object.assign({}, defaultOptions)
     options.page.tableModel.backButtonFunc = {
       title: 'Back',
-      className: "btn-secondary",
+      className: 'btn-secondary',
       onClick: () => {}
     }
     const component = renderer.create(

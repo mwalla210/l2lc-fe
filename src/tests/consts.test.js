@@ -151,12 +151,12 @@ describe('Consts', () => {
   it ('Tests pieColors', () => {
     let response = Consts.pieColors
     expect(response).toHaveLength(15)
-    expect(response).toEqual(["rgba(96,146,204,1)", "rgba(150,182,68,1)", "rgba(139,103,209,1)", "rgba(210,155,61,1)", "rgba(86,118,209,1)", "rgba(205,88,57,1)", "rgba(72,183,188,1)", "rgba(210,66,115,1)", "rgba(86,174,111,1)", "rgba(200,89,183,1)", "rgba(130,136,68,1)", "rgba(204,158,223,1)", "rgba(189,124,88,1)", "rgba(149,95,149,1)", "rgba(210,118,140,1)"])
+    expect(response).toEqual(['rgba(96,146,204,1)', 'rgba(150,182,68,1)', 'rgba(139,103,209,1)', 'rgba(210,155,61,1)', 'rgba(86,118,209,1)', 'rgba(205,88,57,1)', 'rgba(72,183,188,1)', 'rgba(210,66,115,1)', 'rgba(86,174,111,1)', 'rgba(200,89,183,1)', 'rgba(130,136,68,1)', 'rgba(204,158,223,1)', 'rgba(189,124,88,1)', 'rgba(149,95,149,1)', 'rgba(210,118,140,1)'])
   })
   it ('Tests barBGColorByIndex', () => {
     let index = 0
     let response = Consts.barBGColorByIndex(index)
-    expect(response).toEqual("rgba(96,146,204,0.6)")
+    expect(response).toEqual('rgba(96,146,204,0.6)')
   })
   it ('Tests barBorColorByIndex', () => {
     let response = Consts.barBorColorByIndex
@@ -170,49 +170,49 @@ describe('Consts', () => {
   })
   it ('Tests summaryProps', () => {
     let response = Consts.summaryProps
-    expect(response).toEqual({"className": "col-3", "style": {"border": "1px solid #b4b4b4", "borderRadius": "8px", "margin": "2px", "paddingTop": "1rem"}})
+    expect(response).toEqual({'className': 'col-3', 'style': {'border': '1px solid #b4b4b4', 'borderRadius': '8px', 'margin': '2px', 'paddingTop': '1rem'}})
   })
   it ('Tests pistonTasks', () => {
     let response = Consts.pistonTasks
     expect(response).toHaveLength(12)
     expect(typeof response).toBe('object')
-    expect(response).toEqual([{"required": true, "station": "Preparation", "title": "Degrease"}, {"required": true, "station": "Preparation", "title": "Bake Clean"}, {"required": true, "station": "Preparation", "title": "Engrave"}, {"required": true, "station": "Preparation", "title": "Mask"}, {"required": true, "station": "Preparation", "title": "Blast"}, {"required": true, "station": "Preparation", "title": "Wash - Alodine"}, {"required": true, "station": "Coating", "title": "Mask"}, {"required": true, "station": "Coating", "title": "Measure"}, {"required": true, "station": "Coating", "title": "Probe Zero"}, {"required": true, "station": "Coating", "title": "Coat"}, {"required": true, "station": "Coating", "title": "Cure"}, {"required": true, "station": "Packaging", "title": "QC Check"}])
+    expect(response).toEqual([{'required': true, 'station': 'Preparation', 'title': 'Degrease'}, {'required': true, 'station': 'Preparation', 'title': 'Bake Clean'}, {'required': true, 'station': 'Preparation', 'title': 'Engrave'}, {'required': true, 'station': 'Preparation', 'title': 'Mask'}, {'required': true, 'station': 'Preparation', 'title': 'Blast'}, {'required': true, 'station': 'Preparation', 'title': 'Wash - Alodine'}, {'required': true, 'station': 'Coating', 'title': 'Mask'}, {'required': true, 'station': 'Coating', 'title': 'Measure'}, {'required': true, 'station': 'Coating', 'title': 'Probe Zero'}, {'required': true, 'station': 'Coating', 'title': 'Coat'}, {'required': true, 'station': 'Coating', 'title': 'Cure'}, {'required': true, 'station': 'Packaging', 'title': 'QC Check'}])
   })
   it ('Tests turboTasks', () => {
     let response = Consts.turboTasks
     expect(response).toHaveLength(12)
     expect(typeof response).toBe('object')
-    expect(response).toEqual([{"required": true, "station": "Preparation", "title": "Degrease"}, {"required": true, "station": "Preparation", "title": "Bake Clean"}, {"required": true, "station": "Preparation", "title": "Engrave"}, {"required": true, "station": "Preparation", "title": "Mask"}, {"required": true, "station": "Preparation", "title": "Blast"}, {"required": true, "station": "Preparation", "title": "Wash - Alodine"}, {"required": true, "station": "Coating", "title": "Mask"}, {"required": false, "station": "Coating", "title": "Measure"}, {"required": true, "station": "Coating", "title": "Probe Zero"}, {"required": true, "station": "Coating", "title": "Coat"}, {"required": true, "station": "Coating", "title": "Cure"}, {"required": false, "station": "Packaging", "title": "QC Check"}])
+    expect(response).toEqual([{'required': true, 'station': 'Preparation', 'title': 'Degrease'}, {'required': true, 'station': 'Preparation', 'title': 'Bake Clean'}, {'required': true, 'station': 'Preparation', 'title': 'Engrave'}, {'required': true, 'station': 'Preparation', 'title': 'Mask'}, {'required': true, 'station': 'Preparation', 'title': 'Blast'}, {'required': true, 'station': 'Preparation', 'title': 'Wash - Alodine'}, {'required': true, 'station': 'Coating', 'title': 'Mask'}, {'required': false, 'station': 'Coating', 'title': 'Measure'}, {'required': true, 'station': 'Coating', 'title': 'Probe Zero'}, {'required': true, 'station': 'Coating', 'title': 'Coat'}, {'required': true, 'station': 'Coating', 'title': 'Cure'}, {'required': false, 'station': 'Packaging', 'title': 'QC Check'}])
   })
   it ('Tests pumpTasks', () => {
     let response = Consts.pumpTasks
     expect(response).toHaveLength(13)
     expect(typeof response).toBe('object')
-    expect(response).toEqual([{"required": true, "station": "Preparation", "title": "Degrease"}, {"required": true, "station": "Preparation", "title": "EPK Bake"}, {"required": false, "station": "Preparation", "title": "Engrave"}, {"required": true, "station": "Preparation", "title": "Paint Pen"}, {"required": true, "station": "Preparation", "title": "Mask"}, {"required": true, "station": "Preparation", "title": "Blast"}, {"required": true, "station": "Preparation", "title": "Wash - Bonderite"}, {"required": true, "station": "Coating", "title": "Mask"}, {"required": true, "station": "Coating", "title": "Measure"}, {"required": true, "station": "Coating", "title": "Probe Zero"}, {"required": true, "station": "Coating", "title": "Coat"}, {"required": true, "station": "Coating", "title": "Cure"}, {"required": false, "station": "Packaging", "title": "QC Check"}])
+    expect(response).toEqual([{'required': true, 'station': 'Preparation', 'title': 'Degrease'}, {'required': true, 'station': 'Preparation', 'title': 'EPK Bake'}, {'required': false, 'station': 'Preparation', 'title': 'Engrave'}, {'required': true, 'station': 'Preparation', 'title': 'Paint Pen'}, {'required': true, 'station': 'Preparation', 'title': 'Mask'}, {'required': true, 'station': 'Preparation', 'title': 'Blast'}, {'required': true, 'station': 'Preparation', 'title': 'Wash - Bonderite'}, {'required': true, 'station': 'Coating', 'title': 'Mask'}, {'required': true, 'station': 'Coating', 'title': 'Measure'}, {'required': true, 'station': 'Coating', 'title': 'Probe Zero'}, {'required': true, 'station': 'Coating', 'title': 'Coat'}, {'required': true, 'station': 'Coating', 'title': 'Cure'}, {'required': false, 'station': 'Packaging', 'title': 'QC Check'}])
   })
   it ('Tests rotorTasks', () => {
     let response = Consts.rotorTasks
     expect(response).toHaveLength(12)
     expect(typeof response).toBe('object')
-    expect(response).toEqual([{"required": true, "station": "Preparation", "title": "Degrease"}, {"required": true, "station": "Preparation", "title": "Bake Clean"}, {"required": true, "station": "Preparation", "title": "Engrave"}, {"required": true, "station": "Preparation", "title": "Mask"}, {"required": true, "station": "Preparation", "title": "Blast"}, {"required": true, "station": "Preparation", "title": "Wash - Alodine"}, {"required": true, "station": "Coating", "title": "Mask"}, {"required": true, "station": "Coating", "title": "Measure"}, {"required": true, "station": "Coating", "title": "Probe Zero"}, {"required": true, "station": "Coating", "title": "Coat"}, {"required": true, "station": "Coating", "title": "Cure"}, {"required": false, "station": "Packaging", "title": "QC Check"}])
+    expect(response).toEqual([{'required': true, 'station': 'Preparation', 'title': 'Degrease'}, {'required': true, 'station': 'Preparation', 'title': 'Bake Clean'}, {'required': true, 'station': 'Preparation', 'title': 'Engrave'}, {'required': true, 'station': 'Preparation', 'title': 'Mask'}, {'required': true, 'station': 'Preparation', 'title': 'Blast'}, {'required': true, 'station': 'Preparation', 'title': 'Wash - Alodine'}, {'required': true, 'station': 'Coating', 'title': 'Mask'}, {'required': true, 'station': 'Coating', 'title': 'Measure'}, {'required': true, 'station': 'Coating', 'title': 'Probe Zero'}, {'required': true, 'station': 'Coating', 'title': 'Coat'}, {'required': true, 'station': 'Coating', 'title': 'Cure'}, {'required': false, 'station': 'Packaging', 'title': 'QC Check'}])
   })
   it ('Tests specialtyTasks', () => {
     let response = Consts.specialtyTasks
     expect(response).toHaveLength(14)
     expect(typeof response).toBe('object')
-    expect(response).toEqual([{"required": true, "station": "Preparation", "title": "Degrease"}, {"required": true, "station": "Preparation", "title": "Bake Clean"}, {"required": true, "station": "Preparation", "title": "EPK Bake"}, {"required": false, "station": "Preparation", "title": "Engrave"}, {"required": true, "station": "Preparation", "title": "Paint Pen"}, {"required": true, "station": "Preparation", "title": "Mask"}, {"required": true, "station": "Preparation", "title": "Blast"}, {"required": true, "station": "Preparation", "title": "Wash - Alodine"}, {"required": true, "station": "Coating", "title": "Mask"}, {"required": true, "station": "Coating", "title": "Measure"}, {"required": true, "station": "Coating", "title": "Probe Zero"}, {"required": true, "station": "Coating", "title": "Coat"}, {"required": true, "station": "Coating", "title": "Cure"}, {"required": true, "station": "Packaging", "title": "QC Check"}])
+    expect(response).toEqual([{'required': true, 'station': 'Preparation', 'title': 'Degrease'}, {'required': true, 'station': 'Preparation', 'title': 'Bake Clean'}, {'required': true, 'station': 'Preparation', 'title': 'EPK Bake'}, {'required': false, 'station': 'Preparation', 'title': 'Engrave'}, {'required': true, 'station': 'Preparation', 'title': 'Paint Pen'}, {'required': true, 'station': 'Preparation', 'title': 'Mask'}, {'required': true, 'station': 'Preparation', 'title': 'Blast'}, {'required': true, 'station': 'Preparation', 'title': 'Wash - Alodine'}, {'required': true, 'station': 'Coating', 'title': 'Mask'}, {'required': true, 'station': 'Coating', 'title': 'Measure'}, {'required': true, 'station': 'Coating', 'title': 'Probe Zero'}, {'required': true, 'station': 'Coating', 'title': 'Coat'}, {'required': true, 'station': 'Coating', 'title': 'Cure'}, {'required': true, 'station': 'Packaging', 'title': 'QC Check'}])
   })
   it ('Tests decorativeTasks', () => {
     let response = Consts.decorativeTasks
     expect(response).toHaveLength(8)
     expect(typeof response).toBe('object')
-    expect(response).toEqual([{"required": true, "station": "Preparation", "title": "Degrease"}, {"required": true, "station": "Preparation", "title": "Strip"}, {"required": true, "station": "Preparation", "title": "Mask"}, {"required": true, "station": "Big Blaster", "title": "Blast"}, {"required": true, "station": "Preparation", "title": "Mask"}, {"required": true, "station": "Decorative Coating", "title": "Prime"}, {"required": true, "station": "Decorative Coating", "title": "Paint"}, {"required": true, "station": "Packaging", "title": "QC Check"}])
+    expect(response).toEqual([{'required': true, 'station': 'Preparation', 'title': 'Degrease'}, {'required': true, 'station': 'Preparation', 'title': 'Strip'}, {'required': true, 'station': 'Preparation', 'title': 'Mask'}, {'required': true, 'station': 'Big Blaster', 'title': 'Blast'}, {'required': true, 'station': 'Preparation', 'title': 'Mask'}, {'required': true, 'station': 'Decorative Coating', 'title': 'Prime'}, {'required': true, 'station': 'Decorative Coating', 'title': 'Paint'}, {'required': true, 'station': 'Packaging', 'title': 'QC Check'}])
   })
   it ('Tests avaslickTasks', () => {
     let response = Consts.avaslickTasks
     expect(response).toHaveLength(12)
     expect(typeof response).toBe('object')
-    expect(response).toEqual([{"required": true, "station": "Preparation", "title": "Degrease"}, {"required": true, "station": "Preparation", "title": "Bake Clean"}, {"required": true, "station": "Preparation", "title": "Engrave"}, {"required": true, "station": "Preparation", "title": "Mask"}, {"required": true, "station": "Preparation", "title": "Blast"}, {"required": true, "station": "Preparation", "title": "Wash - Alodine"}, {"required": true, "station": "Coating", "title": "Mask"}, {"required": true, "station": "Coating", "title": "Measure"}, {"required": true, "station": "Coating", "title": "Probe Zero"}, {"required": true, "station": "Coating", "title": "Coat"}, {"required": true, "station": "Coating", "title": "Cure"}, {"required": true, "station": "Packaging", "title": "QC Check"}])
+    expect(response).toEqual([{'required': true, 'station': 'Preparation', 'title': 'Degrease'}, {'required': true, 'station': 'Preparation', 'title': 'Bake Clean'}, {'required': true, 'station': 'Preparation', 'title': 'Engrave'}, {'required': true, 'station': 'Preparation', 'title': 'Mask'}, {'required': true, 'station': 'Preparation', 'title': 'Blast'}, {'required': true, 'station': 'Preparation', 'title': 'Wash - Alodine'}, {'required': true, 'station': 'Coating', 'title': 'Mask'}, {'required': true, 'station': 'Coating', 'title': 'Measure'}, {'required': true, 'station': 'Coating', 'title': 'Probe Zero'}, {'required': true, 'station': 'Coating', 'title': 'Coat'}, {'required': true, 'station': 'Coating', 'title': 'Cure'}, {'required': true, 'station': 'Packaging', 'title': 'QC Check'}])
   })
   it ('Tests stationName', () => {
     let name = 'bigblas'
@@ -225,6 +225,6 @@ describe('Consts', () => {
     let timeEntries = [{created: 'December 17, 1995 03:00:00'}, {created: 'December 17, 1995 03:45:00'}, {created: 'December 17, 1995 04:24:00'}, {created: 'December 17, 1995 04:55:00'}]
     let response = Consts.calculateTime(timeEntries)
     expect(typeof response).toBe('object')
-    expect(response).toEqual({"hour": 1, "min": 16})
+    expect(response).toEqual({'hour': 1, 'min': 16})
   })
 })
