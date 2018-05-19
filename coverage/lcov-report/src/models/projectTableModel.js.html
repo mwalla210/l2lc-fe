@@ -186,7 +186,20 @@
 <a name='L138'></a><a href='#L138'>138</a>
 <a name='L139'></a><a href='#L139'>139</a>
 <a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,7 +208,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -228,6 +248,11 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -301,6 +326,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -341,12 +367,19 @@ useStrict(true)
   * @name ProjectTableModel
   * @class ProjectTableModel
   * @classdesc Project initializer for table storage object
-  * @description Creates fields, sets correct onClick
-  * @property {Function} infoClickNav Function to navigate on click of info icon
-  * @property {Function} editClickNav Function to navigate on click of edit icon
-  * @property {Function} deleteClickNav Function to navigate on click of delete icon
-  * @property {Boolean} [filterDD=false] Status filter dropdown state
+  * @description Sets correct onClicks, table columns, filter, and actions
+  * @param {Function} infoClickNav Function to navigate on click of info icon
+  * @param {Function} editClickNav Function to navigate on click of edit icon
+  * @param {Function} deleteClickNav Function to navigate on click of delete icon
+  * @property {Function} infoClickNav Function to navigate on click of info icon [observable]
+  * @property {Function} editClickNav Function to navigate on click of edit icon [observable]
+  * @property {Boolean} [filterDD=false] Status filter dropdown state [observable]
   * @extends TableModel
+  * @see {@link Website}
+  * @see {@link TableActionCell}
+  * @see {@link ProjectStatusFilter}
+  * @see {@link ProjectStatusCell}
+  * @see {@link API}
  */
 export default class ProjectTableModel extends TableModel{
   constructor(infoClickNav, editClickNav, deleteClickNav) {
@@ -374,13 +407,18 @@ export default class ProjectTableModel extends TableModel{
         filterable: true
       },
       {
+        Header: 'Job #',
+        accessor: 'refNum',
+        filterable: true
+      },
+      {
         Header: 'Created',
         id: 'dateCreated',
         accessor: d =&gt; d.dateCreated.toString(),
         filterable: true
       },
       {
-        Header: 'Title',
+        Header: 'Description',
         accessor: 'title',
         filterable: true
       },
@@ -392,7 +430,7 @@ export default class ProjectTableModel extends TableModel{
       },
       {
         Header: 'Cost Center',
-        accessor: 'costCenterTitle',
+        accessor: 'costCenterProjectType',
         filterable: true
       },
       {
@@ -450,6 +488,7 @@ export default class ProjectTableModel extends TableModel{
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
    * @memberof ProjectTableModel.prototype
+   * @see {@link Website}
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit' || type == 'delete'){

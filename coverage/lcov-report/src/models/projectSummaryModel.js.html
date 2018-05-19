@@ -66,9 +66,15 @@
 <a name='L18'></a><a href='#L18'>18</a>
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
-<a name='L21'></a><a href='#L21'>21</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -94,8 +100,11 @@ useStrict(true)
  * @name ProjectSummaryModel
  * @class ProjectSummaryModel
  * @classdesc Project summary storage object
+ * @param {Function} deleteOnClick  The on click method for clicking delete in summary page
+ * @param {Function} completeOnClick  The on click method for clicking complete in summary page
  * @property {ModalModel} deleteModal  The model for the delete modal [observable]
  * @property {ModalModel} completeModal The model for the complete modal [observable]
+ * @see {@link ModalModel}
  */
 export default class ProjectSummaryModel{
   constructor(deleteOnClick, completeOnClick){

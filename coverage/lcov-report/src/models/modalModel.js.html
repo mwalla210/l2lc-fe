@@ -129,9 +129,15 @@
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
-<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -220,10 +226,13 @@ useStrict(true)
  * @name ModalModel
  * @class ModalModel
  * @classdesc Modal model for summary pages
- * @property {Boolean} [modalOpen=false] Modal open indicator [observable]
+ * @description Sets up modal
+ * @param {Function} confirmOnClick Modal confirmation function
+ * @param {String} title Modal title
  * @property {String} title Modal title [observable]
+ * @property {Function} confirmOnClick Modal confirmation function [observable]
+ * @property {Boolean} [modalOpen=false] Modal open indicator [observable]
  * @property {String} [contents=''] Modal contents, if any (field modals) [observable]
- * @property {Function} confirmOnClick Modal confirmation function
  */
 export default class ModalModel {
   constructor(confirmOnClick, title){

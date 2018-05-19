@@ -27,7 +27,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>8/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -217,7 +217,7 @@ export default class CustomerSummary extends Component {
             &lt;h5&gt;Main Information&lt;/h5&gt;
             &lt;div&gt;&lt;h6&gt;Company&lt;/h6&gt;&lt;p&gt;{this.props.website.currentCustomer.companyName}&lt;/p&gt;&lt;/div&gt;
             &lt;div&gt;&lt;h6&gt;Phone Number&lt;/h6&gt;&lt;p&gt;{this.props.website.currentCustomer.phone}&lt;/p&gt;&lt;/div&gt;
-            &lt;div&gt;&lt;h6&gt;Email&lt;/h6&gt;&lt;p&gt;{this.props.website.currentCustomer.email}&lt;/p&gt;&lt;/div&gt;
+            {this.props.website.currentCustomer.email &amp;&amp;&lt;div&gt;&lt;h6&gt;Email&lt;/h6&gt;&lt;p&gt;{this.props.website.currentCustomer.email}&lt;/p&gt;&lt;/div&gt;}
             {this.props.website.currentCustomer.website &amp;&amp; &lt;div&gt;&lt;h6&gt;Website&lt;/h6&gt;&lt;p&gt;{this.props.website.currentCustomer.website}&lt;/p&gt;&lt;/div&gt;}
             {this.props.website.currentCustomer.pastDue &amp;&amp; &lt;div&gt;&lt;h6&gt;Past Due&lt;/h6&gt;&lt;p&gt;{this.props.website.currentCustomer.pastDue}&lt;/p&gt;&lt;/div&gt;}
           &lt;/div&gt;

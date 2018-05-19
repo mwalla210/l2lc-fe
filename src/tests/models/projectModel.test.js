@@ -51,38 +51,26 @@ describe('ProjectModel', () => {
     expect(project.customer).toEqual(null)
   })
 
-  it('Tests get timeSpent', () => {
+  it('Tests get timeSpent (over an hour)', () => {
     let project = new ProjectModel()
-    project.timeEntries[0] = {created: 0}
-    project.timeEntries[1] = {created: 420000}
-    project.timeEntries[2] = {created: 820000}
-    project.timeEntries[3] = {created: 196400000}
-    project.timeSpent
-    expect(typeof(project.timeEntries)).toBe('object')
+    project.timeEntries[0] = {created: new Date('December 17, 1995 03:14:00')}
+    project.timeEntries[1] = {created: new Date('December 17, 1995 03:54:00')}
+    project.timeEntries[2] = {created: new Date('December 18, 1995 03:14:00')}
+    project.timeEntries[3] = {created: new Date('December 18, 1995 04:54:00')}
+    expect(project.timeSpent).toBe('2 hours, 20 minutes')
   })
-
-  it('Tests get timeSpent', () => {
+  it('Tests get timeSpent (an hour)', () => {
     let project = new ProjectModel()
-    project.timeEntries[0] = {created: 3600000}
-    project.timeEntries[1] = {created: 7260000}
-    project.timeEntries[2] = {created: 1525123365596}
-    project.timeEntries[3] = {created: 2525123974645}
-    project.timeEntries[4] = {created: 3525323365596}
-    project.timeEntries[5] = {created: 4525523974645}
-    project.timeSpent
-    expect(typeof(project.timeEntries)).toBe('object')
+    project.timeEntries[0] = {created: new Date('December 17, 1995 03:14:00')}
+    project.timeEntries[1] = {created: new Date('December 17, 1995 04:14:00')}
+    expect(project.timeSpent).toBe('1 hour')
   })
-
-  it('Tests get timeSpent with alternate arguments', () => {
+  it('Tests get timeSpent (one minute)', () => {
     let project = new ProjectModel()
-    project.timeEntries[0] = 1525123365596
-    project.timeEntries[1] = 2525123974645
-    project.timeEntries[2] = 3525323365596
-    project.timeEntries[3] = 4525523974645
-    project.timeSpent
-    expect(typeof(project.timeEntries)).toBe('object')
+    project.timeEntries[0] = {created: new Date('December 17, 1995 03:14:00')}
+    project.timeEntries[1] = {created: new Date('December 17, 1995 03:15:00')}
+    expect(project.timeSpent).toBe('1 minute')
   })
-
   it('Tests changeNotes', () => {
     let project = new ProjectModel(1,'costCenterTitle','jobTypeTitle','title','priority','status',null,1,'desc',1,{},dateFormat(new Date,'mmmm dS, yyyy, h:MM:ss TT'),'')
     project.changeNotes({target:{value:'events'}})

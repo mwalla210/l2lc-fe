@@ -102,7 +102,21 @@ export default class ProjectModel {
    */
   @computed get timeSpent(){
     let {hour, min} = Consts.calculateTime(this.timeEntries)
-    return `${(hour != 0) ? `${hour} hour${(hour > 1) ? 's' : '' }, ` : ''}${(min != 0) ? `${min} minute${(min > 1) ? 's' : ''}`: ''}`
+    return (
+      `${(hour != 0) ?
+        `${hour} hour${(hour > 1) ?
+          's' :
+          ''
+        }${(min != 0) ? ', ': ''}` :
+        ''
+      }${(min != 0) ?
+        `${min} minute${(min > 1) ?
+          's' :
+          ''
+        }` :
+        ''
+      }`
+    )
   }
   /**
    * @name isOpen

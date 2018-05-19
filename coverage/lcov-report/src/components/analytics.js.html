@@ -155,12 +155,9 @@
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
 <a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a>
-<a name='L111'></a><a href='#L111'>111</a>
-<a name='L112'></a><a href='#L112'>112</a>
-<a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -217,13 +214,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -294,11 +284,13 @@ export default class Analytics extends Component {
    * @memberof Analytics.prototype
    * @return {Component}
    * @see {@link https://www.npmjs.com/package/react-chartjs-2 React-ChartJS-2}
+   * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
+   * @see {@link https://github.com/davidhu2000/react-spinners BarLoader}
    */
   render() {
     return (
       &lt;div className="row justify-content-center"&gt;
-        {this.props.page.analyticsModel.map((analytic, index) =&gt; {
+        {this.props.page.analyticsModelList.map((analytic, index) =&gt; {
           let buttons = []
           if (analytic.model.filters &amp;&amp; analytic.model.filters.length &gt; 1){
             analytic.model.filters.map((filter,filterIndex) =&gt; {
@@ -368,16 +360,9 @@ export default class Analytics extends Component {
                           yAxes:[{display:true,ticks:{beginAtZero:true},scaleLabel: {display: true,labelString:analytic.model.yLabel}}],
                           xAxes:[{display:true,ticks:{autoSkip: false}}]
                         },
-                        legend: {
-                          display: false
-                        }
                       }}
                     /&gt; :
-                    &lt;Pie data={analytic.model.jsData} options={{
-                      legend: {
-                        display: false
-                      }
-                    }}/&gt;
+                    &lt;Pie data={analytic.model.jsData}/&gt;
                   }
                 &lt;/div&gt;
               }

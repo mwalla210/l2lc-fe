@@ -1653,9 +1653,10 @@ class Consts {
       let diffHrs = Math.floor((diff % 86400000) / 3600000) // hour
       let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // min
       hour += diffHrs
-      if (min + diffMins > 60){
+      if (min + diffMins >= 60){
         hour += 1
-        min += diffMins - 60
+        min += diffMins
+        min -= 60
       }
       else {
         min += diffMins

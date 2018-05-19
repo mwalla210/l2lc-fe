@@ -22,22 +22,22 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>11/11</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>26/26</span>
+        <span class='fraction'>28/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/5</span>
+        <span class='fraction'>6/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>11/11</span>
       </div>
     </div>
     <p class="quiet">
@@ -274,7 +274,23 @@
 <a name='L226'></a><a href='#L226'>226</a>
 <a name='L227'></a><a href='#L227'>227</a>
 <a name='L228'></a><a href='#L228'>228</a>
-<a name='L229'></a><a href='#L229'>229</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L229'></a><a href='#L229'>229</a>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a>
+<a name='L234'></a><a href='#L234'>234</a>
+<a name='L235'></a><a href='#L235'>235</a>
+<a name='L236'></a><a href='#L236'>236</a>
+<a name='L237'></a><a href='#L237'>237</a>
+<a name='L238'></a><a href='#L238'>238</a>
+<a name='L239'></a><a href='#L239'>239</a>
+<a name='L240'></a><a href='#L240'>240</a>
+<a name='L241'></a><a href='#L241'>241</a>
+<a name='L242'></a><a href='#L242'>242</a>
+<a name='L243'></a><a href='#L243'>243</a>
+<a name='L244'></a><a href='#L244'>244</a>
+<a name='L245'></a><a href='#L245'>245</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -293,10 +309,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -333,12 +350,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -525,6 +557,7 @@ export default class ProjectSummary extends Component {
     this.tasksClick = this.tasksClick.bind(this)
     this.printClick = this.printClick.bind(this)
     this.timeEntries = this.timeEntries.bind(this)
+    this.customer = this.customer.bind(this)
   }
 &nbsp;
   /**
@@ -556,6 +589,16 @@ export default class ProjectSummary extends Component {
   }
 &nbsp;
   /**
+   * On click handler for time entry button
+   * @method customer
+   * @memberof ProjectSummary.prototype
+   */
+  customer(){
+    this.props.website.setCustomer(this.props.website.currentProject.customer)
+    this.props.page.customerSummaryPage()
+  }
+&nbsp;
+  /**
    * Renders HTML div component containing DeleteModal, PromptModal, project info, project barcode, and project buttons
    * @method render
    * @memberof ProjectSummary.prototype
@@ -563,6 +606,8 @@ export default class ProjectSummary extends Component {
    * @see {@link Barcode}
    * @see {@link DeleteModal}
    * @see {@link PromptModal}
+   * @see {@link ButtonDefault}
+   * @see {@link Consts}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    */
   render() {
@@ -590,7 +635,7 @@ export default class ProjectSummary extends Component {
             &lt;h5&gt;Main Information&lt;/h5&gt;
             {this.props.website.currentProject.title &amp;&amp;
               &lt;div&gt;
-                &lt;h6&gt;Title&lt;/h6&gt;
+                &lt;h6&gt;Description&lt;/h6&gt;
                 &lt;p&gt;{this.props.website.currentProject.title}&lt;/p&gt;
               &lt;/div&gt;
             }
@@ -653,7 +698,7 @@ export default class ProjectSummary extends Component {
                 &lt;p&gt;{this.props.website.currentProject.timeSpent}&lt;/p&gt;
               &lt;/div&gt;
             }
-            {this.props.website.currentProject.partCount &amp;&amp;
+            {this.props.website.currentProject.partCount != null &amp;&amp;
               &lt;div&gt;
                 &lt;h6&gt;Part Count&lt;/h6&gt;
                 &lt;p&gt;{this.props.website.currentProject.partCount}&lt;/p&gt;
@@ -661,7 +706,7 @@ export default class ProjectSummary extends Component {
             }
             {this.props.website.currentProject.descr &amp;&amp;
               &lt;div&gt;
-                &lt;h6&gt;Description&lt;/h6&gt;
+                &lt;h6&gt;Details&lt;/h6&gt;
                 &lt;p&gt;{this.props.website.currentProject.descr}&lt;/p&gt;
               &lt;/div&gt;
             }
@@ -687,6 +732,9 @@ export default class ProjectSummary extends Component {
               &lt;DropdownMenu&gt;
                 &lt;DropdownItem onClick={this.tasksClick}&gt;Tasks&lt;/DropdownItem&gt;
                 &lt;DropdownItem onClick={this.timeEntries}&gt;Time Entries&lt;/DropdownItem&gt;
+                {this.props.website.currentProject.customer.companyName &amp;&amp;
+                  &lt;DropdownItem onClick={this.customer}&gt;Customer&lt;/DropdownItem&gt;
+                }
               &lt;/DropdownMenu&gt;
             &lt;/ButtonDropdown&gt;
             &lt;ButtonDropdown

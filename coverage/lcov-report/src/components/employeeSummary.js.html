@@ -112,20 +112,7 @@
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,16 +136,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -201,14 +178,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
 import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, ButtonGroup} from 'reactstrap'
 // import DeleteModal from './deleteModal'
 import ButtonDefault from './buttonDefault'
-import Consts from '../consts'
 &nbsp;
 /**
  * EmployeeSummary component
@@ -236,26 +211,15 @@ export default class EmployeeSummary extends Component {
    * @return {Component}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    * @see {@link Barcode}
+   * @see {@link ButtonDefault}
    */
   render() {
-    /*
-    &lt;DeleteModal
-      title="Delete Employee?"
-      confirmOnClick={this.props.page.summaryModel.deleteModal.confirmAndClose}
-      denyOnClick={this.props.page.summaryModel.deleteModal.closeModal}
-      open={this.props.page.summaryModel.deleteModal.modalOpen}
-      closeFn={this.props.page.summaryModel.deleteModal.closeModal}
-      content="This action cannot be undone."
-    /&gt;
-    &lt;MenuItem onSelect={this.props.page.summaryModel.deleteModal.openModal}&gt;Delete&lt;/MenuItem&gt;
-     */
     return (
       &lt;div&gt;
         &lt;div className="row justify-content-center"&gt;
-          &lt;div {...Consts.summaryProps}&gt;
+          &lt;div&gt;
             &lt;div&gt;
-              &lt;h6&gt;Name&lt;/h6&gt;
-              &lt;p&gt;{this.props.website.currentEmployee.fullName}&lt;/p&gt;
+              &lt;h3&gt;{'ID: ' + this.props.website.currentEmployee.id}&lt;/h3&gt;
             &lt;/div&gt;
           &lt;/div&gt;
         &lt;/div&gt;

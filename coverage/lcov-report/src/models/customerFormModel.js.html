@@ -220,12 +220,14 @@
 <a name='L172'></a><a href='#L172'>172</a>
 <a name='L173'></a><a href='#L173'>173</a>
 <a name='L174'></a><a href='#L174'>174</a>
-<a name='L175'></a><a href='#L175'>175</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -406,9 +408,10 @@ useStrict(true)
   * @class CustomerFormModel
   * @classdesc Customer initializer for form storage object
   * @description Creates fields, sets correct onClick
+  * @param {Function} onClickNav Page navigation function for successful form submission
+  * @param {Function} onCancelNav Page navigation function for cancelled form submission
+  * @param {Function} errorClick Page navigation function for error modal confirmation click
   * @property {Function} onClickNav Page navigation function for successful form submission
-  * @property {Function} onCancelNav Page navigation function for cancelled form submission
-  * @property {Function} errorClick Page navigation function for error modal confirmation click
   * @extends FormModel
  */
 export default class CustomerFormModel extends FormModel{

@@ -82,7 +82,11 @@
 <a name='L34'></a><a href='#L34'>34</a>
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,6 +132,7 @@ import { Button } from 'reactstrap'
  * @property {Function} onClick Button click function
  * @property {String} iconName Name of icon to render for button
  * @property {Object} [styleProps] Object of style properties if needed
+ * @property {Boolean} [disabled] Disabled indicator (used by user roles)
  * @extends React.Component
  */
 export default class CircleButton extends Component {
@@ -143,6 +148,7 @@ export default class CircleButton extends Component {
    * @method render
    * @memberof CircleButton.prototype
    * @return {Component}
+   * @see {@link https://reactstrap.github.io/components/buttons/ Reactstrap.Buttons}
    */
   render(){
     let fileName = '../../style/open-iconic-master/svg/'

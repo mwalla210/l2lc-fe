@@ -94,7 +94,12 @@
 <a name='L46'></a><a href='#L46'>46</a>
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">16x</span>
@@ -110,8 +115,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -151,18 +161,23 @@ useStrict(true)
  * @name UserModel
  * @class UserModel
  * @classdesc User storage object
+ * @param {Number} id Database ID of the user
+ * @param {String} username Username of the user [observable]
+ * @param {?String} [stationID] Station name of the user, if any [observable]
+ * @param {Boolean} [admin=false] Admin indicator of user [observable]
+ * @property {String} editUsername Empty field for editing username [observable]
+ * @property {String} editPassword Empty field for editing password [observable]
  * @property {Number} id Database ID of the user
  * @property {String} username Username of the user [observable]
- * @property {?String} [stationID=null] Station name of the user, if any [observable]
+ * @property {?String} [stationID] Station name of the user, if any [observable]
  * @property {Boolean} [admin=false] Admin indicator of user [observable]
  */
 export default class UserModel {
   constructor(id, username, stationID, admin=false) {
     let addtlProps = {
-      username, // changeable?
-      stationID, // changeable?
+      username,
+      stationID,
       admin,
-      // may need token or other form of login item for authorization
       //Optional
       editUsername: '',
       editPassword: ''

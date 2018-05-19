@@ -173,7 +173,7 @@ export default class Barcode extends Component {
    * @see {@link http://lindell.me/JsBarcode/ JsBarcode}
    */
   renderBarcode(){
-    JsBarcode(`#${this.props.imageDomID}`, `${this.props.barcodeID}`, {displayValue: false, height: 40, format: 'CODE39'})
+    JsBarcode(`#${this.props.imageDomID}`, `${this.props.barcodeID}`, {displayValue: false, height: 100, width: 4, format: 'CODE39'})
   }
 &nbsp;
   /**

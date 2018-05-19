@@ -7,7 +7,6 @@ jest.mock('../../store/website', () => {
     }
   }
 })
-import Website from '../../store/website'
 jest.mock('../../api', () => {
   return {
     updateTask: jest.fn().mockReturnValueOnce(Promise.resolve(null))
@@ -15,39 +14,12 @@ jest.mock('../../api', () => {
 })
 
 describe('TaskModel', () => {
-  xit('Tests constructor', () => {
+  it('Tests constructor', () => {
     let task = new TaskModel(true, 'title','processArea')
     expect(task).toHaveProperty('title')
-    expect(task.status).toBe('Not Started')
   })
   it('Tests toggleRequired', () => {
     let task = new TaskModel(true, 'title','processArea')
     task.toggleRequired()
-  })
-  xit('Tests status (one entry)', () => {
-    Website.currentProject.timeEntries = [
-      {
-        station: 'processArea'
-      },
-      {
-        station: 'notProcessArea'
-      }
-    ]
-    let task = new TaskModel(true, 'title','processArea')
-    expect(Website.currentProject.timeEntries.length).toBe(2)
-    expect(task.status).toBe('At Station')
-  })
-  xit('Tests status (two entries)', () => {
-    Website.currentProject.timeEntries = [
-      {
-        station: 'processArea'
-      },
-      {
-        station: 'processArea'
-      },
-    ]
-    let task = new TaskModel(true, 'title','processArea')
-    expect(Website.currentProject.timeEntries.length).toBe(2)
-    expect(task.status).toBe('Not At Station')
   })
 })

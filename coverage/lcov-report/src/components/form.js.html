@@ -27,7 +27,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -212,7 +212,14 @@
 <a name='L164'></a><a href='#L164'>164</a>
 <a name='L165'></a><a href='#L165'>165</a>
 <a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -301,6 +308,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -319,7 +333,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
@@ -465,6 +479,13 @@ export default class Form extends Component {
    * @return {Component}
    * @see {@link PromptModal}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
+   * @see {@link SelectField}
+   * @see {@link TextField}
+   * @see {@link TextAreaField}
+   * @see {@link CheckBoxField}
+   * @see {@link FormItem}
+   * @see {@link ButtonPrimary}
+   * @see {@link ButtonDefault}
    */
   render() {
     return(
@@ -483,9 +504,9 @@ export default class Form extends Component {
         /&gt;
         &lt;form className="col-sm-6"&gt;
           {this.props.page.formModel.fields.map((field, index) =&gt; {
-            let first = true
-            if(index != 0){
-              first = false
+            let first = (index == 0)
+            if(field.focus != undefined){
+              first = field.focus
             }
             let child = null
             let props = {
@@ -496,17 +517,17 @@ export default class Form extends Component {
               onChange: this.onChange(index, field.type == 'checkbox'),
               onBlur: this.onBlur(index),
               valid: field.isValid,
-              focus: first,
+              focus: (field.focus || first),
             }
             switch (field.type){
               case 'select':
-                child = &lt;SelectField autoFocus {...props} options={field.options}/&gt;
+                child = &lt;SelectField {...props} options={field.options}/&gt;
                 break
               case 'textfield':
-                child = &lt;TextField autoFocus {...props} password={field.password}/&gt;
+                child = &lt;TextField {...props} password={field.password}/&gt;
                 break
               case 'textarea':
-                child = &lt;TextAreaField autoFocus {...props} rows={field.rows}/&gt;
+                child = &lt;TextAreaField {...props} rows={field.rows}/&gt;
                 break
               case 'checkbox':
                 child = &lt;CheckboxField {...props}/&gt;

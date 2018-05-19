@@ -130,14 +130,21 @@
 <a name='L82'></a><a href='#L82'>82</a>
 <a name='L83'></a><a href='#L83'>83</a>
 <a name='L84'></a><a href='#L84'>84</a>
-<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -192,6 +199,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -227,12 +235,15 @@ useStrict(true)
   * @name EmployeeTableModel
   * @class EmployeeTableModel
   * @classdesc Employee initializer for table storage object
-  * @description Creates fields, sets correct onClick
-  * @property {Function} buttonClickNav Function to navigate on click of table button
-  * @property {Function} infoClickNav Function to navigate on click of info icon
-  * @property {Function} editClickNav Function to navigate on click of edit icon
+  * @description Sets correct onClicks, table columns, and actions
+  * @param {Function} buttonClickNav Function to navigate on click of table button
+  * @param {Function} infoClickNav Function to navigate on click of info icon
+  * @param {Function} editClickNav Function to navigate on click of edit icon
+  * @property {Function} infoClickNav Function to navigate on click of info icon [observable]
+  * @property {Function} editClickNav Function to navigate on click of edit icon [observable]
   * @extends TableModel
   * @see {@link TableActionCell}
+  * @see {@link API}
  */
 export default class EmployeeTableModel extends TableModel{
   constructor(buttonClickNav, infoClickNav, editClickNav) {
@@ -286,6 +297,7 @@ export default class EmployeeTableModel extends TableModel{
    * @param  {Object}     row   Row of click
    * @param  {String}     type  Icon click type
    * @memberof EmployeeTableModel.prototype
+   * @see {@link Website}
    */
   clickHandler(row, type){
     if (type == 'info' || type == 'edit'){
