@@ -27,7 +27,7 @@ exports[`Table Renders with back button 1`] = `
       onClick={
         Object {
           "className": "btn-secondary",
-          "onClick": [MockFunction],
+          "onClick": [Function],
           "title": "Back",
         }
       }

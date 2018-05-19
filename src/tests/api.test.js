@@ -178,6 +178,7 @@ nock('https://api.line2linecoatings.us:8443/l2lc/api/')
         refNumber: 'refNumber',
         created: '1995-12-17T03:24:00',
         finished: '1996-12-17T03:24:00',
+        notes: 'notes'
       },
       {
         id: '2',

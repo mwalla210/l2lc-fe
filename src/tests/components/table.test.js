@@ -62,7 +62,7 @@ describe('Table', () => {
     let options = Object.assign({}, defaultOptions)
     options.page.tableModel.tableButton = {
       title: 'Button',
-      onClick: jest.fn()
+      onClick: () => {}
     }
     const component = renderer.create(
       <Table {...options}/>,
@@ -75,7 +75,7 @@ describe('Table', () => {
     options.page.tableModel.backButtonFunc = {
       title: 'Back',
       className: "btn-secondary",
-      onClick: jest.fn()
+      onClick: () => {}
     }
     const component = renderer.create(
       <Table {...options}/>,

@@ -15,20 +15,37 @@ jest.mock('../../components/draggableRow')
 const defaultOptions = {
   page: {
     tableModel: {
-      confirmAndClose: jest.fn(),
+      confirmAndClose: () => {
+        console.log('confirmAndClose')
+      },
       closeModal: jest.fn(),
+      openModal: jest.fn(),
       move: jest.fn(),
       taskConfirmAndClose: jest.fn(),
       taskCloseModal: jest.fn(),
       defaultTaskListModalOpen: false,
       data: [],
       columns: [],
-      loading: false
+      loading: false,
+      deleteModal: {
+        title: 'Delete',
+        content: 'content'
+      },
+      tableButton: {
+        title: 'Button',
+        onClick: jest.fn()
+      }
     }
   },
+  website: {
+    currentProject: {
+      notes: '',
+      changeNotes: jest.fn()
+    }
+  }
 }
 describe('DraggableTable', () => {
-  xit ('Renders with snapshot', () => {
+  it ('Renders with snapshot', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
       <DraggableTable {...options}/>,
@@ -36,7 +53,7 @@ describe('DraggableTable', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  xit ('Renders with long data', () => {
+  it ('Renders with long data', () => {
     let options = Object.assign({}, defaultOptions)
     options.page.tableModel.data = [
       {},{},{},{},{},
@@ -47,31 +64,7 @@ describe('DraggableTable', () => {
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
-  xit ('Renders with deleteModal', () => {
-    let options = Object.assign({}, defaultOptions)
-    options.page.tableModel.deleteModal = {
-      title: 'Delete',
-      content: 'content'
-    }
-    const component = renderer.create(
-      <DraggableTable {...options}/>,
-    )
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-  xit ('Renders with tableButton', () => {
-    let options = Object.assign({}, defaultOptions)
-    options.page.tableModel.tableButton = {
-      title: 'Button',
-      onClick: jest.fn()
-    }
-    const component = renderer.create(
-      <DraggableTable {...options}/>,
-    )
-    let tree = component.toJSON()
-    expect(tree).toMatchSnapshot()
-  })
-  xit ('Renders and calls printClick', () => {
+  it ('Renders and calls printClick', () => {
     let options = Object.assign({}, defaultOptions)
     global.print = jest.fn()
     const component = renderer.create(
@@ -81,7 +74,7 @@ describe('DraggableTable', () => {
     inst.printClick()
     expect(global.print).toBeCalled()
   })
-  xit ('Renders and calls rowProps (null row)', () => {
+  it ('Renders and calls rowProps (null row)', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
       <DraggableTable {...options}/>,
@@ -89,12 +82,22 @@ describe('DraggableTable', () => {
     const inst = component.getInstance()
     expect(Object.keys(inst.rowProps({},null)).length).toBe(0)
   })
-  xit ('Renders and calls rowProps (object row)', () => {
+  it ('Renders and calls rowProps (object row)', () => {
     let options = Object.assign({}, defaultOptions)
     const component = renderer.create(
       <DraggableTable {...options}/>,
     )
     const inst = component.getInstance()
     expect(Object.keys(inst.rowProps({},{index: 1})).length).toBe(3)
+  })
+  it ('Renders and calls confirmOnClick', () => {
+    let options = Object.assign({}, defaultOptions)
+    const component = renderer.create(
+      <DraggableTable {...options}/>,
+    )
+    const inst = component.getInstance()
+    global.console = {log: jest.fn()}
+    inst.confirmOnClick()
+    expect(console.log).toBeCalled()
   })
 })

@@ -1,6 +1,5 @@
 import AnalyticsModel from '../../models/analyticsModel'
 
-
 describe('AnalyticsModel', () => {
   it ('Tests constructor', () => {
     let analytics = new AnalyticsModel([{type: 'bar'}], 'bar')
@@ -56,9 +55,11 @@ describe('AnalyticsModel', () => {
     analytics.timeFilterData(new Date('December 15, 1995 03:24:00'), 'filter')
     expect(analytics.currentTimeFrame).toBe('filter')
   })
-  it ('Tests timeFilterData (null date)', () => {
+  it ('Tests timeFilterData (null date) & has currentFilter', () => {
     let analytics = new AnalyticsModel(null, 'bar')
     analytics.processor = jest.fn()
+    analytics.filters = [{type: 'currentFilter'}]
+    analytics.currentFilter = 'currentFilter'
     analytics.currentTimeFrame = 'something else'
     expect(analytics.currentTimeFrame).toBe('something else')
     analytics.timeFilterData(null, 'filter')
