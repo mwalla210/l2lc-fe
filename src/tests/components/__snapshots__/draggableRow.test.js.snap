@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DraggableRow Renders while dragging, with cursor 1`] = `
+<div
+  className="rt-tr"
+  id={1}
+  role="row"
+  style={
+    Object {
+      "cursor": "-webkit-grabbing",
+    }
+  }
+/>
+`;
+
+exports[`DraggableRow Renders with snapshot 1`] = `
+<div
+  className="rt-tr"
+  id={1}
+  role="row"
+  style={
+    Object {
+      "cursor": "-webkit-grab",
+    }
+  }
+/>
+`;

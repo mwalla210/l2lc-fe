@@ -1,0 +1,694 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 1-2 Days, status Completed, hold.flag false) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Description
+        </h6>
+        <p>
+          title
+        </p>
+      </div>
+      <div>
+        <h6>
+          Priority
+        </h6>
+        <p>
+          <span>
+            <img
+              src="../../style/open-iconic-master/svg/clock.svg"
+              style={
+                Object {
+                  "width": "13px",
+                }
+              }
+            />
+             1-2 Days
+          </span>
+        </p>
+      </div>
+      <div>
+        <h6>
+          Status
+        </h6>
+        <p>
+          <span>
+            <span
+              style={
+                Object {
+                  "color": "#49a4ff",
+                  "transition": "all .3s ease",
+                }
+              }
+            >
+              ●
+            </span>
+             Completed
+          </span>
+        </p>
+      </div>
+      <div>
+        <h6>
+          Cost Center
+        </h6>
+        <p>
+          CC
+        </p>
+      </div>
+      <div>
+        <h6>
+          Project Type
+        </h6>
+        <p>
+          JT
+        </p>
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Additional Information
+      </h5>
+      <div>
+        <h6>
+          Customer Name
+        </h6>
+        <p>
+          company
+        </p>
+      </div>
+      <div>
+        <h6>
+          Date Created
+        </h6>
+        <p>
+          dateCreated
+        </p>
+      </div>
+      <div>
+        <h6>
+          Date Finished
+        </h6>
+        <p>
+          dateFinished
+        </p>
+      </div>
+      <div>
+        <h6>
+          Time Spent
+        </h6>
+        <p>
+          time
+        </p>
+      </div>
+      <div>
+        <h6>
+          Part Count
+        </h6>
+        <p>
+          parts
+        </p>
+      </div>
+      <div>
+        <h6>
+          Details
+        </h6>
+        <p>
+          descr
+        </p>
+      </div>
+      <div>
+        <h6>
+          Job/Work Order Number
+        </h6>
+        <p>
+          ref
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  />
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Tasks
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Time Entries
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Customer
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            disabled={true}
+            onClick={[MockFunction]}
+          >
+            Edit Details
+          </DropdownItem>
+          <DropdownItem
+            disabled={true}
+            onClick={[MockFunction]}
+          >
+            Edit Customer
+          </DropdownItem>
+          <DropdownItem
+            disabled={true}
+            onClick={[MockFunction]}
+          >
+            Complete
+          </DropdownItem>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Delete
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 3 Days, status On Hold, hold.flag true) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Description
+        </h6>
+        <p>
+          title
+        </p>
+      </div>
+      <div>
+        <h6>
+          Priority
+        </h6>
+        <p>
+          <span>
+            <img
+              src="../../style/open-iconic-master/svg/calendar.svg"
+              style={
+                Object {
+                  "width": "13px",
+                }
+              }
+            />
+             3 Days
+          </span>
+        </p>
+      </div>
+      <div>
+        <h6>
+          Status
+        </h6>
+        <p>
+          <span>
+            <span
+              style={
+                Object {
+                  "color": "#ffbf00",
+                  "transition": "all .3s ease",
+                }
+              }
+            >
+              ●
+            </span>
+             On Hold
+          </span>
+        </p>
+      </div>
+      <div>
+        <h6>
+          Cost Center
+        </h6>
+        <p>
+          CC
+        </p>
+      </div>
+      <div>
+        <h6>
+          Project Type
+        </h6>
+        <p>
+          JT
+        </p>
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Additional Information
+      </h5>
+      <div>
+        <h6>
+          Customer Name
+        </h6>
+        <p>
+          company
+        </p>
+      </div>
+      <div>
+        <h6>
+          Date Created
+        </h6>
+        <p>
+          dateCreated
+        </p>
+      </div>
+      <div>
+        <h6>
+          Date Finished
+        </h6>
+        <p>
+          dateFinished
+        </p>
+      </div>
+      <div>
+        <h6>
+          Time Spent
+        </h6>
+        <p>
+          time
+        </p>
+      </div>
+      <div>
+        <h6>
+          Part Count
+        </h6>
+        <p>
+          parts
+        </p>
+      </div>
+      <div>
+        <h6>
+          Details
+        </h6>
+        <p>
+          descr
+        </p>
+      </div>
+      <div>
+        <h6>
+          Job/Work Order Number
+        </h6>
+        <p>
+          ref
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  />
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Tasks
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Time Entries
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Customer
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            disabled={false}
+            onClick={[MockFunction]}
+          >
+            Edit Details
+          </DropdownItem>
+          <DropdownItem
+            disabled={false}
+            onClick={[MockFunction]}
+          >
+            Edit Customer
+          </DropdownItem>
+          <DropdownItem
+            disabled={false}
+            onClick={[MockFunction]}
+          >
+            Complete
+          </DropdownItem>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Delete
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`ProjectSummary Renders with snapshot (website.currentProject: priority 4-5 Days, status (!Completed, !On Hold), hold.flag false) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Description
+        </h6>
+        <p>
+          title
+        </p>
+      </div>
+      <div>
+        <h6>
+          Priority
+        </h6>
+        <p>
+          <span>
+            <img
+              src="../../style/open-iconic-master/svg/calendar.svg"
+              style={
+                Object {
+                  "width": "13px",
+                }
+              }
+            />
+             4-5 Days
+          </span>
+        </p>
+      </div>
+      <div>
+        <h6>
+          Status
+        </h6>
+        <p>
+          <span>
+            <span
+              style={
+                Object {
+                  "color": "#57d500",
+                  "transition": "all .3s ease",
+                }
+              }
+            >
+              ●
+            </span>
+             Received
+          </span>
+        </p>
+      </div>
+      <div>
+        <h6>
+          Cost Center
+        </h6>
+        <p>
+          CC
+        </p>
+      </div>
+      <div>
+        <h6>
+          Project Type
+        </h6>
+        <p>
+          JT
+        </p>
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Additional Information
+      </h5>
+      <div>
+        <h6>
+          Customer Name
+        </h6>
+        <p>
+          company
+        </p>
+      </div>
+      <div>
+        <h6>
+          Date Created
+        </h6>
+        <p>
+          dateCreated
+        </p>
+      </div>
+      <div>
+        <h6>
+          Date Finished
+        </h6>
+        <p>
+          dateFinished
+        </p>
+      </div>
+      <div>
+        <h6>
+          Time Spent
+        </h6>
+        <p>
+          time
+        </p>
+      </div>
+      <div>
+        <h6>
+          Part Count
+        </h6>
+        <p>
+          parts
+        </p>
+      </div>
+      <div>
+        <h6>
+          Details
+        </h6>
+        <p>
+          descr
+        </p>
+      </div>
+      <div>
+        <h6>
+          Job/Work Order Number
+        </h6>
+        <p>
+          ref
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  />
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Tasks
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Time Entries
+          </DropdownItem>
+          <DropdownItem
+            onClick={[Function]}
+          >
+            Customer
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            disabled={false}
+            onClick={[MockFunction]}
+          >
+            Edit Details
+          </DropdownItem>
+          <DropdownItem
+            disabled={false}
+            onClick={[MockFunction]}
+          >
+            Edit Customer
+          </DropdownItem>
+          <DropdownItem
+            disabled={false}
+            onClick={[MockFunction]}
+          >
+            Complete
+          </DropdownItem>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Delete
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;

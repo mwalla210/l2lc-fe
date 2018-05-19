@@ -25,7 +25,7 @@
     props.forEach(function(prop) {
         if (!prop) { return; }
 
-        if (prop.optional || prop.nullable || prop.description.includes("observable")) {
+        if (prop.optional || prop.nullable || prop.description && prop.description.includes("observable")) {
             props.hasAttributes = true;
         }
 

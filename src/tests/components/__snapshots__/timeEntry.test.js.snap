@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeEntry Renders 1`] = `
+<div
+  className="row justify-content-center"
+>
+  <div
+    className="col-6"
+  >
+    <p>
+      Scan all projects and employees first, then scan station.
+    </p>
+    <form>
+      <textarea
+        autoFocus={true}
+        className="form-control"
+        onChange={[Function]}
+        rows="5"
+        style={
+          Object {
+            "marginBottom": "10px",
+          }
+        }
+        value={undefined}
+      />
+      <p>
+        Project ID: undefined
+      </p>
+      <p>
+        Employee ID: undefined
+      </p>
+      <p>
+        Station: undefined
+      </p>
+      <div
+        className="row justify-content-center"
+      >
+        <div
+          className="btn-toolbar"
+          role="toolbar"
+        >
+          <div
+            className="btn-group"
+            role="group"
+          >
+            <button
+              className="btn btn-outline-secondary"
+              disabled={undefined}
+              onClick={[Function]}
+              style={undefined}
+              type="button"
+            >
+              Clear
+            </button>
+            <button
+              className="btn btn-primary"
+              disabled={undefined}
+              onClick={[Function]}
+              style={undefined}
+              type="button"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div
+    className="col-10"
+  >
+    <textarea
+      className="form-control"
+      disabled={true}
+      rows="11"
+      style={
+        Object {
+          "marginTop": "10px",
+        }
+      }
+      value={undefined}
+    />
+  </div>
+</div>
+`;

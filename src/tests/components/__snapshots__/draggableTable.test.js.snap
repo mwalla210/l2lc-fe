@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DraggableTable Renders with long data 1`] = `
+<div>
+  <div />
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  >
+    <ReactTable
+      TrComponent={[MockFunction]}
+      columns={Array []}
+      data={
+        Array [
+          Object {},
+          Object {},
+          Object {},
+          Object {},
+          Object {},
+        ]
+      }
+      getTrProps={[Function]}
+      loading={false}
+      pageSize={5}
+      showPagination={false}
+    />
+  </div>
+  <br />
+  <label>
+    Notes
+  </label>
+  <div
+    className="row justify-content-center"
+  >
+    <textarea
+      className="form-control"
+      id="notes"
+      onChange={[MockFunction]}
+      rows="3"
+      type="text"
+      value=""
+    />
+    <ButtonGroup />
+  </div>
+</div>
+`;
+
+exports[`DraggableTable Renders with snapshot 1`] = `
+<div>
+  <div />
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  >
+    <ReactTable
+      TrComponent={[MockFunction]}
+      columns={Array []}
+      data={Array []}
+      getTrProps={[Function]}
+      loading={false}
+      pageSize={5}
+      showPagination={false}
+    />
+  </div>
+  <br />
+  <label>
+    Notes
+  </label>
+  <div
+    className="row justify-content-center"
+  >
+    <textarea
+      className="form-control"
+      id="notes"
+      onChange={[MockFunction]}
+      rows="3"
+      type="text"
+      value=""
+    />
+    <ButtonGroup />
+  </div>
+</div>
+`;

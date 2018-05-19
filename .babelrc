@@ -1,11 +1,18 @@
 {
   "presets": [
       "es2015",
+      "env",
       "react",
-      "stage-2"
-    ],
-    "plugins": [
-      "transform-decorators-legacy",
-      "transform-class-properties"
-    ]
+      "stage-0"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "emotion"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["remove-decorator"]
+    }
+  }
 }

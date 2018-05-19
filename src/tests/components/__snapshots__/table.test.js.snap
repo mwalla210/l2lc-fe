@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table Renders with back button 1`] = `
+<div>
+  <div />
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  >
+    <ReactTable
+      columns={Array []}
+      data={Array []}
+      defaultFilterMethod={[Function]}
+      getTrProps={[Function]}
+      loading={false}
+    />
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <button
+      className="btn btn-secondary"
+      disabled={undefined}
+      onClick={
+        Object {
+          "className": "btn-secondary",
+          "onClick": [Function],
+          "title": "Back",
+        }
+      }
+      style={
+        Object {
+          "marginBottom": "10px",
+        }
+      }
+      type="button"
+    >
+      Back
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Table Renders with default content 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  >
+    <ReactTable
+      columns={Array []}
+      data={Array []}
+      defaultFilterMethod={[Function]}
+      loading={false}
+    />
+  </div>
+</div>
+`;
+
+exports[`Table Renders with deleteModal 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  >
+    <ReactTable
+      columns={Array []}
+      data={Array []}
+      defaultFilterMethod={[Function]}
+      loading={false}
+    />
+  </div>
+</div>
+`;
+
+exports[`Table Renders with styling, checks styling function calling 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  >
+    <ReactTable
+      columns={Array []}
+      data={Array []}
+      defaultFilterMethod={[Function]}
+      getTrProps={[Function]}
+      loading={false}
+    />
+  </div>
+</div>
+`;
+
+exports[`Table Renders with tableButton 1`] = `
+<div>
+  <div />
+  <div
+    style={
+      Object {
+        "clear": "both",
+      }
+    }
+  >
+    <ReactTable
+      columns={Array []}
+      data={Array []}
+      defaultFilterMethod={[Function]}
+      getTrProps={[Function]}
+      loading={false}
+    />
+  </div>
+</div>
+`;

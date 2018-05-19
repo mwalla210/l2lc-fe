@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField Renders with valid false, no password 1`] = `
+<input
+  autoFocus={false}
+  className="form-control"
+  disabled={false}
+  id=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "borderColor": "orange",
+    }
+  }
+  type="text"
+  value=""
+/>
+`;
+
+exports[`TextField Renders with valid false, password false 1`] = `
+<input
+  autoFocus={false}
+  className="form-control"
+  disabled={false}
+  id=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "borderColor": "orange",
+    }
+  }
+  type="password"
+  value=""
+/>
+`;
+
+exports[`TextField Renders with valid false, password true 1`] = `
+<input
+  autoFocus={false}
+  className="form-control"
+  disabled={false}
+  id=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "borderColor": "orange",
+    }
+  }
+  type="text"
+  value=""
+/>
+`;
+
+exports[`TextField Renders with valid true 1`] = `
+<input
+  autoFocus={false}
+  className="form-control"
+  disabled={false}
+  id=""
+  onBlur={[MockFunction]}
+  onChange={[MockFunction]}
+  style={
+    Object {
+      "borderColor": "",
+    }
+  }
+  type="text"
+  value=""
+/>
+`;

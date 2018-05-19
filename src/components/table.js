@@ -1,100 +1,122 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { observer } from 'mobx-react'
-import { toJS } from 'mobx'
+import { observer, inject } from 'mobx-react'
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
+import TableButton from './tableButton'
+import DeleteModal from './deleteModal'
+import ButtonDefault from './buttonDefault'
 
-@observer
+/**
+ * Table component; constructor binds functions
+ * @namespace Table
+ * @extends React.Component
+ * @see {@link PageStore @inject PageStore}
+ */
+@inject ('page') @observer
 export default class Table extends Component {
-  static propTypes = {
-    tableModel: PropTypes.object.isRequired,
-  }
-
   constructor(props){
     super(props)
-    this.props.tableModel.dataFetch()
+    this.filter = this.filter.bind(this)
+    this.confirmOnClick = this.confirmOnClick.bind(this)
+    this.props.page.tableModel.confirmAndClose = this.props.page.tableModel.confirmAndClose.bind(this.props.page.tableModel)
+    this.props.page.tableModel.closeModal = this.props.page.tableModel.closeModal.bind(this.props.page.tableModel)
   }
 
+  /**
+   * Filters a row in table
+   * @method filter
+   * @memberof Table.prototype
+   * @param {Object} filter Row filter content
+   * @param {Object} row Row content
+   */
+  filter(filter, row){
+    const id = filter.pivotId || filter.id
+    return (row[id] !== undefined) ? String(row[id]).toLowerCase().includes(filter.value.toLowerCase()) : false
+  }
+
+  /**
+   * Calls confirmAndClose for delete modal if any
+   * @method confirmOnClick
+   * @memberof Table.prototype
+   */
+  confirmOnClick(){
+    this.props.page.tableModel.confirmAndClose()
+  }
+
+  /**
+   * Renders HTML div component, containing TableButton, DeleteModal, and ReactTable
+   * @method render
+   * @memberof Table.prototype
+   * @return {Component}
+   * @see {@link https://react-table.js.org/#/story/readme ReactTable}
+   * @see {@link DeleteModal}
+   * @see {@link TableButton}
+   * @see {@link ButtonDefault}
+   */
   render() {
-    // const data = [
-    //   {
-    //     name: 'Tanner Linsley',
-    //     age: 26,
-    //     friend: {
-    //       name: 'Jason Maurer',
-    //       age: 23,
-    //     }
-    //   }
-    // ]
-    // const columns = [
-    //   {
-    //     Header: 'Name',
-    //     accessor: 'name' // String-based value accessors!
-    //   },
-    //   {
-    //     Header: 'Age',
-    //     accessor: 'age',
-    //     Cell: props => <span className='number'>{props.value}</span> // Custom cell components!
-    //   },
-    //   {
-    //     id: 'friendName', // Required because our accessor is not a string
-    //     Header: 'Friend Name',
-    //     accessor: d => d.friend.name // Custom value accessors!
-    //   },
-    //   {
-    //     Header: props => <span>Friend Age</span>, // Custom header components!
-    //     accessor: 'friend.age'
-    //   }
-    // ]
-
-    /* Custom onClick
-    getTdProps={(state, rowInfo, column, instance) => {
-      return {
-        onClick: (e, handleOriginal) => {
-          console.log('A Td Element was clicked!')
-          console.log('it produced this event:', e)
-          console.log('It was in this column:', column)
-          console.log('It was in this row:', rowInfo)
-          console.log('It was in this table instance:', instance)
-
-          // IMPORTANT! React-Table uses onClick internally to trigger
-          // events like expanding SubComponents and pivots.
-          // By default a custom 'onClick' handler will override this functionality.
-          // If you want to fire the original onClick handler, call the
-          // 'handleOriginal' function.
-          if (handleOriginal) {
-            handleOriginal()
-          }
-        }
-      }
-    }}
-    getTrProps={(state, rowInfo, column) => {
-      return {
-        style: {
-          background: rowInfo.row.age > 20 ? 'green' : 'red'
-        }
-      }
-    }}
-     */
-
     /* Page sizing customization
     defaultPageSize={14}
     pageSizeOptions={[5, 10, 20, 25, 50, 100]}
-     */
+    */
 
+    let rowModal = null
+    // If modal to be opened when row clicked, declare in render and redefine onClick for table elements and call open modal
+    if (this.props.page.tableModel.deleteModal){
+      rowModal = (
+        <DeleteModal
+          title={this.props.page.tableModel.deleteModal.title}
+          confirmOnClick={this.confirmOnClick}
+          denyOnClick={this.props.page.tableModel.closeModal}
+          open={this.props.page.tableModel.modalOpen}
+          closeFn={this.props.page.tableModel.closeModal}
+          content={this.props.page.tableModel.deleteModal.content}
+        />
+      )
+    }
+    let rowStyling = null
+    if (this.props.page.tableModel.styling){
+      rowStyling = {
+        getTrProps: (state, rowInfo, column) => {
+          return this.props.page.tableModel.styling(state, rowInfo, column)
+        }
+      }
+    }
+    let buttonContent = null
+    if (this.props.page.tableModel.tableButton){
+      buttonContent =
+        (<div>
+          <TableButton
+            title={this.props.page.tableModel.tableButton.title}
+            onClick={this.props.page.tableModel.tableButton.onClick}
+          />
+        </div>)
+    }
+    let backButton = null
+    if (this.props.page.tableModel.backButtonFunc){
+      backButton =
+        (<div className="row justify-content-center">
+          <ButtonDefault
+            text="Back"
+            className="btn-secondary"
+            onClick={this.props.page.tableModel.backButtonFunc}
+            style={{marginBottom: '10px'}}
+          />
+        </div>)
+    }
     return (
       <div>
-        <div className='row' style={{paddingBottom: '20px'}}>
-          {this.props.tableModel.tableButton}
-        </div>
-        <div className='row'>
+        {buttonContent}
+        {rowModal}
+        <div style={{clear: 'both'}}>
           <ReactTable
-            data={toJS(this.props.tableModel.data)}
-            columns={this.props.tableModel.columns}
-            loading={this.props.tableModel.loading}
+            data={this.props.page.tableModel.data.slice()}
+            columns={this.props.page.tableModel.columns.slice()}
+            loading={this.props.page.tableModel.loading}
+            defaultFilterMethod={this.filter}
+            {...rowStyling}
           />
         </div>
+        {backButton}
       </div>
     )
 

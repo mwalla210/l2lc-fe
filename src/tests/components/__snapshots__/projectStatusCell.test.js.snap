@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectStatusCell Renders with snapshot 1`] = `
+<span>
+  <span
+    style={
+      Object {
+        "color": "#49a4ff",
+        "transition": "all .3s ease",
+      }
+    }
+  >
+    ●
+  </span>
+   Completed
+</span>
+`;
+
+exports[`ProjectStatusCell Renders with snapshot, alternate arguements 1`] = `
+<span>
+  <span
+    style={
+      Object {
+        "color": "#ffbf00",
+        "transition": "all .3s ease",
+      }
+    }
+  >
+    ●
+  </span>
+   On Hold
+</span>
+`;
+
+exports[`ProjectStatusCell Renders with snapshot, tertiary arguements 1`] = `
+<span>
+  <span
+    style={
+      Object {
+        "color": "#57d500",
+        "transition": "all .3s ease",
+      }
+    }
+  >
+    ●
+  </span>
+   
+</span>
+`;

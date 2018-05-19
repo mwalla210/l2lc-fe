@@ -1,64 +1,94 @@
-import { action, computed, useStrict, extendObservable } from 'mobx'
+import { action, useStrict, extendObservable } from 'mobx'
+import autoBind from 'auto-bind'
 useStrict(true)
-
-/*
-Select Customer
-  Model: Customer
-  Fields: ID, name, shipping, billing, phone
-  Clickable: link to project
-  Button: New Customer
-  Searchable: by ID
-
-Projects list
-  Model: Project
-  Fields: ID, customer name, title, cost center, type, status, priority, time spent, date created
-  TODO: do we actually want all of these columns? maybe rework
-  Clickable: modal
-  Searchable: by ID
-  TODO: Filtering (or something) by open/closed?
-
-Customer Information
-  Model: Customer
-  Fields: ID, name, shipping, billing, phone
-  Clickable: modal
-  Button: New Customer
-  Searchable: by ID
-
-Employee Information
-  Model: Employee
-  Fields: ID, name, barcode
-  Clickable: name edit
-  Button: New Employee
- */
 
 /**
  * @name TableModel
  * @class TableModel
  * @classdesc Table storage object
- * @property {Object} [tableButton=null] Button component for display above table
+ * @description Sets up default table
+ * @param {Object} [tableButton] Button object for display above table
+ * @param {Function} fetchFn Table data fetch function
+ * @param {Object[]} columns Column header array for ReactTable
+ * @param {Object} [deleteModal] Object containing props for row delete modal
+ * @param {?Function} [styling] Styling function
+ * @param {?Function} [backButtonFunc] Back button function
  * @property {Function} fetchFn Table data fetch function
- * @property {Array} columns Column header array for ReactTable
- * @property {Function} [rowSelectFn=null] Function for handling clicking of row
- * @property {Boolean} [loading=true] Loading indicator
- * @property {Array} [data=[]] Data array for table
+ * @property {Object[]} columns Column header array for ReactTable [observable]
+ * @property {?Function} [styling] Styling function
+ * @property {?Function} [backButtonFunc] Back button function
+ * @property {Object} [tableButton] Button object for display above table
+ * @property {String} tableButton.title Button title for display above table
+ * @property {Function} tableButton.onClick Button click function for display above table
+ * @property {Object} [deleteModal] Object containing props for row delete modal
+ * @property {String} deleteModal.title Title for modal
+ * @property {String} deleteModal.content Content for modal
+ * @property {Function} deleteModal.confirmOnClick Confirm function
+ * @property {Boolean} [loading=true] Loading indicator [observable]
+ * @property {Object[]} [data=[]] Data array for table [observable]
+ * @property {Boolean} [modalOpen=false] Delete modal open indicator [observable]
  */
 export default class TableModel {
-  constructor(tableButton, fetchFn, rowSelectFn, columns){
+  constructor(tableButton, fetchFn, columns, deleteModal, styling, backButtonFunc){
     let addtlProps = {
       data: [],
-      loading: true
+      loading: true,
+      modalOpen: false,
+      columns
     }
     extendObservable(this, addtlProps)
     // Non-observable
-    this.columns = columns
     this.tableButton = tableButton
     this.fetchFn = fetchFn
-    this.rowSelectFn = rowSelectFn
+    this.deleteModal = deleteModal
+    this.styling = styling
+    this.backButtonFunc = backButtonFunc
+    autoBind(this)
   }
 
+  /**
+   * @name closeModal
+   * @description Sets modalOpen prop to false
+   * @method closeModal
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
+  @action closeModal(){this.modalOpen = false}
+  /**
+   * @name openModal
+   * @description Sets modalOpen prop to true
+   * @method openModal
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
+  @action openModal(){this.modalOpen = true}
+  /**
+   * @name confirmAndClose
+   * @description Closes modal and runs confirm function
+   * @method confirmAndClose
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
+  @action confirmAndClose(){
+    this.closeModal()
+    this.deleteModal.confirmOnClick()
+  }
+  /**
+   * @name loadingOn
+   * @description Turns on table's loading
+   * @method loadingOn
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
   @action loadingOn(){this.loading = true}
+  /**
+   * @name loadingOff
+   * @description Turns off table's loading
+   * @method loadingOff
+   * @memberof TableModel.prototype
+   * @mobx action
+   */
   @action loadingOff(){this.loading = false}
-
   /**
    * @name dataFetch
    * @description Handles loading while fetching table data
@@ -68,8 +98,11 @@ export default class TableModel {
    */
   @action dataFetch(){
     this.loadingOn()
-    this.fetchFn()
-    console.log(this.data.length)
-    this.loadingOff()
+    this.fetchFn().then(
+      action('fetchSuccess', res => {
+        this.data = res
+        this.loadingOff()
+      })
+    )
   }
 }

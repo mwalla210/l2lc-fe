@@ -1,0 +1,1744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>consts.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AccountFormModel.html">AccountFormModel</a><ul class='methods'><li data-type='method'><a href="AccountFormModel.html#autoSubmitter">autoSubmitter</a></li><li data-type='method'><a href="AccountFormModel.html#buttonDisabled">buttonDisabled</a></li><li data-type='method'><a href="AccountFormModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="AccountFormModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="AccountFormModel.html#fieldValidatorWrapper">fieldValidatorWrapper</a></li><li data-type='method'><a href="AccountFormModel.html#modifyFieldValue">modifyFieldValue</a></li><li data-type='method'><a href="AccountFormModel.html#openModal">openModal</a></li><li data-type='method'><a href="AccountFormModel.html#primaryButtonWrapper">primaryButtonWrapper</a></li><li data-type='method'><a href="AccountFormModel.html#resetFields">resetFields</a></li><li data-type='method'><a href="AccountFormModel.html#resetValueID">resetValueID</a></li><li data-type='method'><a href="AccountFormModel.html#resetValueIndex">resetValueIndex</a></li><li data-type='method'><a href="AccountFormModel.html#resetValues">resetValues</a></li><li data-type='method'><a href="AccountFormModel.html#setError">setError</a></li></ul></li><li><a href="AccountTableModel.html">AccountTableModel</a><ul class='methods'><li data-type='method'><a href="AccountTableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="AccountTableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="AccountTableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="AccountTableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="AccountTableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="AccountTableModel.html#openModal">openModal</a></li><li data-type='method'><a href="AccountTableModel.html#requiredClickHandler">requiredClickHandler</a></li></ul></li><li><a href="AnalyticsModel.html">AnalyticsModel</a><ul class='methods'><li data-type='method'><a href="AnalyticsModel.html#jsData">jsData</a></li><li data-type='method'><a href="AnalyticsModel.html#processData">processData</a></li><li data-type='method'><a href="AnalyticsModel.html#setData">setData</a></li><li data-type='method'><a href="AnalyticsModel.html#setFilteredData">setFilteredData</a></li><li data-type='method'><a href="AnalyticsModel.html#timeFilterData">timeFilterData</a></li></ul></li><li><a href="AnalyticsSelector.html">AnalyticsSelector</a><ul class='methods'><li data-type='method'><a href="AnalyticsSelector.html#categoryStructure">categoryStructure</a></li><li data-type='method'><a href="AnalyticsSelector.html#employeeHoursInCostCenter">employeeHoursInCostCenter</a></li><li data-type='method'><a href="AnalyticsSelector.html#employeeHoursInStation">employeeHoursInStation</a></li><li data-type='method'><a href="AnalyticsSelector.html#getAll">getAll</a></li><li data-type='method'><a href="AnalyticsSelector.html#mapTimeByCategory">mapTimeByCategory</a></li><li data-type='method'><a href="AnalyticsSelector.html#partCountForAPCRatio">partCountForAPCRatio</a></li><li data-type='method'><a href="AnalyticsSelector.html#partsByAPCJT">partsByAPCJT</a></li><li data-type='method'><a href="AnalyticsSelector.html#processEntries">processEntries</a></li><li data-type='method'><a href="AnalyticsSelector.html#projectCountForCostCenterRatio">projectCountForCostCenterRatio</a></li><li data-type='method'><a href="AnalyticsSelector.html#projectCountForMonthsRatio">projectCountForMonthsRatio</a></li><li data-type='method'><a href="AnalyticsSelector.html#projectsByCCJT">projectsByCCJT</a></li><li data-type='method'><a href="AnalyticsSelector.html#projectsByMonth">projectsByMonth</a></li></ul></li><li><a href="CustomerFormModel.html">CustomerFormModel</a><ul class='methods'><li data-type='method'><a href="CustomerFormModel.html#autoSubmitter">autoSubmitter</a></li><li data-type='method'><a href="CustomerFormModel.html#buttonDisabled">buttonDisabled</a></li><li data-type='method'><a href="CustomerFormModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="CustomerFormModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="CustomerFormModel.html#editButton">editButton</a></li><li data-type='method'><a href="CustomerFormModel.html#fieldValidatorWrapper">fieldValidatorWrapper</a></li><li data-type='method'><a href="CustomerFormModel.html#modifyFieldValue">modifyFieldValue</a></li><li data-type='method'><a href="CustomerFormModel.html#newButton">newButton</a></li><li data-type='method'><a href="CustomerFormModel.html#openModal">openModal</a></li><li data-type='method'><a href="CustomerFormModel.html#parseForm">parseForm</a></li><li data-type='method'><a href="CustomerFormModel.html#primaryButtonWrapper">primaryButtonWrapper</a></li><li data-type='method'><a href="CustomerFormModel.html#resetValueID">resetValueID</a></li><li data-type='method'><a href="CustomerFormModel.html#resetValueIndex">resetValueIndex</a></li><li data-type='method'><a href="CustomerFormModel.html#resetValues">resetValues</a></li><li data-type='method'><a href="CustomerFormModel.html#setEdit">setEdit</a></li><li data-type='method'><a href="CustomerFormModel.html#setError">setError</a></li><li data-type='method'><a href="CustomerFormModel.html#setNonEdit">setNonEdit</a></li><li data-type='method'><a href="CustomerFormModel.html#setOnClickNav">setOnClickNav</a></li></ul></li><li><a href="CustomerModel.html">CustomerModel</a><ul class='methods'><li data-type='method'><a href="CustomerModel.html#getBillAddressCity">getBillAddressCity</a></li><li data-type='method'><a href="CustomerModel.html#getBillAddressCountry">getBillAddressCountry</a></li><li data-type='method'><a href="CustomerModel.html#getBillAddressLine1">getBillAddressLine1</a></li><li data-type='method'><a href="CustomerModel.html#getBillAddressLine2">getBillAddressLine2</a></li><li data-type='method'><a href="CustomerModel.html#getBillAddressState">getBillAddressState</a></li><li data-type='method'><a href="CustomerModel.html#getBillAddressZip">getBillAddressZip</a></li><li data-type='method'><a href="CustomerModel.html#getformattedBillAddress">getformattedBillAddress</a></li><li data-type='method'><a href="CustomerModel.html#getformattedShipAddress">getformattedShipAddress</a></li><li data-type='method'><a href="CustomerModel.html#setBillIsSame">setBillIsSame</a></li></ul></li><li><a href="CustomerProjectsTableModel.html">CustomerProjectsTableModel</a><ul class='methods'><li data-type='method'><a href="CustomerProjectsTableModel.html#clickHandler">clickHandler</a></li><li data-type='method'><a href="CustomerProjectsTableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="CustomerProjectsTableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="CustomerProjectsTableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="CustomerProjectsTableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="CustomerProjectsTableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="CustomerProjectsTableModel.html#openModal">openModal</a></li><li data-type='method'><a href="CustomerProjectsTableModel.html#toggleDropdown">toggleDropdown</a></li></ul></li><li><a href="CustomerTableModel.html">CustomerTableModel</a><ul class='methods'><li data-type='method'><a href="CustomerTableModel.html#actionColumns">actionColumns</a></li><li data-type='method'><a href="CustomerTableModel.html#clickHandler">clickHandler</a></li><li data-type='method'><a href="CustomerTableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="CustomerTableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="CustomerTableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="CustomerTableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="CustomerTableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="CustomerTableModel.html#mainColumns">mainColumns</a></li><li data-type='method'><a href="CustomerTableModel.html#noActionColumns">noActionColumns</a></li><li data-type='method'><a href="CustomerTableModel.html#nonSelectTable">nonSelectTable</a></li><li data-type='method'><a href="CustomerTableModel.html#openModal">openModal</a></li><li data-type='method'><a href="CustomerTableModel.html#selectCreateClick">selectCreateClick</a></li><li data-type='method'><a href="CustomerTableModel.html#selectTable">selectTable</a></li><li data-type='method'><a href="CustomerTableModel.html#selectTable">selectTable</a></li><li data-type='method'><a href="CustomerTableModel.html#selectUpdateClick">selectUpdateClick</a></li></ul></li><li><a href="EmployeeFormModel.html">EmployeeFormModel</a><ul class='methods'><li data-type='method'><a href="EmployeeFormModel.html#autoSubmitter">autoSubmitter</a></li><li data-type='method'><a href="EmployeeFormModel.html#buttonDisabled">buttonDisabled</a></li><li data-type='method'><a href="EmployeeFormModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="EmployeeFormModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="EmployeeFormModel.html#editButton">editButton</a></li><li data-type='method'><a href="EmployeeFormModel.html#fieldValidatorWrapper">fieldValidatorWrapper</a></li><li data-type='method'><a href="EmployeeFormModel.html#modifyFieldValue">modifyFieldValue</a></li><li data-type='method'><a href="EmployeeFormModel.html#newButton">newButton</a></li><li data-type='method'><a href="EmployeeFormModel.html#openModal">openModal</a></li><li data-type='method'><a href="EmployeeFormModel.html#primaryButtonWrapper">primaryButtonWrapper</a></li><li data-type='method'><a href="EmployeeFormModel.html#resetValueID">resetValueID</a></li><li data-type='method'><a href="EmployeeFormModel.html#resetValueIndex">resetValueIndex</a></li><li data-type='method'><a href="EmployeeFormModel.html#resetValues">resetValues</a></li><li data-type='method'><a href="EmployeeFormModel.html#setEdit">setEdit</a></li><li data-type='method'><a href="EmployeeFormModel.html#setError">setError</a></li><li data-type='method'><a href="EmployeeFormModel.html#setNonEdit">setNonEdit</a></li></ul></li><li><a href="EmployeeModel.html">EmployeeModel</a><ul class='methods'><li data-type='method'><a href="EmployeeModel.html#activate">activate</a></li><li data-type='method'><a href="EmployeeModel.html#barcodeDomID">barcodeDomID</a></li><li data-type='method'><a href="EmployeeModel.html#barcodeScanID">barcodeScanID</a></li><li data-type='method'><a href="EmployeeModel.html#deactivate">deactivate</a></li><li data-type='method'><a href="EmployeeModel.html#fullName">fullName</a></li></ul></li><li><a href="EmployeeTableModel.html">EmployeeTableModel</a><ul class='methods'><li data-type='method'><a href="EmployeeTableModel.html#clickHandler">clickHandler</a></li><li data-type='method'><a href="EmployeeTableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="EmployeeTableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="EmployeeTableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="EmployeeTableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="EmployeeTableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="EmployeeTableModel.html#openModal">openModal</a></li></ul></li><li><a href="FormModel.html">FormModel</a><ul class='methods'><li data-type='method'><a href="FormModel.html#autoSubmitter">autoSubmitter</a></li><li data-type='method'><a href="FormModel.html#buttonDisabled">buttonDisabled</a></li><li data-type='method'><a href="FormModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="FormModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="FormModel.html#fieldValidatorWrapper">fieldValidatorWrapper</a></li><li data-type='method'><a href="FormModel.html#modifyFieldValue">modifyFieldValue</a></li><li data-type='method'><a href="FormModel.html#openModal">openModal</a></li><li data-type='method'><a href="FormModel.html#primaryButtonWrapper">primaryButtonWrapper</a></li><li data-type='method'><a href="FormModel.html#resetValueID">resetValueID</a></li><li data-type='method'><a href="FormModel.html#resetValueIndex">resetValueIndex</a></li><li data-type='method'><a href="FormModel.html#resetValues">resetValues</a></li><li data-type='method'><a href="FormModel.html#setError">setError</a></li></ul></li><li><a href="FormSelector.html">FormSelector</a><ul class='methods'><li data-type='method'><a href="FormSelector.html#getAccount">getAccount</a></li><li data-type='method'><a href="FormSelector.html#getEditCustomer">getEditCustomer</a></li><li data-type='method'><a href="FormSelector.html#getEditEmployee">getEditEmployee</a></li><li data-type='method'><a href="FormSelector.html#getEmployee">getEmployee</a></li><li data-type='method'><a href="FormSelector.html#getNewCustomer">getNewCustomer</a></li><li data-type='method'><a href="FormSelector.html#getProject">getProject</a></li><li data-type='method'><a href="FormSelector.html#getProject">getProject</a></li><li data-type='method'><a href="FormSelector.html#getTask">getTask</a></li><li data-type='method'><a href="FormSelector.html#getTimeEntry">getTimeEntry</a></li></ul></li><li><a href="ModalModel.html">ModalModel</a><ul class='methods'><li data-type='method'><a href="ModalModel.html#changeConfirmFn">changeConfirmFn</a></li><li data-type='method'><a href="ModalModel.html#changeContent">changeContent</a></li><li data-type='method'><a href="ModalModel.html#changeTitle">changeTitle</a></li><li data-type='method'><a href="ModalModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="ModalModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="ModalModel.html#openModal">openModal</a></li></ul></li><li><a href="PageStore.html">PageStore</a><ul class='methods'><li data-type='method'><a href="PageStore.html#accountManagementMenuItem">accountManagementMenuItem</a></li><li data-type='method'><a href="PageStore.html#analyticsMenuItem">analyticsMenuItem</a></li><li data-type='method'><a href="PageStore.html#changeCustomerPage">changeCustomerPage</a></li><li data-type='method'><a href="PageStore.html#createNewProjMenuItem">createNewProjMenuItem</a></li><li data-type='method'><a href="PageStore.html#currentProjectNewCustomerPage">currentProjectNewCustomerPage</a></li><li data-type='method'><a href="PageStore.html#customerEditPage">customerEditPage</a></li><li data-type='method'><a href="PageStore.html#customerInfoMenuItem">customerInfoMenuItem</a></li><li data-type='method'><a href="PageStore.html#customerProjectsPage">customerProjectsPage</a></li><li data-type='method'><a href="PageStore.html#customerSummaryPage">customerSummaryPage</a></li><li data-type='method'><a href="PageStore.html#employeeEditPage">employeeEditPage</a></li><li data-type='method'><a href="PageStore.html#employeeInformationMenuItem">employeeInformationMenuItem</a></li><li data-type='method'><a href="PageStore.html#employeeSummaryPage">employeeSummaryPage</a></li><li data-type='method'><a href="PageStore.html#newAccountPage">newAccountPage</a></li><li data-type='method'><a href="PageStore.html#newCustomerPage">newCustomerPage</a></li><li data-type='method'><a href="PageStore.html#newEmployeePage">newEmployeePage</a></li><li data-type='method'><a href="PageStore.html#newProjectNewCustomerPage">newProjectNewCustomerPage</a></li><li data-type='method'><a href="PageStore.html#newProjectTaskPage">newProjectTaskPage</a></li><li data-type='method'><a href="PageStore.html#projectDeleteFn">projectDeleteFn</a></li><li data-type='method'><a href="PageStore.html#projectEditPage">projectEditPage</a></li><li data-type='method'><a href="PageStore.html#projectsMenuItem">projectsMenuItem</a></li><li data-type='method'><a href="PageStore.html#projectSummaryPage">projectSummaryPage</a></li><li data-type='method'><a href="PageStore.html#projectTaskList">projectTaskList</a></li><li data-type='method'><a href="PageStore.html#projectTimeEntryMenuItem">projectTimeEntryMenuItem</a></li><li data-type='method'><a href="PageStore.html#projectTimeEntryPage">projectTimeEntryPage</a></li><li data-type='method'><a href="PageStore.html#selectCustomerPage">selectCustomerPage</a></li><li data-type='method'><a href="PageStore.html#setAnalyticsModelList">setAnalyticsModelList</a></li><li data-type='method'><a href="PageStore.html#setFormModel">setFormModel</a></li><li data-type='method'><a href="PageStore.html#setNullContent">setNullContent</a></li><li data-type='method'><a href="PageStore.html#setSummaryModel">setSummaryModel</a></li><li data-type='method'><a href="PageStore.html#setTableModel">setTableModel</a></li><li data-type='method'><a href="PageStore.html#stationMenuItem">stationMenuItem</a></li></ul></li><li><a href="ProjectFormModel.html">ProjectFormModel</a><ul class='methods'><li data-type='method'><a href="ProjectFormModel.html#autoSubmitter">autoSubmitter</a></li><li data-type='method'><a href="ProjectFormModel.html#buttonDisabled">buttonDisabled</a></li><li data-type='method'><a href="ProjectFormModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="ProjectFormModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="ProjectFormModel.html#editButton">editButton</a></li><li data-type='method'><a href="ProjectFormModel.html#editSecondaryButton">editSecondaryButton</a></li><li data-type='method'><a href="ProjectFormModel.html#fieldValidatorWrapper">fieldValidatorWrapper</a></li><li data-type='method'><a href="ProjectFormModel.html#modifyFieldValue">modifyFieldValue</a></li><li data-type='method'><a href="ProjectFormModel.html#newButton">newButton</a></li><li data-type='method'><a href="ProjectFormModel.html#openModal">openModal</a></li><li data-type='method'><a href="ProjectFormModel.html#parseForm">parseForm</a></li><li data-type='method'><a href="ProjectFormModel.html#primaryButtonWrapper">primaryButtonWrapper</a></li><li data-type='method'><a href="ProjectFormModel.html#resetValueID">resetValueID</a></li><li data-type='method'><a href="ProjectFormModel.html#resetValueIndex">resetValueIndex</a></li><li data-type='method'><a href="ProjectFormModel.html#resetValues">resetValues</a></li><li data-type='method'><a href="ProjectFormModel.html#setEdit">setEdit</a></li><li data-type='method'><a href="ProjectFormModel.html#setError">setError</a></li><li data-type='method'><a href="ProjectFormModel.html#setNonEdit">setNonEdit</a></li></ul></li><li><a href="ProjectModel.html">ProjectModel</a><ul class='methods'><li data-type='method'><a href="ProjectModel.html#barcodeDomID">barcodeDomID</a></li><li data-type='method'><a href="ProjectModel.html#barcodeScanID">barcodeScanID</a></li><li data-type='method'><a href="ProjectModel.html#changeCustomer">changeCustomer</a></li><li data-type='method'><a href="ProjectModel.html#changeNotes">changeNotes</a></li><li data-type='method'><a href="ProjectModel.html#costCenterProjectType">costCenterProjectType</a></li><li data-type='method'><a href="ProjectModel.html#customerID">customerID</a></li><li data-type='method'><a href="ProjectModel.html#finish">finish</a></li><li data-type='method'><a href="ProjectModel.html#getCustomer">getCustomer</a></li><li data-type='method'><a href="ProjectModel.html#getTimeEntries">getTimeEntries</a></li><li data-type='method'><a href="ProjectModel.html#isOpen">isOpen</a></li><li data-type='method'><a href="ProjectModel.html#timeSpent">timeSpent</a></li></ul></li><li><a href="ProjectSummaryModel.html">ProjectSummaryModel</a></li><li><a href="ProjectTableModel.html">ProjectTableModel</a><ul class='methods'><li data-type='method'><a href="ProjectTableModel.html#clickHandler">clickHandler</a></li><li data-type='method'><a href="ProjectTableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="ProjectTableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="ProjectTableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="ProjectTableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="ProjectTableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="ProjectTableModel.html#openModal">openModal</a></li><li data-type='method'><a href="ProjectTableModel.html#toggleDropdown">toggleDropdown</a></li></ul></li><li><a href="ProjectTaskFormModel.html">ProjectTaskFormModel</a><ul class='methods'><li data-type='method'><a href="ProjectTaskFormModel.html#autoSubmitter">autoSubmitter</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#buttonDisabled">buttonDisabled</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#fieldValidatorWrapper">fieldValidatorWrapper</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#modifyFieldValue">modifyFieldValue</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#openModal">openModal</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#primaryButtonWrapper">primaryButtonWrapper</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#resetFields">resetFields</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#resetValueID">resetValueID</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#resetValueIndex">resetValueIndex</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#resetValues">resetValues</a></li><li data-type='method'><a href="ProjectTaskFormModel.html#setError">setError</a></li></ul></li><li><a href="ProjectTaskTableModel.html">ProjectTaskTableModel</a><ul class='methods'><li data-type='method'><a href="ProjectTaskTableModel.html#clickHandler">clickHandler</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#deleteTask">deleteTask</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#move">move</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#openModal">openModal</a></li><li data-type='method'><a href="ProjectTaskTableModel.html#requiredClickHandler">requiredClickHandler</a></li></ul></li><li><a href="SummarySelector.html">SummarySelector</a><ul class='methods'><li data-type='method'><a href="SummarySelector.html#getCustomer">getCustomer</a></li><li data-type='method'><a href="SummarySelector.html#getEmployee">getEmployee</a></li><li data-type='method'><a href="SummarySelector.html#getProject">getProject</a></li></ul></li><li><a href="TableModel.html">TableModel</a><ul class='methods'><li data-type='method'><a href="TableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="TableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="TableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="TableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="TableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="TableModel.html#openModal">openModal</a></li></ul></li><li><a href="TableSelector.html">TableSelector</a><ul class='methods'><li data-type='method'><a href="TableSelector.html#getAccount">getAccount</a></li><li data-type='method'><a href="TableSelector.html#getCustomerProjects">getCustomerProjects</a></li><li data-type='method'><a href="TableSelector.html#getEmployee">getEmployee</a></li><li data-type='method'><a href="TableSelector.html#getNonSelectCustomer">getNonSelectCustomer</a></li><li data-type='method'><a href="TableSelector.html#getProject">getProject</a></li><li data-type='method'><a href="TableSelector.html#getSelectCreateCustomer">getSelectCreateCustomer</a></li><li data-type='method'><a href="TableSelector.html#getSelectUpdateCustomer">getSelectUpdateCustomer</a></li><li data-type='method'><a href="TableSelector.html#getTasks">getTasks</a></li></ul></li><li><a href="TaskModel.html">TaskModel</a><ul class='methods'><li data-type='method'><a href="TaskModel.html#toggleRequired">toggleRequired</a></li></ul></li><li><a href="TimeEntryFormModel.html">TimeEntryFormModel</a><ul class='methods'><li data-type='method'><a href="TimeEntryFormModel.html#buttonDisabled">buttonDisabled</a></li><li data-type='method'><a href="TimeEntryFormModel.html#closeConfirmation">closeConfirmation</a></li><li data-type='method'><a href="TimeEntryFormModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="TimeEntryFormModel.html#openConfirmation">openConfirmation</a></li><li data-type='method'><a href="TimeEntryFormModel.html#openModal">openModal</a></li><li data-type='method'><a href="TimeEntryFormModel.html#resetValuesAndValidation">resetValuesAndValidation</a></li><li data-type='method'><a href="TimeEntryFormModel.html#setError">setError</a></li><li data-type='method'><a href="TimeEntryFormModel.html#setValue">setValue</a></li><li data-type='method'><a href="TimeEntryFormModel.html#submit">submit</a></li></ul></li><li><a href="TimeEntryModel.html">TimeEntryModel</a></li><li><a href="TimeEntryTableModel.html">TimeEntryTableModel</a><ul class='methods'><li data-type='method'><a href="TimeEntryTableModel.html#closeModal">closeModal</a></li><li data-type='method'><a href="TimeEntryTableModel.html#confirmAndClose">confirmAndClose</a></li><li data-type='method'><a href="TimeEntryTableModel.html#dataFetch">dataFetch</a></li><li data-type='method'><a href="TimeEntryTableModel.html#loadingOff">loadingOff</a></li><li data-type='method'><a href="TimeEntryTableModel.html#loadingOn">loadingOn</a></li><li data-type='method'><a href="TimeEntryTableModel.html#openModal">openModal</a></li></ul></li><li><a href="UserModel.html">UserModel</a><ul class='methods'><li data-type='method'><a href="UserModel.html#toggleAdmin">toggleAdmin</a></li></ul></li><li><a href="Website.html">Website</a><ul class='methods'><li data-type='method'><a href="Website.html#addToTaskHistory">addToTaskHistory</a></li><li data-type='method'><a href="Website.html#createAccount">createAccount</a></li><li data-type='method'><a href="Website.html#createCustomer">createCustomer</a></li><li data-type='method'><a href="Website.html#createEmployee">createEmployee</a></li><li data-type='method'><a href="Website.html#createProject">createProject</a></li><li data-type='method'><a href="Website.html#createTimeEntry">createTimeEntry</a></li><li data-type='method'><a href="Website.html#login">login</a></li><li data-type='method'><a href="Website.html#loginButtonDisabled">loginButtonDisabled</a></li><li data-type='method'><a href="Website.html#logOutAlert">logOutAlert</a></li><li data-type='method'><a href="Website.html#logOutDismiss">logOutDismiss</a></li><li data-type='method'><a href="Website.html#setAccount">setAccount</a></li><li data-type='method'><a href="Website.html#setCustomer">setCustomer</a></li><li data-type='method'><a href="Website.html#setEmployee">setEmployee</a></li><li data-type='method'><a href="Website.html#setProject">setProject</a></li><li data-type='method'><a href="Website.html#setUser">setUser</a></li><li data-type='method'><a href="Website.html#toggleSummaryActionsDD">toggleSummaryActionsDD</a></li><li data-type='method'><a href="Website.html#toggleSummaryMoreDD">toggleSummaryMoreDD</a></li><li data-type='method'><a href="Website.html#updateCustomer">updateCustomer</a></li><li data-type='method'><a href="Website.html#updateEmployee">updateEmployee</a></li><li data-type='method'><a href="Website.html#updatePassword">updatePassword</a></li><li data-type='method'><a href="Website.html#updateProject">updateProject</a></li><li data-type='method'><a href="Website.html#updateProjectStatus">updateProjectStatus</a></li><li data-type='method'><a href="Website.html#updateUsername">updateUsername</a></li></ul></li></ul><h3>Namespaces</h3><ul><li><a href="Analytics.html">Analytics</a><ul class='methods'><li data-type='method'><a href="Analytics.html#render">render</a></li></ul></li><li><a href="API.html">API</a><ul class='methods'><li data-type='method'><a href="API.html#.addressIsSame">addressIsSame</a></li><li data-type='method'><a href="API.html#.create">create</a></li><li data-type='method'><a href="API.html#.createAccount">createAccount</a></li><li data-type='method'><a href="API.html#.createCustomer">createCustomer</a></li><li data-type='method'><a href="API.html#.createEmployee">createEmployee</a></li><li data-type='method'><a href="API.html#.createProject">createProject</a></li><li data-type='method'><a href="API.html#.createTask">createTask</a></li><li data-type='method'><a href="API.html#.createTaskList">createTaskList</a></li><li data-type='method'><a href="API.html#.customerModelize">customerModelize</a></li><li data-type='method'><a href="API.html#.dropTask">dropTask</a></li><li data-type='method'><a href="API.html#.employeeModelize">employeeModelize</a></li><li data-type='method'><a href="API.html#.fetchAccounts">fetchAccounts</a></li><li data-type='method'><a href="API.html#.fetchAnalytics">fetchAnalytics</a></li><li data-type='method'><a href="API.html#.fetchCustomer">fetchCustomer</a></li><li data-type='method'><a href="API.html#.fetchCustomerProjects">fetchCustomerProjects</a></li><li data-type='method'><a href="API.html#.fetchCustomers">fetchCustomers</a></li><li data-type='method'><a href="API.html#.fetchEmployees">fetchEmployees</a></li><li data-type='method'><a href="API.html#.fetchProject">fetchProject</a></li><li data-type='method'><a href="API.html#.fetchProjects">fetchProjects</a></li><li data-type='method'><a href="API.html#.fetchProjectTasks">fetchProjectTasks</a></li><li data-type='method'><a href="API.html#.fetchTimeEntries">fetchTimeEntries</a></li><li data-type='method'><a href="API.html#.login">login</a></li><li data-type='method'><a href="API.html#.projectModelize">projectModelize</a></li><li data-type='method'><a href="API.html#.taskModelize">taskModelize</a></li><li data-type='method'><a href="API.html#.timeEntryModelize">timeEntryModelize</a></li><li data-type='method'><a href="API.html#.update">update</a></li><li data-type='method'><a href="API.html#.updateCustomer">updateCustomer</a></li><li data-type='method'><a href="API.html#.updateEmployee">updateEmployee</a></li><li data-type='method'><a href="API.html#.updateProject">updateProject</a></li><li data-type='method'><a href="API.html#.updateProjectStatus">updateProjectStatus</a></li><li data-type='method'><a href="API.html#.updateTask">updateTask</a></li><li data-type='method'><a href="API.html#.updateTaskList">updateTaskList</a></li><li data-type='method'><a href="API.html#.updateUserAdmin">updateUserAdmin</a></li><li data-type='method'><a href="API.html#.userModelize">userModelize</a></li></ul></li><li><a href="Barcode.html">Barcode</a><ul class='methods'><li data-type='method'><a href="Barcode.html#render">render</a></li><li data-type='method'><a href="Barcode.html#renderBarcode">renderBarcode</a></li></ul></li><li><a href="ButtonDefault.html">ButtonDefault</a><ul class='methods'><li data-type='method'><a href="ButtonDefault.html#render">render</a></li></ul></li><li><a href="ButtonPrimary.html">ButtonPrimary</a><ul class='methods'><li data-type='method'><a href="ButtonPrimary.html#render">render</a></li></ul></li><li><a href="CheckboxField.html">CheckboxField</a><ul class='methods'><li data-type='method'><a href="CheckboxField.html#render">render</a></li></ul></li><li><a href="CircleButton.html">CircleButton</a><ul class='methods'><li data-type='method'><a href="CircleButton.html#render">render</a></li></ul></li><li><a href="Consts.html">Consts</a><ul class='members'><li data-type='member'><a href="Consts.html#.accountFields">accountFields</a></li><li data-type='member'><a href="Consts.html#.adminProjectSelect">adminProjectSelect</a></li><li data-type='member'><a href="Consts.html#.apcProjectSelect">apcProjectSelect</a></li><li data-type='member'><a href="Consts.html#.avaslickTasks">avaslickTasks</a></li><li data-type='member'><a href="Consts.html#.costCenterSelect">costCenterSelect</a></li><li data-type='member'><a href="Consts.html#.countrySelect">countrySelect</a></li><li data-type='member'><a href="Consts.html#.customerFields">customerFields</a></li><li data-type='member'><a href="Consts.html#.decorativeProjectSelect">decorativeProjectSelect</a></li><li data-type='member'><a href="Consts.html#.decorativeTasks">decorativeTasks</a></li><li data-type='member'><a href="Consts.html#.doneColor">doneColor</a></li><li data-type='member'><a href="Consts.html#.employeeFields">employeeFields</a></li><li data-type='member'><a href="Consts.html#.helpColor">helpColor</a></li><li data-type='member'><a href="Consts.html#.maintenanceProjectSelect">maintenanceProjectSelect</a></li><li data-type='member'><a href="Consts.html#.militaryProjectSelect">militaryProjectSelect</a></li><li data-type='member'><a href="Consts.html#.openColor">openColor</a></li><li data-type='member'><a href="Consts.html#.otherProjectSelect">otherProjectSelect</a></li><li data-type='member'><a href="Consts.html#.pieColors">pieColors</a></li><li data-type='member'><a href="Consts.html#.pistonTasks">pistonTasks</a></li><li data-type='member'><a href="Consts.html#.productionProjectSelect">productionProjectSelect</a></li><li data-type='member'><a href="Consts.html#.projectFields">projectFields</a></li><li data-type='member'><a href="Consts.html#.pumpTasks">pumpTasks</a></li><li data-type='member'><a href="Consts.html#.rdProjectSelect">rdProjectSelect</a></li><li data-type='member'><a href="Consts.html#.rotorTasks">rotorTasks</a></li><li data-type='member'><a href="Consts.html#.specialtyTasks">specialtyTasks</a></li><li data-type='member'><a href="Consts.html#.stateSelect">stateSelect</a></li><li data-type='member'><a href="Consts.html#.stationSelect">stationSelect</a></li><li data-type='member'><a href="Consts.html#.summaryProps">summaryProps</a></li><li data-type='member'><a href="Consts.html#.taskFields">taskFields</a></li><li data-type='member'><a href="Consts.html#.turboTasks">turboTasks</a></li></ul><ul class='methods'><li data-type='method'><a href="Consts.html#.barBGColorByIndex">barBGColorByIndex</a></li><li data-type='method'><a href="Consts.html#.barBorColorByIndex">barBorColorByIndex</a></li><li data-type='method'><a href="Consts.html#.barHovColorByIndex">barHovColorByIndex</a></li><li data-type='method'><a href="Consts.html#.calculateTime">calculateTime</a></li><li data-type='method'><a href="Consts.html#.stationName">stationName</a></li></ul></li><li><a href="CustomerSummary.html">CustomerSummary</a><ul class='methods'><li data-type='method'><a href="CustomerSummary.html#render">render</a></li></ul></li><li><a href="DeleteModal.html">DeleteModal</a><ul class='methods'><li data-type='method'><a href="DeleteModal.html#render">render</a></li></ul></li><li><a href="DraggableRow.html">DraggableRow</a><ul class='methods'><li data-type='method'><a href="DraggableRow.html#render">render</a></li></ul></li><li><a href="DraggableTable.html">DraggableTable</a><ul class='methods'><li data-type='method'><a href="DraggableTable.html#confirmOnClick">confirmOnClick</a></li><li data-type='method'><a href="DraggableTable.html#printClick">printClick</a></li><li data-type='method'><a href="DraggableTable.html#render">render</a></li><li data-type='method'><a href="DraggableTable.html#rowProps">rowProps</a></li></ul></li><li><a href="EmployeeSummary.html">EmployeeSummary</a><ul class='methods'><li data-type='method'><a href="EmployeeSummary.html#printClick">printClick</a></li><li data-type='method'><a href="EmployeeSummary.html#render">render</a></li></ul></li><li><a href="Form.html">Form</a><ul class='methods'><li data-type='method'><a href="Form.html#onBlur">onBlur</a></li><li data-type='method'><a href="Form.html#onChange">onChange</a></li><li data-type='method'><a href="Form.html#primaryOnClick">primaryOnClick</a></li><li data-type='method'><a href="Form.html#render">render</a></li><li data-type='method'><a href="Form.html#secondaryOnClick">secondaryOnClick</a></li></ul></li><li><a href="FormItem.html">FormItem</a><ul class='methods'><li data-type='method'><a href="FormItem.html#render">render</a></li></ul></li><li><a href="Login.html">Login</a><ul class='methods'><li data-type='method'><a href="Login.html#formSubmit">formSubmit</a></li><li data-type='method'><a href="Login.html#onChangePassword">onChangePassword</a></li><li data-type='method'><a href="Login.html#onChangeUsername">onChangeUsername</a></li><li data-type='method'><a href="Login.html#render">render</a></li></ul></li><li><a href="NavBar.html">NavBar</a><ul class='methods'><li data-type='method'><a href="NavBar.html#logoutClick">logoutClick</a></li><li data-type='method'><a href="NavBar.html#promptConfirm">promptConfirm</a></li><li data-type='method'><a href="NavBar.html#promptDismiss">promptDismiss</a></li><li data-type='method'><a href="NavBar.html#render">render</a></li></ul></li><li><a href="Page.html">Page</a><ul class='methods'><li data-type='method'><a href="Page.html#loginContent">loginContent</a></li><li data-type='method'><a href="Page.html#pageContent">pageContent</a></li><li data-type='method'><a href="Page.html#render">render</a></li></ul></li><li><a href="ProjectStatusCell.html">ProjectStatusCell</a><ul class='methods'><li data-type='method'><a href="ProjectStatusCell.html#render">render</a></li></ul></li><li><a href="ProjectStatusFilter.html">ProjectStatusFilter</a><ul class='methods'><li data-type='method'><a href="ProjectStatusFilter.html#checkChange">checkChange</a></li><li data-type='method'><a href="ProjectStatusFilter.html#render">render</a></li></ul></li><li><a href="ProjectSummary.html">ProjectSummary</a><ul class='methods'><li data-type='method'><a href="ProjectSummary.html#customer">customer</a></li><li data-type='method'><a href="ProjectSummary.html#printClick">printClick</a></li><li data-type='method'><a href="ProjectSummary.html#render">render</a></li><li data-type='method'><a href="ProjectSummary.html#tasksClick">tasksClick</a></li><li data-type='method'><a href="ProjectSummary.html#timeEntries">timeEntries</a></li></ul></li><li><a href="PromptModal.html">PromptModal</a><ul class='methods'><li data-type='method'><a href="PromptModal.html#confirm">confirm</a></li><li data-type='method'><a href="PromptModal.html#deny">deny</a></li><li data-type='method'><a href="PromptModal.html#hide">hide</a></li><li data-type='method'><a href="PromptModal.html#render">render</a></li></ul></li><li><a href="SelectField.html">SelectField</a><ul class='methods'><li data-type='method'><a href="SelectField.html#render">render</a></li></ul></li><li><a href="Stations.html">Stations</a><ul class='methods'><li data-type='method'><a href="Stations.html#printClick">printClick</a></li><li data-type='method'><a href="Stations.html#render">render</a></li></ul></li><li><a href="Table.html">Table</a><ul class='methods'><li data-type='method'><a href="Table.html#confirmOnClick">confirmOnClick</a></li><li data-type='method'><a href="Table.html#filter">filter</a></li><li data-type='method'><a href="Table.html#render">render</a></li></ul></li><li><a href="TableActionCell.html">TableActionCell</a><ul class='methods'><li data-type='method'><a href="TableActionCell.html#deleteClick">deleteClick</a></li><li data-type='method'><a href="TableActionCell.html#editClick">editClick</a></li><li data-type='method'><a href="TableActionCell.html#infoClick">infoClick</a></li><li data-type='method'><a href="TableActionCell.html#render">render</a></li></ul></li><li><a href="TableButton.html">TableButton</a><ul class='methods'><li data-type='method'><a href="TableButton.html#render">render</a></li></ul></li><li><a href="TextAreaField.html">TextAreaField</a><ul class='methods'><li data-type='method'><a href="TextAreaField.html#render">render</a></li></ul></li><li><a href="TextField.html">TextField</a><ul class='methods'><li data-type='method'><a href="TextField.html#render">render</a></li></ul></li><li><a href="TimeEntry.html">TimeEntry</a><ul class='methods'><li data-type='method'><a href="TimeEntry.html#onCancel">onCancel</a></li><li data-type='method'><a href="TimeEntry.html#onChange">onChange</a></li><li data-type='method'><a href="TimeEntry.html#onClick">onClick</a></li><li data-type='method'><a href="TimeEntry.html#render">render</a></li></ul></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">consts.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const colorsLight = [
+  'rgba(96,146,204,0.4)',
+  'rgba(150,182,68,0.4)',
+  'rgba(139,103,209,0.4)',
+  'rgba(210,155,61,0.4)',
+  'rgba(86,118,209,0.4)',
+  'rgba(205,88,57,0.4)',
+  'rgba(72,183,188,0.4)',
+  'rgba(210,66,115,0.4)',
+  'rgba(86,174,111,0.4)',
+  'rgba(200,89,183,0.4)',
+  'rgba(130,136,68,0.4)',
+  'rgba(204,158,223,0.4)',
+  'rgba(189,124,88,0.4)',
+  'rgba(149,95,149,0.4)',
+  'rgba(210,118,140,0.4)',
+]
+const colorsMedium = [
+  'rgba(96,146,204,0.6)',
+  'rgba(150,182,68,0.6)',
+  'rgba(139,103,209,0.6)',
+  'rgba(210,155,61,0.6)',
+  'rgba(86,118,209,0.6)',
+  'rgba(205,88,57,0.6)',
+  'rgba(72,183,188,0.6)',
+  'rgba(210,66,115,0.6)',
+  'rgba(86,174,111,0.6)',
+  'rgba(200,89,183,0.6)',
+  'rgba(130,136,68,0.6)',
+  'rgba(204,158,223,0.6)',
+  'rgba(189,124,88,0.6)',
+  'rgba(149,95,149,0.6)',
+  'rgba(210,118,140,0.6)',
+]
+const colorsDark = [
+  'rgba(96,146,204,1)',
+  'rgba(150,182,68,1)',
+  'rgba(139,103,209,1)',
+  'rgba(210,155,61,1)',
+  'rgba(86,118,209,1)',
+  'rgba(205,88,57,1)',
+  'rgba(72,183,188,1)',
+  'rgba(210,66,115,1)',
+  'rgba(86,174,111,1)',
+  'rgba(200,89,183,1)',
+  'rgba(130,136,68,1)',
+  'rgba(204,158,223,1)',
+  'rgba(189,124,88,1)',
+  'rgba(149,95,149,1)',
+  'rgba(210,118,140,1)',
+]
+
+/**
+ * @namespace Consts
+ * @classdesc Contains application consts
+ */
+class Consts {
+  /**
+   * @name customerFields
+   * @description List of customer form fields
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get customerFields(){ return [
+    {
+      type: 'textfield',
+      label: 'Company Name',
+      id: 'companyName',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The company name must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Email Address',
+      id: 'email',
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        let reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+        if (value.length > 0 &amp;&amp; reg.test(value) == false)
+          return 'Please enter a valid email address.'
+        else if (value.length > 30)
+          return 'The email address must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Phone Number',
+      id: 'phone',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a phone number.'
+        else if (value.length &lt; 10) //could of put a regex here but international numbers have different formats
+          return 'The phone number is too short.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Website',
+      id: 'website',
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        let reg = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 0 &amp;&amp; reg.test(value) == false)
+          return 'Please enter a valid website address.'
+        else if (value.length > 50)
+          return 'The website address must be less than 50 characters.'
+        return null
+      }
+    },
+    {
+      type: 'select',
+      label: 'Country',
+      id: 'shipCountry',
+      options: this.countrySelect,
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; ['','Select...'].includes(value))
+          return 'Please select a country.'
+        return null
+      },
+      onUpdate: (value) => {
+        if (value == 'United States of America'){
+          return [
+            {
+              id: 'shipState',
+              options: this.stateSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'shipZip',
+              required: true,
+              disabled: false
+            }
+          ]
+        }
+        return [
+          {
+            id: 'shipState',
+            options: [{title: 'Not Applicable',selected: true}],
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'shipZip',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Address Line 1',
+      id: 'shipAddr1',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The address must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Address Line 2',
+      id: 'shipAddr2',
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The address must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'City',
+      id: 'shipCity',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The city name must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'select',
+      label: 'State',
+      id: 'shipState',
+      options: this.stateSelect,
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; ['','Select...'].includes(value))
+          return 'Please select the state.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Zip Code',
+      id: 'shipZip',
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 10)
+          return 'The zip code must be less than 10 characters.'
+        return null
+      }
+    },
+    {
+      type: 'checkbox',
+      label: 'Billing address same as shipping',
+      id: 'billIsSame',
+      required: false,
+      validation: null,
+      onUpdate: (value, fields) => {
+        if (value){
+          return [
+            {
+              id: 'billCountry',
+              disabled: true,
+              required: false
+            },
+            {
+              id: 'billAddr1',
+              disabled: true,
+              required: false
+            },
+            {
+              id: 'billAddr2',
+              disabled: true,
+              required: false
+            },
+            {
+              id: 'billCity',
+              disabled: true,
+              required: false
+            },
+            {
+              id: 'billState',
+              disabled: true,
+              required: false
+            },
+            {
+              id: 'billZip',
+              disabled: true,
+              required: false
+            },
+          ]
+        }
+        let stateShow = false
+        let zipRequired = false
+        if (fields.find(obj => obj.id == 'billCountry').value == 'United States of America'){
+          stateShow = true
+          zipRequired = true
+        }
+        return [
+          {
+            id: 'billCountry',
+            disabled: false,
+            required: true
+          },
+          {
+            id: 'billAddr1',
+            disabled: false,
+            required: true
+          },
+          {
+            id: 'billAddr2',
+            disabled: false,
+            required: false
+          },
+          {
+            id: 'billCity',
+            disabled: false,
+            required: true
+          },
+          {
+            id: 'billState',
+            disabled: !stateShow,
+            required: stateShow
+          },
+          {
+            id: 'billZip',
+            disabled: false,
+            required: zipRequired
+          },
+        ]
+      }
+    },
+    {
+      type: 'select',
+      label: 'Country',
+      id: 'billCountry',
+      options: this.countrySelect,
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; ['','Select...'].includes(value))
+          return 'Please select a country.'
+        return null
+      },
+      onUpdate: (value) => {
+        if (value == 'United States of America'){
+          return [
+            {
+              id: 'billAddr1',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'billAddr2',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'billCity',
+              required: true,
+              diabled: false
+            },
+            {
+              id: 'billState',
+              options: this.stateSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'billZip',
+              required: true,
+              disabled: false
+            }
+          ]
+        }
+        return [
+          {
+            id: 'billAddr1',
+            required: true,
+            disabled: false
+          },
+          {
+            id: 'billAddr2',
+            required: false,
+            disabled: false
+          },
+          {
+            id: 'billCity',
+            required: true,
+            diabled: false
+          },
+          {
+            id: 'billState',
+            options: [{title: 'Not Applicable',selected:true}],
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'billZip',
+            required: false,
+            disabled: false
+          }
+        ]
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Address Line 1',
+      id: 'billAddr1',
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The address must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Address Line 2',
+      id: 'billAddr2',
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The address must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'City',
+      id: 'billCity',
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The city name must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'select',
+      label: 'State',
+      id: 'billState',
+      options: this.stateSelect,
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; ['','Select...'].includes(value))
+          return 'Please select the state.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Zip Code',
+      id: 'billZip',
+      required: false,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 10)
+          return 'The zip code must be less than 10 characters.'
+        return null
+      }
+    }
+  ]}
+  /**
+   * @name projectFields
+   * @description List of project form fields
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get projectFields(){ return [
+    {
+      type: 'select',
+      label: 'Cost Center',
+      id: 'costCenterTitle',
+      options: this.costCenterSelect,
+      required: true,
+      disabled: false,
+      validation: (value, required) => {
+        if (required &amp;&amp; ['','Select...'].includes(value))
+          return 'Please select a cost center.'
+        return null
+      },
+      onUpdate: (value) => {
+        if (value == 'APC'){
+          return [
+            {
+              id: 'jobTypeTitle',
+              options: this.apcProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'title',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'descr',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'refNum',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        else if (value == 'Decorative'){
+          return [
+            {
+              id: 'jobTypeTitle',
+              options: this.decorativeProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'title',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'descr',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'refNum',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        else if (value == 'Maintenance'){
+          return [
+            {
+              id: 'jobTypeTitle',
+              options: this.maintenanceProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: false,
+              disabled: true
+            },
+            {
+              id: 'title',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'descr',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'refNum',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        else if (value == 'Administration'){
+          return [
+            {
+              id: 'jobTypeTitle',
+              options: this.adminProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: false,
+              disabled: true
+            },
+            {
+              id: 'title',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'descr',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'refNum',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        else if (value == 'Research and Development'){
+          return [
+            {
+              id: 'jobTypeTitle',
+              options: this.rdProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: false,
+              disabled: true
+            },
+            {
+              id: 'title',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'descr',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'refNum',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        else if (value == 'Military'){
+          return [
+            {
+              id: 'jobTypeTitle',
+              options: this.militaryProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'title',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'descr',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'refNum',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        else if (value == 'Production'){
+          return [
+            {
+              id: 'jobTypeTitle',
+              options: this.productionProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: false,
+              disabled: true
+            },
+            {
+              id: 'title',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'descr',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'refNum',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        else if (value == 'Other'){
+          return [
+            {
+              id: 'jobTypeTitle',
+              options: this.otherProjectSelect,
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'partCount',
+              required: false,
+              disabled: true
+            },
+            {
+              id: 'title',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'priority',
+              required: true,
+              disabled: false
+            },
+            {
+              id: 'descr',
+              required: false,
+              disabled: false
+            },
+            {
+              id: 'refNum',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        return [
+          {
+            id: 'jobTypeTitle',
+            options: [],
+            required: true,
+            disabled: true
+          },
+          {
+            id: 'partCount',
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'title',
+            required: true,
+            disabled: true
+          },
+          {
+            id: 'priority',
+            required: true,
+            disabled: true
+          },
+          {
+            id: 'descr',
+            required: false,
+            disabled: true
+          },
+          {
+            id: 'refNum',
+            required: false,
+            disabled: true
+          }
+        ]
+      }
+    },
+    {
+      type: 'select',
+      label: 'Project Type',
+      id: 'jobTypeTitle',
+      options: [],
+      required: true,
+      disabled: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; ['','Select...'].includes(value))
+          return 'Please select a project type.'
+        return null
+      },
+      onUpdate: (value) => {
+        if (value == 'Piston' || value == 'Turbo' || value == 'Rotor' || value == 'Pump'){
+          return [
+            {
+              id: 'title',
+              required: false,
+              disabled: false
+            }
+          ]
+        }
+        return [
+          {
+            id: 'title',
+            required: true,
+            disabled: false
+          }
+        ]
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Part Count',
+      id: 'partCount',
+      required: false,
+      disabled: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        let reg = /^\d+$/
+        if (value.length > 0 &amp;&amp; reg.test(value.trim()) == false)
+          return 'Please enter a valid number.'
+        else if (value.length > 10)
+          return 'The part count number must be less than 10 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Description',
+      id: 'title',
+      required: false,
+      disabled: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 100)
+          return 'The description must be less than 100 characters.'
+        return null
+      }
+    },
+    {
+      type: 'select',
+      label: 'Priority',
+      id: 'priority',
+      options: [{title: 'Select...',disabled:true,selected:true}, {title: '1-2 Days'}, {title: '3 Days'}, {title: '4-5 Days'}, {title: '10 Days'}],
+      required: true,
+      disabled: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; ['','Select...'].includes(value))
+          return 'Please select a priority.'
+        return null
+      }
+    },
+    {
+      type: 'textarea',
+      label: 'Details',
+      id: 'descr',
+      required: false,
+      disabled: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 100)
+          return 'The description must be less than 100 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Job/Work Order Number',
+      id: 'refNum',
+      required: false,
+      disabled: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The order number must be less than 30 characters.'
+        return null
+      }
+    },
+  ]}
+  /**
+   * @name employeeFields
+   * @description List of employee form fields
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get employeeFields(){ return [
+    {
+      type: 'textfield',
+      label: 'First Name',
+      id: 'firstName',
+      required: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The first name must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Last Name',
+      id: 'lastName',
+      required: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The last name must be less than 30 characters.'
+        return null
+      }
+    },
+  ]}
+  /**
+   * @name accountFields
+   * @description List of account form fields
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get accountFields(){ return [
+    {
+      type: 'textfield',
+      label: 'Username',
+      id: 'username',
+      required: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The username must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'textfield',
+      label: 'Password',
+      id: 'password',
+      password: true,
+      required: true,
+      validation: (value, required) => {
+        if (required &amp;&amp; value == '')
+          return 'Please enter a value.'
+        else if (value.length > 30)
+          return 'The password must be less than 30 characters.'
+        return null
+      }
+    },
+    {
+      type: 'checkbox',
+      label: 'Admin User',
+      id: 'admin',
+      required: true,
+      validation: null,
+    }
+  ]}
+  /**
+   * @name countrySelect
+   * @description List of countries for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get countrySelect() {return [
+    {title: 'Select...',disabled:true,selected:true}, {title: 'United States of America'}, {title: 'Canada'}, {title: '--------------', disabled: true}, {title: 'Afghanistan'}, {title: 'Aland Islands'}, {title: 'Albania'}, {title: 'Algeria'}, {title: 'American Samoa'}, {title: 'Andorra'}, {title: 'Angola'}, {title: 'Anguilla'}, {title: 'Antarctica'}, {title: 'Antigua and Barbuda'}, {title: 'Argentina'}, {title: 'Armenia'}, {title: 'Aruba'}, {title: 'Australia'}, {title: 'Austria'}, {title: 'Azerbaijan'}, {title: 'Bahamas'}, {title: 'Bahrain'}, {title: 'Bangladesh'}, {title: 'Barbados'}, {title: 'Belarus'}, {title: 'Belgium'}, {title: 'Belize'}, {title: 'Benin'}, {title: 'Bermuda'}, {title: 'Bhutan'}, {title: 'Bolivia'}, {title: 'Bonaire, Sint Eustatius and Saba'}, {title: 'Bosnia and Herzegovina'}, {title: 'Botswana'}, {title: 'Bouvet Island'}, {title: 'Brazil'}, {title: 'British Indian Ocean Territory'}, {title: 'United States Minor Outlying Islands'}, {title: 'Virgin Islands (British)'}, {title: 'Virgin Islands (U.S.)'},{title: 'Brunei Darussalam'}, {title: 'Bulgaria'}, {title: 'Burkina Faso'}, {title: 'Burundi'}, {title: 'Cambodia'}, {title: 'Cameroon'}, {title: 'Cabo Verde'}, {title: 'Cayman Islands'}, {title: 'Central African Republic'}, {title: 'Chad'}, {title: 'Chile'}, {title: 'China'}, {title: 'Christmas Island'}, {title: 'Cocos (Keeling) Islands'}, {title: 'Colombia'}, {title: 'Comoros'}, {title: 'Congo'}, {title: 'Cook Islands'}, {title: 'Costa Rica'}, {title: 'Croatia'}, {title: 'Cuba'}, {title: 'Curaçao'}, {title: 'Cyprus'}, {title: 'Czech Republic'}, {title: 'Denmark'}, {title: 'Djibouti'}, {title: 'Dominica'}, {title: 'Dominican Republic'}, {title: 'Ecuador'}, {title: 'Egypt'}, {title: 'El Salvador'}, {title: 'Equatorial Guinea'}, {title: 'Eritrea'}, {title: 'Estonia'}, {title: 'Ethiopia'}, {title: 'Falkland Islands (Malvinas)'}, {title: 'Faroe Islands'}, {title: 'Fiji'}, {title: 'Finland'}, {title: 'France'}, {title: 'French Guiana'}, {title: 'French Polynesia'}, {title: 'French Southern Territories'}, {title: 'Gabon'}, {title: 'Gambia'}, {title: 'Georgia'}, {title: 'Germany'}, {title: 'Ghana'}, {title: 'Gibraltar'}, {title: 'Greece'}, {title: 'Greenland'}, {title: 'Grenada'}, {title: 'Guadeloupe'}, {title: 'Guam'}, {title: 'Guatemala'}, {title: 'Guernsey'}, {title: 'Guinea'}, {title: 'Guinea-Bissau'}, {title: 'Guyana'}, {title: 'Haiti'}, {title: 'Heard Island and McDonald Islands'}, {title: 'Holy See'}, {title: 'Honduras'}, {title: 'Hong Kong'}, {title: 'Hungary'}, {title: 'Iceland'}, {title: 'India'}, {title: 'Indonesia'}, {title: 'Cote dIvoire'}, {title: 'Iran (Islamic Republic of)'}, {title: 'Iraq'}, {title: 'Ireland'}, {title: 'Isle of Man'}, {title: 'Israel'}, {title: 'Italy'}, {title: 'Jamaica'}, {title: 'Japan'}, {title: 'Jersey'}, {title: 'Jordan'}, {title: 'Kazakhstan'}, {title: 'Kenya'}, {title: 'Kiribati'}, {title: 'Kuwait'}, {title: 'Kyrgyzstan'}, {title: 'Lao Peoples Democratic Republic'}, {title: 'Latvia'}, {title: 'Lebanon'}, {title: 'Lesotho'}, {title: 'Liberia'}, {title: 'Libya'}, {title: 'Liechtenstein'}, {title: 'Lithuania'}, {title: 'Luxembourg'}, {title: 'Macao'}, {title: 'Macedonia'}, {title: 'Madagascar'}, {title: 'Malawi'}, {title: 'Malaysia'},{title: 'Maldives'}, {title: 'Mali'}, {title: 'Malta'}, {title: 'Marshall Islands'}, {title: 'Martinique'}, {title: 'Mauritania'}, {title: 'Mauritius'}, {title: 'Mayotte'}, {title: 'Mexico'}, {title: 'Micronesia'}, {title: 'Moldova'}, {title: 'Monaco'}, {title: 'Mongolia'}, {title: 'Montenegro'}, {title: 'Montserrat'}, {title: 'Morocco'}, {title: 'Mozambique'}, {title: 'Myanmar'}, {title: 'Namibia'}, {title: 'Nauru'}, {title: 'Nepal'}, {title: 'Netherlands'}, {title: 'New Caledonia'}, {title: 'New Zealand'}, {title: 'Nicaragua'}, {title: 'Niger'}, {title: 'Nigeria'}, {title: 'Niue'}, {title: 'Norfolk Island'}, {title: 'Korea (Democratic Peoples Republic of)'}, {title: 'Northern Mariana Islands'}, {title: 'Norway'}, {title: 'Oman'}, {title: 'Pakistan'}, {title: 'Palau'}, {title: 'Palestine, State of'}, {title: 'Panama'}, {title: 'Papua New Guinea'}, {title: 'Paraguay'}, {title: 'Peru'}, {title: 'Philippines'}, {title: 'Pitcairn'}, {title: 'Poland'}, {title: 'Portugal'}, {title: 'Puerto Rico'}, {title: 'Qatar'}, {title: 'Republic of Kosovo'}, {title: 'Réunion'}, {title: 'Romania'}, {title: 'Russian Federation'}, {title: 'Rwanda'}, {title: 'Saint Barthelemy'}, {title: 'Saint Helena, Ascension, and Tristan da Cunha'}, {title: 'Saint Kitts and Nevis'}, {title: 'Saint Lucia'}, {title: 'Saint Martin'}, {title: 'Saint Pierre and Miquelon'}, {title: 'Saint Vincent and the Grenadines'}, {title: 'Samoa'}, {title: 'San Marino'}, {title: 'Sao Tome and Principe'}, {title: 'Saudi Arabia'}, {title: 'Senegal'}, {title: 'Serbia'}, {title: 'Seychelles'}, {title: 'Sierra Leone'}, {title: 'Singapore'}, {title: 'Sint Maarten'}, {title: 'Slovakia'}, {title: 'Slovenia'}, {title: 'Solomon Islands'}, {title: 'Somalia'}, {title: 'South Africa'}, {title: 'South Georgia and the South Sandwich Islands'}, {title: 'Korea'}, {title: 'South Sudan'}, {title: 'Spain'}, {title: 'Sri Lanka'}, {title: 'Sudan'}, {title: 'Suriname'}, {title: 'Svalbard and Jan Mayen'}, {title: 'Swaziland'}, {title: 'Sweden'}, {title: 'Switzerland'}, {title: 'Syrian Arab Republic'}, {title: 'Taiwan'}, {title: 'Tajikistan'}, {title: 'Tanzania, United Republic of'}, {title: 'Thailand'}, {title: 'Timor-Leste'}, {title: 'Togo'}, {title: 'Tokelau'}, {title: 'Tonga'}, {title: 'Trinidad and Tobago'}, {title: 'Tunisia'}, {title: 'Turkey'}, {title: 'Turkmenistan'}, {title: 'Turks and Caicos Islands'}, {title: 'Tuvalu'}, {title: 'Uganda'}, {title: 'Ukraine'}, {title: 'United Arab Emirates'}, {title: 'United Kingdom of Great Britain'}, {title: 'Northern Ireland'}, {title: 'Uruguay'}, {title: 'Uzbekistan'}, {title: 'Vanuatu'}, {title: 'Venezuela'}, {title: 'Vietnam'}, {title: 'Wallis'}, {title: 'Futuna'}, {title: 'Western Sahara'}, {title: 'Yemen'}, {title: 'Zambia'}, {title: 'Zimbabwe'}
+  ]}
+  /**
+   * @name stateSelect
+   * @description List of states for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get stateSelect() {return [
+    {title: 'Select...',disabled:true,selected:true}, {title: 'Alabama'}, {title: 'Alaska'}, {title: 'Arizona'}, {title: 'Arkansas'}, {title: 'California'}, {title: 'Colorado'}, {title: 'Connecticut'}, {title: 'Delaware'}, {title: 'Florida'}, {title: 'Georgia'}, {title: 'Hawaii'}, {title: 'Idaho'}, {title: 'Illinois'}, {title: 'Indiana'}, {title: 'Iowa'}, {title: 'Kansas'}, {title: 'Kentucky'}, {title: 'Louisiana'}, {title: 'Maine'}, {title: 'Maryland'}, {title: 'Massachusetts'}, {title: 'Michigan'}, {title: 'Minnesota'}, {title: 'Mississippi'}, {title: 'Missouri'}, {title: 'Montana'}, {title: 'Nebraska'}, {title: 'Nevada'}, {title: 'New Hampshire'}, {title: 'New Jersey'}, {title: 'New Mexico'}, {title: 'New York'}, {title: 'North Carolina'}, {title: 'North Dakota'}, {title: 'Ohio'}, {title: 'Oklahoma'}, {title: 'Oregon'}, {title: 'Pennsylvania'}, {title: 'Rhode Island'}, {title: 'South Carolina'}, {title: 'South Dakota'}, {title: 'Tennessee'}, {title: 'Texas'}, {title: 'Utah'}, {title: 'Vermont'}, {title: 'Virginia'}, {title: 'Washington'}, {title: 'West Virginia'}, {title: 'Wisconsin'}, {title: 'Wyoming'}
+  ]}
+  /**
+   * @name costCenterSelect
+   * @description List of cost centers for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get costCenterSelect() {return [
+    {title: 'Select...',disabled:true,selected:true}, {title: 'APC'}, {title: 'Decorative'}, {title: 'Maintenance'}, {title: 'Administration'}, {title: 'Production'}, {title: 'Military'}, {title: 'Research and Development'}, {title: 'Other'}
+  ]}
+  /**
+   * @name apcProjectSelect
+   * @description List of APC project types for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get apcProjectSelect() {return [
+    {title: 'Select...',disabled:true,selected:true}, {title: 'Piston'}, {title: 'Turbo'}, {title: 'Rotor'}, {title: 'Pump'}, {title: 'Avaslick'}, {title: 'Specialty'}
+  ]}
+  /**
+   * @name decorativeProjectSelect
+   * @description List of Decorative project types for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get decorativeProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Decorative'}]}
+  /**
+   * @name maintenanceProjectSelect
+   * @description List of Maintenance project types for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get maintenanceProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Maintenance'}]}
+  /**
+   * @name adminProjectSelect
+   * @description List of Administration project types for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get adminProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'ISO'}, {title: 'Other'}]}
+  /**
+   * @name rdProjectSelect
+   * @description List of R&amp;D project types for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get rdProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Research and Development'}]}
+  /**
+   * @name militaryProjectSelect
+   * @description List of Military project types for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get militaryProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Military'}]}
+  /**
+   * @name productionProjectSelect
+   * @description List of Production project types for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get productionProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Production'}]}
+  /**
+   * @name otherProjectSelect
+   * @description List of Other project types for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get otherProjectSelect() {return [{title: 'Select...',disabled:true,selected:true}, {title: 'Other'}]}
+  /**
+   * @name doneColor
+   * @description Color to label finished projects
+   * @memberof Consts
+   * @type {String}
+   * @readonly
+   */
+  static get doneColor() {return '#49a4ff'}
+  /**
+   * @name helpColor
+   * @description Color to label projects that need assistance
+   * @memberof Consts
+   * @type {String}
+   * @readonly
+   */
+  static get helpColor() {return '#ffbf00'}
+  /**
+   * @name openColor
+   * @description Color to label open projects
+   * @memberof Consts
+   * @type {String}
+   * @readonly
+   */
+  static get openColor() {return '#57d500'}
+  /**
+   * @name pieColors
+   * @description Colors for pie charts
+   * @memberof Consts
+   * @readonly
+   * @type {String[]}
+   */
+  static get pieColors() {return colorsDark}
+  /**
+   * @name barBGColorByIndex
+   * @description Colors for bar charts
+   * @method barBGColorByIndex
+   * @memberof Consts
+   * @param  {Number}      index Index of color
+   * @type {String}
+   */
+  static barBGColorByIndex(index) {return colorsMedium[index]}
+  /**
+   * @name barBorColorByIndex
+   * @description Colors for bar charts
+   * @method barBorColorByIndex
+   * @memberof Consts
+   * @param  {Number}      index Index of color
+   * @type {String}
+   */
+  static barBorColorByIndex(index) {return colorsDark[index]}
+  /**
+   * @name barHovColorByIndex
+   * @description Colors for bar charts
+   * @method barHovColorByIndex
+   * @memberof Consts
+   * @param  {Number}      index Index of color
+   * @type {String}
+   */
+  static barHovColorByIndex(index) {return colorsLight[index]}
+  /**
+   * @name summaryProps
+   * @description Summary page box properties for style and visuals
+   * @memberof Consts
+   * @type {Object}
+   * @readonly
+   */
+  static get summaryProps(){
+    return {
+      style: {
+        border: '1px solid #b4b4b4',
+        borderRadius: '8px',
+        paddingTop: '1rem',
+        margin: '2px'
+      },
+      className: 'col-3'
+    }
+  }
+  /**
+   * @name taskFields
+   * @description List of new task form fields
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get taskFields(){
+    return [
+      {
+        type: 'textfield',
+        label: 'Task Name',
+        id: 'taskName',
+        required: true,
+        disabled: false,
+        validation: (value, required) => {
+          if (required &amp;&amp; value == '')
+            return 'Please enter a value.'
+          else if (value.length > 30)
+            return 'The task name must be less than 30 characters.'
+          return null
+        }
+      },
+      {
+        type: 'select',
+        label: 'Station',
+        id: 'processArea',
+        options: this.stationSelect,
+        required: false,
+        disabled: false,
+        validation: (value, required) => {
+          if (required &amp;&amp; ['','Select...'].includes(value))
+            return 'Please select a station.'
+          return null
+        }
+      }
+    ]
+  }
+  /**
+   * @name stationSelect
+   * @description List of stations for selecting
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get stationSelect(){
+    return [{title: 'Select...',disabled:true,selected:true}, {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating'},{title: 'Big Blaster'},{title: 'Decorative Coating'},{title: 'Packaging'},{title: 'Other'}]
+  }
+  /**
+   * @name pistonTasks
+   * @description List of piston default tasks
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get pistonTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Bake Clean',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash - Alodine',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Measure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'QC Check',
+        required: true,
+        station: 'Packaging'
+      },
+    ]
+  }
+  /**
+   * @name turboTasks
+   * @description List of turbo default tasks
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get turboTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Bake Clean',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash - Alodine',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Measure',
+        required: false,
+        station: 'Coating'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'QC Check',
+        required: false,
+        station: 'Packaging'
+      },
+    ]
+  }
+  /**
+   * @name pumpTasks
+   * @description List of pump default tasks
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get pumpTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'EPK Bake',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: false,
+        station: 'Preparation'
+      },
+      {
+        title: 'Paint Pen',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash - Bonderite',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Measure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'QC Check',
+        required: false,
+        station: 'Packaging'
+      },
+    ]
+  }
+  /**
+   * @name rotorTasks
+   * @description List of rotor default tasks
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get rotorTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Bake Clean',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash - Alodine',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Measure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'QC Check',
+        required: false,
+        station: 'Packaging'
+      },
+    ]
+  }
+  /**
+   * @name specialtyTasks
+   * @description List of specialtyTasks default tasks
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get specialtyTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Bake Clean',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'EPK Bake',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Engrave',
+        required: false,
+        station: 'Preparation'
+      },
+      {
+        title: 'Paint Pen',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Wash - Alodine',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Measure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Probe Zero',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Coat',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'Cure',
+        required: true,
+        station: 'Coating'
+      },
+      {
+        title: 'QC Check',
+        required: true,
+        station: 'Packaging'
+      },
+    ]
+  }
+  /**
+   * @name decorativeTasks
+   * @description List of decorative default tasks
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get decorativeTasks(){
+    return [
+      {
+        title: 'Degrease',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Strip',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Blast',
+        required: true,
+        station: 'Big Blaster'
+      },
+      {
+        title: 'Mask',
+        required: true,
+        station: 'Preparation'
+      },
+      {
+        title: 'Prime',
+        required: true,
+        station: 'Decorative Coating'
+      },
+      {
+        title: 'Paint',
+        required: true,
+        station: 'Decorative Coating'
+      },
+      {
+        title: 'QC Check',
+        required: true,
+        station: 'Packaging'
+      },
+    ]
+  }
+  /**
+   * @name avaslickTasks
+   * @description List of avaslick default tasks
+   * @memberof Consts
+   * @type {Object[]}
+   * @readonly
+   */
+  static get avaslickTasks(){
+    return this.pistonTasks
+  }
+  /**
+   * @name calculateTime
+   * @description Calculates time difference total for a list of time entry pairs
+   * @method calculateTime
+   * @memberof Consts
+   * @param  {Date[]}      timeEntries List of time entry pairs
+   * @return {Object}
+   */
+  static calculateTime(timeEntries){
+    let hour = 0
+    let min = 0
+    for (let i = 0; i &lt; timeEntries.length-1; i+=2){
+      let start = timeEntries[i+1]
+      let end = timeEntries[i]
+      if (timeEntries[i+1].created){
+        start = timeEntries[i+1].created
+        end = timeEntries[i].created
+      }
+      let diff = Math.abs(new Date(start)-new Date(end))
+      let diffHrs = Math.floor((diff % 86400000) / 3600000) // hour
+      let diffMins = Math.round(((diff % 86400000) % 3600000) / 60000) // min
+      hour += diffHrs
+      if (min + diffMins >= 60){
+        hour += 1
+        min += diffMins
+        min -= 60
+      }
+      else {
+        min += diffMins
+      }
+    }
+    return {hour, min}
+  }
+  /**
+   * @name stationName
+   * @description Swaps station short names for long names
+   * @method stationName
+   * @memberof Consts
+   * @method stationName
+   * @param  {String}    name               Station short name
+   * @return {String}
+   */
+  static stationName(name){
+    let stations = {
+      deccoat: 'Decorative Coating',
+      bigblas: 'Big Blaster',
+      prep: 'Preparation'
+    }
+    return stations[name]
+  }
+}
+
+module.exports = Consts
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,1225 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CustomerSummary Renders with snapshot (website.currentCustomer: pastDue false, summaryMoreDropdownOpen false, summaryActionsDropdownOpen false) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Company
+        </h6>
+        <p>
+          name
+        </p>
+      </div>
+      <div>
+        <h6>
+          Phone Number
+        </h6>
+        <p>
+          phone
+        </p>
+      </div>
+      <div>
+        <h6>
+          Email
+        </h6>
+        <p>
+          email
+        </p>
+      </div>
+      <div>
+        <h6>
+          Website
+        </h6>
+        <p>
+          website
+        </p>
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Address Information
+      </h5>
+      <div>
+        <h6>
+          Shipping
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedShipAddress
+            </span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <h6>
+          Billing
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedBillAddress
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={undefined}
+          >
+            Projects
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`CustomerSummary Renders with snapshot (website.currentCustomer: pastDue false, summaryMoreDropdownOpen false, summaryActionsDropdownOpen true) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Company
+        </h6>
+        <p>
+          name
+        </p>
+      </div>
+      <div>
+        <h6>
+          Phone Number
+        </h6>
+        <p>
+          phone
+        </p>
+      </div>
+      <div>
+        <h6>
+          Email
+        </h6>
+        <p>
+          email
+        </p>
+      </div>
+      <div>
+        <h6>
+          Website
+        </h6>
+        <p>
+          website
+        </p>
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Address Information
+      </h5>
+      <div>
+        <h6>
+          Shipping
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedShipAddress
+            </span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <h6>
+          Billing
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedBillAddress
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={undefined}
+          >
+            Projects
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`CustomerSummary Renders with snapshot (website.currentCustomer: pastDue false, summaryMoreDropdownOpen true, summaryActionsDropdownOpen false) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Company
+        </h6>
+        <p>
+          name
+        </p>
+      </div>
+      <div>
+        <h6>
+          Phone Number
+        </h6>
+        <p>
+          phone
+        </p>
+      </div>
+      <div>
+        <h6>
+          Email
+        </h6>
+        <p>
+          email
+        </p>
+      </div>
+      <div>
+        <h6>
+          Website
+        </h6>
+        <p>
+          website
+        </p>
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Address Information
+      </h5>
+      <div>
+        <h6>
+          Shipping
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedShipAddress
+            </span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <h6>
+          Billing
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedBillAddress
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={undefined}
+          >
+            Projects
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={false}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`CustomerSummary Renders with snapshot (website.currentCustomer: pastDue false, summaryMoreDropdownOpen true, summaryActionsDropdownOpen true) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Company
+        </h6>
+        <p>
+          name
+        </p>
+      </div>
+      <div>
+        <h6>
+          Phone Number
+        </h6>
+        <p>
+          phone
+        </p>
+      </div>
+      <div>
+        <h6>
+          Email
+        </h6>
+        <p>
+          email
+        </p>
+      </div>
+      <div>
+        <h6>
+          Website
+        </h6>
+        <p>
+          website
+        </p>
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Address Information
+      </h5>
+      <div>
+        <h6>
+          Shipping
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedShipAddress
+            </span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <h6>
+          Billing
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedBillAddress
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={undefined}
+          >
+            Projects
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`CustomerSummary Renders with snapshot (website.currentCustomer: pastDue true, summaryMoreDropdownOpen false, summaryActionsDropdownOpen false) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Company
+        </h6>
+        <p>
+          name
+        </p>
+      </div>
+      <div>
+        <h6>
+          Phone Number
+        </h6>
+        <p>
+          phone
+        </p>
+      </div>
+      <div>
+        <h6>
+          Email
+        </h6>
+        <p>
+          email
+        </p>
+      </div>
+      <div>
+        <h6>
+          Website
+        </h6>
+        <p>
+          website
+        </p>
+      </div>
+      <div>
+        <h6>
+          Past Due
+        </h6>
+        <p />
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Address Information
+      </h5>
+      <div>
+        <h6>
+          Shipping
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedShipAddress
+            </span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <h6>
+          Billing
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedBillAddress
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={undefined}
+          >
+            Projects
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`CustomerSummary Renders with snapshot (website.currentCustomer: pastDue true, summaryMoreDropdownOpen false, summaryActionsDropdownOpen true) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Company
+        </h6>
+        <p>
+          name
+        </p>
+      </div>
+      <div>
+        <h6>
+          Phone Number
+        </h6>
+        <p>
+          phone
+        </p>
+      </div>
+      <div>
+        <h6>
+          Email
+        </h6>
+        <p>
+          email
+        </p>
+      </div>
+      <div>
+        <h6>
+          Website
+        </h6>
+        <p>
+          website
+        </p>
+      </div>
+      <div>
+        <h6>
+          Past Due
+        </h6>
+        <p />
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Address Information
+      </h5>
+      <div>
+        <h6>
+          Shipping
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedShipAddress
+            </span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <h6>
+          Billing
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedBillAddress
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={undefined}
+          >
+            Projects
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`CustomerSummary Renders with snapshot (website.currentCustomer: pastDue true, summaryMoreDropdownOpen true, summaryActionsDropdownOpen false) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Company
+        </h6>
+        <p>
+          name
+        </p>
+      </div>
+      <div>
+        <h6>
+          Phone Number
+        </h6>
+        <p>
+          phone
+        </p>
+      </div>
+      <div>
+        <h6>
+          Email
+        </h6>
+        <p>
+          email
+        </p>
+      </div>
+      <div>
+        <h6>
+          Website
+        </h6>
+        <p>
+          website
+        </p>
+      </div>
+      <div>
+        <h6>
+          Past Due
+        </h6>
+        <p />
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Address Information
+      </h5>
+      <div>
+        <h6>
+          Shipping
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedShipAddress
+            </span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <h6>
+          Billing
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedBillAddress
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={undefined}
+          >
+            Projects
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;
+
+exports[`CustomerSummary Renders with snapshot (website.currentCustomer: pastDue true, summaryMoreDropdownOpen true, summaryActionsDropdownOpen true) 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+  >
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Main Information
+      </h5>
+      <div>
+        <h6>
+          Company
+        </h6>
+        <p>
+          name
+        </p>
+      </div>
+      <div>
+        <h6>
+          Phone Number
+        </h6>
+        <p>
+          phone
+        </p>
+      </div>
+      <div>
+        <h6>
+          Email
+        </h6>
+        <p>
+          email
+        </p>
+      </div>
+      <div>
+        <h6>
+          Website
+        </h6>
+        <p>
+          website
+        </p>
+      </div>
+      <div>
+        <h6>
+          Past Due
+        </h6>
+        <p />
+      </div>
+    </div>
+    <div
+      className="col-3"
+      style={
+        Object {
+          "border": "1px solid #b4b4b4",
+          "borderRadius": "8px",
+          "margin": "2px",
+          "paddingTop": "1rem",
+        }
+      }
+    >
+      <h5>
+        Address Information
+      </h5>
+      <div>
+        <h6>
+          Shipping
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedShipAddress
+            </span>
+          </p>
+        </div>
+      </div>
+      <div>
+        <h6>
+          Billing
+        </h6>
+        <div>
+          <p>
+            <span
+              style={
+                Object {
+                  "whiteSpace": "pre-line",
+                }
+              }
+            >
+              formattedBillAddress
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row justify-content-center"
+  >
+    <ButtonGroup>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="secondary"
+          outline={true}
+        >
+          More...
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={undefined}
+          >
+            Projects
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+      <ButtonDropdown
+        isOpen={true}
+        toggle={[MockFunction]}
+      >
+        <DropdownToggle
+          caret={true}
+          color="primary"
+        >
+          Actions
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem
+            onClick={[MockFunction]}
+          >
+            Edit
+          </DropdownItem>
+        </DropdownMenu>
+      </ButtonDropdown>
+    </ButtonGroup>
+  </div>
+</div>
+`;

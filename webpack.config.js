@@ -1,6 +1,6 @@
 /* eslint-disable no-undef*/
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['babel-polyfill', './src/index.js'],
   output: {
     path: __dirname,
     publicPath: '/',
@@ -22,7 +22,11 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader'
-      }
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
+      },
     ]
   },
   resolve: {
