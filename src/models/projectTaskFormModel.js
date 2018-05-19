@@ -14,6 +14,8 @@ useStrict(true)
   * @param {Function} onClickNav Page navigation function for successful form submission
   * @param {Function} onCancelNav Page navigation function for cancelled form submission
   * @param {Function} errorClick Page navigation function error modal confirmation click
+  * @property {Function} onClickNav Page navigation function for successful form submission
+  * @property {Function} onCancelNav Page navigation function for cancelled form submission
   * @extends FormModel
  */
 export default class ProjectTaskFormModel extends FormModel{

@@ -11,13 +11,13 @@ useStrict(true)
   * @class TimeEntryFormModel
   * @classdesc TimeEntry initializer for form storage object
   * @description Creates fields, sets correct onClick
-  * @property {Boolean} submissionConfirmOpen Boolean for confirmation model
-  * @property {String} value Time entry value
-  * @property {Object[]} projectID Project
-  * @property {Object[]} employeeID Employee
-  * @property {String} station Station name
-  * @property {Boolean} errorModalOpen Boolean for error modal
-  * @property {String} errorResponse error message
+  * @property {Boolean} [submissionConfirmOpen=false] Boolean for confirmation model
+  * @property {String} [value=''] Time entry value
+  * @property {Object[]} [projectID=[]] Project
+  * @property {Object[]} [employeeID=[]] Employee
+  * @property {String} [station=''] Station name
+  * @property {Boolean} [errorModalOpen=false] Boolean for error modal
+  * @property {String} [errorResponse=''] Error message
  */
 export default class TimeEntryFormModel {
   constructor() {
@@ -92,8 +92,8 @@ export default class TimeEntryFormModel {
    * @name setValue
    * @description Sets textarea value; if finished
    * @method setValue
-   * @param {String} value textarea value
-   * @param {String} split textarea value
+   * @param {String} value Textarea value
+   * @param {Boolean} split Indicator of whether to split strings (station input) or just keep concatenating (projects/employees)
    * @memberof TimeEntryFormModel.prototype
    * @mobx action
    */

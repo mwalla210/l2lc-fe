@@ -12,7 +12,7 @@ useStrict(true)
   * @class AccountTableModel
   * @classdesc Initializer for table storage object displaying accounts
   * @description Creates table, sets new button value, for table of accounts
-  * @property {Function} buttonClickNav Function to navigate on click of table button
+  * @param {Function} buttonClickNav Function to navigate on click of table button
   * @extends TableModel
  */
 export default class AccountTableModel extends TableModel{

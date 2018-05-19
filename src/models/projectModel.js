@@ -10,27 +10,35 @@ useStrict(true)
  * @class ProjectModel
  * @classdesc Project storage object
  * @param {Number} id Database ID
- * @param {String} descr Description of project
  * @param {Object} costCenterTitle Cost center title [observable]
  * @param {String} jobTypeTitle Job type title [observable]
  * @param {String} title Project title [observable]
  * @param {String} priority Project priority [observable]
  * @param {String} status Project status [observable]
+ * @param {?Date} [dateCreated=null] Project date created
  * @param {?Number} [partCount=null] Project part count [observable]
  * @param {?String} [descr=null] Project description [observable]
  * @param {?String} [refNum=null] Project internal reference number [observable]
- * @param {Customer} [customer={}] Project Customer (defaults to empty object for table display) [observable]
- * @param {?Date} [dateCreated=null] Project date created
+ * @param {Customer} [customer] Project Customer (defaults to empty object for table display) [observable]
  * @param {?Date} [dateFinished=null] Project date finished [observable]
+ * @param {String} [notes=''] Project date finished [observable]
+ * @property {Number} id Database ID
+ * @property {Object} costCenterTitle Cost center title [observable]
+ * @property {String} jobTypeTitle Job type title [observable]
+ * @property {String} title Project title [observable]
+ * @property {String} priority Project priority [observable]
+ * @property {String} status Project status [observable]
+ * @property {?Date} [dateCreated=null] Project date created
+ * @property {?Number} [partCount=null] Project part count [observable]
+ * @property {?String} [descr=null] Project description [observable]
+ * @property {?String} [refNum=null] Project internal reference number [observable]
+ * @property {Customer} [customer] Project Customer (defaults to empty object for table display) [observable]
+ * @property {?Date} [dateFinished=null] Project date finished [observable]
+ * @property {String} [notes=''] Project date finished [observable]
  * @property {String} [processArea=''] Project last process area [observable]
- * @property {Object} [hold] Hold object [observable]
- * @property {Boolean} hold.flag Hold indicator (true: on hold) [observable]
- * @property {String} hold.descr Hold description [observable]
- * @property {Object[]} [reworks=[]] Array of objects containing rework date created and description [observable]
  * @property {Object[]} [timeEntries=[]] Array of objects containing related database employee ID, related database station ID, and date created [observable]
  * @property {Task[]} [tasks=[]] Array of Task(s) associated with Project [observable]
  * @property {String} [historyMsg=''] Time entry history message for Project [observable]
- * @param {?String} [notes=''] Task notes for a project [observable]
  */
 export default class ProjectModel {
   constructor(id, costCenterTitle, jobTypeTitle, title, priority, status, dateCreated=null, partCount=null, descr=null, refNum=null, customer, dateFinished=null, notes='') {
@@ -48,11 +56,6 @@ export default class ProjectModel {
       customer,
       // Defaults
       processArea: '',
-      hold: {
-        flag: false,
-        descr: ''
-      },
-      reworks: [],
       timeEntries: [],
       tasks: [],
       historyMsg: '',
@@ -142,7 +145,7 @@ export default class ProjectModel {
    * @description Sets this.customer, makes request to API to modify Project's related Customer
    * @memberof ProjectModel.prototype
    * @method changeCustomer
-   * @param  {customer}       customer new Customer to link to Project
+   * @param  {Customer}       customer new Customer to link to Project
    * @return {Promise}
    * @mobx action
    */
@@ -166,7 +169,7 @@ export default class ProjectModel {
     * @description Sets this.notes, makes request to API to modify Project's related notes
     * @memberof ProjectModel.prototype
     * @method changeNotes
-    * @param  {event}       event value string for notes
+    * @param  {Object}       event value string for notes
     * @return {Promise}
     * @mobx action
     */

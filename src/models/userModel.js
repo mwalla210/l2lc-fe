@@ -9,10 +9,14 @@ useStrict(true)
  * @classdesc User storage object
  * @param {Number} id Database ID of the user
  * @param {String} username Username of the user [observable]
- * @param {?String} [stationID=null] Station name of the user, if any [observable]
+ * @param {?String} [stationID] Station name of the user, if any [observable]
  * @param {Boolean} [admin=false] Admin indicator of user [observable]
- * @property {String} editUsername Empty field for editing username
- * @property {String} editPassword Empty field for editing password
+ * @property {String} editUsername Empty field for editing username [observable]
+ * @property {String} editPassword Empty field for editing password [observable]
+ * @property {Number} id Database ID of the user
+ * @property {String} username Username of the user [observable]
+ * @property {?String} [stationID] Station name of the user, if any [observable]
+ * @property {Boolean} [admin=false] Admin indicator of user [observable]
  */
 export default class UserModel {
   constructor(id, username, stationID, admin=false) {

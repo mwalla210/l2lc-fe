@@ -7,7 +7,7 @@ useStrict(true)
   * @class FormModel
   * @classdesc Form storage object
   * @description Sets default values for each field item
-  * @property {Object[]} fields Type of fields for the form [observable]
+  * @param {Object[]} fields Type of fields for the form [observable]
   * @param {Object} primaryButton Forms primary button properties
   * @param {String} primaryButton.title Forms primary button title
   * @param {Function} primaryButton.onClick Forms primary button onClick
@@ -17,8 +17,18 @@ useStrict(true)
   * @param {Boolean} autoSubmit Forms auto-submit boolean
   * @param {Function} onChange Form's function to handle ANY field updates (time entry only usage)
   * @param {Function} errorClick Form's function to handle clicking of form error modal confirmation
+  * @property {Object[]} fields Type of fields for the form [observable]
   * @property {Boolean} [modalOpen=false] Form's indicator for whether error modal is open [observable]
   * @property {String} [errorResponse=''] Form's string field to hold error text passed in from website [observable]
+  * @property {Object} primaryButton Forms primary button properties
+  * @property {String} primaryButton.title Forms primary button title
+  * @property {Function} primaryButton.onClick Forms primary button onClick
+  * @property {Object} [secondaryButton] Forms secondary button properties
+  * @property {String} secondaryButton.title Forms secondary button title
+  * @property {Function} secondaryButton.onClick Forms secondary button onClick
+  * @property {Boolean} autoSubmit Forms auto-submit boolean
+  * @property {Function} onChange Form's function to handle ANY field updates (time entry only usage)
+  * @property {Function} errorClick Form's function to handle clicking of form error modal confirmation
  */
 export default class FormModel {
   constructor(fields, primaryButton, secondaryButton, autoSubmit, onChange, errorClick) {
