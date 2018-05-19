@@ -101,6 +101,12 @@ export default class TimeEntryFormModel {
     this.value = value
     if (split){
       let tokens = this.value.split('\n')
+      let nonempty = []
+      tokens.forEach(token => {
+        if (token.trim() != '')
+          nonempty.push(token)
+      })
+      tokens = nonempty
       tokens.forEach(token => {
         let nonNumber = /^([^0-9]*)$/
         // Station

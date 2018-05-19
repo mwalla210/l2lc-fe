@@ -1,15 +1,15 @@
 import TimeEntryFormModel from '../../models/timeEntryFormModel'
 
-
 jest.mock('../../store/website', () => {
   return {
-    createTimeEntry: jest.fn().mockReturnValue(Promise.resolve('res')).mockReturnValue(Promise.resolve(null)),
+    createTimeEntry: jest.fn().mockReturnValue(Promise.resolve(null)),
     currentUser:{
       stationID: 'Receiving'
     },
     addToTaskHistory: jest.fn(),
   }
 })
+import Website from '../../store/website'
 jest.mock('../../store/page', () => {
   return {
     projectTimeEntryMenuItem: jest.fn(),
@@ -66,86 +66,40 @@ describe('TimeEntryFormModel', () => {
     expect(entry.value).toEqual('')
   })
 
-  it ('Tests setValue for project', () => {
+  it ('Tests setValue for non-split', () => {
     let entry = new TimeEntryFormModel()
-    entry.station = 'null'
-    entry.projectID = [{replace: jest.fn()},{replace: jest.fn()}]
-    entry.employeeID = [{replace: jest.fn()},{replace: jest.fn()}]
-    entry.setValue('1121','split')
-    expect(entry.value).toEqual('1121')
-  })
-
-  it ('Tests setValue for e', () => {
-    let entry = new TimeEntryFormModel()
-    entry.projectID = [{replace: jest.fn()},{replace: jest.fn()},'E1121']
-    entry.employeeID = [{replace: jest.fn()},{replace: jest.fn()}, 'E1121']
-    entry.setValue('E1121','split')
-    expect(entry.value).toEqual('E1121')
-  })
-
-  it ('Tests setValue for p', () => {
-    let entry = new TimeEntryFormModel()
-    entry.projectID = [{replace: jest.fn()},{replace: jest.fn()},'P1121']
-    entry.employeeID = [{replace: jest.fn()},{replace: jest.fn()}, 'P1121']
-    entry.setValue('P1121','split')
+    entry.setValue('P1121',false)
     expect(entry.value).toEqual('P1121')
   })
-
-  it ('Tests setValue for either', () => {
+  it ('Tests setValue for split (not shorthand), no submit', () => {
     let entry = new TimeEntryFormModel()
-    entry.setValue('E1121','P1232')
-    expect(entry.value).toEqual('E1121')
+    entry.setValue('PACKAGING\n', true)
+    expect(entry.value).toEqual('PACKAGING\n')
+    expect(setTimeout).toHaveBeenCalledTimes(0)
   })
-
-  it ('Tests setValue for incorrect input', () => {
+  it ('Tests setValue for split (shorthand), submit with errors', () => {
     let entry = new TimeEntryFormModel()
-    entry.setValue('E','')
-    expect(entry.value).toEqual('E')
+    Website.createTimeEntry = jest.fn().mockReturnValue(Promise.resolve('Not Null'))
+    entry.setValue('SomethingElseWeirdWithNums1\nE1121\nE1121\nP1121\nP1121\nP111\ndeccoat\n', true)
+    expect(entry.value).toEqual('SomethingElseWeirdWithNums1\nE1121\nE1121\nP1121\nP1121\nP111\ndeccoat\n')
   })
-
-  it ('Tests setValue for null', () => {
+  it('Tests setValue station', (done) => {
+    Website.createTimeEntry = jest.fn().mockReturnValue(Promise.resolve(null))
     let entry = new TimeEntryFormModel()
-    entry.setValue(null,null)
-    expect(entry.value).toEqual(null)
-  })
-
-  it ('Tests setValue shorthand', () => {
-    let entry = new TimeEntryFormModel()
-    entry.setValue('deccoat','deccoat')
-    expect(entry.value).toEqual('deccoat')
-  })
-
-  it ('Tests setValue station', () => {
-    let entry = new TimeEntryFormModel()
-    entry.setValue('receiving','receiving')
-    expect(entry.value).toEqual('receiving')
-  })
-
-  it ('Tests setValue for alterante incorrect input', () => {
-    let entry = new TimeEntryFormModel()
-    entry.setValue('PEIgf13','dfrgd63')
-    expect(entry.value).toEqual('PEIgf13')
-  })
-
-  it ('Tests submit ', () => {
-    let entry = new TimeEntryFormModel()
+    entry.projectID.push('P3')
+    entry.employeeID.push('E1')
+    entry.station = 'receiving'
     entry.submit()
-    expect(entry.errorModalOpen).toEqual(false)
+    expect.assertions(4)
+    process.nextTick(() => {
+      expect(setTimeout).toHaveBeenCalledTimes(1)
+      jest.runOnlyPendingTimers()
+      expect(setTimeout).toHaveBeenCalledTimes(2)
+      expect(Website.addToTaskHistory).toHaveBeenCalledTimes(0)
+      jest.runOnlyPendingTimers()
+      // Only expecting one call as we're only processing one tick forwards
+      expect(Website.addToTaskHistory).toHaveBeenCalledTimes(1)
+      done()
+    })
   })
-
-  it ('Tests submit ', () => {
-    let entry = new TimeEntryFormModel()
-    entry.projectID = [{replace: jest.fn()},{replace: jest.fn()},'P']
-    entry.employeeID = [{replace: jest.fn()},{replace: jest.fn()}, 'E']
-    entry.submit()
-    jest.runAllTimers()
-    expect(setTimeout).toHaveBeenCalledTimes(4)
-  })
-
-  it ('Tests setError', () => {
-    let entry = new TimeEntryFormModel()
-    entry.setError('ErrorTXT')
-    expect(entry.errorResponse).toEqual('ErrorTXT')
-  })
-
 })
