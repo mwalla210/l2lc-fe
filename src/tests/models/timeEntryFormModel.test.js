@@ -1,9 +1,9 @@
 import TimeEntryFormModel from '../../models/timeEntryFormModel'
-//import Consts from '../../consts'
+
 
 jest.mock('../../store/website', () => {
   return {
-    createTimeEntry: jest.fn().mockReturnValue(Promise.resolve('error')).mockReturnValue(Promise.resolve('response')),
+    createTimeEntry: jest.fn().mockReturnValue(Promise.resolve('res')).mockReturnValue(Promise.resolve(null)),
     currentUser:{
       stationID: 'Receiving'
     },
@@ -12,9 +12,12 @@ jest.mock('../../store/website', () => {
 })
 jest.mock('../../store/page', () => {
   return {
-    projectTimeEntryMenuItem: jest.fn()
+    projectTimeEntryMenuItem: jest.fn(),
+    setNullContent: jest.fn()
   }
 })
+
+jest.useFakeTimers()
 
 describe('TimeEntryFormModel', () => {
   it ('Tests constructor', () => {
@@ -126,16 +129,17 @@ describe('TimeEntryFormModel', () => {
 
   it ('Tests submit ', () => {
     let entry = new TimeEntryFormModel()
-    entry.projectID = [{replace: jest.fn()},{replace: jest.fn()},'E1121']
-    entry.employeeID = [{replace: jest.fn()},{replace: jest.fn()}, 'E1121']
     entry.submit()
     expect(entry.errorModalOpen).toEqual(false)
   })
 
   it ('Tests submit ', () => {
     let entry = new TimeEntryFormModel()
+    entry.projectID = [{replace: jest.fn()},{replace: jest.fn()},'P']
+    entry.employeeID = [{replace: jest.fn()},{replace: jest.fn()}, 'E']
     entry.submit()
-    expect(entry.errorModalOpen).toEqual(false)
+    jest.runAllTimers()
+    expect(setTimeout).toHaveBeenCalledTimes(4)
   })
 
   it ('Tests setError', () => {
@@ -143,4 +147,5 @@ describe('TimeEntryFormModel', () => {
     entry.setError('ErrorTXT')
     expect(entry.errorResponse).toEqual('ErrorTXT')
   })
+
 })
