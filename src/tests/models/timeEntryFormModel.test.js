@@ -3,7 +3,7 @@ import TimeEntryFormModel from '../../models/timeEntryFormModel'
 
 jest.mock('../../store/website', () => {
   return {
-    createTimeEntry: jest.fn().mockReturnValue(Promise.resolve('error')),//.mockReturnValueOnce(Promise.resolve(null)).mockReturnValueOnce(Promise.resolve('response'))
+    createTimeEntry: jest.fn().mockReturnValue(Promise.resolve('error')).mockReturnValue(Promise.resolve('response')),
     currentUser:{
       stationID: 'Receiving'
     },
