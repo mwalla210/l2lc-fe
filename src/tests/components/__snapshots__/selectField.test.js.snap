@@ -39,7 +39,7 @@ exports[`SelectField Renders with snapshot, alternate arguements 1`] = `
       "borderColor": "orange",
     }
   }
-  value="value"
+  value="title"
 >
   <option
     disabled={true}

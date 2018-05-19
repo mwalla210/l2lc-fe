@@ -10,9 +10,10 @@ useStrict(true)
   * @class CustomerFormModel
   * @classdesc Customer initializer for form storage object
   * @description Creates fields, sets correct onClick
+  * @param {Function} onClickNav Page navigation function for successful form submission
+  * @param {Function} onCancelNav Page navigation function for cancelled form submission
+  * @param {Function} errorClick Page navigation function for error modal confirmation click
   * @property {Function} onClickNav Page navigation function for successful form submission
-  * @property {Function} onCancelNav Page navigation function for cancelled form submission
-  * @property {Function} errorClick Page navigation function for error modal confirmation click
   * @extends FormModel
  */
 export default class CustomerFormModel extends FormModel{

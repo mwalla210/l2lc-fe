@@ -26,35 +26,36 @@ const alternateOptions = {
   valid: false,
   disabled: false,
   id: 'id',
-  value: 'value',
+  value: '',
   onChange: jest.fn(),
   onBlur: jest.fn(),
   focus: true,
   options:observable([
     {
       disabled: true,
-      title: 'title'
+      title: 'title',
+      selected: true
     },
     {
-      title: 'title'
+      title: 'title',
     }
   ])
 }
 
 describe('SelectField', () => {
   it ('Renders with snapshot', () => {
-    let options = Object.assign({}, defaultOptions)
+    let option = Object.assign({}, defaultOptions)
     const component = renderer.create(
-      <SelectField {...options}/>,
+      <SelectField {...option}/>,
     )
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it ('Renders with snapshot, alternate arguements', () => {
-    let options = Object.assign({}, alternateOptions)
+    let option = Object.assign({}, alternateOptions)
     const component = renderer.create(
-      <SelectField {...options}/>,
+      <SelectField {...option}/>,
     )
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()

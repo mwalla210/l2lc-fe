@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Stations Renders with snapshot 1`] = `
+<div>
+  <div
+    className="row justify-content-center"
+    style={
+      Object {
+        "textAlign": "center",
+      }
+    }
+  >
+    <div
+      className="row justify-content-center"
+    >
+      <ButtonGroup />
+    </div>
+    <div
+      className="col-12"
+    >
+      <h1
+        style={
+          Object {
+            "marginBottom": "3px",
+            "marginTop": "50px",
+          }
+        }
+      >
+        Receiving
+      </h1>
+    </div>
+    <div
+      className="col-12"
+    >
+      <h1
+        style={
+          Object {
+            "marginBottom": "3px",
+            "marginTop": "50px",
+          }
+        }
+      >
+        Ticketing
+      </h1>
+    </div>
+    <div
+      className="col-12"
+    >
+      <h1
+        style={
+          Object {
+            "marginBottom": "3px",
+            "marginTop": "50px",
+          }
+        }
+      >
+        Preparation
+      </h1>
+    </div>
+    <div
+      className="col-12"
+    >
+      <h1
+        style={
+          Object {
+            "marginBottom": "3px",
+            "marginTop": "50px",
+          }
+        }
+      >
+        Coating
+      </h1>
+    </div>
+    <div
+      className="col-12"
+    >
+      <h1
+        style={
+          Object {
+            "marginBottom": "3px",
+            "marginTop": "50px",
+          }
+        }
+      >
+        Big Blaster
+      </h1>
+    </div>
+    <div
+      className="col-12"
+    >
+      <h1
+        style={
+          Object {
+            "marginBottom": "3px",
+            "marginTop": "50px",
+          }
+        }
+      >
+        Decorative Coating
+      </h1>
+    </div>
+    <div
+      className="col-12"
+    >
+      <h1
+        style={
+          Object {
+            "marginBottom": "3px",
+            "marginTop": "50px",
+          }
+        }
+      >
+        Packaging
+      </h1>
+    </div>
+    <div
+      className="col-12"
+    >
+      <h1
+        style={
+          Object {
+            "marginBottom": "3px",
+            "marginTop": "50px",
+          }
+        }
+      >
+        Other
+      </h1>
+    </div>
+  </div>
+</div>
+`;

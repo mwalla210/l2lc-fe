@@ -1,51 +1,105 @@
 import TimeEntryFormModel from '../../models/timeEntryFormModel'
+
 jest.mock('../../store/website', () => {
   return {
-    createTimeEntry: jest.fn().mockReturnValueOnce(Promise.resolve(null)).mockReturnValueOnce(Promise.resolve('response')),
+    createTimeEntry: jest.fn().mockReturnValue(Promise.resolve(null)),
     currentUser:{
       stationID: 'Receiving'
-    }
+    },
+    addToTaskHistory: jest.fn(),
   }
 })
+import Website from '../../store/website'
 jest.mock('../../store/page', () => {
   return {
-
+    projectTimeEntryMenuItem: jest.fn(),
+    setNullContent: jest.fn()
   }
 })
+
+jest.useFakeTimers()
 
 describe('TimeEntryFormModel', () => {
   it ('Tests constructor', () => {
     let entry = new TimeEntryFormModel()
+    entry.station = null
+    entry.projectID = []
+    entry.enployeeID= []
     expect(entry).toHaveProperty('resetValuesAndValidation')
   })
-  xit ('Tests constructor onChange from FormModel', () => {
-    let entryFormModel = new TimeEntryFormModel()
-    entryFormModel.modifyFieldValue(0,'Q')
-    entryFormModel.fieldValidatorWrapper(0)
-    expect(entryFormModel.buttonDisabled).toBe(true)
-    entryFormModel.modifyFieldValue(0,'P')
-    entryFormModel.modifyFieldValue(0,'P1')
-    entryFormModel.modifyFieldValue(0,'P1%')
-    entryFormModel.modifyFieldValue(1,'E')
-    entryFormModel.modifyFieldValue(1,'E1')
-    entryFormModel.modifyFieldValue(1,'E1%')
+
+  it ('Tests buttonDisabled', () => {
+    let entry = new TimeEntryFormModel()
+    entry.station = null
+    entry.projectID = []
+    entry.enployeeID= []
+    expect(entry).toHaveProperty('resetValuesAndValidation')
   })
-  xit ('Tests primayButton time entry creation', async function() {
-    let entryFormModel = new TimeEntryFormModel()
-    await entryFormModel.primaryButton.onClick([
-      {
-        value: 'value'
-      },
-      {
-        value: 'value'
-      }
-    ])
-    expect(entryFormModel.errorResponse).toBe('response')
-    expect(entryFormModel.modalOpen).toBe(true)
+
+  it ('Tests openConfirmation', () => {
+    let entry = new TimeEntryFormModel()
+    entry.openConfirmation()
+    expect(entry.submissionConfirmOpen).toEqual(true)
   })
-  xit ('Tests closeModal', () => {
-    let entryFormModel = new TimeEntryFormModel()
-    entryFormModel.closeModal()
-    expect(entryFormModel.modalOpen).toBe(false)
+
+  it ('Tests closeConfirmation', () => {
+    let entry = new TimeEntryFormModel()
+    entry.closeConfirmation()
+    expect(entry.submissionConfirmOpen).toEqual(false)
+  })
+
+  it ('Tests openModal', () => {
+    let entry = new TimeEntryFormModel()
+    entry.openModal()
+    expect(entry.errorModalOpen).toEqual(true)
+  })
+
+  it ('Tests closeModal', () => {
+    let entry = new TimeEntryFormModel()
+    entry.closeModal()
+    expect(entry.errorModalOpen).toEqual(false)
+  })
+
+  it ('Tests resetValuesAndValidation', () => {
+    let entry = new TimeEntryFormModel()
+    entry.resetValuesAndValidation()
+    expect(entry.value).toEqual('')
+  })
+
+  it ('Tests setValue for non-split', () => {
+    let entry = new TimeEntryFormModel()
+    entry.setValue('P1121',false)
+    expect(entry.value).toEqual('P1121')
+  })
+  it ('Tests setValue for split (not shorthand), no submit', () => {
+    let entry = new TimeEntryFormModel()
+    entry.setValue('PACKAGING\n', true)
+    expect(entry.value).toEqual('PACKAGING\n')
+    expect(setTimeout).toHaveBeenCalledTimes(0)
+  })
+  it ('Tests setValue for split (shorthand), submit with errors', () => {
+    let entry = new TimeEntryFormModel()
+    Website.createTimeEntry = jest.fn().mockReturnValue(Promise.resolve('Not Null'))
+    entry.setValue('SomethingElseWeirdWithNums1\nE1121\nE1121\nP1121\nP1121\nP111\ndeccoat\n', true)
+    expect(entry.value).toEqual('SomethingElseWeirdWithNums1\nE1121\nE1121\nP1121\nP1121\nP111\ndeccoat\n')
+  })
+  it('Tests setValue station', (done) => {
+    Website.createTimeEntry = jest.fn().mockReturnValue(Promise.resolve(null))
+    let entry = new TimeEntryFormModel()
+    entry.projectID.push('P3')
+    entry.employeeID.push('E1')
+    entry.station = 'receiving'
+    entry.submit()
+    expect.assertions(4)
+    process.nextTick(() => {
+      expect(setTimeout).toHaveBeenCalledTimes(1)
+      jest.runOnlyPendingTimers()
+      expect(setTimeout).toHaveBeenCalledTimes(2)
+      expect(Website.addToTaskHistory).toHaveBeenCalledTimes(0)
+      jest.runOnlyPendingTimers()
+      // Only expecting one call as we're only processing one tick forwards
+      expect(Website.addToTaskHistory).toHaveBeenCalledTimes(1)
+      done()
+    })
   })
 })

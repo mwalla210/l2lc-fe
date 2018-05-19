@@ -27,7 +27,8 @@ const defaultOptions = {
           options:[],
           errorText: 'errortext',
           label: 'label',
-          required: true
+          required: true,
+          focus: true
         },
         {
           id: 1,

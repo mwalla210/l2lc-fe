@@ -91,7 +91,7 @@ class FormSelector {
    * @method getTask
    * @param  {Function}       onClick  On click function for form
    * @param  {Function}       errorClick On error modal confirmation click function for form
-   * @return {ProjectFormModel}
+   * @return {ProjectTaskFormModel}
    * @memberof FormSelector.prototype
    */
   getTask(onClick, errorClick){

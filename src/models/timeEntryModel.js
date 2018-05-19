@@ -1,4 +1,4 @@
-import { action, computed, useStrict, extendObservable } from 'mobx'
+import { useStrict, extendObservable } from 'mobx'
 import autoBind from 'auto-bind'
 useStrict(true)
 
@@ -6,6 +6,11 @@ useStrict(true)
  * @name TimeEntryModel
  * @class TimeEntryModel
  * @classdesc Time Entry storage object
+ * @param {Number} id Database ID of time entry
+ * @param {Number} projectId Project ID of time entry [observable]
+ * @param {Number} employeeId Employee ID of time entry [observable]
+ * @param {String} station Indicator of time entry's station [observable]
+ * @param {Number} created Date of time entry in milliseconds since epoch [observable]
  * @property {Number} id Database ID of time entry
  * @property {Number} projectId Project ID of time entry [observable]
  * @property {Number} employeeId Employee ID of time entry [observable]

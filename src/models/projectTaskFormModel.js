@@ -9,12 +9,13 @@ useStrict(true)
 /**
   * @name ProjectTaskFormModel
   * @class ProjectTaskFormModel
-  * @classdesc Customer initializer for form storage object
-  * @description Creates fields, sets correct onClick
+  * @classdesc Initializer for form storage object for Project Tasks page
+  * @description Creates fields, sets correct button click naviagtions
+  * @param {Function} onClickNav Page navigation function for successful form submission
+  * @param {Function} onCancelNav Page navigation function for cancelled form submission
+  * @param {Function} errorClick Page navigation function error modal confirmation click
   * @property {Function} onClickNav Page navigation function for successful form submission
-  * @property {Function} onClickCustomerNav Page navigation function for successful form submission
   * @property {Function} onCancelNav Page navigation function for cancelled form submission
-  * @property {Function} errorClick Page navigation function error modal confirmation click
   * @extends FormModel
  */
 export default class ProjectTaskFormModel extends FormModel{

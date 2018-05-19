@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import Barcode from './barcode'
 import {ButtonGroup} from 'reactstrap'
 import ButtonDefault from './buttonDefault'
-import Consts from '../consts'
+
 
 /**
  * Stations component; constructor binds functions
@@ -31,14 +31,9 @@ export default class Stations extends Component {
    * @memberof Stations.prototype
    * @return {Component}
    * @see {@link Barcode}
-   * @see {@link DeleteModal}
-   * @see {@link PromptModal}
    * @see {@link https://reactstrap.github.io/components/button-group/ Reactstrap.ButtonGroup}
    */
   render() {
-    /*
-     {title: 'Receiving'},{title: 'Ticketing'},{title: 'Preparation'},{title: 'Coating'},{title: 'Big Blaster'},{title: 'Decorative Coating'},{title: 'Packaging'},{title: 'Other'}
-     */
     return (
       <div>
         <div className="row justify-content-center" style={{textAlign: 'center'}}>

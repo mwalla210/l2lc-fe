@@ -60,6 +60,7 @@ export default class Login extends Component {
    * @method render
    * @memberof Login.prototype
    * @return {Component}
+   * @see {@link ButtonPrimary}
    */
   render() {
     let alertStyle = null

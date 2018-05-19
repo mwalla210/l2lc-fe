@@ -11,6 +11,13 @@ useStrict(true)
   * @class TimeEntryFormModel
   * @classdesc TimeEntry initializer for form storage object
   * @description Creates fields, sets correct onClick
+  * @property {Boolean} [submissionConfirmOpen=false] Boolean for confirmation model
+  * @property {String} [value=''] Time entry value
+  * @property {Object[]} [projectID=[]] Project
+  * @property {Object[]} [employeeID=[]] Employee
+  * @property {String} [station=''] Station name
+  * @property {Boolean} [errorModalOpen=false] Boolean for error modal
+  * @property {String} [errorResponse=''] Error message
  */
 export default class TimeEntryFormModel {
   constructor() {
@@ -85,6 +92,8 @@ export default class TimeEntryFormModel {
    * @name setValue
    * @description Sets textarea value; if finished
    * @method setValue
+   * @param {String} value Textarea value
+   * @param {Boolean} split Indicator of whether to split strings (station input) or just keep concatenating (projects/employees)
    * @memberof TimeEntryFormModel.prototype
    * @mobx action
    */
@@ -92,6 +101,12 @@ export default class TimeEntryFormModel {
     this.value = value
     if (split){
       let tokens = this.value.split('\n')
+      let nonempty = []
+      tokens.forEach(token => {
+        if (token.trim() != '')
+          nonempty.push(token)
+      })
+      tokens = nonempty
       tokens.forEach(token => {
         let nonNumber = /^([^0-9]*)$/
         // Station
@@ -178,7 +193,7 @@ export default class TimeEntryFormModel {
   }
   /**
    * @name setError
-   * @description Sets textarea value; if finished
+   * @description Sets error message
    * @method setError
    * @memberof TimeEntryFormModel.prototype
    * @param {String} val Error message

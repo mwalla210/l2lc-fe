@@ -10,9 +10,9 @@ useStrict(true)
 /**
   * @name AccountTableModel
   * @class AccountTableModel
-  * @classdesc Customer initializer for table storage object
-  * @description Creates fields, sets correct onClick
-  * @property {Function} buttonClickNav Function to navigate on click of table button
+  * @classdesc Initializer for table storage object displaying accounts
+  * @description Creates table, sets new button value, for table of accounts
+  * @param {Function} buttonClickNav Function to navigate on click of table button
   * @extends TableModel
  */
 export default class AccountTableModel extends TableModel{
