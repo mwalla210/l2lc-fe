@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { inject, observer } from 'mobx-react'
 import Barcode from './barcode'
 import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, ButtonGroup} from 'reactstrap'
-// import DeleteModal from './deleteModal'
 import ButtonDefault from './buttonDefault'
 
 /**
