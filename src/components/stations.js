@@ -26,7 +26,7 @@ export default class Stations extends Component {
   }
 
   /**
-   * Renders HTML div component containing DeleteModal, PromptModal, project info, project barcode, and project buttons
+   * Renders HTML div component containing barcodes and print button
    * @method render
    * @memberof Stations.prototype
    * @return {Component}
